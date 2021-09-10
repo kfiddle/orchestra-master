@@ -18,7 +18,7 @@ const MainNavigation = (props) => {
             </li>
             <li
               className={classes.navItem}
-              onClick={props.payeeEntryClicked}
+              onClick={props.pieceEntryClicked}
               style={{ marginRight: "7rem" }}
             >
               <GiBlackBook />
