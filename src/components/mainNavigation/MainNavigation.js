@@ -13,7 +13,7 @@ const MainNavigation = (props) => {
       <nav className={classes.nav}>
         <ul>
           <div className={classes.newFormDiv}>
-            <li className={classes.navItem} onClick={props.entryClicked}>
+            <li className={classes.navItem} onClick={props.playerEntryClicked}>
               <FaUserPlus />
             </li>
             <li
