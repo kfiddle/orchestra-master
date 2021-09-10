@@ -1,4 +1,7 @@
 import { NavLink } from "react-router-dom";
+import { FaUserPlus } from "react-icons/fa";
+import { GiBlackBook } from "react-icons/gi";
+
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = (props) => {
@@ -11,35 +14,35 @@ const MainNavigation = (props) => {
         <ul>
           <div className={classes.newFormDiv}>
             <li className={classes.navItem} onClick={props.entryClicked}>
-              + FOUNDATION ITEM
+              <FaUserPlus />
             </li>
             <li
               className={classes.navItem}
               onClick={props.payeeEntryClicked}
               style={{ marginRight: "7rem" }}
             >
-              + PAYEE
+              <GiBlackBook />
             </li>
+
           </div>
 
           <li className={classes.navItem}>
-            <NavLink to={"/foundation-items"} activeClassName={classes.active}>FOUNDATION ITEMS</NavLink>
+            <NavLink to={"/purposes"} activeClassName={classes.active}>
+              {" "}
+              Subs
+            </NavLink>
           </li>
           <li className={classes.navItem}>
-            <NavLink to={"/foundations"} activeClassName={classes.active}> FOUNDATIONS</NavLink>
+            <NavLink to={"/payees"} activeClassName={classes.active}>
+              {" "}
+              Contract Players
+            </NavLink>
           </li>
           <li className={classes.navItem}>
-            <NavLink to={"/purposes"} activeClassName={classes.active}> PURPOSES</NavLink>
-          </li>
-          <li className={classes.navItem}>
-            <NavLink to={"/payees"} activeClassName={classes.active}> ROLODEX</NavLink>
-          </li>
-
-          <li className={classes.navItem}>
-            <NavLink to={"/helen-master"} activeClassName={classes.active}> Helen's Master</NavLink>
-          </li>
-          <li className={classes.navItem}>
-            <NavLink to={"/stone-garden-master"} activeClassName={classes.active}>SG Master</NavLink>
+            <NavLink to={"/payees"} activeClassName={classes.active}>
+              {" "}
+              Season
+            </NavLink>
           </li>
         </ul>
       </nav>
