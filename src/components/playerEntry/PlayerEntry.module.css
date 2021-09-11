@@ -32,19 +32,46 @@
   outline-color: teal;
 }
 
-.w9Div {
+.phoneDiv {
   display: flex;
-  margin: 2rem 3rem;
+  margin: 1rem 10%;
 }
 
-.w9Div label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 0.5rem;
+.phoneDiv div {
+  width: 40%;
+  margin-left: 3rem;
 }
 
-.w9Div input {
+.cityStateDiv {
+  display: flex;
+}
+
+.city {
+  width: 60%;
+  margin-right: 2rem;
+}
+.state {
   width: 10%;
+  margin-right: 2rem;
+}
+
+.checkedDiv {
+  display: flex;
+  width: 90%;
+  font-weight: 900;
+  margin: 3rem auto;
+}
+
+.checkedDiv div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+}
+
+.checkedDiv input {
+  width: 50%;
 }
 
 .buttonDiv {

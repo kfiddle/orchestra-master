@@ -94,14 +94,16 @@ const PlayerEntry = (props) => {
           />
         </div>
 
-        <div className={classes.control}>
-          <label>Home Phone</label>
-          <input type="text" ref={homePhoneRef} placeholder={homePhone} />
-        </div>
+        <div className={classes.phoneDiv}>
+          <div className={classes.control}>
+            <label>Home Phone</label>
+            <input type="text" ref={homePhoneRef} placeholder={homePhone} />
+          </div>
 
-        <div className={classes.control}>
-          <label>Cell Phone</label>
-          <input type="text" ref={cellPhoneRef} placeholder={cellPhone} />
+          <div className={classes.control}>
+            <label>Cell Phone</label>
+            <input type="text" ref={cellPhoneRef} placeholder={cellPhone} />
+          </div>
         </div>
 
         <div className={classes.control}>
@@ -129,39 +131,47 @@ const PlayerEntry = (props) => {
           />
         </div>
 
-        <div className={classes.control}>
-          <label>City</label>
-          <input type="text" id="address" ref={cityRef} placeholder={city} />
+        <div className={classes.cityStateDiv}>
+          <div className={`${classes.control} ${classes.city}`}>
+            <label>City</label>
+            <input type="text" id="address" ref={cityRef} placeholder={city} />
+          </div>
+
+          <div className={`${classes.control} ${classes.state}`}>
+            <label>State</label>
+            <input type="text" ref={stateRef} placeholder={state} />
+          </div>
+
+          <div className={`${classes.control} ${classes.zip}`}>
+            <label>Zip</label>
+            <input type="text" ref={zipRef} placeholder={zip} />
+          </div>
         </div>
 
-        <div className={classes.control}>
-          <label>State</label>
-          <input type="text" ref={stateRef} placeholder={state} />
-        </div>
+        <div className={classes.checkedDiv}>
+          <div>
+            <label>Contracted</label>
+            <input
+              type="radio"
+              ref={contractedRef}
+              checked={selectedType[0]}
+              onChange={() =>
+                setSelectedType((previous) => [!previous[0], false])
+              }
+            />
+          </div>
 
-        <div className={classes.control}>
-          <label>Zip</label>
-          <input type="text" ref={zipRef} placeholder={zip} />
-        </div>
-
-        <div className={classes.w9Div}>
-          <label>Contracted?</label>
-          <input
-            type="radio"
-            ref={contractedRef}
-            checked={selectedType[0]}
-            onChange={() => setSelectedType(previous => [!previous[0], false])}
-          />
-        </div>
-
-        <div className={classes.w9Div}>
-          <label>Sub?</label>
-          <input
-            type="radio"
-            ref={subRef}
-            checked={selectedType[1]}
-            onChange={()=> setSelectedType(previous => [false, !previous[1]])}
-          />
+          <div>
+            <label>Sub</label>
+            <input
+              type="radio"
+              ref={subRef}
+              checked={selectedType[1]}
+              onChange={() =>
+                setSelectedType((previous) => [false, !previous[1]])
+              }
+            />
+          </div>
         </div>
 
         <div className={classes.buttonDiv}>
