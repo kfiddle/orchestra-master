@@ -11,6 +11,7 @@ const PlayerEntry = (props) => {
   let id = "";
   let firstNameArea = "";
   let lastName = "";
+  let instrument = "";
   let email = "";
   let homePhone = "";
   let cellPhone = "";
@@ -26,6 +27,7 @@ const PlayerEntry = (props) => {
     id = props.player.id;
     firstNameArea = props.player.firstNameArea;
     lastName = props.player.lastName;
+    instrument = props.player.instrument;
     email = props.player.email;
     homePhone = props.player.homePhoneNumber;
     cellPhone = props.player.cellPhoneNumber;
@@ -39,6 +41,7 @@ const PlayerEntry = (props) => {
   }
 
   const fullNameRef = useRef();
+  const instrumentRef = useRef();
   const homePhoneRef = useRef();
   const cellPhoneRef = useRef();
   const emailRef = useRef();
@@ -91,6 +94,15 @@ const PlayerEntry = (props) => {
             type="text"
             ref={fullNameRef}
             placeholder={`${firstNameArea} ${lastName}`}
+          />
+        </div>
+
+        <div className={classes.control}>
+          <label>Instrument</label>
+          <input
+            type="text"
+            ref={instrumentRef}
+            placeholder={instrument}
           />
         </div>
 
