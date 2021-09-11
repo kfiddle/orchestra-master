@@ -6,46 +6,49 @@ import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import classes from "./PlayerEntry.module.css";
 
 const PlayerEntry = (props) => {
-  const [checkedW9, setCheckedW9] = useState(false);
+  const [selectedType, setSelectedType] = useState([false, false]);
 
   let id = "";
   let firstNameArea = "";
   let lastName = "";
   let email = "";
-  let homePhoneNumber = "";
-  let cellPhoneNumber = "";
+  let homePhone = "";
+  let cellPhone = "";
   let addressLine1 = "";
   let addressLine2 = "";
   let city = "";
   let state = "";
   let zip = "";
-  let w9 = false;
+  let contracted = "";
+  let sub = "";
 
   if (props.player) {
     id = props.player.id;
     firstNameArea = props.player.firstNameArea;
     lastName = props.player.lastName;
     email = props.player.email;
-    homePhoneNumber = props.player.homePhoneNumber;
-    cellPhoneNumber = props.player.cellPhoneNumber;
+    homePhone = props.player.homePhoneNumber;
+    cellPhone = props.player.cellPhoneNumber;
     addressLine1 = props.player.addressLine1;
     addressLine2 = props.player.addressLine2;
     city = props.player.city;
     state = props.player.state;
     zip = props.player.zip;
-    w9 = props.player.w9ed;
+    contracted = props.player.type === "Contract";
+    sub = props.player.type === "Sub";
   }
 
   const fullNameRef = useRef();
-  const homePhoneNumberRef = useRef();
-  const cellPhoneNumberRef = useRef();
+  const homePhoneRef = useRef();
+  const cellPhoneRef = useRef();
   const emailRef = useRef();
   const addressLine1Ref = useRef();
   const addressLine2Ref = useRef();
   const cityRef = useRef();
   const stateRef = useRef();
   const zipRef = useRef();
-  const w9Ref = useRef();
+  const contractedRef = useRef();
+  const subRef = useRef();
 
   const submitEvent = (event) => {
     event.preventDefault();
@@ -93,20 +96,12 @@ const PlayerEntry = (props) => {
 
         <div className={classes.control}>
           <label>Home Phone</label>
-          <input
-            type="text"
-            ref={homePhoneNumberRef}
-            placeholder={homePhoneNumber}
-          />
+          <input type="text" ref={homePhoneRef} placeholder={homePhone} />
         </div>
 
         <div className={classes.control}>
           <label>Cell Phone</label>
-          <input
-            type="text"
-            ref={cellPhoneNumberRef}
-            placeholder={cellPhoneNumber}
-          />
+          <input type="text" ref={cellPhoneRef} placeholder={cellPhone} />
         </div>
 
         <div className={classes.control}>
@@ -141,11 +136,6 @@ const PlayerEntry = (props) => {
 
         <div className={classes.control}>
           <label>State</label>
-          <input type="text" ref={cityRef} placeholder={city} />
-        </div>
-
-        <div className={classes.control}>
-          <label>State</label>
           <input type="text" ref={stateRef} placeholder={state} />
         </div>
 
@@ -154,15 +144,28 @@ const PlayerEntry = (props) => {
           <input type="text" ref={zipRef} placeholder={zip} />
         </div>
 
-        {/* <div className={classes.w9Div}>
-          <label>W9 on file?</label>
-          <input type="checkbox" id="w9Check" ref={w9Ref} defaultChecked={w9} />
-        </div> */}
+        <div className={classes.w9Div}>
+          <label>Contracted?</label>
+          <input
+            type="radio"
+            ref={contractedRef}
+            checked={selectedType[0]}
+            onChange={() => setSelectedType(previous => [!previous[0], false])}
+          />
+        </div>
+
+        <div className={classes.w9Div}>
+          <label>Sub?</label>
+          <input
+            type="radio"
+            ref={subRef}
+            checked={selectedType[1]}
+            onChange={()=> setSelectedType(previous => [false, !previous[1]])}
+          />
+        </div>
 
         <div className={classes.buttonDiv}>
-          <button className={classes.button} onClick={submitEvent}>
-            Submit Payee
-          </button>
+          <button className={classes.button}>Submit Player</button>
         </div>
       </form>
     </Modal>
