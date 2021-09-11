@@ -3,64 +3,80 @@ import { useState, useRef } from "react";
 import Modal from "../UI/modal/Modal";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
-import classes from './PlayerEntry.module.css';
+import classes from "./PlayerEntry.module.css";
 
 const PlayerEntry = (props) => {
   const [checkedW9, setCheckedW9] = useState(false);
 
   let id = "";
-  let firstName = "";
+  let firstNameArea = "";
   let lastName = "";
   let email = "";
-  let phoneNumber = "";
-  let address = "";
+  let homePhoneNumber = "";
+  let cellPhoneNumber = "";
+  let addressLine1 = "";
+  let addressLine2 = "";
+  let city = "";
+  let state = "";
+  let zip = "";
   let w9 = false;
 
-  if (props.payee) {
-    id = props.payee.id;
-    firstName = props.payee.firstName;
-    lastName = props.payee.lastName;
-    email = props.payee.email;
-    phoneNumber = props.payee.phoneNumber;
-    address = props.payee.address;
-    w9 = props.payee.w9ed;
+  if (props.player) {
+    id = props.player.id;
+    firstNameArea = props.player.firstNameArea;
+    lastName = props.player.lastName;
+    email = props.player.email;
+    homePhoneNumber = props.player.homePhoneNumber;
+    cellPhoneNumber = props.player.cellPhoneNumber;
+    addressLine1 = props.player.addressLine1;
+    addressLine2 = props.player.addressLine2;
+    city = props.player.city;
+    state = props.player.state;
+    zip = props.player.zip;
+    w9 = props.player.w9ed;
   }
 
   const fullNameRef = useRef();
-  const phoneNumberRef = useRef();
+  const homePhoneNumberRef = useRef();
+  const cellPhoneNumberRef = useRef();
   const emailRef = useRef();
+  const addressLine1Ref = useRef();
+  const addressLine2Ref = useRef();
+  const cityRef = useRef();
+  const stateRef = useRef();
+  const zipRef = useRef();
   const w9Ref = useRef();
-  const addressRef = useRef();
 
   const submitEvent = (event) => {
     event.preventDefault();
 
     const names = fullNameRef.current.value.split(" ");
-    const inputtedFirstName = names[0];
+    const tempFirstNameArea = names.slice(0, -1);
+    const inputtedFirstName = tempFirstNameArea.join(" ");
     const inputtedLastName = names[names.length - 1];
 
-    const payeeToSubmit = {
-      id,
-      firstName:
-        fullNameRef.current.value === "" ? firstName : inputtedFirstName,
-      lastName: fullNameRef.current.value === "" ? lastName : inputtedLastName,
-      phoneNumber:
-        phoneNumberRef.current.value === ""
-          ? phoneNumber
-          : phoneNumberRef.current.value,
-      email: emailRef.current.value === "" ? email : emailRef.current.value,
-      address:
-        addressRef.current.value === "" ? address : addressRef.current.value,
-      w9ed: w9Ref.current.checked,
-    };
+    // const payeeToSubmit = {
+    //   id,
+    //   firstName:
+    //     fullNameRef.current.value === "" ? firstNameArea : inputtedFirstNameArea,
+    //   lastName: fullNameRef.current.value === "" ? lastName : inputtedLastName,
+    //   phoneNumber:
+    //     phoneNumberRef.current.value === ""
+    //       ? phoneNumber
+    //       : phoneNumberRef.current.value,
+    //   email: emailRef.current.value === "" ? email : emailRef.current.value,
+    //   address:
+    //     addressRef.current.value === "" ? address : addressRef.current.value,
+    //   w9ed: w9Ref.current.checked,
+    // };
 
-    const sendPayeeOff = async () => {
-      let response = await PushBasic(payeeToSubmit, "/add-payee");
-      if (response.ok) {
-        props.closeModal();
-      }
-    };
-    setTimeout(sendPayeeOff, 500);
+    // const sendPayeeOff = async () => {
+    //   let response = await PushBasic(playerToSubmit, "/add-payee");
+    //   if (response.ok) {
+    //     props.closeModal();
+    //   }
+    // };
+    // setTimeout(sendPlayerOff, 500);
   };
 
   return (
@@ -71,39 +87,77 @@ const PlayerEntry = (props) => {
           <input
             type="text"
             ref={fullNameRef}
-            placeholder={`${firstName} ${lastName}`}
+            placeholder={`${firstNameArea} ${lastName}`}
           />
         </div>
 
         <div className={classes.control}>
-          <label>Phone Number</label>
+          <label>Home Phone</label>
           <input
             type="text"
-            id="phoneNumber"
-            ref={phoneNumberRef}
-            placeholder={phoneNumber}
+            ref={homePhoneNumberRef}
+            placeholder={homePhoneNumber}
+          />
+        </div>
+
+        <div className={classes.control}>
+          <label>Cell Phone</label>
+          <input
+            type="text"
+            ref={cellPhoneNumberRef}
+            placeholder={cellPhoneNumber}
           />
         </div>
 
         <div className={classes.control}>
           <label>Email</label>
-          <input type="text" id="email" ref={emailRef} placeholder={email} />
+          <input type="text" ref={emailRef} placeholder={email} />
         </div>
 
         <div className={classes.control}>
-          <label>Address</label>
+          <label>Address Line 1</label>
           <input
             type="text"
             id="address"
-            ref={addressRef}
-            placeholder={address}
+            ref={addressLine1Ref}
+            placeholder={addressLine1}
           />
         </div>
 
-        <div className={classes.w9Div}>
+        <div className={classes.control}>
+          <label>Address Line 2</label>
+          <input
+            type="text"
+            id="address"
+            ref={addressLine2Ref}
+            placeholder={addressLine2}
+          />
+        </div>
+
+        <div className={classes.control}>
+          <label>City</label>
+          <input type="text" id="address" ref={cityRef} placeholder={city} />
+        </div>
+
+        <div className={classes.control}>
+          <label>State</label>
+          <input type="text" ref={cityRef} placeholder={city} />
+        </div>
+
+        <div className={classes.control}>
+          <label>State</label>
+          <input type="text" ref={stateRef} placeholder={state} />
+        </div>
+
+        <div className={classes.control}>
+          <label>Zip</label>
+          <input type="text" ref={zipRef} placeholder={zip} />
+        </div>
+
+        {/* <div className={classes.w9Div}>
           <label>W9 on file?</label>
           <input type="checkbox" id="w9Check" ref={w9Ref} defaultChecked={w9} />
-        </div>
+        </div> */}
 
         <div className={classes.buttonDiv}>
           <button className={classes.button} onClick={submitEvent}>
