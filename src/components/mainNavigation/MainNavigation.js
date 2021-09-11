@@ -23,7 +23,6 @@ const MainNavigation = (props) => {
             >
               <GiBlackBook />
             </li>
-
           </div>
 
           <li className={classes.navItem}>
