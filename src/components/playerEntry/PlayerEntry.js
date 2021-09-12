@@ -1,12 +1,14 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import Modal from "../UI/modal/Modal";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+import GetAList from "../helperFunctions/GetAList";
 
 import classes from "./PlayerEntry.module.css";
 
 const PlayerEntry = (props) => {
   const [selectedType, setSelectedType] = useState([false, false]);
+  const [instrumentsList, setInstrumentsList] = useState([]);
 
   let id = "";
   let firstNameArea = "";
@@ -53,18 +55,30 @@ const PlayerEntry = (props) => {
   const contractedRef = useRef();
   const subRef = useRef();
 
-  const submitEvent = (event) => {
+  useEffect(() => {
+    const getInstruments = async () => {
+      const allInstruments = await GetAList("get-all-instruments");
+      setInstrumentsList(allInstruments);
+      console.log(instrumentsList)
+    };
+
+    getInstruments();
+  }, [instrumentsList]);
+
+  const submitPlayer = (event) => {
     event.preventDefault();
 
     const names = fullNameRef.current.value.split(" ");
     const tempFirstNameArea = names.slice(0, -1);
-    const inputtedFirstName = tempFirstNameArea.join(" ");
+    const inputtedFirstNameArea = tempFirstNameArea.join(" ");
     const inputtedLastName = names[names.length - 1];
 
-    // const payeeToSubmit = {
+    // const playerToSubmit = {
     //   id,
-    //   firstName:
-    //     fullNameRef.current.value === "" ? firstNameArea : inputtedFirstNameArea,
+    //   firstNameArea:
+    //     fullNameRef.current.value === ""
+    //       ? firstNameArea
+    //       : inputtedFirstNameArea,
     //   lastName: fullNameRef.current.value === "" ? lastName : inputtedLastName,
     //   phoneNumber:
     //     phoneNumberRef.current.value === ""
@@ -99,11 +113,7 @@ const PlayerEntry = (props) => {
 
         <div className={classes.control}>
           <label>Instrument</label>
-          <input
-            type="text"
-            ref={instrumentRef}
-            placeholder={instrument}
-          />
+          <input type="text" ref={instrumentRef} placeholder={instrument} />
         </div>
 
         <div className={classes.phoneDiv}>
