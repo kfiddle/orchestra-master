@@ -17,7 +17,6 @@ const PlayerEntry = (props) => {
   let id = "";
   let firstNameArea = "";
   let lastName = "";
-  let instrument = "";
   let email = "";
   let homePhone = "";
   let cellPhone = "";
@@ -26,14 +25,11 @@ const PlayerEntry = (props) => {
   let city = "";
   let state = "";
   let zip = "";
-  let contracted = "";
-  let sub = "";
 
   if (props.player) {
     id = props.player.id;
     firstNameArea = props.player.firstNameArea;
     lastName = props.player.lastName;
-    instrument = props.player.instrument;
     email = props.player.email;
     homePhone = props.player.homePhoneNumber;
     cellPhone = props.player.cellPhoneNumber;
@@ -42,12 +38,12 @@ const PlayerEntry = (props) => {
     city = props.player.city;
     state = props.player.state;
     zip = props.player.zip;
-    contracted = props.player.type === "Contract";
-    sub = props.player.type === "Sub";
+    props.player.type === "Contract"
+      ? setSelectedType([true, false])
+      : setSelectedType([false, true]);
   }
 
   const fullNameRef = useRef();
-  const instrumentRef = useRef();
   const homePhoneRef = useRef();
   const cellPhoneRef = useRef();
   const emailRef = useRef();
@@ -69,7 +65,7 @@ const PlayerEntry = (props) => {
   }, []);
 
   const instrumentsClickHandler = () => {
-    setInstrumentDropdownClicked(previous => !previous);
+    setInstrumentDropdownClicked((previous) => !previous);
   };
 
   const clickedInstrument = (instrument) => {
@@ -96,30 +92,52 @@ const PlayerEntry = (props) => {
 
     console.log(instrumentsList);
 
-    // const playerToSubmit = {
-    //   id,
-    //   firstNameArea:
-    //     fullNameRef.current.value === ""
-    //       ? firstNameArea
-    //       : inputtedFirstNameArea,
-    //   lastName: fullNameRef.current.value === "" ? lastName : inputtedLastName,
-    //   phoneNumber:
-    //     phoneNumberRef.current.value === ""
-    //       ? phoneNumber
-    //       : phoneNumberRef.current.value,
-    //   email: emailRef.current.value === "" ? email : emailRef.current.value,
-    //   address:
-    //     addressRef.current.value === "" ? address : addressRef.current.value,
-    //   w9ed: w9Ref.current.checked,
-    // };
+    const playerToSubmit = {
+      id,
+      firstNameArea:
+        fullNameRef.current.value === ""
+          ? firstNameArea
+          : inputtedFirstNameArea,
+      lastName: fullNameRef.current.value === "" ? lastName : inputtedLastName,
 
-    // const sendPayeeOff = async () => {
-    //   let response = await PushBasic(playerToSubmit, "/add-payee");
-    //   if (response.ok) {
-    //     props.closeModal();
-    //   }
-    // };
-    // setTimeout(sendPlayerOff, 500);
+      instruments: clickedInstrumentList,
+
+      email: emailRef.current.value === "" ? email : emailRef.current.value,
+
+      homePhone:
+        homePhoneRef.current.value === ""
+          ? homePhone
+          : homePhoneRef.current.value,
+
+      cellPhone:
+        cellPhoneRef.current.value === ""
+          ? cellPhone
+          : cellPhoneRef.current.value,
+
+      addressLine1:
+        addressLine1Ref.current.value === ""
+          ? addressLine1
+          : addressLine1Ref.current.value,
+
+      addressLine2:
+        addressLine2Ref.current.value === ""
+          ? addressLine2
+          : addressLine2Ref.current.value,
+
+      city: cityRef.current.value === "" ? city : cityRef.current.value,
+      state: stateRef.current.value === "" ? state : stateRef.current.value,
+      zip: zipRef.current.value === "" ? zip : zipRef.current.value,
+
+      type: selectedType === [true, false] ? "CONTRACT" : "SUB",
+    };
+
+    const sendPlayerOff = async () => {
+      let response = await PushBasic(playerToSubmit, "add-player");
+      if (response.ok) {
+        props.closeModal();
+      }
+    };
+    setTimeout(sendPlayerOff, 200);
   };
 
   return (
