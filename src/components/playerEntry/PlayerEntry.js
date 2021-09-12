@@ -12,6 +12,7 @@ const PlayerEntry = (props) => {
   const [instrumentsList, setInstrumentsList] = useState([]);
   const [instrumentDropdownClicked, setInstrumentDropdownClicked] =
     useState(false);
+  const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
 
   let id = "";
   let firstNameArea = "";
@@ -68,7 +69,21 @@ const PlayerEntry = (props) => {
   }, []);
 
   const instrumentsClickHandler = () => {
-    setInstrumentDropdownClicked(true);
+    setInstrumentDropdownClicked(previous => !previous);
+  };
+
+  const clickedInstrument = (instrument) => {
+    const tempInstrumentList = clickedInstrumentList;
+    tempInstrumentList.push(instrument);
+    setClickedInstrumentList(tempInstrumentList);
+    console.log(clickedInstrumentList);
+  };
+
+  const unClickedInstrument = (instrument) => {
+    const tempInstrumentList = clickedInstrumentList.filter(
+      (instr) => instr.id !== instrument.id
+    );
+    setClickedInstrumentList(tempInstrumentList);
   };
 
   const submitPlayer = (event) => {
@@ -127,8 +142,8 @@ const PlayerEntry = (props) => {
           <div className={classes.instrumentsListDiv}>
             <AllInstruments
               list={instrumentsList}
-              clicked={clickedInstrument}
-              unclick={unclickedInstrument}
+              clickedInstrument={clickedInstrument}
+              unClickedInstrument={unClickedInstrument}
             />
           </div>
         )}

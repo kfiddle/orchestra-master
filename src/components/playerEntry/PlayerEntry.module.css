@@ -50,8 +50,8 @@
 
 .instrumentsListDiv {
     position: fixed;
-    width: 60%;
-    margin-left: 20rem;
+    width: 40%;
+    margin-left: 50vw;
     max-height: 20rem;
     overflow: auto;
   }

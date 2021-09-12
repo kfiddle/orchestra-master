@@ -11,12 +11,12 @@ const InstrumentListItem = (props) => {
     ? classes.clickedItem
     : classes.instrumentItemDiv;
 
-  const clickedInstrument = () => {
+  const clickHandler = () => {
     setClicked((previous) => !previous);
-    !clicked ? props.clicked(props.instrument) : props.unclick(props.instrument);
+    !clicked ? props.clickedInstrument(props.instrument) : props.unclickedInstrument(props.instrument);
   };
   return (
-    <div onClick={clickedInstrument} className={outerContainerClass}>
+    <div onClick={clickHandler} className={outerContainerClass}>
       <div className={classes.nameDiv}>{name}</div>
     </div>
   );
