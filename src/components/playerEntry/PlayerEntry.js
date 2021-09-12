@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
+import AllInstruments from "../instruments/allInstruments/AllInstruments";
 import Modal from "../UI/modal/Modal";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import GetAList from "../helperFunctions/GetAList";
@@ -9,6 +10,8 @@ import classes from "./PlayerEntry.module.css";
 const PlayerEntry = (props) => {
   const [selectedType, setSelectedType] = useState([false, false]);
   const [instrumentsList, setInstrumentsList] = useState([]);
+  const [instrumentDropdownClicked, setInstrumentDropdownClicked] =
+    useState(false);
 
   let id = "";
   let firstNameArea = "";
@@ -59,11 +62,14 @@ const PlayerEntry = (props) => {
     const getInstruments = async () => {
       const allInstruments = await GetAList("get-all-instruments");
       setInstrumentsList(allInstruments);
-      console.log(instrumentsList)
     };
 
     getInstruments();
-  }, [instrumentsList]);
+  }, []);
+
+  const instrumentsClickHandler = () => {
+    setInstrumentDropdownClicked(true);
+  };
 
   const submitPlayer = (event) => {
     event.preventDefault();
@@ -72,6 +78,8 @@ const PlayerEntry = (props) => {
     const tempFirstNameArea = names.slice(0, -1);
     const inputtedFirstNameArea = tempFirstNameArea.join(" ");
     const inputtedLastName = names[names.length - 1];
+
+    console.log(instrumentsList);
 
     // const playerToSubmit = {
     //   id,
@@ -111,10 +119,19 @@ const PlayerEntry = (props) => {
           />
         </div>
 
-        <div className={classes.control}>
-          <label>Instrument</label>
-          <input type="text" ref={instrumentRef} placeholder={instrument} />
+        <div className={`${classes.control} ${classes.instrumentDropdownDiv}`}>
+          <h3 onClick={instrumentsClickHandler}>Instrument</h3>
         </div>
+
+        {instrumentDropdownClicked && (
+          <div className={classes.instrumentsListDiv}>
+            <AllInstruments
+              list={instrumentsList}
+              clicked={clickedInstrument}
+              unclick={unclickedInstrument}
+            />
+          </div>
+        )}
 
         <div className={classes.phoneDiv}>
           <div className={classes.control}>
@@ -197,7 +214,9 @@ const PlayerEntry = (props) => {
         </div>
 
         <div className={classes.buttonDiv}>
-          <button className={classes.button}>Submit Player</button>
+          <button className={classes.button} onClick={submitPlayer}>
+            Submit Player
+          </button>
         </div>
       </form>
     </Modal>

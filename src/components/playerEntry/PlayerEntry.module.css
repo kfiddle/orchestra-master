@@ -32,6 +32,30 @@
   outline-color: teal;
 }
 
+.instrumentDropdownDiv {
+    background: slategray;
+    border-radius: 5px;
+    color: whitesmoke;
+    height: 1.5rem;
+    margin: 1rem 0 1rem 3rem;
+    padding: 0 1rem;
+    width: 20%;
+    cursor: pointer;
+}
+
+.instrumentDropdownDiv:hover {
+    background: lightgray;
+    color: goldenrod;
+}
+
+.instrumentsListDiv {
+    position: fixed;
+    width: 60%;
+    margin-left: 20rem;
+    max-height: 20rem;
+    overflow: auto;
+  }
+
 .phoneDiv {
   display: flex;
   margin: 1rem 10%;
