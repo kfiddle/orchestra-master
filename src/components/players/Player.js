@@ -8,11 +8,10 @@ const Player = (props) => {
 
   return (
     <div className={styles.outerContainer}>
-      <div>{firstNameArea}</div>
-      <div>{lastName}</div>
-      <div>{instruments[0].name}</div>
-      <div>{email}</div>
-      <div>{cellPhone}</div>
+      <div className={styles.name}>{firstNameArea} {lastName}</div>
+      <div className={styles.instrument}>{instruments[0].name}</div>
+      <div className={styles.email}>{email}</div>
+      <div className={styles.cellPhone}>{cellPhone}</div>
     </div>
   );
 };

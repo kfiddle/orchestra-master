@@ -1,0 +1,36 @@
+.instrumentDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.2rem;
+    padding: 0 1rem;
+  }
+  
+  .highlightedDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.2rem;
+    padding: 0 1rem;
+    background: rgb(243, 243, 248);
+  }
+  
+  .instrumentLi {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .highlightedLi {
+    color: rgb(58, 6, 6);
+    font-weight: 900;
+  }
+  
+  .instrumentDiv:hover {
+    background: rgb(243, 243, 248);
+  }
+  
+  .instrumentDiv:hover li {
+    color: rgb(46, 4, 4);
+  }
+  

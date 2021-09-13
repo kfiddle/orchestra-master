@@ -37,7 +37,7 @@ const MainNavigation = (props) => {
           </div>
 
           <li className={classes.navItem}>
-            <NavLink to={"/purposes"} activeClassName={classes.active}>
+            <NavLink to={"/sub-players"} activeClassName={classes.active}>
               {" "}
               Subs
             </NavLink>

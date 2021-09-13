@@ -128,10 +128,11 @@ const PlayerEntry = (props) => {
       state: stateRef.current.value === "" ? state : stateRef.current.value,
       zip: zipRef.current.value === "" ? zip : zipRef.current.value,
 
-      type: selectedType === [true, false] ? "CONTRACT" : "SUB",
+      type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };
 
     const sendPlayerOff = async () => {
+      console.log(playerToSubmit.type);
       let response = await PushBasic(playerToSubmit, "add-player");
       if (response.ok) {
         props.closeModal();

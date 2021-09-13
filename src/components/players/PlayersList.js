@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 import Player from "./Player";
+import ByInstrumentsHeader from '../byInstrumentsHeader/ByInstrumentsHeader';
 
 // import PushSomething from "../helperFunctions/PushSomething";
 
@@ -20,6 +21,8 @@ const PlayersList = (props) => {
   //     setTimeout(() => setFoundationItemsList(finalFoundationItemsList), 100);
   //   };
 
+  console.log(props.modalChange);
+
   const clickedPlayerHandler = (player) => {
     console.log(player.lastName);
   };
@@ -29,14 +32,17 @@ const PlayersList = (props) => {
       key={player.id}
       player={player}
       clicked={clickedPlayerHandler}
-    //   highlighted={player === clickedPlayer}
+      //   highlighted={player === clickedPlayer}
     />
   ));
 
   return (
-    <div className={styles.outerContainer}>
-      <div>{playersToDisplay}</div>
-    </div>
+    <Fragment>
+      <ByInstrumentsHeader />
+      <div className={styles.outerContainer}>
+        <div>{playersToDisplay}</div>
+      </div>
+    </Fragment>
   );
 };
 

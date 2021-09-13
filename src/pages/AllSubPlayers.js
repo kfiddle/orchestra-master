@@ -3,23 +3,25 @@ import { useState, useEffect } from "react";
 import PlayersList from "../components/players/PlayersList";
 import GetAList from "../components/helperFunctions/GetAList";
 
-const AllContractedPlayers = (props) => {
+const AllSubPlayers = (props) => {
   const [listOfPlayers, setListOfPlayers] = useState([]);
 
+  console.log(props.number);
+
   useEffect(() => {
-    const getContractedPlayers = async () => {
-      const allContracts = await GetAList("get-all-contracted-players");
-      setListOfPlayers(allContracts);
+    const getSubPlayers = async () => {
+      const allSubs = await GetAList("get-all-sub-players");
+      setListOfPlayers(allSubs);
     };
+    getSubPlayers();
 
     if (props.modalIsClosed) {
-      getContractedPlayers();
+      getSubPlayers();
     }
 
-    getContractedPlayers();
   }, [props.modalIsClosed]);
 
   return <PlayersList list={listOfPlayers} />;
 };
 
-export default AllContractedPlayers;
+export default AllSubPlayers;
