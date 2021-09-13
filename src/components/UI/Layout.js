@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import classes from "./Layout.module.css";
 import MainNavigation from "../mainNavigation/MainNavigation";
 
-import PlayerEntry from "../playerEntry/PlayerEntry";
+import PlayerEntry from "../players/PlayerEntry";
 import PieceEntry from "../pieceEntry/PieceEntry";
 import InstrumentEntry from "../instruments/InstrumentEntry";
 

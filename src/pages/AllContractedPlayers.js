@@ -1,24 +1,23 @@
 import { useState, useEffect } from "react";
-import { GiConsoleController } from "react-icons/gi";
 
-// import PlayersList from "../components/payees/PayeesList";
+import PlayersList from "../components/players/PlayersList";
 import GetAList from "../components/helperFunctions/GetAList";
 
 const AllContractedPlayers = (props) => {
-  const [playersList, setPlayersList] = useState([]);
+  const [listOfPlayers, setListOfPlayers] = useState([]);
 
   useEffect(() => {
     const getContractedPlayers = async () => {
       const allContracts = await GetAList("get-all-contracted-players");
-      setPlayersList(allContracts);
-      console.log(allContracts)
+      setListOfPlayers(allContracts);
+      console.log(allContracts);
     };
 
     getContractedPlayers();
-  }, [playersList]);
+  }, []);
 
-  //   return <PayeesList list={payeesList} />;
-  return <div>howdy</div>;
+  return <PlayersList list={listOfPlayers} />;
+return <div>hey homey</div>
 };
 
 export default AllContractedPlayers;
