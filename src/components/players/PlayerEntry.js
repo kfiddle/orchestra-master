@@ -25,6 +25,7 @@ const PlayerEntry = (props) => {
   let city = "";
   let state = "";
   let zip = "";
+  let unions = "";
 
   if (props.player) {
     id = props.player.id;
@@ -38,10 +39,16 @@ const PlayerEntry = (props) => {
     city = props.player.city;
     state = props.player.state;
     zip = props.player.zip;
-    props.player.type === "Contract"
-      ? setSelectedType([true, false])
-      : setSelectedType([false, true]);
+    unions = props.player.unions;
   }
+
+  useEffect(() => {
+    if (props.player) {
+      props.player.type === "CONTRACT"
+        ? setSelectedType([true, false])
+        : setSelectedType([false, true]);
+    }
+  }, [props.player]);
 
   const fullNameRef = useRef();
   const homePhoneRef = useRef();
@@ -52,6 +59,7 @@ const PlayerEntry = (props) => {
   const cityRef = useRef();
   const stateRef = useRef();
   const zipRef = useRef();
+  const unionsRef = useRef();
   const contractedRef = useRef();
   const subRef = useRef();
 
@@ -144,17 +152,21 @@ const PlayerEntry = (props) => {
   return (
     <Modal closeModal={props.closeModal}>
       <form className={classes.innerContainer}>
-        <div className={classes.control}>
-          <label>Full Name</label>
-          <input
-            type="text"
-            ref={fullNameRef}
-            placeholder={`${firstNameArea} ${lastName}`}
-          />
-        </div>
+        <div className={`${classes.control} ${classes.nameAndInstrumentDiv}`}>
+          <div className={`${classes.control} ${classes.nameDiv}`}>
+            <label>Full Name</label>
+            <input
+              type="text"
+              ref={fullNameRef}
+              placeholder={`${firstNameArea} ${lastName}`}
+            />
+          </div>
 
-        <div className={`${classes.control} ${classes.instrumentDropdownDiv}`}>
-          <h3 onClick={instrumentsClickHandler}>Instrument</h3>
+          <div
+            className={`${classes.control} ${classes.instrumentDropdownDiv}`}
+          >
+            <h3 onClick={instrumentsClickHandler}>Instrument</h3>
+          </div>
         </div>
 
         {instrumentDropdownClicked && (
@@ -179,7 +191,7 @@ const PlayerEntry = (props) => {
           </div>
         </div>
 
-        <div className={classes.control}>
+        <div className={`${classes.control} ${classes.emailDiv}`}>
           <label>Email</label>
           <input type="text" ref={emailRef} placeholder={email} />
         </div>
@@ -219,6 +231,11 @@ const PlayerEntry = (props) => {
             <label>Zip</label>
             <input type="text" ref={zipRef} placeholder={zip} />
           </div>
+        </div>
+
+        <div className={`${classes.control} ${classes.unionsDiv}`}>
+          <label>Unions</label>
+          <input type="text" ref={unionsRef} placeholder={unions} />
         </div>
 
         <div className={classes.checkedDiv}>

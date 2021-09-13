@@ -32,38 +32,55 @@
   outline-color: teal;
 }
 
+.nameAndInstrumentDiv {
+  display: flex;
+  align-items: center;
+}
+
+.nameDiv {
+  width: 50%;
+}
+
 .instrumentDropdownDiv {
-    background: slategray;
-    border-radius: 5px;
-    color: whitesmoke;
-    height: 1.5rem;
-    margin: 1rem 0 1rem 3rem;
-    padding: 0 1rem;
-    width: 20%;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: slategray;
+  border-radius: 5px;
+  color: whitesmoke;
+  font-size: 1.25rem;
+  height: 2rem;
+  margin: 2rem 0 1rem 2rem;
+  padding: 0 1rem;
+  width: 20%;
+  cursor: pointer;
 }
 
 .instrumentDropdownDiv:hover {
-    background: lightgray;
-    color: goldenrod;
+  background: lightgray;
+  color: goldenrod;
 }
 
 .instrumentsListDiv {
-    position: fixed;
-    width: 40%;
-    margin-left: 50vw;
-    max-height: 20rem;
-    overflow: auto;
-  }
+  position: fixed;
+  width: 40%;
+  margin-left: 50vw;
+  max-height: 20rem;
+  overflow: auto;
+}
 
 .phoneDiv {
   display: flex;
-  margin: 1rem 10%;
+  margin: 1rem 0;
 }
 
 .phoneDiv div {
   width: 40%;
-  margin-left: 3rem;
+  margin-right: 2rem;
+}
+
+.emailDiv {
+  width: 90%;
 }
 
 .cityStateDiv {
@@ -77,6 +94,10 @@
 .state {
   width: 10%;
   margin-right: 2rem;
+}
+
+.unionsDiv {
+  width: 40%;
 }
 
 .checkedDiv {

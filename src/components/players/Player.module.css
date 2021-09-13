@@ -1,31 +1,41 @@
 .outerContainer {
-    position: relative;
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: center;
-    margin: 0.5rem 1rem;
-    padding: 1rem;
-    width: 75%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    height: 2.5rem;
-    background: rgb(155, 176, 197);
-    color: rgb(31, 1, 1);
-    font-weight: 900;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 1rem;
+  padding: 1rem;
+  width: 75%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  height: 2.5rem;
+  background: rgb(155, 176, 197);
+  color: rgb(31, 1, 1);
+  font-weight: 900;
 }
 
-.name{
-    width: 15%;
+.name {
+  width: 15%;
 }
 
-.instrument{
-    width: 10%;
+.instrument {
+  width: 10%;
 }
 
-.email{
-    width: 15%;
+.email {
+  width: 15%;
 }
 
-.cellPhone{
-    width: 8%;
+.cellPhone {
+  width: 8%;
+}
+
+.editButtonDiv {
+  position: absolute;
+  right: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.editButton:hover {
+  color: red;
 }
