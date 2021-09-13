@@ -13,6 +13,7 @@ const PlayerEntry = (props) => {
   const [instrumentDropdownClicked, setInstrumentDropdownClicked] =
     useState(false);
   const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
+  const [deleteButtonClicked, setDeleteButtonClicked] = useState(false);
 
   let id = "";
   let firstNameArea = "";
@@ -90,6 +91,18 @@ const PlayerEntry = (props) => {
     setClickedInstrumentList(tempInstrumentList);
   };
 
+  const deleteButtonHandler = async (event) => {
+    event.preventDefault();
+
+    setDeleteButtonClicked((previous) => !previous);
+    if (deleteButtonClicked) {
+      const response = await PushBasic(props.player, "delete-player");
+      if (response.ok) {
+        props.closeModal();
+      }
+    }
+  };
+
   const submitPlayer = (event) => {
     event.preventDefault();
 
@@ -135,6 +148,7 @@ const PlayerEntry = (props) => {
       city: cityRef.current.value === "" ? city : cityRef.current.value,
       state: stateRef.current.value === "" ? state : stateRef.current.value,
       zip: zipRef.current.value === "" ? zip : zipRef.current.value,
+      unions: unionsRef.current.value === "" ? unions: unionsRef.current.value,
 
       type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };
@@ -268,6 +282,15 @@ const PlayerEntry = (props) => {
           <button className={classes.button} onClick={submitPlayer}>
             Submit Player
           </button>
+
+          {props.player && (
+            <button
+              className={classes.deleteButton}
+              onClick={deleteButtonHandler}
+            >
+              {!deleteButtonClicked ? "Remove Player" : "Are You Sure?"}
+            </button>
+          )}
         </div>
       </form>
     </Modal>

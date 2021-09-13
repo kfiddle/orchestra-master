@@ -119,8 +119,16 @@
   width: 50%;
 }
 
-.buttonDiv {
+/* .buttonDiv {
   margin: 1rem 45%;
+} */
+
+.buttonDiv {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin: 0 auto;
+  font-weight: 900;
 }
 
 .button {
@@ -136,4 +144,18 @@
 .button:hover {
   background: rgb(13, 80, 30);
   color: chartreuse;
+}
+
+.deleteButton {
+  width: fit-content;
+  background: rgb(161, 21, 21);
+  border-radius: 5px;
+  box-shadow: 2px 2px black;
+  color: whitesmoke;
+
+}
+
+.deleteButton:hover {
+  color: chartreuse;
+  background: red;
 }
