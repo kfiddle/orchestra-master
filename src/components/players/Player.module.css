@@ -13,6 +13,10 @@
   font-weight: 900;
 }
 
+.outerContainer:hover {
+    background: rgb(197, 155, 166);
+}
+
 .name {
   width: 15%;
 }

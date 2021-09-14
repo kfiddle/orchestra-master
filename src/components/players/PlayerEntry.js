@@ -33,8 +33,8 @@ const PlayerEntry = (props) => {
     firstNameArea = props.player.firstNameArea;
     lastName = props.player.lastName;
     email = props.player.email;
-    homePhone = props.player.homePhoneNumber;
-    cellPhone = props.player.cellPhoneNumber;
+    homePhone = props.player.homePhone;
+    cellPhone = props.player.cellPhone;
     addressLine1 = props.player.addressLine1;
     addressLine2 = props.player.addressLine2;
     city = props.player.city;
