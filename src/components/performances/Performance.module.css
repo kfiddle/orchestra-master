@@ -21,3 +21,14 @@
   .titleDiv {
       width: 35%;
   }
+
+  .editButtonDiv {
+    position: absolute;
+    right: 1rem;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .editButton:hover {
+    color: red;
+  }
