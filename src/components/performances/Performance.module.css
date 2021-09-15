@@ -1,34 +1,46 @@
 .outerContainer {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin: 0.5rem 1rem;
-    padding: 1rem;
-    width: 75%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    height: 2.5rem;
-    background: rgb(235, 194, 194);
-    color: rgb(19, 1, 1);
-    font-weight: 900;
-    font-size: 1.5rem;
-  }
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 1rem;
+  padding: 1rem;
+  width: 75%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  height: 2.5rem;
+  background: rgb(235, 194, 194);
+  color: rgb(19, 1, 1);
+  font-weight: 900;
+  font-size: 1.5rem;
+}
 
-  .outerContainer:hover {
-      background: rgb(104, 59, 59) ;
-  }
+.outerContainer:hover {
+  background: rgb(104, 59, 59);
+}
 
-  .titleDiv {
-      width: 35%;
-  }
+.titleDiv {
+  width: 35%;
+}
 
-  .editButtonDiv {
-    position: absolute;
-    right: 1rem;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .editButton:hover {
-    color: red;
-  }
+.dateDiv {
+  width: 10%;
+}
+
+.buttonsDiv {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.plusSign {
+  margin-right: 2rem;
+}
+
+.plusSign:hover {
+  color: rgb(235, 231, 42);
+}
+
+.editButton:hover {
+  color: red;
+}
