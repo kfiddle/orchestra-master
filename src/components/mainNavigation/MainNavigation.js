@@ -57,7 +57,7 @@ const MainNavigation = (props) => {
             </NavLink>
           </li>
           <li className={classes.navItem}>
-            <NavLink to={"/payees"} activeClassName={classes.active}>
+            <NavLink to={"/season"} activeClassName={classes.active}>
               {" "}
               Season
             </NavLink>

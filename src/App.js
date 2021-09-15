@@ -6,6 +6,7 @@ import "./App.css";
 import Layout from "./components/UI/Layout";
 import AllContractedPlayers from "./pages/AllContractedPlayers";
 import AllSubPlayers from "./pages/AllSubPlayers";
+import Season from "./pages/Season";
 
 
 function App() {
@@ -24,6 +25,10 @@ function App() {
 
         <Route path={"/sub-players"} exact>
           <AllSubPlayers modalIsClosed={modalIsClosed} />
+        </Route>
+
+        <Route path={"/season"} exact>
+          <Season modalIsClosed={modalIsClosed} />
         </Route>
       </Switch>
     </Layout>
