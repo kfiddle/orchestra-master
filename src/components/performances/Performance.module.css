@@ -14,6 +14,10 @@
     font-size: 1.5rem;
   }
 
+  .outerContainer:hover {
+      background: rgb(104, 59, 59) ;
+  }
+
   .titleDiv {
       width: 35%;
   }
