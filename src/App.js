@@ -7,11 +7,12 @@ import Layout from "./components/UI/Layout";
 import AllContractedPlayers from "./pages/AllContractedPlayers";
 import AllSubPlayers from "./pages/AllSubPlayers";
 
+
 function App() {
   const [modalIsClosed, setModalIsClosed] = useState(false);
 
   const modalCloseHandler = (flag) => {
-    setModalIsClosed(flag)
+    setModalIsClosed(flag);
   };
 
   return (

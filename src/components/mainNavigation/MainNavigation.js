@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FaUserPlus } from "react-icons/fa";
-import { GiBlackBook, GiMusicalKeyboard } from "react-icons/gi";
+import { GiBlackBook, GiMusicalKeyboard, GiDramaMasks } from "react-icons/gi";
 
 import classes from "./MainNavigation.module.css";
 
@@ -30,6 +30,14 @@ const MainNavigation = (props) => {
               style={{ marginRight: "7rem" }}
             >
               <GiMusicalKeyboard />
+            </li>
+
+            <li
+              className={classes.navItem}
+              onClick={props.performanceEntryClicked}
+              style={{ marginRight: "7rem" }}
+            >
+              <GiDramaMasks />
             </li>
 
 
