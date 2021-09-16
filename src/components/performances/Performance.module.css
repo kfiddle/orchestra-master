@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin: 0.5rem 1rem;
+  margin: 1rem 1rem;
   padding: 1rem;
   width: 75%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -15,7 +15,7 @@
 }
 
 .outerContainer:hover {
-  background: rgb(104, 59, 59);
+  background: rgb(237, 247, 102);
 }
 
 .titleDiv {
@@ -38,7 +38,7 @@
 }
 
 .plusSign:hover {
-  color: rgb(235, 231, 42);
+  color: rgb(250, 44, 17);
 }
 
 .editButton:hover {
