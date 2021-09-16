@@ -18,9 +18,8 @@ const AllPerformances = (props) => {
   };
 
   const clickedPiece = (piece) => {
-
-    
-  }
+    console.log(piece);
+  };
 
   const displayablePerformances = props.list.map((performance) => (
     <Performance
