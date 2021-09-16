@@ -1,33 +1,34 @@
 import { Fragment, useState } from "react";
 
+import GetAList from "../helperFunctions/GetAList";
 import Player from "./Player";
-import ByInstrumentsHeader from '../byInstrumentsHeader/ByInstrumentsHeader';
+import ByInstrumentsHeader from "../byInstrumentsHeader/ByInstrumentsHeader";
 
 // import PushSomething from "../helperFunctions/PushSomething";
 
 import styles from "./PlayersList.module.css";
 
 const PlayersList = (props) => {
-  //   const [clickedFoundation, setClickedFoundation] = useState(null);
-  //   const [foundationItemsList, setFoundationItemsList] = useState([]);
+  const [byInstrumentList, setByInstrumentList] = useState([]);
+  const [chosenInstrument, setChosenInstrument] = useState("");
 
-  //   const clickedFoundationHandler = async (foundation) => {
-  //     setClickedFoundation(foundation);
-  //     let response = await PushSomething(
-  //       foundation,
-  //       "/get-foundation-items-from-foundation"
-  //     );
-  //     let finalFoundationItemsList = await response.json();
-  //     setTimeout(() => setFoundationItemsList(finalFoundationItemsList), 100);
-  //   };
-
-  console.log(props.modalChange);
 
   const clickedPlayerHandler = (player) => {
     console.log(player.lastName);
   };
 
-  const playersToDisplay = props.list.map((player) => (
+  const instrumentChooser = async (instrument) => {
+    setChosenInstrument(instrument);
+
+    console.log(instrument);
+    const allPlayersOfInstrument = await GetAList(
+      "subs/" + instrument.instrumentEnum
+    );
+    setByInstrumentList(allPlayersOfInstrument);
+    console.log(byInstrumentList);
+  };
+
+  const playersToDisplay = byInstrumentList.map((player) => (
     <Player
       key={player.id}
       player={player}
@@ -38,7 +39,7 @@ const PlayersList = (props) => {
 
   return (
     <Fragment>
-      <ByInstrumentsHeader />
+      <ByInstrumentsHeader instrumentChooser={instrumentChooser} />
       <div className={styles.outerContainer}>
         <div>{playersToDisplay}</div>
       </div>

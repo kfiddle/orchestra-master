@@ -9,6 +9,10 @@ const ByInstrumentsHeader = (props) => {
   const [listOfInstruments, setListOfInstruments] = useState([]);
   const [currentChoice, setCurrentChoice] = useState("");
 
+  const instrumentChooser = (instrument) => {
+    props.instrumentChooser(instrument);
+  }
+
   useEffect(() => {
     const getAllInstruments = async () => {
       const allInstruments = await GetAList("get-all-instruments");
@@ -18,16 +22,12 @@ const ByInstrumentsHeader = (props) => {
     getAllInstruments();
   }, []);
 
-  const clicked = (instrument) => {
-    setCurrentChoice(instrument.name);
-    props.whichInstrument(instrument.id);
-  };
 
   const displayableInstruments = listOfInstruments.map((instrument) => (
     <SubInstrument
       instrument={instrument}
       testClicked={instrument.clicked}
-      clicked={clicked}
+      clicked={instrumentChooser}
       active={currentChoice === instrument.name}
       key={instrument.id}
     />
