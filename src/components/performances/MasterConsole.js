@@ -1,20 +1,26 @@
 import { useState } from "react";
 
 import Performance from "./Performance";
+import Piece from "../piece/Piece";
 
-import styles from "./AllPerformances.module.css";
+import styles from "./MasterConsole.module.css";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 const AllPerformances = (props) => {
-  const [clickedPerformance, setClickedPerformance] = useState(null);
+  const [performanceWasClicked, setPerformanceWasClicked] = useState(false);
   const [piecesOfClickedPerformance, setPiecesOfClickedPerformance] = useState(
     []
   );
 
   const clickedPerformanceHandler = (performance) => {
-    setClickedPerformance(performance);
+    setPerformanceWasClicked(true);
     setPiecesOfClickedPerformance(performance.pieces);
   };
+
+  const clickedPiece = (piece) => {
+
+    
+  }
 
   const displayablePerformances = props.list.map((performance) => (
     <Performance
@@ -24,12 +30,14 @@ const AllPerformances = (props) => {
     />
   ));
 
+  const displayablePieces = piecesOfClickedPerformance.map((piece) => (
+    <Piece key={piece.id} piece={piece} clicked={clickedPiece} />
+  ));
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.concertsDiv}>{displayablePerformances}</div>
-      <div className={styles.piecesDiv}>
-        {piecesOfClickedPerformance.length} length
-      </div>
+      <div className={styles.piecesDiv}>{displayablePieces}</div>
       <div className={styles.rosterDiv}></div>
     </div>
   );

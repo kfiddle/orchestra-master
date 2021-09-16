@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import AllPerformances from "../components/performances/AllPerformances";
+import MasterConsole from "../components/performances/MasterConsole";
 
 import GetAList from "../components/helperFunctions/GetAList";
 
@@ -19,7 +19,7 @@ const Season = (props) => {
     getAllPerformances();
   }, [props.modalIsClosed]);
 
-  return <AllPerformances list={listOfPerformances} />;
+  return <MasterConsole list={listOfPerformances} />;
 };
 
 export default Season;
