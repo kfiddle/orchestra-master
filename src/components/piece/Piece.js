@@ -29,7 +29,7 @@ const Piece = (props) => {
         <FiEdit onClick={openOrchestration} />
       </div>
 
-      {orchestrationClicked && <OrchestrationEntry closeModal={closeModal} />}
+      {orchestrationClicked && <OrchestrationEntry piece={props.piece} closeModal={closeModal} />}
     </div>
   );
 };

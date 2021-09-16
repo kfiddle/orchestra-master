@@ -60,6 +60,7 @@
   );
   color: whitesmoke;
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .button:hover {

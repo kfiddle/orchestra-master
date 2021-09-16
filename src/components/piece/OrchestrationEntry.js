@@ -39,6 +39,7 @@ const OrchestrationEntry = (props) => {
   return (
     <Modal closeModal={props.closeModal}>
       <div className={classes.outerContainer}>
+          <div>{props.piece.title}</div>
         <form className={classes.form}>
           <div>{stringInputs}</div>
           <div>{windInputs}</div>
