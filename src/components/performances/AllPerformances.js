@@ -7,7 +7,12 @@ const AllPerformances = (props) => {
     <Performance key={performance.id} performance={performance} />
   ));
 
-  return <div className={styles.outerContainer}>{displayablePerformances}</div>;
+  return (
+    <div className={styles.outerContainer}>
+      <div className={styles.concertsDiv}>{displayablePerformances}</div>
+      <div></div>
+    </div>
+  );
 };
 
 export default AllPerformances;
