@@ -48,6 +48,10 @@
   font-weight: 900;
 }
 
+.percussionDiv {
+  margin-right: 3rem;
+}
+
 .buttonDiv {
   position: absolute;
   right: 1rem;

@@ -1,14 +1,14 @@
+import React from "react";
 
+import classes from "./OrchestrationInput.module.css";
 
-import classes from './OrchestrationInput.module.css';
-
-const OrchestrationInput = (props) => {
+const OrchestrationInput = React.forwardRef((props, ref) => {
   return (
     <div className={classes.control}>
       <label>{props.label}</label>
-      <input type="number"></input>
+      <input type="number" ref={ref}></input>
     </div>
   );
-};
+});
 
 export default OrchestrationInput;
