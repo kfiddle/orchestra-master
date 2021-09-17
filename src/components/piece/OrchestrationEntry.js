@@ -2,6 +2,7 @@ import classes from "./OrchestrationEntry.module.css";
 
 import Modal from "../UI/modal/Modal";
 import OrchestrationInput from "./OrchestrationInput";
+import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 const stringsList = [
   "First Violins",
@@ -32,14 +33,18 @@ const OrchestrationEntry = (props) => {
     <OrchestrationInput key={Math.random()} label={instrument} />
   ));
 
-  const submitOrchestration = () => {
-      console.log("hey")
-  }
+  const submitOrchestration = async() => {
+
+
+
+
+    // const sendItUp = await PushBasic(orchestration, "add-orchestration")
+  };
 
   return (
     <Modal closeModal={props.closeModal}>
       <div className={classes.outerContainer}>
-          <div>{props.piece.title}</div>
+        <div className={classes.titleDiv}><h2>{props.piece.title}</h2></div>
         <form className={classes.form}>
           <div>{stringInputs}</div>
           <div>{windInputs}</div>

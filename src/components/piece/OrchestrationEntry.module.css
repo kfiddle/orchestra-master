@@ -1,13 +1,13 @@
 .outerContainer {
-  width: 100%;
+  width: 90%;
   display: flex;
-  margin: 0 0 0 25%;
+  margin: 0 0 0 5%;
   justify-content: center;
   align-items: center;
 }
 
 .form {
-  width: 100%;
+  width: 80%;
   display: flex;
 }
 
@@ -38,8 +38,21 @@
   outline-color: teal;
 }
 
+.titleDiv {
+    margin: 1rem 4rem 0 2rem;
+}
+
+.titleDiv h2 {
+  color: midnightblue;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
 .buttonDiv {
-  width: 80%;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  height: 90%;
   display: flex;
 }
 
@@ -50,7 +63,8 @@
   font-weight: 900;
   white-space: nowrap;
   /* background: #161e66; */
-  background: linear-gradient(to right,
+  background: linear-gradient(
+    to right,
     #161e66,
     #161e66,
     #161e66,
