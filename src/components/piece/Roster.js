@@ -1,32 +1,23 @@
+import RosterSpot from "./RosterSpot";
+
 const Roster = (props) => {
-  const {
-    firstViolins,
-    secondViolins,
-    violas,
-    cellos,
-    basses,
-    flutes,
-    oboes,
-    clarinets,
-    ebClarinets,
-    bassoons,
-    horns,
-    trumpets,
-    trombones,
-    tubas,
-    timpanis,
-    percussions,
-    harps,
-    pianos,
-  } = props.roster;
+  const displayableRosterSpots = [];
 
-  console.log(props.roster)
+  for (const key in props.roster) {
+    for (let i = 0; i < props.roster[key]; i++) {
+      if (key !== "id") {
+            let printableKey = '';
+            key === 'basses'? printableKey = 'bass' : printableKey = key.slice(0, -1);
 
-  return (
-    <div>
-      {basses} basses and {ebClarinets} eBClarinets
-    </div>
-  );
+
+        displayableRosterSpots.push(
+          <RosterSpot key={Math.random()} instrument={printableKey} />
+        );
+      }
+    }
+  }
+
+  return <div>{displayableRosterSpots}</div>;
 };
 
 export default Roster;
