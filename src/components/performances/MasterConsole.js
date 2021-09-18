@@ -11,7 +11,7 @@ const AllPerformances = (props) => {
   const [piecesOfClickedPerformance, setPiecesOfClickedPerformance] = useState(
     []
   );
-  const [orchestration, setOrchestration] = useState(null);
+  const [instrumentNumbersList, setInstrumentNumbersList] = useState([]);
 
   const clickedPerformanceHandler = (performance) => {
     setPerformanceWasClicked(true);
@@ -19,10 +19,11 @@ const AllPerformances = (props) => {
   };
 
   const clickedPiece = async (piece) => {
-    const orchResponse = await PushBasic(piece, "get-orchestration-of-piece");
+    const orchListResponse = await PushBasic(piece, "get-roster-from-piece");
     
-    if (orchResponse.ok) {
-      setOrchestration(orchResponse.json());
+    if (orchListResponse.ok) {
+      // setInstrumentNumbersList(orchListResponse.json());
+      console.log(orchListResponse.json());
     }
   };
 
