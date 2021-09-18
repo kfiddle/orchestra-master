@@ -5,6 +5,7 @@ import classes from "./OrchestrationEntry.module.css";
 import Modal from "../UI/modal/Modal";
 import OrchestrationInput from "./OrchestrationInput";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+import DoubleObjectPush from "../helperFunctions/pushFunctions/DoubleObjectPush";
 
 const OrchestrationEntry = (props) => {
   const firstViolinsRef = useRef();
@@ -57,10 +58,15 @@ const OrchestrationEntry = (props) => {
       harps: harpRef.current.value,
     };
 
-    let response = await PushBasic(objectToSend, "add-orchestration");
+    let response = await PushBasic(objectToSend, "set-roster");
     if (response.ok) {
       props.closeModal();
     }
+
+    // let response = await DoubleObjectPush(objectToSend, props.piece, "set-roster")
+    // if (response.ok) {
+    //   props.closeModal();
+    // }
   };
 
   return (
