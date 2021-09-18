@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Performance from "./Performance";
 import Piece from "../piece/Piece";
+import Roster from "../piece/Roster";
 
 import styles from "./MasterConsole.module.css";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
@@ -11,7 +12,7 @@ const AllPerformances = (props) => {
   const [piecesOfClickedPerformance, setPiecesOfClickedPerformance] = useState(
     []
   );
-  const [instrumentNumbersList, setInstrumentNumbersList] = useState([]);
+  const [rosterObject, setRosterObject] = useState({});
 
   const clickedPerformanceHandler = (performance) => {
     setPerformanceWasClicked(true);
@@ -19,12 +20,9 @@ const AllPerformances = (props) => {
   };
 
   const clickedPiece = async (piece) => {
-    const orchListResponse = await PushBasic(piece, "get-roster-from-piece");
-    
-    if (orchListResponse.ok) {
-      // setInstrumentNumbersList(orchListResponse.json());
-      console.log(orchListResponse.json());
-    }
+    const rosterResponse = await PushBasic(piece, "get-roster-from-piece");
+    const jsonified = await rosterResponse.json();
+    setRosterObject(jsonified);
   };
 
   const displayablePerformances = props.list.map((performance) => (
@@ -43,7 +41,9 @@ const AllPerformances = (props) => {
     <div className={styles.outerContainer}>
       <div className={styles.concertsDiv}>{displayablePerformances}</div>
       <div className={styles.piecesDiv}>{displayablePieces}</div>
-      <div className={styles.rosterDiv}></div>
+      <div className={styles.rosterDiv}>
+        <Roster roster={rosterObject} />
+      </div>
     </div>
   );
 };
