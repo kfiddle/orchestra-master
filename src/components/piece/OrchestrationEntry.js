@@ -33,6 +33,7 @@ const OrchestrationEntry = (props) => {
     event.preventDefault();
 
     let objectToSend = {
+      piece: props.piece,
       firstViolins: firstViolinsRef.current.value,
       secondViolins: firstViolinsRef.current.value,
       violas: firstViolinsRef.current.value,
