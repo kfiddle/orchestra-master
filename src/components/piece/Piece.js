@@ -25,11 +25,14 @@ const Piece = (props) => {
     <div className={styles.outerContainer} onClick={clickedPieceHandler}>
       <div className={styles.titleDiv}>{title}</div>
       <div className={styles.composerDiv}>{composer}</div>
+
       <div className={styles.editIcon}>
         <FiEdit onClick={openOrchestration} />
       </div>
 
-      {orchestrationClicked && <OrchestrationEntry piece={props.piece} closeModal={closeModal} />}
+      {orchestrationClicked && (
+        <OrchestrationEntry piece={props.piece} closeModal={closeModal} />
+      )}
     </div>
   );
 };

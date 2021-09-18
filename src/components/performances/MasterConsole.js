@@ -11,14 +11,19 @@ const AllPerformances = (props) => {
   const [piecesOfClickedPerformance, setPiecesOfClickedPerformance] = useState(
     []
   );
+  const [orchestration, setOrchestration] = useState(null);
 
   const clickedPerformanceHandler = (performance) => {
     setPerformanceWasClicked(true);
     setPiecesOfClickedPerformance(performance.pieces);
   };
 
-  const clickedPiece = (piece) => {
-    console.log(piece);
+  const clickedPiece = async (piece) => {
+    const orchResponse = await PushBasic(piece, "get-orchestration-of-piece");
+    
+    if (orchResponse.ok) {
+      setOrchestration(orchResponse.json());
+    }
   };
 
   const displayablePerformances = props.list.map((performance) => (
