@@ -9,13 +9,13 @@ const ByInstrumentsHeader = (props) => {
   const [listOfInstruments, setListOfInstruments] = useState([]);
   const [currentChoice, setCurrentChoice] = useState("");
 
-  const instrumentChooser = (instrument) => {
-    props.instrumentChooser(instrument);
+  const instrumentChooser = (instrumentString) => {
+    props.instrumentChooser(instrumentString);
   }
 
   useEffect(() => {
     const getAllInstruments = async () => {
-      const allInstruments = await GetAList("get-all-instruments");
+      const allInstruments = await GetAList("get-all-instrument-enums");
       setListOfInstruments(allInstruments);
     };
 

@@ -16,11 +16,10 @@ const PlayersList = (props) => {
     console.log(player.lastName);
   };
 
-  const instrumentChooser = async (instrument) => {
-    setChosenInstrument(instrument);
-
+  const instrumentChooser = async (instrumentString) => {
+    setChosenInstrument(instrumentString);
     const allPlayersOfInstrument = await GetAList(
-      props.type + '/' + instrument.instrumentEnum
+      props.type + '/' + instrumentString.toUpperCase()
     );
     setByInstrumentList(allPlayersOfInstrument);
     console.log(byInstrumentList);
