@@ -14,7 +14,7 @@ const AllInstruments = (props) => {
 
   const listToDisplay = props.list.map((instrument) => (
     <InstrumentListItem
-      key={instrument.id}
+      key={Math.random()}
       instrument={instrument}
       clickedInstrument={clickedInstrument}
       unclickedInstrument={unClickedInstrument}

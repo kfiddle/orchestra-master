@@ -48,7 +48,7 @@ const PlayerEntry = (props) => {
       props.player.type === "CONTRACT"
         ? setSelectedType([true, false])
         : setSelectedType([false, true]);
-        console.log(selectedType)
+      console.log(selectedType);
     }
   }, [props.player]);
 
@@ -122,7 +122,10 @@ const PlayerEntry = (props) => {
           : inputtedFirstNameArea,
       lastName: fullNameRef.current.value === "" ? lastName : inputtedLastName,
 
-      instrumentEnum: clickedInstrumentList[0].toUpperCase(),
+      instrumentEnum:
+        clickedInstrumentList.length > 0
+          ? clickedInstrumentList[0].toUpperCase().trim(" ")
+          : null,
 
       email: emailRef.current.value === "" ? email : emailRef.current.value,
 
@@ -149,7 +152,7 @@ const PlayerEntry = (props) => {
       city: cityRef.current.value === "" ? city : cityRef.current.value,
       state: stateRef.current.value === "" ? state : stateRef.current.value,
       zip: zipRef.current.value === "" ? zip : zipRef.current.value,
-      unions: unionsRef.current.value === "" ? unions: unionsRef.current.value,
+      unions: unionsRef.current.value === "" ? unions : unionsRef.current.value,
 
       type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };

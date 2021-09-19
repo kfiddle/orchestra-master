@@ -18,8 +18,13 @@ const PlayersList = (props) => {
 
   const instrumentChooser = async (instrumentString) => {
     setChosenInstrument(instrumentString);
+    let instrumentToSend =
+      instrumentString === "Eb Clarinet"
+        ? "EBCLARINET"
+        : instrumentString.toUpperCase();
+
     const allPlayersOfInstrument = await GetAList(
-      props.type + "/" + instrumentString.toUpperCase()
+      props.type + "/" + instrumentToSend
     );
     setByInstrumentList(allPlayersOfInstrument);
   };
