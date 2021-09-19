@@ -6,7 +6,7 @@ import PlayerEntry from "./PlayerEntry";
 import styles from "./Player.module.css";
 
 const Player = (props) => {
-  const { firstNameArea, lastName, instruments, email, cellPhone } =
+  const { firstNameArea, lastName, instrumentEnum, email, cellPhone } =
     props.player;
   const [editClicked, setEditClicked] = useState(false);
 
@@ -23,7 +23,7 @@ const Player = (props) => {
       <div className={styles.name}>
         {firstNameArea} {lastName}
       </div>
-      <div className={styles.instrument}>{instruments[0].name}</div>
+      <div className={styles.instrument}>{instrumentEnum}</div>
       <div className={styles.email}>{email}</div>
       <div className={styles.cellPhone}>{cellPhone}</div>
       <div className={styles.editButtonDiv}>

@@ -5,7 +5,8 @@ import classes from './InstrumentListItem.module.css';
 const InstrumentListItem = (props) => {
   const [clicked, setClicked] = useState(false);
 
-  const { id, name } = props.instrument;
+  // const { id, name } = props.instrument;
+  const name = props.instrument;
 
   const outerContainerClass = clicked
     ? classes.clickedItem

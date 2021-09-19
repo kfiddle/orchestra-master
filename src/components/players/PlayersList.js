@@ -19,10 +19,9 @@ const PlayersList = (props) => {
   const instrumentChooser = async (instrumentString) => {
     setChosenInstrument(instrumentString);
     const allPlayersOfInstrument = await GetAList(
-      props.type + '/' + instrumentString.toUpperCase()
+      props.type + "/" + instrumentString.toUpperCase()
     );
     setByInstrumentList(allPlayersOfInstrument);
-    console.log(byInstrumentList);
   };
 
   const playersToDisplay = byInstrumentList.map((player) => (

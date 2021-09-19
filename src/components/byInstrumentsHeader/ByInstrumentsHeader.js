@@ -11,17 +11,18 @@ const ByInstrumentsHeader = (props) => {
 
   const instrumentChooser = (instrumentString) => {
     props.instrumentChooser(instrumentString);
-  }
+  };
 
   useEffect(() => {
     const getAllInstruments = async () => {
       const allInstruments = await GetAList("get-all-instrument-enums");
-      setListOfInstruments(allInstruments);
+      if (allInstruments.length > 0) {
+        setListOfInstruments(allInstruments);
+      }
     };
 
     getAllInstruments();
   }, []);
-
 
   const displayableInstruments = listOfInstruments.map((instrument) => (
     <SubInstrument

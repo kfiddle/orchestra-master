@@ -67,7 +67,7 @@ const PlayerEntry = (props) => {
 
   useEffect(() => {
     const getInstruments = async () => {
-      const allInstruments = await GetAList("get-all-instruments");
+      const allInstruments = await GetAList("get-all-instrument-enums");
       setInstrumentsList(allInstruments);
     };
 
@@ -122,7 +122,7 @@ const PlayerEntry = (props) => {
           : inputtedFirstNameArea,
       lastName: fullNameRef.current.value === "" ? lastName : inputtedLastName,
 
-      instruments: clickedInstrumentList,
+      instrumentEnum: clickedInstrumentList[0].toUpperCase(),
 
       email: emailRef.current.value === "" ? email : emailRef.current.value,
 
