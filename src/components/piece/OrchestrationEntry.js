@@ -4,6 +4,7 @@ import classes from "./OrchestrationEntry.module.css";
 
 import Modal from "../UI/modal/Modal";
 import OrchestrationInput from "./OrchestrationInput";
+import Input from '../input/Input';
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import DoubleObjectPush from "../helperFunctions/pushFunctions/DoubleObjectPush";
 
@@ -62,11 +63,6 @@ const OrchestrationEntry = (props) => {
     if (response.ok) {
       props.closeModal();
     }
-
-    // let response = await DoubleObjectPush(objectToSend, props.piece, "set-roster")
-    // if (response.ok) {
-    //   props.closeModal();
-    // }
   };
 
   return (
@@ -82,7 +78,7 @@ const OrchestrationEntry = (props) => {
               label={"Second Violins"}
               ref={secondViolinsRef}
             />
-            <OrchestrationInput label={"Violas"} ref={violasRef} />
+            <Input label={"Violas"} type='number' ref={violasRef} />
             <OrchestrationInput label={"Celli"} ref={celliRef} />
             <OrchestrationInput label={"Basses"} ref={bassesRef} />
           </div>

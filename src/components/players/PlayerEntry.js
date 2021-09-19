@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 import AllInstruments from "../instruments/allInstruments/AllInstruments";
 import Modal from "../UI/modal/Modal";
+import Input from "../input/Input";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import GetAList from "../helperFunctions/GetAList";
 
@@ -198,15 +199,19 @@ const PlayerEntry = (props) => {
         )}
 
         <div className={classes.phoneDiv}>
-          <div className={classes.control}>
-            <label>Home Phone</label>
-            <input type="text" ref={homePhoneRef} placeholder={homePhone} />
-          </div>
+          <Input
+            label={"Home Phone"}
+            type={"text"}
+            ref={homePhoneRef}
+            placeholder={homePhone}
+          />
 
-          <div className={classes.control}>
-            <label>Cell Phone</label>
-            <input type="text" ref={cellPhoneRef} placeholder={cellPhone} />
-          </div>
+          <Input
+            label={"Cell Phone"}
+            type={"text"}
+            ref={cellPhoneRef}
+            placeholder={cellPhone}
+          />
         </div>
 
         <div className={`${classes.control} ${classes.emailDiv}`}>
@@ -214,25 +219,19 @@ const PlayerEntry = (props) => {
           <input type="text" ref={emailRef} placeholder={email} />
         </div>
 
-        <div className={classes.control}>
-          <label>Address Line 1</label>
-          <input
-            type="text"
-            id="address"
-            ref={addressLine1Ref}
-            placeholder={addressLine1}
-          />
-        </div>
+        <Input
+          label={"Address Line 1"}
+          type="text"
+          ref={addressLine1Ref}
+          placeholder={addressLine1}
+        />
 
-        <div className={classes.control}>
-          <label>Address Line 2</label>
-          <input
-            type="text"
-            id="address"
-            ref={addressLine2Ref}
-            placeholder={addressLine2}
-          />
-        </div>
+        <Input
+          label={"Address Line 2"}
+          type="text"
+          ref={addressLine2Ref}
+          placeholder={addressLine2}
+        />
 
         <div className={classes.cityStateDiv}>
           <div className={`${classes.control} ${classes.city}`}>
@@ -279,6 +278,19 @@ const PlayerEntry = (props) => {
                 setSelectedType((previous) => [false, !previous[1]])
               }
             />
+          </div>
+          <div className={classes.hiddenSubTypeDiv}>
+            {selectedType[0] === true && (
+              <div>
+                <label>Principal</label>
+                <input type="radio" />
+                <label>Assistant</label>
+                <input type="radio" />
+                <label>Section</label>
+                <input type="radio" />
+              </div>
+            )}
+            {selectedType[1] === true && <h2>I'm a SUB</h2>}
           </div>
         </div>
 
