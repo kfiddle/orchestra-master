@@ -214,10 +214,13 @@ const PlayerEntry = (props) => {
           />
         </div>
 
-        <div className={`${classes.control} ${classes.emailDiv}`}>
-          <label>Email</label>
-          <input type="text" ref={emailRef} placeholder={email} />
-        </div>
+        <Input
+          label={"Email"}
+          type={"text"}
+          ref={emailRef}
+          placeholder={email}
+          style={{ width: "90%" }}
+        />
 
         <Input
           label={"Address Line 1"}
