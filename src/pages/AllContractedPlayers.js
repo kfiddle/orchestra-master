@@ -19,7 +19,7 @@ const AllContractedPlayers = (props) => {
     getContractedPlayers();
   }, [props.modalIsClosed]);
 
-  return <PlayersList list={listOfPlayers} />;
+  return <PlayersList list={listOfPlayers} type={'contracts'} />;
 };
 
 export default AllContractedPlayers;

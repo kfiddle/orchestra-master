@@ -12,7 +12,6 @@ const PlayersList = (props) => {
   const [byInstrumentList, setByInstrumentList] = useState([]);
   const [chosenInstrument, setChosenInstrument] = useState("");
 
-
   const clickedPlayerHandler = (player) => {
     console.log(player.lastName);
   };
@@ -20,9 +19,8 @@ const PlayersList = (props) => {
   const instrumentChooser = async (instrument) => {
     setChosenInstrument(instrument);
 
-    console.log(instrument);
     const allPlayersOfInstrument = await GetAList(
-      "subs/" + instrument.instrumentEnum
+      props.type + '/' + instrument.instrumentEnum
     );
     setByInstrumentList(allPlayersOfInstrument);
     console.log(byInstrumentList);

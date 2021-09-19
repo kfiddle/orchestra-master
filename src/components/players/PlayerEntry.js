@@ -48,6 +48,7 @@ const PlayerEntry = (props) => {
       props.player.type === "CONTRACT"
         ? setSelectedType([true, false])
         : setSelectedType([false, true]);
+        console.log(selectedType)
     }
   }, [props.player]);
 

@@ -21,7 +21,7 @@ const AllPerformances = (props) => {
 
   const clickedPiece = async (piece) => {
     const rosterResponse = await PushBasic(piece, "get-roster-from-piece");
-    const jsonified = await rosterResponse.json();
+    const jsonified = await rosterResponse.json(); 
     setRosterObject(jsonified);
   };
 
