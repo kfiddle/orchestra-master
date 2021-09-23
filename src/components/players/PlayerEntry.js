@@ -5,19 +5,29 @@ import InstrumentsList from "../../store/instruments-list";
 import InstrumentsDropDown from "../instruments/InstrumentsDropDown";
 
 import Modal from "../UI/modal/Modal";
-import Input from "../input/Input";
+import InputText from "../input/InputText";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
-import GetAList from "../helperFunctions/GetAList";
 
 import classes from "./PlayerEntry.module.css";
 
+const nameMaker = (fullEnteredName) => {
+  const names = fullEnteredName.split(" ");
+  const tempFirstNameArea = names.slice(0, -1);
+
+  return {
+    enteredFirstNameArea: tempFirstNameArea.join(" "),
+    enteredLastName: names[names.length - 1],
+  };
+};
+
 const PlayerEntry = (props) => {
   const [selectedType, setSelectedType] = useState([false, false]);
-  const [instrumentsList, setInstrumentsList] = useState([]);
-  const [instrumentDropdownClicked, setInstrumentDropdownClicked] =
-    useState(false);
   const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
-  const [deleteButtonClicked, setDeleteButtonClicked] = useState(false);
+
+  const [clickedThings, setClickedThings] = useState({
+    instrumentDropDown: false,
+    deleteButton: false,
+  });
 
   let id = "";
   let firstNameArea = "";
@@ -69,38 +79,22 @@ const PlayerEntry = (props) => {
   const contractedRef = useRef();
   const subRef = useRef();
 
-  useEffect(() => {
-    const getInstruments = async () => {
-      const allInstruments = await GetAList("get-all-instrument-enums");
-      setInstrumentsList(allInstruments);
-    };
-
-    getInstruments();
-  }, []);
-
   const instrumentsClickHandler = () => {
-    setInstrumentDropdownClicked((previous) => !previous);
-  };
-
-  const clickedInstrument = (instrument) => {
-    const tempInstrumentList = clickedInstrumentList;
-    tempInstrumentList.push(instrument);
-    setClickedInstrumentList(tempInstrumentList);
-    console.log(clickedInstrumentList);
-  };
-
-  const unClickedInstrument = (instrument) => {
-    const tempInstrumentList = clickedInstrumentList.filter(
-      (instr) => instr.id !== instrument.id
-    );
-    setClickedInstrumentList(tempInstrumentList);
+    setClickedThings({
+      ...clickedThings,
+      instrumentDropDown: !clickedThings.instrumentDropDown,
+    });
   };
 
   const deleteButtonHandler = async (event) => {
     event.preventDefault();
 
-    setDeleteButtonClicked((previous) => !previous);
-    if (deleteButtonClicked) {
+    setClickedThings({
+      ...clickedThings,
+      deleteButton: !clickedThings.deleteButton,
+    });
+
+    if (clickedThings.deleteButton) {
       const response = await PushBasic(props.player, "delete-player");
       if (response.ok) {
         props.closeModal();
@@ -111,20 +105,15 @@ const PlayerEntry = (props) => {
   const submitPlayer = (event) => {
     event.preventDefault();
 
-    console.log(clickedInstrumentList);
-
-    const names = fullNameRef.current.value.split(" ");
-    const tempFirstNameArea = names.slice(0, -1);
-    const inputtedFirstNameArea = tempFirstNameArea.join(" ");
-    const inputtedLastName = names[names.length - 1];
+    const {enteredFirstNameArea, enteredLastName} = nameMaker(fullNameRef.current.value);
 
     const playerToSubmit = {
       id,
       firstNameArea:
         fullNameRef.current.value === ""
           ? firstNameArea
-          : inputtedFirstNameArea,
-      lastName: fullNameRef.current.value === "" ? lastName : inputtedLastName,
+          : enteredFirstNameArea,
+      lastName: fullNameRef.current.value === "" ? lastName : enteredLastName,
 
       instrumentEnum:
         clickedInstrumentList.length > 0
@@ -161,6 +150,8 @@ const PlayerEntry = (props) => {
       type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };
 
+    console.log(playerToSubmit)
+
     const sendPlayerOff = async () => {
       console.log(playerToSubmit.type);
       let response = await PushBasic(playerToSubmit, "add-player");
@@ -196,48 +187,44 @@ const PlayerEntry = (props) => {
             </div>
 
             <div
+              onClick={instrumentsClickHandler}
               className={`${classes.control} ${classes.instrumentDropdownDiv}`}
             >
-              <h3 onClick={instrumentsClickHandler}>Instrument</h3>
+              <h3>Instrument</h3>
             </div>
           </div>
 
-          {instrumentDropdownClicked && <InstrumentsDropDown />}
+          {clickedThings.instrumentDropDown && <InstrumentsDropDown />}
 
           <div className={classes.phoneDiv}>
-            <Input
+            <InputText
               label={"Home Phone"}
-              type={"text"}
               ref={homePhoneRef}
               placeholder={homePhone}
             />
 
-            <Input
+            <InputText
               label={"Cell Phone"}
-              type={"text"}
               ref={cellPhoneRef}
               placeholder={cellPhone}
             />
           </div>
 
-          <Input
+          <InputText
             label={"Email"}
-            type={"text"}
             ref={emailRef}
             placeholder={email}
             style={{ width: "90%" }}
           />
 
-          <Input
+          <InputText
             label={"Address Line 1"}
-            type="text"
             ref={addressLine1Ref}
             placeholder={addressLine1}
           />
 
-          <Input
+          <InputText
             label={"Address Line 2"}
-            type="text"
             ref={addressLine2Ref}
             placeholder={addressLine2}
           />
@@ -318,7 +305,9 @@ const PlayerEntry = (props) => {
                 className={classes.deleteButton}
                 onClick={deleteButtonHandler}
               >
-                {!deleteButtonClicked ? "Remove Player" : "Are You Sure?"}
+                {!clickedThings.deleteButton
+                  ? "Remove Player"
+                  : "Are You Sure?"}
               </button>
             )}
           </div>
