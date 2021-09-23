@@ -10,7 +10,13 @@ import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./PlayerEntry.module.css";
 
-let pObject = { id: "", firstNameArea: "", lastName: "", email: "", homePhone: "", cellPhone: "",
+let pObject = {
+  id: "",
+  firstNameArea: "",
+  lastName: "",
+  email: "",
+  homePhone: "",
+  cellPhone: "",
   addressLine1: "",
   addressLine2: "",
   city: "",
@@ -62,12 +68,19 @@ const PlayerEntry = (props) => {
     pObject = { ...props.player };
   }
 
+  const [player, setPlayer] = useState(pObject);
+
+  let myAddress = { street: "", number: "", city: "mozambique" };
+  const [address, setAddress] = useState(myAddress);
+
   useEffect(() => {
     if (props.player) {
       props.player.type === "CONTRACT"
         ? setSelectedType([true, false])
         : setSelectedType([false, true]);
     }
+
+    console.log(player);
   }, [props.player]);
 
   const fullNameRef = useRef();
@@ -108,7 +121,7 @@ const PlayerEntry = (props) => {
 
   const submitPlayer = (event) => {
     event.preventDefault();
-    console.log(pObject.homePhone)
+    console.log(player);
 
     //   const { enteredFirstNameArea, enteredLastName } = nameMaker(
     //     fullNameRef.current.value
@@ -209,13 +222,18 @@ const PlayerEntry = (props) => {
             <InputText
               label={"Home Phone"}
               ref={homePhoneRef}
-              onChange={() => { populator('homePhone') }}
+              onChange={(event) =>
+                setPlayer({ ...player, homePhone: event.target.value })
+              }
               placeholder={pObject.homePhone}
             />
 
             <InputText
               label={"Cell Phone"}
               ref={cellPhoneRef}
+              onChange={(event) =>
+                setPlayer({ ...player, cellPhone: event.target.value })
+              }
               placeholder={pObject.cellPhone}
             />
           </div>
@@ -223,6 +241,9 @@ const PlayerEntry = (props) => {
           <InputText
             label={"Email"}
             ref={emailRef}
+            onChange={(event) =>
+              setPlayer({ ...player, email: event.target.value })
+            }
             placeholder={pObject.email}
             style={{ width: "90%" }}
           />
@@ -230,12 +251,18 @@ const PlayerEntry = (props) => {
           <InputText
             label={"Address Line 1"}
             ref={addressLine1Ref}
+            onChange={(event) =>
+              setPlayer({ ...player, addressLine1: event.target.value })
+            }
             placeholder={pObject.addressLine1}
           />
 
           <InputText
             label={"Address Line 2"}
             ref={addressLine2Ref}
+            onChange={(event) =>
+              setPlayer({ ...player, addressLine2: event.target.value })
+            }
             placeholder={pObject.addressLine2}
           />
 
@@ -246,19 +273,31 @@ const PlayerEntry = (props) => {
                 type="text"
                 id="address"
                 ref={cityRef}
+                onChange={(event) =>
+                  setPlayer({ ...player, city: event.target.value })
+                }
                 placeholder={pObject.city}
               />
             </div>
 
-            <div className={`${classes.control} ${classes.state}`}>
-              <label>State</label>
-              <input type="text" ref={stateRef} placeholder={pObject.state} />
-            </div>
+            <InputText
+              label={"State"}
+              ref={stateRef}
+              onChange={(event) =>
+                setPlayer({ ...player, state: event.target.value })
+              }
+              placeholder={pObject.state}
+              style={{ width: "10%", marginRight: "2rem" }}
+            />
 
-            <div className={`${classes.control} ${classes.zip}`}>
-              <label>Zip</label>
-              <input type="text" ref={zipRef} placeholder={pObject.zip} />
-            </div>
+            <InputText
+              label={"Zip"}
+              ref={zipRef}
+              onChange={(event) =>
+                setPlayer({ ...player, zip: event.target.value })
+              }
+              placeholder={pObject.zip}
+            />
           </div>
 
           <div className={`${classes.control} ${classes.unionsDiv}`}>
