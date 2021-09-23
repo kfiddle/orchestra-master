@@ -8,7 +8,7 @@ const InputText = React.forwardRef((props, ref) => {
   return (
     <div className={classes.control} style={style}>
       <label>{label}</label>
-      <input type={'text'} ref={ref} placeholder={placeholder}></input>
+      <input type={'text'} ref={ref} placeholder={placeholder} onChange={onChange}></input>
     </div>
   );
 });

@@ -10,6 +10,15 @@ import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./PlayerEntry.module.css";
 
+let pObject = { id: "", firstNameArea: "", lastName: "", email: "", homePhone: "", cellPhone: "",
+  addressLine1: "",
+  addressLine2: "",
+  city: "",
+  state: "",
+  zip: "",
+  unions: "",
+};
+
 const nameMaker = (fullEnteredName) => {
   const names = fullEnteredName.split(" ");
   const tempFirstNameArea = names.slice(0, -1);
@@ -20,41 +29,37 @@ const nameMaker = (fullEnteredName) => {
   };
 };
 
+// homePhone:
+// homePhoneRef.current.value === ""
+//   ? homePhone
+//   : homePhoneRef.current.value,
+
+// cellPhone:
+// cellPhoneRef.current.value === ""
+//   ? cellPhone
+//   : cellPhoneRef.current.value,
+
+// { key: , key: , key: , }
+
+// const makeAnObject = (listOfInputs) => {
+//   objectToReturn = {};
+
+//   for (let input of listOfInputs) {
+
+//   }
+
+// };
+
 const PlayerEntry = (props) => {
   const [selectedType, setSelectedType] = useState([false, false]);
   const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
-
   const [clickedThings, setClickedThings] = useState({
     instrumentDropDown: false,
     deleteButton: false,
   });
 
-  let id = "";
-  let firstNameArea = "";
-  let lastName = "";
-  let email = "";
-  let homePhone = "";
-  let cellPhone = "";
-  let addressLine1 = "";
-  let addressLine2 = "";
-  let city = "";
-  let state = "";
-  let zip = "";
-  let unions = "";
-
   if (props.player) {
-    id = props.player.id;
-    firstNameArea = props.player.firstNameArea;
-    lastName = props.player.lastName;
-    email = props.player.email;
-    homePhone = props.player.homePhone;
-    cellPhone = props.player.cellPhone;
-    addressLine1 = props.player.addressLine1;
-    addressLine2 = props.player.addressLine2;
-    city = props.player.city;
-    state = props.player.state;
-    zip = props.player.zip;
-    unions = props.player.unions;
+    pObject = { ...props.player };
   }
 
   useEffect(() => {
@@ -62,7 +67,6 @@ const PlayerEntry = (props) => {
       props.player.type === "CONTRACT"
         ? setSelectedType([true, false])
         : setSelectedType([false, true]);
-      console.log(selectedType);
     }
   }, [props.player]);
 
@@ -104,62 +108,63 @@ const PlayerEntry = (props) => {
 
   const submitPlayer = (event) => {
     event.preventDefault();
+    console.log(pObject.homePhone)
 
-    const {enteredFirstNameArea, enteredLastName} = nameMaker(fullNameRef.current.value);
+    //   const { enteredFirstNameArea, enteredLastName } = nameMaker(
+    //     fullNameRef.current.value
+    //   );
 
-    const playerToSubmit = {
-      id,
-      firstNameArea:
-        fullNameRef.current.value === ""
-          ? firstNameArea
-          : enteredFirstNameArea,
-      lastName: fullNameRef.current.value === "" ? lastName : enteredLastName,
+    //   const playerToSubmit = {
+    //     id,
+    //     firstNameArea:
+    //       fullNameRef.current.value === "" ? firstNameArea : enteredFirstNameArea,
+    //     lastName: fullNameRef.current.value === "" ? lastName : enteredLastName,
 
-      instrumentEnum:
-        clickedInstrumentList.length > 0
-          ? clickedInstrumentList[0].toUpperCase().trim(" ")
-          : null,
+    //     instrumentEnum:
+    //       clickedInstrumentList.length > 0
+    //         ? clickedInstrumentList[0].toUpperCase().trim(" ")
+    //         : null,
 
-      email: emailRef.current.value === "" ? email : emailRef.current.value,
+    //     email: emailRef.current.value === "" ? email : emailRef.current.value,
 
-      homePhone:
-        homePhoneRef.current.value === ""
-          ? homePhone
-          : homePhoneRef.current.value,
+    //     homePhone:
+    //       homePhoneRef.current.value === ""
+    //         ? homePhone
+    //         : homePhoneRef.current.value,
 
-      cellPhone:
-        cellPhoneRef.current.value === ""
-          ? cellPhone
-          : cellPhoneRef.current.value,
+    //     cellPhone:
+    //       cellPhoneRef.current.value === ""
+    //         ? cellPhone
+    //         : cellPhoneRef.current.value,
 
-      addressLine1:
-        addressLine1Ref.current.value === ""
-          ? addressLine1
-          : addressLine1Ref.current.value,
+    //     addressLine1:
+    //       addressLine1Ref.current.value === ""
+    //         ? addressLine1
+    //         : addressLine1Ref.current.value,
 
-      addressLine2:
-        addressLine2Ref.current.value === ""
-          ? addressLine2
-          : addressLine2Ref.current.value,
+    //     addressLine2:
+    //       addressLine2Ref.current.value === ""
+    //         ? addressLine2
+    //         : addressLine2Ref.current.value,
 
-      city: cityRef.current.value === "" ? city : cityRef.current.value,
-      state: stateRef.current.value === "" ? state : stateRef.current.value,
-      zip: zipRef.current.value === "" ? zip : zipRef.current.value,
-      unions: unionsRef.current.value === "" ? unions : unionsRef.current.value,
+    //     city: cityRef.current.value === "" ? city : cityRef.current.value,
+    //     state: stateRef.current.value === "" ? state : stateRef.current.value,
+    //     zip: zipRef.current.value === "" ? zip : zipRef.current.value,
+    //     unions: unionsRef.current.value === "" ? unions : unionsRef.current.value,
 
-      type: selectedType[0] === true ? "CONTRACT" : "SUB",
-    };
+    //     type: selectedType[0] === true ? "CONTRACT" : "SUB",
+    //   };
 
-    console.log(playerToSubmit)
+    //   console.log(playerToSubmit);
 
-    const sendPlayerOff = async () => {
-      console.log(playerToSubmit.type);
-      let response = await PushBasic(playerToSubmit, "add-player");
-      if (response.ok) {
-        props.closeModal();
-      }
-    };
-    setTimeout(sendPlayerOff, 200);
+    //   const sendPlayerOff = async () => {
+    //     console.log(playerToSubmit.type);
+    //     let response = await PushBasic(playerToSubmit, "add-player");
+    //     if (response.ok) {
+    //       props.closeModal();
+    //     }
+    //   };
+    //   setTimeout(sendPlayerOff, 200);
   };
 
   const instrumentToList = (instrument) => {
@@ -169,6 +174,10 @@ const PlayerEntry = (props) => {
       setClickedInstrumentList
     );
   };
+
+  // const populator = (event) => {
+  //   pObject[key] = event.target.value;
+  // }
 
   return (
     <InstrumentsList.Provider
@@ -182,7 +191,7 @@ const PlayerEntry = (props) => {
               <input
                 type="text"
                 ref={fullNameRef}
-                placeholder={`${firstNameArea} ${lastName}`}
+                placeholder={`${pObject.firstNameArea} ${pObject.lastName}`}
               />
             </div>
 
@@ -200,33 +209,34 @@ const PlayerEntry = (props) => {
             <InputText
               label={"Home Phone"}
               ref={homePhoneRef}
-              placeholder={homePhone}
+              onChange={() => { populator('homePhone') }}
+              placeholder={pObject.homePhone}
             />
 
             <InputText
               label={"Cell Phone"}
               ref={cellPhoneRef}
-              placeholder={cellPhone}
+              placeholder={pObject.cellPhone}
             />
           </div>
 
           <InputText
             label={"Email"}
             ref={emailRef}
-            placeholder={email}
+            placeholder={pObject.email}
             style={{ width: "90%" }}
           />
 
           <InputText
             label={"Address Line 1"}
             ref={addressLine1Ref}
-            placeholder={addressLine1}
+            placeholder={pObject.addressLine1}
           />
 
           <InputText
             label={"Address Line 2"}
             ref={addressLine2Ref}
-            placeholder={addressLine2}
+            placeholder={pObject.addressLine2}
           />
 
           <div className={classes.cityStateDiv}>
@@ -236,24 +246,24 @@ const PlayerEntry = (props) => {
                 type="text"
                 id="address"
                 ref={cityRef}
-                placeholder={city}
+                placeholder={pObject.city}
               />
             </div>
 
             <div className={`${classes.control} ${classes.state}`}>
               <label>State</label>
-              <input type="text" ref={stateRef} placeholder={state} />
+              <input type="text" ref={stateRef} placeholder={pObject.state} />
             </div>
 
             <div className={`${classes.control} ${classes.zip}`}>
               <label>Zip</label>
-              <input type="text" ref={zipRef} placeholder={zip} />
+              <input type="text" ref={zipRef} placeholder={pObject.zip} />
             </div>
           </div>
 
           <div className={`${classes.control} ${classes.unionsDiv}`}>
             <label>Unions</label>
-            <input type="text" ref={unionsRef} placeholder={unions} />
+            <input type="text" ref={unionsRef} placeholder={pObject.unions} />
           </div>
 
           <div className={classes.checkedDiv}>
