@@ -35,26 +35,6 @@ const nameMaker = (fullEnteredName) => {
   };
 };
 
-// homePhone:
-// homePhoneRef.current.value === ""
-//   ? homePhone
-//   : homePhoneRef.current.value,
-
-// cellPhone:
-// cellPhoneRef.current.value === ""
-//   ? cellPhone
-//   : cellPhoneRef.current.value,
-
-// { key: , key: , key: , }
-
-// const makeAnObject = (listOfInputs) => {
-//   objectToReturn = {};
-
-//   for (let input of listOfInputs) {
-
-//   }
-
-// };
 
 const PlayerEntry = (props) => {
   const [selectedType, setSelectedType] = useState([false, false]);
@@ -70,9 +50,6 @@ const PlayerEntry = (props) => {
 
   const [player, setPlayer] = useState(pObject);
 
-  let myAddress = { street: "", number: "", city: "mozambique" };
-  const [address, setAddress] = useState(myAddress);
-
   useEffect(() => {
     if (props.player) {
       props.player.type === "CONTRACT"
@@ -83,13 +60,7 @@ const PlayerEntry = (props) => {
     console.log(player);
   }, [props.player]);
 
-  const fullNameRef = useRef();
-  const homePhoneRef = useRef();
-  const cellPhoneRef = useRef();
-  const emailRef = useRef();
-  const addressLine1Ref = useRef();
-  const addressLine2Ref = useRef();
-  const cityRef = useRef();
+
   const stateRef = useRef();
   const zipRef = useRef();
   const unionsRef = useRef();
@@ -121,63 +92,30 @@ const PlayerEntry = (props) => {
 
   const submitPlayer = (event) => {
     event.preventDefault();
+
+    const { enteredFirstNameArea, enteredLastName } = nameMaker(
+      pObject.firstNameArea
+    );
+
+    setPlayer({
+      ...player,
+      firstNameArea: enteredFirstNameArea,
+      lastName: enteredLastName,
+      instrumentEnum:
+        clickedInstrumentList.length > 0
+          ? clickedInstrumentList[0].toUpperCase().trim(" ")
+          : null,
+          type: selectedType[0] === true? 'Contract' : 'Sub'
+    });
     console.log(player);
 
-    //   const { enteredFirstNameArea, enteredLastName } = nameMaker(
-    //     fullNameRef.current.value
-    //   );
-
-    //   const playerToSubmit = {
-    //     id,
-    //     firstNameArea:
-    //       fullNameRef.current.value === "" ? firstNameArea : enteredFirstNameArea,
-    //     lastName: fullNameRef.current.value === "" ? lastName : enteredLastName,
-
-    //     instrumentEnum:
-    //       clickedInstrumentList.length > 0
-    //         ? clickedInstrumentList[0].toUpperCase().trim(" ")
-    //         : null,
-
-    //     email: emailRef.current.value === "" ? email : emailRef.current.value,
-
-    //     homePhone:
-    //       homePhoneRef.current.value === ""
-    //         ? homePhone
-    //         : homePhoneRef.current.value,
-
-    //     cellPhone:
-    //       cellPhoneRef.current.value === ""
-    //         ? cellPhone
-    //         : cellPhoneRef.current.value,
-
-    //     addressLine1:
-    //       addressLine1Ref.current.value === ""
-    //         ? addressLine1
-    //         : addressLine1Ref.current.value,
-
-    //     addressLine2:
-    //       addressLine2Ref.current.value === ""
-    //         ? addressLine2
-    //         : addressLine2Ref.current.value,
-
-    //     city: cityRef.current.value === "" ? city : cityRef.current.value,
-    //     state: stateRef.current.value === "" ? state : stateRef.current.value,
-    //     zip: zipRef.current.value === "" ? zip : zipRef.current.value,
-    //     unions: unionsRef.current.value === "" ? unions : unionsRef.current.value,
-
-    //     type: selectedType[0] === true ? "CONTRACT" : "SUB",
-    //   };
-
-    //   console.log(playerToSubmit);
-
-    //   const sendPlayerOff = async () => {
-    //     console.log(playerToSubmit.type);
-    //     let response = await PushBasic(playerToSubmit, "add-player");
-    //     if (response.ok) {
-    //       props.closeModal();
-    //     }
-    //   };
-    //   setTimeout(sendPlayerOff, 200);
+    const sendPlayerOff = async () => {
+      let response = await PushBasic(player, "add-player");
+      if (response.ok) {
+        props.closeModal();
+      }
+    };
+    setTimeout(sendPlayerOff, 200);
   };
 
   const instrumentToList = (instrument) => {
@@ -188,10 +126,6 @@ const PlayerEntry = (props) => {
     );
   };
 
-  // const populator = (event) => {
-  //   pObject[key] = event.target.value;
-  // }
-
   return (
     <InstrumentsList.Provider
       value={{ clickedInstrumentList: clickedInstrumentList, instrumentToList }}
@@ -199,14 +133,14 @@ const PlayerEntry = (props) => {
       <Modal closeModal={props.closeModal}>
         <form className={classes.innerContainer}>
           <div className={`${classes.control} ${classes.nameAndInstrumentDiv}`}>
-            <div className={`${classes.control} ${classes.nameDiv}`}>
-              <label>Full Name</label>
-              <input
-                type="text"
-                ref={fullNameRef}
-                placeholder={`${pObject.firstNameArea} ${pObject.lastName}`}
-              />
-            </div>
+            <InputText
+              label={"Full Name"}
+              onChange={(event) =>
+                setPlayer({ ...player, firstNameArea: event.target.value })
+              }
+              placeholder={`${pObject.firstNameArea} ${pObject.lastName}`}
+              style={{ width: "50%" }}
+            />
 
             <div
               onClick={instrumentsClickHandler}
@@ -221,7 +155,6 @@ const PlayerEntry = (props) => {
           <div className={classes.phoneDiv}>
             <InputText
               label={"Home Phone"}
-              ref={homePhoneRef}
               onChange={(event) =>
                 setPlayer({ ...player, homePhone: event.target.value })
               }
@@ -230,7 +163,6 @@ const PlayerEntry = (props) => {
 
             <InputText
               label={"Cell Phone"}
-              ref={cellPhoneRef}
               onChange={(event) =>
                 setPlayer({ ...player, cellPhone: event.target.value })
               }
@@ -240,7 +172,6 @@ const PlayerEntry = (props) => {
 
           <InputText
             label={"Email"}
-            ref={emailRef}
             onChange={(event) =>
               setPlayer({ ...player, email: event.target.value })
             }
@@ -250,7 +181,6 @@ const PlayerEntry = (props) => {
 
           <InputText
             label={"Address Line 1"}
-            ref={addressLine1Ref}
             onChange={(event) =>
               setPlayer({ ...player, addressLine1: event.target.value })
             }
@@ -259,7 +189,6 @@ const PlayerEntry = (props) => {
 
           <InputText
             label={"Address Line 2"}
-            ref={addressLine2Ref}
             onChange={(event) =>
               setPlayer({ ...player, addressLine2: event.target.value })
             }
@@ -267,18 +196,14 @@ const PlayerEntry = (props) => {
           />
 
           <div className={classes.cityStateDiv}>
-            <div className={`${classes.control} ${classes.city}`}>
-              <label>City</label>
-              <input
-                type="text"
-                id="address"
-                ref={cityRef}
-                onChange={(event) =>
-                  setPlayer({ ...player, city: event.target.value })
-                }
-                placeholder={pObject.city}
-              />
-            </div>
+            <InputText
+              label={"City"}
+              onChange={(event) =>
+                setPlayer({ ...player, city: event.target.value })
+              }
+              placeholder={pObject.city}
+              style={{ width: "60%", marginRight: "2rem" }}
+            />
 
             <InputText
               label={"State"}
