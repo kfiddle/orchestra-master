@@ -26,7 +26,9 @@ const PlayersList = (props) => {
     const allPlayersOfInstrument = await GetAList(
       props.type + "/" + instrumentToSend
     );
-    setByInstrumentList(allPlayersOfInstrument);
+    if (allPlayersOfInstrument) {
+      setByInstrumentList(allPlayersOfInstrument);
+    }
   };
 
   const playersToDisplay = byInstrumentList.map((player) => (

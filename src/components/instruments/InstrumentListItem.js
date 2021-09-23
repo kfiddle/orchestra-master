@@ -1,21 +1,27 @@
-import { useState } from "react";
+import { useContext } from "react";
+
+import InstrumentsList from '../../store/instruments-list';
 
 import classes from './InstrumentListItem.module.css';
 
 const InstrumentListItem = (props) => {
-  const [clicked, setClicked] = useState(false);
-
-  // const { id, name } = props.instrument;
+  
+  const { instrumentToList, clickedInstrumentList } =
+    useContext(InstrumentsList);
   const name = props.instrument;
 
-  const outerContainerClass = clicked
-    ? classes.clickedItem
-    : classes.instrumentItemDiv;
+  let outerContainerClass = classes.instrumentItemDiv;
+
+  for (let instr of clickedInstrumentList) {
+    if (instr === name) {
+      outerContainerClass = classes.clickedItem
+    }
+  }
 
   const clickHandler = () => {
-    setClicked((previous) => !previous);
-    !clicked ? props.clickedInstrument(props.instrument) : props.unclickedInstrument(props.instrument);
+    instrumentToList(name)
   };
+
   return (
     <div onClick={clickHandler} className={outerContainerClass}>
       <div className={classes.nameDiv}>{name}</div>

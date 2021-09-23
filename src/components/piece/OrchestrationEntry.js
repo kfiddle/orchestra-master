@@ -4,11 +4,36 @@ import classes from "./OrchestrationEntry.module.css";
 
 import Modal from "../UI/modal/Modal";
 import OrchestrationInput from "./OrchestrationInput";
-import Input from '../input/Input';
+import Input from "../input/Input";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import DoubleObjectPush from "../helperFunctions/pushFunctions/DoubleObjectPush";
 
 const OrchestrationEntry = (props) => {
+  // let objectToSend = {
+  //   piece: props.piece,
+  //   firstViolins: 0,
+  //   secondViolins: 0,
+  //   violas: 0,
+  //   celli: 0,
+  //   basses: 0,
+
+  //   flute: 0,
+  //   oboe: 0,
+  //   clarinet: 0,
+  //   eBClarinet: 0,
+  //   bassoon: 0,
+
+  //   horn: 0,
+  //   trumpet: 0,
+  //   trombone: 0,
+  //   tuba: 0,
+
+  //   timpani: 0,
+  //   percussion: 0,
+  //   harp: 0,
+  //   piano: 0,
+  // };
+
   const firstViolinsRef = useRef();
   const secondViolinsRef = useRef();
   const violasRef = useRef();
@@ -30,6 +55,18 @@ const OrchestrationEntry = (props) => {
   const percussionRef = useRef();
   const harpRef = useRef();
   const pianoRef = useRef();
+
+  // let displayIns = [];
+
+  // const enterFunction = (label, number) => {
+  //   objectToSend[label] = number;
+  // };
+
+  // for (let key in objectToSend) {
+  //   displayIns.push(
+  //     <OrchestrationInput label={key} enterFunction={enterFunction} />
+  //   );
+  // }
 
   const submitOrchestration = async (event) => {
     event.preventDefault();
@@ -73,12 +110,17 @@ const OrchestrationEntry = (props) => {
         </div>
         <form className={classes.form}>
           <div>
+            {/* <div>{displayIns.slice(0, 5)}</div>
+          <div>{displayIns.slice(5, 10)}</div>
+          <div>{displayIns.slice(10, 14)}</div>
+          <div>{displayIns.slice(14)}</div> */}
+
             <OrchestrationInput label={"First Violins"} ref={firstViolinsRef} />
             <OrchestrationInput
               label={"Second Violins"}
               ref={secondViolinsRef}
             />
-            <Input label={"Violas"} type='number' ref={violasRef} />
+            <Input label={"Violas"} type="number" ref={violasRef} />
             <OrchestrationInput label={"Celli"} ref={celliRef} />
             <OrchestrationInput label={"Basses"} ref={bassesRef} />
           </div>

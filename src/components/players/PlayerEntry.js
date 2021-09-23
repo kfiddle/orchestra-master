@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 
-import AllInstruments from "../instruments/allInstruments/AllInstruments";
+import InstrumentToListHelper from "../helperFunctions/InstrumentToListHelper";
+import InstrumentsList from "../../store/instruments-list";
+import InstrumentsDropDown from "../instruments/InstrumentsDropDown";
+
 import Modal from "../UI/modal/Modal";
 import Input from "../input/Input";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
@@ -108,12 +111,12 @@ const PlayerEntry = (props) => {
   const submitPlayer = (event) => {
     event.preventDefault();
 
+    console.log(clickedInstrumentList);
+
     const names = fullNameRef.current.value.split(" ");
     const tempFirstNameArea = names.slice(0, -1);
     const inputtedFirstNameArea = tempFirstNameArea.join(" ");
     const inputtedLastName = names[names.length - 1];
-
-    console.log(instrumentsList);
 
     const playerToSubmit = {
       id,
@@ -168,151 +171,160 @@ const PlayerEntry = (props) => {
     setTimeout(sendPlayerOff, 200);
   };
 
+  const instrumentToList = (instrument) => {
+    InstrumentToListHelper(
+      instrument,
+      clickedInstrumentList,
+      setClickedInstrumentList
+    );
+  };
+
   return (
-    <Modal closeModal={props.closeModal}>
-      <form className={classes.innerContainer}>
-        <div className={`${classes.control} ${classes.nameAndInstrumentDiv}`}>
-          <div className={`${classes.control} ${classes.nameDiv}`}>
-            <label>Full Name</label>
-            <input
-              type="text"
-              ref={fullNameRef}
-              placeholder={`${firstNameArea} ${lastName}`}
-            />
-          </div>
+    <InstrumentsList.Provider
+      value={{ clickedInstrumentList: clickedInstrumentList, instrumentToList }}
+    >
+      <Modal closeModal={props.closeModal}>
+        <form className={classes.innerContainer}>
+          <div className={`${classes.control} ${classes.nameAndInstrumentDiv}`}>
+            <div className={`${classes.control} ${classes.nameDiv}`}>
+              <label>Full Name</label>
+              <input
+                type="text"
+                ref={fullNameRef}
+                placeholder={`${firstNameArea} ${lastName}`}
+              />
+            </div>
 
-          <div
-            className={`${classes.control} ${classes.instrumentDropdownDiv}`}
-          >
-            <h3 onClick={instrumentsClickHandler}>Instrument</h3>
-          </div>
-        </div>
-
-        {instrumentDropdownClicked && (
-          <div className={classes.instrumentsListDiv}>
-            <AllInstruments
-              list={instrumentsList}
-              clickedInstrument={clickedInstrument}
-              unClickedInstrument={unClickedInstrument}
-            />
-          </div>
-        )}
-
-        <div className={classes.phoneDiv}>
-          <Input
-            label={"Home Phone"}
-            type={"text"}
-            ref={homePhoneRef}
-            placeholder={homePhone}
-          />
-
-          <Input
-            label={"Cell Phone"}
-            type={"text"}
-            ref={cellPhoneRef}
-            placeholder={cellPhone}
-          />
-        </div>
-
-        <Input
-          label={"Email"}
-          type={"text"}
-          ref={emailRef}
-          placeholder={email}
-          style={{ width: "90%" }}
-        />
-
-        <Input
-          label={"Address Line 1"}
-          type="text"
-          ref={addressLine1Ref}
-          placeholder={addressLine1}
-        />
-
-        <Input
-          label={"Address Line 2"}
-          type="text"
-          ref={addressLine2Ref}
-          placeholder={addressLine2}
-        />
-
-        <div className={classes.cityStateDiv}>
-          <div className={`${classes.control} ${classes.city}`}>
-            <label>City</label>
-            <input type="text" id="address" ref={cityRef} placeholder={city} />
-          </div>
-
-          <div className={`${classes.control} ${classes.state}`}>
-            <label>State</label>
-            <input type="text" ref={stateRef} placeholder={state} />
-          </div>
-
-          <div className={`${classes.control} ${classes.zip}`}>
-            <label>Zip</label>
-            <input type="text" ref={zipRef} placeholder={zip} />
-          </div>
-        </div>
-
-        <div className={`${classes.control} ${classes.unionsDiv}`}>
-          <label>Unions</label>
-          <input type="text" ref={unionsRef} placeholder={unions} />
-        </div>
-
-        <div className={classes.checkedDiv}>
-          <div>
-            <label>Contracted</label>
-            <input
-              type="radio"
-              ref={contractedRef}
-              checked={selectedType[0]}
-              onChange={() =>
-                setSelectedType((previous) => [!previous[0], false])
-              }
-            />
-          </div>
-
-          <div>
-            <label>Sub</label>
-            <input
-              type="radio"
-              ref={subRef}
-              checked={selectedType[1]}
-              onChange={() =>
-                setSelectedType((previous) => [false, !previous[1]])
-              }
-            />
-          </div>
-          <div className={classes.hiddenSubTypeDiv}>
-            {selectedType[0] === true && (
-              <div>
-                <label>Principal</label>
-                <input type="radio" />
-                <label>Assistant</label>
-                <input type="radio" />
-                <label>Section</label>
-                <input type="radio" />
-              </div>
-            )}
-            {selectedType[1] === true && <h2>I'm a SUB</h2>}
-          </div>
-        </div>
-
-        <div className={classes.buttonDiv}>
-          <button className={classes.button} onClick={submitPlayer}>
-            Submit Player
-          </button>
-
-          {props.player && (
-            <button
-              className={classes.deleteButton}
-              onClick={deleteButtonHandler}
+            <div
+              className={`${classes.control} ${classes.instrumentDropdownDiv}`}
             >
-              {!deleteButtonClicked ? "Remove Player" : "Are You Sure?"}
+              <h3 onClick={instrumentsClickHandler}>Instrument</h3>
+            </div>
+          </div>
+
+          {instrumentDropdownClicked && <InstrumentsDropDown />}
+
+          <div className={classes.phoneDiv}>
+            <Input
+              label={"Home Phone"}
+              type={"text"}
+              ref={homePhoneRef}
+              placeholder={homePhone}
+            />
+
+            <Input
+              label={"Cell Phone"}
+              type={"text"}
+              ref={cellPhoneRef}
+              placeholder={cellPhone}
+            />
+          </div>
+
+          <Input
+            label={"Email"}
+            type={"text"}
+            ref={emailRef}
+            placeholder={email}
+            style={{ width: "90%" }}
+          />
+
+          <Input
+            label={"Address Line 1"}
+            type="text"
+            ref={addressLine1Ref}
+            placeholder={addressLine1}
+          />
+
+          <Input
+            label={"Address Line 2"}
+            type="text"
+            ref={addressLine2Ref}
+            placeholder={addressLine2}
+          />
+
+          <div className={classes.cityStateDiv}>
+            <div className={`${classes.control} ${classes.city}`}>
+              <label>City</label>
+              <input
+                type="text"
+                id="address"
+                ref={cityRef}
+                placeholder={city}
+              />
+            </div>
+
+            <div className={`${classes.control} ${classes.state}`}>
+              <label>State</label>
+              <input type="text" ref={stateRef} placeholder={state} />
+            </div>
+
+            <div className={`${classes.control} ${classes.zip}`}>
+              <label>Zip</label>
+              <input type="text" ref={zipRef} placeholder={zip} />
+            </div>
+          </div>
+
+          <div className={`${classes.control} ${classes.unionsDiv}`}>
+            <label>Unions</label>
+            <input type="text" ref={unionsRef} placeholder={unions} />
+          </div>
+
+          <div className={classes.checkedDiv}>
+            <div>
+              <label>Contracted</label>
+              <input
+                type="radio"
+                ref={contractedRef}
+                checked={selectedType[0]}
+                onChange={() =>
+                  setSelectedType((previous) => [!previous[0], false])
+                }
+              />
+            </div>
+
+            <div>
+              <label>Sub</label>
+              <input
+                type="radio"
+                ref={subRef}
+                checked={selectedType[1]}
+                onChange={() =>
+                  setSelectedType((previous) => [false, !previous[1]])
+                }
+              />
+            </div>
+            <div className={classes.hiddenSubTypeDiv}>
+              {selectedType[0] === true && (
+                <div>
+                  <label>Principal</label>
+                  <input type="radio" />
+                  <label>Assistant</label>
+                  <input type="radio" />
+                  <label>Section</label>
+                  <input type="radio" />
+                </div>
+              )}
+              {selectedType[1] === true && <h2>I'm a SUB</h2>}
+            </div>
+          </div>
+
+          <div className={classes.buttonDiv}>
+            <button className={classes.button} onClick={submitPlayer}>
+              Submit Player
             </button>
-          )}
-        </div>
-      </form>
-    </Modal>
+
+            {props.player && (
+              <button
+                className={classes.deleteButton}
+                onClick={deleteButtonHandler}
+              >
+                {!deleteButtonClicked ? "Remove Player" : "Are You Sure?"}
+              </button>
+            )}
+          </div>
+        </form>
+      </Modal>
+    </InstrumentsList.Provider>
   );
 };
 

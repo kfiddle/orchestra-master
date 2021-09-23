@@ -21,6 +21,10 @@
   color: rgb(110, 28, 28);
 }
 
+.titleDiv {
+  margin-left: 2rem;
+}
+
 .editIcon {
   position: absolute;
   right: 1rem;
