@@ -35,7 +35,6 @@ const nameMaker = (fullEnteredName) => {
   };
 };
 
-
 const PlayerEntry = (props) => {
   const [selectedType, setSelectedType] = useState([false, false]);
   const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
@@ -59,7 +58,6 @@ const PlayerEntry = (props) => {
 
     console.log(player);
   }, [props.player]);
-
 
   const stateRef = useRef();
   const zipRef = useRef();
@@ -90,14 +88,13 @@ const PlayerEntry = (props) => {
     }
   };
 
-  const submitPlayer = (event) => {
+  const submitPlayer = async (event) => {
     event.preventDefault();
-
     const { enteredFirstNameArea, enteredLastName } = nameMaker(
-      pObject.firstNameArea
+      player.firstNameArea
     );
 
-    setPlayer({
+    let playerToSend = {
       ...player,
       firstNameArea: enteredFirstNameArea,
       lastName: enteredLastName,
@@ -105,12 +102,11 @@ const PlayerEntry = (props) => {
         clickedInstrumentList.length > 0
           ? clickedInstrumentList[0].toUpperCase().trim(" ")
           : null,
-          type: selectedType[0] === true? 'Contract' : 'Sub'
-    });
-    console.log(player);
+      type: selectedType[0] === true ? "CONTRACT" : "SUB",
+    };
 
     const sendPlayerOff = async () => {
-      let response = await PushBasic(player, "add-player");
+      let response = await PushBasic(playerToSend, "add-player");
       if (response.ok) {
         props.closeModal();
       }
