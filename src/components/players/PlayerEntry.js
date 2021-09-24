@@ -6,6 +6,7 @@ import InstrumentsDropDown from "../instruments/InstrumentsDropDown";
 
 import Modal from "../UI/modal/Modal";
 import InputText from "../input/InputText";
+import BigInput from "../input/BigInput";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./PlayerEntry.module.css";
@@ -55,12 +56,8 @@ const PlayerEntry = (props) => {
         ? setSelectedType([true, false])
         : setSelectedType([false, true]);
     }
-
-    console.log(player);
   }, [props.player]);
 
-  const stateRef = useRef();
-  const zipRef = useRef();
   const unionsRef = useRef();
   const contractedRef = useRef();
   const subRef = useRef();
@@ -105,6 +102,8 @@ const PlayerEntry = (props) => {
       type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };
 
+    console.log(playerToSend);
+
     const sendPlayerOff = async () => {
       let response = await PushBasic(playerToSend, "add-player");
       if (response.ok) {
@@ -121,6 +120,12 @@ const PlayerEntry = (props) => {
       setClickedInstrumentList
     );
   };
+
+  const populator = (event, key) => {
+    setPlayer({ ...player, [key]: event.target.value });
+  };
+
+  const inputter = { label: "", key: "", populator, pObject };
 
   return (
     <InstrumentsList.Provider
@@ -149,75 +154,69 @@ const PlayerEntry = (props) => {
           {clickedThings.instrumentDropDown && <InstrumentsDropDown />}
 
           <div className={classes.phoneDiv}>
-            <InputText
-              label={"Home Phone"}
-              onChange={(event) =>
-                setPlayer({ ...player, homePhone: event.target.value })
-              }
-              placeholder={pObject.homePhone}
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "Home Phone",
+                key: "homePhone",
+              }}
             />
-
-            <InputText
-              label={"Cell Phone"}
-              onChange={(event) =>
-                setPlayer({ ...player, cellPhone: event.target.value })
-              }
-              placeholder={pObject.cellPhone}
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "Cell Phone",
+                key: "cellPhone",
+              }}
             />
           </div>
-
-          <InputText
-            label={"Email"}
-            onChange={(event) =>
-              setPlayer({ ...player, email: event.target.value })
-            }
-            placeholder={pObject.email}
-            style={{ width: "90%" }}
+          <BigInput
+            inputObject={{
+              ...inputter,
+              label: "Email",
+              key: "email",
+              style: { width: "90%" },
+            }}
+          />
+          <BigInput
+            inputObject={{
+              ...inputter,
+              label: "Address Line 1",
+              key: "addressLine1",
+            }}
           />
 
-          <InputText
-            label={"Address Line 1"}
-            onChange={(event) =>
-              setPlayer({ ...player, addressLine1: event.target.value })
-            }
-            placeholder={pObject.addressLine1}
+          <BigInput
+            inputObject={{
+              ...inputter,
+              label: "Address Line 2",
+              key: "addressLine2",
+            }}
           />
-
-          <InputText
-            label={"Address Line 2"}
-            onChange={(event) =>
-              setPlayer({ ...player, addressLine2: event.target.value })
-            }
-            placeholder={pObject.addressLine2}
-          />
-
           <div className={classes.cityStateDiv}>
-            <InputText
-              label={"City"}
-              onChange={(event) =>
-                setPlayer({ ...player, city: event.target.value })
-              }
-              placeholder={pObject.city}
-              style={{ width: "60%", marginRight: "2rem" }}
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "City",
+                key: "city",
+                style: { width: "60%" },
+              }}
             />
 
-            <InputText
-              label={"State"}
-              ref={stateRef}
-              onChange={(event) =>
-                setPlayer({ ...player, state: event.target.value })
-              }
-              placeholder={pObject.state}
-              style={{ width: "10%", marginRight: "2rem" }}
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "State",
+                key: "state",
+                style: { width: "30%", marginRight: "2rem" },
+              }}
             />
 
-            <InputText
-              label={"Zip"}
-              ref={zipRef}
-              onChange={(event) =>
-                setPlayer({ ...player, zip: event.target.value })
-              }
-              placeholder={pObject.zip}
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "Zip",
+                key: "zip",
+              }}
             />
           </div>
 
