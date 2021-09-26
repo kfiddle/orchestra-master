@@ -7,7 +7,7 @@ const SubInstrument = (props) => {
   const active = props.active;
 
   const clickHandler = () => {
-    props.clicked(name);
+    props.clicked(props.instrument);
   };
 
   return (

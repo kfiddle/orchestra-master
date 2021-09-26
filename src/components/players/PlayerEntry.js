@@ -69,6 +69,10 @@ const PlayerEntry = (props) => {
     });
   };
 
+  const displayedChosenInstruments = clickedInstrumentList.map((instrument) => (
+    <div key={Math.random()}><h2 style={{fontSize: '1.5rem'}}>{instrument}</h2></div>
+  ));
+
   const deleteButtonHandler = async (event) => {
     event.preventDefault();
 
@@ -147,9 +151,11 @@ const PlayerEntry = (props) => {
               onClick={instrumentsClickHandler}
               className={`${classes.control} ${classes.instrumentDropdownDiv}`}
             >
-              <h3>Instrument</h3>
+              <h3>Instrument(s)</h3>
             </div>
           </div>
+
+          <div style={{position: 'absolute', right: '25%', top: '5rem'}}>{displayedChosenInstruments}</div>
 
           {clickedThings.instrumentDropDown && <InstrumentsDropDown />}
 

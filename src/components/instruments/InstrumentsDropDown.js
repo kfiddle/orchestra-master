@@ -10,7 +10,6 @@ const InstrumentsDropDown = (props) => {
   useEffect(() => {
     const getInstruments = async () => {
       const allInstrumentsResponse = await GetAList("get-all-instruments");
-      // const instrumentsJsonified = await allInstrumentsResponse.json();
       setInstrumentsList(allInstrumentsResponse);
     };
 

@@ -4,13 +4,14 @@ import SubInstrument from "./SubInstrument";
 import classes from "./ByInstrumentsHeader.module.css";
 
 import GetAList from "../helperFunctions/GetAList";
+import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 const ByInstrumentsHeader = (props) => {
   const [listOfInstruments, setListOfInstruments] = useState([]);
   const [currentChoice, setCurrentChoice] = useState("");
 
-  const instrumentChooser = (instrumentString) => {
-    props.instrumentChooser(instrumentString);
+  const instrumentChooser = (instrument) => {
+    props.instrumentChooser(instrument);
   };
 
   useEffect(() => {

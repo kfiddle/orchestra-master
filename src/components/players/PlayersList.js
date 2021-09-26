@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 
-import GetAList from "../helperFunctions/GetAList";
+import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import Player from "./Player";
 import ByInstrumentsHeader from "../byInstrumentsHeader/ByInstrumentsHeader";
 
@@ -16,19 +16,20 @@ const PlayersList = (props) => {
     console.log(player.lastName);
   };
 
-  const instrumentChooser = async (instrumentString) => {
-    setChosenInstrument(instrumentString);
-    let instrumentToSend =
-      instrumentString === "Eb Clarinet"
-        ? "EBCLARINET"
-        : instrumentString.toUpperCase();
+  const instrumentChooser = async (instrument) => {
+    setChosenInstrument(instrument.name);
 
-    const allPlayersOfInstrument = await GetAList(
-      props.type + "/" + instrumentToSend
-    );
-    if (allPlayersOfInstrument) {
-      setByInstrumentList(allPlayersOfInstrument);
-    }
+    console.log(instrument);
+
+    let typeToSend = '';
+    props.type === 'Subs'? typeToSend = 'SUB' : typeToSend = 'CONTRACT';
+
+    const allPlayersOfInstrumentResponse = await PushBasic(instrument, "players/" + typeToSend)
+    setByInstrumentList(allPlayersOfInstrumentResponse);
+    
+    // const jsonified = allPlayersOfInstrumentResponse.json();
+    // if (jsonified) {
+    // }
   };
 
   const playersToDisplay = byInstrumentList.map((player) => (
