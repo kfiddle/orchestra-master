@@ -3,7 +3,7 @@ import { useState } from "react";
 import classes from './SubInstrument.module.css';
 
 const SubInstrument = (props) => {
-  const name  = props.instrument;
+  const name  = props.instrument.name;
   const active = props.active;
 
   const clickHandler = () => {

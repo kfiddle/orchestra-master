@@ -15,7 +15,7 @@ const ByInstrumentsHeader = (props) => {
 
   useEffect(() => {
     const getAllInstruments = async () => {
-      const allInstruments = await GetAList("get-all-instrument-enums");
+      const allInstruments = await GetAList("get-all-instruments");
       if (allInstruments.length > 0) {
         setListOfInstruments(allInstruments);
       }

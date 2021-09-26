@@ -8,7 +8,7 @@ const InstrumentListItem = (props) => {
   
   const { instrumentToList, clickedInstrumentList } =
     useContext(InstrumentsList);
-  const name = props.instrument;
+  const name = props.instrument.name;
 
   let outerContainerClass = classes.instrumentItemDiv;
 

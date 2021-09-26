@@ -6,11 +6,12 @@ import GetAList from "../helperFunctions/GetAList";
 import styles from "./InstrumentsDropDown.module.css";
 const InstrumentsDropDown = (props) => {
   const [instrumentsList, setInstrumentsList] = useState([]);
-  
+
   useEffect(() => {
     const getInstruments = async () => {
-      const allInstruments = await GetAList("get-all-instrument-enums");
-      setInstrumentsList(allInstruments);
+      const allInstrumentsResponse = await GetAList("get-all-instruments");
+      // const instrumentsJsonified = await allInstrumentsResponse.json();
+      setInstrumentsList(allInstrumentsResponse);
     };
 
     getInstruments();
@@ -18,7 +19,7 @@ const InstrumentsDropDown = (props) => {
 
   const listToDisplay = instrumentsList.map((instrument) => (
     <InstrumentListItem
-      key={Math.random()}
+      key={instrument.id}
       instrument={instrument}
     ></InstrumentListItem>
   ));
