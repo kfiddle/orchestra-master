@@ -14,9 +14,11 @@ const AllPerformances = (props) => {
   );
   const [rosterObject, setRosterObject] = useState({});
 
-  const clickedPerformanceHandler = (performance) => {
+  const clickedPerformanceHandler = async (performance) => {
     setPerformanceWasClicked(true);
-    setPiecesOfClickedPerformance(performance.pieces);
+    const piecesResponse = await PushBasic(performance, "get-pieces-of-performance")
+    const piecesJsonified = await piecesResponse.json();
+    setPiecesOfClickedPerformance(piecesJsonified);
   };
 
   const clickedPiece = async (piece) => {
