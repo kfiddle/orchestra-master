@@ -13,13 +13,19 @@ const InstrumentListItem = (props) => {
   let outerContainerClass = classes.instrumentItemDiv;
 
   for (let instr of clickedInstrumentList) {
-    if (instr === name) {
+    if (instr === props.instrument) {
       outerContainerClass = classes.clickedItem
     }
   }
+  
+  // for (let instr of clickedInstrumentList) {
+  //   if (instr === name) {
+  //     outerContainerClass = classes.clickedItem
+  //   }
+  // }
 
   const clickHandler = () => {
-    instrumentToList(name)
+    instrumentToList(props.instrument)
   };
 
   return (

@@ -70,7 +70,9 @@ const PlayerEntry = (props) => {
   };
 
   const displayedChosenInstruments = clickedInstrumentList.map((instrument) => (
-    <div key={Math.random()}><h2 style={{fontSize: '1.5rem'}}>{instrument}</h2></div>
+    <div key={Math.random()}>
+      <h2 style={{ fontSize: "1.5rem" }}>{instrument.name}</h2>
+    </div>
   ));
 
   const deleteButtonHandler = async (event) => {
@@ -99,20 +101,34 @@ const PlayerEntry = (props) => {
       ...player,
       firstNameArea: enteredFirstNameArea,
       lastName: enteredLastName,
-      instrumentEnum:
-        clickedInstrumentList.length > 0
-          ? clickedInstrumentList[0].toUpperCase().trim(" ")
-          : null,
       type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };
 
     console.log(playerToSend);
+    console.log(clickedInstrumentList)
 
     const sendPlayerOff = async () => {
-      let response = await PushBasic(playerToSend, "add-player");
-      if (response.ok) {
+      let mainPlayerResponse = await PushBasic(playerToSend, "add-player");
+      if (mainPlayerResponse.ok) {
+        let playerToSendBack = mainPlayerResponse.json();
+
+        for (let instrument of clickedInstrumentList) {
+          let instrumentPlayerToSend = {
+            instrument: instrument,
+            player: playerToSendBack
+          }
+          let playerInstrumentResponse = await PushBasic(instrumentPlayerToSend, "add-instruments")
+          if (playerInstrumentResponse.ok) {
+            console.log('git it')
+          }
+            
+        }
+
+
+
         props.closeModal();
       }
+
     };
     setTimeout(sendPlayerOff, 200);
   };
@@ -155,7 +171,9 @@ const PlayerEntry = (props) => {
             </div>
           </div>
 
-          <div style={{position: 'absolute', right: '25%', top: '5rem'}}>{displayedChosenInstruments}</div>
+          <div style={{ position: "absolute", right: "25%", top: "5rem" }}>
+            {displayedChosenInstruments}
+          </div>
 
           {clickedThings.instrumentDropDown && <InstrumentsDropDown />}
 
