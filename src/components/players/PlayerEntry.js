@@ -105,30 +105,28 @@ const PlayerEntry = (props) => {
     };
 
     console.log(playerToSend);
-    console.log(clickedInstrumentList)
+    console.log(clickedInstrumentList);
 
     const sendPlayerOff = async () => {
+      let flag = true;
       let mainPlayerResponse = await PushBasic(playerToSend, "add-player");
       if (mainPlayerResponse.ok) {
-        let playerToSendBack = mainPlayerResponse.json();
-
-        for (let instrument of clickedInstrumentList) {
-          let instrumentPlayerToSend = {
+        let playerToSendBack = await mainPlayerResponse.json();
+        clickedInstrumentList.forEach(async (instrument, index) => {
+          let ip = {
+            player: playerToSendBack,
             instrument: instrument,
-            player: playerToSendBack
+            rank: index,
+          };
+          let playerInstrumentResponse = await PushBasic(ip, "add-instruments");
+          if (!playerInstrumentResponse.ok) {
+            flag = false;
           }
-          let playerInstrumentResponse = await PushBasic(instrumentPlayerToSend, "add-instruments")
-          if (playerInstrumentResponse.ok) {
-            console.log('git it')
-          }
-            
+        });
+        if (flag) {
+          props.closeModal();
         }
-
-
-
-        props.closeModal();
       }
-
     };
     setTimeout(sendPlayerOff, 200);
   };
