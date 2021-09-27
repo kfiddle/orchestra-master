@@ -19,17 +19,15 @@ const PlayersList = (props) => {
   const instrumentChooser = async (instrument) => {
     setChosenInstrument(instrument.name);
 
-    console.log(instrument);
+    let typeToSend = "";
+    props.type === "subs" ? (typeToSend = "SUB") : (typeToSend = "CONTRACT");
 
-    let typeToSend = '';
-    props.type === 'Subs'? typeToSend = 'SUB' : typeToSend = 'CONTRACT';
-
-    const allPlayersOfInstrumentResponse = await PushBasic(instrument, "players/" + typeToSend)
-    setByInstrumentList(allPlayersOfInstrumentResponse);
-    
-    // const jsonified = allPlayersOfInstrumentResponse.json();
-    // if (jsonified) {
-    // }
+    const allPlayersOfInstrumentResponse = await PushBasic(
+      instrument,
+      "players/" + typeToSend
+    );
+    const jsonified = await allPlayersOfInstrumentResponse.json();
+     setByInstrumentList(jsonified);
   };
 
   const playersToDisplay = byInstrumentList.map((player) => (
