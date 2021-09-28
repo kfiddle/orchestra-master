@@ -11,6 +11,7 @@ import GetAList from "../helperFunctions/GetAList";
 
 const OrchestrationEntry2 = (props) => {
   const [instrumentEnumsList, setInstrumentEnumsList] = useState([]);
+  const [listToSendUp, setListToSendUp] = useState([]);
 
   useEffect(() => {
     const getInstrumentEnums = async () => {
@@ -23,13 +24,16 @@ const OrchestrationEntry2 = (props) => {
 
   const submitOrchestration = async (event) => {
     event.preventDefault();
+    console.log(listToSendUp)
   };
 
-//   let response = await PushBasic(objectToSend, "set-roster");
-//   if (response.ok) {
-//     props.closeModal();
-//   }
+  const setANumber = (instEnum, number) => {
+      setListToSendUp([...listToSendUp, {instrumentEnum: instEnum, number: number} ])
+  };
 
+  const sectionInputs = instrumentEnumsList.map((instEnum) => (
+    <OrchestrationInput instEnum={instEnum} setANumber={setANumber}/>
+  ));
 
   return (
     <Modal closeModal={props.closeModal}>
@@ -38,18 +42,11 @@ const OrchestrationEntry2 = (props) => {
           <h2>{props.pp.piece.title}</h2>
         </div>
         <form className={classes.form}>
-          <div>
-            {instrumentEnumsList.map(instrument => (
-                <li>{instrument}</li>
-            ))}
+          <div>{sectionInputs.slice(0, 5)}</div>
+          <div>{sectionInputs.slice(5, 10)}</div>
+          <div>{sectionInputs.slice(10, 14)}</div>
+          <div>{sectionInputs.slice(14)}</div>
 
-
-
-            {/* <div>{displayIns.slice(0, 5)}</div>
-          <div>{displayIns.slice(5, 10)}</div>
-          <div>{displayIns.slice(10, 14)}</div>
-          <div>{displayIns.slice(14)}</div> */}
-          </div>
           <div className={classes.buttonDiv}>
             <button className={classes.button} onClick={submitOrchestration}>
               Submit
