@@ -17,7 +17,7 @@ const PlayersList = (props) => {
   };
 
   const instrumentChooser = async (instrument) => {
-    setChosenInstrument(instrument.name);
+    setChosenInstrument(instrument);
 
     let typeToSend = "";
     props.type === "subs" ? (typeToSend = "SUB") : (typeToSend = "CONTRACT");
@@ -35,13 +35,12 @@ const PlayersList = (props) => {
       key={player.id}
       player={player}
       clicked={clickedPlayerHandler}
-      //   highlighted={player === clickedPlayer}
     />
   ));
 
   return (
     <Fragment>
-      <ByInstrumentsHeader instrumentChooser={instrumentChooser} />
+      <ByInstrumentsHeader instrumentChooser={instrumentChooser} chosenInstrument={chosenInstrument} />
       <div className={styles.outerContainer}>
         <div>{playersToDisplay}</div>
       </div>

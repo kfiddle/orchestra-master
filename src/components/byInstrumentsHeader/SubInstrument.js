@@ -4,11 +4,12 @@ import classes from './SubInstrument.module.css';
 
 const SubInstrument = (props) => {
   const name  = props.instrument.name;
-  const active = props.active;
 
   const clickHandler = () => {
     props.clicked(props.instrument);
   };
+
+  const active = props.chosenInstrument === props.instrument;
 
   return (
     <div

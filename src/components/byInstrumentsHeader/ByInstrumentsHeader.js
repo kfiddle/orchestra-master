@@ -28,9 +28,8 @@ const ByInstrumentsHeader = (props) => {
   const displayableInstruments = listOfInstruments.map((instrument) => (
     <SubInstrument
       instrument={instrument}
-      testClicked={instrument.clicked}
       clicked={instrumentChooser}
-      active={currentChoice === instrument.name}
+      chosenInstrument={props.chosenInstrument}
       key={instrument.id}
     />
   ));
