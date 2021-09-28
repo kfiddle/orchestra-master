@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 
-import OrchestrationEntry from "./OrchestrationEntry";
+import OrchestrationEntry2 from "./OrchestrationEntry2";
 
 import styles from "./Piece.module.css";
 
 const Piece = (props) => {
-  const { title, composer } = props.piece;
+  const { piece } = props.pp;
+  const { title, composer } = piece;
   const [orchestrationClicked, setOrchestrationClicked] = useState(false);
 
   const clickedPieceHandler = () => {
-    props.clicked(props.piece);
+    props.clicked(props.pp);
   };
 
   const closeModal = () => {
@@ -21,8 +22,10 @@ const Piece = (props) => {
     setOrchestrationClicked(true);
   };
 
+  // onClick={clickedPieceHandler}
+
   return (
-    <div className={styles.outerContainer} onClick={clickedPieceHandler}>
+    <div className={styles.outerContainer} >
       <div className={styles.composerDiv}>{composer}</div>
       <div className={styles.titleDiv}>{title}</div>
 
@@ -31,7 +34,7 @@ const Piece = (props) => {
       </div>
 
       {orchestrationClicked && (
-        <OrchestrationEntry piece={props.piece} closeModal={closeModal} />
+        <OrchestrationEntry2 piece={props.piece} pp={props.pp} closeModal={closeModal} />
       )}
     </div>
   );

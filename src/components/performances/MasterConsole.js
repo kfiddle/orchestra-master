@@ -16,9 +16,9 @@ const AllPerformances = (props) => {
 
   const clickedPerformanceHandler = async (performance) => {
     setPerformanceWasClicked(true);
-    const piecesResponse = await PushBasic(performance, "get-pieces-of-performance")
-    const piecesJsonified = await piecesResponse.json();
-    setPiecesOfClickedPerformance(piecesJsonified);
+    const performancePiecesResponse = await PushBasic(performance, "get-performance-pieces")
+    const ppsJsonified = await performancePiecesResponse.json();
+    setPiecesOfClickedPerformance(ppsJsonified);
   };
 
   const clickedPiece = async (piece) => {
@@ -35,8 +35,8 @@ const AllPerformances = (props) => {
     />
   ));
 
-  const displayablePieces = piecesOfClickedPerformance.map((piece) => (
-    <Piece key={piece.id} piece={piece} clicked={clickedPiece} />
+  const displayablePieces = piecesOfClickedPerformance.map((pp) => (
+    <Piece key={pp.id} pp={pp} clicked={clickedPiece} />
   ));
 
   return (
