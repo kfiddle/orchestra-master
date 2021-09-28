@@ -13,8 +13,9 @@ import classes from "./PlayerEntry.module.css";
 
 let pObject = {
   id: "",
-  firstNameArea: "",
-  lastName: "",
+  fullName: "",
+  // firstNameArea: "",
+  // lastName: "",
   email: "",
   homePhone: "",
   cellPhone: "",
@@ -27,6 +28,9 @@ let pObject = {
 };
 
 const nameMaker = (fullEnteredName) => {
+  if (!fullEnteredName) {
+    return;
+  }
   const names = fullEnteredName.split(" ");
   const tempFirstNameArea = names.slice(0, -1);
 
@@ -93,14 +97,17 @@ const PlayerEntry = (props) => {
 
   const submitPlayer = async (event) => {
     event.preventDefault();
+
     const { enteredFirstNameArea, enteredLastName } = nameMaker(
-      player.firstNameArea
+      player.fullName ? player.fullName : `${pObject.firstNameArea} ${pObject.lastName}`
     );
 
     let playerToSend = {
       ...player,
-      firstNameArea: enteredFirstNameArea,
-      lastName: enteredLastName,
+      firstNameArea: !enteredFirstNameArea
+        ? props.player.firstNameArea
+        : enteredFirstNameArea,
+      lastName: !enteredLastName ? props.player.lastName : enteredLastName,
       type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };
 
@@ -109,7 +116,9 @@ const PlayerEntry = (props) => {
 
     const sendPlayerOff = async () => {
       let flag = true;
-      let mainPlayerResponse = await PushBasic(playerToSend, "add-player");
+      let pushFunction = !props.player ? "add-player" : "edit-player";
+
+      let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
       if (mainPlayerResponse.ok) {
         let playerToSendBack = await mainPlayerResponse.json();
         clickedInstrumentList.forEach(async (instrument, index) => {
@@ -155,9 +164,11 @@ const PlayerEntry = (props) => {
             <InputText
               label={"Full Name"}
               onChange={(event) =>
-                setPlayer({ ...player, firstNameArea: event.target.value })
+                setPlayer({ ...player, fullName: event.target.value })
               }
-              placeholder={`${pObject.firstNameArea} ${pObject.lastName}`}
+              placeholder={
+                props.player && `${pObject.firstNameArea} ${pObject.lastName}`
+              }
               style={{ width: "50%" }}
             />
 
