@@ -7,6 +7,8 @@ const BigInput = React.forwardRef((props, ref) => {
 
   const placeHolder = pObject[key];
 
+
+
   return (
     <div className={classes.control} style={style}>
       <label>{label}</label>

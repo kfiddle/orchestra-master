@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import classes from "./OrchestrationEntry.module.css";
 
 import Modal from "../UI/modal/Modal";
+
+import BigInput from "../input/BigInput";
 import OrchestrationInput from "./OrchestrationInput";
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
@@ -10,42 +12,217 @@ import DoubleObjectPush from "../helperFunctions/pushFunctions/DoubleObjectPush"
 import GetAList from "../helperFunctions/GetAList";
 
 const OrchestrationEntry2 = (props) => {
-  const [instrumentEnumsList, setInstrumentEnumsList] = useState([]);
-  const [listToSendUp, setListToSendUp] = useState([]);
+  const initialEnums = [
+    "VIOLIN1",
+    "VIOLIN2",
+    "VIOLA",
+    "CELLO",
+    "BASS",
+    "FLUTE",
+    "OBOE",
+    "CLARINET",
+    "EBCLARINET",
+    "BASSOON",
+    "HORN",
+    "TRUMPET",
+    "TROMBONE",
+    "TUBA",
+    "TIMPANI",
+    "PERCUSSION",
+    "HARP",
+    "KEYBOARD",
+    "PIANO",
+  ];
 
-  useEffect(() => {
-    const getInstrumentEnums = async () => {
-      const instEnumsResponse = await GetAList("get-all-instrument-enums");
-      setInstrumentEnumsList(instEnumsResponse);
-    };
+  let startingObject = {};
 
-    getInstrumentEnums();
-  }, []);
+  for (let instName of initialEnums) {
+    startingObject = { ...startingObject, [instName]: 0 };
+  }
+
+  const [instrumentEnumsObject, setInstrumentEnumsObject] =
+    useState(startingObject);
+  const currentPerformancePiece = props.pp;
 
   const submitOrchestration = async (event) => {
     event.preventDefault();
-    console.log(listToSendUp)
+
+    console.log(instrumentEnumsObject);
+
+    const sendingUp = await PushBasic(
+      {
+        performancePiece: currentPerformancePiece,
+        instrumentEnum: "OBOE",
+      },
+      "add-ppp"
+    );
+    if (sendingUp.ok) {
+      props.closeModal();
+    }
   };
 
-  const setANumber = (instEnum, number) => {
-      setListToSendUp([...listToSendUp, {instrumentEnum: instEnum, number: number} ])
+  const populator = (event, label) => {
+    setInstrumentEnumsObject({
+      ...instrumentEnumsObject,
+      [label]: +event.target.value,
+    });
   };
 
-  const sectionInputs = instrumentEnumsList.map((instEnum) => (
-    <OrchestrationInput instEnum={instEnum} setANumber={setANumber}/>
-  ));
+  const inputter = {
+    label: "",
+    populator,
+    // fullList: instrumentEnumsObject,
+  };
 
   return (
     <Modal closeModal={props.closeModal}>
       <div className={classes.outerContainer}>
         <div className={classes.titleDiv}>
-          <h2>{props.pp.piece.title}</h2>
+          <h2>{currentPerformancePiece.piece.title}</h2>
         </div>
         <form className={classes.form}>
-          <div>{sectionInputs.slice(0, 5)}</div>
-          <div>{sectionInputs.slice(5, 10)}</div>
-          <div>{sectionInputs.slice(10, 14)}</div>
-          <div>{sectionInputs.slice(14)}</div>
+          <div>
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Violin 1",
+                key: "VIOLIN1",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Violin 2",
+                key: "VIOLIN2",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Viola",
+                key: "VIOLA",
+              }}
+            />{" "}
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Cello",
+                key: "CELLO",
+              }}
+            />{" "}
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Bass",
+                key: "BASS",
+              }}
+            />
+          </div>
+          <div>
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Flute",
+                key: "FLUTE",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Oboe",
+                key: "OBOE",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Clarinet",
+                key: "CLARINET",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Eb Clarinet",
+                key: "EBCLARINET",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Bassoon",
+                key: "BASSOON",
+              }}
+            />
+          </div>
+          <div>
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Horn",
+                key: "HORN",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Trumpet",
+                key: "TRUMPET",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Trombone",
+                key: "TROMBONE",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Tuba",
+                key: "TUBA",
+              }}
+            />
+          </div>
+          <div>
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Timpani",
+                key: "TIMPANI",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Percussion",
+                key: "PERCUSSION",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Harp",
+                key: "HARP",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Keyboard",
+                key: "KEYBOARD",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Piano",
+                key: "PIANO",
+              }}
+            />
+          </div>
+          <div></div>
 
           <div className={classes.buttonDiv}>
             <button className={classes.button} onClick={submitOrchestration}>
