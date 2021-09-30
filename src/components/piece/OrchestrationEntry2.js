@@ -46,21 +46,25 @@ const OrchestrationEntry2 = (props) => {
 
   const submitOrchestration = async (event) => {
     event.preventDefault();
-
-    console.log(instrumentEnumsObject);
+    let flag = true;
 
     for (let instEnum in instrumentEnumsObject) {
       for (let j = 0; j < instrumentEnumsObject[instEnum]; j++) {
-        const sendItUp = await PushBasic({
-          performancePiece: currentPerformancePiece,
-          instrumentEnum: instEnum,
-        }, 'add-ppp');
+        const sendItUp = await PushBasic(
+          {
+            performancePiece: currentPerformancePiece,
+            instrumentEnum: instEnum,
+          },
+          "add-ppp"
+        );
+        if (!sendItUp.ok) {
+          flag = false;
+        }
       }
     }
-
-    // if (sendingUp.ok) {
-    //   props.closeModal();
-    // }
+    if (flag) {
+      props.closeModal();
+    }
   };
 
   const populator = (event, label) => {
