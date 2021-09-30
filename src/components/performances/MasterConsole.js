@@ -12,7 +12,7 @@ const AllPerformances = (props) => {
   const [piecesOfClickedPerformance, setPiecesOfClickedPerformance] = useState(
     []
   );
-  const [rosterObject, setRosterObject] = useState({});
+  const [pppList, setPPPList] = useState([]);
 
   const clickedPerformanceHandler = async (performance) => {
     setPerformanceWasClicked(true);
@@ -21,11 +21,13 @@ const AllPerformances = (props) => {
     setPiecesOfClickedPerformance(ppsJsonified);
   };
 
-  const clickedPiece = async (piece) => {
-    const rosterResponse = await PushBasic(piece, "get-roster-from-piece");
+  const clickedPiece = async (performancePiece) => {
+    const rosterResponse = await PushBasic(performancePiece, "get-ppps-from-pp");
     const jsonified = await rosterResponse.json(); 
-    setRosterObject(jsonified);
+    setPPPList(jsonified);
+    // console.log(jsonified)
   };
+
 
   const displayablePerformances = props.list.map((performance) => (
     <Performance
@@ -44,7 +46,7 @@ const AllPerformances = (props) => {
       <div className={styles.concertsDiv}>{displayablePerformances}</div>
       <div className={styles.piecesDiv}>{displayablePieces}</div>
       <div className={styles.rosterDiv}>
-        <Roster roster={rosterObject} />
+        <Roster roster={pppList} />
       </div>
     </div>
   );

@@ -22,10 +22,10 @@ const Piece = (props) => {
     setOrchestrationClicked(true);
   };
 
-  // onClick={clickedPieceHandler}
+  
 
   return (
-    <div className={styles.outerContainer} >
+    <div className={styles.outerContainer} onClick={clickedPieceHandler}>
       <div className={styles.composerDiv}>{composer}</div>
       <div className={styles.titleDiv}>{title}</div>
 
