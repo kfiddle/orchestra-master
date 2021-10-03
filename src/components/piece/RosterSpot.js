@@ -1,10 +1,13 @@
+import classes from "./RosterSpot.module.css";
+const RosterSpot = (props) => {
+  let player = props.player ? props.player : "";
+  let gotPlayer = player? 0.4 : 1.0;
 
-
-import classes from './RosterSpot.module.css';
-const RosterSpot = props => {
-
-return <div className={classes.outerContainer}>{props.instrument} {props.player}</div>
-
+  return (
+    <div className={classes.outerContainer} style={{opacity: gotPlayer}}>
+      {props.instrument} {player}
+    </div>
+  );
 };
 
 export default RosterSpot;
