@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import MasterConsole from "../components/performances/MasterConsole";
 
 import GetAList from "../components/helperFunctions/GetAList";
 
 const Season = (props) => {
   const [listOfPerformances, setListOfPerformances] = useState([]);
+  const [clickedPerformance, setClickedPerformance] = useState(null);
 
   useEffect(() => {
     const getAllPerformances = async () => {
@@ -19,7 +20,17 @@ const Season = (props) => {
     getAllPerformances();
   }, [props.modalIsClosed]);
 
-  return <MasterConsole list={listOfPerformances} />;
+  const clickedPerformanceHandler = (performance) => {
+    setClickedPerformance(performance);
+  };
+
+  return (
+    <MasterConsole
+      list={listOfPerformances}
+      clicked={clickedPerformanceHandler}
+      activePerformance={clickedPerformance}
+    />
+  );
 };
 
 export default Season;

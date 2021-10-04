@@ -17,6 +17,7 @@ const AllPerformances = (props) => {
 
   const clickedPerformanceHandler = async (performance) => {
     setPerformanceWasClicked(true);
+    props.clicked(performance);
     const performancePiecesResponse = await PushBasic(performance, "get-performance-pieces")
     const ppsJsonified = await performancePiecesResponse.json();
     setPiecesOfClickedPerformance(ppsJsonified);
@@ -27,7 +28,6 @@ const AllPerformances = (props) => {
     const rosterResponse = await PushBasic(performancePiece, "get-ppps-from-pp");
     const jsonified = await rosterResponse.json(); 
     setPPPList(jsonified);
-    // console.log(jsonified)
   };
 
 
@@ -36,6 +36,7 @@ const AllPerformances = (props) => {
       key={performance.id}
       performance={performance}
       clicked={clickedPerformanceHandler}
+      active={props.activePerformance === performance? true: false}
     />
   ));
 

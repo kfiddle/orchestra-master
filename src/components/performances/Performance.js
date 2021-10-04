@@ -13,6 +13,8 @@ const Performance = (props) => {
   const { title, date } = props.performance;
   const displayDate = DateFormatter(date);
 
+  const clickedOrNot = props.active? styles.clicked: styles.unclicked;
+
   const clickedPerformance = () => {
       props.clicked(props.performance);
   }
@@ -30,7 +32,7 @@ const Performance = (props) => {
   }
 
   return (
-    <div className={styles.outerContainer} onClick={clickedPerformance}>
+    <div className={`${styles.outerContainer} ${clickedOrNot}`} onClick={clickedPerformance}>
       <div className={styles.titleDiv}>{title}</div>
       <div className={styles.dateDiv}>{displayDate}</div>
 
