@@ -9,9 +9,14 @@ const Piece = (props) => {
   const { piece } = props.pp;
   const { title, composer } = piece;
   const [orchestrationClicked, setOrchestrationClicked] = useState(false);
+  const [clickedOuterContainer, setClickedOuterContainer] = useState(false);
+
+
+  const clickedOrNot = props.activePiece? styles.clicked: styles.unclicked;
 
   const clickedPieceHandler = () => {
     props.clicked(props.pp);
+    setClickedOuterContainer(true);
   };
 
   const closeModal = () => {
@@ -25,7 +30,7 @@ const Piece = (props) => {
   
 
   return (
-    <div className={styles.outerContainer} onClick={clickedPieceHandler}>
+    <div className={`${styles.outerContainer} ${clickedOrNot}`} onClick={clickedPieceHandler}>
       <div className={styles.composerDiv}>{composer}</div>
       <div className={styles.titleDiv}>{title}</div>
 

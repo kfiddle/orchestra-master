@@ -9,6 +9,7 @@ import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 const AllPerformances = (props) => {
   const [performanceWasClicked, setPerformanceWasClicked] = useState(false);
+  const [clickedPerformancePiece, setClickedPerformancePiece] = useState(null);
   const [piecesOfClickedPerformance, setPiecesOfClickedPerformance] = useState(
     []
   );
@@ -22,6 +23,7 @@ const AllPerformances = (props) => {
   };
 
   const clickedPiece = async (performancePiece) => {
+    setClickedPerformancePiece(performancePiece)
     const rosterResponse = await PushBasic(performancePiece, "get-ppps-from-pp");
     const jsonified = await rosterResponse.json(); 
     setPPPList(jsonified);
@@ -38,7 +40,7 @@ const AllPerformances = (props) => {
   ));
 
   const displayablePieces = piecesOfClickedPerformance.map((pp) => (
-    <Piece key={pp.id} pp={pp} clicked={clickedPiece} />
+    <Piece key={pp.id} pp={pp} clicked={clickedPiece} activePiece={clickedPerformancePiece === pp? true : false} />
   ));
 
   return (
