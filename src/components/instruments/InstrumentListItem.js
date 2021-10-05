@@ -18,12 +18,6 @@ const InstrumentListItem = (props) => {
     }
   }
   
-  // for (let instr of clickedInstrumentList) {
-  //   if (instr === name) {
-  //     outerContainerClass = classes.clickedItem
-  //   }
-  // }
-
   const clickHandler = () => {
     instrumentToList(props.instrument)
   };

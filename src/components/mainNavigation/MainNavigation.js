@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { FaUserPlus } from "react-icons/fa";
 import { GiBlackBook, GiMusicalKeyboard, GiDramaMasks } from "react-icons/gi";
+import { IoMdAlert } from "react-icons/io";
 
 import classes from "./MainNavigation.module.css";
 
@@ -13,6 +14,9 @@ const MainNavigation = (props) => {
       <nav className={classes.nav}>
         <ul>
           <div className={classes.newFormDiv}>
+            <li className={classes.navItem}>
+              <IoMdAlert />
+            </li>
             <li className={classes.navItem} onClick={props.playerEntryClicked}>
               <FaUserPlus />
             </li>
@@ -39,9 +43,6 @@ const MainNavigation = (props) => {
             >
               <GiDramaMasks />
             </li>
-
-
-
           </div>
 
           <li className={classes.navItem}>
@@ -51,7 +52,10 @@ const MainNavigation = (props) => {
             </NavLink>
           </li>
           <li className={classes.navItem}>
-            <NavLink to={"/contracted-players"} activeClassName={classes.active}>
+            <NavLink
+              to={"/contracted-players"}
+              activeClassName={classes.active}
+            >
               {" "}
               Contract Players
             </NavLink>

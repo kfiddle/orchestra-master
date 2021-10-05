@@ -2,9 +2,14 @@ import { useState, useRef } from "react";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import Modal from "../UI/modal/Modal";
 
+import PiecesDropDown from "../piece/PiecesDropDown";
+
 import classes from "./PerformanceEntry.module.css";
 
 const PerformanceEntry = (props) => {
+  const [clickedPiecesDrop, setClickedPiecesDrop] = useState(false);
+
+
   let id = "";
   let title = "";
   let date = "";
@@ -42,7 +47,7 @@ const PerformanceEntry = (props) => {
           </div>
 
           <div className={`${classes.control} ${classes.dateDiv}`}>
-            <label htmlFor="date">Date</label>
+            <label htmlFor="date">Performance Date</label>
             <input
               type="date"
               id={classes.dateInput}
@@ -50,6 +55,12 @@ const PerformanceEntry = (props) => {
               defaultValue={date}
             />
           </div>
+
+          <div>
+            <button>Repertoire</button>
+          </div>
+
+          {clickedPiecesDrop && <PiecesDropDown />}
 
           <div className={classes.buttonDiv}>
             <button className={classes.button} onClick={submitPerformance}>
