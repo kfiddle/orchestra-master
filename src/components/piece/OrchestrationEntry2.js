@@ -42,7 +42,7 @@ const OrchestrationEntry2 = (props) => {
 
   const [instrumentEnumsObject, setInstrumentEnumsObject] =
     useState(startingObject);
-  const currentPerformancePiece = props.pp;
+  const currentPerformancePiece = props.pp? props.pp: '';
 
   const submitOrchestration = async (event) => {
     event.preventDefault();
@@ -77,14 +77,13 @@ const OrchestrationEntry2 = (props) => {
   const inputter = {
     label: "",
     populator,
-    // fullList: instrumentEnumsObject,
   };
 
   return (
     <Modal closeModal={props.closeModal}>
       <div className={classes.outerContainer}>
         <div className={classes.titleDiv}>
-          <h2>{currentPerformancePiece.piece.title}</h2>
+          <h2>{currentPerformancePiece && currentPerformancePiece.piece.title}</h2>
         </div>
         <form className={classes.form}>
           <div>
