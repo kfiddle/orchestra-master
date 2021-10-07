@@ -8,9 +8,9 @@ const PieceListItem = (props) => {
   
 //   const { pieceToList, clickedPieceList } =
     // useContext(piecesList);
-  const name = props.piece.title;
+  const title = props.piece.title;
 
-//   let outerContainerClass = classes.pieceItemDiv;
+  let outerContainerClass = classes.pieceItemDiv;
 
 //   for (let instr of clickedPieceList) {
 //     if (instr === props.piece) {
@@ -18,9 +18,10 @@ const PieceListItem = (props) => {
 //     }
 //   }
   
-//   const clickHandler = () => {
-//     pieceToList(props.piece)
-//   };
+  const clickHandler = () => {
+    // pieceToList(props.piece)
+    console.log(props.piece)
+  };
 
   return (
     <div onClick={clickHandler} className={outerContainerClass}>

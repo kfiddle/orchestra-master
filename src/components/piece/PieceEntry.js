@@ -12,7 +12,8 @@ const PieceEntry = (props) => {
   let composer = "";
 
   const titleRef = useRef();
-  const composerRef = useRef();
+  const composerFirstNameRef = useRef();
+  const composerLastNameRef = useRef();
 
   if (props.piece) {
     id = props.piece.id;
@@ -25,7 +26,8 @@ const PieceEntry = (props) => {
 
     const pieceToSendUp = {
       title: titleRef.current.value,
-      composer: composerRef.current.value,
+      composerFirstName: composerFirstNameRef.current.value,
+      composerLastName: composerLastNameRef.current.value,
     };
 
     let response = await PushBasic(pieceToSendUp, "add-piece");
@@ -43,9 +45,14 @@ const PieceEntry = (props) => {
             <input type="text" ref={titleRef} placeholder={title} />
           </div>
 
-          <div className={`${classes.control} ${classes.dateDiv}`}>
-            <label htmlFor="date">Composer</label>
-            <input type="text" ref={composerRef} />
+          <div className={`${classes.control} ${classes.nameDiv}`}>
+            <label htmlFor="date">Composer Last Name</label>
+            <input type="text" ref={composerFirstNameRef} />
+
+            <label htmlFor="date">First Name</label>
+            <input type="text" ref={composerLastNameRef} />
+
+
           </div>
 
           <div className={classes.buttonDiv}>

@@ -20,7 +20,7 @@ const PiecesDropDown = (props) => {
   }, []);
 
   const listToDisplay = piecesList.map((piece) => (
-    <PieceListItem key={piece.id} piece={piece}></PieceListItem>
+    <PieceListItem key={piece.id} piece={piece} />
   ));
 
   return (

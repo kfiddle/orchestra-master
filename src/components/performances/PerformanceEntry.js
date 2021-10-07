@@ -9,7 +9,6 @@ import classes from "./PerformanceEntry.module.css";
 const PerformanceEntry = (props) => {
   const [clickedPiecesDrop, setClickedPiecesDrop] = useState(false);
 
-
   let id = "";
   let title = "";
   let date = "";
@@ -23,12 +22,16 @@ const PerformanceEntry = (props) => {
     date = props.performance.date;
   }
 
+  const repClickHandler = () => {
+    setClickedPiecesDrop(previous => !previous);
+  };
+
   const submitPerformance = async (event) => {
     event.preventDefault();
 
     const performanceToSendUp = {
       title: titleRef.current.value,
-      date: dateRef.current.value
+      date: dateRef.current.value,
     };
 
     let response = await PushBasic(performanceToSendUp, "add-performance");
@@ -57,7 +60,7 @@ const PerformanceEntry = (props) => {
           </div>
 
           <div>
-            <button>Repertoire</button>
+            <button onClick={repClickHandler} type={'button'}>Repertoire</button>
           </div>
 
           {clickedPiecesDrop && <PiecesDropDown />}
