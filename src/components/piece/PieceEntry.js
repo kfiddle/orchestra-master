@@ -4,7 +4,7 @@ import Modal from "../UI/modal/Modal";
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
-import classes from './PieceEntry.module.css';
+import classes from "./PieceEntry.module.css";
 
 const PieceEntry = (props) => {
   let id = "";
@@ -24,11 +24,17 @@ const PieceEntry = (props) => {
   const submitPiece = async (event) => {
     event.preventDefault();
 
-    const pieceToSendUp = {
-      title: titleRef.current.value,
-      composerFirstName: composerFirstNameRef.current.value,
-      composerLastName: composerLastNameRef.current.value,
-    };
+    const pieceToSendUp =
+      composerFirstNameRef.current.value === ""
+        ? {
+            title: titleRef.current.value,
+            composerLastName: composerLastNameRef.current.value,
+          }
+        : {
+            title: titleRef.current.value,
+            composerFirstName: composerFirstNameRef.current.value,
+            composerLastName: composerLastNameRef.current.value,
+          };
 
     let response = await PushBasic(pieceToSendUp, "add-piece");
     if (response.ok) {
@@ -47,12 +53,10 @@ const PieceEntry = (props) => {
 
           <div className={`${classes.control} ${classes.nameDiv}`}>
             <label htmlFor="date">Composer Last Name</label>
-            <input type="text" ref={composerFirstNameRef} />
-
-            <label htmlFor="date">First Name</label>
             <input type="text" ref={composerLastNameRef} />
 
-
+            <label htmlFor="date">First Name</label>
+            <input type="text" ref={composerFirstNameRef} />
           </div>
 
           <div className={classes.buttonDiv}>
