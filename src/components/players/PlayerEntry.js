@@ -14,8 +14,6 @@ import classes from "./PlayerEntry.module.css";
 let pObject = {
   id: "",
   fullName: "",
-  // firstNameArea: "",
-  // lastName: "",
   email: "",
   homePhone: "",
   cellPhone: "",

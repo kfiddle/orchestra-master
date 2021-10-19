@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import Modal from "../UI/modal/Modal";
+import PiecesList from "../../store/pieces-list";
 
 import PiecesDropDown from "../piece/PiecesDropDown";
 
@@ -23,7 +24,7 @@ const PerformanceEntry = (props) => {
   }
 
   const repClickHandler = () => {
-    setClickedPiecesDrop(previous => !previous);
+    setClickedPiecesDrop((previous) => !previous);
   };
 
   const submitPerformance = async (event) => {
@@ -41,38 +42,42 @@ const PerformanceEntry = (props) => {
   };
 
   return (
-    <Modal closeModal={props.closeModal}>
-      <div className={classes.outerContainer}>
-        <form>
-          <div className={classes.control}>
-            <label>Performance Title</label>
-            <input type="text" ref={titleRef} placeholder={title} />
-          </div>
+    <PiecesList.Provider value={{ clickedPieceList: clickedPieceList, pieceToList }}>
+      <Modal closeModal={props.closeModal}>
+        <div className={classes.outerContainer}>
+          <form>
+            <div className={classes.control}>
+              <label>Performance Title</label>
+              <input type="text" ref={titleRef} placeholder={title} />
+            </div>
 
-          <div className={`${classes.control} ${classes.dateDiv}`}>
-            <label htmlFor="date">Performance Date</label>
-            <input
-              type="date"
-              id={classes.dateInput}
-              ref={dateRef}
-              defaultValue={date}
-            />
-          </div>
+            <div className={`${classes.control} ${classes.dateDiv}`}>
+              <label htmlFor="date">Performance Date</label>
+              <input
+                type="date"
+                id={classes.dateInput}
+                ref={dateRef}
+                defaultValue={date}
+              />
+            </div>
 
-          <div>
-            <button onClick={repClickHandler} type={'button'}>Repertoire</button>
-          </div>
+            <div>
+              <button onClick={repClickHandler} type={"button"}>
+                Repertoire
+              </button>
+            </div>
 
-          {clickedPiecesDrop && <PiecesDropDown />}
+            {clickedPiecesDrop && <PiecesDropDown />}
 
-          <div className={classes.buttonDiv}>
-            <button className={classes.button} onClick={submitPerformance}>
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </Modal>
+            <div className={classes.buttonDiv}>
+              <button className={classes.button} onClick={submitPerformance}>
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </Modal>
+    </PiecesList.Provider>
   );
 };
 

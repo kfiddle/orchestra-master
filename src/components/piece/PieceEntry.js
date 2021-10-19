@@ -28,7 +28,7 @@ const PieceEntry = (props) => {
     if (open) {
       setInstrumentationClicked(true);
     } else {
-      setInstrumentationClicked(false)
+      setInstrumentationClicked(false);
     }
   };
 
@@ -75,17 +75,18 @@ const PieceEntry = (props) => {
               className={classes.button}
               style={{ background: "slategray" }}
               type={"button"}
-              onClick={()=> instrumentationModalHandler(true)}
+              onClick={() => instrumentationModalHandler(true)}
             >
               Set Instrumentation?
             </button>
-
             <button className={classes.button} onClick={submitPiece}>
               Submit
             </button>
-
+            )
             {instrumentationClicked && (
-              <OrchestrationEntry2 closeModal={()=> instrumentationModalHandler(false)} />
+              <OrchestrationEntry2
+                closeModal={() => instrumentationModalHandler(false)}
+              />
             )}
           </div>
         </form>

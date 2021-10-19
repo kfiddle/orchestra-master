@@ -6,33 +6,15 @@ import Modal from "../UI/modal/Modal";
 
 import BigInput from "../input/BigInput";
 import OrchestrationInput from "./OrchestrationInput";
+import Enums from '../enums/Enums';
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import DoubleObjectPush from "../helperFunctions/pushFunctions/DoubleObjectPush";
 import GetAList from "../helperFunctions/GetAList";
 
 const OrchestrationEntry2 = (props) => {
-  const initialEnums = [
-    "VIOLIN1",
-    "VIOLIN2",
-    "VIOLA",
-    "CELLO",
-    "BASS",
-    "FLUTE",
-    "OBOE",
-    "CLARINET",
-    "EBCLARINET",
-    "BASSOON",
-    "HORN",
-    "TRUMPET",
-    "TROMBONE",
-    "TUBA",
-    "TIMPANI",
-    "PERCUSSION",
-    "HARP",
-    "KEYBOARD",
-    "PIANO",
-  ];
+
+  const initialEnums = [...Enums];
 
   let startingObject = {};
 
@@ -42,7 +24,7 @@ const OrchestrationEntry2 = (props) => {
 
   const [instrumentEnumsObject, setInstrumentEnumsObject] =
     useState(startingObject);
-  const currentPerformancePiece = props.pp? props.pp: '';
+  const currentPerformancePiece = props.pp ? props.pp : "";
 
   const submitOrchestration = async (event) => {
     event.preventDefault();
@@ -83,7 +65,9 @@ const OrchestrationEntry2 = (props) => {
     <Modal closeModal={props.closeModal}>
       <div className={classes.outerContainer}>
         <div className={classes.titleDiv}>
-          <h2>{currentPerformancePiece && currentPerformancePiece.piece.title}</h2>
+          <h2>
+            {currentPerformancePiece && currentPerformancePiece.piece.title}
+          </h2>
         </div>
         <form className={classes.form}>
           <div>
@@ -129,6 +113,13 @@ const OrchestrationEntry2 = (props) => {
                 ...inputter,
                 label: "Flute",
                 key: "FLUTE",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Piccolo",
+                key: "PICCOLO",
               }}
             />
             <OrchestrationInput
@@ -230,9 +221,11 @@ const OrchestrationEntry2 = (props) => {
           <div></div>
 
           <div className={classes.buttonDiv}>
-            <button className={classes.button} onClick={submitOrchestration}>
-              Submit
-            </button>
+            {props.pp && (
+              <button className={classes.button} onClick={submitOrchestration}>
+                Submit
+              </button>
+            )}
           </div>
         </form>
       </div>
