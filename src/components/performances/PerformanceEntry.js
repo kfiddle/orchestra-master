@@ -11,6 +11,7 @@ import classes from "./PerformanceEntry.module.css";
 const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
+  const [additionalDateClicks, setAdditionalDateClicks] = useState(0);
 
   let id = "";
   let title = "";
@@ -24,6 +25,10 @@ const PerformanceEntry = (props) => {
     title = props.performance.title;
     date = props.performance.date;
   }
+
+  const additionalDateHandler = () => {
+    setAdditionalDateClicks(additionalDateClicks + 1);
+  };
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -47,6 +52,21 @@ const PerformanceEntry = (props) => {
     InstrumentToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
+  let additionalClicksInputs = [];
+  for (let click = 0; click < additionalDateClicks; click++) {
+    additionalClicksInputs.push(
+      <div className={`${classes.control} ${classes.dateDiv}`}>
+        <label htmlFor="date">Additional Date</label>
+        <input
+          type="date"
+          id={classes.dateInput}
+          ref={dateRef}
+          defaultValue={date}
+        />
+      </div>
+    );
+  }
+
   return (
     <PiecesList.Provider
       value={{ clickedPiecesList: clickedPiecesList, pieceToList }}
@@ -58,7 +78,6 @@ const PerformanceEntry = (props) => {
               <label>Performance Title</label>
               <input type="text" ref={titleRef} placeholder={title} />
             </div>
-
             <div className={`${classes.control} ${classes.dateDiv}`}>
               <label htmlFor="date">Performance Date</label>
               <input
@@ -68,15 +87,20 @@ const PerformanceEntry = (props) => {
                 defaultValue={date}
               />
             </div>
-
+    
+         
+            {additionalClicksInputs}
+            <div>
+              <button onClick={additionalDateHandler} type={"button"}>
+                Secondary Performance Date(s) ?
+              </button>
+            </div>
             <div>
               <button onClick={repClickHandler} type={"button"}>
                 Repertoire
               </button>
             </div>
-
             {clickedRepDrop && <PiecesDropDown />}
-
             <div className={classes.buttonDiv}>
               <button className={classes.button} onClick={submitPerformance}>
                 Submit
