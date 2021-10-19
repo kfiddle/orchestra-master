@@ -2,13 +2,15 @@ import { useState, useRef } from "react";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import Modal from "../UI/modal/Modal";
 import PiecesList from "../../store/pieces-list";
+import InstrumentToListHelper from "../helperFunctions/InstrumentToListHelper";
 
 import PiecesDropDown from "../piece/PiecesDropDown";
 
 import classes from "./PerformanceEntry.module.css";
 
 const PerformanceEntry = (props) => {
-  const [clickedPiecesDrop, setClickedPiecesDrop] = useState(false);
+  const [clickedRepDrop, setClickedRepDrop] = useState(false);
+  const [clickedPiecesList, setClickedPiecesList] = useState([]);
 
   let id = "";
   let title = "";
@@ -24,25 +26,33 @@ const PerformanceEntry = (props) => {
   }
 
   const repClickHandler = () => {
-    setClickedPiecesDrop((previous) => !previous);
+    setClickedRepDrop((previous) => !previous);
   };
 
   const submitPerformance = async (event) => {
     event.preventDefault();
 
-    const performanceToSendUp = {
-      title: titleRef.current.value,
-      date: dateRef.current.value,
-    };
+    console.log(clickedPiecesList);
 
-    let response = await PushBasic(performanceToSendUp, "add-performance");
-    if (response.ok) {
-      props.closeModal();
-    }
+    // const performanceToSendUp = {
+    //   title: titleRef.current.value,
+    //   date: dateRef.current.value,
+    // };
+
+    // let response = await PushBasic(performanceToSendUp, "add-performance");
+    // if (response.ok) {
+    //   props.closeModal();
+    // }
+  };
+
+  const pieceToList = (piece) => {
+    InstrumentToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
   return (
-    <PiecesList.Provider value={{ clickedPieceList: clickedPieceList, pieceToList }}>
+    <PiecesList.Provider
+      value={{ clickedPiecesList: clickedPiecesList, pieceToList }}
+    >
       <Modal closeModal={props.closeModal}>
         <div className={classes.outerContainer}>
           <form>
@@ -67,7 +77,7 @@ const PerformanceEntry = (props) => {
               </button>
             </div>
 
-            {clickedPiecesDrop && <PiecesDropDown />}
+            {clickedRepDrop && <PiecesDropDown />}
 
             <div className={classes.buttonDiv}>
               <button className={classes.button} onClick={submitPerformance}>

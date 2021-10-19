@@ -1,26 +1,23 @@
 import { useContext } from "react";
 
-// import InstrumentsList from '../../store/instruments-list';
+import PiecesList from "../../store/pieces-list";
 
-import classes from './PieceListItem.module.css';
+import classes from "./PieceListItem.module.css";
 
 const PieceListItem = (props) => {
-  
-//   const { pieceToList, clickedPieceList } =
-    // useContext(piecesList);
+  const { pieceToList, clickedPiecesList } = useContext(PiecesList);
   const title = props.piece.title;
 
   let outerContainerClass = classes.pieceItemDiv;
 
-//   for (let instr of clickedPieceList) {
-//     if (instr === props.piece) {
-//       outerContainerClass = classes.clickedItem
-//     }
-//   }
-  
+  for (let piece of clickedPiecesList) {
+    if (piece === props.piece) {
+      outerContainerClass = classes.clickedItem;
+    }
+  }
+
   const clickHandler = () => {
-    // pieceToList(props.piece)
-    console.log(props.piece)
+    pieceToList(props.piece);
   };
 
   return (
