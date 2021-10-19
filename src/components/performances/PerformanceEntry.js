@@ -32,17 +32,15 @@ const PerformanceEntry = (props) => {
   const submitPerformance = async (event) => {
     event.preventDefault();
 
-    console.log(clickedPiecesList);
+    const performanceToSendUp = {
+      title: titleRef.current.value,
+      date: dateRef.current.value,
+    };
 
-    // const performanceToSendUp = {
-    //   title: titleRef.current.value,
-    //   date: dateRef.current.value,
-    // };
-
-    // let response = await PushBasic(performanceToSendUp, "add-performance");
-    // if (response.ok) {
-    //   props.closeModal();
-    // }
+    let response = await PushBasic(performanceToSendUp, "add-performance");
+    if (response.ok) {
+      props.closeModal();
+    }
   };
 
   const pieceToList = (piece) => {
