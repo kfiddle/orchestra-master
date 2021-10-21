@@ -11,20 +11,36 @@ const InputDateTime = (props) => {
         <label>{label}</label>
         <input
           type={"date"}
-          onChange={(event) => datePopulator(event, index)}
+          onChange={(event) => datePopulator(event, index, "date")}
           // placeholder={placeHolder}
           style={style}
         ></input>
       </div>
 
-      <div className={`${classes.control} ${classes.timeDiv}`}>
-        <label>Start Time</label>
-        <input type={"text"}></input>
-      </div>
+      <div className={classes.bothTimesHolder}>
+        <div className={`${classes.control} ${classes.timeDiv}`}>
+          <label>Start Time</label>
+          <div className={classes.hoursMinutesHolder}>
+            <input
+              type={"text"}
+              onChange={(event) => datePopulator(event, index, "startTime")}
+              style={{ width: "4rem", marginRight: ".5rem" }}
+            ></input>
+            <input type={"text"} style={{ width: "6rem" }}></input>
+          </div>
+        </div>
 
-      <div className={`${classes.control} ${classes.timeDiv}`}>
-        <label>End Time?</label>
-        <input type={"text"}></input>
+        <div className={`${classes.control} ${classes.timeDiv}`}>
+          <label>End Time?</label>
+          <div className={classes.hoursMinutesHolder}>
+            <input
+              type={"text"}
+              onChange={(event) => datePopulator(event, index, "endTime")}
+              style={{ width: "4rem", marginRight: ".5rem" }}
+            ></input>
+            <input type={"text"} style={{ width: "6rem" }}></input>
+          </div>
+        </div>
       </div>
     </div>
   );

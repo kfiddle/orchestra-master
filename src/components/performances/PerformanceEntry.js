@@ -39,7 +39,7 @@ const PerformanceEntry = (props) => {
       performanceDateTimes: performanceDates,
     };
 
-    console.log(performanceToSendUp)
+    console.log(performanceToSendUp);
 
     // let response = await PushBasic(performanceToSendUp, "add-performance");
     // if (response.ok) {
@@ -55,10 +55,12 @@ const PerformanceEntry = (props) => {
     setPerformance({ ...performance, [key]: event.target.value });
   };
 
-  const datePopulator = (event, index) => {
+  const datePopulator = (event, index, type) => {
     let tempList = [...performanceDates];
-    tempList[index] = event.target.value;
+    let tempObject = { ...tempList[index], [type]: event.target.value}
+    tempList[index] = tempObject;
     setPerformanceDates(tempList);
+    console.log(performanceDates)
   };
 
   const textInputter = { label: "", key: "", populator, pObject: perfObject };
