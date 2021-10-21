@@ -2,8 +2,14 @@ import classes from "./InputDate.module.css";
 
 const InputDateTime = (props) => {
   const { label, index, datePopulator, pObject, style } = props.inputObject;
+  let dateTime = { date: "", startTime: "", endTime: "" };
 
   // const placeHolder = pObject[key];
+
+  const localPopulator = (event, key) => {
+    dateTime[key] = event.target.value;
+    datePopulator(index, dateTime);
+  };
 
   return (
     <div className={classes.outerContainer}>
@@ -11,7 +17,7 @@ const InputDateTime = (props) => {
         <label>{label}</label>
         <input
           type={"date"}
-          onChange={(event) => datePopulator(event, index, "date")}
+          onChange={(event) => localPopulator(event, "date")}
           // placeholder={placeHolder}
           style={style}
         ></input>
@@ -23,7 +29,7 @@ const InputDateTime = (props) => {
           <div className={classes.hoursMinutesHolder}>
             <input
               type={"text"}
-              onChange={(event) => datePopulator(event, index, "startTime")}
+              onChange={(event) => localPopulator(event, "startTime")}
               style={{ width: "4rem", marginRight: ".5rem" }}
             ></input>
             <input type={"text"} style={{ width: "6rem" }}></input>
@@ -35,7 +41,7 @@ const InputDateTime = (props) => {
           <div className={classes.hoursMinutesHolder}>
             <input
               type={"text"}
-              onChange={(event) => datePopulator(event, index, "endTime")}
+              onChange={(event) => localPopulator(event, "endTime")}
               style={{ width: "4rem", marginRight: ".5rem" }}
             ></input>
             <input type={"text"} style={{ width: "6rem" }}></input>

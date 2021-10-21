@@ -55,10 +55,9 @@ const PerformanceEntry = (props) => {
     setPerformance({ ...performance, [key]: event.target.value });
   };
 
-  const datePopulator = (event, index, type) => {
+  const datePopulator = (index, dateTimeObject) => {
     let tempList = [...performanceDates];
-    let tempObject = { ...tempList[index], [type]: event.target.value}
-    tempList[index] = tempObject;
+    tempList[index] = dateTimeObject;
     setPerformanceDates(tempList);
     console.log(performanceDates)
   };
