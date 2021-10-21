@@ -6,9 +6,9 @@ import classes from "./PieceListItem.module.css";
 
 const PieceListItem = (props) => {
   const { pieceToList, clickedPiecesList } = useContext(PiecesList);
-  const title = props.piece.title;
+  const { title, composerLastName } = props.piece;
 
-  let outerContainerClass = classes.pieceItemDiv;
+  let outerContainerClass = classes.unclickedItem;
 
   for (let piece of clickedPiecesList) {
     if (piece === props.piece) {
@@ -21,8 +21,9 @@ const PieceListItem = (props) => {
   };
 
   return (
-    <div onClick={clickHandler} className={outerContainerClass}>
+    <div onClick={clickHandler} className={`${classes.outerContainer} ${outerContainerClass}`}>
       <div className={classes.titleDiv}>{title}</div>
+      <div className={classes.composerLastNameDiv}>{composerLastName}</div>
     </div>
   );
 };

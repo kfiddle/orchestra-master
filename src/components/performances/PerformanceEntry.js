@@ -2,29 +2,35 @@ import { useState, useRef } from "react";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import Modal from "../UI/modal/Modal";
 import PiecesList from "../../store/pieces-list";
-import InstrumentToListHelper from "../helperFunctions/InstrumentToListHelper";
+import ObjectToListHelper from "../helperFunctions/ObjectToListHelper";
+
+import BigInput from "../input/BigInput";
+import InputDate from "../input/InputeDate";
 
 import PiecesDropDown from "../piece/PiecesDropDown";
 
 import classes from "./PerformanceEntry.module.css";
 
+let perfObject = {
+  id: "",
+  title: "",
+  primaryDateTime: { date: "", startTime: "" },
+};
+
 const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [additionalDateClicks, setAdditionalDateClicks] = useState(0);
-
-  let id = "";
-  let title = "";
-  let date = "";
+  const [performanceDates, setPerformanceDates] = useState([]);
 
   const titleRef = useRef();
   const dateRef = useRef();
 
   if (props.performance) {
-    id = props.performance.id;
-    title = props.performance.title;
-    date = props.performance.date;
+    perfObject = { ...props.performance };
   }
+
+  const [performance, setPerformance] = useState(perfObject);
 
   const additionalDateHandler = () => {
     setAdditionalDateClicks(additionalDateClicks + 1);
@@ -38,9 +44,10 @@ const PerformanceEntry = (props) => {
     event.preventDefault();
 
     const performanceToSendUp = {
-      title: titleRef.current.value,
-      date: dateRef.current.value,
+      ...performance,
     };
+
+    console.log(performanceToSendUp);
 
     let response = await PushBasic(performanceToSendUp, "add-performance");
     if (response.ok) {
@@ -49,7 +56,7 @@ const PerformanceEntry = (props) => {
   };
 
   const pieceToList = (piece) => {
-    InstrumentToListHelper(piece, clickedPiecesList, setClickedPiecesList);
+    ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
   let additionalClicksInputs = [];
@@ -59,13 +66,23 @@ const PerformanceEntry = (props) => {
         <label htmlFor="date">Additional Date</label>
         <input
           type="date"
-          id={classes.dateInput}
-          ref={dateRef}
-          defaultValue={date}
+          // id={classes.dateInput}
+          // ref={dateRef}
+          // defaultValue={date}
         />
       </div>
     );
   }
+
+  const populator = (event, key, type) => {
+    if (type === "text") {
+      setPerformance({ ...performance, [key]: event.target.value });
+    } else if (type === "date") {
+      setPerformance({ ...performance, [key]: { date: event.target.value } });
+    }
+  };
+
+  const inputter = { label: "", key: "", populator, pObject: perfObject };
 
   return (
     <PiecesList.Provider
@@ -74,22 +91,34 @@ const PerformanceEntry = (props) => {
       <Modal closeModal={props.closeModal}>
         <div className={classes.outerContainer}>
           <form>
-            <div className={classes.control}>
-              <label>Performance Title</label>
-              <input type="text" ref={titleRef} placeholder={title} />
-            </div>
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "Performance Title",
+                key: "title",
+              }}
+            />
+
             <div className={`${classes.control} ${classes.dateDiv}`}>
-              <label htmlFor="date">Performance Date</label>
+              {/* <label htmlFor="date">Performance Date</label>
               <input
                 type="date"
                 id={classes.dateInput}
                 ref={dateRef}
-                defaultValue={date}
+                defaultValue={perfObject.primaryDateTime.startTime}
+              /> */}
+
+              <InputDate
+                inputObject={{
+                  ...inputter,
+                  label: "Primary Date",
+                  key: "primaryDateTime",
+                }}
               />
             </div>
-    
-         
+
             {additionalClicksInputs}
+
             <div>
               <button onClick={additionalDateHandler} type={"button"}>
                 Secondary Performance Date(s) ?

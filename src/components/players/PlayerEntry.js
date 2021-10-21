@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-import InstrumentToListHelper from "../helperFunctions/InstrumentToListHelper";
+import ObjectToListHelper from "../helperFunctions/ObjectToListHelper";
 import InstrumentsList from "../../store/instruments-list";
 import InstrumentsDropDown from "../instruments/InstrumentsDropDown";
 
@@ -109,9 +109,6 @@ const PlayerEntry = (props) => {
       type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };
 
-    console.log(playerToSend);
-    console.log(clickedInstrumentList);
-
     const sendPlayerOff = async () => {
       let flag = true;
       let pushFunction = !props.player ? "add-player" : "edit-player";
@@ -139,7 +136,7 @@ const PlayerEntry = (props) => {
   };
 
   const instrumentToList = (instrument) => {
-    InstrumentToListHelper(
+    ObjectToListHelper(
       instrument,
       clickedInstrumentList,
       setClickedInstrumentList
@@ -158,7 +155,9 @@ const PlayerEntry = (props) => {
     >
       <Modal closeModal={props.closeModal}>
         <form className={classes.innerContainer}>
+        
           <div className={`${classes.control} ${classes.nameAndInstrumentDiv}`}>
+
             <InputText
               label={"Full Name"}
               onChange={(event) =>
@@ -169,6 +168,7 @@ const PlayerEntry = (props) => {
               }
               style={{ width: "50%" }}
             />
+
 
             <div
               onClick={instrumentsClickHandler}
