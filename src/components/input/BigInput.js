@@ -15,7 +15,7 @@ const BigInput = React.forwardRef((props, ref) => {
       <input
         type={"text"}
         ref={ref}
-        onChange={(event) => populator(event, key, 'text')}
+        onChange={(event) => populator(event, key)}
         placeholder={placeHolder}
         style={style}
       ></input>
