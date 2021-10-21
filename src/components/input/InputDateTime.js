@@ -2,12 +2,18 @@ import classes from "./InputDate.module.css";
 
 const InputDateTime = (props) => {
   const { label, index, datePopulator, pObject, style } = props.inputObject;
-  let dateTime = { date: "", startTime: "", endTime: "" };
+  let dateTime = { date: "", startTime: [0, 0], endTime: [0, 0] };
 
   // const placeHolder = pObject[key];
 
-  const localPopulator = (event, key) => {
-    dateTime[key] = event.target.value;
+  const localPopulator = (event, key, clockHand) => {
+    if (key === "date") {
+      dateTime[key] = event.target.value;
+    } else {
+      clockHand === "hour"
+        ? (dateTime[key][0] = parseInt(event.target.value))
+        : (dateTime[key][1] = parseInt(event.target.value));
+    }
     datePopulator(index, dateTime);
   };
 
@@ -29,10 +35,14 @@ const InputDateTime = (props) => {
           <div className={classes.hoursMinutesHolder}>
             <input
               type={"text"}
-              onChange={(event) => localPopulator(event, "startTime")}
+              onChange={(event) => localPopulator(event, "startTime", "hour")}
               style={{ width: "4rem", marginRight: ".5rem" }}
             ></input>
-            <input type={"text"} style={{ width: "6rem" }}></input>
+            <input
+              type={"text"}
+              onChange={(event) => localPopulator(event, "startTime", "minute")}
+              style={{ width: "6rem" }}
+            ></input>
           </div>
         </div>
 
@@ -41,10 +51,14 @@ const InputDateTime = (props) => {
           <div className={classes.hoursMinutesHolder}>
             <input
               type={"text"}
-              onChange={(event) => localPopulator(event, "endTime")}
+              onChange={(event) => localPopulator(event, "endTime", "hour")}
               style={{ width: "4rem", marginRight: ".5rem" }}
             ></input>
-            <input type={"text"} style={{ width: "6rem" }}></input>
+            <input
+              type={"text"}
+              onChange={(event) => localPopulator(event, "endTime", "minute")}
+              style={{ width: "6rem" }}
+            ></input>
           </div>
         </div>
       </div>

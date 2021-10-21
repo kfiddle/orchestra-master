@@ -41,10 +41,10 @@ const PerformanceEntry = (props) => {
 
     console.log(performanceToSendUp);
 
-    // let response = await PushBasic(performanceToSendUp, "add-performance");
-    // if (response.ok) {
-    //   props.closeModal();
-    // }
+    let response = await PushBasic(performanceToSendUp, "add-performance");
+    if (response.ok) {
+      props.closeModal();
+    }
   };
 
   const pieceToList = (piece) => {
@@ -59,7 +59,6 @@ const PerformanceEntry = (props) => {
     let tempList = [...performanceDates];
     tempList[index] = dateTimeObject;
     setPerformanceDates(tempList);
-    console.log(performanceDates)
   };
 
   const textInputter = { label: "", key: "", populator, pObject: perfObject };
