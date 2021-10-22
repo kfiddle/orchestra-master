@@ -1,60 +1,93 @@
 .outerContainer {
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-  }
-  
-  form {
-    width: 80%;
-  }
-  
-  .control {
-    margin-bottom: 0.5rem;
-  }
-  
-  .control label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  .control input,
-  .control textarea {
-    font: inherit;
-    padding: 1rem;
-    border-radius: 4px;
-    background-color: #f0f0f0;
-    border: 1px solid #c1d1d1;
-    display: block;
-    width: 100%;
-    font-size: 1.25rem;
-  }
-  
-  .control input:focus,
-  .control textarea:focus {
-    background-color: #cbf8f8;
-    outline-color: teal;
-  }
-  
-  .buttonDiv {
-    width: 80%;
-    display: flex;
-  }
-  
-  .button {
-    width: fit-content;
-    margin: 1rem auto;
-    font-size: 1.5rem;
-    font-weight: 900;
-    white-space: nowrap;
-    background: #161e66;
-    color: whitesmoke;
-    border-radius: 5px;
-  }
-  
-  .button:hover {
-    background: rgb(13, 80, 30);
-    color: chartreuse;
-  }
-  
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.perfEntryModal{
+  height: 50vh;
+  width: 100vw;
+}
+
+form {
+  width: 80%;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.control input,
+.control textarea {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  display: block;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.control input:focus,
+.control textarea:focus {
+  background-color: #cbf8f8;
+  outline-color: teal;
+}
+
+.submitDiv {
+  width: 80%;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  margin: 5rem auto;
+}
+
+.button {
+  width: fit-content;
+  margin: 1rem auto;
+  font-size: 1.5rem;
+  font-weight: 900;
+  white-space: nowrap;
+  background: #161e66;
+  color: whitesmoke;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background: rgb(13, 80, 30);
+  color: chartreuse;
+}
+
+.addShowsButtonDiv {
+  margin: 1rem 2rem;
+}
+
+.repButtonDiv {
+  width: 80%;
+  display: flex;
+  margin: 1rem auto;
+}
+
+.repButton {
+  margin: 1rem auto;
+  background: slateblue;
+  color: whitesmoke;
+  font-weight: 900;
+  border-radius: 3px;
+
+}
+
+.addShowsButton {
+  background: rgb(214, 236, 243);
+  color: rgb(3, 41, 80);
+  font-weight: 700;
+  border-radius: 3px;
+}

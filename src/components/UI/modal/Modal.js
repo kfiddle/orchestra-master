@@ -8,8 +8,9 @@ const Backdrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
+  const { styleObject } = props;
   return (
-    <div className={classes.modal}>
+    <div className={classes.modal} style={styleObject}>
       <div className={classes.content}>{props.children}</div>
     </div>
   );
@@ -18,6 +19,9 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const Modal = (props) => {
+  const { styleObject } = props;
+  console.log(styleObject);
+
   return (
     <div className={classes.outerContainer}>
       {ReactDOM.createPortal(
@@ -26,7 +30,7 @@ const Modal = (props) => {
       )}
 
       {ReactDOM.createPortal(
-        <ModalOverlay>
+        <ModalOverlay styleObject={styleObject}>
           <Card>{props.children}</Card>
         </ModalOverlay>,
         portalElement

@@ -15,6 +15,7 @@ let perfObject = {
   id: "",
   title: "",
   performanceDateTimes: [],
+  notes: '',
 };
 
 const PerformanceEntry = (props) => {
@@ -96,11 +97,13 @@ const PerformanceEntry = (props) => {
     setDateInputs(tempList);
   };
 
+  const perfEntryModalStyles = {width: '90vw'};
+
   return (
     <PiecesList.Provider
       value={{ clickedPiecesList: clickedPiecesList, pieceToList }}
     >
-      <Modal closeModal={props.closeModal}>
+      <Modal styleObject={perfEntryModalStyles} closeModal={props.closeModal}>
         <div className={classes.outerContainer}>
           <form>
             <BigInput
@@ -113,19 +116,28 @@ const PerformanceEntry = (props) => {
 
             {dateInputs}
 
-            <div>
-              <button onClick={additionalDateHandler} type={"button"}>
+            <div className={classes.addShowsButtonDiv}>
+              <button onClick={additionalDateHandler} className={classes.addShowsButton} type={"button"}>
                 Secondary Performance Date(s) ?
               </button>
             </div>
-            <div>
-              <button onClick={repClickHandler} type={"button"}>
+
+            <BigInput
+              inputObject={{
+                ...textInputter,
+                label: "Notes",
+                key: "notes",
+                style: {width: '100%', height: '5rem'}
+              }}
+            />
+            <div className={classes.repButtonDiv}>
+              <button onClick={repClickHandler} className={classes.repButton} type={"button"}>
                 Repertoire
               </button>
             </div>
             {clickedRepDrop && <PiecesDropDown />}
-            <div className={classes.buttonDiv}>
-              <button className={classes.button} onClick={submitPerformance}>
+            <div className={classes.submitDiv}>
+              <button className={classes.repButton} onClick={submitPerformance}>
                 Submit
               </button>
             </div>
