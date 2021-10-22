@@ -42,12 +42,15 @@ const PerformanceEntry = (props) => {
     let response = await PushBasic(performanceToSendUp, "add-performance");
     if (response.ok) {
       let newId = await response.json();
+      let flag = true;
       for (let piece of clickedPiecesList) {
         response = await PushBasic(piece, "add-performance-piece/" + newId);
+        if (!response.ok) {
+          flag = false;
+        }
       }
+      flag && props.closeModal();
     }
-
-    // props.closeModal();
   };
 
   const pieceToList = (piece) => {
