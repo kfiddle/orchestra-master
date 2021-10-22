@@ -39,12 +39,15 @@ const PerformanceEntry = (props) => {
       performanceDateTimes: performanceDates,
     };
 
-    console.log(performanceToSendUp);
-
     let response = await PushBasic(performanceToSendUp, "add-performance");
     if (response.ok) {
-      props.closeModal();
+      let newId = await response.json();
+      for (let piece of clickedPiecesList) {
+        response = await PushBasic(piece, "add-performance-piece/" + newId);
+      }
     }
+
+    // props.closeModal();
   };
 
   const pieceToList = (piece) => {
