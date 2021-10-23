@@ -20,7 +20,6 @@ const portalElement = document.getElementById("overlays");
 
 const Modal = (props) => {
   const { styleObject } = props;
-  console.log(styleObject);
 
   return (
     <div className={classes.outerContainer}>

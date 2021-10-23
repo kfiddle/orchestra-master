@@ -15,7 +15,7 @@ let perfObject = {
   id: "",
   title: "",
   performanceDateTimes: [],
-  notes: '',
+  notes: "",
 };
 
 const PerformanceEntry = (props) => {
@@ -97,7 +97,9 @@ const PerformanceEntry = (props) => {
     setDateInputs(tempList);
   };
 
-  const perfEntryModalStyles = {width: '90vw'};
+  const rehearsalDateHandler = () => {};
+
+  const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
   return (
     <PiecesList.Provider
@@ -117,7 +119,11 @@ const PerformanceEntry = (props) => {
             {dateInputs}
 
             <div className={classes.addShowsButtonDiv}>
-              <button onClick={additionalDateHandler} className={classes.addShowsButton} type={"button"}>
+              <button
+                onClick={additionalDateHandler}
+                className={classes.addShowsButton}
+                type={"button"}
+              >
                 Secondary Performance Date(s) ?
               </button>
             </div>
@@ -127,14 +133,29 @@ const PerformanceEntry = (props) => {
                 ...textInputter,
                 label: "Notes",
                 key: "notes",
-                style: {width: '100%', height: '5rem'}
+                style: { width: "100%", height: "5rem" },
               }}
             />
             <div className={classes.repButtonDiv}>
-              <button onClick={repClickHandler} className={classes.repButton} type={"button"}>
+              <button
+                onClick={repClickHandler}
+                className={classes.repButton}
+                type={"button"}
+              >
                 Repertoire
               </button>
             </div>
+
+            <div className={classes.addShowsButtonDiv}>
+              <button
+                onClick={rehearsalDateHandler}
+                className={classes.addShowsButton}
+                type={"button"}
+              >
+                Rehearsal Date
+              </button>
+            </div>
+
             {clickedRepDrop && <PiecesDropDown />}
             <div className={classes.submitDiv}>
               <button className={classes.repButton} onClick={submitPerformance}>

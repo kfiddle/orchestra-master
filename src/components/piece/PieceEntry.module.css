@@ -35,6 +35,10 @@
     background-color: #cbf8f8;
     outline-color: teal;
   }
+
+  .topLineDiv{
+    display: flex;
+  }
   
   .buttonDiv {
     width: 80%;

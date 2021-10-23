@@ -2,26 +2,26 @@ import { useState, useRef } from "react";
 
 import Modal from "../UI/modal/Modal";
 import OrchestrationEntry2 from "./OrchestrationEntry2";
+import BigInput from "../input/BigInput";
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./PieceEntry.module.css";
 
+const pieceObject = {
+  id: "",
+  title: "",
+  composerFirstName: "",
+  composerLastName: "",
+  duration: "",
+};
+
 const PieceEntry = (props) => {
   const [instrumentationClicked, setInstrumentationClicked] = useState(false);
-
-  let id = "";
-  let title = "";
-  let composer = "";
-
-  const titleRef = useRef();
-  const composerFirstNameRef = useRef();
-  const composerLastNameRef = useRef();
+  const [piece, setPiece] = useState(pieceObject);
 
   if (props.piece) {
-    id = props.piece.id;
-    title = props.piece.title;
-    composer = props.piece.composer;
+    setPiece({ ...props.piece });
   }
 
   const instrumentationModalHandler = (open) => {
@@ -35,39 +35,60 @@ const PieceEntry = (props) => {
   const submitPiece = async (event) => {
     event.preventDefault();
 
-    const pieceToSendUp =
-      composerFirstNameRef.current.value === ""
-        ? {
-            title: titleRef.current.value,
-            composerLastName: composerLastNameRef.current.value,
-          }
-        : {
-            title: titleRef.current.value,
-            composerFirstName: composerFirstNameRef.current.value,
-            composerLastName: composerLastNameRef.current.value,
-          };
-
+    const pieceToSendUp = { ...piece };
     let response = await PushBasic(pieceToSendUp, "add-piece");
     if (response.ok) {
       props.closeModal();
     }
   };
 
+  const populator = (event, key) => {
+    setPiece({ ...piece, [key]: event.target.value });
+  };
+
+  const inputter = { label: "", key: "", populator, pObject: piece };
+
   return (
     <Modal closeModal={props.closeModal}>
       <div className={classes.outerContainer}>
         <form>
-          <div className={classes.control}>
-            <label>Piece Title</label>
-            <input type="text" ref={titleRef} placeholder={title} />
+          <div className={classes.topLineDiv}>
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "Title",
+                key: "title",
+                style: { width: "80%" },
+              }}
+            />
+
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "Duration",
+                key: "duration",
+                style: { width: "30%" },
+              }}
+            />
           </div>
 
           <div className={`${classes.control} ${classes.nameDiv}`}>
-            <label htmlFor="date">Composer Last Name</label>
-            <input type="text" ref={composerLastNameRef} />
-
-            <label htmlFor="date">First Name</label>
-            <input type="text" ref={composerFirstNameRef} />
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "Composer Last Name",
+                key: "composerLastName",
+                style: { width: "70%" },
+              }}
+            />
+            <BigInput
+              inputObject={{
+                ...inputter,
+                label: "Composer First Name",
+                key: "composerFirstName",
+                style: { width: "70%" },
+              }}
+            />
           </div>
 
           <div className={classes.buttonDiv}>
