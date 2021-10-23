@@ -14,6 +14,7 @@ const pieceObject = {
   composerFirstName: "",
   composerLastName: "",
   duration: "",
+  notes: '',
 };
 
 const PieceEntry = (props) => {
@@ -90,6 +91,16 @@ const PieceEntry = (props) => {
               }}
             />
           </div>
+
+          <BigInput
+              inputObject={{
+                ...inputter,
+                label: "Piece Notes",
+                key: "notes",
+                style: { width: "100%", height: '7rem' },
+                type: 'textArea'
+              }}
+            />
 
           <div className={classes.buttonDiv}>
             <button
