@@ -71,7 +71,7 @@ const PerformanceEntry = (props) => {
   const textInputter = { label: "", key: "", populator, pObject: perfObject };
   const dateInputter2 = { label: "", datePopulator, pObject: perfObject };
 
-  const [dateInputs, setDateInputs] = useState([
+  const [concertDateInputs, setConcertDateInputs] = useState([
     <InputDateTime
       key={Math.random()}
       inputObject={{
@@ -82,22 +82,32 @@ const PerformanceEntry = (props) => {
     />,
   ]);
 
-  const additionalDateHandler = () => {
-    let tempList = [...dateInputs];
+  const dateListHandler = (stateList, label, stateSetter) => {
+    let tempList = [...stateList];
     tempList.push(
       <InputDateTime
         key={Math.random()}
         inputObject={{
           ...dateInputter2,
-          label: "Secondary Performance",
+          label,
           index: tempList.length,
         }}
       />
     );
-    setDateInputs(tempList);
+    stateSetter(tempList);
   };
 
-  const rehearsalDateHandler = () => {};
+  const dateHandler = (dateType) => {
+    if (dateType === "concert") {
+      dateListHandler(
+        concertDateInputs,
+        "Secondary Performance",
+        setConcertDateInputs
+      );
+    } else {
+      dateListHandler(concertDateInputs, "Rehearsal", setConcertDateInputs);
+    }
+  };
 
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
@@ -116,11 +126,13 @@ const PerformanceEntry = (props) => {
               }}
             />
 
-            {dateInputs}
+            {concertDateInputs}
 
             <div className={classes.addShowsButtonDiv}>
               <button
-                onClick={additionalDateHandler}
+                onClick={() => {
+                  dateHandler("concert");
+                }}
                 className={classes.addShowsButton}
                 type={"button"}
               >
@@ -148,7 +160,7 @@ const PerformanceEntry = (props) => {
 
             <div className={classes.addShowsButtonDiv}>
               <button
-                onClick={rehearsalDateHandler}
+                onClick={() => dateHandler("rehearsal")}
                 className={classes.addShowsButton}
                 type={"button"}
               >
