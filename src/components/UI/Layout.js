@@ -5,7 +5,7 @@ import MainNavigation from "../mainNavigation/MainNavigation";
 import PlayerEntry from "../players/PlayerEntry";
 import PieceEntry from "../piece/PieceEntry";
 import InstrumentEntry from "../instruments/InstrumentEntry";
-import PerformanceEntry from "../performances/PerformanceEntry";
+import PerformanceEntry from "../performances/performanceEntry/PerformanceEntry";
 
 const Layout = (props) => {
   const [playerEntryFormRendered, setPlayerEntryFormRendered] = useState(false);

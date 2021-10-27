@@ -1,13 +1,14 @@
 import { useState, useRef } from "react";
-import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
-import Modal from "../UI/modal/Modal";
-import PiecesList from "../../store/pieces-list";
-import ObjectToListHelper from "../helperFunctions/ObjectToListHelper";
+import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
+import Modal from "../../UI/modal/Modal";
+import PiecesList from "../../../store/pieces-list";
+import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 
-import BigInput from "../input/BigInput";
-import InputDateTime from "../input/InputDateTime";
+import BigInput from "../../input/BigInput";
+import InputDateTime from "../../input/InputDateTime";
 
-import PiecesDropDown from "../piece/PiecesDropDown";
+import PiecesDropDown from "../../piece/PiecesDropDown";
+import DisplayedPieceDiv from "./displayedPieceDiv.js/DisplayedPieceDiv";
 
 import classes from "./PerformanceEntry.module.css";
 
@@ -169,6 +170,9 @@ const PerformanceEntry = (props) => {
             </div>
 
             {clickedRepDrop && <PiecesDropDown />}
+
+            <DisplayedPieceDiv piecesList={clickedPiecesList} />
+
             <div className={classes.submitDiv}>
               <button className={classes.repButton} onClick={submitPerformance}>
                 Submit

@@ -21,7 +21,10 @@ const PieceListItem = (props) => {
   };
 
   return (
-    <div onClick={clickHandler} className={`${classes.outerContainer} ${outerContainerClass}`}>
+    <div
+      onClick={clickHandler}
+      className={`${classes.outerContainer} ${outerContainerClass}`}
+    >
       <div className={classes.titleDiv}>{title}</div>
       <div className={classes.composerLastNameDiv}>{composerLastName}</div>
     </div>

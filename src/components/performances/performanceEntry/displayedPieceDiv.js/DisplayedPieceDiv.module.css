@@ -1,0 +1,15 @@
+.outerContainer {
+  margin: 1rem 0 0 5rem;
+}
+
+.pieceContainer {
+  display: flex;
+}
+
+.lastNameDiv {
+  width: 25%;
+}
+
+.titleDiv {
+    width: 50%;
+}

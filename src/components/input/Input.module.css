@@ -28,6 +28,6 @@
   
   .control input:focus,
   .control textarea:focus {
-    background-color: #cbf8f8;
+    background-color: #e0e4fc;
     outline-color: teal;
   }

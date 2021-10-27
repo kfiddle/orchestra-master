@@ -6,7 +6,7 @@
   padding: 1rem;
 }
 
-.perfEntryModal{
+.perfEntryModal {
   height: 50vh;
   width: 100vw;
 }
@@ -38,8 +38,15 @@ form {
 
 .control input:focus,
 .control textarea:focus {
-  background-color: #cbf8f8;
+  background-color: #e0e4fc;
   outline-color: teal;
+}
+
+.displayedPiecesDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .submitDiv {
@@ -82,7 +89,6 @@ form {
   color: whitesmoke;
   font-weight: 900;
   border-radius: 3px;
-
 }
 
 .addShowsButton {

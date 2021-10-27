@@ -1,7 +1,6 @@
 .outerContainer {
   position: relative;
   display: flex;
-  justify-content: space-between;
   margin: 0.5rem 4rem;
   padding: 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -11,7 +10,7 @@
 }
 
 .unclickedItem {
-  background-color: #c2e7f0;
+  background: linear-gradient(to left, transparent, #c2e7f0, rgb(87, 86, 88));
 }
 
 .pieceItemDiv:hover {
@@ -22,3 +21,11 @@
   background-color: #c7bf4d;
 }
 
+.titleDiv {
+  width: 50%;
+  font-size: 1.3rem;
+}
+
+.composerLastNameDiv {
+  font-size: 1.3rem;
+}
