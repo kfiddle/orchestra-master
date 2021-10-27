@@ -8,8 +8,17 @@
 
 .lastNameDiv {
   width: 25%;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .titleDiv {
-    width: 50%;
+  width: 30%;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.durationDiv {
+  font-weight: 700;
+  font-size: 1.2rem;
 }

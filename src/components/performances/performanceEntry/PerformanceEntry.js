@@ -11,6 +11,7 @@ import PiecesDropDown from "../../piece/PiecesDropDown";
 import DisplayedPieceDiv from "./displayedPieceDiv.js/DisplayedPieceDiv";
 
 import classes from "./PerformanceEntry.module.css";
+import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFunctions";
 
 let perfObject = {
   id: "",
@@ -23,6 +24,7 @@ const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [performanceDates, setPerformanceDates] = useState([]);
+  const [rehearsalDates, setRehearsalDates] = useState([]);
 
   if (props.performance) {
     perfObject = { ...props.performance };
@@ -36,23 +38,13 @@ const PerformanceEntry = (props) => {
 
   const submitPerformance = async (event) => {
     event.preventDefault();
-    const performanceToSendUp = {
-      ...performance,
-      performanceDateTimes: performanceDates,
-    };
 
-    let response = await PushBasic(performanceToSendUp, "add-performance");
-    if (response.ok) {
-      let newId = await response.json();
-      let flag = true;
-      for (let piece of clickedPiecesList) {
-        response = await PushBasic(piece, "add-performance-piece/" + newId);
-        if (!response.ok) {
-          flag = false;
-        }
-      }
-      flag && props.closeModal();
-    }
+    SubmitPerformance(
+      performance,
+      clickedPiecesList,
+      performanceDates,
+      props.closeModal
+    );
   };
 
   const pieceToList = (piece) => {
@@ -106,7 +98,7 @@ const PerformanceEntry = (props) => {
         setConcertDateInputs
       );
     } else {
-      dateListHandler(concertDateInputs, "Rehearsal", setConcertDateInputs);
+      dateListHandler(concertDateInputs, "Rehearsal", setRehearsalDates);
     }
   };
 

@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
 
 import Modal from "../UI/modal/Modal";
-import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./InstrumentEntry.module.css";
+import { SubmitInstrument } from "../helperFunctions/pushFunctions/SubmitFunctions";
 
 const InstrumentEntry = (props) => {
   let id = "";
@@ -18,15 +18,7 @@ const InstrumentEntry = (props) => {
 
   const submitInstrument = async (event) => {
     event.preventDefault();
-
-    const instrumentToSendUp = {
-      name: nameRef.current.value,
-    };
-
-    let response = await PushBasic(instrumentToSendUp, "add-instrument");
-    if (response.ok) {
-      props.closeModal();
-    }
+    SubmitInstrument(nameRef.current.value);
   };
 
   return (

@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import Modal from "../UI/modal/Modal";
 import OrchestrationEntry2 from "./OrchestrationEntry2";
 import BigInput from "../input/BigInput";
+import {SubmitPiece } from "../helperFunctions/pushFunctions/SubmitFunctions";
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
@@ -14,7 +15,7 @@ const pieceObject = {
   composerFirstName: "",
   composerLastName: "",
   duration: "",
-  notes: '',
+  notes: "",
 };
 
 const PieceEntry = (props) => {
@@ -33,14 +34,9 @@ const PieceEntry = (props) => {
     }
   };
 
-  const submitPiece = async (event) => {
+  const submitPiece = (event) => {
     event.preventDefault();
-
-    const pieceToSendUp = { ...piece };
-    let response = await PushBasic(pieceToSendUp, "add-piece");
-    if (response.ok) {
-      props.closeModal();
-    }
+    SubmitPiece(piece, props.closeModal);
   };
 
   const populator = (event, key) => {
@@ -93,14 +89,14 @@ const PieceEntry = (props) => {
           </div>
 
           <BigInput
-              inputObject={{
-                ...inputter,
-                label: "Piece Notes",
-                key: "notes",
-                style: { width: "100%", height: '7rem' },
-                type: 'textArea'
-              }}
-            />
+            inputObject={{
+              ...inputter,
+              label: "Piece Notes",
+              key: "notes",
+              style: { width: "100%", height: "7rem" },
+              type: "textArea",
+            }}
+          />
 
           <div className={classes.buttonDiv}>
             <button
