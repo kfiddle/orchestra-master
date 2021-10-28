@@ -10,6 +10,8 @@ import InputDateTime from "../../input/InputDateTime";
 import PiecesDropDown from "../../piece/PiecesDropDown";
 import DisplayedPieceDiv from "./displayedPieceDiv.js/DisplayedPieceDiv";
 
+import useRehearsalDates from "../../../hooks/useRehearsalDates";
+
 import classes from "./PerformanceEntry.module.css";
 import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFunctions";
 
@@ -23,7 +25,9 @@ let perfObject = {
 const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
+
   const [performanceDates, setPerformanceDates] = useState([]);
+
   const [rehearsalDates, setRehearsalDates] = useState([]);
 
   if (props.performance) {
@@ -62,7 +66,11 @@ const PerformanceEntry = (props) => {
   };
 
   const textInputter = { label: "", key: "", populator, pObject: perfObject };
+
   const dateInputter2 = { label: "", datePopulator, pObject: perfObject };
+
+  const [rehearsalDateInputs, clicked] = useRehearsalDates(perfObject)
+  console.log(rehearsalDateInputs)
 
   const [concertDateInputs, setConcertDateInputs] = useState([
     <InputDateTime
@@ -153,7 +161,10 @@ const PerformanceEntry = (props) => {
 
             <div className={classes.addShowsButtonDiv}>
               <button
-                onClick={() => dateHandler("rehearsal")}
+
+                // onClick={() => dateHandler("rehearsal")}
+                onClick={clicked}
+
                 className={classes.addShowsButton}
                 type={"button"}
               >
@@ -164,6 +175,7 @@ const PerformanceEntry = (props) => {
             {clickedRepDrop && <PiecesDropDown />}
 
             <DisplayedPieceDiv piecesList={clickedPiecesList} />
+            {rehearsalDateInputs}
 
             <div className={classes.submitDiv}>
               <button className={classes.repButton} onClick={submitPerformance}>

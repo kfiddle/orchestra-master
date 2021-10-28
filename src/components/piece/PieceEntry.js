@@ -3,9 +3,7 @@ import { useState, useRef } from "react";
 import Modal from "../UI/modal/Modal";
 import OrchestrationEntry2 from "./OrchestrationEntry2";
 import BigInput from "../input/BigInput";
-import {SubmitPiece } from "../helperFunctions/pushFunctions/SubmitFunctions";
-
-import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+import { SubmitPiece } from "../helperFunctions/pushFunctions/SubmitFunctions";
 
 import classes from "./PieceEntry.module.css";
 
@@ -45,47 +43,35 @@ const PieceEntry = (props) => {
 
   const inputter = { label: "", key: "", populator, pObject: piece };
 
+  const inputDeets = [
+    ["title", "Title", "80%"],
+    ["Duration", "duration", "30%"],
+    ["composerLastName", "Composer Last Name", "70%"],
+    ["composerFirstName", "Composer First Name", "70%"],
+  ];
+
+  const theInputs = inputDeets.map((name) => (
+    <BigInput
+      inputObject={{
+        ...inputter,
+        label: name[1],
+        key: name[0],
+        style: { width: name[2] },
+      }}
+    />
+  ));
+
   return (
     <Modal closeModal={props.closeModal}>
       <div className={classes.outerContainer}>
         <form>
           <div className={classes.topLineDiv}>
-            <BigInput
-              inputObject={{
-                ...inputter,
-                label: "Title",
-                key: "title",
-                style: { width: "80%" },
-              }}
-            />
-
-            <BigInput
-              inputObject={{
-                ...inputter,
-                label: "Duration",
-                key: "duration",
-                style: { width: "30%" },
-              }}
-            />
+            {theInputs[0]}
+            {theInputs[1]}
           </div>
 
           <div className={`${classes.control} ${classes.nameDiv}`}>
-            <BigInput
-              inputObject={{
-                ...inputter,
-                label: "Composer Last Name",
-                key: "composerLastName",
-                style: { width: "70%" },
-              }}
-            />
-            <BigInput
-              inputObject={{
-                ...inputter,
-                label: "Composer First Name",
-                key: "composerFirstName",
-                style: { width: "70%" },
-              }}
-            />
+            {theInputs.splice(2)}
           </div>
 
           <BigInput
