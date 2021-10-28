@@ -69,8 +69,8 @@ const PerformanceEntry = (props) => {
 
   const dateInputter2 = { label: "", datePopulator, pObject: perfObject };
 
-  const [rehearsalDateInputs, clicked] = useRehearsalDates(perfObject)
-  console.log(rehearsalDateInputs)
+  const [rehearsalDateInputs, rehearsalDatez, clicked] = useRehearsalDates(perfObject)
+  console.log(rehearsalDatez);
 
   const [concertDateInputs, setConcertDateInputs] = useState([
     <InputDateTime
