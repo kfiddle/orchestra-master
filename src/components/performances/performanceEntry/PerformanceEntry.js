@@ -10,7 +10,7 @@ import InputDateTime from "../../input/InputDateTime";
 import PiecesDropDown from "../../piece/PiecesDropDown";
 import DisplayedPieceDiv from "./displayedPieceDiv.js/DisplayedPieceDiv";
 
-import useRehearsalDates from "../../../hooks/useRehearsalDates";
+import useDates from "../../../hooks/useDates";
 
 import classes from "./PerformanceEntry.module.css";
 import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFunctions";
@@ -27,8 +27,6 @@ const PerformanceEntry = (props) => {
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
 
   const [performanceDates, setPerformanceDates] = useState([]);
-
-  const [rehearsalDates, setRehearsalDates] = useState([]);
 
   if (props.performance) {
     perfObject = { ...props.performance };
@@ -65,51 +63,19 @@ const PerformanceEntry = (props) => {
     setPerformanceDates(tempList);
   };
 
+  const firstDatePopulator = (index, dateTimeObject) => {
+    let tempList = [];
+    tempList[0] = dateTimeObject;
+    setPerformanceDates(tempList)
+  }
+
   const textInputter = { label: "", key: "", populator, pObject: perfObject };
 
-  const dateInputter2 = { label: "", datePopulator, pObject: perfObject };
+  const dateInputter2 = { label: "", datePopulator: firstDatePopulator, pObject: perfObject };
 
-  const [rehearsalDateInputs, rehearsalDatez, clicked] = useRehearsalDates(perfObject)
-  console.log(rehearsalDatez);
-
-  const [concertDateInputs, setConcertDateInputs] = useState([
-    <InputDateTime
-      key={Math.random()}
-      inputObject={{
-        ...dateInputter2,
-        label: "Primary Date",
-        index: +0,
-      }}
-    />,
-  ]);
-
-  const dateListHandler = (stateList, label, stateSetter) => {
-    let tempList = [...stateList];
-    tempList.push(
-      <InputDateTime
-        key={Math.random()}
-        inputObject={{
-          ...dateInputter2,
-          label,
-          index: tempList.length,
-        }}
-      />
-    );
-    stateSetter(tempList);
-  };
-
-  const dateHandler = (dateType) => {
-    if (dateType === "concert") {
-      dateListHandler(
-        concertDateInputs,
-        "Secondary Performance",
-        setConcertDateInputs
-      );
-    } else {
-      dateListHandler(concertDateInputs, "Rehearsal", setRehearsalDates);
-    }
-  };
-
+  const [rehearsalDateInputs, rehearsalDatez, rehearsalClicked] = useDates(perfObject, "Rehearsal");
+  const [moreConcertDateInputs, moreConcertDates, concertClicked] = useDates(perfObject, "Secondary Performance");
+  
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
   return (
@@ -127,13 +93,20 @@ const PerformanceEntry = (props) => {
               }}
             />
 
-            {concertDateInputs}
+            <InputDateTime
+              key={Math.random()}
+              inputObject={{
+                ...dateInputter2,
+                label: "Primary Performance Date",
+                index: +0,
+              }}
+            />
+
+            {moreConcertDateInputs}
 
             <div className={classes.addShowsButtonDiv}>
               <button
-                onClick={() => {
-                  dateHandler("concert");
-                }}
+                onClick={concertClicked}
                 className={classes.addShowsButton}
                 type={"button"}
               >
@@ -161,10 +134,7 @@ const PerformanceEntry = (props) => {
 
             <div className={classes.addShowsButtonDiv}>
               <button
-
-                // onClick={() => dateHandler("rehearsal")}
-                onClick={clicked}
-
+                onClick={rehearsalClicked}
                 className={classes.addShowsButton}
                 type={"button"}
               >

@@ -2,9 +2,11 @@ import { useState } from "react";
 
 import InputDateTime from "../components/input/InputDateTime";
 
-const useRehearsalDates = (perfObject) => {
+const useRehearsalDates = (perfObject, perfOrRehearse) => {
   const [rehearsalDateInputs, setRehearsalDateInputs] = useState([]);
+  const [concertDateInputs, setConcertDateInputs] = useState([]);
   const [rehearsalDatez, setRehearsalDates] = useState([]);
+  const [concertDatez, setConcerDatez] = useState([]);
 
   const datePopulator = (index, dateTimeObject) => {
     let tempList = [...rehearsalDatez];
@@ -21,7 +23,7 @@ const useRehearsalDates = (perfObject) => {
         key={Math.random()}
         inputObject={{
           ...dateInputter2,
-          label: "Primary Date",
+          label: "Rehearsal Date",
           index: +0,
         }}
       />
