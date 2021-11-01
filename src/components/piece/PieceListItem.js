@@ -11,7 +11,6 @@ const PieceListItem = (props) => {
   let outerContainerClass = classes.unclickedItem;
 
   for (let piece of clickedPiecesList) {
-    console.log(piece);
     if (piece === props.piece) {
       outerContainerClass = classes.clickedItem;
     }

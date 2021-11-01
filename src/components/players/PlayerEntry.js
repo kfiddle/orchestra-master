@@ -181,7 +181,7 @@ const PlayerEntry = (props) => {
             {displayedChosenInstruments}
           </div>
 
-          {clickedThings.instrumentDropDown && <InstrumentsDropDown />}
+          <InstrumentsDropDown showOrHide={clickedThings.instrumentDropDown} />
 
           <div className={classes.phoneDiv}>
             <BigInput

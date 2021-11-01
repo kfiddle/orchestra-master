@@ -7,6 +7,9 @@ import styles from "./InstrumentsDropDown.module.css";
 const InstrumentsDropDown = (props) => {
   const [instrumentsList, setInstrumentsList] = useState([]);
 
+  const showOrHide = props.showOrHide;
+  const displayStyleObject = !showOrHide? {display: 'none'} : {};
+
   useEffect(() => {
     const getInstruments = async () => {
       const allInstrumentsResponse = await GetAList("get-all-instruments");
@@ -24,7 +27,7 @@ const InstrumentsDropDown = (props) => {
   ));
 
   return (
-    <div className={styles.outerContainer}>
+    <div className={styles.outerContainer} style={displayStyleObject}>
       <ul>{listToDisplay}</ul>
     </div>
   );
