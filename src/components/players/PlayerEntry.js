@@ -9,6 +9,8 @@ import InputText from "../input/InputText";
 import BigInput from "../input/BigInput";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
+import useFoneFormatter from "../../hooks/useFoneFormatter";
+
 import classes from "./PlayerEntry.module.css";
 
 let pObject = {
@@ -23,7 +25,7 @@ let pObject = {
   state: "",
   zip: "",
   unions: "",
-  type:'',
+  type: "",
 };
 
 const nameMaker = (fullEnteredName) => {
@@ -111,8 +113,7 @@ const PlayerEntry = (props) => {
       type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };
 
-    console.log(playerToSend)
-
+    console.log(playerToSend);
 
     const sendPlayerOff = async () => {
       let flag = true;
@@ -154,13 +155,15 @@ const PlayerEntry = (props) => {
 
   const inputter = { label: "", key: "", populator, pObject };
 
+  const foneNumber = useFoneFormatter(player.homePhone);
+
+
   return (
     <InstrumentsList.Provider
       value={{ clickedInstrumentList: clickedInstrumentList, instrumentToList }}
     >
       <Modal closeModal={props.closeModal}>
         <form className={classes.innerContainer}>
-          
           <div className={`${classes.control} ${classes.nameAndInstrumentDiv}`}>
             <InputText
               label={"Full Name"}
@@ -173,7 +176,10 @@ const PlayerEntry = (props) => {
               style={{ width: "50%" }}
             />
 
-            <div onClick={instrumentsClickHandler} className={classes.instrumentsButtonDiv}>
+            <div
+              onClick={instrumentsClickHandler}
+              className={classes.instrumentsButtonDiv}
+            >
               <button className={classes.button} type={"button"}>
                 Instrument(s)
               </button>
@@ -192,6 +198,7 @@ const PlayerEntry = (props) => {
                 ...inputter,
                 label: "Home Phone",
                 key: "homePhone",
+                value: foneNumber,
               }}
             />
             <BigInput
@@ -296,7 +303,9 @@ const PlayerEntry = (props) => {
                   <input type="radio" />
                 </div>
               )}
-              {selectedType[1] === true && <h2>I'm a SUB, soon to have a ranking</h2>}
+              {selectedType[1] === true && (
+                <h2>I'm a SUB, soon to have a ranking</h2>
+              )}
             </div>
           </div>
 
