@@ -9,6 +9,7 @@ import styles from "./PiecesDropDown.module.css";
 
 const PiecesDropDown = (props) => {
   const [piecesList, setPiecesList] = useState([]);
+  const showOrHide = props.showOrHide;
 
   useEffect(() => {
     const getPieces = async () => {
@@ -23,8 +24,10 @@ const PiecesDropDown = (props) => {
     <PieceListItem key={piece.id} piece={piece} />
   ));
 
+  const displayStyleObject = !showOrHide? {display: 'none'} : {};
+
   return (
-    <div className={styles.outerContainer}>
+    <div className={styles.outerContainer} style={displayStyleObject}>
       <ul>{listToDisplay}</ul>
     </div>
   );

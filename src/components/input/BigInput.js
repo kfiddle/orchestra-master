@@ -14,7 +14,7 @@ const BigInput = React.forwardRef((props, ref) => {
   return (
     <div className={classes.control} style={style}>
       <label>{label}</label>
-      <input
+      <input className={classes.control}
         type={inputType}
         ref={ref}
         onChange={(event) => populator(event, key)}

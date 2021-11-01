@@ -24,7 +24,9 @@
   font: inherit;
   padding: 1rem;
   border-radius: 4px;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  background-color: #d4cccc;
+
   border: 1px solid #c1d1d1;
   display: block;
   width: 100%;
@@ -157,7 +159,6 @@
   border-radius: 5px;
   box-shadow: 2px 2px black;
   color: whitesmoke;
-
 }
 
 .deleteButton:hover {

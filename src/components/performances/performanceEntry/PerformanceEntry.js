@@ -1,5 +1,4 @@
-import { useState, useRef } from "react";
-import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
+import { useState } from "react";
 import Modal from "../../UI/modal/Modal";
 import PiecesList from "../../../store/pieces-list";
 import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
@@ -25,7 +24,6 @@ let perfObject = {
 const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
-
   const [performanceDates, setPerformanceDates] = useState([]);
 
   if (props.performance) {
@@ -61,21 +59,22 @@ const PerformanceEntry = (props) => {
     let tempList = [...performanceDates];
     tempList[index] = dateTimeObject;
     setPerformanceDates(tempList);
+    console.log(dateTimeObject);
   };
-
-  const firstDatePopulator = (index, dateTimeObject) => {
-    let tempList = [];
-    tempList[0] = dateTimeObject;
-    setPerformanceDates(tempList)
-  }
 
   const textInputter = { label: "", key: "", populator, pObject: perfObject };
 
-  const dateInputter2 = { label: "", datePopulator: firstDatePopulator, pObject: perfObject };
+  const dateInputter2 = { label: "", datePopulator, pObject: perfObject };
 
-  const [rehearsalDateInputs, rehearsalDatez, rehearsalClicked] = useDates(perfObject, "Rehearsal");
-  const [moreConcertDateInputs, moreConcertDates, concertClicked] = useDates(perfObject, "Secondary Performance");
-  
+  const [rehearsalDateInputs, rehearsalDatez, rehearsalClicked] = useDates(
+    perfObject,
+    "Rehearsal"
+  );
+  const [moreConcertDateInputs, moreConcertDates, concertClicked] = useDates(
+    perfObject,
+    "Secondary Performance"
+  );
+
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
   return (
@@ -94,7 +93,6 @@ const PerformanceEntry = (props) => {
             />
 
             <InputDateTime
-              key={Math.random()}
               inputObject={{
                 ...dateInputter2,
                 label: "Primary Performance Date",
@@ -119,7 +117,7 @@ const PerformanceEntry = (props) => {
                 ...textInputter,
                 label: "Notes",
                 key: "notes",
-                style: { width: "100%", height: "5rem" },
+                style: { width: "100%", height: "3rem" },
               }}
             />
             <div className={classes.repButtonDiv}>
@@ -142,7 +140,8 @@ const PerformanceEntry = (props) => {
               </button>
             </div>
 
-            {clickedRepDrop && <PiecesDropDown />}
+            {/* {clickedRepDrop && <PiecesDropDown />} */}
+            <PiecesDropDown showOrHide={clickedRepDrop}/>
 
             <DisplayedPieceDiv piecesList={clickedPiecesList} />
             {rehearsalDateInputs}

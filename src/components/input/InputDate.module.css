@@ -1,55 +1,54 @@
 .outerContainer {
-    width: 100%;
-    display: flex;
-    /* justify-content: center;
+  width: 100%;
+  display: flex;
+  /* justify-content: center;
     align-items: center; */
-  }
+}
 
-  .dateDiv{
-    width: 70%;
-  }
+.dateDiv {
+  width: 70%;
+}
 
-  .bothTimesHolder {
-    display: flex;
-    width: 30%;
-    justify-content: space-around;
+.bothTimesHolder {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+}
 
-  }
+.timeDiv {
+  margin-right: 2rem;
+}
 
-  .timeDiv{
-    margin-right: 2rem;
-  }
+.hoursMinutesHolder {
+  display: flex;
+  justify-content: space-between;
+}
 
-  
+.control {
+  margin-bottom: 0.5rem;
+}
 
-  .hoursMinutesHolder {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .control {
-    margin-bottom: 0.5rem;
-  }
-  
-  .control label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  .control input,
-  .control textarea {
-    font: inherit;
-    padding: 1rem;
-    border-radius: 4px;
-    background-color: #f0f0f0;
-    border: 1px solid #c1d1d1;
-    display: block;
-    width: 70%;
-    font-size: 1.25rem;
-  }
-  
-  .control input:focus,
-  .control textarea:focus {
-    background-color: #e0e4fc;
-    outline-color: teal;
-  }
+.control label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.control input,
+.control textarea {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  /* background-color: #f0f0f0; */
+  background-color: #d4cccc;
+
+  border: 1px solid #c1d1d1;
+  display: block;
+  width: 70%;
+  font-size: 1.25rem;
+}
+
+.control input:focus,
+.control textarea:focus {
+  background-color: #e0e4fc;
+  outline-color: teal;
+}
