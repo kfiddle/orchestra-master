@@ -1,8 +1,7 @@
 import { useState } from "react";
 import InputDateTime from "../components/input/InputDateTime";
 
-const useDates = (perfObject, perfOrRehearse) => {
-  const [dateInputs, setDateInputs] = useState([]);
+const useConcertDates = (perfObject) => {
   const [dates, setDates] = useState([]);
 
   const datePopulator = (index, dateTimeObject) => {
@@ -13,22 +12,31 @@ const useDates = (perfObject, perfOrRehearse) => {
 
   const dateInputter2 = { label: "", datePopulator, pObject: perfObject };
 
-  const clicked = () => {
-    let tempList = [...dateInputs];
-    tempList.push(
+  const DateInput = (label, index) => {
+    return (
       <InputDateTime
         key={Math.random()}
         inputObject={{
           ...dateInputter2,
-          label: perfOrRehearse,
-          index: dateInputs.length
+          label: label,
+          index: index,
         }}
       />
     );
+  };
+
+  let initialDateInput = [DateInput("Primary Performance Date", 0)];
+
+  const [dateInputs, setDateInputs] = useState(initialDateInput);
+
+  const clicked = () => {
+    let tempList = [...dateInputs];
+    tempList.push(DateInput("Additional Performance", tempList.length));
     setDateInputs(tempList);
   };
 
   return [dateInputs, dates, clicked];
+
 };
 
-export default useDates;
+export default useConcertDates;

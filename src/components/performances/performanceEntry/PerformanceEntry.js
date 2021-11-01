@@ -4,15 +4,16 @@ import PiecesList from "../../../store/pieces-list";
 import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 
 import BigInput from "../../input/BigInput";
-import InputDateTime from "../../input/InputDateTime";
 
 import PiecesDropDown from "../../piece/PiecesDropDown";
 import DisplayedPieceDiv from "./displayedPieceDiv.js/DisplayedPieceDiv";
 
 import useDates from "../../../hooks/useDates";
+import useConcertDates from "../../../hooks/useConcertDates";
 
 import classes from "./PerformanceEntry.module.css";
 import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFunctions";
+
 
 let perfObject = {
   id: "",
@@ -39,10 +40,15 @@ const PerformanceEntry = (props) => {
   const submitPerformance = async (event) => {
     event.preventDefault();
 
+    let tempPerfList = [...performanceDates];
+    rehearsalDatez.forEach((rehearsalDate) => tempPerfList.push(rehearsalDate));
+    setPerformanceDates(tempPerfList);
+
     SubmitPerformance(
       performance,
       clickedPiecesList,
-      performanceDates,
+      concertDates,
+      rehearsalDatez,
       props.closeModal
     );
   };
@@ -55,25 +61,18 @@ const PerformanceEntry = (props) => {
     setPerformance({ ...performance, [key]: event.target.value });
   };
 
-  const datePopulator = (index, dateTimeObject) => {
-    let tempList = [...performanceDates];
-    tempList[index] = dateTimeObject;
-    setPerformanceDates(tempList);
-    console.log(dateTimeObject);
-  };
-
+ 
   const textInputter = { label: "", key: "", populator, pObject: perfObject };
 
-  const dateInputter2 = { label: "", datePopulator, pObject: perfObject };
 
   const [rehearsalDateInputs, rehearsalDatez, rehearsalClicked] = useDates(
     perfObject,
     "Rehearsal"
   );
-  const [moreConcertDateInputs, moreConcertDates, concertClicked] = useDates(
-    perfObject,
-    "Secondary Performance"
-  );
+
+  const [concertDateInputs, concertDates, concertClicked] = useConcertDates(perfObject);
+
+
 
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
@@ -92,23 +91,15 @@ const PerformanceEntry = (props) => {
               }}
             />
 
-            <InputDateTime
-              inputObject={{
-                ...dateInputter2,
-                label: "Primary Performance Date",
-                index: +0,
-              }}
-            />
+            {concertDateInputs}
 
-            {moreConcertDateInputs}
-
-            <div className={classes.secondaryPerfButtonDiv}>
+            <div className={classes.additionalPerfButtonDiv}>
               <button
                 onClick={concertClicked}
                 className={classes.button}
                 type={"button"}
               >
-                Secondary Performance Date(s) ?
+                Additional Performance Date(s) ?
               </button>
             </div>
 
@@ -121,7 +112,6 @@ const PerformanceEntry = (props) => {
               }}
             />
 
-
             <div className={classes.repButtonDiv}>
               <button
                 onClick={repClickHandler}
@@ -131,7 +121,6 @@ const PerformanceEntry = (props) => {
                 Repertoire
               </button>
             </div>
-
 
             <div className={classes.rehearsalButtonDiv}>
               <button
@@ -143,7 +132,7 @@ const PerformanceEntry = (props) => {
               </button>
             </div>
 
-            <PiecesDropDown showOrHide={clickedRepDrop}/>
+            <PiecesDropDown showOrHide={clickedRepDrop} />
 
             <DisplayedPieceDiv piecesList={clickedPiecesList} />
             {rehearsalDateInputs}

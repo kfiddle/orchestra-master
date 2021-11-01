@@ -1,19 +1,24 @@
+import { useState } from "react";
+
 import classes from "./InputDate.module.css";
 
-const InputDateTime = (props) => {
+let initialDateTime = { date: "", startTime: [0, 0], endTime: [0, 0] };
+
+const InputDateTime2 = (props) => {
   const { label, index, datePopulator, style } = props.inputObject;
-  let dateTime = { date: "", startTime: [0, 0], endTime: [0, 0] };
+  const [dateTime, setDateTime] = useState(initialDateTime);
 
   const localPopulator = (event, key, clockHand) => {
+    let tempDateTime = { ...dateTime };
     if (key === "date") {
-      dateTime[key] = event.target.value;
+      tempDateTime[key] = event.target.value;
     } else {
       clockHand === "hour"
-        ? (dateTime[key][0] = parseInt(event.target.value))
-        : (dateTime[key][1] = parseInt(event.target.value));
+        ? (tempDateTime[key][0] = parseInt(event.target.value))
+        : (tempDateTime[key][1] = parseInt(event.target.value));
     }
+    setDateTime(tempDateTime);
     datePopulator(index, dateTime);
-   
   };
 
   return (
@@ -65,4 +70,4 @@ const InputDateTime = (props) => {
   );
 };
 
-export default InputDateTime;
+export default InputDateTime2;

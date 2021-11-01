@@ -40,30 +40,15 @@
 .nameAndInstrumentDiv {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .nameDiv {
   width: 50%;
 }
 
-.instrumentDropdownDiv {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: slategray;
-  border-radius: 5px;
-  color: whitesmoke;
-  font-size: 1.25rem;
-  height: 2rem;
-  margin: 2rem 0 1rem 2rem;
-  padding: 0 1rem;
-  width: 20%;
-  cursor: pointer;
-}
-
-.instrumentDropdownDiv:hover {
-  background: lightgray;
-  color: goldenrod;
+.instrumentsButtonDiv button {
+  padding: 1px 2rem;
 }
 
 .instrumentsListDiv {
@@ -124,10 +109,6 @@
   width: 50%;
 }
 
-/* .buttonDiv {
-  margin: 1rem 45%;
-} */
-
 .buttonDiv {
   display: flex;
   justify-content: space-around;
@@ -138,17 +119,23 @@
 
 .button {
   width: fit-content;
-  font-size: 1.5rem;
+  background: none;
+  color: #fec302;
+  border: 4px solid #fec302;
+  padding: 8px 30px;
+  margin: 1rem;
+  border-radius: 100px;
+  font-size: 24px;
   font-weight: 900;
-  white-space: nowrap;
-  background: #161e66;
-  color: whitesmoke;
-  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  float: right;
+  transition: all 0.25s ease-out;
 }
 
 .button:hover {
-  background: rgb(13, 80, 30);
-  color: chartreuse;
+  background: #fec302;
+  color: rgb(92, 82, 82);
 }
 
 .deleteButton {

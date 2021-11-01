@@ -157,6 +157,7 @@ const PlayerEntry = (props) => {
     >
       <Modal closeModal={props.closeModal}>
         <form className={classes.innerContainer}>
+          
           <div className={`${classes.control} ${classes.nameAndInstrumentDiv}`}>
             <InputText
               label={"Full Name"}
@@ -169,11 +170,10 @@ const PlayerEntry = (props) => {
               style={{ width: "50%" }}
             />
 
-            <div
-              onClick={instrumentsClickHandler}
-              className={`${classes.control} ${classes.instrumentDropdownDiv}`}
-            >
-              <h3>Instrument(s)</h3>
+            <div onClick={instrumentsClickHandler} className={classes.instrumentsButtonDiv}>
+              <button className={classes.button} type={"button"}>
+                Instrument(s)
+              </button>
             </div>
           </div>
 

@@ -19,15 +19,15 @@ const SubmitInstrument = async (instrumentNameRef, modalCloser) => {
   }
 };
 
-const SubmitPerformance = async (
-  performance,
-  clickedPiecesList,
-  performanceDates,
-  modalCloser
-) => {
+const SubmitPerformance = async (performance, clickedPiecesList, concertDates, rehearsalDatez, modalCloser) => {
+
+  console.log(concertDates)
+  console.log(rehearsalDatez)
+
   const performanceToSendUp = {
     ...performance,
-    performanceDateTimes: performanceDates,
+    performanceDateTimes: concertDates,
+    rehearsalDateTimes: rehearsalDatez,
   };
 
   let response = await PushBasic(performanceToSendUp, "add-performance");
