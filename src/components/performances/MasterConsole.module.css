@@ -1,10 +1,10 @@
 .outerContainer {
-    width: 90%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
-    margin-top: 10rem;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 10rem;
 }
 
 .concertsDiv {
-    margin-right: 3rem;
+  margin-right: 3rem;
 }

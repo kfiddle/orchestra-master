@@ -23,6 +23,7 @@ let pObject = {
   state: "",
   zip: "",
   unions: "",
+  type:'',
 };
 
 const nameMaker = (fullEnteredName) => {
@@ -60,7 +61,6 @@ const PlayerEntry = (props) => {
     }
   }, [props.player]);
 
-  const unionsRef = useRef();
   const contractedRef = useRef();
   const subRef = useRef();
 
@@ -110,6 +110,9 @@ const PlayerEntry = (props) => {
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
       type: selectedType[0] === true ? "CONTRACT" : "SUB",
     };
+
+    console.log(playerToSend)
+
 
     const sendPlayerOff = async () => {
       let flag = true;
@@ -258,11 +261,6 @@ const PlayerEntry = (props) => {
             }}
           />
 
-          {/* <div className={`${classes.control} ${classes.unionsDiv}`}>
-            <label>Unions</label>
-            <input type="text" ref={unionsRef} placeholder={pObject.unions} />
-          </div> */}
-
           <div className={classes.checkedDiv}>
             <div>
               <label>Contracted</label>
@@ -298,7 +296,7 @@ const PlayerEntry = (props) => {
                   <input type="radio" />
                 </div>
               )}
-              {selectedType[1] === true && <h2>I'm a SUB</h2>}
+              {selectedType[1] === true && <h2>I'm a SUB, soon to have a ranking</h2>}
             </div>
           </div>
 

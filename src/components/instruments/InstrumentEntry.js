@@ -18,14 +18,15 @@ const InstrumentEntry = (props) => {
 
   const submitInstrument = async (event) => {
     event.preventDefault();
-    SubmitInstrument(nameRef.current.value);
+    SubmitInstrument(nameRef.current.value, props.closeModal);
   };
 
   return (
     <Modal closeModal={props.closeModal}>
       <div className={classes.outerContainer}>
         <form>
-          <div className={classes.control}>
+
+          <div className={`${classes.control} ${classes.instrumentNameDiv}`}>
             <label>Instrument Name</label>
             <input type="text" ref={nameRef} placeholder={name} />
           </div>
@@ -35,6 +36,7 @@ const InstrumentEntry = (props) => {
               Submit Instrument
             </button>
           </div>
+
         </form>
       </div>
     </Modal>
