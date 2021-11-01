@@ -102,10 +102,10 @@ const PerformanceEntry = (props) => {
 
             {moreConcertDateInputs}
 
-            <div className={classes.addShowsButtonDiv}>
+            <div className={classes.secondaryPerfButtonDiv}>
               <button
                 onClick={concertClicked}
-                className={classes.addShowsButton}
+                className={classes.button}
                 type={"button"}
               >
                 Secondary Performance Date(s) ?
@@ -120,34 +120,36 @@ const PerformanceEntry = (props) => {
                 style: { width: "100%", height: "3rem" },
               }}
             />
+
+
             <div className={classes.repButtonDiv}>
               <button
                 onClick={repClickHandler}
-                className={classes.repButton}
+                className={classes.button}
                 type={"button"}
               >
                 Repertoire
               </button>
             </div>
 
-            <div className={classes.addShowsButtonDiv}>
+
+            <div className={classes.rehearsalButtonDiv}>
               <button
                 onClick={rehearsalClicked}
-                className={classes.addShowsButton}
+                className={classes.button}
                 type={"button"}
               >
                 Rehearsal Date
               </button>
             </div>
 
-            {/* {clickedRepDrop && <PiecesDropDown />} */}
             <PiecesDropDown showOrHide={clickedRepDrop}/>
 
             <DisplayedPieceDiv piecesList={clickedPiecesList} />
             {rehearsalDateInputs}
 
             <div className={classes.submitDiv}>
-              <button className={classes.repButton} onClick={submitPerformance}>
+              <button className={classes.button} onClick={submitPerformance}>
                 Submit
               </button>
             </div>

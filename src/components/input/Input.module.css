@@ -11,6 +11,9 @@
 
 .control label {
   font-weight: bold;
+  color: rgb(233, 227, 227);
+  text-transform: uppercase;
+  letter-spacing: .2em;
   display: block;
   margin-bottom: 0.5rem;
 }

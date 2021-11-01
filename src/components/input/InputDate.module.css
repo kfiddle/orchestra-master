@@ -1,8 +1,6 @@
 .outerContainer {
   width: 100%;
   display: flex;
-  /* justify-content: center;
-    align-items: center; */
 }
 
 .dateDiv {
@@ -30,6 +28,9 @@
 
 .control label {
   font-weight: bold;
+  color: rgb(233, 227, 227);
+  text-transform: uppercase;
+  letter-spacing: .2em;
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -38,9 +39,7 @@
   font: inherit;
   padding: 1rem;
   border-radius: 4px;
-  /* background-color: #f0f0f0; */
-  background-color: #d4cccc;
-
+  background-color: #afaaaa;
   border: 1px solid #c1d1d1;
   display: block;
   width: 70%;

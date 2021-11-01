@@ -97,7 +97,9 @@ const PlayerEntry = (props) => {
     event.preventDefault();
 
     const { enteredFirstNameArea, enteredLastName } = nameMaker(
-      player.fullName ? player.fullName : `${pObject.firstNameArea} ${pObject.lastName}`
+      player.fullName
+        ? player.fullName
+        : `${pObject.firstNameArea} ${pObject.lastName}`
     );
 
     let playerToSend = {
@@ -155,9 +157,7 @@ const PlayerEntry = (props) => {
     >
       <Modal closeModal={props.closeModal}>
         <form className={classes.innerContainer}>
-        
           <div className={`${classes.control} ${classes.nameAndInstrumentDiv}`}>
-
             <InputText
               label={"Full Name"}
               onChange={(event) =>
@@ -168,7 +168,6 @@ const PlayerEntry = (props) => {
               }
               style={{ width: "50%" }}
             />
-
 
             <div
               onClick={instrumentsClickHandler}
@@ -251,10 +250,18 @@ const PlayerEntry = (props) => {
             />
           </div>
 
-          <div className={`${classes.control} ${classes.unionsDiv}`}>
+          <BigInput
+            inputObject={{
+              ...inputter,
+              label: "Unions",
+              key: "unions",
+            }}
+          />
+
+          {/* <div className={`${classes.control} ${classes.unionsDiv}`}>
             <label>Unions</label>
             <input type="text" ref={unionsRef} placeholder={pObject.unions} />
-          </div>
+          </div> */}
 
           <div className={classes.checkedDiv}>
             <div>

@@ -7,10 +7,13 @@
   border-radius: 6px;
   font-weight: 900;
   z-index: 1;
+  color: rgb(32, 9, 9);
+  text-transform: uppercase;
 }
 
 .unclickedItem {
-  background: linear-gradient(to left, transparent, #c2e7f0, rgb(87, 86, 88));
+  background: linear-gradient(to left, transparent, #eccbcb, rgb(90, 85, 85));
+  cursor: pointer;
 }
 
 .pieceItemDiv:hover {
@@ -18,7 +21,8 @@
 }
 
 .clickedItem {
-  background-color: #c7bf4d;
+  background-color: #e7de57;
+  cursor: pointer;
 }
 
 .titleDiv {
