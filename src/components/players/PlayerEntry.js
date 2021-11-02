@@ -9,8 +9,6 @@ import InputText from "../input/InputText";
 import BigInput from "../input/BigInput";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
-import useFoneFormatter from "../../hooks/useFoneFormatter";
-
 import classes from "./PlayerEntry.module.css";
 import FoneInput from "../input/FoneInput";
 
@@ -155,8 +153,6 @@ const PlayerEntry = (props) => {
   };
 
   const inputter = { label: "", key: "", populator, pObject };
-
-  const foneNumber = useFoneFormatter(player.homePhone);
 
   return (
     <InstrumentsList.Provider
