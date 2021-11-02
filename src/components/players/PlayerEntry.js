@@ -41,12 +41,14 @@ const nameMaker = (fullEnteredName) => {
 };
 
 const PlayerEntry = (props) => {
-  const [selectedType, setSelectedType] = useState([false, false]);
+  // const [selectedType, setSelectedType] = useState([false, false]);
   const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
   const [clickedThings, setClickedThings] = useState({
     instrumentDropDown: false,
     deleteButton: false,
   });
+
+  const [contracted, setContracted] = useState(false);
 
   if (props.player) {
     pObject = { ...props.player };
@@ -57,13 +59,13 @@ const PlayerEntry = (props) => {
   useEffect(() => {
     if (props.player) {
       props.player.type === "CONTRACT"
-        ? setSelectedType([true, false])
-        : setSelectedType([false, true]);
+        ? setContracted(true)
+        : setContracted(false);
     }
   }, [props.player]);
 
-  const contractedRef = useRef();
-  const subRef = useRef();
+  // const contractedRef = useRef();
+  // const subRef = useRef();
 
   const instrumentsClickHandler = () => {
     setClickedThings({
@@ -109,7 +111,7 @@ const PlayerEntry = (props) => {
         ? props.player.firstNameArea
         : enteredFirstNameArea,
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
-      type: selectedType[0] === true ? "CONTRACT" : "SUB",
+      type: contracted ? "CONTRACT" : "SUB",
     };
 
     console.log(playerToSend);
@@ -153,6 +155,10 @@ const PlayerEntry = (props) => {
   };
 
   const inputter = { label: "", key: "", populator, pObject };
+
+  const contractTypeClicked = (contractedOrNot) => {
+    setContracted(contractedOrNot);
+  };
 
   return (
     <InstrumentsList.Provider
@@ -261,6 +267,30 @@ const PlayerEntry = (props) => {
             }}
           />
 
+          <button
+            className={
+              contracted
+                ? `${classes.button} ${classes.subOrContract}`
+                : `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
+            }
+            onClick={() => contractTypeClicked(false)}
+            type={"button"}
+          >
+            Sub
+          </button>
+
+          <button
+            className={
+              !contracted
+                ? `${classes.button} ${classes.subOrContract}`
+                : `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
+            }
+            onClick={() => contractTypeClicked(true)}
+            type={"button"}
+          >
+            Contract
+          </button>
+          {/* 
           <div className={classes.checkedDiv}>
             <div>
               <label>Contracted</label>
@@ -300,7 +330,7 @@ const PlayerEntry = (props) => {
                 <h2>I'm a SUB, soon to have a ranking</h2>
               )}
             </div>
-          </div>
+          </div> */}
 
           <div className={classes.buttonDiv}>
             <button className={classes.button} onClick={submitPlayer}>
