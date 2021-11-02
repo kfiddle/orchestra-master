@@ -290,47 +290,9 @@ const PlayerEntry = (props) => {
           >
             Contract
           </button>
-          {/* 
-          <div className={classes.checkedDiv}>
-            <div>
-              <label>Contracted</label>
-              <input
-                type="radio"
-                ref={contractedRef}
-                checked={selectedType[0]}
-                onChange={() =>
-                  setSelectedType((previous) => [!previous[0], false])
-                }
-              />
-            </div>
+          
+  
 
-            <div>
-              <label>Sub</label>
-              <input
-                type="radio"
-                ref={subRef}
-                checked={selectedType[1]}
-                onChange={() =>
-                  setSelectedType((previous) => [false, !previous[1]])
-                }
-              />
-            </div>
-            <div className={classes.hiddenSubTypeDiv}>
-              {selectedType[0] === true && (
-                <div>
-                  <label>Principal</label>
-                  <input type="radio" />
-                  <label>Assistant</label>
-                  <input type="radio" />
-                  <label>Section</label>
-                  <input type="radio" />
-                </div>
-              )}
-              {selectedType[1] === true && (
-                <h2>I'm a SUB, soon to have a ranking</h2>
-              )}
-            </div>
-          </div> */}
 
           <div className={classes.buttonDiv}>
             <button className={classes.button} onClick={submitPlayer}>
