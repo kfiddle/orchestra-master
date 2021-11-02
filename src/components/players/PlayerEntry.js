@@ -12,6 +12,7 @@ import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import useFoneFormatter from "../../hooks/useFoneFormatter";
 
 import classes from "./PlayerEntry.module.css";
+import FoneInput from "../input/FoneInput";
 
 let pObject = {
   id: "",
@@ -157,7 +158,6 @@ const PlayerEntry = (props) => {
 
   const foneNumber = useFoneFormatter(player.homePhone);
 
-
   return (
     <InstrumentsList.Provider
       value={{ clickedInstrumentList: clickedInstrumentList, instrumentToList }}
@@ -193,20 +193,17 @@ const PlayerEntry = (props) => {
           <InstrumentsDropDown showOrHide={clickedThings.instrumentDropDown} />
 
           <div className={classes.phoneDiv}>
-            <BigInput
-              inputObject={{
-                ...inputter,
-                label: "Home Phone",
-                key: "homePhone",
-                value: foneNumber,
-              }}
+            <FoneInput
+              whichType={"homePhone"}
+              player={player}
+              playerSetter={setPlayer}
+              pObject={pObject}
             />
-            <BigInput
-              inputObject={{
-                ...inputter,
-                label: "Cell Phone",
-                key: "cellPhone",
-              }}
+            <FoneInput
+              whichType={"cellPhone"}
+              player={player}
+              playerSetter={setPlayer}
+              pObject={pObject}
             />
           </div>
           <BigInput
