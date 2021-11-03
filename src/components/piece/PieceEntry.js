@@ -14,6 +14,10 @@ const pieceObject = {
   composerLastName: "",
   duration: "",
   notes: "",
+  arranger: "",
+  otherName: "",
+  publisher: "",
+  libNumber: "",
 };
 
 const PieceEntry = (props) => {
@@ -48,6 +52,11 @@ const PieceEntry = (props) => {
     ["Duration", "duration", "30%"],
     ["composerLastName", "Composer Last Name", "70%"],
     ["composerFirstName", "Composer First Name", "70%"],
+    ["otherName", "Other Name"],
+    ["arranger", "Arranger"],
+    ["publisher", "Publisher"],
+    ["libNumber", "Library Catolog #"],
+
   ];
 
   const theInputs = inputDeets.map((name) => (

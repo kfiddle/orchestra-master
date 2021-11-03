@@ -60,6 +60,12 @@ const MainNavigation = (props) => {
               Contract Players
             </NavLink>
           </li>
+
+          <li className={classes.navItem}>
+            <NavLink to={"library"} activeClassName={classes.active}>
+              Library
+            </NavLink>
+          </li>
           <li className={classes.navItem}>
             <NavLink to={"/season"} activeClassName={classes.active}>
               {" "}
