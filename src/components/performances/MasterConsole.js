@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Performance from "./Performance";
-import Piece from "../piece/Piece";
+import ConsolePiece from "../piece/ConsolePiece";
 import Roster from "../piece/Roster";
 
 import styles from "./MasterConsole.module.css";
@@ -41,7 +41,7 @@ const AllPerformances = (props) => {
   ));
 
   const displayablePieces = piecesOfClickedPerformance.map((pp) => (
-    <Piece key={pp.id} pp={pp} clicked={clickedPiece} activePiece={clickedPerformancePiece === pp? true : false} />
+    <ConsolePiece key={pp.id} pp={pp} clicked={clickedPiece} activePiece={clickedPerformancePiece === pp? true : false} />
   ));
 
   return (

@@ -5,7 +5,7 @@ import OrchestrationEntry2 from "./OrchestrationEntry2";
 
 import styles from "./Piece.module.css";
 
-const Piece = (props) => {
+const ConsolePiece = (props) => {
   const { piece } = props.pp;
   const { title, composer } = piece;
   const [orchestrationClicked, setOrchestrationClicked] = useState(false);
@@ -45,4 +45,4 @@ const Piece = (props) => {
   );
 };
 
-export default Piece;
+export default ConsolePiece;
