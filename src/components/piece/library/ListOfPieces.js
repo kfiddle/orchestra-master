@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import LibraryPiece from "./LibraryPiece";
+import LibrarySortHeader from "./librarySortHeader/LibrarySortHeader";
 
 import classes from "./ListOfPieces.module.css";
 
@@ -8,7 +9,13 @@ const ListOfPieces = (props) => {
     <LibraryPiece key={piece.id} piece={piece} />
   ));
 
-  return <div className={classes.outerContainer}>{displayablePieces}</div>;
+  return (
+    <Fragment>
+      <LibrarySortHeader />
+
+      <div className={classes.outerContainer}>{displayablePieces}</div>
+    </Fragment>
+  );
 };
 
 export default ListOfPieces;

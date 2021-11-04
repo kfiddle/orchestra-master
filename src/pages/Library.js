@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import ListOfPieces from "../components/piece/ListOfPieces";
+import ListOfPieces from "../components/piece/library/ListOfPieces";
 
 import GetAList from "../components/helperFunctions/GetAList";
 
