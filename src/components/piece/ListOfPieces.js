@@ -5,10 +5,10 @@ import classes from "./ListOfPieces.module.css";
 
 const ListOfPieces = (props) => {
   const displayablePieces = props.list.map((piece) => (
-    <LibraryPiece title={piece.title} />
+    <LibraryPiece key={piece.id} piece={piece} />
   ));
 
-  return <div>{displayablePieces}</div>;
+  return <div className={classes.outerContainer}>{displayablePieces}</div>;
 };
 
 export default ListOfPieces;

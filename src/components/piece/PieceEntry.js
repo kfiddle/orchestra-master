@@ -49,18 +49,18 @@ const PieceEntry = (props) => {
 
   const inputDeets = [
     ["title", "Title", "80%"],
-    ["Duration", "duration", "30%"],
+    ["duration", "Duration", "30%"],
     ["composerLastName", "Composer Last Name", "70%"],
     ["composerFirstName", "Composer First Name", "70%"],
     ["otherName", "Other Name"],
     ["arranger", "Arranger"],
     ["publisher", "Publisher"],
     ["libNumber", "Library Catolog #"],
-
   ];
 
   const theInputs = inputDeets.map((name) => (
     <BigInput
+      key={inputDeets.indexOf(name)}
       inputObject={{
         ...inputter,
         label: name[1],

@@ -19,10 +19,15 @@ const SubmitInstrument = async (instrumentNameRef, modalCloser) => {
   }
 };
 
-const SubmitPerformance = async (performance, clickedPiecesList, concertDates, rehearsalDatez, modalCloser) => {
-
-  console.log(concertDates)
-  console.log(rehearsalDatez)
+const SubmitPerformance = async (
+  performance,
+  clickedPiecesList,
+  concertDates,
+  rehearsalDatez,
+  modalCloser
+) => {
+  console.log(concertDates);
+  console.log(rehearsalDatez);
 
   const performanceToSendUp = {
     ...performance,
@@ -45,31 +50,26 @@ const SubmitPerformance = async (performance, clickedPiecesList, concertDates, r
 };
 
 const SubmitPlayer = async (player, modalCloser) => {
-    // let flag = true;
-    // let pushFunction = !props.player ? "add-player" : "edit-player";
-
-    // let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
-    // if (mainPlayerResponse.ok) {
-    //   let playerToSendBack = await mainPlayerResponse.json();
-    //   clickedInstrumentList.forEach(async (instrument, index) => {
-    //     let ip = {
-    //       player: playerToSendBack,
-    //       instrument: instrument,
-    //       rank: index,
-    //     };
-    //     let playerInstrumentResponse = await PushBasic(ip, "add-instruments");
-    //     if (!playerInstrumentResponse.ok) {
-    //       flag = false;
-    //     }
-    //   });
-    //   if (flag) {
-    //     modalCloser();
-    //   }
-    
+  // let flag = true;
+  // let pushFunction = !props.player ? "add-player" : "edit-player";
+  // let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
+  // if (mainPlayerResponse.ok) {
+  //   let playerToSendBack = await mainPlayerResponse.json();
+  //   clickedInstrumentList.forEach(async (instrument, index) => {
+  //     let ip = {
+  //       player: playerToSendBack,
+  //       instrument: instrument,
+  //       rank: index,
+  //     };
+  //     let playerInstrumentResponse = await PushBasic(ip, "add-instruments");
+  //     if (!playerInstrumentResponse.ok) {
+  //       flag = false;
+  //     }
+  //   });
+  //   if (flag) {
+  //     modalCloser();
+  //   }
   // };
-
-
-}
-
+};
 
 export { SubmitPlayer, SubmitPiece, SubmitInstrument, SubmitPerformance };
