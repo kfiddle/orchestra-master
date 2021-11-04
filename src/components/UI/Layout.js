@@ -57,7 +57,9 @@ const Layout = (props) => {
       {instrumentEntryFormRendered && (
         <InstrumentEntry closeModal={closeModal} />
       )}
-      {performanceEntryFormRendered && <PerformanceEntry closeModal={closeModal} />}
+      {performanceEntryFormRendered && (
+        <PerformanceEntry closeModal={closeModal} />
+      )}
 
       <main className={classes.main}>{props.children}</main>
     </Fragment>
