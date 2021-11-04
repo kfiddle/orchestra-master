@@ -30,6 +30,7 @@
 .nav ul {
   list-style: none;
   display: flex;
+  justify-content: space-between;
   margin: 0;
   padding: 0;
 }
@@ -44,10 +45,17 @@
   color: white;
 }
 
-.instrumentDiv {
+.optionDiv {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 3rem;
-  padding: 0 1rem;
+  padding: 0 3rem;
+  color: white;
+  cursor: pointer;
+}
+
+.optionDiv:hover {
+  background: white;
+  color: rgb(39, 1, 1);
 }
