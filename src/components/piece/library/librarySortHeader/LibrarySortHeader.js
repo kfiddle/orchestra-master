@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import classes from "./LibrarySortHeader.module.css";
 
 const sortOptions = [
@@ -9,15 +11,18 @@ const sortOptions = [
 ];
 
 const LibrarySortHeader = (props) => {
-  const clickedOption = (option) => {
-    console.log(option);
-  };
+  const [clickedOption, setClickedOption] = useState('');
+
+  const clickedOptionHandler = (option) => {
+    setClickedOption(option);
+    props.sorter(option)
+  }
 
   const displayableSortOptions = sortOptions.map((option) => (
     <div
       key={sortOptions.indexOf(option)}
-      className={classes.optionDiv}
-      onClick={clickedOption}
+      className={option != clickedOption? classes.optionDiv : classes.clickedOption}
+      onClick={() => clickedOptionHandler(option)}
     >
       <li className={classes.optionText}>{option}</li>
     </div>

@@ -59,3 +59,14 @@
   background: white;
   color: rgb(39, 1, 1);
 }
+
+.clickedOption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    padding: 0 3rem;
+    color: rgb(39, 1, 1);
+    background: white;
+    cursor: pointer;
+}
