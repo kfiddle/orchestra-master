@@ -11,6 +11,8 @@ import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./PlayerEntry.module.css";
 import FoneInput from "../input/FoneInput";
+import ExtraTypeBox from "./ExtraTypeBox";
+import SubOrContractBox from "./SubOrContractBox";
 
 let pObject = {
   id: "",
@@ -63,9 +65,6 @@ const PlayerEntry = (props) => {
         : setContracted(false);
     }
   }, [props.player]);
-
-  // const contractedRef = useRef();
-  // const subRef = useRef();
 
   const instrumentsClickHandler = () => {
     setClickedThings({
@@ -267,32 +266,8 @@ const PlayerEntry = (props) => {
             }}
           />
 
-          <button
-            className={
-              contracted
-                ? `${classes.button} ${classes.subOrContract}`
-                : `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
-            }
-            onClick={() => contractTypeClicked(false)}
-            type={"button"}
-          >
-            Sub
-          </button>
-
-          <button
-            className={
-              !contracted
-                ? `${classes.button} ${classes.subOrContract}`
-                : `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
-            }
-            onClick={() => contractTypeClicked(true)}
-            type={"button"}
-          >
-            Contract
-          </button>
+          <SubOrContractBox setter={setContracted} contracted={contracted}/>
           
-  
-
 
           <div className={classes.buttonDiv}>
             <button className={classes.button} onClick={submitPlayer}>
