@@ -187,9 +187,9 @@ const PlayerEntry = (props) => {
             </div>
           </div>
 
-          <div style={{ position: "absolute", right: "25%", top: "5rem" }}>
+          {/* <div style={{ position: "absolute", right: "25%", top: "5rem" }}>
             {displayedChosenInstruments}
-          </div>
+          </div> */}
 
           <InstrumentsDropDown showOrHide={clickedThings.instrumentDropDown} />
 

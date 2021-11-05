@@ -1,8 +1,17 @@
 .outerContainer {
   position: fixed;
-  width: 40%;
-  right: -20vw;
+  width: 50%;
+  right: -30vw;
   top: -5vh;
   max-height: 80vh;
-  /* overflow: auto; */
+  overflow: auto;
+}
+
+.outerContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.outerContainer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
