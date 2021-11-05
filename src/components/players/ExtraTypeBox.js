@@ -40,6 +40,7 @@ const ExtraTypeBox = (props) => {
     <button
       key={whichContracts.indexOf(contract)}
       className={classes.contractButton}
+      type={'button'}
     >
       {contract}
     </button>
@@ -47,11 +48,10 @@ const ExtraTypeBox = (props) => {
 
   const subBox = (
     <div className={classes.subBox}>
-      <button className={classes.subButton}>1</button>
-      <button className={classes.subButton}>2</button>
-      <button className={classes.subButton}>3</button>
-      <button className={classes.subButton}>4</button>
-      <button className={classes.subButton}>5</button>
+      <button className={classes.subButton} type={'button'}>A</button>
+      <button className={classes.subButton} type={'button'}>B</button>
+      <button className={classes.subButton} type={'button'}>C</button>
+      <button className={classes.subButton} type={'button'}>D</button>
     </div>
   );
 
