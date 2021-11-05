@@ -5,6 +5,7 @@ import classes from "./SubOrContractBox.module.css";
 const SubOrContractBox = (props) => {
   const setter = props.setter;
   const contracted = props.contracted;
+  const player = props.player;
 
   const contractTypeClicked = (type) => {
     setter(type);

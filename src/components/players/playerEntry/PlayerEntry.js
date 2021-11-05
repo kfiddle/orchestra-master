@@ -1,18 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 
-import ObjectToListHelper from "../helperFunctions/ObjectToListHelper";
-import InstrumentsList from "../../store/instruments-list";
-import InstrumentsDropDown from "../instruments/InstrumentsDropDown";
+import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
+import InstrumentsList from "../../../store/instruments-list";
+import InstrumentsDropDown from "../../instruments/InstrumentsDropDown";
 
-import Modal from "../UI/modal/Modal";
-import InputText from "../input/InputText";
-import BigInput from "../input/BigInput";
-import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+import Modal from "../../UI/modal/Modal";
+import InputText from "../../input/InputText";
+import BigInput from "../../input/BigInput";
+import BigInput2 from "../../input/BigInput2";
+
+import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./PlayerEntry.module.css";
-import FoneInput from "../input/FoneInput";
+import FoneInput from "../../input/FoneInput";
 import ExtraTypeBox from "./ExtraTypeBox";
 import SubOrContractBox from "./SubOrContractBox";
+import SubmitDeleteBox from "./SubmitDeleteBox";
 
 let pObject = {
   id: "",
@@ -26,7 +29,8 @@ let pObject = {
   state: "",
   zip: "",
   unions: "",
-  type: "",
+  primaryType: "",
+  secondaryType: "",
 };
 
 const nameMaker = (fullEnteredName) => {
@@ -43,7 +47,6 @@ const nameMaker = (fullEnteredName) => {
 };
 
 const PlayerEntry = (props) => {
-  // const [selectedType, setSelectedType] = useState([false, false]);
   const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
   const [clickedThings, setClickedThings] = useState({
     instrumentDropDown: false,
@@ -79,7 +82,7 @@ const PlayerEntry = (props) => {
     </div>
   ));
 
-  const deleteButtonHandler = async (event) => {
+  const deleteClickHandler = async (event) => {
     event.preventDefault();
 
     setClickedThings({
@@ -110,7 +113,7 @@ const PlayerEntry = (props) => {
         ? props.player.firstNameArea
         : enteredFirstNameArea,
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
-      type: contracted ? "CONTRACT" : "SUB",
+      primaryType: contracted ? "CONTRACT" : "SUB",
     };
 
     console.log(playerToSend);
@@ -154,6 +157,7 @@ const PlayerEntry = (props) => {
   };
 
   const inputter = { label: "", key: "", populator, pObject };
+  const state = { player, setPlayer };
 
   const contractTypeClicked = (contractedOrNot) => {
     setContracted(contractedOrNot);
@@ -186,10 +190,6 @@ const PlayerEntry = (props) => {
               </button>
             </div>
           </div>
-
-          {/* <div style={{ position: "absolute", right: "25%", top: "5rem" }}>
-            {displayedChosenInstruments}
-          </div> */}
 
           <InstrumentsDropDown showOrHide={clickedThings.instrumentDropDown} />
 
@@ -231,11 +231,11 @@ const PlayerEntry = (props) => {
             }}
           />
           <div className={classes.cityStateDiv}>
-            <BigInput
-              inputObject={{
-                ...inputter,
+            <BigInput2
+              shebang={{
                 label: "City",
                 key: "city",
+                state,
                 style: { width: "60%" },
               }}
             />
@@ -266,25 +266,20 @@ const PlayerEntry = (props) => {
             }}
           />
 
-          <SubOrContractBox setter={setContracted} contracted={contracted}/>
-          
+          <SubOrContractBox
+            setter={setContracted}
+            player={player}
+            contracted={contracted}
+          />
 
-          <div className={classes.buttonDiv}>
-            <button className={classes.button} onClick={submitPlayer}>
-              Submit Player
-            </button>
-
-            {props.player && (
-              <button
-                className={classes.deleteButton}
-                onClick={deleteButtonHandler}
-              >
-                {!clickedThings.deleteButton
-                  ? "Remove Player"
-                  : "Are You Sure?"}
-              </button>
-            )}
-          </div>
+          <SubmitDeleteBox
+            o={{
+              submitPlayer,
+              deleteClicked: clickedThings.deleteButton,
+              deleteClickHandler,
+              ifPlayer: props.player,
+            }}
+          />
         </form>
       </Modal>
     </InstrumentsList.Provider>

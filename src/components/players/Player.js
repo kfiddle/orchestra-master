@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 
-import PlayerEntry from "./PlayerEntry";
+import PlayerEntry from "./playerEntry/PlayerEntry";
 
 import styles from "./Player.module.css";
 

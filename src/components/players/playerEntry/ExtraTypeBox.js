@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import InstrumentsList from "../../store/instruments-list";
+import InstrumentsList from "../../../store/instruments-list";
 
 import classes from "./ExtraType.module.css";
 
