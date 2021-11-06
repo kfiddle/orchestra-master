@@ -190,13 +190,11 @@ const PlayerEntry = (props) => {
               whichType={"homePhone"}
               player={player}
               playerSetter={setPlayer}
-              // pObject={pObject}
             />
             <FoneInput
               whichType={"cellPhone"}
               player={player}
               playerSetter={setPlayer}
-              // pObject={pObject}
             />
           </div>
           <BigInput
