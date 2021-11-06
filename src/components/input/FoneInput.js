@@ -11,15 +11,15 @@ const FoneInput = (props) => {
 
   let label = whichType === "homePhone" ? "Home Phone" : "Cell Phone";
 
-  const populator = (event, key) => {
-    console.log(event.target.value);
-    if (isNaN(event.target.value)) {
-      return;
-    } else {
-      setFoneNumber(event.target.value);
-      playerSetter({ ...player, [key]: foneNumber });
-    }
-  };
+  // const populator = (event, key) => {
+  //   console.log(event.target.value);
+  //   if (isNaN(event.target.value)) {
+  //     return;
+  //   } else {
+  //     setFoneNumber(event.target.value);
+  //     playerSetter({ ...player, [key]: foneNumber });
+  //   }
+  // };
 
   const formatNumber = (event) => {
     if (isNaN(event.nativeEvent.data) || event.target.value.length === 13) {
@@ -29,11 +29,15 @@ const FoneInput = (props) => {
       (event.target.value.length === 3 || event.target.value.length === 7) &&
       !isNaN(event.nativeEvent.data)
     ) {
-      setFoneNumber(event.target.value + "-");
-      playerSetter({ ...player, [key]: foneNumber });
+      // setFoneNumber(event.target.value + "-");
+      playerSetter({ ...player, [whichType]: event.target.value + "-" });
+
+      // playerSetter({ ...player, [whichType]: foneNumber });
     } else {
-      setFoneNumber(event.target.value);
-      playerSetter({ ...player, [key]: foneNumber });
+      // setFoneNumber(event.target.value);
+
+      // playerSetter({ ...player, [whichType]: foneNumber });
+      playerSetter({ ...player, [whichType]: event.target.value });
     }
   };
 
@@ -53,7 +57,9 @@ const FoneInput = (props) => {
         className={classes.control}
         onChange={formatNumber}
         onKeyDown={checkForDelete}
-        value={foneNumber}
+        // value={foneNumber}
+        value={player[whichType]}
+
         placeholder={placeholder}
         //   style={style}
       ></input>

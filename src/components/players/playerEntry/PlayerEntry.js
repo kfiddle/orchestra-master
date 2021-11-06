@@ -16,8 +16,6 @@ import FoneInput from "../../input/FoneInput";
 import SubOrContractBox from "./SubOrContractBox";
 import SubmitDeleteBox from "./SubmitDeleteBox";
 
-let pObject = {};
-
 const nameMaker = (fullEnteredName) => {
   if (!fullEnteredName) {
     return;
@@ -40,16 +38,6 @@ const PlayerEntry = (props) => {
   });
 
   const [contracted, setContracted] = useState(false);
-
-  // if (props.player) {
-  //   pObject = { ...props.player };
-  // }
-
-  // const [player, setPlayer] = useState(pObject);
-
-  // if (props.player) {
-  //   setPlayer({...props.player})
-  // }
 
   useEffect(() => {
     if (props.player) {
@@ -96,7 +84,7 @@ const PlayerEntry = (props) => {
     const { enteredFirstNameArea, enteredLastName } = nameMaker(
       player.fullName
         ? player.fullName
-        : `${pObject.firstNameArea} ${pObject.lastName}`
+        : `${player.firstNameArea} ${player.lastName}`
     );
 
     let playerToSend = {
@@ -108,7 +96,7 @@ const PlayerEntry = (props) => {
       primaryType: contracted ? "CONTRACT" : "SUB",
     };
 
-    console.log(playerToSend);
+    // console.log(playerToSend.homePhone);
 
     const sendPlayerOff = async () => {
       let flag = true;
@@ -261,7 +249,6 @@ const PlayerEntry = (props) => {
             player={player}
             contracted={contracted}
           />
-
           <SubmitDeleteBox
             o={{
               submitPlayer,
@@ -277,6 +264,8 @@ const PlayerEntry = (props) => {
 };
 
 export default PlayerEntry;
+
+
 
 // id: "",
 // fullName: "",
