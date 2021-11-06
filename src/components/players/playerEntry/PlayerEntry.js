@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 
 import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 import InstrumentsList from "../../../store/instruments-list";
@@ -13,25 +13,10 @@ import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./PlayerEntry.module.css";
 import FoneInput from "../../input/FoneInput";
-import ExtraTypeBox from "./ExtraTypeBox";
 import SubOrContractBox from "./SubOrContractBox";
 import SubmitDeleteBox from "./SubmitDeleteBox";
 
-let pObject = {
-  id: "",
-  fullName: "",
-  email: "",
-  homePhone: "",
-  cellPhone: "",
-  addressLine1: "",
-  addressLine2: "",
-  city: "",
-  state: "",
-  zip: "",
-  unions: "",
-  primaryType: "",
-  secondaryType: "",
-};
+let pObject = {};
 
 const nameMaker = (fullEnteredName) => {
   if (!fullEnteredName) {
@@ -48,6 +33,7 @@ const nameMaker = (fullEnteredName) => {
 
 const PlayerEntry = (props) => {
   const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
+  const [player, setPlayer] = useState([]);
   const [clickedThings, setClickedThings] = useState({
     instrumentDropDown: false,
     deleteButton: false,
@@ -55,17 +41,23 @@ const PlayerEntry = (props) => {
 
   const [contracted, setContracted] = useState(false);
 
-  if (props.player) {
-    pObject = { ...props.player };
-  }
+  // if (props.player) {
+  //   pObject = { ...props.player };
+  // }
 
-  const [player, setPlayer] = useState(pObject);
+  // const [player, setPlayer] = useState(pObject);
+
+  // if (props.player) {
+  //   setPlayer({...props.player})
+  // }
 
   useEffect(() => {
     if (props.player) {
-      props.player.type === "CONTRACT"
-        ? setContracted(true)
-        : setContracted(false);
+      setPlayer({ ...props.player });
+
+      // props.player.type === "CONTRACT"
+      //   ? setContracted(true)
+      //   : setContracted(false);
     }
   }, [props.player]);
 
@@ -156,7 +148,7 @@ const PlayerEntry = (props) => {
     setPlayer({ ...player, [key]: event.target.value });
   };
 
-  const inputter = { label: "", key: "", populator, pObject };
+  const inputter = { label: "", key: "", populator, player };
   const state = { player, setPlayer };
 
   const contractTypeClicked = (contractedOrNot) => {
@@ -176,7 +168,7 @@ const PlayerEntry = (props) => {
                 setPlayer({ ...player, fullName: event.target.value })
               }
               placeholder={
-                props.player && `${pObject.firstNameArea} ${pObject.lastName}`
+                props.player && `${player.firstNameArea} ${player.lastName}`
               }
               style={{ width: "50%" }}
             />
@@ -198,13 +190,13 @@ const PlayerEntry = (props) => {
               whichType={"homePhone"}
               player={player}
               playerSetter={setPlayer}
-              pObject={pObject}
+              // pObject={pObject}
             />
             <FoneInput
               whichType={"cellPhone"}
               player={player}
               playerSetter={setPlayer}
-              pObject={pObject}
+              // pObject={pObject}
             />
           </div>
           <BigInput
@@ -287,3 +279,17 @@ const PlayerEntry = (props) => {
 };
 
 export default PlayerEntry;
+
+// id: "",
+// fullName: "",
+// email: "",
+// homePhone: "",
+// cellPhone: "",
+// addressLine1: "",
+// addressLine2: "",
+// city: "",
+// state: "",
+// zip: "",
+// unions: "",
+// primaryType: "",
+// secondaryType: "NON",

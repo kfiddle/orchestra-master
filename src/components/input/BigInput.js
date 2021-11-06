@@ -3,9 +3,9 @@ import React from "react";
 import classes from "./Input.module.css";
 
 const BigInput = React.forwardRef((props, ref) => {
-  const { label, key, populator, pObject, style, type, value } = props.inputObject;
+  const { label, key, populator, player, style, type, value } = props.inputObject;
 
-  const placeHolder = pObject[key];
+  const placeHolder = player[key];
 
   let inputType = "text";
 

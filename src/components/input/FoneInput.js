@@ -4,9 +4,10 @@ import classes from "./FoneInput.module.css";
 
 const FoneInput = (props) => {
   const [foneNumber, setFoneNumber] = useState("");
-  const { whichType, player, playerSetter, pObject } = props;
+  const { whichType, player, playerSetter } = props;
 
   let key = whichType;
+  let placeholder = player[whichType];
 
   let label = whichType === "homePhone" ? "Home Phone" : "Cell Phone";
 
@@ -53,7 +54,7 @@ const FoneInput = (props) => {
         onChange={formatNumber}
         onKeyDown={checkForDelete}
         value={foneNumber}
-        //   placeholder={placeHolder}
+        placeholder={placeholder}
         //   style={style}
       ></input>
     </div>
