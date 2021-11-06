@@ -96,7 +96,8 @@ const PlayerEntry = (props) => {
       primaryType: contracted ? "CONTRACT" : "SUB",
     };
 
-    // console.log(playerToSend.homePhone);
+    console.log(playerToSend.homePhone);
+    console.log(playerToSend.cellPhone);
 
     const sendPlayerOff = async () => {
       let flag = true;
@@ -264,8 +265,6 @@ const PlayerEntry = (props) => {
 };
 
 export default PlayerEntry;
-
-
 
 // id: "",
 // fullName: "",
