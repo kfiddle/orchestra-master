@@ -38,7 +38,7 @@ const SubOrContractBox = (props) => {
         </button>
       </div>
 
-      <ExtraTypeBox contracted={contracted}/>
+      <ExtraTypeBox contracted={contracted} />
     </div>
   );
 };

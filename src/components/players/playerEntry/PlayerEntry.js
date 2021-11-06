@@ -43,9 +43,11 @@ const PlayerEntry = (props) => {
     if (props.player) {
       setPlayer({ ...props.player });
 
-      // props.player.type === "CONTRACT"
-      //   ? setContracted(true)
-      //   : setContracted(false);
+      if (props.player.primaryType === "CONTRACT") {
+        setContracted(true);
+      } else {
+        setContracted(false);
+      }
     }
   }, [props.player]);
 
@@ -95,9 +97,6 @@ const PlayerEntry = (props) => {
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
       primaryType: contracted ? "CONTRACT" : "SUB",
     };
-
-    console.log(playerToSend.homePhone);
-    console.log(playerToSend.cellPhone);
 
     const sendPlayerOff = async () => {
       let flag = true;
