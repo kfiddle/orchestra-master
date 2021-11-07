@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
 import PlayersList from "../components/players/PlayersList";
+import ContractsRoster from "../components/players/contractsRoster/ContractsRoster";
+
 import GetAList from "../components/helperFunctions/GetAList";
 
 const AllContractedPlayers = (props) => {
@@ -19,7 +21,10 @@ const AllContractedPlayers = (props) => {
     getContractedPlayers();
   }, [props.modalIsClosed]);
 
-  return <PlayersList list={listOfPlayers} type={'contracts'} />;
+  // return <PlayersList list={listOfPlayers} type={'contracts'} />;
+
+  return <ContractsRoster list={listOfPlayers} />
+
 };
 
 export default AllContractedPlayers;

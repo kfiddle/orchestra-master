@@ -57,7 +57,7 @@ const MainNavigation = (props) => {
               activeClassName={classes.active}
             >
               {" "}
-              Contract Players
+              Contract Roster
             </NavLink>
           </li>
 
