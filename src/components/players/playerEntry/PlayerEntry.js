@@ -95,7 +95,7 @@ const PlayerEntry = (props) => {
         ? props.player.firstNameArea
         : enteredFirstNameArea,
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
-      primaryType: contracted ? "CONTRACT" : "SUB",
+      contracted,
     };
 
     const sendPlayerOff = async () => {
@@ -139,9 +139,9 @@ const PlayerEntry = (props) => {
   const inputter = { label: "", key: "", populator, player };
   const state = { player, setPlayer };
 
-  const contractTypeClicked = (contractedOrNot) => {
-    setContracted(contractedOrNot);
-  };
+  // const contractTypeClicked = (contractedOrNot) => {
+  //   setContracted(contractedOrNot);
+  // };
 
   return (
     <InstrumentsList.Provider
