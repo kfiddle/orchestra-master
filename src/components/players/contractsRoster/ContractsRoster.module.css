@@ -1,4 +1,11 @@
 .outerContainer {
+  margin-top: 10vh;
+  display: flex;
+}
+
+.innerContainer {
+  width: 90%;
+  margin: 0 auto;
 }
 
 .playerContainer {

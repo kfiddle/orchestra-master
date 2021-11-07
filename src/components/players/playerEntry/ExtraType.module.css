@@ -38,6 +38,7 @@
 
 .contractBox {
   display: flex;
+  /* flex-direction: column; */
 }
 
 .contractButton {
@@ -54,6 +55,14 @@
   cursor: pointer;
   float: right;
   transition: all 0.25s ease-out;
+  animation: slide-up 300ms ease-out forwards;
+}
+
+.contractInputBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   animation: slide-up 300ms ease-out forwards;
 }
 
