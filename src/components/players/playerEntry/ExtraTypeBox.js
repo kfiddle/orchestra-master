@@ -10,9 +10,10 @@ const trumpets = ["Principal", "2", "3", "4"];
 const horns = ["Principal", "Assistant", "2", "3", "4"];
 const trombones = ["Principal", "2", "3"];
 const twos = ["Principal", "2"];
+const threes = ["Principal", "2", "3"];
 
 const violin1 = ["Concertmaster", "Associate", "Section"];
-const otherStrings = ["Section", "Associate", "Principal"];
+const otherStrings = ["Principal", "Associate", "Section"];
 const allElse = ["Section", "Associate", "Principal"];
 
 const ExtraTypeBox = (props) => {
@@ -21,7 +22,11 @@ const ExtraTypeBox = (props) => {
 
   const contracted = props.contracted;
 
-  const state = { player: props.player, setPlayer: props.setter };
+  const player = props.player;
+  const setter = props.setter;
+
+  const contract = props.contract;
+  const contractSetter = props.contractSetter;
 
   useEffect(() => {
     if (clickedInstrumentList.length > 0) {
@@ -54,6 +59,8 @@ const ExtraTypeBox = (props) => {
         setWhichContracts(trumpets);
       } else if (clickedInstrumentList[0].name === "Horn") {
         setWhichContracts(horns);
+      } else if (clickedInstrumentList[0].name === "Percussion") {
+        setWhichContracts(threes);
       } else {
         setWhichContracts(allElse);
       }
@@ -61,13 +68,18 @@ const ExtraTypeBox = (props) => {
     }
   }, [clickedInstrumentList]);
 
-  const displayableContracts = whichContracts.map((contract) => (
+  const setRank = (rankNumber) => {
+    contractSetter({...contract, rank: rankNumber})
+  }
+
+  const displayableContracts = whichContracts.map((chair) => (
     <button
-      key={whichContracts.indexOf(contract)}
+      key={whichContracts.indexOf(chair)}
       className={classes.contractButton}
+      onClick={() => setRank(whichContracts.indexOf(chair) + 1)}
       type={"button"}
     >
-      {contract}
+      {chair}
     </button>
   ));
 

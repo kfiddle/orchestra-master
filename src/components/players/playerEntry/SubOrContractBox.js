@@ -6,6 +6,8 @@ const SubOrContractBox = (props) => {
   const setter = props.setter;
   const contracted = props.contracted;
   const player = props.player;
+  const contract = props.contract;
+  const contractSetter = props.contractSetter;
 
   const contractTypeClicked = (type) => {
     setter(type);
@@ -38,7 +40,13 @@ const SubOrContractBox = (props) => {
         </button>
       </div>
 
-      <ExtraTypeBox contracted={contracted} setter={setter} player={player} />
+      <ExtraTypeBox
+        contracted={contracted}
+        setter={setter}
+        player={player}
+        contract={contract}
+        contractSetter={contractSetter}
+      />
     </div>
   );
 };

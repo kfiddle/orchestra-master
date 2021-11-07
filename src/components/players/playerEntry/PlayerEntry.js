@@ -31,7 +31,8 @@ const nameMaker = (fullEnteredName) => {
 
 const PlayerEntry = (props) => {
   const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
-  const [player, setPlayer] = useState([]);
+  const [player, setPlayer] = useState({});
+  const [contract, setContract] = useState({});
   const [clickedThings, setClickedThings] = useState({
     instrumentDropDown: false,
     deleteButton: false,
@@ -139,10 +140,6 @@ const PlayerEntry = (props) => {
   const inputter = { label: "", key: "", populator, player };
   const state = { player, setPlayer };
 
-  // const contractTypeClicked = (contractedOrNot) => {
-  //   setContracted(contractedOrNot);
-  // };
-
   return (
     <InstrumentsList.Provider
       value={{ clickedInstrumentList: clickedInstrumentList, instrumentToList }}
@@ -248,6 +245,8 @@ const PlayerEntry = (props) => {
             setter={setContracted}
             player={player}
             contracted={contracted}
+            contract={contract}
+            contractSetter={setContract}
           />
           <SubmitDeleteBox
             o={{
