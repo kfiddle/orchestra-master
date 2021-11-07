@@ -69,13 +69,18 @@ const ExtraTypeBox = (props) => {
   }, [clickedInstrumentList]);
 
   const setRank = (rankNumber) => {
-    contractSetter({...contract, rank: rankNumber})
-  }
+    contractSetter({ ...contract, rank: rankNumber });
+    console.log(contract);
+  };
 
   const displayableContracts = whichContracts.map((chair) => (
     <button
       key={whichContracts.indexOf(chair)}
-      className={classes.contractButton}
+      className={
+        whichContracts.indexOf(chair) === contract.rank - 1
+          ? classes.highlightedContract
+          : classes.contractButton
+      }
       onClick={() => setRank(whichContracts.indexOf(chair) + 1)}
       type={"button"}
     >
