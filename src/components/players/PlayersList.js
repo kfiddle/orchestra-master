@@ -19,28 +19,29 @@ const PlayersList = (props) => {
   const instrumentChooser = async (instrument) => {
     setChosenInstrument(instrument);
 
-    let typeToSend = "";
-    props.type === "subs" ? (typeToSend = "SUB") : (typeToSend = "CONTRACT");
+    let contracted = false;
+    if (props.type === "contracts") {
+      contracted = true;
+    }
 
     const allPlayersOfInstrumentResponse = await PushBasic(
       instrument,
-      "players/" + typeToSend
+      "players/" + contracted
     );
     const jsonified = await allPlayersOfInstrumentResponse.json();
-     setByInstrumentList(jsonified);
+    setByInstrumentList(jsonified);
   };
 
   const playersToDisplay = byInstrumentList.map((player) => (
-    <Player
-      key={player.id}
-      player={player}
-      clicked={clickedPlayerHandler}
-    />
+    <Player key={player.id} player={player} clicked={clickedPlayerHandler} />
   ));
 
   return (
     <Fragment>
-      <ByInstrumentsHeader instrumentChooser={instrumentChooser} chosenInstrument={chosenInstrument} />
+      <ByInstrumentsHeader
+        instrumentChooser={instrumentChooser}
+        chosenInstrument={chosenInstrument}
+      />
       <div className={styles.outerContainer}>
         <div>{playersToDisplay}</div>
       </div>
