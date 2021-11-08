@@ -91,6 +91,8 @@ const PlayerEntry = (props) => {
         : `${player.firstNameArea} ${player.lastName}`
     );
 
+    let partsToSend = clickedInstrumentList.map(part => part.split(' ').join(''));
+
     let playerToSend = {
       ...player,
       firstNameArea: !enteredFirstNameArea
@@ -98,6 +100,7 @@ const PlayerEntry = (props) => {
         : enteredFirstNameArea,
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
       contracted,
+      parts: partsToSend
     };
 
     const sendPlayerOff = async () => {
@@ -109,7 +112,7 @@ const PlayerEntry = (props) => {
         let playerToSendBack = await mainPlayerResponse.json();
 
         if (playerToSendBack.contracted) {
-          let contractToSend = { ...contract, part: "VIOLIN1" };
+          let contractToSend = { ...contract, part: partsToSend[0] };
 
           // let okey = await PushBasic(playerToSendBack, "add-contract");
 
@@ -117,20 +120,22 @@ const PlayerEntry = (props) => {
           );
         }
 
-        clickedInstrumentList.forEach(async (instrument, index) => {
-          let ip = {
-            player: playerToSendBack,
-            instrument: instrument,
-            rank: index,
-          };
-          let playerInstrumentResponse = await PushBasic(ip, "add-instruments");
-          if (!playerInstrumentResponse.ok) {
-            flag = false;
-          }
-        });
-        if (flag) {
-          props.closeModal();
-        }
+        // clickedInstrumentList.forEach(async (instrument, index) => {
+        //   let ip = {
+        //     player: playerToSendBack,
+        //     instrument: instrument,
+        //     rank: index,
+        //   };
+        //   let playerInstrumentResponse = await PushBasic(ip, "add-instruments");
+        //   if (!playerInstrumentResponse.ok) {
+        //     flag = false;
+        //   }
+        // });
+        // if (flag) {
+        //   props.closeModal();
+        // }
+
+        props.closeModal();
       }
     };
     setTimeout(sendPlayerOff, 200);

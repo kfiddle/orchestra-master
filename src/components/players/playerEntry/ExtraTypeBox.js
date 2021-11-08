@@ -31,40 +31,40 @@ const ExtraTypeBox = (props) => {
   useEffect(() => {
     if (clickedInstrumentList.length > 0) {
       if (
-        clickedInstrumentList[0].name === "Flute" ||
-        clickedInstrumentList[0].name === "Oboe" ||
-        clickedInstrumentList[0].name === "Clarinet" ||
-        clickedInstrumentList[0].name === "Bassoon"
+        clickedInstrumentList[0] === "Flute" ||
+        clickedInstrumentList[0] === "Oboe" ||
+        clickedInstrumentList[0] === "Clarinet" ||
+        clickedInstrumentList[0] === "Bassoon"
       ) {
         setWhichContracts(winds);
-      } else if (clickedInstrumentList[0].name === "Trombone") {
+      } else if (clickedInstrumentList[0] === "Trombone") {
         setWhichContracts(trombones);
       } else if (
-        clickedInstrumentList[0].name === "Harp" ||
-        clickedInstrumentList[0].name === "Keyboard" ||
-        clickedInstrumentList[0].name === "Timpani" ||
-        clickedInstrumentList[0].name === "Tuba"
+        clickedInstrumentList[0] === "Harp" ||
+        clickedInstrumentList[0] === "Keyboard" ||
+        clickedInstrumentList[0] === "Timpani" ||
+        clickedInstrumentList[0] === "Tuba"
       ) {
         setWhichContracts(twos);
-      } else if (clickedInstrumentList[0].name === "Violin 1") {
+      } else if (clickedInstrumentList[0] === "Violin 1") {
         setWhichContracts(violin1);
       } else if (
-        clickedInstrumentList[0].name === "Violin2" ||
-        clickedInstrumentList[0].name === "Viola" ||
-        clickedInstrumentList[0].name === "Cello" ||
-        clickedInstrumentList[0].name === "Bass"
+        clickedInstrumentList[0] === "Violin2" ||
+        clickedInstrumentList[0] === "Viola" ||
+        clickedInstrumentList[0] === "Cello" ||
+        clickedInstrumentList[0] === "Bass"
       ) {
         setWhichContracts(otherStrings);
-      } else if (clickedInstrumentList[0].name === "Trumpet") {
+      } else if (clickedInstrumentList[0] === "Trumpet") {
         setWhichContracts(trumpets);
-      } else if (clickedInstrumentList[0].name === "Horn") {
+      } else if (clickedInstrumentList[0] === "Horn") {
         setWhichContracts(horns);
-      } else if (clickedInstrumentList[0].name === "Percussion") {
+      } else if (clickedInstrumentList[0] === "Percussion") {
         setWhichContracts(threes);
       } else {
         setWhichContracts(allElse);
       }
-      console.log(clickedInstrumentList[0].name);
+      console.log(clickedInstrumentList[0]);
     }
   }, [clickedInstrumentList]);
 
