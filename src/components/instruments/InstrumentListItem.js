@@ -7,7 +7,9 @@ import classes from "./InstrumentListItem.module.css";
 const InstrumentListItem = (props) => {
   const { instrumentToList, clickedInstrumentList } =
     useContext(InstrumentsList);
-  const name = props.instrument.name;
+
+  // const name = props.instrument.name;
+  const name = props.instrument;
 
   let outerContainerClass = classes.instrumentItemDiv;
   let transformVar = 0;

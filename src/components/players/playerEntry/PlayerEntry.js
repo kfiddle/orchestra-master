@@ -10,6 +10,7 @@ import BigInput from "../../input/BigInput";
 import BigInput2 from "../../input/BigInput2";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
+import DoubleObjectPush from "../../helperFunctions/pushFunctions/DoubleObjectPush";
 
 import classes from "./PlayerEntry.module.css";
 import FoneInput from "../../input/FoneInput";
@@ -106,6 +107,16 @@ const PlayerEntry = (props) => {
       let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
       if (mainPlayerResponse.ok) {
         let playerToSendBack = await mainPlayerResponse.json();
+
+        if (playerToSendBack.contracted) {
+          let contractToSend = { ...contract, part: "VIOLIN1" };
+
+          // let okey = await PushBasic(playerToSendBack, "add-contract");
+
+          let contractResponse = await PushBasic(contractToSend, "add-contract/" + playerToSendBack.id
+          );
+        }
+
         clickedInstrumentList.forEach(async (instrument, index) => {
           let ip = {
             player: playerToSendBack,
