@@ -10,7 +10,8 @@ const AllContractedPlayers = (props) => {
 
   useEffect(() => {
     const getContractedPlayers = async () => {
-      const allContracts = await GetAList("get-all-contracted-players");
+      // const allContracts = await GetAList("get-all-contracted-players");
+      const allContracts = await GetAList("get-contract-players-by-part/Oboe");
       setListOfPlayers(allContracts);
     };
 
@@ -20,8 +21,6 @@ const AllContractedPlayers = (props) => {
 
     getContractedPlayers();
   }, [props.modalIsClosed]);
-
-  // return <PlayersList list={listOfPlayers} type={'contracts'} />;
 
   return <ContractsRoster list={listOfPlayers} />
 
