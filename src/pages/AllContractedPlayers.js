@@ -13,6 +13,7 @@ const AllContractedPlayers = (props) => {
       // const allContracts = await GetAList("get-all-contracted-players");
       const allContracts = await GetAList("get-all-contracts");
       setListOfPlayers(allContracts);
+      console.log(listOfPlayers)
     };
 
     if (props.modalIsClosed) {
@@ -23,6 +24,7 @@ const AllContractedPlayers = (props) => {
   }, [props.modalIsClosed]);
 
   return <ContractsRoster list={listOfPlayers} />
+  
 
 };
 
