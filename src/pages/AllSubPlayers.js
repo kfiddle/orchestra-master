@@ -22,6 +22,7 @@ const AllSubPlayers = (props) => {
   }, [props.modalIsClosed]);
 
   return <PlayersList list={listOfPlayers} type={'subs'} />;
+  
 };
 
 export default AllSubPlayers;

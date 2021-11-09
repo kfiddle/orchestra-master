@@ -1,16 +1,17 @@
+
 .outerContainer {
   position: relative;
   display: flex;
   align-items: center;
-  margin: 0.5rem 1rem;
+  margin: 1rem 1rem;
   padding: 1rem;
-  width: 75%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  height: 2.5rem;
-  background: rgb(155, 176, 197);
-  color: rgb(31, 1, 1);
-  font-weight: 900;
+  width: 100%;
+  border-radius: 12px;
+  border: 2px solid rgb(102, 98, 98);
+  color:rgb(245, 220, 220);
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .outerContainer:hover {

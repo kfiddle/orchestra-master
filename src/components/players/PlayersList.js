@@ -16,6 +16,8 @@ const PlayersList = (props) => {
     console.log(player.lastName);
   };
 
+  console.log(props.list);
+
   const instrumentChooser = async (instrument) => {
     setChosenInstrument(instrument);
 
