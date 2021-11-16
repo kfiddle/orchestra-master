@@ -14,7 +14,7 @@ const threes = ["Principal", "2", "3"];
 
 const violin1 = ["Concertmaster", "Associate", "Section"];
 const otherStrings = ["Principal", "Associate", "Section"];
-const allElse = ["Section", "Associate", "Principal"];
+const allElse = ["Principal", "Associate", "Section"];
 
 const ExtraTypeBox = (props) => {
   const { clickedInstrumentList } = useContext(InstrumentsList);
@@ -48,13 +48,6 @@ const ExtraTypeBox = (props) => {
         setWhichContracts(twos);
       } else if (clickedInstrumentList[0] === "Violin 1") {
         setWhichContracts(violin1);
-      } else if (
-        clickedInstrumentList[0] === "Violin2" ||
-        clickedInstrumentList[0] === "Viola" ||
-        clickedInstrumentList[0] === "Cello" ||
-        clickedInstrumentList[0] === "Bass"
-      ) {
-        setWhichContracts(otherStrings);
       } else if (clickedInstrumentList[0] === "Trumpet") {
         setWhichContracts(trumpets);
       } else if (clickedInstrumentList[0] === "Horn") {
@@ -70,7 +63,7 @@ const ExtraTypeBox = (props) => {
 
   const setRank = (rankNumber) => {
     contractSetter({ ...contract, rank: rankNumber });
-    console.log(contract);
+    console.log(rankNumber);
   };
 
   const displayableContracts = whichContracts.map((chair) => (

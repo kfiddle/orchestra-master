@@ -91,7 +91,9 @@ const PlayerEntry = (props) => {
         : `${player.firstNameArea} ${player.lastName}`
     );
 
-    let partsToSend = clickedInstrumentList.map(part => part.split(' ').join(''));
+    let partsToSend = clickedInstrumentList.map((part) =>
+      part.split(" ").join("")
+    );
 
     let playerToSend = {
       ...player,
@@ -100,23 +102,23 @@ const PlayerEntry = (props) => {
         : enteredFirstNameArea,
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
       contracted,
-      parts: partsToSend
+      parts: partsToSend,
     };
 
     const sendPlayerOff = async () => {
-      let flag = true;
       let pushFunction = !props.player ? "add-player" : "edit-player";
 
       let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
+  
       if (mainPlayerResponse.ok) {
         let playerToSendBack = await mainPlayerResponse.json();
 
-        if (playerToSendBack.contracted) {
+        if (playerToSend.contracted) {
           let contractToSend = { ...contract, part: partsToSend[0] };
-
-          // let okey = await PushBasic(playerToSendBack, "add-contract");
-
-          let contractResponse = await PushBasic(contractToSend, "add-contract/" + playerToSendBack.id
+          console.log(contract);
+          let contractResponse = await PushBasic(
+            contractToSend,
+            "add-contract/" + playerToSendBack.id
           );
         }
 
