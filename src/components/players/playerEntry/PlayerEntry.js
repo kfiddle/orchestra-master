@@ -153,7 +153,7 @@ const PlayerEntry = (props) => {
     setPlayer({ ...player, [key]: event.target.value });
   };
 
-  const inputter = { label: "", key: "", populator, player };
+  const inputter = { label: "", key: "", populator, pObject: player };
   const state = { player, setPlayer };
 
   return (
