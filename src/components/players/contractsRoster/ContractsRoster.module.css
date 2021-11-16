@@ -4,14 +4,16 @@
 }
 
 .innerContainer {
-  width: 100%;
-  margin: 0 auto;
+  width: 70%;
+  margin: 2rem;
 }
 
 .section {
   position: relative;
   margin-bottom: 2rem;
+  padding: 1rem;
   background: rgb(48, 45, 45);
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,12 +21,12 @@
 
 .sectionTitle {
   position: absolute;
-  left: 1rem;
+  left: 2rem;
   top: 50%;
   color: brown;
   font-weight: bold;
   font-size: 1.5rem;
-  opacity: 0.4;
+  opacity: 0.6;
 
 }
 

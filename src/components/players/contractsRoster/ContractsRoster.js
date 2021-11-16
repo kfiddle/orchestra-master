@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 
 import Player from "../Player";
+import PlayerInfoBox from "../playerInfoBox/PlayerInfoBox";
 import GetAList from "../../helperFunctions/GetAList";
 
 import classes from "./ContractsRoster.module.css";
 
 const ContractsRoster = (props) => {
   const [partsList, setPartsList] = useState([]);
+  const [infoBoxClicked, setInfoBoxClicked] = useState(false);
+  const [clickedPlayer, setClickedPlayer] = useState({});
   const playersList = props.list;
 
   useEffect(() => {
@@ -21,10 +24,10 @@ const ContractsRoster = (props) => {
     console.log(partsList);
   }, []);
 
-  const clickedPlayerHandler = () => {
-    console.log("hello");
+  const clickedPlayerHandler = (player) => {
+    setInfoBoxClicked(true);
+    setClickedPlayer(player);
   };
-
 
   const sections = partsList.map((section) => {
     let filledSection = [];
@@ -53,6 +56,7 @@ const ContractsRoster = (props) => {
   return (
     <div className={classes.outerContainer}>
       <div className={classes.innerContainer}>{sections}</div>
+      {infoBoxClicked && <PlayerInfoBox player={clickedPlayer} />}
     </div>
   );
 };

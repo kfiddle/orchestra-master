@@ -6,20 +6,24 @@ import PlayerEntry from "./playerEntry/PlayerEntry";
 import styles from "./Player.module.css";
 
 const Player = (props) => {
-  const { firstNameArea, lastName, email, cellPhone, contract } =
-    props.player;
+  const { firstNameArea, lastName, email, cellPhone, contract } = props.player;
+
   const [editClicked, setEditClicked] = useState(false);
 
   const editPlayer = () => {
-    setEditClicked(true)
+    setEditClicked(true);
   };
 
   const closeModal = () => {
-    setEditClicked(false)
-  }
+    setEditClicked(false);
+  };
+
+  const showInfo = () => {
+    props.clicked(props.player);
+  };
 
   return (
-    <div className={styles.outerContainer}>
+    <div className={styles.outerContainer} onClick={showInfo}>
       <div className={styles.name}>
         {firstNameArea} {lastName}
       </div>
