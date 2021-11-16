@@ -10,10 +10,8 @@ const AllContractedPlayers = (props) => {
 
   useEffect(() => {
     const getContractedPlayers = async () => {
-      // const allContracts = await GetAList("get-all-contracted-players");
       const allContracts = await GetAList("get-all-contracts");
       setListOfPlayers(allContracts);
-      console.log(listOfPlayers)
     };
 
     if (props.modalIsClosed) {
@@ -23,9 +21,7 @@ const AllContractedPlayers = (props) => {
     getContractedPlayers();
   }, [props.modalIsClosed]);
 
-  return <ContractsRoster list={listOfPlayers} />
-  
-
+  return <ContractsRoster list={listOfPlayers} />;
 };
 
 export default AllContractedPlayers;

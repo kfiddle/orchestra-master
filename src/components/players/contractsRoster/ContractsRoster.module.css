@@ -4,10 +4,31 @@
 }
 
 .innerContainer {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
+}
+
+.section {
+  position: relative;
+  margin-bottom: 2rem;
+  background: rgb(48, 45, 45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionTitle {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  color: brown;
+  font-weight: bold;
+  font-size: 1.5rem;
+  opacity: 0.4;
+
 }
 
 .playerContainer {
   font-size: 1.5rem;
+  width: 70%;
 }

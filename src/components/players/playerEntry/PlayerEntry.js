@@ -114,28 +114,13 @@ const PlayerEntry = (props) => {
         let playerToSendBack = await mainPlayerResponse.json();
 
         if (playerToSend.contracted) {
-          let contractToSend = { ...contract, part: partsToSend[0] };
+          let contractToSend = { ...contract, part: partsToSend[0], part2:partsToSend[1] };
           console.log(contract);
           let contractResponse = await PushBasic(
             contractToSend,
             "add-contract/" + playerToSendBack.id
           );
         }
-
-        // clickedInstrumentList.forEach(async (instrument, index) => {
-        //   let ip = {
-        //     player: playerToSendBack,
-        //     instrument: instrument,
-        //     rank: index,
-        //   };
-        //   let playerInstrumentResponse = await PushBasic(ip, "add-instruments");
-        //   if (!playerInstrumentResponse.ok) {
-        //     flag = false;
-        //   }
-        // });
-        // if (flag) {
-        //   props.closeModal();
-        // }
 
         props.closeModal();
       }
