@@ -8,7 +8,9 @@ const StringInputs = (props) => {
   };
 
   return (
-    <div className={classes.outerContainer}>
+    <div className={classes.stringsOuter}>
+      <div className={classes.label}>Strings</div>
+
       <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Modal from "../UI/modal/Modal";
 
+import WindInputs from "./orchestrationInputs/WindInputs";
+import BrassInputs from "./orchestrationInputs/BrassInputs";
+import PercussionInputs from "./orchestrationInputs/PercussionInputs";
 import StringInputs from "./orchestrationInputs/StringInputs";
 
 import classes from "./OrchestrationEntry.module.css";
@@ -12,8 +15,8 @@ const OrchestrationEntry = (props) => {
   const currentPerformancePiece = props.pp ? props.pp : "";
 
   const submitOrchestration = () => {
-      console.log(orchestration)
-  }
+    console.log(orchestration);
+  };
 
   return (
     <Modal closeModal={props.closeModal}>
@@ -25,14 +28,11 @@ const OrchestrationEntry = (props) => {
         </div>
 
         <div className={classes.inputsContainer}>
-          <div className={classes.windsBox}>
-            <input type={"text"}></input>
-          </div>
-          <div className={classes.brassBox}></div>
-          <div className={classes.percussionKeyBoardBox}></div>
-          <div className={classes.stringsBox}>
-            <StringInputs stateList={stateList} />
-          </div>
+          <WindInputs stateList={stateList} />
+          <BrassInputs stateList={stateList} />
+          <PercussionInputs stateList={stateList} />
+
+          <StringInputs stateList={stateList} />
         </div>
 
         <div className={classes.buttonDiv}>

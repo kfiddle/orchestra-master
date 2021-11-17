@@ -1,8 +1,8 @@
 .outerContainer {
   width: 90%;
   display: flex;
-  margin: 0 0 0 5%;
-  justify-content: center;
+  margin: 0;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .titleDiv {
-  margin: 1rem 4rem 0 2rem;
+  margin: 1rem;
 }
 
 .titleDiv h2 {

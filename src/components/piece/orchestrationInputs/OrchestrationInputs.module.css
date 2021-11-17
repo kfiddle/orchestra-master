@@ -17,15 +17,42 @@
 }
 
 .outerContainer {
-    display: flex;
+  display: flex;
 }
 
-.inputsContainer{
-    display: flex;
-    flex-direction: column;
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+    width: 13%;
+    padding-right: 1rem;
+}
+
+.winds {
+  width: 7rem;
+  margin: 2rem;
+}
+
+.brass {
+  width: 7rem;
+  margin: 2rem;
+}
+
+
+
+.percussion {
+  width: 7rem;
+  margin: 2rem;
+}
+
+.stringsOuter {
+  margin-top: 2rem;
+  display: flex;
 }
 
 .strings {
-    width: 4rem;
-    margin: 1rem;
+  width: 4rem;
+  margin: 1rem;
 }
