@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 
 import OrchestrationEntry2 from "./OrchestrationEntry2";
+import OrchestrationEntry from "./OrchestrationEntry";
 
 import styles from "./Piece.module.css";
 
@@ -39,7 +40,9 @@ const ConsolePiece = (props) => {
       </div>
 
       {orchestrationClicked && (
-        <OrchestrationEntry2 piece={props.piece} pp={props.pp} closeModal={closeModal} />
+
+        // <OrchestrationEntry2 piece={props.piece} pp={props.pp} closeModal={closeModal} />
+        <OrchestrationEntry closeModal={closeModal} pp={props.pp}/>
       )}
     </div>
   );

@@ -18,11 +18,9 @@ const AllSubPlayers = (props) => {
     if (props.modalIsClosed) {
       getSubPlayers();
     }
-
   }, [props.modalIsClosed]);
 
-  return <PlayersList list={listOfPlayers} type={'subs'} />;
-  
+  return <PlayersList list={listOfPlayers} type={"subs"} />;
 };
 
 export default AllSubPlayers;

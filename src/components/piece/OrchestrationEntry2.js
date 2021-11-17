@@ -6,15 +6,17 @@ import Modal from "../UI/modal/Modal";
 
 import BigInput from "../input/BigInput";
 import OrchestrationInput from "./OrchestrationInput";
-import Enums from '../enums/Enums';
+import Enums from "../enums/Enums";
+
+import useGetAList from "../../hooks/useGetAList";
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import DoubleObjectPush from "../helperFunctions/pushFunctions/DoubleObjectPush";
 import GetAList from "../helperFunctions/GetAList";
 
 const OrchestrationEntry2 = (props) => {
-
-  const initialEnums = [...Enums];
+  const partsList = useGetAList("get-all-parts");
+  const initialEnums = [...partsList];
 
   let startingObject = {};
 

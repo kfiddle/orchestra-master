@@ -1,7 +1,15 @@
 .infoContainer {
   margin-left: 3rem;
-
+  background: linear-gradient(to left, transparent, #362d2d, rgb(90, 85, 85));
+  height: 100vh;
+  width: fit-content;
+  padding: 2rem;
+  color: white;
   animation: slide-in 300ms ease-out forwards;
+}
+
+.nameDiv {
+    
 }
 
 @keyframes slide-in {
