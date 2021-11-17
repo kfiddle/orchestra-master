@@ -4,8 +4,6 @@ const OrchestrationInput = (props) => {
   const { label, key, populator, } = props.inputObject;
 
 
-
-
   return (
     <div className={classes.control}>
       <label>{label}</label>

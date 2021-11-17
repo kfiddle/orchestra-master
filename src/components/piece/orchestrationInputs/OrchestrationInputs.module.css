@@ -1,0 +1,31 @@
+.input,
+.control textarea {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #afaaaa;
+  border: 1px solid #c1d1d1;
+  display: block;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.input:focus,
+.control textarea:focus {
+  background-color: #e9dcdc;
+  outline-color: rgb(46, 40, 39);
+}
+
+.outerContainer {
+    display: flex;
+}
+
+.inputsContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.strings {
+    width: 4rem;
+    margin: 1rem;
+}

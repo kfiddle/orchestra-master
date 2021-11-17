@@ -73,50 +73,7 @@ const OrchestrationEntry2 = (props) => {
         </div>
         <form className={classes.form}>
           <div>
-            <OrchestrationInput
-              inputObject={{
-                ...inputter,
-                label: "Violin 1",
-                key: "VIOLIN1",
-              }}
-            />
-            <OrchestrationInput
-              inputObject={{
-                ...inputter,
-                label: "Violin 2",
-                key: "VIOLIN2",
-              }}
-            />
-            <OrchestrationInput
-              inputObject={{
-                ...inputter,
-                label: "Viola",
-                key: "VIOLA",
-              }}
-            />{" "}
-            <OrchestrationInput
-              inputObject={{
-                ...inputter,
-                label: "Cello",
-                key: "CELLO",
-              }}
-            />{" "}
-            <OrchestrationInput
-              inputObject={{
-                ...inputter,
-                label: "Bass",
-                key: "BASS",
-              }}
-            />
-          </div>
-          <div>
-            <OrchestrationInput
-              inputObject={{
-                ...inputter,
-                label: "Flute",
-                key: "FLUTE",
-              }}
-            />
+
             <OrchestrationInput
               inputObject={{
                 ...inputter,
@@ -124,6 +81,14 @@ const OrchestrationEntry2 = (props) => {
                 key: "PICCOLO",
               }}
             />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Flute",
+                key: "FLUTE",
+              }}
+            />
+
             <OrchestrationInput
               inputObject={{
                 ...inputter,
@@ -153,6 +118,8 @@ const OrchestrationEntry2 = (props) => {
               }}
             />
           </div>
+
+        
           <div>
             <OrchestrationInput
               inputObject={{
@@ -220,6 +187,47 @@ const OrchestrationEntry2 = (props) => {
               }}
             />
           </div>
+
+          <div>
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Violin 1",
+                key: "VIOLIN1",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Violin 2",
+                key: "VIOLIN2",
+              }}
+            />
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Viola",
+                key: "VIOLA",
+              }}
+            />{" "}
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Cello",
+                key: "CELLO",
+              }}
+            />{" "}
+            <OrchestrationInput
+              inputObject={{
+                ...inputter,
+                label: "Bass",
+                key: "BASS",
+              }}
+            />
+          </div>
+
+
+
           <div></div>
 
           <div className={classes.buttonDiv}>
