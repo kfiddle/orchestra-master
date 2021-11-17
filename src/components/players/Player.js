@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 
 import PlayerEntry from "./playerEntry/PlayerEntry";
+import useContractFormatter from "../../hooks/useContractFormatter";
 
 import styles from "./Player.module.css";
 
@@ -9,6 +10,8 @@ const Player = (props) => {
   const { firstNameArea, lastName, email, cellPhone, contract } = props.player;
 
   const [editClicked, setEditClicked] = useState(false);
+
+  const formattedContract = useContractFormatter(contract);
 
   const editPlayer = () => {
     setEditClicked(true);
@@ -27,7 +30,7 @@ const Player = (props) => {
       <div className={styles.name}>
         {firstNameArea} {lastName}
       </div>
-      <div className={styles.instrument}></div>
+      <div className={styles.contractTitle}>{formattedContract}</div>
       <div className={styles.email}>{email}</div>
       <div className={styles.cellPhone}>{cellPhone}</div>
       <div className={styles.editButtonDiv}>

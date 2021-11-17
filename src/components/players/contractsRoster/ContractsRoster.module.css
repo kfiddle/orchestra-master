@@ -11,12 +11,12 @@
 .section {
   position: relative;
   margin-bottom: 2rem;
-  padding: 1rem;
+  padding: 2rem;
   background: rgb(48, 45, 45);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .sectionTitle {
@@ -26,7 +26,7 @@
   color: brown;
   font-weight: bold;
   font-size: 1.5rem;
-  opacity: 0.6;
+  opacity: 0.8;
 
 }
 

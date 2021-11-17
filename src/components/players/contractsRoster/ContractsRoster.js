@@ -21,7 +21,6 @@ const ContractsRoster = (props) => {
     };
 
     getAllParts();
-    console.log(partsList);
   }, []);
 
   const clickedPlayerHandler = (player) => {

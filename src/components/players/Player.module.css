@@ -3,8 +3,8 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin: 1rem 1rem;
-  padding: 1rem;
+  margin: .5rem;
+  padding: 1rem 1rem 1rem 2rem;
   width: 90%;
   border-radius: 12px;
   border: 2px solid rgb(102, 98, 98);
@@ -19,10 +19,10 @@
 }
 
 .name {
-  width: 15%;
+  width: 23%;
 }
 
-.instrument {
+.contractTitle {
   width: 10%;
 }
 
