@@ -7,18 +7,9 @@ import { SubmitPiece } from "../helperFunctions/pushFunctions/SubmitFunctions";
 
 import classes from "./PieceEntry.module.css";
 
-const pieceObject = {
-  id: "",
-  title: "",
-  composerFirstName: "",
-  composerLastName: "",
-  duration: "",
-  notes: "",
-  arranger: "",
-  otherName: "",
-  publisher: "",
-  libNumber: "",
-};
+const pieceObject = {};
+
+
 
 const PieceEntry = (props) => {
   const [instrumentationClicked, setInstrumentationClicked] = useState(false);
@@ -56,6 +47,17 @@ const PieceEntry = (props) => {
     ["publisher", "Publisher"],
     ["libNumber", "Library Catolog #"],
   ];
+
+  // id,
+// prefix,
+// suffix,
+// instrumentation,
+// vocalistSoloist,
+// percBreakdown,
+// notes,
+// status,
+// sign,
+// updated,
 
   const theInputs = inputDeets.map((name) => (
     <BigInput

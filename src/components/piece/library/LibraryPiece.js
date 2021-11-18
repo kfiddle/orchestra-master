@@ -10,14 +10,22 @@ const LibraryPiece = (props) => {
 
   const {
     id,
-    title,
+    prefix,
+    libNumber,
+    suffix,
     composerName,
     arranger,
+    title,
     otherName,
     publisher,
-    libNumber,
     duration,
+    instrumentation,
+    vocalistSoloist,
+    percBreakdown,
     notes,
+    status,
+    sign,
+    updated,
   } = props.piece;
 
   const openOrchestration = () => {
