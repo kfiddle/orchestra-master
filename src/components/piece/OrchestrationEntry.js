@@ -6,6 +6,8 @@ import BrassInputs from "./orchestrationInputs/BrassInputs";
 import PercussionInputs from "./orchestrationInputs/PercussionInputs";
 import StringInputs from "./orchestrationInputs/StringInputs";
 
+import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+
 import classes from "./OrchestrationEntry.module.css";
 
 const OrchestrationEntry = (props) => {
@@ -15,7 +17,17 @@ const OrchestrationEntry = (props) => {
   const currentPerformancePiece = props.pp ? props.pp : "";
 
   const submitOrchestration = () => {
-    console.log(orchestration);
+    let flag = true;
+
+    for (let numbOnPart in orchestration) {
+      let response = await PushBasic(numbOnPart, currentPerformancePiece);
+      if (!response.ok) {
+        flag = false;
+      }
+      if (flag) {
+        modalCloser();
+      }
+    }
   };
 
   return (
