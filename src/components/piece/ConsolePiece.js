@@ -12,7 +12,6 @@ const ConsolePiece = (props) => {
   const [orchestrationClicked, setOrchestrationClicked] = useState(false);
   const [clickedOuterContainer, setClickedOuterContainer] = useState(false);
 
-
   const clickedOrNot = props.activePiece? styles.clicked: styles.unclicked;
 
   const clickedPieceHandler = () => {
@@ -35,15 +34,13 @@ const ConsolePiece = (props) => {
       <div className={styles.composerDiv}>{composer}</div>
       <div className={styles.titleDiv}>{title}</div>
 
-      <div className={styles.editIcon}>
+      {/* <div className={styles.editIcon}>
         <FiEdit onClick={openOrchestration} />
-      </div>
+      </div> */}
 
-      {orchestrationClicked && (
-
-        // <OrchestrationEntry2 piece={props.piece} pp={props.pp} closeModal={closeModal} />
-        <OrchestrationEntry closeModal={closeModal} pp={props.pp}/>
-      )}
+      {/* {orchestrationClicked && (
+        <OrchestrationEntry closeModal={closeModal} piece={piece}/>
+      )} */}
     </div>
   );
 };

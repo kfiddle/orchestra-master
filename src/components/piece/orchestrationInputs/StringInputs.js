@@ -14,27 +14,27 @@ const StringInputs = (props) => {
       <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
-        onChange={(event) => setANumber(event, "VIOLIN1")}
+        onChange={(event) => setANumber(event, "Violin1")}
       ></input>
       <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
-        onChange={(event) => setANumber(event, "VIOLIN2")}
+        onChange={(event) => setANumber(event, "Violin2")}
       ></input>
       <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
-        onChange={(event) => setANumber(event, "VIOLA")}
+        onChange={(event) => setANumber(event, "Viola")}
       ></input>
       <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
-        onChange={(event) => setANumber(event, "CELLO")}
+        onChange={(event) => setANumber(event, "Cello")}
       ></input>
       <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
-        onChange={(event) => setANumber(event, "BASS")}
+        onChange={(event) => setANumber(event, "Bass")}
       ></input>
     </div>
   );

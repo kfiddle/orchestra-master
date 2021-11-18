@@ -24,12 +24,12 @@ const ListOfPieces = (props) => {
   }, [props.modalIsClosed, sortOption]);
 
   const displayablePieces = pieces.map((piece) => (
-    <LibraryPiece key={piece.id} piece={piece} />
+    <LibraryPiece key={piece.id} piece={piece} closeModal={props.closeModal} />
   ));
 
   const sorter = (sortOption) => {
     if (sortOption === "Composer") {
-      setSortOption("composerLastName");
+      setSortOption("composerName");
     } else if (sortOption === "Library Catalog") {
       setSortOption("libNumber");
     } else if (sortOption === "Arranger") {

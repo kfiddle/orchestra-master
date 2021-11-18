@@ -50,8 +50,7 @@ const PieceEntry = (props) => {
   const inputDeets = [
     ["title", "Title", "80%"],
     ["duration", "Duration", "30%"],
-    ["composerLastName", "Composer Last Name", "70%"],
-    ["composerFirstName", "Composer First Name", "70%"],
+    ["composerName", "Composer Name", "70%"],
     ["otherName", "Other Name"],
     ["arranger", "Arranger"],
     ["publisher", "Publisher"],
@@ -108,7 +107,7 @@ const PieceEntry = (props) => {
                 Submit
               </button>
             </div>
-            )
+
             {instrumentationClicked && (
               <OrchestrationEntry2
                 closeModal={() => instrumentationModalHandler(false)}

@@ -51,3 +51,7 @@
 .durationDiv {
   width: 5%;
 }
+
+.editIcon:hover {
+  color: blue;
+}

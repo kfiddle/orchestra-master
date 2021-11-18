@@ -14,18 +14,20 @@ const OrchestrationEntry = (props) => {
   const [orchestration, setOrchestration] = useState({});
   const stateList = [orchestration, setOrchestration];
 
-  const currentPerformancePiece = props.pp ? props.pp : "";
+  const piece = props.piece;
 
-  const submitOrchestration = () => {
+  const submitOrchestration = async () => {
     let flag = true;
 
-    for (let numbOnPart in orchestration) {
-      let response = await PushBasic(numbOnPart, currentPerformancePiece);
+    for (let key in orchestration) {
+      let numbOnPart = { part: key, number: orchestration[key], piece };
+
+      let response = await PushBasic(numbOnPart, "add-numb-on-part");
       if (!response.ok) {
         flag = false;
       }
       if (flag) {
-        modalCloser();
+        props.closeModal();
       }
     }
   };
@@ -34,16 +36,13 @@ const OrchestrationEntry = (props) => {
     <Modal closeModal={props.closeModal}>
       <div className={classes.outerContainer}>
         <div className={classes.titleDiv}>
-          <h2>
-            {currentPerformancePiece && currentPerformancePiece.piece.title}
-          </h2>
+          <h2>{piece.title}</h2>
         </div>
 
         <div className={classes.inputsContainer}>
           <WindInputs stateList={stateList} />
           <BrassInputs stateList={stateList} />
           <PercussionInputs stateList={stateList} />
-
           <StringInputs stateList={stateList} />
         </div>
 
@@ -51,7 +50,6 @@ const OrchestrationEntry = (props) => {
           <button className={classes.button} onClick={submitOrchestration}>
             Submit
           </button>
-          )
         </div>
       </div>
     </Modal>

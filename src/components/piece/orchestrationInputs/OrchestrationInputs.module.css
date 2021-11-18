@@ -26,8 +26,10 @@
 }
 
 .label {
-    width: 13%;
-    padding-right: 1rem;
+  width: 13%;
+  padding-right: 1rem;
+  color: rgb(39, 39, 143);
+  font-weight: 900;
 }
 
 .winds {
@@ -39,8 +41,6 @@
   width: 7rem;
   margin: 2rem;
 }
-
-
 
 .percussion {
   width: 7rem;
