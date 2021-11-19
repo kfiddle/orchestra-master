@@ -16,13 +16,15 @@ const OrchestrationEntry = (props) => {
 
   const piece = props.piece;
 
+  // add-numb-on-part/{pieceId}
+
   const submitOrchestration = async () => {
     let flag = true;
 
     for (let key in orchestration) {
-      let numbOnPart = { part: key, number: orchestration[key], piece };
+      let numbOnPart = { part: key, number: orchestration[key]};
 
-      let response = await PushBasic(numbOnPart, "add-numb-on-part");
+      let response = await PushBasic(numbOnPart, "add-numb-on-part/" + piece.id);
       if (!response.ok) {
         flag = false;
       }
