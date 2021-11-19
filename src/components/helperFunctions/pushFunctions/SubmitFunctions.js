@@ -1,7 +1,8 @@
 import PushBasic from "./PushBasic";
 
 const SubmitPiece = async (piece, modalCloser) => {
-  const pieceToSendUp = { ...piece };
+
+  const pieceToSendUp = { ...piece};
   let response = await PushBasic(pieceToSendUp, "add-piece");
   if (response.ok) {
     modalCloser();
