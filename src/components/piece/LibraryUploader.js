@@ -23,7 +23,7 @@ const LibraryUploader = () => {
             title: row[6],
             otherName: row[7],
             publisher: row[8],
-            // duration: row[9],
+            duration: row[9],
             instrumentation: row[10],
             vocalistSoloist: row[11],
             percBreakdown: row[12],
