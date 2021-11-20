@@ -56,7 +56,6 @@ const LibraryUploader = () => {
         onChange={(event) => fileHandler(event)}
         style={{ padding: "10px" }}
       />
-      <input type={"button"} value={"ShowDate"} onClick={showDate} />
     </div>
   );
 };
