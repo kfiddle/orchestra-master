@@ -18,8 +18,6 @@ const RosterSpot = (props) => {
       setMailClicked(false)
   }
 
-  console.log('here')
-
   return (
     <div className={classes.outerContainer} style={{ opacity: gotPlayer }}>
       {props.instrument} {player}
