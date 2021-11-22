@@ -25,16 +25,9 @@ const PlayersList = (props) => {
       contracted = true;
     }
 
-    // const allPlayersOfInstrumentResponse = await PushBasic(
-    //   instrument,
-    //   "players/" + contracted
-    // );
-    // const jsonified = await allPlayersOfInstrumentResponse.json();
-
     const allSubsOfInstrumentResponse = await GetAList("/subs/" + part);
     setByInstrumentList(allSubsOfInstrumentResponse);
 
-    // setByInstrumentList(jsonified);
   };
 
   const playersToDisplay = byInstrumentList.map((player) => (
