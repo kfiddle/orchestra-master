@@ -1,9 +1,10 @@
-.instrumentDiv {
+.partDiv {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 3.2rem;
     padding: 0 1rem;
+    border-radius: 10px;
   }
   
   .highlightedDiv {
@@ -15,7 +16,7 @@
     background: rgb(243, 243, 248);
   }
   
-  .instrumentLi {
+  .partLi {
     font-size: 1.25rem;
     font-weight: 700;
     color: white;
@@ -26,11 +27,11 @@
     font-weight: 900;
   }
   
-  .instrumentDiv:hover {
+  .partDiv:hover {
     background: rgb(243, 243, 248);
   }
   
-  .instrumentDiv:hover li {
+  .partDiv:hover li {
     color: rgb(46, 4, 4);
   }
   
