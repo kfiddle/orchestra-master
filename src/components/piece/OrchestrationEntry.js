@@ -19,18 +19,31 @@ const OrchestrationEntry = (props) => {
   // add-numb-on-part/{pieceId}
 
   const submitOrchestration = async () => {
-    let flag = true;
+    // let flag = true;
+    // for (let key in orchestration) {
+    //   let numbOnPart = { part: key, number: orchestration[key]};
+
+    //   let response = await PushBasic(numbOnPart, "add-numb-on-part/" + piece.id);
+    //   if (!response.ok) {
+    //     flag = false;
+    //   }
+    //   if (flag) {
+    //     props.closeModal();
+    //   }
+    // }
+
+    let partsToSend = new Map();
 
     for (let key in orchestration) {
-      let numbOnPart = { part: key, number: orchestration[key]};
+      partsToSend.set(key, +orchestration[key]);
+      console.log(partsToSend);
+    }
 
-      let response = await PushBasic(numbOnPart, "add-numb-on-part/" + piece.id);
-      if (!response.ok) {
-        flag = false;
-      }
-      if (flag) {
-        props.closeModal();
-      }
+    let pieceToSend = { ...piece, partsList: partsToSend };
+    console.log(pieceToSend)
+    let response = await PushBasic(pieceToSend, "add-full-orchestration");
+    if (response.ok) {
+      props.closeModal();
     }
   };
 
