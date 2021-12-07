@@ -10,7 +10,10 @@ const Season = (props) => {
   useEffect(() => {
     const getAllPerformances = async () => {
       const allPerformances = await GetAList("get-all-performances");
-      setListOfPerformances(allPerformances);
+
+      if (allPerformances.length > 0) {
+        setListOfPerformances(allPerformances);
+      }
     };
 
     if (props.modalIsClosed) {

@@ -35,15 +35,15 @@ const PlayersList = (props) => {
   ));
 
   return (
-    <Fragment>
+    <div className={styles.outerContainer}>
       <InstrumentsSidebar
         partChooser={partChooser}
         chosenInstrument={chosenInstrument}
       />
-      <div className={styles.outerContainer}>
+      <div className={styles.playersDiv}>
         <div>{playersToDisplay}</div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

@@ -1,4 +1,10 @@
 .outerContainer {
-  margin-top: 14rem;
+  display: flex;
+  margin-top: 15rem;
   width: 95%;
+}
+
+.playersDiv {
+  margin-left: 10vw;
+  width: 80%;
 }
