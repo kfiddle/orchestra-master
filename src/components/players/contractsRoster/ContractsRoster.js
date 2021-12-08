@@ -18,7 +18,6 @@ const ContractsRoster = (props) => {
       if (allParts.length > 0) {
         setPartsList(allParts);
       }
-      console.log(allParts);
     };
 
     getAllParts();
@@ -32,7 +31,6 @@ const ContractsRoster = (props) => {
   const sections = partsList.map((section) => {
     let filledSection = [];
     for (let player of playersList) {
-      console.log(player.primaryPart);
       if (player.primaryPart === section) {
         filledSection.push(
           <Player

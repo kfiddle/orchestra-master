@@ -6,8 +6,6 @@ import GetAList from "../components/helperFunctions/GetAList";
 const AllSubPlayers = (props) => {
   const [listOfPlayers, setListOfPlayers] = useState([]);
 
-  console.log(props.number);
-
   useEffect(() => {
     const getSubPlayers = async () => {
       const allSubs = await GetAList("get-all-sub-players");
