@@ -11,6 +11,7 @@ const AllContractedPlayers = (props) => {
   useEffect(() => {
     const getContractedPlayers = async () => {
       const allContracts = await GetAList("get-all-contracted-players");
+      console.log(allContracts);
       setListOfContractPlayers(allContracts);
     };
 

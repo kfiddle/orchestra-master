@@ -96,25 +96,34 @@ const PlayerEntry = (props) => {
     );
 
     let playerToSend = {
-      ...player,
-      firstNameArea: !enteredFirstNameArea
-        ? props.player.firstNameArea
-        : enteredFirstNameArea,
-      lastName: !enteredLastName ? props.player.lastName : enteredLastName,
-      contracted,
-      parts: partsToSend,
+      // ...player,
+      // firstNameArea: !enteredFirstNameArea
+      //   ? props.player.firstNameArea
+      //   : enteredFirstNameArea,
+      // lastName: !enteredLastName ? props.player.lastName : enteredLastName,
+      // contracted,
+      // parts: partsToSend,
+
+      firstNameArea: "sandeedd",
+      lastName: "cHEEKS",
+      type: "CONTRACT",
+      rank: 1,
     };
 
     const sendPlayerOff = async () => {
       let pushFunction = !props.player ? "add-player" : "edit-player";
 
       let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
-  
+
       if (mainPlayerResponse.ok) {
         let playerToSendBack = await mainPlayerResponse.json();
 
         if (playerToSend.contracted) {
-          let contractToSend = { ...contract, part: partsToSend[0], part2:partsToSend[1] };
+          let contractToSend = {
+            ...contract,
+            part: partsToSend[0],
+            part2: partsToSend[1],
+          };
           console.log(contract);
           let contractResponse = await PushBasic(
             contractToSend,
