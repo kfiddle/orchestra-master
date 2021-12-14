@@ -51,7 +51,13 @@
 .durationDiv {
   width: 5%;
 }
+.editIconDiv {
+  width: 5%;
+}
+.orchestrationIconDiv {
+  width: 5%;
+}
 
-.editIcon:hover {
+.orchestrationIconDiv:hover {
   color: blue;
 }

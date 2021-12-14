@@ -1,4 +1,5 @@
 import { FiEdit } from "react-icons/fi";
+import { GiMusicalScore } from "react-icons/gi";
 import { useState } from "react";
 
 import OrchestrationEntry from "../OrchestrationEntry";
@@ -29,7 +30,7 @@ const LibraryPiece = (props) => {
   } = props.piece;
 
   const openOrchestration = () => {
-    setOrchestrationClicked(true)
+    setOrchestrationClicked(true);
     console.log(title);
   };
 
@@ -46,12 +47,16 @@ const LibraryPiece = (props) => {
       <div className={classes.otherNameDiv}>{otherName}</div>
       <div className={classes.publisherDiv}>{publisher}</div>
       <div className={classes.durationDiv}>{duration > 0 && duration}</div>
-      <div className={classes.editIcon}>
+
+      <div className={classes.editIconDiv}>
+        <GiMusicalScore />
+      </div>
+      <div className={classes.orchestrationIconDiv}>
         <FiEdit onClick={openOrchestration} />
       </div>
 
       {orchestrationClicked && (
-        <OrchestrationEntry closeModal={closeModal} piece={props.piece}/>
+        <OrchestrationEntry closeModal={closeModal} piece={props.piece} />
       )}
     </div>
   );
