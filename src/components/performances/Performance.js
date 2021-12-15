@@ -10,8 +10,8 @@ import styles from "./Performance.module.css";
 const Performance = (props) => {
   const [addPieceClicked, setAddPieceClicked] = useState(false);
 
-  const { title, performanceDateTimes } = props.performance;
-  const displayDate = DateFormatter(performanceDateTimes[0].date);
+  const { title, performanceDates } = props.performance;
+  const displayDate = DateFormatter(performanceDates[0].date);
 
   const clickedOrNot = props.active? styles.clicked: styles.unclicked;
 

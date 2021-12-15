@@ -18,37 +18,45 @@ const AllPerformances = (props) => {
   const clickedPerformanceHandler = async (performance) => {
     setPerformanceWasClicked(true);
     props.clicked(performance);
-    const performancePiecesResponse = await PushBasic(performance, "get-performance-pieces")
+    const performancePiecesResponse = await PushBasic(
+      performance,
+      "get-pieces-on-program"
+    );
     const ppsJsonified = await performancePiecesResponse.json();
     setPiecesOfClickedPerformance(ppsJsonified);
   };
 
   const clickedPiece = async (performancePiece) => {
-    setClickedPerformancePiece(performancePiece)
+    setClickedPerformancePiece(performancePiece);
 
     // const rosterResponse = await PushBasic(performancePiece, "get-ppps-from-pp");
-    // const jsonified = await rosterResponse.json(); 
+    // const jsonified = await rosterResponse.json();
     // setPPPList(jsonified);
 
-    const rosterResponse = await PushBasic(performancePiece, "get-chairs-in-pp");
-    const jsonified = await rosterResponse.json(); 
+    const rosterResponse = await PushBasic(
+      performancePiece,
+      "get-chairs-in-pp"
+    );
+    const jsonified = await rosterResponse.json();
     setPPPList(jsonified);
-
-
   };
-
 
   const displayablePerformances = props.list.map((performance) => (
     <Performance
       key={performance.id}
       performance={performance}
       clicked={clickedPerformanceHandler}
-      active={props.activePerformance === performance? true: false}
+      active={props.activePerformance === performance ? true : false}
     />
   ));
 
   const displayablePieces = piecesOfClickedPerformance.map((pp) => (
-    <ConsolePiece key={pp.id} pp={pp} clicked={clickedPiece} activePiece={clickedPerformancePiece === pp? true : false} />
+    <ConsolePiece
+      key={pp.id}
+      pp={pp}
+      clicked={clickedPiece}
+      activePiece={clickedPerformancePiece === pp ? true : false}
+    />
   ));
 
   return (
