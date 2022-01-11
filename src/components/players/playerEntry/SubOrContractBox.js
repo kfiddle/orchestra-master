@@ -11,6 +11,8 @@ const SubOrContractBox = (props) => {
   const contract = props.contract;
   const newContractSetter = props.newContractSetter;
 
+  console.log(player.type);
+
   const contractTypeClicked = (contractType) => {
     newContractSetter({ ...player, type: contractType });
   };
@@ -20,9 +22,9 @@ const SubOrContractBox = (props) => {
       <div className={classes.initialButtonsDiv}>
         <button
           className={
-            player.type === "CONTRACTED"
-              ? `${classes.button} ${classes.subOrContract}`
-              : `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
+            player.type === "SUB"
+              ? `${classes.button} ${classes.subOrContract}  ${classes.highlightedType}`
+              : `${classes.button} ${classes.subOrContract}`
           }
           onClick={() => contractTypeClicked("SUB")}
           type={"button"}
@@ -31,9 +33,9 @@ const SubOrContractBox = (props) => {
         </button>
         <button
           className={
-            player.type === "SUB"
-              ? `${classes.button} ${classes.subOrContract}`
-              : `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
+            player.type === "CONTRACTED"
+              ? `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
+              : `${classes.button} ${classes.subOrContract} `
           }
           onClick={() => contractTypeClicked("CONTRACTED")}
           type={"button"}
