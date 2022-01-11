@@ -3,19 +3,8 @@ import ExtraTypeBox3 from "./ExtraTypeBox3";
 import classes from "./SubOrContractBox.module.css";
 
 const SubOrContractBox = (props) => {
-  const setter = props.setter;
-
-  const contracted = props.contracted;
-
   const player = props.player;
-  const contract = props.contract;
   const setPlayer = props.setPlayer;
-
-  console.log(player.type);
-
-  const contractTypeClicked = (contractType) => {
-    setPlayer({ ...player, type: contractType });
-  };
 
   return (
     <div className={classes.outerContainer}>
@@ -26,7 +15,7 @@ const SubOrContractBox = (props) => {
               ? `${classes.button} ${classes.subOrContract}  ${classes.highlightedType}`
               : `${classes.button} ${classes.subOrContract}`
           }
-          onClick={() => contractTypeClicked("SUB")}
+          onClick={() => setPlayer({ ...player, type: "SUB" })}
           type={"button"}
         >
           Sub
@@ -37,20 +26,14 @@ const SubOrContractBox = (props) => {
               ? `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
               : `${classes.button} ${classes.subOrContract} `
           }
-          onClick={() => contractTypeClicked("CONTRACTED")}
+          onClick={() => setPlayer({ ...player, type: "CONTRACTED" })}
           type={"button"}
         >
           Contract
         </button>
       </div>
 
-      <ExtraTypeBox3
-        contracted={contracted}
-        setter={setter}
-        player={player}
-        contract={contract}
-        setPlayer={setPlayer}
-      />
+      <ExtraTypeBox3 player={player} setPlayer={setPlayer} />
     </div>
   );
 };

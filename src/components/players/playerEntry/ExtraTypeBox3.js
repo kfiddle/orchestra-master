@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
 import InstrumentsList from "../../../store/instruments-list";
-import BigInput2 from "../../input/BigInput2";
 
 import classes from "./ExtraType.module.css";
 
@@ -22,7 +21,6 @@ const ExtraTypeBox = (props) => {
   const player = props.player;
   const setPlayer = props.setPlayer;
 
-  console.log(player.rank);
 
   useEffect(() => {
     if (clickedInstrumentList.length > 0) {

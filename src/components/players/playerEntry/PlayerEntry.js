@@ -33,29 +33,14 @@ const nameMaker = (fullEnteredName) => {
 const PlayerEntry = (props) => {
   const [clickedInstrumentList, setClickedInstrumentList] = useState([]);
   const [player, setPlayer] = useState({});
-  const [contract, setContract] = useState({});
   const [clickedThings, setClickedThings] = useState({
     instrumentDropDown: false,
     deleteButton: false,
   });
 
-
-
-  const [contracted, setContracted] = useState(false);
-
-
-
   useEffect(() => {
     if (props.player) {
       setPlayer({ ...props.player });
-
-
-
-      if (props.player.primaryType === "CONTRACT") {
-        setContracted(true);
-      } else {
-        setContracted(false);
-      }
     }
   }, [props.player]);
 
@@ -101,34 +86,17 @@ const PlayerEntry = (props) => {
         ? props.player.firstNameArea
         : enteredFirstNameArea,
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
-      contracted,
       parts: partsToSend,
     };
 
     const sendPlayerOff = async () => {
       let pushFunction = !props.player ? "add-player" : "edit-player";
 
-
       console.log(playerToSend);
 
       let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
 
       if (mainPlayerResponse.ok) {
-        let playerToSendBack = await mainPlayerResponse.json();
-
-        if (playerToSend.contracted) {
-          let contractToSend = {
-            ...contract,
-            part: partsToSend[0],
-            part2: partsToSend[1],
-          };
-          console.log(contract);
-          let contractResponse = await PushBasic(
-            contractToSend,
-            "add-contract/" + playerToSendBack.id
-          );
-        }
-
         props.closeModal();
       }
     };
@@ -251,17 +219,7 @@ const PlayerEntry = (props) => {
             }}
           />
 
-          <SubOrContractBox
-            // setter={setContracted}
-            player={player}
-            contracted={contracted}
-            contract={contract}
-            contractSetter={setContract}
-
-            setPlayer={setPlayer}
-
-
-          />
+          <SubOrContractBox player={player} setPlayer={setPlayer} />
           <SubmitDeleteBox
             o={{
               submitPlayer,
@@ -277,4 +235,3 @@ const PlayerEntry = (props) => {
 };
 
 export default PlayerEntry;
-
