@@ -39,11 +39,17 @@ const PlayerEntry = (props) => {
     deleteButton: false,
   });
 
+
+
   const [contracted, setContracted] = useState(false);
+
+
 
   useEffect(() => {
     if (props.player) {
       setPlayer({ ...props.player });
+
+
 
       if (props.player.primaryType === "CONTRACT") {
         setContracted(true);
@@ -59,12 +65,6 @@ const PlayerEntry = (props) => {
       instrumentDropDown: !clickedThings.instrumentDropDown,
     });
   };
-
-  const displayedChosenInstruments = clickedInstrumentList.map((instrument) => (
-    <div key={Math.random()}>
-      <h2 style={{ fontSize: "1.5rem" }}>{instrument.name}</h2>
-    </div>
-  ));
 
   const deleteClickHandler = async (event) => {
     event.preventDefault();
@@ -96,22 +96,20 @@ const PlayerEntry = (props) => {
     );
 
     let playerToSend = {
-      // ...player,
-      // firstNameArea: !enteredFirstNameArea
-      //   ? props.player.firstNameArea
-      //   : enteredFirstNameArea,
-      // lastName: !enteredLastName ? props.player.lastName : enteredLastName,
-      // contracted,
-      // parts: partsToSend,
-
-      firstNameArea: "sandeedd",
-      lastName: "cHEEKS",
-      type: "CONTRACT",
-      rank: 1,
+      ...player,
+      firstNameArea: !enteredFirstNameArea
+        ? props.player.firstNameArea
+        : enteredFirstNameArea,
+      lastName: !enteredLastName ? props.player.lastName : enteredLastName,
+      contracted,
+      parts: partsToSend,
     };
 
     const sendPlayerOff = async () => {
       let pushFunction = !props.player ? "add-player" : "edit-player";
+
+
+      console.log(playerToSend);
 
       let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
 
@@ -254,11 +252,15 @@ const PlayerEntry = (props) => {
           />
 
           <SubOrContractBox
-            setter={setContracted}
+            // setter={setContracted}
             player={player}
             contracted={contracted}
             contract={contract}
             contractSetter={setContract}
+
+            newContractSetter={setPlayer}
+
+
           />
           <SubmitDeleteBox
             o={{

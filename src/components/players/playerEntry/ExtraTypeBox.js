@@ -115,7 +115,11 @@ const ExtraTypeBox = (props) => {
     </div>
   );
 
-  return <div>{contracted ? contractBox : subBox}</div>;
+  // return <div>{contracted ? contractBox : subBox}</div>;
+
+  return <div>{player.type === "CONTRACTED" ? contractBox : subBox}</div>;
+
+
 };
 
 export default ExtraTypeBox;

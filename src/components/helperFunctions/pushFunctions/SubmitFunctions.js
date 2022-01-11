@@ -8,17 +8,6 @@ const SubmitPiece = async (piece, modalCloser) => {
   }
 };
 
-const SubmitInstrument = async (instrumentNameRef, modalCloser) => {
-  const instrumentToSendUp = {
-    name: instrumentNameRef,
-  };
-
-  let response = await PushBasic(instrumentToSendUp, "add-instrument");
-  if (response.ok) {
-    modalCloser();
-  }
-};
-
 const SubmitPerformance = async (
   performance,
   clickedPiecesList,
@@ -64,4 +53,4 @@ const SubmitPlayer = async (player, modalCloser) => {
   // };
 };
 
-export { SubmitPlayer, SubmitPiece, SubmitInstrument, SubmitPerformance };
+export { SubmitPlayer, SubmitPiece, SubmitPerformance };

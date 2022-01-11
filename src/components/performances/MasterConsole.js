@@ -17,6 +17,7 @@ const AllPerformances = (props) => {
 
   const clickedPerformanceHandler = async (performance) => {
     setPerformanceWasClicked(true);
+    setPPPList([]);
     props.clicked(performance);
     const performancePiecesResponse = await PushBasic(
       performance,

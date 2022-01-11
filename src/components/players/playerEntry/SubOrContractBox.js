@@ -4,13 +4,15 @@ import classes from "./SubOrContractBox.module.css";
 
 const SubOrContractBox = (props) => {
   const setter = props.setter;
+
   const contracted = props.contracted;
+
   const player = props.player;
   const contract = props.contract;
-  const contractSetter = props.contractSetter;
+  const newContractSetter = props.newContractSetter;
 
-  const contractTypeClicked = (type) => {
-    setter(type);
+  const contractTypeClicked = (contractType) => {
+    newContractSetter({ ...player, type: contractType });
   };
 
   return (
@@ -18,22 +20,22 @@ const SubOrContractBox = (props) => {
       <div className={classes.initialButtonsDiv}>
         <button
           className={
-            contracted
+            player.type === "CONTRACTED"
               ? `${classes.button} ${classes.subOrContract}`
               : `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
           }
-          onClick={() => contractTypeClicked(false)}
+          onClick={() => contractTypeClicked("SUB")}
           type={"button"}
         >
           Sub
         </button>
         <button
           className={
-            !contracted
+            player.type === "SUB"
               ? `${classes.button} ${classes.subOrContract}`
               : `${classes.button} ${classes.subOrContract} ${classes.highlightedType}`
           }
-          onClick={() => contractTypeClicked(true)}
+          onClick={() => contractTypeClicked("CONTRACTED")}
           type={"button"}
         >
           Contract
@@ -45,7 +47,7 @@ const SubOrContractBox = (props) => {
         setter={setter}
         player={player}
         contract={contract}
-        contractSetter={contractSetter}
+        contractSetter={newContractSetter}
       />
     </div>
   );

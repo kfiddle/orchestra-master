@@ -12,7 +12,7 @@ const useGetAList = (whichList) => {
     };
 
     getTheList();
-  }, []);
+  }, [whichList]);
 
     return ourList;
 };

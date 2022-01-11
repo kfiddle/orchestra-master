@@ -30,14 +30,6 @@ const MainNavigation = (props) => {
 
             <li
               className={classes.navItem}
-              onClick={props.instrumentEntryClicked}
-              style={{ marginRight: "7rem" }}
-            >
-              <GiMusicalKeyboard />
-            </li>
-
-            <li
-              className={classes.navItem}
               onClick={props.performanceEntryClicked}
               style={{ marginRight: "7rem" }}
             >
