@@ -91,15 +91,12 @@ const PlayerEntry = (props) => {
 
     const sendPlayerOff = async () => {
       let pushFunction = !props.player ? "add-player" : "edit-player";
-
-      console.log(playerToSend);
-
       let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
-
       if (mainPlayerResponse.ok) {
         props.closeModal();
       }
     };
+
     setTimeout(sendPlayerOff, 200);
   };
 
