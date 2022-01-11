@@ -31,7 +31,6 @@ const LibraryPiece = (props) => {
 
   const openOrchestration = () => {
     setOrchestrationClicked(true);
-    console.log(title);
   };
 
   const closeModal = () => {

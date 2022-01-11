@@ -28,17 +28,13 @@ const AllPerformances = (props) => {
 
   const clickedPiece = async (performancePiece) => {
     setClickedPerformancePiece(performancePiece);
-
-    // const rosterResponse = await PushBasic(performancePiece, "get-ppps-from-pp");
-    // const jsonified = await rosterResponse.json();
-    // setPPPList(jsonified);
-
     const rosterResponse = await PushBasic(
       performancePiece,
       "get-chairs-in-pp"
     );
     const jsonified = await rosterResponse.json();
     setPPPList(jsonified);
+    console.log(jsonified);
   };
 
   const displayablePerformances = props.list.map((performance) => (
