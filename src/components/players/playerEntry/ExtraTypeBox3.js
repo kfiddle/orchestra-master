@@ -22,6 +22,8 @@ const ExtraTypeBox = (props) => {
   const player = props.player;
   const setPlayer = props.setPlayer;
 
+  console.log(player.rank);
+
   useEffect(() => {
     if (clickedInstrumentList.length > 0) {
       if (
@@ -76,16 +78,20 @@ const ExtraTypeBox = (props) => {
 
   const subRankComponents = subRanks.map((rank) => (
     <button
-      className={classes.subButton}
+    key={subRanks.indexOf(rank)}
+      className={
+        player.rank === subRanks.indexOf(rank) + 1
+          ? classes.highlightedSubButton
+          : classes.subButton
+      }
       type={"button"}
-      onClick={() => setRank(subRanks.indexOf(rank + 1))}
+      onClick={() => setRank(subRanks.indexOf(rank) + 1)}
     >
       {rank}
     </button>
   ));
 
   const subBox = <div className={classes.subBox}>{subRankComponents}</div>;
-
 
   const contractBox = (
     <div className={classes.contractBox}>{displayableContracts}</div>
