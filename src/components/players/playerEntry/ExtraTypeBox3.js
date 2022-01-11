@@ -11,22 +11,16 @@ const horns = ["Principal", "Assistant", "2", "3", "4"];
 const trombones = ["Principal", "2", "3"];
 const twos = ["Principal", "2"];
 const threes = ["Principal", "2", "3"];
-
 const violin1 = ["Concertmaster", "Associate", "Section"];
-const otherStrings = ["Principal", "Associate", "Section"];
 const allElse = ["Principal", "Associate", "Section"];
+
+const subRanks = ["A", "B", "C", "D"];
 
 const ExtraTypeBox = (props) => {
   const { clickedInstrumentList } = useContext(InstrumentsList);
   const [whichContracts, setWhichContracts] = useState([]);
-
-  const contracted = props.contracted;
-
   const player = props.player;
-  const setter = props.setter;
-
-  const contract = props.contract;
-  const contractSetter = props.contractSetter;
+  const setPlayer = props.setPlayer;
 
   useEffect(() => {
     if (clickedInstrumentList.length > 0) {
@@ -46,7 +40,7 @@ const ExtraTypeBox = (props) => {
         clickedInstrumentList[0] === "Tuba"
       ) {
         setWhichContracts(twos);
-      } else if (clickedInstrumentList[0] === "Violin 1") {
+      } else if (clickedInstrumentList[0] === "Violin1") {
         setWhichContracts(violin1);
       } else if (clickedInstrumentList[0] === "Trumpet") {
         setWhichContracts(trumpets);
@@ -62,15 +56,14 @@ const ExtraTypeBox = (props) => {
   }, [clickedInstrumentList]);
 
   const setRank = (rankNumber) => {
-    contractSetter({ ...contract, rank: rankNumber });
-    console.log(rankNumber);
+    setPlayer({ ...player, rank: rankNumber });
   };
 
   const displayableContracts = whichContracts.map((chair) => (
     <button
       key={whichContracts.indexOf(chair)}
       className={
-        whichContracts.indexOf(chair) === contract.rank - 1
+        whichContracts.indexOf(chair) === player.rank - 1
           ? classes.highlightedContract
           : classes.contractButton
       }
@@ -81,45 +74,24 @@ const ExtraTypeBox = (props) => {
     </button>
   ));
 
-  const subBox = (
-    <div className={classes.subBox}>
-      <button className={classes.subButton} type={"button"}>
-        A
-      </button>
-      <button className={classes.subButton} type={"button"}>
-        B
-      </button>
-      <button className={classes.subButton} type={"button"}>
-        C
-      </button>
-      <button className={classes.subButton} type={"button"}>
-        D
-      </button>
-    </div>
-  );
+  const subRankComponents = subRanks.map((rank) => (
+    <button
+      className={classes.subButton}
+      type={"button"}
+      onClick={() => setRank(subRanks.indexOf(rank + 1))}
+    >
+      {rank}
+    </button>
+  ));
+
+  const subBox = <div className={classes.subBox}>{subRankComponents}</div>;
+
 
   const contractBox = (
-    <div className={classes.contractBox}>
-      {displayableContracts}
-      {/* <div className={classes.contractButtonsDiv}>{displayableContracts}</div> */}
-      {/* <div className={classes.contractInputBox}>
-        <BigInput2
-          shebang={{
-            label: "Contract Title",
-            key: "contractTitle",
-            state,
-            style: { width: "80%" },
-          }}
-        />
-      </div> */}
-    </div>
+    <div className={classes.contractBox}>{displayableContracts}</div>
   );
 
-  // return <div>{contracted ? contractBox : subBox}</div>;
-
   return <div>{player.type === "CONTRACTED" ? contractBox : subBox}</div>;
-
-
 };
 
 export default ExtraTypeBox;

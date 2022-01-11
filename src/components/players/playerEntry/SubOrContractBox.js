@@ -1,4 +1,4 @@
-import ExtraTypeBox from "./ExtraTypeBox";
+import ExtraTypeBox3 from "./ExtraTypeBox3";
 
 import classes from "./SubOrContractBox.module.css";
 
@@ -9,12 +9,12 @@ const SubOrContractBox = (props) => {
 
   const player = props.player;
   const contract = props.contract;
-  const newContractSetter = props.newContractSetter;
+  const setPlayer = props.setPlayer;
 
   console.log(player.type);
 
   const contractTypeClicked = (contractType) => {
-    newContractSetter({ ...player, type: contractType });
+    setPlayer({ ...player, type: contractType });
   };
 
   return (
@@ -44,12 +44,12 @@ const SubOrContractBox = (props) => {
         </button>
       </div>
 
-      <ExtraTypeBox
+      <ExtraTypeBox3
         contracted={contracted}
         setter={setter}
         player={player}
         contract={contract}
-        contractSetter={newContractSetter}
+        setPlayer={setPlayer}
       />
     </div>
   );

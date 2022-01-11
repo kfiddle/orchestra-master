@@ -258,7 +258,7 @@ const PlayerEntry = (props) => {
             contract={contract}
             contractSetter={setContract}
 
-            newContractSetter={setPlayer}
+            setPlayer={setPlayer}
 
 
           />
@@ -278,16 +278,3 @@ const PlayerEntry = (props) => {
 
 export default PlayerEntry;
 
-// id: "",
-// fullName: "",
-// email: "",
-// homePhone: "",
-// cellPhone: "",
-// addressLine1: "",
-// addressLine2: "",
-// city: "",
-// state: "",
-// zip: "",
-// unions: "",
-// primaryType: "",
-// secondaryType: "NON",
