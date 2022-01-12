@@ -1,5 +1,6 @@
 .infoContainer {
-  margin-left: 3rem;
+  position: fixed;
+  right: 20%;
   background: linear-gradient(to left, transparent, #362d2d, rgb(90, 85, 85));
   height: 100vh;
   width: fit-content;
@@ -9,7 +10,6 @@
 }
 
 .nameDiv {
-    
 }
 
 @keyframes slide-in {
