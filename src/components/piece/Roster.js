@@ -1,12 +1,11 @@
 import RosterSpot from "./RosterSpot";
 
 const Roster = (props) => {
-  // const displayableRosterSpots = props.roster.map(chair => (
-  //   <RosterSpot key={ppp.id} instrument={ppp.instrumentEnum} player={ppp.player? ppp.player.lastName: ''} />
-  // ))
 
-  const displayableSlots = props.roster.map((chair) => (
-    <RosterSpot key={Math.random()} instrument={chair.part} player={chair.player? chair.player.lastName: ''}/>
+  const chairsToFill = props.pp.chairsToFill;
+
+  const displayableSlots = chairsToFill.map((chair) => (
+    <RosterSpot key={Math.random()} pp={props.pp} chair={chair}/>
   ));
 
   return <div>{displayableSlots}</div>;

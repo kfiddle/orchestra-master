@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import Modal from "../UI/modal/Modal";
-import OrchestrationEntry2 from "./OrchestrationEntry2";
+// import OrchestrationEntry2 from "./OrchestrationEntry2";
 import BigInput from "../input/BigInput";
 import LibraryUploader from "./LibraryUploader";
 import { SubmitPiece } from "../helperFunctions/pushFunctions/SubmitFunctions";
@@ -113,11 +113,11 @@ const PieceEntry = (props) => {
 
             <LibraryUploader />
 
-            {instrumentationClicked && (
+            {/* {instrumentationClicked && (
               <OrchestrationEntry2
                 closeModal={() => instrumentationModalHandler(false)}
               />
-            )}
+            )} */}
           </div>
         </form>
       </div>
