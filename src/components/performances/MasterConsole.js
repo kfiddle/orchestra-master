@@ -13,6 +13,8 @@ const AllPerformances = (props) => {
     []
   );
 
+  
+
   const clickedPerformanceHandler = async (performance) => {
     props.clicked(performance);
     const performancePiecesResponse = await PushBasic(

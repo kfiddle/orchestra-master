@@ -10,27 +10,38 @@ const RosterSpot = (props) => {
 
   let performancePiece = props.pp;
   let part = props.chair.part;
-  let player = props.chair.player ? props.chair.player: "";
+  let index = props.index;
+
+
+  let player = props.chair.player ? props.chair.player : "";
 
   let playerOpacity = player ? 0.4 : 1.0;
 
- 
+
+  // document.addEventListener("contextmenu", (event) => {
+  //   event.preventDefault();
+  // });
+  
 
   const sendMessage = () => {
     setMailClicked(true);
   };
 
   const closeModal = () => {
-      setMailClicked(false)
-  }
+    setMailClicked(false);
+  };
 
   return (
-    <div className={classes.outerContainer} style={{ opacity: playerOpacity }}>
+    <div
+      className={classes.outerContainer}
+      style={{ opacity: playerOpacity }}
+      onDoubleClick={() => props.spotClicked(part)}
+    >
       {part} {player}
       <div className={classes.mailButtonDiv}>
         <AiOutlineMail className={classes.mailIcon} onClick={sendMessage} />
       </div>
-      {mailClicked && <EmailPlayer closeModal={closeModal}/>}
+      {mailClicked && <EmailPlayer closeModal={closeModal} />}
     </div>
   );
 };
