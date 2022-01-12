@@ -7,11 +7,12 @@ import useContractFormatter from "../../hooks/useContractFormatter";
 import styles from "./Player.module.css";
 
 const Player = (props) => {
-  const { firstNameArea, lastName, email, cellPhone, contract } = props.player;
+  const { firstNameArea, lastName, email, cellPhone, parts, rank } =
+    props.player;
 
   const [editClicked, setEditClicked] = useState(false);
 
-  const formattedContract = useContractFormatter(contract);
+  const formattedContract = useContractFormatter(parts, rank);
 
   const editPlayer = () => {
     setEditClicked(true);

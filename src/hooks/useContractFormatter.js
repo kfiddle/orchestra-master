@@ -1,6 +1,14 @@
-const useContractFormatter = (contractObject) => {
-  if (contractObject) {
-    let { part, rank, part2 } = contractObject;
+const useContractFormatter = (parts, rank) => {
+  if (parts || rank) {
+
+    let part = parts[0];
+    
+    let part2 = null;
+
+    if (parts[1] != null) {
+      part2 = parts[1]
+    }
+
 
     let abbreviatedPart = "";
 
