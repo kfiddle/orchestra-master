@@ -46,8 +46,7 @@ const Roster = (props) => {
   return (
     <div>
       {displayableSlots}
-      {/* {spotClicked !== "" && <PossiblePlayersDrop players={listFromSpot} />} */}
-      <PossiblePlayersDrop players={listFromSpot} />
+      <PossiblePlayersDrop players={listFromSpot} pp={props.pp} clickedIndex={clickedRosterSpot} />
     </div>
   );
 };

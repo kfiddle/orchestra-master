@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-.pieceItemDiv:hover {
+.outerContainer:hover {
   background: rgb(44, 120, 182);
 }
 
