@@ -13,16 +13,11 @@ const RosterSpot = (props) => {
   let rank = props.chair.rank;
   let index = props.index;
 
+  let outerClasses = props.active? classes.clickedSpot: classes.outerContainer;
 
   let player = props.chair.player ? props.chair.player : "";
 
   let playerOpacity = player ? 0.4 : 1.0;
-
-
-  // document.addEventListener("contextmenu", (event) => {
-  //   event.preventDefault();
-  // });
-  
 
   const sendMessage = () => {
     setMailClicked(true);
@@ -33,19 +28,19 @@ const RosterSpot = (props) => {
   };
 
   const spotClickedHandler = () => {
-    props.spotClicked(part)
-  }
+    props.spotClicked(part, index);
+  };
 
   return (
     <div
-      className={classes.outerContainer}
+      className={outerClasses}
       style={{ opacity: playerOpacity }}
       onClick={spotClickedHandler}
     >
       <div className={classes.partDiv}>{part}</div>
       <div className={classes.playerDiv}>{player}</div>
       <div className={classes.rankDiv}>{rank}</div>
-        
+
       <div className={classes.mailButtonDiv}>
         <AiOutlineMail className={classes.mailIcon} onClick={sendMessage} />
       </div>

@@ -7,15 +7,17 @@ import GetAList from "../helperFunctions/GetAList";
 import useGetAList2 from "../../hooks/useGetAList2";
 
 const Roster = (props) => {
-  // const [spotClicked, setSpotClicked] = useState("");
   const [listFromSpot, setListFromSpot] = useState([]);
+  const [clickedRosterSpot, setClickedRosterSpot] = useState(null);
 
   let allPlayers = useGetAList2("get-all-players");
 
   const chairsToFill = props.pp.chairsToFill;
 
-  const spotClickHandler = (part) => {
-    // setSpotClicked(part);
+  const spotClickHandler = (part, index) => {
+
+    setClickedRosterSpot(index)
+
     setListFromSpot([]);
     let tempList = [];
 
@@ -36,6 +38,8 @@ const Roster = (props) => {
       chair={chair}
       index={chairsToFill.indexOf(chair)}
       spotClicked={spotClickHandler}
+      active={clickedRosterSpot === chairsToFill.indexOf(chair) ? true : false}
+
     />
   ));
 

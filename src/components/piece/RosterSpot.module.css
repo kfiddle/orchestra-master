@@ -17,7 +17,28 @@
   cursor: pointer;
 }
 
-.outerContainer:hover {
+.clickedSpot {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 1rem 0.5rem 0;
+  padding: 0.5rem;
+  width: 90%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  height: 2.5rem;
+  background: rgb(42, 57, 70);
+  color: darkgoldenrod;
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+}
+
+
+
+.outerContainer:hover{
   background: rgb(42, 57, 70);
   color: darkgoldenrod;
 }

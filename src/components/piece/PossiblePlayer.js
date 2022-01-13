@@ -9,8 +9,8 @@ const PossiblePlayer = (props) => {
 
   return (
     <div className={`${classes.outerContainer} ${outerContainerClass}`}>
-      <div className={classes.firstNameAreaDiv}>{firstNameArea}</div>
-      <div className={classes.lastNameDiv}>{lastName}</div>
+      <div className={classes.nameDiv}>{firstNameArea} {lastName} </div>
+      
     </div>
   );
 };
