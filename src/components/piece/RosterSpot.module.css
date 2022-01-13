@@ -22,6 +22,10 @@
   color: darkgoldenrod;
 }
 
+.partDiv{
+  width: 30%;
+}
+
 .mailButtonDiv {
   position: absolute;
   right: 1rem;

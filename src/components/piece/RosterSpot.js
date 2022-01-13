@@ -10,6 +10,7 @@ const RosterSpot = (props) => {
 
   let performancePiece = props.pp;
   let part = props.chair.part;
+  let rank = props.chair.rank;
   let index = props.index;
 
 
@@ -31,13 +32,20 @@ const RosterSpot = (props) => {
     setMailClicked(false);
   };
 
+  const spotClickedHandler = () => {
+    props.spotClicked(part)
+  }
+
   return (
     <div
       className={classes.outerContainer}
       style={{ opacity: playerOpacity }}
-      onDoubleClick={() => props.spotClicked(part)}
+      onClick={spotClickedHandler}
     >
-      {part} {player}
+      <div className={classes.partDiv}>{part}</div>
+      <div className={classes.playerDiv}>{player}</div>
+      <div className={classes.rankDiv}>{rank}</div>
+        
       <div className={classes.mailButtonDiv}>
         <AiOutlineMail className={classes.mailIcon} onClick={sendMessage} />
       </div>

@@ -1,28 +1,33 @@
 import { useEffect, useState } from "react";
 
 import RosterSpot from "./RosterSpot";
+import PossiblePlayersDrop from "./PossiblePlayersDrop";
 
 import GetAList from "../helperFunctions/GetAList";
+import useGetAList2 from "../../hooks/useGetAList2";
 
 const Roster = (props) => {
-  const [playersList, setPlayersList] = useState([]);
-  const [spotClicked, setSpotClicked] = useState({});
+  // const [spotClicked, setSpotClicked] = useState("");
+  const [listFromSpot, setListFromSpot] = useState([]);
 
-  useEffect(() => {
-    const getAllPlayers = async () => {
-      const allPlayers = await GetAList("get-all-players");
-      setPlayersList(allPlayers);
-      console.log(allPlayers);
-    };
-
-    getAllPlayers();
-  }, []);
+  let allPlayers = useGetAList2("get-all-players");
 
   const chairsToFill = props.pp.chairsToFill;
 
   const spotClickHandler = (part) => {
-    setSpotClicked(part)
-  }
+    // setSpotClicked(part);
+    setListFromSpot([]);
+    let tempList = [];
+
+    for (let player of allPlayers) {
+      for (let playerPart of player.parts) {
+        if (playerPart === part) {
+          tempList.push(player);
+          setListFromSpot(tempList);
+        }
+      }
+    }
+  };
 
   const displayableSlots = chairsToFill.map((chair) => (
     <RosterSpot
@@ -34,15 +39,13 @@ const Roster = (props) => {
     />
   ));
 
-  const displayablePossibles = playersList.map(player => (
-    <div key={playersList.indexOf(player)}>{player.lastName}</div>
-  ))
-
-  return <div>
-    {displayableSlots}
-    {spotClicked && <div>{displayablePossibles}</div>}
-
-    </div>;
+  return (
+    <div>
+      {displayableSlots}
+      {/* {spotClicked !== "" && <PossiblePlayersDrop players={listFromSpot} />} */}
+      <PossiblePlayersDrop players={listFromSpot} />
+    </div>
+  );
 };
 
 export default Roster;
