@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import GetAList from "../components/helperFunctions/GetAList";
 
 const useGetAList = (whichList) => {
-    const [ourList, setOurList] = useState([]);
+  const [ourList, setOurList] = useState([]);
 
   useEffect(() => {
     const getTheList = async () => {
@@ -14,7 +14,7 @@ const useGetAList = (whichList) => {
     getTheList();
   }, [whichList]);
 
-    return ourList;
+  return ourList;
 };
 
 export default useGetAList;

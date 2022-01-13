@@ -3,10 +3,12 @@ import WhichServer from "./WhichServer";
 const GetAList = async (whichList) => {
   const whichServer = WhichServer();
 
-  let response = await fetch(whichServer + whichList);
-  if (response.ok) {
-    return response.json();
-  } else {
+  try {
+    let response = await fetch(whichServer + whichList);
+    if (response.ok) {
+      return response.json();
+    }
+  } catch (error) {
     return null;
   }
 };

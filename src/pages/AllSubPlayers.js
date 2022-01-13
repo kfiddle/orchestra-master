@@ -1,24 +1,21 @@
-import { useState, useEffect } from "react";
 
 import PlayersList from "../components/players/PlayersList";
-import GetAList from "../components/helperFunctions/GetAList";
+
+import LoadingSpinner from "../components/UI/loading/LoadingSpinner";
+import useGetAList2 from "../hooks/useGetAList2";
+
 
 const AllSubPlayers = (props) => {
-  const [listOfPlayers, setListOfPlayers] = useState([]);
+  let players = useGetAList2("get-all-sub-players");
+  let isLoading = players.length < 1;
 
-  useEffect(() => {
-    const getSubPlayers = async () => {
-      const allSubs = await GetAList("get-all-sub-players");
-      setListOfPlayers(allSubs);
-    };
-    getSubPlayers();
+  return isLoading ? <LoadingSpinner /> : <PlayersList list={players} type={"subs"}/>;
+ 
 
-    if (props.modalIsClosed) {
-      getSubPlayers();
-    }
-  }, [props.modalIsClosed]);
-
-  return <PlayersList list={listOfPlayers} type={"subs"} />;
 };
 
+
 export default AllSubPlayers;
+
+
+
