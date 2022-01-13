@@ -5,6 +5,7 @@ import MainNavigation from "../mainNavigation/MainNavigation";
 import PlayerEntry from "../players/playerEntry/PlayerEntry";
 import PieceEntry from "../piece/PieceEntry";
 import PerformanceEntry from "../performances/performanceEntry/PerformanceEntry";
+import LoadingSpinner from "./loading/LoadingSpinner";
 
 const Layout = (props) => {
   const [playerEntryFormRendered, setPlayerEntryFormRendered] = useState(false);
