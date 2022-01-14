@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Modal from "../UI/modal/Modal";
+import Modal from "../../UI/modal/Modal";
 
 import WindInputs from "./orchestrationInputs/WindInputs";
 import BrassInputs from "./orchestrationInputs/BrassInputs";
 import PercussionInputs from "./orchestrationInputs/PercussionInputs";
 import StringInputs from "./orchestrationInputs/StringInputs";
 
-import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./OrchestrationEntry.module.css";
 

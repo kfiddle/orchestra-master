@@ -3,7 +3,7 @@ import classes from "./Layout.module.css";
 import MainNavigation from "../mainNavigation/MainNavigation";
 
 import PlayerEntry from "../entryComponents/playerEntry/entry/PlayerEntry";
-import PieceEntry from "../piece/pieceEntry/PieceEntry";
+import PieceEntry from "../entryComponents/pieceEntry/PieceEntry";
 import PerformanceEntry from "../performances/performanceEntry/PerformanceEntry";
 import LoadingSpinner from "./loading/LoadingSpinner";
 

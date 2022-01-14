@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import Modal from "../../UI/modal/Modal";
 import BigInput from "../../input/BigInput";
-import LibraryUploader from "../LibraryUploader";
+import LibraryUploader from "../../piece/LibraryUploader";
 import { SubmitPiece } from "../../helperFunctions/pushFunctions/SubmitFunctions";
 
 import classes from "./PieceEntry.module.css";

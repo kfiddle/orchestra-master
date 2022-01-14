@@ -2,7 +2,7 @@ import { FiEdit } from "react-icons/fi";
 import { GiMusicalScore } from "react-icons/gi";
 import { useState } from "react";
 
-import OrchestrationEntry from "../OrchestrationEntry";
+import OrchestrationEntry from "../../entryComponents/orchestrationEntry/OrchestrationEntry";
 
 import classes from "./LibraryPiece.module.css";
 

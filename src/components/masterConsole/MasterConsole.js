@@ -2,8 +2,7 @@ import { useState } from "react";
 
 import Performance from "./performances/Performance";
 import ConsolePiece from "./performances/consolePiece/ConsolePiece";
-import Roster from "../piece/Roster";
-
+import Roster from "../piece/roster/Roster";
 import styles from "./MasterConsole.module.css";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 

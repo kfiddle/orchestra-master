@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
+import RosterSpot from "./rosterSpot/RosterSpot";
+import PossiblePlayersDrop from "../PossiblePlayersDrop";
 
-import RosterSpot from "./RosterSpot";
-import PossiblePlayersDrop from "./PossiblePlayersDrop";
-
-import GetAList from "../helperFunctions/GetAList";
-import useGetAList2 from "../../hooks/useGetAList2";
+import GetAList from "../../helperFunctions/GetAList";
+import useGetAList2 from "../../../hooks/useGetAList2";
 
 const Roster = (props) => {
   const [listFromSpot, setListFromSpot] = useState([]);

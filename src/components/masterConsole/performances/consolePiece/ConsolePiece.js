@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 
-import OrchestrationEntry from "../../../piece/OrchestrationEntry";
+import OrchestrationEntry from "../../../entryComponents/orchestrationEntry/OrchestrationEntry";
 
 import styles from "./ConsolePiece.module.css";
 

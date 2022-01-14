@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import EmailPlayer from "./EmailPlayer";
+import EmailPlayer from "./emailPlayer/EmailPlayer";
 
 import { AiOutlineMail } from "react-icons/ai";
 
