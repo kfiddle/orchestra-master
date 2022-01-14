@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import MasterConsole from "../components/masterConsole/MasterConsole";
 
+import ClickedPerformance from "../store/clicked-performance";
+
 import GetAList from "../components/helperFunctions/GetAList";
 
 const Season = (props) => {
@@ -28,11 +30,13 @@ const Season = (props) => {
   };
 
   return (
-    <MasterConsole
-      list={listOfPerformances}
-      clicked={clickedPerformanceHandler}
-      activePerformance={clickedPerformance}
-    />
+    <ClickedPerformance.Provider value={{clickedPerformance}}>
+      <MasterConsole
+        list={listOfPerformances}
+        clicked={clickedPerformanceHandler}
+        activePerformance={clickedPerformance}
+      />
+    </ClickedPerformance.Provider>
   );
 };
 

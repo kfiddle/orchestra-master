@@ -2,14 +2,21 @@ import { useContext, useEffect } from "react";
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
+import PerformancePieceList from "../../store/performance-piece-list";
+
 import classes from "./PossiblePlayer.module.css";
 
 const PossiblePlayer = (props) => {
+
+const {piecesOfClickedPerformance} = useContext(PerformancePieceList);
+
   const { firstNameArea, lastName } = props.player;
   const pp = props.pp;
   let clickedIndex = props.clickedIndex;
 
   let outerContainerClass = classes.unclickedItem;
+
+  console.log(piecesOfClickedPerformance)
 
   const doubleClickHandler = () => {
     let objectToSend = {
