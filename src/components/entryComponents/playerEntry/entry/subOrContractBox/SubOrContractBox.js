@@ -1,4 +1,4 @@
-import ExtraTypeBox3 from "./ExtraTypeBox3";
+import ExtraTypeBox3 from "./extraTypeBox/ExtraTypeBox3";
 
 import classes from "./SubOrContractBox.module.css";
 

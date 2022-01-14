@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 
-import PlayerEntry from "./playerEntry/PlayerEntry";
+import PlayerEntry from "../entryComponents/playerEntry/entry/PlayerEntry";
 import useContractFormatter from "../../hooks/useContractFormatter";
 
 import styles from "./Player.module.css";

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import MasterConsole from "../components/performances/MasterConsole";
+import MasterConsole from "../components/masterConsole/MasterConsole";
 
 import GetAList from "../components/helperFunctions/GetAList";
 

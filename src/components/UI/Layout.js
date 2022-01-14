@@ -2,8 +2,8 @@ import { Fragment, useState, useEffect } from "react";
 import classes from "./Layout.module.css";
 import MainNavigation from "../mainNavigation/MainNavigation";
 
-import PlayerEntry from "../players/playerEntry/PlayerEntry";
-import PieceEntry from "../piece/PieceEntry";
+import PlayerEntry from "../entryComponents/playerEntry/entry/PlayerEntry";
+import PieceEntry from "../piece/pieceEntry/PieceEntry";
 import PerformanceEntry from "../performances/performanceEntry/PerformanceEntry";
 import LoadingSpinner from "./loading/LoadingSpinner";
 

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import PiecesList from "../../store/pieces-list";
+import PiecesList from "../../../store/pieces-list";
 
 import classes from "./PieceListItem.module.css";
 

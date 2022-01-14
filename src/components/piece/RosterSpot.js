@@ -9,17 +9,22 @@ const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
 
   let performancePiece = props.pp;
-  let chair = props.chair;
-  let part = props.chair.part;
-  let rank = props.chair.rank;
+
+  let { player, part, rank } = props.chair;
+
+  let lastName = "";
+
+  if (player) {
+    lastName = player.lastName;
+  }
+
   let index = props.index;
 
   let outerClasses = props.active
     ? classes.clickedSpot
     : classes.outerContainer;
 
-  console.log(performancePiece);
-  // let playerOpacity = player ? 0.4 : 1.0;
+  let playerOpacity = player ? 0.4 : 1.0;
 
   const sendMessage = () => {
     setMailClicked(true);
@@ -41,7 +46,7 @@ const RosterSpot = (props) => {
       onClick={spotClickedHandler}
     >
       <div className={classes.partDiv}>{part}</div>
-      <div className={classes.playerDiv}></div>
+      <div className={classes.playerDiv}>{lastName}</div>
       <div className={classes.rankDiv}>{rank}</div>
 
       <div className={classes.mailButtonDiv}>

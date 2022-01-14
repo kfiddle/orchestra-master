@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 
-import OrchestrationEntry from "./OrchestrationEntry";
+import OrchestrationEntry from "../../../piece/OrchestrationEntry";
 
-import styles from "./Piece.module.css";
+import styles from "./ConsolePiece.module.css";
 
 const ConsolePiece = (props) => {
   const { piece } = props.pp;

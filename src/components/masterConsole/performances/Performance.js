@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { FiEdit, FiPlus } from "react-icons/fi";
 
-import DateFormatter from "../helperFunctions/DateFormatter";
-import PieceEntry from "../piece/PieceEntry";
+import DateFormatter from "../../helperFunctions/DateFormatter";
+import PieceEntry from "../../piece/pieceEntry/PieceEntry";
 
 import styles from "./Performance.module.css";
 

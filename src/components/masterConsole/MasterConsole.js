@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import Performance from "./Performance";
-import ConsolePiece from "../piece/ConsolePiece";
+import Performance from "./performances/Performance";
+import ConsolePiece from "./performances/consolePiece/ConsolePiece";
 import Roster from "../piece/Roster";
 
 import styles from "./MasterConsole.module.css";
@@ -12,8 +12,6 @@ const AllPerformances = (props) => {
   const [piecesOfClickedPerformance, setPiecesOfClickedPerformance] = useState(
     []
   );
-
-  
 
   const clickedPerformanceHandler = async (performance) => {
     props.clicked(performance);
@@ -50,9 +48,7 @@ const AllPerformances = (props) => {
       <div className={styles.concertsDiv}>{displayablePerformances}</div>
       <div className={styles.piecesDiv}>{displayablePieces}</div>
       <div className={styles.rosterDiv}>
-        {clickedPerformancePiece && (
-          <Roster pp={clickedPerformancePiece} />
-        )}
+        {clickedPerformancePiece && <Roster pp={clickedPerformancePiece} />}
       </div>
     </div>
   );

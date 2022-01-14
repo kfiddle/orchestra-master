@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
 
-import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
-import InstrumentsList from "../../../store/instruments-list";
-import InstrumentsDropDown from "../../instruments/InstrumentsDropDown";
+import ObjectToListHelper from "../../../helperFunctions/ObjectToListHelper";
+import InstrumentsList from "../../../../store/instruments-list";
+import InstrumentsDropDown from "../../../instruments/InstrumentsDropDown";
 
-import Modal from "../../UI/modal/Modal";
-import InputText from "../../input/InputText";
-import BigInput from "../../input/BigInput";
-import BigInput2 from "../../input/BigInput2";
+import Modal from "../../../UI/modal/Modal";
+import InputText from "../../../input/InputText";
+import BigInput from "../../../input/BigInput";
+import BigInput2 from "../../../input/BigInput2";
 
-import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
-import DoubleObjectPush from "../../helperFunctions/pushFunctions/DoubleObjectPush";
+import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+import DoubleObjectPush from "../../../helperFunctions/pushFunctions/DoubleObjectPush";
 
 import classes from "./PlayerEntry.module.css";
-import FoneInput from "../../input/FoneInput";
-import SubOrContractBox from "./SubOrContractBox";
-import SubmitDeleteBox from "./SubmitDeleteBox";
+import FoneInput from "../../../input/FoneInput";
+import SubOrContractBox from "./subOrContractBox/SubOrContractBox";
+import SubmitDeleteBox from "../submitDelete/SubmitDeleteBox";
 
 const nameMaker = (fullEnteredName) => {
   if (!fullEnteredName) {
