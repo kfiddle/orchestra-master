@@ -3,8 +3,13 @@ import { useState } from "react";
 import Performance from "./performances/Performance";
 import ConsolePiece from "./performances/consolePiece/ConsolePiece";
 import Roster from "../piece/roster/Roster";
-import styles from "./MasterConsole.module.css";
+import PerformancePieceList from '../../store/performance-piece-list';
+
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+
+
+import styles from "./MasterConsole.module.css";
+
 
 const AllPerformances = (props) => {
   const [clickedPerformancePiece, setClickedPerformancePiece] = useState(null);
@@ -43,6 +48,7 @@ const AllPerformances = (props) => {
   ));
 
   return (
+    <PerformancePieceList.Provider value={{piecesOfClickedPerformance}}>
     <div className={styles.outerContainer}>
       <div className={styles.concertsDiv}>{displayablePerformances}</div>
       <div className={styles.piecesDiv}>{displayablePieces}</div>
@@ -50,6 +56,7 @@ const AllPerformances = (props) => {
         {clickedPerformancePiece && <Roster pp={clickedPerformancePiece} />}
       </div>
     </div>
+    </PerformancePieceList.Provider>
   );
 };
 

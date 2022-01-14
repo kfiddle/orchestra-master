@@ -21,7 +21,7 @@ const useGetAList2 = (listUrl) => {
     };
 
     getList();
-  }, []);
+  }, [whichServer, listUrl]);
 
   return list;
 };

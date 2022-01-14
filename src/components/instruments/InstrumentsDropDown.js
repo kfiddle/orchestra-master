@@ -12,26 +12,18 @@ const InstrumentsDropDown = (props) => {
 
   useEffect(() => {
 
-
     const getInstruments = async () => {
-      // const allInstrumentsResponse = await GetAList("get-all-instruments");
       const allInstrumentsResponse = await GetAList("get-all-parts");
       setInstrumentsList(allInstrumentsResponse);
     };
-
-
 
     getInstruments();
   }, []);
 
   const listToDisplay = instrumentsList.map((instrument) => (
     <InstrumentListItem
-
-      // key={instrument.id}
-
       key={instrumentsList.indexOf(instrument)}
       instrument={instrument}
-
     ></InstrumentListItem>
   ));
 
