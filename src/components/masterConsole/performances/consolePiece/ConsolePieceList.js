@@ -20,7 +20,6 @@ const ConsolePieceList = (props) => {
   );
 
   useEffect(() => {
-
     const getThePPs = async () => {
       const performancePiecesResponse = await PushBasic(
         clickedPerformance,
@@ -35,8 +34,7 @@ const ConsolePieceList = (props) => {
 
   const clickedPerformancePieceHandler = (pp) => {
     setClickedPerformancePiece(pp);
-  }
-
+  };
 
   const displayablePieces = piecesOfClickedPerformance.map((pp) => (
     <ConsolePiece
@@ -47,14 +45,12 @@ const ConsolePieceList = (props) => {
     />
   ));
 
-
-
   return (
     <Fragment>
-      <div className={styles.piecesDiv}>{displayablePieces}</div>;
+      <div className={styles.piecesDiv}>{displayablePieces}</div>
       <div className={styles.rosterDiv}>
-          {clickedPerformancePiece && <Roster pp={clickedPerformancePiece} />}
-        </div> 
+        {clickedPerformancePiece && <Roster pp={clickedPerformancePiece} />}
+      </div>
     </Fragment>
   );
 };

@@ -5,6 +5,8 @@ import PossiblePlayersDrop from "../PossiblePlayersDrop";
 import GetAList from "../../helperFunctions/GetAList";
 import useGetAList2 from "../../../hooks/useGetAList2";
 
+import styles from './Roster.module.css'
+
 const Roster = (props) => {
   const [listFromSpot, setListFromSpot] = useState([]);
   const [clickedRosterSpot, setClickedRosterSpot] = useState(null);
@@ -43,7 +45,7 @@ const Roster = (props) => {
   ));
 
   return (
-    <div>
+    <div className={styles.rosterDiv}>
       {displayableSlots}
       <PossiblePlayersDrop players={listFromSpot} pp={props.pp} clickedIndex={clickedRosterSpot} />
     </div>
