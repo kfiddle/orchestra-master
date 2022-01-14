@@ -18,7 +18,7 @@ const RosterSpot = (props) => {
     ? classes.clickedSpot
     : classes.outerContainer;
 
-  console.log(chair);
+  console.log(performancePiece);
   // let playerOpacity = player ? 0.4 : 1.0;
 
   const sendMessage = () => {
