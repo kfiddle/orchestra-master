@@ -5,7 +5,7 @@ import PossiblePlayersDrop from "../PossiblePlayersDrop";
 import GetAList from "../../helperFunctions/GetAList";
 import useGetAList2 from "../../../hooks/useGetAList2";
 
-import styles from './Roster.module.css'
+import styles from "./Roster.module.css";
 
 const Roster = (props) => {
   const [listFromSpot, setListFromSpot] = useState([]);
@@ -16,8 +16,7 @@ const Roster = (props) => {
   const chairsToFill = props.pp.chairsToFill;
 
   const spotClickHandler = (part, index) => {
-
-    setClickedRosterSpot(index)
+    setClickedRosterSpot(index);
 
     setListFromSpot([]);
     let tempList = [];
@@ -40,14 +39,22 @@ const Roster = (props) => {
       index={chairsToFill.indexOf(chair)}
       spotClicked={spotClickHandler}
       active={clickedRosterSpot === chairsToFill.indexOf(chair) ? true : false}
-
     />
   ));
+
+  const playerPlaced = () => {
+    props.playerPlaced(true);
+  };
 
   return (
     <div className={styles.rosterDiv}>
       {displayableSlots}
-      <PossiblePlayersDrop players={listFromSpot} pp={props.pp} clickedIndex={clickedRosterSpot} />
+      <PossiblePlayersDrop
+        players={listFromSpot}
+        pp={props.pp}
+        clickedIndex={clickedRosterSpot}
+        playerPlaced={playerPlaced}
+      />
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 
-import PerformancePieceList from "../../../../store/performance-piece-list";
 import ClickedPerformance from "../../../../store/clicked-performance";
 
 import ConsolePiece from "./ConsolePiece";
@@ -12,12 +11,12 @@ import styles from "./ConsolePiece.module.css";
 import { Fragment } from "react/cjs/react.production.min";
 
 const ConsolePieceList = (props) => {
-  //   const { piecesOfClickedPerformance } = useContext(PerformancePieceList);
   const { clickedPerformance } = useContext(ClickedPerformance);
   const [clickedPerformancePiece, setClickedPerformancePiece] = useState(null);
   const [piecesOfClickedPerformance, setPiecesOfClickedPerformance] = useState(
     []
   );
+  const [playerInChair, setPlayerInChair] = useState(false);
 
   useEffect(() => {
     const getThePPs = async () => {
@@ -27,13 +26,23 @@ const ConsolePieceList = (props) => {
       );
       const ppsJsonified = await performancePiecesResponse.json();
       setPiecesOfClickedPerformance(ppsJsonified);
+      console.log("ran again");
     };
 
+    if (playerInChair) {
+      getThePPs();
+      setPlayerInChair(false);
+    }
+
     getThePPs();
-  }, [clickedPerformance]);
+  }, [clickedPerformance, playerInChair]);
 
   const clickedPerformancePieceHandler = (pp) => {
     setClickedPerformancePiece(pp);
+  };
+
+  const playerPlaced = () => {
+    setPlayerInChair(true);
   };
 
   const displayablePieces = piecesOfClickedPerformance.map((pp) => (
@@ -49,7 +58,9 @@ const ConsolePieceList = (props) => {
     <Fragment>
       <div className={styles.piecesDiv}>{displayablePieces}</div>
       <div className={styles.rosterDiv}>
-        {clickedPerformancePiece && <Roster pp={clickedPerformancePiece} />}
+        {clickedPerformancePiece && (
+          <Roster pp={clickedPerformancePiece} playerPlaced={playerPlaced} />
+        )}
       </div>
     </Fragment>
   );

@@ -7,8 +7,7 @@ import PerformancePieceList from "../../store/performance-piece-list";
 import classes from "./PossiblePlayer.module.css";
 
 const PossiblePlayer = (props) => {
-
-const {piecesOfClickedPerformance} = useContext(PerformancePieceList);
+  const { piecesOfClickedPerformance } = useContext(PerformancePieceList);
 
   const { firstNameArea, lastName } = props.player;
   const pp = props.pp;
@@ -16,7 +15,9 @@ const {piecesOfClickedPerformance} = useContext(PerformancePieceList);
 
   let outerContainerClass = classes.unclickedItem;
 
-  console.log(piecesOfClickedPerformance)
+  const playerPlaced = () => {
+    props.playerPlaced(true);
+  };
 
   const doubleClickHandler = () => {
     let objectToSend = {
@@ -25,16 +26,13 @@ const {piecesOfClickedPerformance} = useContext(PerformancePieceList);
       chairsListIndex: clickedIndex,
     };
 
-    console.log(objectToSend);
-
     const sendItUp = async () => {
       let response = await PushBasic(objectToSend, "put-player-in-chair");
       if (response.ok) {
-        console.log("yes");
+        playerPlaced();
       }
     };
     sendItUp();
-    
   };
 
   return (

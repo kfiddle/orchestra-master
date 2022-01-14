@@ -9,8 +9,12 @@ const PossiblePlayersDrop = (props) => {
   const pp = props.pp;
   const clickedIndex = props.clickedIndex;
 
+  const playerPlaced = () => {
+    props.playerPlaced(true)
+  }
+
   const displayablePossibles = players.map(player => (
-    <PossiblePlayer key={players.indexOf(player)} player={player} pp={pp} clickedIndex={clickedIndex}></PossiblePlayer>
+    <PossiblePlayer key={players.indexOf(player)} player={player} pp={pp} clickedIndex={clickedIndex} playerPlaced={playerPlaced}></PossiblePlayer>
   ))
 
   return <div className={styles.outerContainer}>{displayablePossibles}</div>
