@@ -6,26 +6,42 @@ import AllParts from "../../../store/all-parts";
 import useGetAList2 from "../../../hooks/useGetAList2";
 
 import styles from "./Roster.module.css";
+import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 const Roster = (props) => {
   const [listFromSpot, setListFromSpot] = useState([]);
-  const [clickedRosterSpot, setClickedRosterSpot] = useState(null);
+  const [clickedRosterSpot, setClickedRosterSpot] = useState({});
+  const [possiblePlayers, setPossiblePlayers] = useState([]);
+
   const { partsList } = useContext(AllParts);
+
+  const pp = props.pp;
 
   let allPlayers = useGetAList2("get-all-players");
 
-  const chairsToFill =
-    props.pp.chairsToFill.length > 0 ? props.pp.chairsToFill : null;
+  useEffect(() => {
+    const getPossiblePlayers = async () => {
+      let spotToSend = {clickedRosterSpot, ...pp}
+      const response = await PushBasic(clickedRosterSpot, ) 
 
-  const spotClickHandler = (part, index) => {
-    setClickedRosterSpot(index);
+
+    };
+
+    getPossiblePlayers();
+  }, [clickedRosterSpot]);
+
+  const chairsToFill =
+    pp.chairsToFill.length > 0 ? pp.chairsToFill : null;
+
+  const spotClickHandler = (incomingSpot) => {
+    setClickedRosterSpot(incomingSpot);
 
     setListFromSpot([]);
     let tempList = [];
 
     for (let player of allPlayers) {
       for (let playerPart of player.parts) {
-        if (playerPart === part) {
+        if (playerPart === incomingSpot.part) {
           tempList.push(player);
           setListFromSpot(tempList);
         }
@@ -40,7 +56,7 @@ const Roster = (props) => {
         filledSection.push(
           <RosterSpot
             key={Math.random()}
-            pp={props.pp}
+            pp={pp}
             chair={chair}
             index={chairsToFill.indexOf(chair)}
             spotClicked={spotClickHandler}

@@ -6,7 +6,7 @@ import { AiOutlineMail } from "react-icons/ai";
 
 import classes from "./RosterSpot.module.css";
 
-// Roster has this 
+// Roster has this
 
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
@@ -38,7 +38,8 @@ const RosterSpot = (props) => {
   };
 
   const spotClickedHandler = () => {
-    props.spotClicked(part, index);
+    let clickedRosterSpot = { part, index, player };
+    props.spotClicked(clickedRosterSpot);
   };
 
   return (
