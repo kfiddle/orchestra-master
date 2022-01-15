@@ -1,27 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import Player from "../Player";
 import PlayerInfoBox from "../playerInfoBox/PlayerInfoBox";
+
+
 import GetAList from "../../helperFunctions/GetAList";
+import AllParts from '../../../store/all-parts';
 
 import classes from "./ContractsRoster.module.css";
 
 const ContractsRoster = (props) => {
-  const [partsList, setPartsList] = useState([]);
   const [infoBoxClicked, setInfoBoxClicked] = useState(false);
   const [clickedPlayer, setClickedPlayer] = useState({});
+  const { partsList } = useContext(AllParts)
   const playersList = props.list;
-
-  useEffect(() => {
-    const getAllParts = async () => {
-      const allParts = await GetAList("get-all-parts");
-      if (allParts.length > 0) {
-        setPartsList(allParts);
-      }
-    };
-
-    getAllParts();
-  }, []);
 
   const clickedPlayerHandler = (player) => {
     setInfoBoxClicked(true);

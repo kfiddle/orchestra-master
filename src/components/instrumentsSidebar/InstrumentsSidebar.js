@@ -1,45 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import SubPart from "./SubPart";
 
+import AllParts from "../../store/all-parts";
 import GetAList from "../helperFunctions/GetAList";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./InstrumentsSidebar.module.css";
 
 const InstrumentsSidebar = (props) => {
-  const [listOfParts, setListOfParts] = useState([]);
+  const { partsList } = useContext(AllParts);
   const [currentChoice, setCurrentChoice] = useState("");
 
   const partChooser = (part) => {
     props.partChooser(part);
   };
 
-  useEffect(() => {
-
-    // const getAllInstruments = async () => {
-    //   const allInstruments = await GetAList("get-all-instruments");
-    //   if (allInstruments.length > 0) {
-    //     setListOfInstruments(allInstruments);
-    //   }
-    // };
-
-    const getAllParts = async () => {
-      const allParts = await GetAList("get-all-parts");
-      if (allParts.length > 0) {
-        setListOfParts(allParts);
-      }
-    };
-
-
-
-    // getAllInstruments();
-    getAllParts();
-
-
-  }, []);
-
-  const displayableParts = listOfParts.map((part) => (
+  const displayableParts = partsList.map((part) => (
     <SubPart
       part={part}
       clicked={partChooser}

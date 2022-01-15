@@ -1,7 +1,6 @@
 .outerContainer {
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
   margin: 0.5rem 1rem 0.5rem 0;
   padding: 0.5rem;
@@ -9,8 +8,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   height: 2.5rem;
-  background: rgb(107, 174, 228);
-  color: midnightblue;
+  background: rgb(67, 76, 83);
+  color: rgb(255, 255, 255);
   font-weight: 900;
   font-size: 1rem;
   letter-spacing: 0.15em;
@@ -20,7 +19,6 @@
 .clickedSpot {
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
   margin: 0.5rem 1rem 0.5rem 0;
   padding: 0.5rem;
@@ -28,23 +26,29 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   height: 2.5rem;
-  background: rgb(42, 57, 70);
-  color: darkgoldenrod;
+  background: rgb(5, 86, 156);
+  color: rgb(247, 243, 234);
   font-weight: 900;
   font-size: 1rem;
   letter-spacing: 0.15em;
   cursor: pointer;
 }
 
-
-
 .outerContainer:hover{
-  background: rgb(42, 57, 70);
-  color: darkgoldenrod;
+  background: rgb(228, 231, 235);
+  color: rgb(5, 70, 19);
 }
 
 .partDiv{
-  width: 30%;
+  width: 20%;
+}
+
+.rankDiv{
+  width: 15%;
+}
+
+.playerDiv{
+  width: 25%;
 }
 
 .mailButtonDiv {

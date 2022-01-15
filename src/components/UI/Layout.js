@@ -1,17 +1,22 @@
 import { Fragment, useState, useEffect } from "react";
-import classes from "./Layout.module.css";
 import MainNavigation from "../mainNavigation/MainNavigation";
 
 import PlayerEntry from "../entryComponents/playerEntry/entry/PlayerEntry";
 import PieceEntry from "../entryComponents/pieceEntry/PieceEntry";
 import PerformanceEntry from "../performances/performanceEntry/PerformanceEntry";
-import LoadingSpinner from "./loading/LoadingSpinner";
+
+import GetAList from "../helperFunctions/GetAList";
+import AllParts from "../../store/all-parts";
+
+import classes from "./Layout.module.css";
 
 const Layout = (props) => {
   const [playerEntryFormRendered, setPlayerEntryFormRendered] = useState(false);
   const [pieceEntryFormRendered, setPieceEntryFormRendered] = useState(false);
   const [performanceEntryFormRendered, setPerformanceEntryFormRendered] =
     useState(false);
+
+  const [partsList, setPartsList] = useState([]);
 
   const playerEntryClicked = () => {
     setPlayerEntryFormRendered(true);
@@ -35,8 +40,19 @@ const Layout = (props) => {
     props.modalCloseHandler(true);
   };
 
+  useEffect(() => {
+    const getAllParts = async () => {
+      const allParts = await GetAList("get-all-parts");
+      if (allParts.length > 0) {
+        setPartsList(allParts);
+      }
+    };
+
+    getAllParts();
+  }, []);
+
   return (
-    <Fragment>
+    <AllParts.Provider value={{ partsList }}>
       <MainNavigation
         playerEntryClicked={playerEntryClicked}
         pieceEntryClicked={pieceEntryClicked}
@@ -51,7 +67,7 @@ const Layout = (props) => {
       )}
 
       <main className={classes.main}>{props.children}</main>
-    </Fragment>
+    </AllParts.Provider>
   );
 };
 

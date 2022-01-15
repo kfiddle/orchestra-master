@@ -18,11 +18,6 @@ const PlayersList = (props) => {
   const partChooser = async (part) => {
     setChosenInstrument(part);
 
-    // let contracted = false;
-    // if (props.type === "contracts") {
-    //   contracted = true;
-    // }
-
     const allSubsOfInstrumentResponse = await GetAList("subs/" + part);
     setByInstrumentList(allSubsOfInstrumentResponse);
 

@@ -44,13 +44,13 @@ const RosterSpot = (props) => {
   return (
     <div
       className={outerClasses}
-      // style={{ opacity: playerOpacity }}
+      style={{ opacity: playerOpacity }}
       style={{ opacity: "0.7" }}
       onClick={spotClickedHandler}
     >
       <div className={classes.partDiv}>{part}</div>
-      <div className={classes.playerDiv}>{lastName}</div>
       <div className={classes.rankDiv}>{rank}</div>
+      <div className={classes.playerDiv}>{lastName}</div>
 
       <div className={classes.mailButtonDiv}>
         <AiOutlineMail className={classes.mailIcon} onClick={sendMessage} />
