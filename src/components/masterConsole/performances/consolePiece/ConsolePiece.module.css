@@ -1,11 +1,16 @@
-.outerContainer {
+.consoleChildrenDiv {
+  width: 100%;
+  display: flex;
+}
+
+.pieceContainer {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1.5rem;
   padding: 1rem;
-  width: 90%;
+  width: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border: 4px solid rgb(171, 212, 59);
   border-radius: 12px;
@@ -17,8 +22,7 @@
 
 .unclicked {
   color: rgb(171, 212, 59);
-  background:transparent;
-
+  background: transparent;
 }
 
 .clicked {
@@ -26,9 +30,17 @@
   color: rgb(110, 28, 28);
 }
 
-.outerContainer:hover {
+.pieceContainer:hover {
   background: rgb(171, 212, 59);
   color: rgb(110, 28, 28);
+}
+
+.rosterDiv {
+  width: 50%;
+}
+
+.pieceItself {
+  width: 60%;
 }
 
 .titleDiv {

@@ -26,7 +26,6 @@ const ConsolePieceList = (props) => {
       );
       const ppsJsonified = await performancePiecesResponse.json();
       setPiecesOfClickedPerformance(ppsJsonified);
-      console.log("ran again");
     };
 
     if (playerInChair) {
@@ -52,8 +51,7 @@ const ConsolePieceList = (props) => {
 
   return (
     <Fragment>
-      <div className={styles.piecesDiv}>{displayablePieces}</div>
-   
+      {displayablePieces}
     </Fragment>
   );
 };

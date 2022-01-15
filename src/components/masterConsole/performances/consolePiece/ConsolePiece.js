@@ -8,16 +8,16 @@ import OrchestrationEntry from "../../../entryComponents/orchestrationEntry/Orch
 import styles from "./ConsolePiece.module.css";
 
 const ConsolePiece = (props) => {
-  const { piece } = props.pp;
-  const { title, composer } = piece;
+  const pp = props.pp;
+  const { title, composer } = pp.piece;
   const [orchestrationClicked, setOrchestrationClicked] = useState(false);
-  const [clickedOuterContainer, setClickedOuterContainer] = useState(false);
+  const [clickedPiece, setClickedPiece] = useState(false);
 
-  const clickedOrNot = props.activePiece? styles.clicked: styles.unclicked;
+  const clickedOrNot = props.activePiece ? styles.clicked : styles.unclicked;
 
   const clickedPieceHandler = () => {
     props.clicked(props.pp);
-    setClickedOuterContainer(true);
+    setClickedPiece(true);
   };
 
   const closeModal = () => {
@@ -28,21 +28,18 @@ const ConsolePiece = (props) => {
     setOrchestrationClicked(true);
   };
 
-  console.log(piece.chairsToFill)
-
-  
-
   return (
-    <div className={`${styles.outerContainer} ${clickedOrNot}`} onClick={clickedPieceHandler}>
-      <div className={styles.composerDiv}>{composer}</div>
-      <div className={styles.titleDiv}>{title}</div>
-
-      <div className={styles.rosterDiv}>
-        {/* {clickedOuterContainer && (
-          <Roster pp={piece} />
-        )} */}
+    <div className={styles.consoleChildrenDiv}>
+      <div
+        className={`${styles.pieceContainer} ${clickedOrNot}`}
+        onClick={clickedPieceHandler}
+      >
+        <div className={styles.titleDiv}>{title}</div>
+        <div className={styles.composerDiv}>{composer}</div>
       </div>
-
+      <div className={styles.rosterDiv}>
+        {clickedPiece && <Roster pp={pp} />}
+      </div>
     </div>
   );
 };

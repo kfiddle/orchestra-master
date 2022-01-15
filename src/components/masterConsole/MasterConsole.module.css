@@ -1,7 +1,7 @@
 .outerContainer {
   width: 90%;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 2fr 3fr;
   margin-top: 10rem;
 }
 
