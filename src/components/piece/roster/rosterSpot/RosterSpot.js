@@ -48,7 +48,7 @@ const RosterSpot = (props) => {
       style={{ opacity: "0.7" }}
       onClick={spotClickedHandler}
     >
-      <div className={classes.partDiv}>{part}</div>
+      <div className={classes.partDiv}>{rank === 1 && part}</div>
       <div className={classes.rankDiv}>{rank}</div>
       <div className={classes.playerDiv}>{lastName}</div>
 

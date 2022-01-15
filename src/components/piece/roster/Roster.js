@@ -62,24 +62,12 @@ const Roster = (props) => {
     );
   });
 
-  const displayableSlots = chairsToFill.map((chair) => (
-    <RosterSpot
-      key={Math.random()}
-      pp={props.pp}
-      chair={chair}
-      index={chairsToFill.indexOf(chair)}
-      spotClicked={spotClickHandler}
-      active={clickedRosterSpot === chairsToFill.indexOf(chair) ? true : false}
-    />
-  ));
-
   const playerPlaced = () => {
     props.playerPlaced(true);
   };
 
   return (
     <div className={styles.rosterDiv}>
-      {/* {displayableSlots} */}
       {sections}
       <PossiblePlayersDrop
         players={listFromSpot}
