@@ -21,17 +21,20 @@ const Roster = (props) => {
 
   useEffect(() => {
     const getPossiblePlayers = async () => {
-      let spotToSend = {clickedRosterSpot, ...pp}
-      const response = await PushBasic(clickedRosterSpot, ) 
+      let spotToSend = { pp, indexOfChair: clickedRosterSpot.index };
+      const response = await PushBasic(spotToSend, "get-possible-players");
 
-
+      if (response.ok) {
+        console.log(response.json());
+      }
     };
 
-    getPossiblePlayers();
+    if (clickedRosterSpot) {
+      getPossiblePlayers();
+    }
   }, [clickedRosterSpot]);
 
-  const chairsToFill =
-    pp.chairsToFill.length > 0 ? pp.chairsToFill : null;
+  const chairsToFill = pp.chairsToFill.length > 0 ? pp.chairsToFill : null;
 
   const spotClickHandler = (incomingSpot) => {
     setClickedRosterSpot(incomingSpot);
