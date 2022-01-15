@@ -6,6 +6,8 @@ import PerformancePieceList from "../../store/performance-piece-list";
 
 import classes from "./PossiblePlayer.module.css";
 
+// PossiblePlayersDrop has this
+
 const PossiblePlayer = (props) => {
   const { piecesOfClickedPerformance } = useContext(PerformancePieceList);
 

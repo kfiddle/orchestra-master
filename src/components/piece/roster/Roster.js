@@ -31,6 +31,7 @@ const Roster = (props) => {
     }
   };
 
+
   const displayableSlots = chairsToFill.map((chair) => (
     <RosterSpot
       key={Math.random()}

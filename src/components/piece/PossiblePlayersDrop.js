@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 
 import PossiblePlayer from "./PossiblePlayer";
 
-import styles from './PossiblePlayersDrop.module.css'
+import styles from "./PossiblePlayersDrop.module.css";
+
+// Roster has this
 
 const PossiblePlayersDrop = (props) => {
   const players = props.players;
@@ -10,14 +12,20 @@ const PossiblePlayersDrop = (props) => {
   const clickedIndex = props.clickedIndex;
 
   const playerPlaced = () => {
-    props.playerPlaced(true)
-  }
+    props.playerPlaced(true);
+  };
 
-  const displayablePossibles = players.map(player => (
-    <PossiblePlayer key={players.indexOf(player)} player={player} pp={pp} clickedIndex={clickedIndex} playerPlaced={playerPlaced}></PossiblePlayer>
-  ))
+  const displayablePossibles = players.map((player) => (
+    <PossiblePlayer
+      key={players.indexOf(player)}
+      player={player}
+      pp={pp}
+      clickedIndex={clickedIndex}
+      playerPlaced={playerPlaced}
+    ></PossiblePlayer>
+  ));
 
-  return <div className={styles.outerContainer}>{displayablePossibles}</div>
+  return <div className={styles.outerContainer}>{displayablePossibles}</div>;
 };
 
 export default PossiblePlayersDrop;

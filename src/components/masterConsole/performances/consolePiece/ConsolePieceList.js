@@ -16,7 +16,7 @@ const ConsolePieceList = (props) => {
   const [piecesOfClickedPerformance, setPiecesOfClickedPerformance] = useState(
     []
   );
-  const [playerInChair, setPlayerInChair] = useState(false);
+  const [newPlayerInChair, setNewPlayerInChair] = useState(false);
 
   useEffect(() => {
     const getThePPs = async () => {
@@ -28,23 +28,28 @@ const ConsolePieceList = (props) => {
       setPiecesOfClickedPerformance(ppsJsonified);
     };
 
-    if (playerInChair) {
+    if (newPlayerInChair) {
       getThePPs();
-      setPlayerInChair(false);
+      setNewPlayerInChair(false);
     }
 
     getThePPs();
-  }, [clickedPerformance, playerInChair]);
+  }, [clickedPerformance, newPlayerInChair]);
 
   const clickedPerformancePieceHandler = (pp) => {
     setClickedPerformancePiece(pp);
   };
+
+  const playerPlaced = () => {
+    setNewPlayerInChair(true)
+  }
 
   const displayablePieces = piecesOfClickedPerformance.map((pp) => (
     <ConsolePiece
       key={pp.id}
       pp={pp}
       clicked={clickedPerformancePieceHandler}
+      playerPlaced={playerPlaced}
       activePiece={clickedPerformancePiece === pp ? true : false}
     />
   ));

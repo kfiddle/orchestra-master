@@ -5,6 +5,9 @@ import EmailPlayer from "./emailPlayer/EmailPlayer";
 import { AiOutlineMail } from "react-icons/ai";
 
 import classes from "./RosterSpot.module.css";
+
+// Roster has this 
+
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
 

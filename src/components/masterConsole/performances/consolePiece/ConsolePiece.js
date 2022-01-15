@@ -28,6 +28,10 @@ const ConsolePiece = (props) => {
     setOrchestrationClicked(true);
   };
 
+  const playerPlaced = () => {
+    props.playerPlaced(true);
+  };
+
   return (
     <div className={styles.consoleChildrenDiv}>
       <div
@@ -38,7 +42,7 @@ const ConsolePiece = (props) => {
         <div className={styles.composerDiv}>{composer}</div>
       </div>
       <div className={styles.rosterDiv}>
-        {clickedPiece && <Roster pp={pp} />}
+        {clickedPiece && <Roster pp={pp} playerPlaced={playerPlaced} />}
       </div>
     </div>
   );
