@@ -13,7 +13,7 @@ const Roster = (props) => {
 
   let allPlayers = useGetAList2("get-all-players");
 
-  const chairsToFill = props.pp.chairsToFill;
+  const chairsToFill = props.pp.chairsToFill.length > 0 ? props.pp.chairsToFill: null;
 
   const spotClickHandler = (part, index) => {
     setClickedRosterSpot(index);

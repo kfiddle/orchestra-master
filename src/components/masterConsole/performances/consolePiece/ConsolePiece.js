@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 
+import Roster from "../../../piece/roster/Roster";
+
 import OrchestrationEntry from "../../../entryComponents/orchestrationEntry/OrchestrationEntry";
 
 import styles from "./ConsolePiece.module.css";
@@ -26,6 +28,8 @@ const ConsolePiece = (props) => {
     setOrchestrationClicked(true);
   };
 
+  console.log(piece.chairsToFill)
+
   
 
   return (
@@ -33,13 +37,12 @@ const ConsolePiece = (props) => {
       <div className={styles.composerDiv}>{composer}</div>
       <div className={styles.titleDiv}>{title}</div>
 
-      {/* <div className={styles.editIcon}>
-        <FiEdit onClick={openOrchestration} />
-      </div> */}
+      <div className={styles.rosterDiv}>
+        {/* {clickedOuterContainer && (
+          <Roster pp={piece} />
+        )} */}
+      </div>
 
-      {/* {orchestrationClicked && (
-        <OrchestrationEntry closeModal={closeModal} piece={piece}/>
-      )} */}
     </div>
   );
 };

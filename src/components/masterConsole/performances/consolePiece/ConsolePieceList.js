@@ -41,10 +41,6 @@ const ConsolePieceList = (props) => {
     setClickedPerformancePiece(pp);
   };
 
-  const playerPlaced = () => {
-    setPlayerInChair(true);
-  };
-
   const displayablePieces = piecesOfClickedPerformance.map((pp) => (
     <ConsolePiece
       key={pp.id}
@@ -57,11 +53,7 @@ const ConsolePieceList = (props) => {
   return (
     <Fragment>
       <div className={styles.piecesDiv}>{displayablePieces}</div>
-      <div className={styles.rosterDiv}>
-        {clickedPerformancePiece && (
-          <Roster pp={clickedPerformancePiece} playerPlaced={playerPlaced} />
-        )}
-      </div>
+   
     </Fragment>
   );
 };
