@@ -10,7 +10,7 @@ import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 const Roster = (props) => {
   const [listFromSpot, setListFromSpot] = useState([]);
-  const [clickedRosterSpot, setClickedRosterSpot] = useState({});
+  const [clickedRosterSpot, setClickedRosterSpot] = useState(null);
   const [possiblePlayers, setPossiblePlayers] = useState([]);
 
   const { partsList } = useContext(AllParts);
@@ -29,9 +29,11 @@ const Roster = (props) => {
       }
     };
 
-    if (clickedRosterSpot) {
+    if (clickedRosterSpot !== null) {
       getPossiblePlayers();
     }
+
+
   }, [clickedRosterSpot]);
 
   const chairsToFill = pp.chairsToFill.length > 0 ? pp.chairsToFill : null;
@@ -52,7 +54,7 @@ const Roster = (props) => {
     }
   };
 
-  const sections = partsList.map((section) => {
+  const sections = chairsToFill? partsList.map((section) => {
     let filledSection = [];
     for (let chair of chairsToFill) {
       if (chair.part === section) {
@@ -76,10 +78,10 @@ const Roster = (props) => {
 
     return (
       <div key={Math.random()} className={styles.section}>
-        {filledSection}
+        {chairsToFill && filledSection}
       </div>
     );
-  });
+  }): '';
 
   const playerPlaced = () => {
     props.playerPlaced(true);
