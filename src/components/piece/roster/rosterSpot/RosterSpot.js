@@ -12,17 +12,16 @@ const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
 
   let performancePiece = props.pp;
-
   let { player, part, rank } = props.chair;
+  let index = props.index;
 
- 
+
   let lastName = "";
 
   if (player) {
     lastName = player.lastName;
   }
 
-  let index = props.index;
 
   let outerClasses = props.active
     ? classes.clickedSpot

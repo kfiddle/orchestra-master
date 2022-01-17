@@ -23,6 +23,11 @@ const Roster = (props) => {
     const getPossiblePlayers = async () => {
       let spotToSend = { pp, indexOfChair: clickedRosterSpot.index };
       const response = await PushBasic(spotToSend, "get-possible-players");
+      if (response.ok) {
+        let listToSet = await response.json();
+        setPossiblePlayers(listToSet);
+        // console.log(response.json());
+      }
     };
 
     if (clickedRosterSpot !== null) {
@@ -61,7 +66,8 @@ const Roster = (props) => {
                 index={chairsToFill.indexOf(chair)}
                 spotClicked={spotClickHandler}
                 active={
-                  clickedRosterSpot === chairsToFill.indexOf(chair)
+                  clickedRosterSpot &&
+                  clickedRosterSpot.index === chairsToFill.indexOf(chair)
                     ? true
                     : false
                 }
@@ -88,12 +94,15 @@ const Roster = (props) => {
   return (
     <div className={styles.rosterDiv}>
       {sections}
-      {clickedRosterSpot && <PossiblePlayersDrop
-        players={listFromSpot}
-        pp={props.pp}
-        clickedIndex={clickedRosterSpot.index}
-        playerPlaced={playerPlaced}
-      />}
+      {clickedRosterSpot && (
+        <PossiblePlayersDrop
+          // players={listFromSpot}
+          players={possiblePlayers}
+          pp={props.pp}
+          clickedIndex={clickedRosterSpot.index}
+          playerPlaced={playerPlaced}
+        />
+      )}
     </div>
   );
 };
