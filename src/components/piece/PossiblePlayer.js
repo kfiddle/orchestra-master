@@ -27,6 +27,7 @@ const PossiblePlayer = (props) => {
       player: props.player,
       chairsListIndex: clickedIndex,
     };
+    console.log(objectToSend.chairsListIndex);
 
     const sendItUp = async () => {
       let response = await PushBasic(objectToSend, "put-player-in-chair");

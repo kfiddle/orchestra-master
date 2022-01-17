@@ -23,17 +23,11 @@ const Roster = (props) => {
     const getPossiblePlayers = async () => {
       let spotToSend = { pp, indexOfChair: clickedRosterSpot.index };
       const response = await PushBasic(spotToSend, "get-possible-players");
-
-      if (response.ok) {
-        console.log(response.json());
-      }
     };
 
     if (clickedRosterSpot !== null) {
       getPossiblePlayers();
     }
-
-
   }, [clickedRosterSpot]);
 
   const chairsToFill = pp.chairsToFill.length > 0 ? pp.chairsToFill : null;
@@ -54,34 +48,38 @@ const Roster = (props) => {
     }
   };
 
-  const sections = chairsToFill? partsList.map((section) => {
-    let filledSection = [];
-    for (let chair of chairsToFill) {
-      if (chair.part === section) {
-        filledSection.push(
-          <RosterSpot
-            key={Math.random()}
-            pp={pp}
-            chair={chair}
-            index={chairsToFill.indexOf(chair)}
-            spotClicked={spotClickHandler}
-            active={
-              clickedRosterSpot === chairsToFill.indexOf(chair) ? true : false
-            }
-          />
-        );
-      }
-    }
-    if (filledSection.length === 0) {
-      return;
-    }
+  const sections = chairsToFill
+    ? partsList.map((section) => {
+        let filledSection = [];
+        for (let chair of chairsToFill) {
+          if (chair.part === section) {
+            filledSection.push(
+              <RosterSpot
+                key={Math.random()}
+                pp={pp}
+                chair={chair}
+                index={chairsToFill.indexOf(chair)}
+                spotClicked={spotClickHandler}
+                active={
+                  clickedRosterSpot === chairsToFill.indexOf(chair)
+                    ? true
+                    : false
+                }
+              />
+            );
+          }
+        }
+        if (filledSection.length === 0) {
+          return;
+        }
 
-    return (
-      <div key={Math.random()} className={styles.section}>
-        {chairsToFill && filledSection}
-      </div>
-    );
-  }): '';
+        return (
+          <div key={Math.random()} className={styles.section}>
+            {chairsToFill && filledSection}
+          </div>
+        );
+      })
+    : "";
 
   const playerPlaced = () => {
     props.playerPlaced(true);
@@ -90,12 +88,12 @@ const Roster = (props) => {
   return (
     <div className={styles.rosterDiv}>
       {sections}
-      <PossiblePlayersDrop
+      {clickedRosterSpot && <PossiblePlayersDrop
         players={listFromSpot}
         pp={props.pp}
-        clickedIndex={clickedRosterSpot}
+        clickedIndex={clickedRosterSpot.index}
         playerPlaced={playerPlaced}
-      />
+      />}
     </div>
   );
 };

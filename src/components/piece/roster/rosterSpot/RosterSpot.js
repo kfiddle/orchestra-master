@@ -15,6 +15,7 @@ const RosterSpot = (props) => {
 
   let { player, part, rank } = props.chair;
 
+ 
   let lastName = "";
 
   if (player) {
