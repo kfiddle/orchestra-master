@@ -9,16 +9,8 @@ const GetAList = async (whichList) => {
       return response.json();
     }
   } catch (error) {
-    return null;
+    return [];
   }
 };
-
-// const GetAList = async (whichList) => {
-//   const whichServer = WhichServer();
-
-//   let listOfThingsFromBackend = await fetch(whichServer + whichList);
-//   let incomingList = await listOfThingsFromBackend.json();
-//   return incomingList;
-// };
 
 export default GetAList;

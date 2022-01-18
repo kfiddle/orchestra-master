@@ -26,7 +26,6 @@ const Roster = (props) => {
       if (response.ok) {
         let listToSet = await response.json();
         setPossiblePlayers(listToSet);
-        // console.log(response.json());
       }
     };
 
@@ -89,6 +88,7 @@ const Roster = (props) => {
 
   const playerPlaced = () => {
     props.playerPlaced(true);
+    setPossiblePlayers([])
   };
 
   return (
@@ -96,7 +96,6 @@ const Roster = (props) => {
       {sections}
       {clickedRosterSpot && (
         <PossiblePlayersDrop
-          // players={listFromSpot}
           players={possiblePlayers}
           pp={props.pp}
           clickedIndex={clickedRosterSpot.index}
