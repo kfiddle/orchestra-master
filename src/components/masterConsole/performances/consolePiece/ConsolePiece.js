@@ -33,17 +33,12 @@ const ConsolePiece = (props) => {
   };
 
   return (
-    <div className={styles.consoleChildrenDiv}>
-      <div
-        className={`${styles.pieceContainer} ${clickedOrNot}`}
-        onClick={clickedPieceHandler}
-      >
-        <div className={styles.titleDiv}>{title}</div>
-        <div className={styles.composerDiv}>{composer}</div>
-      </div>
-      <div className={styles.rosterDiv}>
-        {clickedPiece && <Roster pp={pp} playerPlaced={playerPlaced} />}
-      </div>
+    <div
+      className={`${styles.pieceContainer} ${clickedOrNot}`}
+      onClick={clickedPieceHandler}
+    >
+      <div className={styles.titleDiv}>{title}</div>
+      <div className={styles.composerDiv}>{composer}</div>
     </div>
   );
 };

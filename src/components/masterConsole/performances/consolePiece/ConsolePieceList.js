@@ -7,8 +7,9 @@ import Roster from "../../../piece/roster/Roster";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
-import styles from "./ConsolePiece.module.css";
-import { Fragment } from "react/cjs/react.production.min";
+import styles from "./ConsolePieceList.module.css";
+
+// MasterConsole has this
 
 const ConsolePieceList = (props) => {
   const { clickedPerformance } = useContext(ClickedPerformance);
@@ -41,8 +42,8 @@ const ConsolePieceList = (props) => {
   };
 
   const playerPlaced = () => {
-    setNewPlayerInChair(true)
-  }
+    setNewPlayerInChair(true);
+  };
 
   const displayablePieces = piecesOfClickedPerformance.map((pp) => (
     <ConsolePiece
@@ -55,9 +56,15 @@ const ConsolePieceList = (props) => {
   ));
 
   return (
-    <Fragment>
-      {displayablePieces}
-    </Fragment>
+    <div className={styles.outerContainer}>
+      <div className={styles.piecesDiv}>{displayablePieces}</div>
+
+      <div className={styles.rosterDiv}>
+        {clickedPerformancePiece && (
+          <Roster pp={clickedPerformancePiece} playerPlaced={playerPlaced} />
+        )}
+      </div>
+    </div>
   );
 };
 

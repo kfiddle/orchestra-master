@@ -1,8 +1,15 @@
 .outerContainer {
   width: 90%;
+  display: flex;
   display: grid;
   grid-template-columns: 2fr 3fr;
   margin-top: 10rem;
+}
+
+.piecesRostersDiv{
+  display: flex;
+  /* display: grid;
+  grid-template-rows: 1fr 2fr; */
 }
 
 .concertsDiv {
@@ -13,5 +20,3 @@
   margin: 1rem;
 }
 
-.rostersDiv {
-}

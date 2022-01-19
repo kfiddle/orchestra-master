@@ -1,7 +1,12 @@
-.piecesDiv {
-    margin: 1rem;
-  }
+.outerContainer {
+  display: flex;
+}
 
-  .rosterDiv {
-    
-  }
+.piecesDiv {
+  width: 40%;
+  margin-right: 2rem;
+}
+
+.rosterDiv {
+  width: 40%;
+}

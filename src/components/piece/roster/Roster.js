@@ -88,20 +88,22 @@ const Roster = (props) => {
 
   const playerPlaced = () => {
     props.playerPlaced(true);
-    setPossiblePlayers([])
+    setPossiblePlayers([]);
   };
 
   return (
     <div className={styles.rosterDiv}>
-      {sections}
-      {clickedRosterSpot && (
-        <PossiblePlayersDrop
-          players={possiblePlayers}
-          pp={props.pp}
-          clickedIndex={clickedRosterSpot.index}
-          playerPlaced={playerPlaced}
-        />
-      )}
+      <div>{sections}</div>
+      <div>
+        {clickedRosterSpot && (
+          <PossiblePlayersDrop
+            players={possiblePlayers}
+            pp={props.pp}
+            clickedIndex={clickedRosterSpot.index}
+            playerPlaced={playerPlaced}
+          />
+        )}
+      </div>
     </div>
   );
 };
