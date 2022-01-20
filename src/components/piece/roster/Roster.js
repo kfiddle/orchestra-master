@@ -9,15 +9,13 @@ import styles from "./Roster.module.css";
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 const Roster = (props) => {
-  const [listFromSpot, setListFromSpot] = useState([]);
   const [clickedRosterSpot, setClickedRosterSpot] = useState(null);
   const [possiblePlayers, setPossiblePlayers] = useState([]);
 
   const { partsList } = useContext(AllParts);
 
   const pp = props.pp;
-
-  let allPlayers = useGetAList2("get-all-players");
+  const chairsToFill = pp.chairsToFill.length > 0 ? props.pp.chairsToFill : [];
 
   useEffect(() => {
     const getPossiblePlayers = async () => {
@@ -32,24 +30,11 @@ const Roster = (props) => {
     if (clickedRosterSpot !== null) {
       getPossiblePlayers();
     }
-  }, [clickedRosterSpot]);
+  }, [clickedRosterSpot, props.playerPlaced]);
 
-  const chairsToFill = pp.chairsToFill.length > 0 ? pp.chairsToFill : null;
 
   const spotClickHandler = (incomingSpot) => {
     setClickedRosterSpot(incomingSpot);
-
-    setListFromSpot([]);
-    let tempList = [];
-
-    for (let player of allPlayers) {
-      for (let playerPart of player.parts) {
-        if (playerPart === incomingSpot.part) {
-          tempList.push(player);
-          setListFromSpot(tempList);
-        }
-      }
-    }
   };
 
   const sections = chairsToFill

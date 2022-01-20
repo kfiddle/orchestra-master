@@ -6,7 +6,10 @@ import "./App.css";
 import Layout from "./components/UI/Layout";
 import AllContractedPlayers from "./pages/AllContractedPlayers";
 import AllSubPlayers from "./pages/AllSubPlayers";
+
 import Season from "./pages/Season";
+
+import Season2 from './pages/Season2';
 import Library from "./pages/Library";
 
 
@@ -33,7 +36,12 @@ function App() {
         </Route>
 
         <Route path={"/season"} exact>
-          <Season modalIsClosed={modalIsClosed} />
+          {/* <Season modalIsClosed={modalIsClosed} /> */}
+
+          <Season2 modalIsClosed={modalIsClosed} />
+
+
+
         </Route>
       </Switch>
     </Layout>

@@ -7,9 +7,8 @@
 }
 
 .piecesRostersDiv{
-  display: flex;
-  /* display: grid;
-  grid-template-rows: 1fr 2fr; */
+  display: grid;
+  grid-template-rows: 1fr 2fr;
 }
 
 .concertsDiv {

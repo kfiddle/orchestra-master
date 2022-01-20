@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 
 import ClickedPerformance from "../../../../store/clicked-performance";
+import clickedPerformancePiece from '../../../../store/clicked-performance-piece';
 
 import ConsolePiece from "./ConsolePiece";
 import Roster from "../../../piece/roster/Roster";
@@ -29,13 +30,20 @@ const ConsolePieceList = (props) => {
       setPiecesOfClickedPerformance(ppsJsonified);
     };
 
+    const getTheChairs = async () => {
+
+    }
+
     if (newPlayerInChair) {
       getThePPs();
       setNewPlayerInChair(false);
     }
 
+    
+
     getThePPs();
-  }, [clickedPerformance, newPlayerInChair]);
+    getTheChairs();
+  }, [clickedPerformance, newPlayerInChair, clickedPerformancePiece]);
 
   const clickedPerformancePieceHandler = (pp) => {
     setClickedPerformancePiece(pp);

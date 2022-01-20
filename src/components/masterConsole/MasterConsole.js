@@ -13,8 +13,9 @@ import styles from "./MasterConsole.module.css";
 const AllPerformances = (props) => {
   const { clickedPerformance } = useContext(ClickedPerformance);
 
-  const clickedPerformanceHandler = async (performance) => {
+  const clickedPerformanceHandler = (performance) => {
     props.clicked(performance);
+
   };
 
   const displayablePerformances = props.list.map((performance) => (
@@ -29,10 +30,13 @@ const AllPerformances = (props) => {
   return (
     <div className={styles.outerContainer}>
       <div className={styles.concertsDiv}>{displayablePerformances}</div>
-      {/* <div className={styles.piecesRostersDiv}> */}
-      {clickedPerformance && <ConsolePieceList />}
-      {/* </div> */}
-      
+      <div className={styles.piecesRostersDiv}>
+        {clickedPerformance && <ConsolePieceList />}
+
+      {/* {clickedPerformance && <ConsolePieceList2 pieces={pieces} />} */}
+
+
+      </div>
     </div>
   );
 };
