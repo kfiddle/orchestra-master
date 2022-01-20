@@ -1,22 +1,18 @@
 .outerContainer {
-    width: 90%;
-    display: flex;
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    margin-top: 10rem;
-  }
-  
-  .piecesRostersDiv{
-    display: grid;
-    grid-template-rows: 1fr 2fr;
-  }
-  
-  .concertsDiv {
-    margin-right: 2rem;
-  }
-  
-  .piecesDiv {
-    margin: 1rem;
-  }
-  
-  
+  width: 90%;
+  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-top: 10rem;
+}
+
+.piecesDiv {
+}
+
+.concertsDiv {
+  margin-right: 2rem;
+}
+
+.piecesDiv {
+  margin: 1rem;
+}

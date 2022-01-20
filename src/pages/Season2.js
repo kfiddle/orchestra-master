@@ -6,7 +6,6 @@ import LoadingSpinner from "../components/UI/loading/LoadingSpinner";
 import useGetAList2 from "../hooks/useGetAList2";
 
 const Season2 = () => {
-  const [performances, setPerformances] = useState([]);
 
   let allPerformances = useGetAList2("get-all-performances");
   let isLoading = allPerformances.length < 1;
