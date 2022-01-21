@@ -7,9 +7,16 @@ import styles from "./MasterConsole3.module.css";
 const MasterConsole3 = (props) => {
   const performances = props.allPerformances;
 
+  const clickedPerformanceHandler = (performance) => {
+    console.log(performance);
+  };
+
   return (
     <div className={styles.outerContainer}>
-      <Performances performances={performances}/>
+      <Performances
+        performances={performances}
+        clicked={clickedPerformanceHandler}
+      />
       {/* <Pieces />
       <RosterSpots />
       <Possibles /> */}
