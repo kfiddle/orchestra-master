@@ -5,7 +5,7 @@ import RosterSpot from "../piece/roster/rosterSpot/RosterSpot";
 import styles from "./RosterSpots.module.css";
 
 const RosterSpots = (props) => {
-  const [clickedRosterSpot, setClickedRosterSpot] = useState({});
+  const [clickedRosterSpot, setClickedRosterSpot] = useState(null);
 
   const chairsToFill = props.chairsToFill;
   const clicked = props.clicked;
