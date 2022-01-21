@@ -3,6 +3,8 @@ import { useState } from "react";
 import Performances from "./performances/Performances";
 import Pieces from "../pieces/Pieces";
 import RosterSpots from "../rosterSpots/RosterSpots";
+import Possibles from "../possibles/Possibles";
+
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
@@ -14,7 +16,10 @@ const MasterConsole3 = (props) => {
   const performances = props.allPerformances;
 
   const [pieces, setPieces] = useState([]);
+  const [clickedPiece, setClickedPiece] = useState({});
   const [chairsToFill, setChairsToFill] = useState([]);
+
+  const [possiblePlayers, setPossiblePlayers] = useState([]);
 
   const clickedPerformanceHandler = async (performance) => {
     const performancePiecesResponse = await PushBasic(
@@ -27,6 +32,16 @@ const MasterConsole3 = (props) => {
 
   const clickedPieceHandler = async (piece) => {
     setChairsToFill(piece.chairsToFill);
+    setClickedPiece(piece);
+  };
+
+  const clickedChairHandler = async (rosterSpot) => {
+    let spotToSend = { pp:clickedPiece, indexOfChair: rosterSpot.index };
+    const response = await PushBasic(spotToSend, "get-possible-players");
+    if (response.ok) {
+      let listToSet = await response.json();
+      setPossiblePlayers(listToSet);
+    }
   };
 
   return (
@@ -36,8 +51,8 @@ const MasterConsole3 = (props) => {
         clicked={clickedPerformanceHandler}
       />
       <Pieces pieces={pieces} clicked={clickedPieceHandler} />
-      <RosterSpots chairsToFill={chairsToFill}/>
-      {/* <Possibles /> */}
+      <RosterSpots chairsToFill={chairsToFill} clicked={clickedChairHandler} />
+      <Possibles possibles={possiblePlayers} />
     </div>
   );
 };

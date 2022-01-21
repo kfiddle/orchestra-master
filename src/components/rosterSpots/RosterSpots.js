@@ -6,16 +6,18 @@ import styles from "./RosterSpots.module.css";
 
 const RosterSpots = (props) => {
   const [clickedRosterSpot, setClickedRosterSpot] = useState({});
+
   const chairsToFill = props.chairsToFill;
+  const clicked = props.clicked;
 
   const spotClickHandler = (rosterSpot) => {
     setClickedRosterSpot(rosterSpot);
+    clicked(rosterSpot);
   };
 
   const displayableChairs = chairsToFill.map((chair) => (
     <RosterSpot
       key={Math.random()}
-      //   pp={pp}
       chair={chair}
       index={chairsToFill.indexOf(chair)}
       spotClicked={spotClickHandler}
