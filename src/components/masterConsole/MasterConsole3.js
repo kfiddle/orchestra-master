@@ -1,4 +1,10 @@
+import { useState } from "react";
+
 import Performances from "./performances/Performances";
+import Pieces from "../pieces/Pieces";
+import RosterSpots from "../rosterSpots/RosterSpots";
+
+import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import styles from "./MasterConsole3.module.css";
 
@@ -7,8 +13,20 @@ import styles from "./MasterConsole3.module.css";
 const MasterConsole3 = (props) => {
   const performances = props.allPerformances;
 
-  const clickedPerformanceHandler = (performance) => {
-    console.log(performance);
+  const [pieces, setPieces] = useState([]);
+  const [chairsToFill, setChairsToFill] = useState([]);
+
+  const clickedPerformanceHandler = async (performance) => {
+    const performancePiecesResponse = await PushBasic(
+      performance,
+      "get-pieces-on-program"
+    );
+    const ppsJsonified = await performancePiecesResponse.json();
+    setPieces(ppsJsonified);
+  };
+
+  const clickedPieceHandler = async (piece) => {
+    setChairsToFill(piece.chairsToFill);
   };
 
   return (
@@ -17,9 +35,9 @@ const MasterConsole3 = (props) => {
         performances={performances}
         clicked={clickedPerformanceHandler}
       />
-      {/* <Pieces />
-      <RosterSpots />
-      <Possibles /> */}
+      <Pieces pieces={pieces} clicked={clickedPieceHandler} />
+      <RosterSpots chairsToFill={chairsToFill}/>
+      {/* <Possibles /> */}
     </div>
   );
 };

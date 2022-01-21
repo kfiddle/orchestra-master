@@ -14,7 +14,7 @@ const Roster = (props) => {
 
   const { partsList } = useContext(AllParts);
 
-  const pp = props.pp;
+  const pp = props.piece;
   const chairsToFill = pp.chairsToFill.length > 0 ? props.pp.chairsToFill : [];
 
   useEffect(() => {
