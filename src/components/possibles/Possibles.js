@@ -4,15 +4,17 @@ import styles from "./Possibles.module.css";
 
 const Possibles = (props) => {
   const possibles = props.possibles;
+  const doubleClicked = props.doubleClicked;
 
-  console.log(possibles);
+  const doubleClickHandler = (player) => {
+      doubleClicked(player)
+  }
 
   const displayablePossibles = possibles.map((player) => (
     <PossiblePlayer2
       key={possibles.indexOf(player)}
       player={player}
-      // clickedIndex={clickedIndex}
-      // playerPlaced={playerPlaced}
+      doubleClicked={doubleClickHandler}
     ></PossiblePlayer2>
   ));
 

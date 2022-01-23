@@ -1,0 +1,12 @@
+.outerContainer{
+    width: 100%;
+    display: flex;
+}
+
+.rosterSpotsDiv{
+    width: 50%;
+}
+
+.possiblesDiv{
+    width: 50%;
+}

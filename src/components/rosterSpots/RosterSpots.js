@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import RosterSpot from "../piece/roster/rosterSpot/RosterSpot";
 
@@ -9,6 +9,7 @@ const RosterSpots = (props) => {
 
   const chairsToFill = props.chairsToFill;
   const clicked = props.clicked;
+
 
   const spotClickHandler = (rosterSpot) => {
     setClickedRosterSpot(rosterSpot);
