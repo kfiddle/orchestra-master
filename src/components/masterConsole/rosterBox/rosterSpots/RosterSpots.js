@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import RosterSpot from "../piece/roster/rosterSpot/RosterSpot";
+import RosterSpot from "../../../piece/roster/rosterSpot/RosterSpot";
 
 import styles from "./RosterSpots.module.css";
 

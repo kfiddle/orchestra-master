@@ -1,4 +1,4 @@
-import PossiblePlayer2 from "./possiblePlayers/PossiblePlayer2";
+import PossiblePlayer2 from "./possiblePlayer/PossiblePlayer2";
 
 import styles from "./Possibles.module.css";
 

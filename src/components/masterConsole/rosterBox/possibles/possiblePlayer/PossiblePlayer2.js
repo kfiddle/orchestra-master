@@ -1,5 +1,5 @@
 
-import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
+import PushBasic from "../../../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./PossiblePlayer2.module.css";
 

@@ -4,13 +4,11 @@ import { useState } from "react";
 import "./App.css";
 
 import Layout from "./components/UI/Layout";
+
 import AllContractedPlayers from "./pages/AllContractedPlayers";
 import AllSubPlayers from "./pages/AllSubPlayers";
-
-import Season from "./pages/Season";
-
-import Season2 from './pages/Season2';
 import Library from "./pages/Library";
+import Season2 from './pages/Season2';
 
 
 function App() {
@@ -36,7 +34,6 @@ function App() {
         </Route>
 
         <Route path={"/season"} exact>
-          {/* <Season modalIsClosed={modalIsClosed} /> */}
 
           <Season2 modalIsClosed={modalIsClosed} />
 

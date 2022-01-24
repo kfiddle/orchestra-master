@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import Performances from "./performances/Performances";
-import Pieces from "../pieces/Pieces";
+import Pieces from "./pieces/Pieces";
 
-import RosterBox from "../rosterBox/RosterBox";
+import RosterBox from './rosterBox/RosterBox'
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
@@ -35,14 +35,18 @@ const MasterConsole3 = (props) => {
 
   return (
     <div className={styles.outerContainer}>
-      <Performances
-        performances={performances}
-        clicked={clickedPerformanceHandler}
-      />
       <div>
+        <Performances
+          performances={performances}
+          clicked={clickedPerformanceHandler}
+        />
+      </div>
+      <div className={styles.piecesDiv}>
         <Pieces pieces={pieces} clicked={clickedPieceHandler} />
       </div>
-      <div>{clickedPiece && <RosterBox piece={clickedPiece} />}</div>
+      <div className={styles.RosterBoxDiv}>
+        {clickedPiece && <RosterBox piece={clickedPiece} />}
+      </div>
     </div>
   );
 };

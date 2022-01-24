@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-import RosterSpots from "../rosterSpots/RosterSpots";
-import Possibles from "../possibles/Possibles";
+import RosterSpots from "./rosterSpots/RosterSpots";
+import Possibles from "./possibles/Possibles";
 
-import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import styles from "./RosterBox.module.css";
 
@@ -11,7 +11,6 @@ const RosterBox = (props) => {
   const [chairsToFill, setChairsToFill] = useState([]);
   const [possiblePlayers, setPossiblePlayers] = useState([]);
   const [clickedChairIndex, setClickedChairIndex] = useState(0);
-  const [playerPlaced, setPlayerPlaced] = useState(false);
 
   const piece = props.piece;
 
@@ -22,6 +21,7 @@ const RosterBox = (props) => {
         let newChairs = await response.json();
         setChairsToFill(newChairs);
       }
+      setPossiblePlayers([]);
     };
 
     getTheChairs();
@@ -35,13 +35,10 @@ const RosterBox = (props) => {
       let listToSet = await response.json();
       setPossiblePlayers(listToSet);
     }
-    console.log("first index here .." + clickedChairIndex);
   };
 
   const doubleClickedPossible = async (player) => {
     let objectToSend = {
-      //   pieceOnProgram: piece,
-
       ppId: piece.id,
       player: player,
       chairsListIndex: clickedChairIndex,
@@ -69,7 +66,7 @@ const RosterBox = (props) => {
         )}
       </div>
       <div className={styles.possiblesDiv}>
-        {possiblePlayers.length > 1 && (
+        {possiblePlayers.length > 0 && (
           <Possibles
             possibles={possiblePlayers}
             doubleClicked={doubleClickedPossible}

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import styles from "./Pieces.module.css";
 
-import ConsolePiece from "../masterConsole/performances/consolePiece/ConsolePiece";
+import ConsolePiece from "../performances/consolePiece/ConsolePiece";
 
 const Pieces = (props) => {
   const [clickedPiece, setClickedPiece] = useState({});
