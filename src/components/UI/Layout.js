@@ -3,7 +3,7 @@ import MainNavigation from "../mainNavigation/MainNavigation";
 
 import PlayerEntry from "../entryComponents/playerEntry/entry/PlayerEntry";
 import PieceEntry from "../entryComponents/pieceEntry/PieceEntry";
-import PerformanceEntry from "../performances/performanceEntry/PerformanceEntry";
+import PerformanceEntry from "../entryComponents/performanceEntry/PerformanceEntry";
 
 import GetAList from "../helperFunctions/GetAList";
 import AllParts from "../../store/all-parts";

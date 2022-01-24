@@ -20,7 +20,10 @@ const Player = (props) => {
 
   const closeModal = () => {
     setEditClicked(false);
+    props.possibleEdit();
   };
+
+  
 
   const showInfo = () => {
     props.clicked(props.player);
@@ -39,7 +42,7 @@ const Player = (props) => {
       </div>
 
       {editClicked && (
-        <PlayerEntry player={props.player} closeModal={closeModal} />
+        <PlayerEntry player={props.player} closeModal={closeModal}/>
       )}
     </div>
   );

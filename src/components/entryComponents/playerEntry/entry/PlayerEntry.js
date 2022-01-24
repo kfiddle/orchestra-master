@@ -10,7 +10,6 @@ import BigInput from "../../../input/BigInput";
 import BigInput2 from "../../../input/BigInput2";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
-import DoubleObjectPush from "../../../helperFunctions/pushFunctions/DoubleObjectPush";
 
 import classes from "./PlayerEntry.module.css";
 import FoneInput from "../../../input/FoneInput";
@@ -41,6 +40,7 @@ const PlayerEntry = (props) => {
   useEffect(() => {
     if (props.player) {
       setPlayer({ ...props.player });
+      setClickedInstrumentList(props.player.parts);
     }
   }, [props.player]);
 
@@ -91,6 +91,7 @@ const PlayerEntry = (props) => {
 
     const sendPlayerOff = async () => {
       let pushFunction = !props.player ? "add-player" : "edit-player";
+      console.log(playerToSend);
       let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
       if (mainPlayerResponse.ok) {
         props.closeModal();

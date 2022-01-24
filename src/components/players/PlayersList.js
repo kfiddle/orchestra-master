@@ -15,6 +15,10 @@ const PlayersList = (props) => {
     console.log(player.lastName);
   };
 
+  const possibleEdit = () => {
+    props.possibleEdit()
+  }
+
   const partChooser = async (part) => {
     setChosenInstrument(part);
 
@@ -24,7 +28,7 @@ const PlayersList = (props) => {
   };
 
   const playersToDisplay = byInstrumentList.map((player) => (
-    <Player key={player.id} player={player} clicked={clickedPlayerHandler} />
+    <Player key={player.id} player={player} clicked={clickedPlayerHandler} possibleEdit={possibleEdit} />
   ));
 
   return (

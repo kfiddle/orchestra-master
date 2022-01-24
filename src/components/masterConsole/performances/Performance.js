@@ -2,37 +2,44 @@ import { useState } from "react";
 
 import { FiEdit, FiPlus } from "react-icons/fi";
 
+
+import PerformanceEntry from '../../entryComponents/performanceEntry/PerformanceEntry'
 import DateFormatter from "../../helperFunctions/DateFormatter";
-import PieceEntry from "../../entryComponents/pieceEntry/PieceEntry";
+
 
 import styles from "./Performance.module.css";
 
 const Performance = (props) => {
   const [addPieceClicked, setAddPieceClicked] = useState(false);
+  const [editClicked, setEditClicked] = useState(false);
 
   const { title, performanceDates } = props.performance;
   const displayDate = DateFormatter(performanceDates[0].date);
 
-  const clickedOrNot = props.active? styles.clicked: styles.unclicked;
+  const clickedOrNot = props.active ? styles.clicked : styles.unclicked;
 
   const clickedPerformance = () => {
-      props.clicked(props.performance);
-  }
+    props.clicked(props.performance);
+  };
 
   const editPerformance = () => {
-    console.log(props.performance);
+    setEditClicked(true);
   };
 
   const closeModal = () => {
-      setAddPieceClicked(false);
-  }
+    setAddPieceClicked(false);
+    setEditClicked(false)
+  };
 
   const openAddPieceModal = () => {
-      setAddPieceClicked(true);
-  }
+    setAddPieceClicked(true);
+  };
 
   return (
-    <div className={`${styles.outerContainer} ${clickedOrNot}`} onClick={clickedPerformance}>
+    <div
+      className={`${styles.outerContainer} ${clickedOrNot}`}
+      onClick={clickedPerformance}
+    >
       <div className={styles.titleDiv}>{title}</div>
       <div className={styles.dateDiv}>{displayDate}</div>
 
@@ -40,7 +47,8 @@ const Performance = (props) => {
         <FiPlus className={styles.plusSign} onClick={openAddPieceModal} />
         <FiEdit onClick={editPerformance} className={styles.editButton} />
       </div>
-      {addPieceClicked && <PieceEntry closeModal={closeModal}/>}
+
+      {editClicked && <PerformanceEntry closeModal={closeModal}  />}
     </div>
   );
 };

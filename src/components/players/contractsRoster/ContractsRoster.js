@@ -3,17 +3,20 @@ import { useState, useEffect, useContext } from "react";
 import Player from "../Player";
 import PlayerInfoBox from "../playerInfoBox/PlayerInfoBox";
 
-
 import GetAList from "../../helperFunctions/GetAList";
-import AllParts from '../../../store/all-parts';
+import AllParts from "../../../store/all-parts";
 
 import classes from "./ContractsRoster.module.css";
 
 const ContractsRoster = (props) => {
   const [infoBoxClicked, setInfoBoxClicked] = useState(false);
   const [clickedPlayer, setClickedPlayer] = useState({});
-  const { partsList } = useContext(AllParts)
+  const { partsList } = useContext(AllParts);
   const playersList = props.list;
+
+  const possibleEdit = () => {
+    props.possibleEdit(true);
+  };
 
   const clickedPlayerHandler = (player) => {
     setInfoBoxClicked(true);
@@ -29,6 +32,7 @@ const ContractsRoster = (props) => {
             key={player.id}
             player={player}
             clicked={clickedPlayerHandler}
+            possibleEdit={possibleEdit}
           ></Player>
         );
       }

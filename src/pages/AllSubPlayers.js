@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 import PlayersList from "../components/players/PlayersList";
 
@@ -6,10 +7,15 @@ import useGetAList2 from "../hooks/useGetAList2";
 
 
 const AllSubPlayers = (props) => {
-  let players = useGetAList2("get-all-sub-players");
+  const [reload, setReload] = useState(false);
+  let players = useGetAList2("get-all-sub-players", reload, setReload);
   let isLoading = players.length < 1;
 
-  return isLoading ? <LoadingSpinner /> : <PlayersList list={players} type={"subs"}/>;
+  const possibleEdit = () => {
+    setReload(true);
+  };
+
+  return isLoading ? <LoadingSpinner /> : <PlayersList list={players} type={"subs"} possibleEdit={possibleEdit}/>;
  
 
 };

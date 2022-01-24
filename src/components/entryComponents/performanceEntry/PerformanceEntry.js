@@ -6,7 +6,7 @@ import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 import BigInput from "../../input/BigInput";
 
 import PiecesDropDown from "../../piece/PiecesDropDown";
-import DisplayedPieceDiv from "./displayedPieceDiv.js/DisplayedPieceDiv";
+import DisplayedPieceDiv from './displayedPieceDiv/DisplayedPieceDiv'
 
 import useDates from "../../../hooks/useDates";
 import useConcertDates from "../../../hooks/useConcertDates";

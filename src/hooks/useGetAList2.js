@@ -5,7 +5,7 @@ import GetAList from "../components/helperFunctions/GetAList";
 
 import WhichServer from "../components/helperFunctions/WhichServer";
 
-const useGetAList2 = (listUrl) => {
+const useGetAList2 = (listUrl, reload, setReload) => {
   const [list, setList] = useState([]);
   const whichServer = WhichServer();
 
@@ -15,13 +15,14 @@ const useGetAList2 = (listUrl) => {
         let response = await fetch(whichServer + listUrl);
         let jsonified = await response.json();
         setList(jsonified)
+        setReload(false)
       } catch (error) {
         return console.log(error);
       }
     };
 
     getList();
-  }, [whichServer, listUrl]);
+  }, [whichServer, listUrl, reload]);
 
   return list;
 };
