@@ -35,11 +35,14 @@ const RosterBox = (props) => {
       let listToSet = await response.json();
       setPossiblePlayers(listToSet);
     }
+    console.log("first index here .." + clickedChairIndex);
   };
 
   const doubleClickedPossible = async (player) => {
     let objectToSend = {
-      pieceOnProgram: piece,
+      //   pieceOnProgram: piece,
+
+      ppId: piece.id,
       player: player,
       chairsListIndex: clickedChairIndex,
     };
@@ -51,7 +54,7 @@ const RosterBox = (props) => {
       setPossiblePlayers([]);
       let response2 = await response.json();
       console.log(response2.chairsToFill);
-      //   setChairsToFill(response2.chairsToFill);
+      setChairsToFill(response2.chairsToFill);
     }
   };
 
