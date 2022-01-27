@@ -2,10 +2,8 @@ import { useState } from "react";
 
 import { FiEdit, FiPlus } from "react-icons/fi";
 
-
-import PerformanceEntry from '../../entryComponents/performanceEntry/PerformanceEntry'
+import PerformanceEdit from "../../editComponents/performanceEdit/PerformanceEdit";
 import DateFormatter from "../../helperFunctions/DateFormatter";
-
 
 import styles from "./Performance.module.css";
 
@@ -28,7 +26,7 @@ const Performance = (props) => {
 
   const closeModal = () => {
     setAddPieceClicked(false);
-    setEditClicked(false)
+    setEditClicked(false);
   };
 
   const openAddPieceModal = () => {
@@ -48,7 +46,12 @@ const Performance = (props) => {
         <FiEdit onClick={editPerformance} className={styles.editButton} />
       </div>
 
-      {editClicked && <PerformanceEntry closeModal={closeModal} performance={props.performance} />}
+      {editClicked && (
+        <PerformanceEdit
+          closeModal={closeModal}
+          performance={props.performance}
+        />
+      )}
     </div>
   );
 };
