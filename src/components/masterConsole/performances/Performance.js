@@ -48,7 +48,7 @@ const Performance = (props) => {
         <FiEdit onClick={editPerformance} className={styles.editButton} />
       </div>
 
-      {editClicked && <PerformanceEntry closeModal={closeModal}  />}
+      {editClicked && <PerformanceEntry closeModal={closeModal} performance={props.performance} />}
     </div>
   );
 };

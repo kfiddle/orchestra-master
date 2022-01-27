@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "../../UI/modal/Modal";
 import PiecesList from "../../../store/pieces-list";
 import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
@@ -6,14 +6,13 @@ import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 import BigInput from "../../input/BigInput";
 
 import PiecesDropDown from "../../piece/PiecesDropDown";
-import DisplayedPieceDiv from './displayedPieceDiv/DisplayedPieceDiv'
+import DisplayedPieceDiv from "./displayedPieceDiv/DisplayedPieceDiv";
 
 import useDates from "../../../hooks/useDates";
 import useConcertDates from "../../../hooks/useConcertDates";
 
 import classes from "./PerformanceEntry.module.css";
 import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFunctions";
-
 
 let perfObject = {
   id: "",
@@ -27,9 +26,11 @@ const PerformanceEntry = (props) => {
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [performanceDates, setPerformanceDates] = useState([]);
 
-  if (props.performance) {
-    perfObject = { ...props.performance };
-  }
+  useEffect(() => {
+    if (props.performance) {
+      perfObject = { ...props.performance };
+    }
+  }, [props.performance]);
 
   const [performance, setPerformance] = useState(perfObject);
 
@@ -61,18 +62,15 @@ const PerformanceEntry = (props) => {
     setPerformance({ ...performance, [key]: event.target.value });
   };
 
- 
   const textInputter = { label: "", key: "", populator, pObject: perfObject };
-
 
   const [rehearsalDateInputs, rehearsalDatez, rehearsalClicked] = useDates(
     perfObject,
     "Rehearsal"
   );
 
-  const [concertDateInputs, concertDates, concertClicked] = useConcertDates(perfObject);
-
-
+  const [concertDateInputs, concertDates, concertClicked] =
+    useConcertDates(perfObject);
 
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
