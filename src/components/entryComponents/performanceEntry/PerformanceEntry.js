@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "../../UI/modal/Modal";
 import PiecesList from "../../../store/pieces-list";
 import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 
-import BigInput from "../../input/BigInput";
+import BigInput3 from "../../input/BigInput3";
 
 import PiecesDropDown from "../../piece/PiecesDropDown";
 import DisplayedPieceDiv from "./displayedPieceDiv/DisplayedPieceDiv";
@@ -14,25 +14,12 @@ import useConcertDates from "../../../hooks/useConcertDates";
 import classes from "./PerformanceEntry.module.css";
 import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFunctions";
 
-let perfObject = {
-  id: "",
-  title: "",
-  performanceDateTimes: [],
-  notes: "",
-};
-
 const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [performanceDates, setPerformanceDates] = useState([]);
 
-  useEffect(() => {
-    if (props.performance) {
-      perfObject = { ...props.performance };
-    }
-  }, [props.performance]);
-
-  const [performance, setPerformance] = useState(perfObject);
+  const [performance, setPerformance] = useState({});
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -58,19 +45,15 @@ const PerformanceEntry = (props) => {
     ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
-  const populator = (event, key) => {
-    setPerformance({ ...performance, [key]: event.target.value });
-  };
-
-  const textInputter = { label: "", key: "", populator, pObject: perfObject };
+  const stateFuncs = { setPerformance, performance };
 
   const [rehearsalDateInputs, rehearsalDatez, rehearsalClicked] = useDates(
-    perfObject,
+    performance,
     "Rehearsal"
   );
 
   const [concertDateInputs, concertDates, concertClicked] =
-    useConcertDates(perfObject);
+    useConcertDates(performance);
 
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
@@ -81,12 +64,10 @@ const PerformanceEntry = (props) => {
       <Modal styleObject={perfEntryModalStyles} closeModal={props.closeModal}>
         <div className={classes.outerContainer}>
           <form>
-            <BigInput
-              inputObject={{
-                ...textInputter,
-                label: "Performance Title",
-                key: "title",
-              }}
+            <BigInput3
+              stateFuncs={stateFuncs}
+              label="Performance Title"
+              keyName="title"
             />
 
             {concertDateInputs}
@@ -101,13 +82,11 @@ const PerformanceEntry = (props) => {
               </button>
             </div>
 
-            <BigInput
-              inputObject={{
-                ...textInputter,
-                label: "Notes",
-                key: "notes",
-                style: { width: "100%", height: "3rem" },
-              }}
+            <BigInput3
+              stateFuncs={stateFuncs}
+              label="Notes"
+              keyName="notes"
+              style={{ width: "100%", height: "3rem" }}
             />
 
             <div className={classes.repButtonDiv}>
