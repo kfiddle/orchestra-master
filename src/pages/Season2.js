@@ -5,8 +5,12 @@ import LoadingSpinner from "../components/UI/loading/LoadingSpinner";
 
 import useGetAList2 from "../hooks/useGetAList2";
 
-const Season2 = () => {
-  let allPerformances = useGetAList2("get-all-performances");
+const Season2 = (props) => {
+
+  const reloadFlag = props.reloadFlag;
+  const setReloadFlag = props.setReloadFlag;
+
+  let allPerformances = useGetAList2("get-all-performances", reloadFlag, setReloadFlag);
   let isLoading = allPerformances.length < 1;
 
   return isLoading ? (

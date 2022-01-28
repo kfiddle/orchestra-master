@@ -13,9 +13,11 @@ import Season2 from './pages/Season2';
 
 function App() {
   const [modalIsClosed, setModalIsClosed] = useState(false);
+  const [reloadFlag, setReloadFlag] = useState(false) 
 
   const modalCloseHandler = (flag) => {
     setModalIsClosed(flag);
+    setReloadFlag(true)
   };
 
   return (
@@ -35,9 +37,7 @@ function App() {
 
         <Route path={"/season"} exact>
 
-          <Season2 modalIsClosed={modalIsClosed} />
-
-
+          <Season2 modalIsClosed={modalIsClosed} reloadFlag={reloadFlag} setReloadFlag={setReloadFlag}/>
 
         </Route>
       </Switch>
