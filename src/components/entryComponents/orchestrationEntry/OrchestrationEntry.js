@@ -32,24 +32,28 @@ const OrchestrationEntry = (props) => {
     }
   };
 
-  return (
-    <Modal closeModal={props.closeModal}>
-      <div className={classes.outerContainer}>
-        <div className={classes.titleDiv}>
-          <h2>{piece.title}</h2>
-        </div>
+  const orchEntryModalStyles = { width: "50vw", top: "5vh"};
 
-        <div className={classes.inputsContainer}>
-          <WindInputs stateList={stateList} />
-          <BrassInputs stateList={stateList} />
-          <PercussionInputs stateList={stateList} />
-          <StringInputs stateList={stateList} />
+  return (
+    <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>
+      <div className={classes.outerContainer}>
+        <div className={classes.inputsDiv}>
+          <div className={classes.titleDiv}>
+            <h2>{piece.title}</h2>
+          </div>
+
+          <div className={classes.inputsContainer}>
+            <WindInputs stateList={stateList} />
+            <BrassInputs stateList={stateList} />
+            <PercussionInputs stateList={stateList} />
+            <StringInputs stateList={stateList} />
+          </div>
         </div>
 
         <div className={classes.buttonDiv}>
-          <button className={classes.button} onClick={submitOrchestration}>
-            Submit
-          </button>
+        <button className={classes.button} onClick={submitOrchestration}>
+          Submit
+        </button>
         </div>
       </div>
     </Modal>

@@ -26,6 +26,9 @@
 }
 
 .label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 13%;
   padding-right: 1rem;
   color: rgb(39, 39, 143);

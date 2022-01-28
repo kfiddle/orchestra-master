@@ -7,6 +7,7 @@ const StringInputs = (props) => {
     setOrchestration({ ...orchestration, [key]: event.target.value });
   };
 
+
   return (
     <div className={classes.stringsOuter}>
       <div className={classes.label}>Strings</div>
