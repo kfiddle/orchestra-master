@@ -1,5 +1,8 @@
 import classes from "./OrchestrationInputs.module.css";
 
+import AdjustButton from "./adjust/adjustButton/AdjustButton";
+import ExtrasButton from "./adjust/extras/ExtrasButton";
+
 const BrassInputs = (props) => {
   const [orchestration, setOrchestration] = props.stateList;
 
@@ -14,6 +17,8 @@ const BrassInputs = (props) => {
         type={"text"}
         className={`${classes.input} ${classes.brass}`}
       ></input>
+      {/* <AdjustButton/> */}
+
     </div>
   );
 };

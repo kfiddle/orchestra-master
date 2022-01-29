@@ -10,6 +10,17 @@
   font-size: 1.25rem;
 }
 
+.invalidEntry {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #e05c5c;
+  border: 1px solid #2e0202;
+  display: block;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
 .input:focus,
 .control textarea:focus {
   background-color: #e9dcdc;
@@ -18,10 +29,19 @@
 
 .outerContainer {
   display: flex;
+  border: solid 5px rgb(39, 39, 143);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.outerContainer:hover {
+  background: slateblue;
 }
 
 .inputsContainer {
   display: flex;
+
   flex-direction: column;
 }
 
@@ -37,12 +57,13 @@
 
 .winds {
   width: 7rem;
-  margin: 2rem;
+  margin: 2rem 10rem 2rem 2rem;
 }
 
 .brass {
   width: 7rem;
-  margin: 2rem;
+  margin: 2rem 10rem 2rem 2rem;
+
 }
 
 .percussion {
