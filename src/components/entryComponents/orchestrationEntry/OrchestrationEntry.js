@@ -32,7 +32,7 @@ const OrchestrationEntry = (props) => {
     }
   };
 
-  const orchEntryModalStyles = { width: "50vw", top: "5vh"};
+  const orchEntryModalStyles = { width: "80vw", top: "5vh"};
 
   return (
     <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>

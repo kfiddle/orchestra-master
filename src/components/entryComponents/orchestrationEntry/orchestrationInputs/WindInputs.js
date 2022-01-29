@@ -17,8 +17,7 @@ const WindInputs = (props) => {
 
   const panelClickHandler = () => {
     if (basicNumbers.length === 4) {
-      setAdjustClicked(true);
-    } else {
+      setAdjustClicked((previous) => !previous);
     }
   };
 
@@ -27,13 +26,19 @@ const WindInputs = (props) => {
       return;
     }
     setBasicNumbers(event.target.value);
-    setAdjustClicked(false)
+    setAdjustClicked(false);
   };
+
+  let classNames = `${classes.windsOuter} ${classes.outerContainer}`;
+
+  if (adjustClicked) {
+    classNames = `${classes.windsOuter} ${classes.outerContainer} ${classes.panelIsOpen}`
+  }
 
   return (
     <Fragment>
       <div
-        className={`${classes.windsOuter} ${classes.outerContainer}`}
+        className={classNames}
         onClick={panelClickHandler}
       >
         <div className={classes.label}>Winds</div>

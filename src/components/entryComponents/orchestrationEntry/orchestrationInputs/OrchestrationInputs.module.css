@@ -39,6 +39,10 @@
   background: slateblue;
 }
 
+.panelIsOpen {
+  background: slateblue;
+}
+
 .inputsContainer {
   display: flex;
 
@@ -63,7 +67,6 @@
 .brass {
   width: 7rem;
   margin: 2rem 10rem 2rem 2rem;
-
 }
 
 .percussion {
