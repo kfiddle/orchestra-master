@@ -3,14 +3,23 @@ import InstrumentButton from "../instrumentButton/InstrumentButton";
 
 import styles from "./AdjustPanel.module.css";
 
+const doublingObject = {
+  FLUTE: ["PICCOLO", 'ALTOFLUTE'],
+  OBOE: ["ENGLISHHORN"],
+  CLARINET: ["EBCLARINET", 'BASSCLARINET'],
+  BASSOON: ["CONTRA"],
+  HORN: [""],
+  TRUMPET: [""],
+};
+
 const AdjustPanel = (props) => {
-  const basicNumber = props.number;
+  const basicNumbers = props.number;
 
   const instruments = {
-    flute: +basicNumber[0],
-    oboe: +basicNumber[1],
-    cln: +basicNumber[2],
-    bss: +basicNumber[3],
+    FLUTE: +basicNumbers[0],
+    OBOE: +basicNumbers[1],
+    CLARINET: +basicNumbers[2],
+    BASSOON: +basicNumbers[3],
   };
 
   const instrumentsToShow = [];
@@ -22,6 +31,7 @@ const AdjustPanel = (props) => {
           key={Math.random()}
           instrument={instrument}
           rank={i}
+          doublingOptions={doublingObject[instrument]}
         />
       );
     }

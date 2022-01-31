@@ -1,0 +1,10 @@
+.outerContainer {
+  position: relative;
+  margin: 0 0 1rem 3rem;
+  color: white;
+}
+
+.outerContainer:hover {
+  color: rgb(230, 227, 66);
+  cursor: pointer;
+}

@@ -1,14 +1,26 @@
+import { useState } from "react";
+import DoublingBox from "./doublingBox/DoublingBox";
+import styles from "./InstrumentButton.module.css";
 
+const InstrumentButton = (props) => {
+  const [doublingsClicked, setDoublingsClicked] = useState(false);
 
-import styles from './InstrumentButton.module.css';
+  const instrument = props.instrument;
+  const rank = props.rank;
+  const doublingOptions = props.doublingOptions;
 
-const InstrumentButton = props => {
-    const instrument = props.instrument;
-    const rank = props.rank;
+  const showDoublings = () => {
+    setDoublingsClicked((previous) => !previous);
+  };
 
-    return <button className={styles.button}>{instrument} {rank}</button>
-
-
+  return (
+    <div>
+      <button className={styles.button} onClick={showDoublings}>
+        {instrument} {rank}
+      </button>
+      {doublingsClicked && <DoublingBox doublingOptions={doublingOptions} />}
+    </div>
+  );
 };
 
 export default InstrumentButton;
