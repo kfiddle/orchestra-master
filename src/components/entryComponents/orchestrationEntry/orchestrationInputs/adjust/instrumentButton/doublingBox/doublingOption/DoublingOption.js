@@ -1,13 +1,23 @@
+import { useState } from "react";
 import styles from "./DoublingOption.module.css";
 
 const DoublingOption = (props) => {
+  const [clickedInstrument, setClickedInstrument] = useState(false);
   const instrumentName = props.instrumentName;
 
-  const showName = () => {
-      console.log(instrumentName);
-  }
+  const clickedInstrumentHandler = () => {
+    setClickedInstrument((previous) => !previous);
+  };
 
-  return <div className={styles.outerContainer} onClick={showName}>{instrumentName}</div>;
+  let classNames = !clickedInstrument
+    ? styles.outerContainer
+    : `${styles.outerContainer} ${styles.clicked}`;
+
+  return (
+    <div className={classNames} onClick={clickedInstrumentHandler}>
+      {instrumentName}
+    </div>
+  );
 };
 
 export default DoublingOption;

@@ -1,10 +1,13 @@
 .outerContainer {
   position: relative;
   margin: 0 0 1rem 3rem;
-  color: white;
+  color: rgb(243, 233, 233);
 }
 
+.clicked,
 .outerContainer:hover {
-  color: rgb(230, 227, 66);
+  color: #fec302;
+  font-size: 110%;
+  font-weight: 900;
   cursor: pointer;
 }
