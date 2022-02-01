@@ -8,7 +8,6 @@ import classes from "./OrchestrationInputs.module.css";
 const BrassInputs = (props) => {
   const [adjustClicked, setAdjustClicked] = useState(false);
   const [basicNumbers, setBasicNumbers] = useState("");
-
   const [orchestration, setOrchestration] = props.stateList;
 
   const clickedFamily = props.clicked;
@@ -19,7 +18,7 @@ const BrassInputs = (props) => {
 
   const panelClickHandler = () => {
     if (basicNumbers.length === 4) {
-      setAdjustClicked((previous) => !previous);
+      // setAdjustClicked((previous) => !previous);
       props.clickHandler("brass");
     }
   };
@@ -29,7 +28,7 @@ const BrassInputs = (props) => {
       return;
     }
     setBasicNumbers(event.target.value);
-    setAdjustClicked(false);
+    // setAdjustClicked(false);
   };
 
   let classNames = `${classes.brassOuter} ${classes.outerContainer}`;
@@ -48,7 +47,7 @@ const BrassInputs = (props) => {
           onChange={enterNumber}
           value={basicNumbers}
         ></input>
-        {adjustClicked && (
+        {clickedFamily === "brass" && (
           <AdjustPanel number={basicNumbers} family={"brass"} />
         )}
       </div>

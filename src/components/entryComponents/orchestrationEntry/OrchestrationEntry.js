@@ -33,7 +33,7 @@ const OrchestrationEntry = (props) => {
   };
 
   const clickedFamilyHandler = (family) => {
-    setClickedFamily(family);
+    family === clickedFamily ? setClickedFamily("") : setClickedFamily(family);
   };
 
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
