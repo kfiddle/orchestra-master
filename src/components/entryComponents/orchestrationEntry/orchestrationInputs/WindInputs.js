@@ -1,23 +1,23 @@
 import { Fragment, useState } from "react";
 
-import AdjustButton from "./adjust/adjustButton/AdjustButton";
-import ExtrasButton from "./adjust/extras/ExtrasButton";
-
 import AdjustPanel from "./adjust/adjustPanel/AdjustPanel";
 import classes from "./OrchestrationInputs.module.css";
 
 const WindInputs = (props) => {
-  const [orchestration, setOrchestration] = props.stateList;
+  // const [orchestration, setOrchestration] = props.stateList;
   const [adjustClicked, setAdjustClicked] = useState(false);
   const [basicNumbers, setBasicNumbers] = useState("");
 
-  const setANumber = (event, key) => {
-    setOrchestration({ ...orchestration, [key]: event.target.value });
-  };
+  const clickedFamily = props.clicked;
+
+  // const setANumber = (event, key) => {
+  //   setOrchestration({ ...orchestration, [key]: event.target.value });
+  // };
 
   const panelClickHandler = () => {
     if (basicNumbers.length === 4) {
       setAdjustClicked((previous) => !previous);
+      props.clickHandler("winds");
     }
   };
 
@@ -31,16 +31,17 @@ const WindInputs = (props) => {
 
   let classNames = `${classes.windsOuter} ${classes.outerContainer}`;
 
-  if (adjustClicked) {
-    classNames = `${classes.windsOuter} ${classes.outerContainer} ${classes.panelIsOpen}`
+  // if (adjustClicked) {
+  //   classNames = `${classes.windsOuter} ${classes.outerContainer} ${classes.panelIsOpen}`;
+  // }
+
+  if (clickedFamily === "winds") {
+    classNames = `${classes.windsOuter} ${classes.outerContainer} ${classes.panelIsOpen}`;
   }
 
   return (
     <Fragment>
-      <div
-        className={classNames}
-        onClick={panelClickHandler}
-      >
+      <div className={classNames} onClick={panelClickHandler}>
         <div className={classes.label}>Winds</div>
 
         <input
@@ -50,7 +51,7 @@ const WindInputs = (props) => {
           value={basicNumbers}
         ></input>
       </div>
-      {adjustClicked && <AdjustPanel number={basicNumbers} />}
+      {adjustClicked && <AdjustPanel number={basicNumbers} family={"winds"} />}
     </Fragment>
   );
 };

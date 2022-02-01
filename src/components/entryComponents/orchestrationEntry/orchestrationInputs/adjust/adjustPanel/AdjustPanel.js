@@ -4,23 +4,38 @@ import InstrumentButton from "../instrumentButton/InstrumentButton";
 import styles from "./AdjustPanel.module.css";
 
 const doublingObject = {
-  FLUTE: ["PICCOLO", 'ALTOFLUTE'],
+  FLUTE: ["PICCOLO", "ALTOFLUTE"],
   OBOE: ["ENGLISHHORN"],
-  CLARINET: ["EBCLARINET", 'BASSCLARINET'],
+  CLARINET: ["EBCLARINET", "BASSCLARINET"],
   BASSOON: ["CONTRA"],
   HORN: [""],
   TRUMPET: [""],
+  TROMBONE: [],
+  TUBA: [],
 };
 
 const AdjustPanel = (props) => {
   const basicNumbers = props.number;
+  const family = props.family;
 
-  const instruments = {
-    FLUTE: +basicNumbers[0],
-    OBOE: +basicNumbers[1],
-    CLARINET: +basicNumbers[2],
-    BASSOON: +basicNumbers[3],
-  };
+  let instruments = {};
+
+  if (family === "winds") {
+    instruments = {
+      FLUTE: +basicNumbers[0],
+      OBOE: +basicNumbers[1],
+      CLARINET: +basicNumbers[2],
+      BASSOON: +basicNumbers[3],
+    };
+  } else if (family === 'brass') {
+    instruments = {
+      HORN: +basicNumbers[0],
+      TRUMPET: +basicNumbers[1],
+      TROMBONE: +basicNumbers[2],
+      TUBA: +basicNumbers[3],
+    }
+  }
+
 
   const instrumentsToShow = [];
 
