@@ -6,7 +6,6 @@ import AdjustPanel from "./adjust/adjustPanel/AdjustPanel";
 import classes from "./OrchestrationInputs.module.css";
 
 const BrassInputs = (props) => {
-  const [adjustClicked, setAdjustClicked] = useState(false);
   const [basicNumbers, setBasicNumbers] = useState("");
   const [orchestration, setOrchestration] = props.stateList;
 
@@ -18,7 +17,6 @@ const BrassInputs = (props) => {
 
   const panelClickHandler = () => {
     if (basicNumbers.length === 4) {
-      // setAdjustClicked((previous) => !previous);
       props.clickHandler("brass");
     }
   };
@@ -28,7 +26,6 @@ const BrassInputs = (props) => {
       return;
     }
     setBasicNumbers(event.target.value);
-    // setAdjustClicked(false);
   };
 
   let classNames = `${classes.brassOuter} ${classes.outerContainer}`;

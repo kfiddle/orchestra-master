@@ -4,7 +4,6 @@ import AdjustPanel from "./adjust/adjustPanel/AdjustPanel";
 import classes from "./OrchestrationInputs.module.css";
 
 const WindInputs = (props) => {
-  const [adjustClicked, setAdjustClicked] = useState(false);
   // const [orchestration, setOrchestration] = props.stateList;
   const [basicNumbers, setBasicNumbers] = useState("");
 
@@ -16,7 +15,6 @@ const WindInputs = (props) => {
 
   const panelClickHandler = () => {
     if (basicNumbers.length === 4) {
-      // setAdjustClicked((previous) => !previous);
       props.clickHandler("winds");
     }
   };
@@ -26,14 +24,9 @@ const WindInputs = (props) => {
       return;
     }
     setBasicNumbers(event.target.value);
-    // setAdjustClicked(false);
   };
 
   let classNames = `${classes.windsOuter} ${classes.outerContainer}`;
-
-  // if (adjustClicked) {
-  //   classNames = `${classes.windsOuter} ${classes.outerContainer} ${classes.panelIsOpen}`;
-  // }
 
   if (clickedFamily === "winds") {
     classNames = `${classes.windsOuter} ${classes.outerContainer} ${classes.panelIsOpen}`;
