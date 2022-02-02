@@ -23,6 +23,7 @@ const FamilyInput = (props) => {
       return;
     }
     setBasicNumbers(event.target.value);
+    console.log(basicNumbers);
   };
 
   let classNames = styles.outerContainer;
@@ -33,17 +34,40 @@ const FamilyInput = (props) => {
 
   return (
     <Fragment>
-      <div className={classNames} onClick={panelClickHandler}></div>
-      <div className={styles.label}>{instrumentFamily}</div>
-      <input
-        type={"text"}
-        className={styles.input}
-        onChange={enterNumber}
-        value={basicNumbers}
-      ></input>
+      <div className={classNames} onClick={panelClickHandler}>
+        <div className={styles.label}>{instrumentFamily}</div>
+
+        <input
+          type={"text"}
+          className={styles.input}
+          onChange={enterNumber}
+          value={basicNumbers}
+        ></input>
+
+        {/* <input
+          type={"text"}
+          className={`${classes.input} ${classes.strings}`}
+          onChange={(event) => setANumber(event, "Violin1")}
+        ></input>
+        <input
+          type={"text"}
+          className={`${classes.input} ${classes.strings}`}
+          onChange={(event) => setANumber(event, "Violin2")}
+        ></input>
+        <input
+          type={"text"}
+          className={`${classes.input} ${classes.strings}`}
+          onChange={(event) => setANumber(event, "Viola")}
+        ></input>
+        <input
+          type={"text"}
+          className={`${classes.input} ${classes.strings}`}
+          onChange={(event) => setANumber(event, "Cello")}
+        ></input> */}
+      </div>
 
       {clickedFamily === instrumentFamily && (
-        <AdjustPanel numbers={basicNumbers} family={instrumentFamily} />
+        <AdjustPanel number={basicNumbers} family={instrumentFamily} />
       )}
     </Fragment>
   );

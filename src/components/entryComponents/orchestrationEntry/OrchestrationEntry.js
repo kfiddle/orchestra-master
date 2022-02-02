@@ -3,8 +3,6 @@ import Modal from "../../UI/modal/Modal";
 
 import FamilyInput from "./familyInput/FamilyInput";
 
-import WindInputs from "./orchestrationInputs/WindInputs";
-import BrassInputs from "./orchestrationInputs/BrassInputs";
 import PercussionInputs from "./orchestrationInputs/PercussionInputs";
 import StringInputs from "./orchestrationInputs/StringInputs";
 
@@ -18,6 +16,8 @@ const OrchestrationEntry = (props) => {
   const [clickedFamily, setClickedFamily] = useState("");
 
   const piece = props.piece;
+  const BRASS = 'brass';
+  const WINDS = 'winds';
 
   const submitOrchestration = async () => {
     let orchestrationList = [];
@@ -49,24 +49,20 @@ const OrchestrationEntry = (props) => {
           </div>
 
           <div className={classes.inputsContainer}>
-            {/* <WindInputs
+            <FamilyInput
               stateList={stateList}
               clickHandler={clickedFamilyHandler}
               clicked={clickedFamily}
-            /> */}
+              instrumentFamily={WINDS}
+            />
 
             <FamilyInput
               stateList={stateList}
               clickHandler={clickedFamilyHandler}
               clicked={clickedFamily}
-              instrumentFamily = 'winds'
+              instrumentFamily={BRASS}
             />
 
-            <BrassInputs
-              stateList={stateList}
-              clickHandler={clickedFamilyHandler}
-              clicked={clickedFamily}
-            />
             <PercussionInputs stateList={stateList} />
             <StringInputs stateList={stateList} />
           </div>

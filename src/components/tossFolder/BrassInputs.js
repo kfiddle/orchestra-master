@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
 
-import AdjustPanel from "./adjust/adjustPanel/AdjustPanel";
+import AdjustPanel from "../entryComponents/orchestrationEntry/orchestrationInputs/adjust/adjustPanel/AdjustPanel";
 
 import classes from "./OrchestrationInputs.module.css";
 

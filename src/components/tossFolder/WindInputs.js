@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 
-import AdjustPanel from "./adjust/adjustPanel/AdjustPanel";
+import AdjustPanel from "../entryComponents/orchestrationEntry/orchestrationInputs/adjust/adjustPanel/AdjustPanel";
 import classes from "./OrchestrationInputs.module.css";
 
 const WindInputs = (props) => {
