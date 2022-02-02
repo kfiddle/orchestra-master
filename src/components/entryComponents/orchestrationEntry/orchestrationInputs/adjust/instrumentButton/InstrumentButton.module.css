@@ -1,3 +1,16 @@
+.outerContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonContainer {
+  height: 40%;
+}
+
+.doublingContainer {
+  height: 60%;
+}
+
 .button {
   width: fit-content;
   background: none;

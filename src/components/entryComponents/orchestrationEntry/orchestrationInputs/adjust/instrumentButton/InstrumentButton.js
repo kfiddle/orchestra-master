@@ -14,11 +14,15 @@ const InstrumentButton = (props) => {
   };
 
   return (
-    <div>
-      <button className={styles.button} onClick={showDoublings}>
-        {instrument} {rank}
-      </button>
-      {doublingsClicked && <DoublingBox doublingOptions={doublingOptions} />}
+    <div className={styles.outerContainer}>
+      <div className={styles.buttonContainer}>
+        <button className={styles.button} onClick={showDoublings}>
+          {instrument} {rank}
+        </button>
+      </div>
+      <div className={styles.doublingContainer}>
+        {doublingsClicked && <DoublingBox doublingOptions={doublingOptions} />}
+      </div>
     </div>
   );
 };
