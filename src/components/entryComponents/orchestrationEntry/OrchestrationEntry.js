@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Modal from "../../UI/modal/Modal";
 
+import FamilyInput from "./familyInput/FamilyInput";
+
 import WindInputs from "./orchestrationInputs/WindInputs";
 import BrassInputs from "./orchestrationInputs/BrassInputs";
 import PercussionInputs from "./orchestrationInputs/PercussionInputs";
@@ -47,11 +49,19 @@ const OrchestrationEntry = (props) => {
           </div>
 
           <div className={classes.inputsContainer}>
-            <WindInputs
+            {/* <WindInputs
               stateList={stateList}
               clickHandler={clickedFamilyHandler}
               clicked={clickedFamily}
+            /> */}
+
+            <FamilyInput
+              stateList={stateList}
+              clickHandler={clickedFamilyHandler}
+              clicked={clickedFamily}
+              instrumentFamily = 'winds'
             />
+
             <BrassInputs
               stateList={stateList}
               clickHandler={clickedFamilyHandler}

@@ -1,0 +1,47 @@
+.input,
+.control textarea {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #afaaaa;
+  border: 1px solid #c1d1d1;
+  display: block;
+  width: 100%;
+  font-size: 1.25rem;
+
+  width: 7rem;
+  margin: 2rem 10rem 2rem 2rem;
+}
+
+
+.input:focus,
+.control textarea:focus {
+  background-color: #e9dcdc;
+  outline-color: rgb(46, 40, 39);
+}
+
+.outerContainer {
+  display: flex;
+  border: solid 5px rgb(39, 39, 143);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.outerContainer:hover {
+  background: slateblue;
+}
+
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 13%;
+  padding-right: 1rem;
+  color: rgb(39, 39, 143);
+  font-weight: 900;
+}
+
+.panelIsOpen {
+  background: slateblue;
+}

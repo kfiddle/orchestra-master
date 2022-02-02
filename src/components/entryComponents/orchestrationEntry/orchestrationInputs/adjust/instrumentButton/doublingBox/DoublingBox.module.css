@@ -1,6 +1,5 @@
 .outerContainer {
   position: fixed;
-  /* top: 8rem; */
   animation: slide-in 250ms ease-out forwards;
 }
 

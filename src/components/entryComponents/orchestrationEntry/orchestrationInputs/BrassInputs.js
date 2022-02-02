@@ -44,10 +44,11 @@ const BrassInputs = (props) => {
           onChange={enterNumber}
           value={basicNumbers}
         ></input>
-        {clickedFamily === "brass" && (
-          <AdjustPanel number={basicNumbers} family={"brass"} />
-        )}
       </div>
+
+      {clickedFamily === "brass" && (
+        <AdjustPanel number={basicNumbers} family={"brass"} />
+      )}
     </Fragment>
   );
 };
