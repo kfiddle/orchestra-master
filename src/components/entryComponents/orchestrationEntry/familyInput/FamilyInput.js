@@ -8,9 +8,17 @@ import styles from "./FamilyInput.module.css";
 const FamilyInput = (props) => {
   const [basicNumbers, setBasicNumbers] = useState("");
   const [orchestration, setOrchestration] = props.stateList;
+  const [randomUserInput, setRandomUserInput] = useState("");
 
   const instrumentFamily = props.instrumentFamily;
   const clickedFamily = props.clicked;
+
+  let instruments = [];
+  if (instrumentFamily === "winds") {
+    instruments = ["Flute", "Oboe", "Clarinet", "Bassoon"];
+  } else {
+    instruments = ["Horn", "Trumpet", "Trombone", "Tuba"];
+  }
 
   const panelClickHandler = () => {
     if (basicNumbers.length === 4) {
@@ -18,13 +26,20 @@ const FamilyInput = (props) => {
     }
   };
 
-  const enterNumber = (event) => {
-    if (isNaN(event.nativeEvent.data) || event.target.value.length === 5) {
-      return;
-    }
-    setBasicNumbers(event.target.value);
-    console.log(basicNumbers);
+  const setANumber = (event, key) => {
+    // setRandomUserInput(event.target.value);
+
+    setOrchestration({ ...orchestration, [key]: event.target.value });
+    console.log(orchestration);
   };
+
+  // const enterNumber = (event) => {
+  //   if (isNaN(event.nativeEvent.data) || event.target.value.length === 5) {
+  //     return;
+  //   }
+  //   setBasicNumbers(event.target.value);
+  //   console.log(basicNumbers);
+  // };
 
   let classNames = styles.outerContainer;
 
@@ -40,30 +55,25 @@ const FamilyInput = (props) => {
         <input
           type={"text"}
           className={styles.input}
-          onChange={enterNumber}
-          value={basicNumbers}
-        ></input>
-
-        {/* <input
-          type={"text"}
-          className={`${classes.input} ${classes.strings}`}
-          onChange={(event) => setANumber(event, "Violin1")}
+          onChange={(event) => setANumber(event, instruments[0])}
+          // value={randomUserInput}
+          value={orchestration[instruments[0]]}
         ></input>
         <input
           type={"text"}
-          className={`${classes.input} ${classes.strings}`}
-          onChange={(event) => setANumber(event, "Violin2")}
+          className={styles.input}
+          // onChange={(event) => setANumber(event, instruments[1])}
         ></input>
         <input
           type={"text"}
-          className={`${classes.input} ${classes.strings}`}
-          onChange={(event) => setANumber(event, "Viola")}
+          className={styles.input}
+          // onChange={(event) => setANumber(event, instruments[2])}
         ></input>
         <input
           type={"text"}
-          className={`${classes.input} ${classes.strings}`}
-          onChange={(event) => setANumber(event, "Cello")}
-        ></input> */}
+          className={styles.input}
+          // onChange={(event) => setANumber(event, instruments[3])}
+        ></input>
       </div>
 
       {clickedFamily === instrumentFamily && (
