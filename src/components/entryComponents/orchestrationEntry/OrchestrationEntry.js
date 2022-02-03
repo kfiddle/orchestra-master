@@ -3,7 +3,6 @@ import Modal from "../../UI/modal/Modal";
 
 import FamilyInputs from "./familyInputs/FamilyInputs";
 
-import PercussionInputs from "./orchestrationInputs/PercussionInputs";
 import StringInputs from "./orchestrationInputs/StringInputs";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
@@ -13,11 +12,13 @@ import classes from "./OrchestrationEntry.module.css";
 const OrchestrationEntry = (props) => {
   const [orchestration, setOrchestration] = useState({});
   const stateList = [orchestration, setOrchestration];
-  const [clickedFamily, setClickedFamily] = useState("");
 
   const piece = props.piece;
-  const BRASS = 'brass';
-  const WINDS = 'winds';
+
+  const BRASS = "brass";
+  const WINDS = "winds";
+  const PERCUSSION = 'percussion';
+  const STRINGS = 'strings';
 
   const submitOrchestration = async () => {
     let orchestrationList = [];
@@ -34,10 +35,6 @@ const OrchestrationEntry = (props) => {
     }
   };
 
-  const clickedFamilyHandler = (family) => {
-    family === clickedFamily ? setClickedFamily("") : setClickedFamily(family);
-  };
-
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
 
   return (
@@ -49,22 +46,14 @@ const OrchestrationEntry = (props) => {
           </div>
 
           <div className={classes.inputsContainer}>
-            <FamilyInputs
-              stateList={stateList}
-              clickHandler={clickedFamilyHandler}
-              clicked={clickedFamily}
-              instrumentFamily={WINDS}
-            />
+            <FamilyInputs stateList={stateList} instrumentFamily={WINDS} />
 
-            <FamilyInputs
-              stateList={stateList}
-              clickHandler={clickedFamilyHandler}
-              clicked={clickedFamily}
-              instrumentFamily={BRASS}
-            />
+            <FamilyInputs stateList={stateList} instrumentFamily={BRASS} />
 
-            <PercussionInputs stateList={stateList} />
-            <StringInputs stateList={stateList} />
+            <FamilyInputs stateList={stateList} instrumentFamily={PERCUSSION} />
+            <FamilyInputs stateList={stateList} instrumentFamily={STRINGS} />
+
+            {/* <StringInputs stateList={stateList} /> */}
           </div>
         </div>
 

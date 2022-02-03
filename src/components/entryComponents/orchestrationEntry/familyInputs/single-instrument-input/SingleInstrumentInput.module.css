@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   width: 25%;
-  border-radius: 100px;
-  background: linear-gradient(to left, transparent, #776f6f, rgb(90, 85, 85));
+  border-radius: 25px;
+  background: linear-gradient(to left, transparent, #776f6f, rgb(129, 125, 125));
   padding: 0.25rem 3rem;
   color: rgb(20, 182, 231);
   font-weight: 900;
@@ -20,7 +20,7 @@
   font-weight: 900;
 }
 
-.labelHolder {
+.labelAndClickerHolder {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -44,5 +44,5 @@
 .input:focus,
 .control textarea:focus {
   background-color: #e9dcdc;
-  outline-color: rgb(46, 40, 39);
+  outline-color: rgb(100, 100, 231);
 }

@@ -6,7 +6,7 @@ const SingleInstrumentInput = (props) => {
 
   return (
     <div className={styles.instrumentBubble}>
-      <div className={styles.labelHolder}> {instrument}</div>
+      <div className={styles.labelAndClickerHolder}> {instrument}</div>
       <input
         type={"text"}
         className={styles.input}

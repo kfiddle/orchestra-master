@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
 
-import AdjustPanel from "../orchestrationInputs/adjust/adjustPanel/AdjustPanel";
-import ExtrasButton from "../orchestrationInputs/adjust/extras/ExtrasButton";
+// import AdjustPanel from "../orchestrationInputs/adjust/adjustPanel/AdjustPanel";
+import ExtrasButton from "./extras/ExtrasButton";
 
 import styles from "./FamilyInputs.module.css";
 import SingleInstrumentInput from "./single-instrument-input/SingleInstrumentInput";
@@ -10,24 +10,18 @@ import SingleInstrumentInput from "./single-instrument-input/SingleInstrumentInp
 const families = {
   winds: ["Flute", "Oboe", "Clarinet", "Bassoon"],
   brass: ["Horn", "Trumpet", "Trombone", "Tuba"],
+  percussion: ["timpani", "others"],
+  strings: ["violin1", "violin2", "viola", "cello", "bass"],
 };
 
 const FamilyInputs = (props) => {
-  const [basicNumbers, setBasicNumbers] = useState("");
   const [orchestration, setOrchestration] = props.stateList;
 
   const instrumentFamily = props.instrumentFamily;
-  const clickedFamily = props.clicked;
 
   const displayedInstruments = families[instrumentFamily].map((instrument) => (
     <SingleInstrumentInput key={Math.random()} instrument={instrument} />
   ));
-
-  const panelClickHandler = () => {
-    if (basicNumbers.length === 4) {
-      props.clickHandler(instrumentFamily);
-    }
-  };
 
   const setANumber = (event, key) => {
     setOrchestration({ ...orchestration, [key]: event.target.value });
@@ -42,23 +36,13 @@ const FamilyInputs = (props) => {
   //   console.log(basicNumbers);
   // };
 
-  let classNames = styles.outerContainer;
-
-  if (clickedFamily === instrumentFamily) {
-    classNames = `${styles.outerContainer} ${styles.panelIsOpen}`;
-  }
-
   return (
     <Fragment>
-      <div className={classNames}>
+      <div className={styles.outerContainer}>
         <div className={styles.label}>{instrumentFamily}</div>
         {displayedInstruments}
         <ExtrasButton />
       </div>
-
-      {clickedFamily === instrumentFamily && (
-        <AdjustPanel number={basicNumbers} family={instrumentFamily} />
-      )}
     </Fragment>
   );
 };
