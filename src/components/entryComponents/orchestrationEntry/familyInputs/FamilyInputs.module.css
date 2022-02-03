@@ -11,7 +11,6 @@
   margin: 1.5rem;
 }
 
-
 .input:focus,
 .control textarea:focus {
   background-color: #e9dcdc;
@@ -20,14 +19,13 @@
 
 .outerContainer {
   display: flex;
-  border: solid 5px rgb(39, 39, 143);
+  /* border: 4px solid rgb(39, 39, 143); */
+  border: 4px solid #837f7f;
+  box-shadow: 2px 2px #6b6969;
   border-radius: 5px;
   margin-bottom: 1rem;
+  padding: 2rem;
   cursor: pointer;
-}
-
-.outerContainer:hover {
-  background: slateblue;
 }
 
 .label {

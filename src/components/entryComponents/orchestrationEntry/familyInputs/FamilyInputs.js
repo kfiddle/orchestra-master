@@ -2,23 +2,26 @@ import { useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
 
 import AdjustPanel from "../orchestrationInputs/adjust/adjustPanel/AdjustPanel";
+import ExtrasButton from "../orchestrationInputs/adjust/extras/ExtrasButton";
 
-import styles from "./FamilyInput.module.css";
+import styles from "./FamilyInputs.module.css";
+import SingleInstrumentInput from "./single-instrument-input/SingleInstrumentInput";
 
-const FamilyInput = (props) => {
+const families = {
+  winds: ["Flute", "Oboe", "Clarinet", "Bassoon"],
+  brass: ["Horn", "Trumpet", "Trombone", "Tuba"],
+};
+
+const FamilyInputs = (props) => {
   const [basicNumbers, setBasicNumbers] = useState("");
   const [orchestration, setOrchestration] = props.stateList;
-  const [randomUserInput, setRandomUserInput] = useState("");
 
   const instrumentFamily = props.instrumentFamily;
   const clickedFamily = props.clicked;
 
-  let instruments = [];
-  if (instrumentFamily === "winds") {
-    instruments = ["Flute", "Oboe", "Clarinet", "Bassoon"];
-  } else {
-    instruments = ["Horn", "Trumpet", "Trombone", "Tuba"];
-  }
+  const displayedInstruments = families[instrumentFamily].map((instrument) => (
+    <SingleInstrumentInput key={Math.random()} instrument={instrument} />
+  ));
 
   const panelClickHandler = () => {
     if (basicNumbers.length === 4) {
@@ -27,8 +30,6 @@ const FamilyInput = (props) => {
   };
 
   const setANumber = (event, key) => {
-    // setRandomUserInput(event.target.value);
-
     setOrchestration({ ...orchestration, [key]: event.target.value });
     console.log(orchestration);
   };
@@ -49,31 +50,10 @@ const FamilyInput = (props) => {
 
   return (
     <Fragment>
-      <div className={classNames} onClick={panelClickHandler}>
+      <div className={classNames}>
         <div className={styles.label}>{instrumentFamily}</div>
-
-        <input
-          type={"text"}
-          className={styles.input}
-          onChange={(event) => setANumber(event, instruments[0])}
-          // value={randomUserInput}
-          value={orchestration[instruments[0]]}
-        ></input>
-        <input
-          type={"text"}
-          className={styles.input}
-          // onChange={(event) => setANumber(event, instruments[1])}
-        ></input>
-        <input
-          type={"text"}
-          className={styles.input}
-          // onChange={(event) => setANumber(event, instruments[2])}
-        ></input>
-        <input
-          type={"text"}
-          className={styles.input}
-          // onChange={(event) => setANumber(event, instruments[3])}
-        ></input>
+        {displayedInstruments}
+        <ExtrasButton />
       </div>
 
       {clickedFamily === instrumentFamily && (
@@ -83,4 +63,4 @@ const FamilyInput = (props) => {
   );
 };
 
-export default FamilyInput;
+export default FamilyInputs;

@@ -1,0 +1,48 @@
+.instrumentBubble {
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+  border-radius: 100px;
+  background: linear-gradient(to left, transparent, #776f6f, rgb(90, 85, 85));
+  padding: 0.25rem 3rem;
+  color: rgb(20, 182, 231);
+  font-weight: 900;
+}
+
+.instrumentBubble:hover {
+  background: linear-gradient(
+    to left,
+    transparent,
+    #776f6f,
+    rgb(218, 218, 179)
+  );
+  color: rgb(20, 69, 83);
+  font-weight: 900;
+}
+
+.labelHolder {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 13%;
+  padding-right: 1rem;
+}
+
+.input,
+.control textarea {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #afaaaa;
+  border: 1px solid #c1d1d1;
+  display: block;
+  font-size: 1.25rem;
+  width: 4rem;
+  margin: 1.5rem;
+}
+
+.input:focus,
+.control textarea:focus {
+  background-color: #e9dcdc;
+  outline-color: rgb(46, 40, 39);
+}
