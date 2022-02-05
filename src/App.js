@@ -32,7 +32,7 @@ function App() {
         </Route>
 
         <Route path={'/library'} exact>
-          <Library modalIsClosed={modalIsClosed} />
+          <Library modalIsClosed={modalIsClosed} reloadFlag={reloadFlag} setReloadFlag={setReloadFlag} />
         </Route>
 
         <Route path={"/season"} exact>

@@ -1,7 +1,10 @@
 import ListOfPieces from "../components/piece/library/ListOfPieces";
 
 const Library = (props) => {
-  return <ListOfPieces />;
+  const reloadFlag = props.reloadFlag;
+  const setReloadFlag = props.setReloadFlag;
+
+  return <ListOfPieces reloadFlag={reloadFlag} setReloadFlag={setReloadFlag} />;
 };
 
 export default Library;
