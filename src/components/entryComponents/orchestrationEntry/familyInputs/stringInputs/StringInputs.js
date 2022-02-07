@@ -1,4 +1,6 @@
-import classes from "./OrchestrationInputs.module.css";
+
+
+import classes from "./StringInputs.module.css";
 
 const StringInputs = (props) => {
   const [orchestration, setOrchestration] = props.stateList;
@@ -9,19 +11,28 @@ const StringInputs = (props) => {
 
 
   return (
-    <div className={classes.stringsOuter}>
-      <div className={classes.label}>Strings</div>
-
+    <div className={classes.outerContainer}>
+      <div className={classes.label}>Full Strings?</div>
       <input
-        type={"text"}
-        className={`${classes.input} ${classes.strings}`}
+        type={"checkBox"}
+        className={classes.checkBox}
         onChange={(event) => setANumber(event, "Violin1")}
       ></input>
+        <div className={classes.label}>Custom</div>
       <input
+        type={"checkBox"}
+        className={classes.checkBox}
+        onChange={(event) => setANumber(event, "Violin1")}
+      ></input>
+
+       <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
         onChange={(event) => setANumber(event, "Violin2")}
       ></input>
+
+      
+      {/*
       <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
@@ -36,7 +47,7 @@ const StringInputs = (props) => {
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
         onChange={(event) => setANumber(event, "Bass")}
-      ></input>
+      ></input> */}
     </div>
   );
 };

@@ -15,18 +15,18 @@ const families = {
 };
 
 const FamilyInputs = (props) => {
-  const [orchestration, setOrchestration] = props.stateList;
+  const stateList = props.stateList;
 
   const instrumentFamily = props.instrumentFamily;
 
   const displayedInstruments = families[instrumentFamily].map((instrument) => (
-    <SingleInstrumentInput key={Math.random()} instrument={instrument} />
+    <SingleInstrumentInput key={Math.random()} instrument={instrument} stateList={stateList} />
   ));
 
-  const setANumber = (event, key) => {
-    setOrchestration({ ...orchestration, [key]: event.target.value });
-    console.log(orchestration);
-  };
+  // const setANumber = (event, key) => {
+  //   setOrchestration({ ...orchestration, [key]: event.target.value });
+  //   console.log(orchestration);
+  // };
 
   // const enterNumber = (event) => {
   //   if (isNaN(event.nativeEvent.data) || event.target.value.length === 5) {

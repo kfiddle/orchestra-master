@@ -5,7 +5,7 @@
   border-radius: 25px;
   background: linear-gradient(to left, transparent, #776f6f, rgb(129, 125, 125));
   padding: 0.25rem 3rem;
-  color: rgb(20, 182, 231);
+  color: rgb(197, 211, 238);
   font-weight: 900;
 }
 
@@ -37,7 +37,7 @@
   border: 1px solid #c1d1d1;
   display: block;
   font-size: 1.25rem;
-  width: 4rem;
+  width: 20%;
   margin: 1.5rem;
 }
 

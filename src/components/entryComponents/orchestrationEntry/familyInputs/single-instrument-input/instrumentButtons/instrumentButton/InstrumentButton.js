@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DoublingBox from "./doublingBox/DoublingBox";
+import DoublingBox from "../../../../orchestrationInputs/adjust/instrumentButton/doublingBox/DoublingBox";
 import styles from "./InstrumentButton.module.css";
 
 const InstrumentButton = (props) => {

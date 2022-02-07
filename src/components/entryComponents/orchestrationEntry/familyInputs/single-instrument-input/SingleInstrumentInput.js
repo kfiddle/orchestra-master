@@ -1,19 +1,41 @@
+import { useState } from "react";
+import InstrumentButtons from "./instrumentButtons/InstrumentButtons";
+
 import styles from "./SingleInstrumentInput.module.css";
 
 const SingleInstrumentInput = (props) => {
-  //   const [orchestration, setOrchestration] = props.stateList;
+  const [scoreLines, setScoreLines] = props.stateList;
+  const [optionsClicked, setOptionsClicked] = useState(false);
   const instrument = props.instrument;
+
+  const setThisInstrument = (event) => {
+    setScoreLines({ ...scoreLines, [instrument]: event.target.value });
+  };
+
+  const clickHandler = () => {
+    if (!isNaN(scoreLines[instrument])) {
+      setOptionsClicked((previous) => !previous);
+    }
+  };
+
+  const readyToShow = optionsClicked && !isNaN(scoreLines[instrument]);
 
   return (
     <div className={styles.instrumentBubble}>
-      <div className={styles.labelAndClickerHolder}> {instrument}</div>
+      <div className={styles.labelAndClickerHolder} onClick={clickHandler}>
+        {instrument}
+      </div>
       <input
         type={"text"}
         className={styles.input}
-
-        //   onChange={(event) => setANumber(event, instruments[0])}
-        //   value={orchestration[instruments[0]]}
+        onChange={setThisInstrument}
       ></input>
+      {optionsClicked && (
+        <InstrumentButtons
+          instrument={instrument}
+          number={+scoreLines[instrument]}
+        />
+      )}
     </div>
   );
 };

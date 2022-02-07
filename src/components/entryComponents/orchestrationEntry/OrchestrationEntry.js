@@ -3,33 +3,55 @@ import Modal from "../../UI/modal/Modal";
 
 import FamilyInputs from "./familyInputs/FamilyInputs";
 
-import StringInputs from "./orchestrationInputs/StringInputs";
+import StringInputs from "./familyInputs/stringInputs/StringInputs";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./OrchestrationEntry.module.css";
+import SingleInstrumentInput from "./familyInputs/single-instrument-input/SingleInstrumentInput";
 
+const instruments = [
+  "Flute",
+  "Oboe",
+  "Clarinet",
+  "Bassoon",
+  "Horn",
+  "Trumpet",
+  "Trombone",
+  "Tuba",
+  "timpani",
+  "others",
+  "violin1",
+  "violin2",
+  "viola",
+  "cello",
+  "bass",
+];
 const OrchestrationEntry = (props) => {
-  const [orchestration, setOrchestration] = useState({});
-  const stateList = [orchestration, setOrchestration];
+  const [scoreLines, setScoreLines] = useState({});
+  const stateList = [scoreLines, setScoreLines];
 
   const piece = props.piece;
 
-  const BRASS = "brass";
-  const WINDS = "winds";
-  const PERCUSSION = 'percussion';
-  const STRINGS = 'strings';
+  const displayableInstruments = instruments.map((instrument) => (
+    <SingleInstrumentInput
+      key={instruments.indexOf(instrument)}
+      instrument={instrument}
+      stateList={stateList}
+    />
+  ));
 
   const submitOrchestration = async () => {
-    let orchestrationList = [];
+    let scoreLinesToSend = {scoreLines: []};
 
-    for (let key in orchestration) {
-      let partAndNumber = { part: key, number: +orchestration[key] };
-      orchestrationList.push(partAndNumber);
+    for (let scoreLine in scoreLines) {
+      scoreLinesToSend.scoreLines.push({primaryPart: scoreLine, rank: +scoreLines[scoreLine]})
     }
 
-    let pieceToSend = { ...piece, orchestration: orchestrationList };
-    let response = await PushBasic(pieceToSend, "add-full-orchestration");
+    let response = await PushBasic(
+      scoreLinesToSend,
+      "add-all-scorelines/" + piece.id
+    );
     if (response.ok) {
       props.closeModal();
     }
@@ -46,14 +68,22 @@ const OrchestrationEntry = (props) => {
           </div>
 
           <div className={classes.inputsContainer}>
-            <FamilyInputs stateList={stateList} instrumentFamily={WINDS} />
+            <div className={classes.familyDiv}>
+              <div className={classes.label}>WINDS</div>
+              {displayableInstruments.slice(0, 4)}
+            </div>
+            <div className={classes.familyDiv}>
+              <div className={classes.label}>Brass</div>
 
-            <FamilyInputs stateList={stateList} instrumentFamily={BRASS} />
+              {displayableInstruments.slice(4, 8)}
+            </div>
+            <div className={classes.familyDiv}>
+              <div className={classes.label}>Percussion</div>
 
-            <FamilyInputs stateList={stateList} instrumentFamily={PERCUSSION} />
-            <FamilyInputs stateList={stateList} instrumentFamily={STRINGS} />
+              {displayableInstruments.slice(8, 12)}
+            </div>
 
-            {/* <StringInputs stateList={stateList} /> */}
+            <StringInputs stateList={stateList} />
           </div>
         </div>
 
