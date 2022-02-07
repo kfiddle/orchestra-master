@@ -28,8 +28,8 @@ const instruments = [
   "bass",
 ];
 const OrchestrationEntry = (props) => {
-  const [scoreLines, setScoreLines] = useState({});
-  const stateList = [scoreLines, setScoreLines];
+  const [emptyChairs, setEmptyChairs] = useState({});
+  const stateList = [emptyChairs, setEmptyChairs];
 
   const piece = props.piece;
 
@@ -42,15 +42,15 @@ const OrchestrationEntry = (props) => {
   ));
 
   const submitOrchestration = async () => {
-    let scoreLinesToSend = {scoreLines: []};
+    let emptyChairsToSend = {emptyChairs: []};
 
-    for (let scoreLine in scoreLines) {
-      scoreLinesToSend.scoreLines.push({primaryPart: scoreLine, rank: +scoreLines[scoreLine]})
+    for (let emptyChair in emptyChairs) {
+      emptyChairsToSend.emptyChairs.push({primaryPart: emptyChair, rank: +emptyChairs[emptyChair]})
     }
 
     let response = await PushBasic(
-      scoreLinesToSend,
-      "add-all-scorelines/" + piece.id
+      emptyChairsToSend,
+      "add-all-emptyChairs/" + piece.id
     );
     if (response.ok) {
       props.closeModal();
