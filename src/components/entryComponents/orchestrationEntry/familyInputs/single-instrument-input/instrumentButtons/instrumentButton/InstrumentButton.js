@@ -1,5 +1,6 @@
 import { useState } from "react";
-import DoublingBox from "../../../../orchestrationInputs/adjust/instrumentButton/doublingBox/DoublingBox";
+
+import DoublingBox from "./doublingBox/DoublingBox";
 import styles from "./InstrumentButton.module.css";
 
 const InstrumentButton = (props) => {
@@ -7,7 +8,6 @@ const InstrumentButton = (props) => {
 
   const instrument = props.instrument;
   const rank = props.rank;
-  const doublingOptions = props.doublingOptions;
 
   const showDoublings = () => {
     setDoublingsClicked((previous) => !previous);
@@ -21,7 +21,7 @@ const InstrumentButton = (props) => {
         </button>
       </div>
       <div className={styles.doublingContainer}>
-        {doublingsClicked && <DoublingBox doublingOptions={doublingOptions} />}
+        {doublingsClicked && <DoublingBox instrument={instrument} />}
       </div>
     </div>
   );

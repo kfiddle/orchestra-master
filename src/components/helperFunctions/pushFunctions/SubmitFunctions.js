@@ -22,7 +22,7 @@ const SubmitPerformance = async (
   };
 
   let adderToGo = {
-    performance: performanceToSendUp,
+    show: performanceToSendUp,
     piecesToAdd: clickedPiecesList,
   };
 

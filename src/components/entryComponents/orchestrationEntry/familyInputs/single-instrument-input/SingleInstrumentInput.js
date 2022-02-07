@@ -18,7 +18,6 @@ const SingleInstrumentInput = (props) => {
     }
   };
 
-  const readyToShow = optionsClicked && !isNaN(scoreLines[instrument]);
 
   return (
     <div className={styles.instrumentBubble}>

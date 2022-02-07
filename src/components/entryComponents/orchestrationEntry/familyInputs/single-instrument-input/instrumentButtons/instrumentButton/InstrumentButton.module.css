@@ -1,6 +1,6 @@
 .outerContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .buttonContainer {
@@ -8,6 +8,9 @@
 }
 
 .doublingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 60%;
 }
 
