@@ -28,14 +28,8 @@ const instruments = [
   "bass",
 ];
 const OrchestrationEntry = (props) => {
-  const [primaryParts, setPrimaryParts] = useState({});
-  const [secondaryParts, setSecondaryParts] = useState([]);
-  const stateList = [
-    primaryParts,
-    setPrimaryParts,
-    secondaryParts,
-    setSecondaryParts,
-  ];
+  const [allParts, setAllParts] = useState({});
+  const stateList = [allParts, setAllParts];
 
   const piece = props.piece;
 
@@ -50,24 +44,24 @@ const OrchestrationEntry = (props) => {
   const submitOrchestration = async () => {
     let primaryChairsToSend = [];
 
-    for (let primaryPart in primaryParts) {
-      for (let j = 1; j <= primaryParts[primaryPart]; j++) {
-        primaryChairsToSend.push({
-          primaryPart: primaryPart,
-          rank: j,
-        });
-      }
-    }
+    // for (let part in allParts) {
+    //   for (let j = 1; j <= primaryParts[primaryPart]; j++) {
+    //     primaryChairsToSend.push({
+    //       primaryPart: primaryPart,
+    //       rank: j,
+    //     });
+    //   }
+    // }
 
-    console.log(primaryChairsToSend);
+    console.log('primaryChairsToSend');
 
-    let response = await PushBasic(
-      primaryChairsToSend,
-      "add-all-empty-chairs/" + piece.id
-    );
-    if (response.ok) {
-      props.closeModal();
-    }
+    // let response = await PushBasic(
+    //   primaryChairsToSend,
+    //   "add-all-empty-chairs/" + piece.id
+    // );
+    // if (response.ok) {
+    //   props.closeModal();
+    // }
   };
 
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };

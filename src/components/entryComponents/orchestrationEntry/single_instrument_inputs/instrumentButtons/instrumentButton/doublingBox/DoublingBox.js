@@ -3,36 +3,24 @@ import { useState } from "react";
 
 import styles from "./DoublingBox.module.css";
 
-const doublingOptionsObject = {
-  Flute: ["PICCOLO", "ALTOFLUTE"],
-  Oboe: ["ENGLISHHORN"],
-  Clarinet: ["EBCLARINET", "BASSCLARINET"],
-  Bassoon: ["CONTRA"],
-  Horn: [""],
-  Trumpet: [""],
-  Trombone: [],
-  Tuba: [],
-};
-
-
 const DoublingBox = (props) => {
-  const primaryInstrument = props.instrument;
+
+  const primaryPart = props.primaryPart;
   const rank = props.rank;
-  const [clickedOption, setClickedOption] = useState("");
+  const doublesObjects = props.doublesObjects;
+  const setter = props.setter;
+  const allParts = props.allParts;
 
- 
-  const clickedOptionHandler = (option) => {
-    console.log(option);
-  };
 
-  console.log(clickedOption);
-
-  const displayedOptions = doublingOptionsObject[primaryInstrument].filter(
+  const displayedOptions = doublesObjects.map(
     (partObject) => (
       <DoublingOption
-        key={Math.random()}
-        instrumentName={partObject.instrumentName}
-        activeOption={clickedOptionHandler}
+        key={doublesObjects.indexOf(partObject)}
+        primaryPart={primaryPart}
+        rank={rank}
+        partObject={partObject}
+        setter={setter}
+        allParts={allParts}
       />
     )
   );

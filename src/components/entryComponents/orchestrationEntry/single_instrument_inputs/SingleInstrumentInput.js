@@ -15,9 +15,8 @@ const doublingOptionsObject = {
 };
 
 const SingleInstrumentInput = (props) => {
-  const [primaryParts, setPrimaryParts, secondaryParts, setSecondaryParts] =
+  const [allParts, setAllParts] =
     props.stateList;
-  const secondaryStateFuncs = [secondaryParts, setSecondaryParts];
   const [optionsClicked, setOptionsClicked] = useState(false);
   const instrument = props.instrument;
 
@@ -34,7 +33,7 @@ const SingleInstrumentInput = (props) => {
         doublesObjects: doublesObjects,
       });
     }
-    setPrimaryParts({ ...primaryParts, [instrument]: chairs });
+    setAllParts({ ...allParts, [instrument]: chairs });
   };
 
   const clickHandler = () => {
@@ -54,8 +53,10 @@ const SingleInstrumentInput = (props) => {
       {optionsClicked && (
         <InstrumentButtons
           instrument={instrument}
-          number={+primaryParts[instrument]}
-          chairs={primaryParts[instrument]}
+          number={+allParts[instrument]}
+          chairs={allParts[instrument]}
+          setter={setAllParts}
+          allParts={allParts}
         />
       )}
     </div>

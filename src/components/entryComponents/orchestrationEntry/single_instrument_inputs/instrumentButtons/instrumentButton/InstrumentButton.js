@@ -6,9 +6,12 @@ import styles from "./InstrumentButton.module.css";
 const InstrumentButton = (props) => {
   const [doublingsClicked, setDoublingsClicked] = useState(false);
 
-  const instrument = props.instrument;
-  const rank = props.rank;
+  const { primaryPart, rank, doublesObjects } = props.chair;
 
+  const setter = props.setter;
+  const allParts = props.allParts;
+
+  console.log(doublesObjects);
 
   const showDoublings = () => {
     setDoublingsClicked((previous) => !previous);
@@ -18,11 +21,19 @@ const InstrumentButton = (props) => {
     <div className={styles.outerContainer}>
       <div className={styles.buttonContainer}>
         <button className={styles.button} onClick={showDoublings}>
-          {instrument} {rank}
+          {primaryPart} {rank}
         </button>
       </div>
       <div className={styles.doublingContainer}>
-        {doublingsClicked && <DoublingBox instrument={instrument} rank={rank}/>}
+        {doublingsClicked && (
+          <DoublingBox
+            primaryPart={primaryPart}
+            rank={rank}
+            doublesObjects={doublesObjects}
+            setter={setter}
+            allParts={allParts}
+          />
+        )}
       </div>
     </div>
   );
