@@ -3,10 +3,12 @@ import styles from "./DoublingOption.module.css";
 
 const DoublingOption = (props) => {
   const [clickedInstrument, setClickedInstrument] = useState(false);
+
+
   const instrumentName = props.instrumentName;
 
   const clickedInstrumentHandler = () => {
-    setClickedInstrument((previous) => !previous);
+    props.activeOption(instrumentName);
   };
 
   let classNames = !clickedInstrument

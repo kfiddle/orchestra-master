@@ -3,21 +3,43 @@ import InstrumentButtons from "./instrumentButtons/InstrumentButtons";
 
 import styles from "./SingleInstrumentInput.module.css";
 
+const doublingOptionsObject = {
+  Flute: ["PICCOLO", "ALTOFLUTE"],
+  Oboe: ["ENGLISHHORN"],
+  Clarinet: ["EBCLARINET", "BASSCLARINET"],
+  Bassoon: ["CONTRA"],
+  Horn: [""],
+  Trumpet: [""],
+  Trombone: [],
+  Tuba: [],
+};
+
 const SingleInstrumentInput = (props) => {
-  const [primaryParts, setPrimaryParts, secondaryParts, setSecondaryPart] = props.stateList;
+  const [primaryParts, setPrimaryParts, secondaryParts, setSecondaryParts] =
+    props.stateList;
+  const secondaryStateFuncs = [secondaryParts, setSecondaryParts];
   const [optionsClicked, setOptionsClicked] = useState(false);
   const instrument = props.instrument;
 
   const setThisInstrument = (event) => {
-    setPrimaryParts({ ...primaryParts, [instrument]: event.target.value });
+    let chairs = [];
+    for (let j = 1; j <= event.target.value; j++) {
+      let doublesObjects = [];
+      for (let double of doublingOptionsObject[instrument]) {
+        doublesObjects.push({ secondaryPart: double, active: false });
+      }
+      chairs.push({
+        primaryPart: instrument,
+        rank: j,
+        doublesObjects: doublesObjects,
+      });
+    }
+    setPrimaryParts({ ...primaryParts, [instrument]: chairs });
   };
 
   const clickHandler = () => {
-    if (!isNaN(primaryParts[instrument])) {
-      setOptionsClicked((previous) => !previous);
-    }
+    setOptionsClicked((previous) => !previous);
   };
-
 
   return (
     <div className={styles.instrumentBubble}>
@@ -33,6 +55,7 @@ const SingleInstrumentInput = (props) => {
         <InstrumentButtons
           instrument={instrument}
           number={+primaryParts[instrument]}
+          chairs={primaryParts[instrument]}
         />
       )}
     </div>

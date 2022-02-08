@@ -29,7 +29,7 @@ const instruments = [
 ];
 const OrchestrationEntry = (props) => {
   const [primaryParts, setPrimaryParts] = useState({});
-  const [secondaryParts, setSecondaryParts] = useState({});
+  const [secondaryParts, setSecondaryParts] = useState([]);
   const stateList = [
     primaryParts,
     setPrimaryParts,

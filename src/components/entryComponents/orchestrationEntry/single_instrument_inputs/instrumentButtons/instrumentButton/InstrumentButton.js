@@ -9,6 +9,7 @@ const InstrumentButton = (props) => {
   const instrument = props.instrument;
   const rank = props.rank;
 
+
   const showDoublings = () => {
     setDoublingsClicked((previous) => !previous);
   };
@@ -21,7 +22,7 @@ const InstrumentButton = (props) => {
         </button>
       </div>
       <div className={styles.doublingContainer}>
-        {doublingsClicked && <DoublingBox instrument={instrument} />}
+        {doublingsClicked && <DoublingBox instrument={instrument} rank={rank}/>}
       </div>
     </div>
   );

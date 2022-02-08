@@ -1,4 +1,5 @@
 import DoublingOption from "./doublingOption/DoublingOption";
+import { useState } from "react";
 
 import styles from "./DoublingBox.module.css";
 
@@ -13,13 +14,28 @@ const doublingOptionsObject = {
   Tuba: [],
 };
 
-const DoublingBox = (props) => {
-  const instrument = props.instrument;
-  const doublingOptions = doublingOptionsObject[instrument];
 
-  const displayedOptions = doublingOptions.map((instrumentName) => (
-    <DoublingOption key={Math.random()} instrumentName={instrumentName} />
-  ));
+const DoublingBox = (props) => {
+  const primaryInstrument = props.instrument;
+  const rank = props.rank;
+  const [clickedOption, setClickedOption] = useState("");
+
+ 
+  const clickedOptionHandler = (option) => {
+    console.log(option);
+  };
+
+  console.log(clickedOption);
+
+  const displayedOptions = doublingOptionsObject[primaryInstrument].filter(
+    (partObject) => (
+      <DoublingOption
+        key={Math.random()}
+        instrumentName={partObject.instrumentName}
+        activeOption={clickedOptionHandler}
+      />
+    )
+  );
 
   return <div className={styles.outerContainer}>{displayedOptions}</div>;
 };
