@@ -4,16 +4,16 @@ import InstrumentButtons from "./instrumentButtons/InstrumentButtons";
 import styles from "./SingleInstrumentInput.module.css";
 
 const SingleInstrumentInput = (props) => {
-  const [scoreLines, setScoreLines] = props.stateList;
+  const [primaryParts, setPrimaryParts, secondaryParts, setSecondaryPart] = props.stateList;
   const [optionsClicked, setOptionsClicked] = useState(false);
   const instrument = props.instrument;
 
   const setThisInstrument = (event) => {
-    setScoreLines({ ...scoreLines, [instrument]: event.target.value });
+    setPrimaryParts({ ...primaryParts, [instrument]: event.target.value });
   };
 
   const clickHandler = () => {
-    if (!isNaN(scoreLines[instrument])) {
+    if (!isNaN(primaryParts[instrument])) {
       setOptionsClicked((previous) => !previous);
     }
   };
@@ -32,7 +32,7 @@ const SingleInstrumentInput = (props) => {
       {optionsClicked && (
         <InstrumentButtons
           instrument={instrument}
-          number={+scoreLines[instrument]}
+          number={+primaryParts[instrument]}
         />
       )}
     </div>

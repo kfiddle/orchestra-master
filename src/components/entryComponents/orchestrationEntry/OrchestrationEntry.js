@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Modal from "../../UI/modal/Modal";
 
-import FamilyInputs from "./familyInputs/FamilyInputs";
+// import FamilyInputs from "./familyInputs/FamilyInputs";
 
 import StringInputs from "./familyInputs/stringInputs/StringInputs";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./OrchestrationEntry.module.css";
-import SingleInstrumentInput from "./familyInputs/single-instrument-input/SingleInstrumentInput";
+import SingleInstrumentInput from "./single_instrument_inputs/SingleInstrumentInput";
 
 const instruments = [
   "Flute",
@@ -28,8 +28,14 @@ const instruments = [
   "bass",
 ];
 const OrchestrationEntry = (props) => {
-  const [emptyChairs, setEmptyChairs] = useState({});
-  const stateList = [emptyChairs, setEmptyChairs];
+  const [primaryParts, setPrimaryParts] = useState({});
+  const [secondaryParts, setSecondaryParts] = useState({});
+  const stateList = [
+    primaryParts,
+    setPrimaryParts,
+    secondaryParts,
+    setSecondaryParts,
+  ];
 
   const piece = props.piece;
 
@@ -42,15 +48,22 @@ const OrchestrationEntry = (props) => {
   ));
 
   const submitOrchestration = async () => {
-    let emptyChairsToSend = {emptyChairs: []};
+    let primaryChairsToSend = [];
 
-    for (let emptyChair in emptyChairs) {
-      emptyChairsToSend.emptyChairs.push({primaryPart: emptyChair, rank: +emptyChairs[emptyChair]})
+    for (let primaryPart in primaryParts) {
+      for (let j = 1; j <= primaryParts[primaryPart]; j++) {
+        primaryChairsToSend.push({
+          primaryPart: primaryPart,
+          rank: j,
+        });
+      }
     }
 
+    console.log(primaryChairsToSend);
+
     let response = await PushBasic(
-      emptyChairsToSend,
-      "add-all-emptyChairs/" + piece.id
+      primaryChairsToSend,
+      "add-all-empty-chairs/" + piece.id
     );
     if (response.ok) {
       props.closeModal();
