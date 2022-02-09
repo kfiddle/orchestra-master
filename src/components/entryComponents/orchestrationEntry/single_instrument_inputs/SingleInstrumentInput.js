@@ -4,14 +4,14 @@ import InstrumentButtons from "./instrumentButtons/InstrumentButtons";
 import styles from "./SingleInstrumentInput.module.css";
 
 const doublingOptionsObject = {
-  Flute: ["PICCOLO", "ALTOFLUTE"],
-  Oboe: ["ENGLISHHORN"],
-  Clarinet: ["EBCLARINET", "BASSCLARINET"],
-  Bassoon: ["CONTRA"],
-  Horn: [""],
-  Trumpet: [""],
-  Trombone: [],
-  Tuba: [],
+  FLUTE: ["PICCOLO", "Altoflute"],
+  OBOE: ["ENGLISHHORN"],
+  CLARINET: ["EBCLARINET", "BASSCLARINET"],
+  BASSOON: ["CONTRA"],
+  HORN: [""],
+  TRUMPET: [""],
+  TROMBONE: [],
+  TUBA: [],
 };
 
 const SingleInstrumentInput = (props) => {

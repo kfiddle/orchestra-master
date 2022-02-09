@@ -16,16 +16,13 @@ const DoublingOption = (props) => {
   const clickedInstrumentHandler = () => {
     console.log(partObject);
     console.log(primaryPart);
-    console.log(index)
+    console.log(index);
     let currentActive = partObject.active;
 
-    // setter(
-    //   (previous) =>
-    //     (previous[primaryPart][rank - 1].doublesObjects[index].active =
-    //       !currentActive)
-    // );
-
-    console.log(allParts)
+    let tempParts = allParts;
+    tempParts[primaryPart][rank - 1].doublesObjects[index].active =
+      !currentActive;
+    setter(tempParts);
   };
 
   let classNames = !clickedInstrument

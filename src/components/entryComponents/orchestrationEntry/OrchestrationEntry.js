@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Modal from "../../UI/modal/Modal";
 
 // import FamilyInputs from "./familyInputs/FamilyInputs";
@@ -10,32 +10,33 @@ import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 import classes from "./OrchestrationEntry.module.css";
 import SingleInstrumentInput from "./single_instrument_inputs/SingleInstrumentInput";
 
-const instruments = [
-  "Flute",
-  "Oboe",
-  "Clarinet",
-  "Bassoon",
-  "Horn",
-  "Trumpet",
-  "Trombone",
-  "Tuba",
-  "timpani",
-  "others",
-  "violin1",
-  "violin2",
-  "viola",
-  "cello",
-  "bass",
+const mainInstruments = [
+  "FLUTE",
+  "OBOE",
+  "CLARINET",
+  "BASSOON",
+  "HORN",
+  "TRUMPET",
+  "TROMBONE",
+  "TUBA",
+  "tIMPANI",
+  "OTHERS",
+  "VIOLIN1",
+  "VIOLIN2",
+  "VIOLA",
+  "CELLO",
+  "BASS",
 ];
+
 const OrchestrationEntry = (props) => {
   const [allParts, setAllParts] = useState({});
   const stateList = [allParts, setAllParts];
 
   const piece = props.piece;
 
-  const displayableInstruments = instruments.map((instrument) => (
+  const displayableInstruments = mainInstruments.map((instrument) => (
     <SingleInstrumentInput
-      key={instruments.indexOf(instrument)}
+      key={mainInstruments.indexOf(instrument)}
       instrument={instrument}
       stateList={stateList}
     />
@@ -44,24 +45,35 @@ const OrchestrationEntry = (props) => {
   const submitOrchestration = async () => {
     let primaryChairsToSend = [];
 
-    // for (let part in allParts) {
-    //   for (let j = 1; j <= primaryParts[primaryPart]; j++) {
-    //     primaryChairsToSend.push({
-    //       primaryPart: primaryPart,
-    //       rank: j,
-    //     });
-    //   }
-    // }
+    for (let primaryPart in allParts) {
+      for (let chair of allParts[primaryPart]) {
+        let doublings = [];
+        for (let doubling of chair.doublesObjects) {
+          if (doubling.active) {
+            doublings.push(doubling.secondaryPart);
+          }
+        }
 
-    console.log('primaryChairsToSend');
+        let emptyChair = {
+          primaryPart: primaryPart,
+          rank: chair.rank,
+          secondaryPart: doublings[0] != null ? doublings[0] : null,
+          thirdPart: doublings[1] != null ? doublings[1] : null,
+        };
+        primaryChairsToSend.push(emptyChair);
+      }
+    }
 
-    // let response = await PushBasic(
-    //   primaryChairsToSend,
-    //   "add-all-empty-chairs/" + piece.id
-    // );
-    // if (response.ok) {
-    //   props.closeModal();
-    // }
+    console.log(primaryChairsToSend)
+
+    let response = await PushBasic(
+      primaryChairsToSend,
+      "add-all-empty-chairs/" + piece.id
+    );
+    if (response.ok) {
+      let printable = await response.json();
+      console.log(printable);
+    }
   };
 
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
