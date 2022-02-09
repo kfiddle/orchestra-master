@@ -15,12 +15,18 @@ const doublingOptionsObject = {
 };
 
 const SingleInstrumentInput = (props) => {
-  const [allParts, setAllParts] =
-    props.stateList;
+  const [allParts, setAllParts] = props.stateList;
   const [optionsClicked, setOptionsClicked] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const instrument = props.instrument;
 
   const setThisInstrument = (event) => {
+    if (isNaN(event.target.value)) {
+      return;
+    }
+
+    setInputValue(event.target.value);
+
     let chairs = [];
     for (let j = 1; j <= event.target.value; j++) {
       let doublesObjects = [];
@@ -37,7 +43,9 @@ const SingleInstrumentInput = (props) => {
   };
 
   const clickHandler = () => {
-    setOptionsClicked((previous) => !previous);
+    if (inputValue != '') {
+      setOptionsClicked((previous) => !previous);
+    }
   };
 
   return (
@@ -49,6 +57,7 @@ const SingleInstrumentInput = (props) => {
         type={"text"}
         className={styles.input}
         onChange={setThisInstrument}
+        value={inputValue}
       ></input>
       {optionsClicked && (
         <InstrumentButtons

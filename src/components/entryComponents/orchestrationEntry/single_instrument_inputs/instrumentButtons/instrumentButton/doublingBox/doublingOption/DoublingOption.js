@@ -6,7 +6,7 @@ const DoublingOption = (props) => {
 
   const primaryPart = props.primaryPart;
   const rank = props.rank;
-  const key = props.key;
+  const index = props.optionIndex;
   const partObject = props.partObject;
   const setter = props.setter;
   const allParts = props.allParts;
@@ -16,13 +16,14 @@ const DoublingOption = (props) => {
   const clickedInstrumentHandler = () => {
     console.log(partObject);
     console.log(primaryPart);
+    console.log(index)
     let currentActive = partObject.active;
 
-    setter(
-      (previous) =>
-        (previous[primaryPart][rank - 1].doublesObjects[key].active =
-          !currentActive)
-    );
+    // setter(
+    //   (previous) =>
+    //     (previous[primaryPart][rank - 1].doublesObjects[index].active =
+    //       !currentActive)
+    // );
 
     console.log(allParts)
   };

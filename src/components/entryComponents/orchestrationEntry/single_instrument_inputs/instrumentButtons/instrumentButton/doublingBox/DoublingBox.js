@@ -16,6 +16,7 @@ const DoublingBox = (props) => {
     (partObject) => (
       <DoublingOption
         key={doublesObjects.indexOf(partObject)}
+        optionIndex={doublesObjects.indexOf(partObject)}
         primaryPart={primaryPart}
         rank={rank}
         partObject={partObject}
