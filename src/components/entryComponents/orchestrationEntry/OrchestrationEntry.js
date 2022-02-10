@@ -1,8 +1,6 @@
 import { useState, useContext } from "react";
 import Modal from "../../UI/modal/Modal";
 
-// import FamilyInputs from "./familyInputs/FamilyInputs";
-
 import StringInputs from "./familyInputs/stringInputs/StringInputs";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
@@ -64,7 +62,6 @@ const OrchestrationEntry = (props) => {
       }
     }
 
-    console.log(primaryChairsToSend)
 
     let response = await PushBasic(
       primaryChairsToSend,
