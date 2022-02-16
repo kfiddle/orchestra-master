@@ -27,7 +27,6 @@ const PerformanceEntry = (props) => {
 
   const submitPerformance = async (event) => {
     event.preventDefault();
-
     let tempPerfList = [...performanceDates];
     rehearsalDatez.forEach((rehearsalDate) => tempPerfList.push(rehearsalDate));
     setPerformanceDates(tempPerfList);

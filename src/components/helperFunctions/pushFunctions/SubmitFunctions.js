@@ -21,13 +21,29 @@ const SubmitPerformance = async (
     rehearsalDates: rehearsalDatez,
   };
 
-  let adderToGo = {
-    show: performanceToSendUp,
-    piecesToAdd: clickedPiecesList,
-  };
+  console.log(clickedPiecesList);
 
-  let response = await PushBasic(adderToGo, "add-performance");
-  response.ok && modalCloser();
+  let response = await PushBasic(performanceToSendUp, "add-performance");
+
+  if (response.ok) {
+    let newlySavedShow = await response.json();
+    let showPiecesToSendUp = [];
+
+    for (let clickedPiece of clickedPiecesList) {
+      showPiecesToSendUp.push({
+        piece: clickedPiece,
+        show: newlySavedShow,
+        orderNum: clickedPiecesList.indexOf(clickedPiece),
+      });
+    }
+
+    let secondResponse = await PushBasic(showPiecesToSendUp, "add-show-pieces");
+    if (secondResponse.ok) {
+      console.log("got em boss");
+    }
+
+    modalCloser();
+  }
 };
 
 const SubmitPlayer = async (player, modalCloser) => {
