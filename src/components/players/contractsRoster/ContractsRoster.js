@@ -14,8 +14,6 @@ const ContractsRoster = (props) => {
   const { partsList } = useContext(AllParts);
   const playersList = props.list;
 
-  console.log(partsList)
-
   const possibleEdit = () => {
     props.possibleEdit(true);
   };
