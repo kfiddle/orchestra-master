@@ -23,7 +23,7 @@ const Layout = (props) => {
     props.modalCloseHandler(false);
   };
 
-  const pieceEntryClicked = () => {
+  const pieceEntryClicked = async () => {
     setPieceEntryFormRendered(true);
     props.modalCloseHandler(false);
   };
