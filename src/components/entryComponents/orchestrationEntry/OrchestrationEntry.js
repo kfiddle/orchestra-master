@@ -67,9 +67,6 @@ const OrchestrationEntry = (props) => {
       "add-all-empty-chairs/" + piece.id
     );
     if (response.ok) {
-      // let printable = await response.json();
-      // console.log(printable);
-
       props.closeModal();
     }
   };

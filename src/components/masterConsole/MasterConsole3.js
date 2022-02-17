@@ -13,8 +13,6 @@ import styles from "./MasterConsole3.module.css";
 
 const MasterConsole3 = (props) => {
   const performances = props.allPerformances;
-
-  const [clickedPerformance, setClickedPerformance] = useState(null);
   const [pieces, setPieces] = useState([]);
   const [clickedPiece, setClickedPiece] = useState(null);
 
@@ -24,7 +22,6 @@ const MasterConsole3 = (props) => {
       "get-pieces-on-program"
     );
     const ppsJsonified = await performancePiecesResponse.json();
-    setClickedPerformance(performance);
     setPieces(ppsJsonified);
     setClickedPiece(null);
   };

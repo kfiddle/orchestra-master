@@ -1,4 +1,4 @@
-import Modal from "../../../../UI/modal/Modal";
+import Modal from "../../../../../UI/modal/Modal";
 
 import emailJS from 'emailjs-com';
 

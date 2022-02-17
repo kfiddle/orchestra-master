@@ -52,6 +52,10 @@
   width: 25%;
 }
 
+.doublingDiv{
+  /* color: rgb(231, 235, 23); */
+}
+
 .mailButtonDiv {
   position: absolute;
   right: 1rem;

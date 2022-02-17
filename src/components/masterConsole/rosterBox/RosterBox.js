@@ -27,10 +27,12 @@ const RosterBox = (props) => {
     getTheChairs();
   }, [piece]);
 
-  const clickedSpotHandler = async (rosterSpot) => {
-    let spotToSend = { pp: piece, indexOfChair: rosterSpot.index };
-    setClickedChairIndex(rosterSpot.index);
-    const response = await PushBasic(spotToSend, "get-possible-players");
+  const clickedSpotHandler = async (chair) => {
+    console.log(chair);
+
+    setClickedChairIndex(chair);
+
+    const response = await PushBasic(chair, "get-possible-players");
     if (response.ok) {
       let listToSet = await response.json();
       setPossiblePlayers(listToSet);

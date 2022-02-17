@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import RosterSpot from "../../../piece/roster/rosterSpot/RosterSpot";
+import RosterSpot from "./rosterSpot/RosterSpot";
 
 import styles from "./RosterSpots.module.css";
 
@@ -10,21 +10,22 @@ const RosterSpots = (props) => {
   const chairsToFill = props.chairsToFill;
   const clicked = props.clicked;
 
-
-  const spotClickHandler = (rosterSpot) => {
-    setClickedRosterSpot(rosterSpot);
-    clicked(rosterSpot);
+  const spotClickHandler = (chair) => {
+    setClickedRosterSpot(chair);
+    clicked(chair);
   };
 
-  const displayableChairs = chairsToFill.map((chair) => (
+  const displayableChairs = chairsToFill.map((playerChair) => (
     <RosterSpot
       key={Math.random()}
-      chair={chair}
-      index={chairsToFill.indexOf(chair)}
+      // chair={playerChair.chair}
+
+      playerInChair={playerChair}
+      index={chairsToFill.indexOf(playerChair)}
       spotClicked={spotClickHandler}
       active={
         clickedRosterSpot &&
-        clickedRosterSpot.index === chairsToFill.indexOf(chair)
+        clickedRosterSpot.index === chairsToFill.indexOf(playerChair)
           ? true
           : false
       }

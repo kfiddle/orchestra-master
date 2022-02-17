@@ -11,17 +11,16 @@ import classes from "./RosterSpot.module.css";
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
 
-  let performancePiece = props.pp;
-  let { player, part, rank } = props.chair;
+  let { player, parts, rank } = props.playerInChair.chair;
+  let primaryPart = parts[0];
+  let doublingPart = parts.length > 1 ? `+${parts[1]}` : "";
   let index = props.index;
-
 
   let lastName = "";
 
   if (player) {
     lastName = player.lastName;
   }
-
 
   let outerClasses = props.active
     ? classes.clickedSpot
@@ -38,8 +37,8 @@ const RosterSpot = (props) => {
   };
 
   const spotClickedHandler = () => {
-    let clickedRosterSpot = { part, index, player };
-    props.spotClicked(clickedRosterSpot);
+    let clickedRosterSpot = { parts, index, player };
+    props.spotClicked(props.playerInChair);
   };
 
   return (
@@ -49,9 +48,10 @@ const RosterSpot = (props) => {
       style={{ opacity: "0.7" }}
       onClick={spotClickedHandler}
     >
-      <div className={classes.partDiv}>{rank === 1 && part}</div>
+      <div className={classes.partDiv}>{rank === 1 && primaryPart}</div>
       <div className={classes.rankDiv}>{rank}</div>
       <div className={classes.playerDiv}>{lastName}</div>
+      <div className={classes.doublingDiv}>{doublingPart}</div>
 
       <div className={classes.mailButtonDiv}>
         <AiOutlineMail className={classes.mailIcon} onClick={sendMessage} />

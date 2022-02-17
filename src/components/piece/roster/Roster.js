@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import RosterSpot from "./rosterSpot/RosterSpot";
+import RosterSpot from "../../masterConsole/rosterBox/rosterSpots/rosterSpot/RosterSpot";
 import PossiblePlayersDrop from "../PossiblePlayersDrop";
 
 import AllParts from "../../../store/all-parts";
