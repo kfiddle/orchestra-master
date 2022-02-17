@@ -16,7 +16,7 @@ const RosterBox = (props) => {
 
   useEffect(() => {
     const getTheChairs = async () => {
-      let response = await PushBasic(piece, "get-chairs-in-pp");
+      let response = await PushBasic(piece, "get-chairs-in-show-piece");
       if (response.ok) {
         let newChairs = await response.json();
         setChairsToFill(newChairs);

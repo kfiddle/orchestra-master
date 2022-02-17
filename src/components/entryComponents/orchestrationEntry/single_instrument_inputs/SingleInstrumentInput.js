@@ -4,7 +4,7 @@ import InstrumentButtons from "./instrumentButtons/InstrumentButtons";
 import styles from "./SingleInstrumentInput.module.css";
 
 const doublingOptionsObject = {
-  FLUTE: ["PICCOLO", "Altoflute"],
+  FLUTE: ["PICCOLO", "ALTOFLUTE"],
   OBOE: ["ENGLISHHORN"],
   CLARINET: ["EBCLARINET", "BASSCLARINET"],
   BASSOON: ["CONTRA"],
@@ -16,6 +16,7 @@ const doublingOptionsObject = {
 
 const SingleInstrumentInput = (props) => {
   const [allParts, setAllParts] = props.stateList;
+
   const [optionsClicked, setOptionsClicked] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const instrument = props.instrument;

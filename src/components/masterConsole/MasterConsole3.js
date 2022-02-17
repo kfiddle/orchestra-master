@@ -3,7 +3,7 @@ import { useState } from "react";
 import Performances from "./performances/Performances";
 import Pieces from "./pieces/Pieces";
 
-import RosterBox from './rosterBox/RosterBox'
+import RosterBox from "./rosterBox/RosterBox";
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
@@ -42,7 +42,9 @@ const MasterConsole3 = (props) => {
         />
       </div>
       <div className={styles.piecesDiv}>
-        <Pieces pieces={pieces} clicked={clickedPieceHandler} />
+        {pieces.length > 0 && (
+          <Pieces pieces={pieces} clicked={clickedPieceHandler} />
+        )}
       </div>
       <div className={styles.RosterBoxDiv}>
         {clickedPiece && <RosterBox piece={clickedPiece} />}

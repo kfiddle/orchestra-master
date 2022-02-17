@@ -41,37 +41,37 @@ const OrchestrationEntry = (props) => {
   ));
 
   const submitOrchestration = async () => {
-
-
     let primaryChairsToSend = [];
 
-    // for (let primaryPart in allParts) {
-    //   for (let chair of allParts[primaryPart]) {
-    //     let doublings = [];
-    //     for (let doubling of chair.doublesObjects) {
-    //       if (doubling.active) {
-    //         doublings.push(doubling.secondaryPart);
-    //       }
-    //     }
+    for (let primaryPart in allParts) {
+      for (let chair of allParts[primaryPart]) {
+        let parts = [];
+        parts.push(primaryPart);
 
-    //     let emptyChair = {
-    //       primaryPart: primaryPart,
-    //       rank: chair.rank,
-    //       secondaryPart: doublings[0] != null ? doublings[0] : null,
-    //       thirdPart: doublings[1] != null ? doublings[1] : null,
-    //     };
-    //     primaryChairsToSend.push(emptyChair);
-    //   }
-    // }
+        for (let doubling of chair.doublesObjects) {
+          if (doubling.active) {
+            parts.push(doubling.secondaryPart);
+          }
+        }
 
-    // let response = await PushBasic(
-    //   primaryChairsToSend,
-    //   "add-all-empty-chairs/" + piece.id
-    // );
-    // if (response.ok) {
-    //   let printable = await response.json();
-    //   console.log(printable);
-    // }
+        let emptyChair = {
+          parts: parts,
+          rank: chair.rank,
+        };
+        primaryChairsToSend.push(emptyChair);
+      }
+    }
+
+    let response = await PushBasic(
+      primaryChairsToSend,
+      "add-all-empty-chairs/" + piece.id
+    );
+    if (response.ok) {
+      // let printable = await response.json();
+      // console.log(printable);
+
+      props.closeModal();
+    }
   };
 
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
