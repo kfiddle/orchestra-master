@@ -10,7 +10,8 @@ import styles from "./RosterBox.module.css";
 const RosterBox = (props) => {
   const [chairsToFill, setChairsToFill] = useState([]);
   const [possiblePlayers, setPossiblePlayers] = useState([]);
-  const [clickedChairIndex, setClickedChairIndex] = useState(0);
+  const [clickedChair, setClickedChair] = useState({});
+  const [playerWasPlaced, setPlayerWasPlaced] = useState(false);
 
   const piece = props.piece;
 
@@ -24,13 +25,16 @@ const RosterBox = (props) => {
       setPossiblePlayers([]);
     };
 
+    if (playerWasPlaced) {
+      getTheChairs();
+      setPlayerWasPlaced(false)
+    }
+
     getTheChairs();
-  }, [piece]);
+  }, [piece, playerWasPlaced]);
 
   const clickedSpotHandler = async (chair) => {
-    console.log(chair);
-
-    setClickedChairIndex(chair);
+    setClickedChair(chair);
 
     const response = await PushBasic(chair, "get-possible-players");
     if (response.ok) {
@@ -40,20 +44,16 @@ const RosterBox = (props) => {
   };
 
   const doubleClickedPossible = async (player) => {
-    let objectToSend = {
-      ppId: piece.id,
-      player: player,
-      chairsListIndex: clickedChairIndex,
-    };
+    let response = await PushBasic(
+      player,
+      "put-player-in-pic/" + clickedChair.id
+    );
 
-    console.log(objectToSend);
-
-    let response = await PushBasic(objectToSend, "put-player-in-chair");
     if (response.ok) {
       setPossiblePlayers([]);
-      let response2 = await response.json();
-      console.log(response2.chairsToFill);
-      setChairsToFill(response2.chairsToFill);
+      setPlayerWasPlaced(true);
+      // let response2 = await response.json();
+      // console.log(response2)
     }
   };
 

@@ -11,10 +11,11 @@ import classes from "./RosterSpot.module.css";
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
 
-  let { player, parts, rank } = props.playerInChair.chair;
+  let { parts, rank } = props.playerInChair.chair;
+  let player = props.playerInChair.player;
   let primaryPart = parts[0];
   let doublingPart = parts.length > 1 ? `+${parts[1]}` : "";
-  let index = props.index;
+  // let index = props.index;
 
   let lastName = "";
 
@@ -37,7 +38,7 @@ const RosterSpot = (props) => {
   };
 
   const spotClickedHandler = () => {
-    let clickedRosterSpot = { parts, index, player };
+    // let clickedRosterSpot = { parts, index, player };
     props.spotClicked(props.playerInChair);
   };
 
