@@ -28,7 +28,10 @@ const mainInstruments = [
 
 const OrchestrationEntry = (props) => {
   const [allParts, setAllParts] = useState({});
+  const [stringsChecked, setStringsChecked] = useState(true);
+
   const stateList = [allParts, setAllParts];
+  const stringsStateStuff = [stringsChecked, setStringsChecked];
 
   const piece = props.piece;
 
@@ -61,6 +64,18 @@ const OrchestrationEntry = (props) => {
         primaryChairsToSend.push(emptyChair);
       }
     }
+
+    if (stringsChecked) {
+      primaryChairsToSend.push(
+        { parts: ["VIOLIN1"], rank: 1 },
+        { parts: ["VIOLIN2"], rank: 1 },
+        { parts: ["VIOLA"], rank: 1 },
+        { parts: ["CELLO"], rank: 1 },
+        { parts: ["BASS"], rank: 1 }
+      );
+    }
+
+    // console.log(primaryChairsToSend);
 
     let response = await PushBasic(
       primaryChairsToSend,
@@ -97,7 +112,7 @@ const OrchestrationEntry = (props) => {
               {displayableInstruments.slice(8, 10)}
             </div>
 
-            <StringInputs stateList={stateList} />
+            <StringInputs stringsStateStuff={stringsStateStuff} />
           </div>
         </div>
 

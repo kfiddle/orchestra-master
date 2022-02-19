@@ -3,12 +3,7 @@ import { useState } from "react";
 import classes from "./StringInputs.module.css";
 
 const StringInputs = (props) => {
-  const [orchestration, setOrchestration] = props.stateList;
-  const [stringsChecked, setStringsChecked] = useState(true);
-
-  const setANumber = (event, key) => {
-    setOrchestration({ ...orchestration, [key]: event.target.value });
-  };
+  const [stringsChecked, setStringsChecked] = props.stringsStateStuff;
 
   const setStrings = (event) => {
     setStringsChecked((previous) => !previous);
@@ -25,16 +20,11 @@ const StringInputs = (props) => {
       ></input>
 
       <div className={classes.label}>Custom</div>
-      <input
-        type={"checkBox"}
-        className={classes.checkBox}
-        onChange={(event) => setANumber(event, "Violin1")}
-      ></input>
+      <input type={"checkBox"} className={classes.checkBox}></input>
 
       <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
-        onChange={(event) => setANumber(event, "Violin2")}
       ></input>
 
       {/*
