@@ -9,10 +9,14 @@ const doublingOptionsObject = {
   CLARINET: ["EBCLARINET", "BASSCLARINET"],
   BASSOON: ["CONTRA"],
   HORN: [""],
-  TRUMPET: [""],
-  TROMBONE: [],
-  TUBA: [],
+  TRUMPET: ["CORNET", 'FUGALHORN'],
+  TROMBONE: ["EUPHONIUM"],
+  TUBA: ["EUPHONIUM"],
+  TIMPANI: [],
+  PERCUSSION: [""],
 };
+
+//orchestrationEntry has this
 
 const SingleInstrumentInput = (props) => {
   const [allParts, setAllParts] = props.stateList;
@@ -44,7 +48,7 @@ const SingleInstrumentInput = (props) => {
   };
 
   const clickHandler = () => {
-    if (inputValue != '') {
+    if (inputValue != "") {
       setOptionsClicked((previous) => !previous);
     }
   };

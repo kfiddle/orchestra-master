@@ -17,8 +17,8 @@ const mainInstruments = [
   "TRUMPET",
   "TROMBONE",
   "TUBA",
-  "tIMPANI",
-  "OTHERS",
+  "TIMPANI",
+  "PERCUSSION",
   "VIOLIN1",
   "VIOLIN2",
   "VIOLA",
@@ -94,7 +94,7 @@ const OrchestrationEntry = (props) => {
             <div className={classes.familyDiv}>
               <div className={classes.label}>Percussion</div>
 
-              {displayableInstruments.slice(8, 12)}
+              {displayableInstruments.slice(8, 10)}
             </div>
 
             <StringInputs stateList={stateList} />

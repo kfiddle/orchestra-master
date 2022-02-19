@@ -11,8 +11,6 @@ const InstrumentButton = (props) => {
   const setter = props.setter;
   const allParts = props.allParts;
 
-  console.log(doublesObjects);
-
   const showDoublings = () => {
     setDoublingsClicked((previous) => !previous);
   };

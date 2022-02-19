@@ -52,8 +52,6 @@ const RosterBox = (props) => {
     if (response.ok) {
       setPossiblePlayers([]);
       setPlayerWasPlaced(true);
-      // let response2 = await response.json();
-      // console.log(response2)
     }
   };
 
