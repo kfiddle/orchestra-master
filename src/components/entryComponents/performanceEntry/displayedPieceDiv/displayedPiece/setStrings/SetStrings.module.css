@@ -1,0 +1,14 @@
+
+.setStringsButton {
+    background: transparent;
+    border: 3px solid #fec302;
+    padding: 0.5rem;
+    border-radius: 10px;
+    color: #fec302;
+    cursor: pointer;
+}
+
+.setStringsButton:hover {
+    background: #fec302;
+    color: black;
+}

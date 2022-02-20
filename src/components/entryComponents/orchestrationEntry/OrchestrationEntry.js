@@ -43,7 +43,7 @@ const OrchestrationEntry = (props) => {
     />
   ));
 
-  const submitOrchestration = async () => {
+  const submitOrSetStrings = async () => {
     let primaryChairsToSend = [];
 
     for (let primaryPart in allParts) {
@@ -74,8 +74,6 @@ const OrchestrationEntry = (props) => {
         { parts: ["BASS"], rank: 1 }
       );
     }
-
-    // console.log(primaryChairsToSend);
 
     let response = await PushBasic(
       primaryChairsToSend,
@@ -117,7 +115,7 @@ const OrchestrationEntry = (props) => {
         </div>
 
         <div className={classes.buttonDiv}>
-          <button className={classes.button} onClick={submitOrchestration}>
+          <button className={classes.button} onClick={submitOrSetStrings}>
             Submit
           </button>
         </div>

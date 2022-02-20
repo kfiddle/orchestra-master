@@ -6,7 +6,8 @@ import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 import BigInput3 from "../../input/BigInput3";
 
 import PiecesDropDown from "../../piece/PiecesDropDown";
-import DisplayedPieceDiv from "./displayedPieceDiv/DisplayedPieceDiv";
+
+import DisplayedPieces from "./displayedPieceDiv/DisplayedPieces";
 
 import useDates from "../../../hooks/useDates";
 import useConcertDates from "../../../hooks/useConcertDates";
@@ -110,7 +111,7 @@ const PerformanceEntry = (props) => {
 
             <PiecesDropDown showOrHide={clickedRepDrop} />
 
-            <DisplayedPieceDiv piecesList={clickedPiecesList} />
+            {clickedPiecesList.length>0 && <DisplayedPieces piecesList={clickedPiecesList} />}
             {rehearsalDateInputs}
 
             <div className={classes.submitDiv}>

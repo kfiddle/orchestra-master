@@ -8,6 +8,7 @@ const SubmitPiece = async (piece, modalCloser) => {
   }
 };
 
+
 const SubmitPerformance = async (
   performance,
   clickedPiecesList,
@@ -15,6 +16,8 @@ const SubmitPerformance = async (
   rehearsalDatez,
   modalCloser
 ) => {
+
+
   const performanceToSendUp = {
     ...performance,
     performanceDates: concertDates,
