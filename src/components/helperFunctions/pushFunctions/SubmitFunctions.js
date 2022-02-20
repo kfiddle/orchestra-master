@@ -14,6 +14,7 @@ const SubmitPerformance = async (
   clickedPiecesList,
   concertDates,
   rehearsalDatez,
+  stringNumbers,
   modalCloser
 ) => {
 

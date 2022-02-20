@@ -14,13 +14,17 @@ import useConcertDates from "../../../hooks/useConcertDates";
 
 import classes from "./PerformanceEntry.module.css";
 import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFunctions";
+import TextInput from "../../input/TextInput";
 
 const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [performanceDates, setPerformanceDates] = useState([]);
+  const [stringNumbers, setStringNumbers] = useState({});
 
   const [performance, setPerformance] = useState({});
+
+  const stringSetters = [stringNumbers, setStringNumbers];
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -28,6 +32,9 @@ const PerformanceEntry = (props) => {
 
   const submitPerformance = async (event) => {
     event.preventDefault();
+
+    console.log(stringNumbers);
+
     let tempPerfList = [...performanceDates];
     rehearsalDatez.forEach((rehearsalDate) => tempPerfList.push(rehearsalDate));
     setPerformanceDates(tempPerfList);
@@ -37,6 +44,7 @@ const PerformanceEntry = (props) => {
       clickedPiecesList,
       concertDates,
       rehearsalDatez,
+      stringNumbers,
       props.closeModal
     );
   };
@@ -111,7 +119,12 @@ const PerformanceEntry = (props) => {
 
             <PiecesDropDown showOrHide={clickedRepDrop} />
 
-            {clickedPiecesList.length>0 && <DisplayedPieces piecesList={clickedPiecesList} />}
+            {clickedPiecesList.length > 0 && (
+              <DisplayedPieces
+                piecesList={clickedPiecesList}
+                stringSetters={stringSetters}
+              />
+            )}
             {rehearsalDateInputs}
 
             <div className={classes.submitDiv}>

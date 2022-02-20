@@ -1,10 +1,9 @@
 import { useState } from "react";
 
 import styles from "./SetStrings.module.css";
-import StringsNumbersBox from "./stringsNumbersBox/StringsNumbersBox";
 
 const SetStringsButton = (props) => {
-  const [stringsClicked, setStringsClicked] = useState(false);
+  const setStringsClicked = props.setStringsClicked;
 
   const setStringsClickHandler = () => {
     setStringsClicked((previous) => !previous);
@@ -18,8 +17,7 @@ const SetStringsButton = (props) => {
         onClick={setStringsClickHandler}
       >
         Set Strings?
-      </button>;
-      {stringsClicked && <StringsNumbersBox />}
+      </button>
     </div>
   );
 };
