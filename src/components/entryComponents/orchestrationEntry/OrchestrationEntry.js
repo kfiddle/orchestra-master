@@ -77,7 +77,7 @@ const OrchestrationEntry = (props) => {
 
     let response = await PushBasic(
       primaryChairsToSend,
-      "add-all-empty-chairs/" + piece.id
+      "add-empty-chairs/" + piece.id
     );
     if (response.ok) {
       props.closeModal();

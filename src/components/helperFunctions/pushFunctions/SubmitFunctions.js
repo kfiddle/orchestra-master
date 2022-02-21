@@ -8,7 +8,6 @@ const SubmitPiece = async (piece, modalCloser) => {
   }
 };
 
-
 const SubmitPerformance = async (
   performance,
   clickedPiecesList,
@@ -17,7 +16,7 @@ const SubmitPerformance = async (
   stringNumbers,
   modalCloser
 ) => {
-
+  console.log(stringNumbers);
 
   const performanceToSendUp = {
     ...performance,
@@ -27,26 +26,24 @@ const SubmitPerformance = async (
 
   console.log(clickedPiecesList);
 
-  let response = await PushBasic(performanceToSendUp, "add-performance");
+  let response1 = await PushBasic(performanceToSendUp, "add-performance");
 
-  if (response.ok) {
-    let newlySavedShow = await response.json();
-    let showPiecesToSendUp = [];
+  if (response1.ok) {
+    let newlySavedShow = await response1.json();
 
     for (let clickedPiece of clickedPiecesList) {
-      showPiecesToSendUp.push({
+      let showPieceToSendUp = {
         piece: clickedPiece,
         show: newlySavedShow,
         orderNum: clickedPiecesList.indexOf(clickedPiece),
-      });
-    }
+      };
 
-    let secondResponse = await PushBasic(showPiecesToSendUp, "add-show-pieces");
-    if (secondResponse.ok) {
-      console.log("got em boss");
+      let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
+      if (response2.ok) {
+        let displayableReponse = await response2.json();
+        console.log(displayableReponse);
+      }
     }
-
-    modalCloser();
   }
 };
 

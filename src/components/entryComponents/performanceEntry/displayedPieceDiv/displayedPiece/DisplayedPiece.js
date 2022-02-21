@@ -7,15 +7,21 @@ import classes from "./DisplayedPiece.module.css";
 import StringsNumbersBox from "./setStrings/stringsNumbersBox/StringsNumbersBox";
 import { Fragment } from "react/cjs/react.production.min";
 
+const stringsObject = { VIOLIN1: "", VIOLIN2: "", VIOLA: "", CELLO: "", BASS: "" }
+
 const DisplayedPiece = (props) => {
   const [stringsRequired, setStringsRequired] = useState(false);
   const [stringsClicked, setStringsClicked] = useState(false);
-  const stringSetters = props.stringSetters;
-
   const { id, composerLastName, title, duration } = props.piece;
+
+  const [localStrings, setLocalStrings] = useState({[title]:stringsObject});
+
+  const [stringNumbers, setStringNumbers] = props.stringSetters;
+
 
   useEffect(() => {
     const whichServer = WhichServer();
+    setStringNumbers(previous => [...previous, localStrings])
 
     const getIFStringsNeeded = async () => {
       try {
@@ -42,7 +48,7 @@ const DisplayedPiece = (props) => {
           <SetStringsButton setStringsClicked={setStringsClicked} />
         )}
       </div>
-      {stringsClicked && <StringsNumbersBox stringSetters={stringSetters}/>}
+      {stringsClicked && <StringsNumbersBox localStrings={localStrings} setLocalStrings={setLocalStrings} />}
     </Fragment>
   );
 };

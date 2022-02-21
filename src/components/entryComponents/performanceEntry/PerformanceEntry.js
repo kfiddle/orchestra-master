@@ -20,7 +20,7 @@ const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [performanceDates, setPerformanceDates] = useState([]);
-  const [stringNumbers, setStringNumbers] = useState({});
+  const [stringNumbers, setStringNumbers] = useState([]);
 
   const [performance, setPerformance] = useState({});
 
@@ -33,20 +33,20 @@ const PerformanceEntry = (props) => {
   const submitPerformance = async (event) => {
     event.preventDefault();
 
-    console.log(stringNumbers);
+    console.log(stringNumbers)
 
     let tempPerfList = [...performanceDates];
     rehearsalDatez.forEach((rehearsalDate) => tempPerfList.push(rehearsalDate));
     setPerformanceDates(tempPerfList);
 
-    SubmitPerformance(
-      performance,
-      clickedPiecesList,
-      concertDates,
-      rehearsalDatez,
-      stringNumbers,
-      props.closeModal
-    );
+    // SubmitPerformance(
+    //   performance,
+    //   clickedPiecesList,
+    //   concertDates,
+    //   rehearsalDatez,
+    //   stringNumbers,
+    //   props.closeModal
+    // );
   };
 
   const pieceToList = (piece) => {
