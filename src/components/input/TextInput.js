@@ -1,16 +1,19 @@
 import classes from "./TextInput.module.css";
 
 const TextInput = (props) => {
-  const piece = props.piece;
-  const theObject = props.theObject;
-  const setTheObject = props.setTheObject;
+  const pieceTitle = props.pieceTitle;
+  const stringNumbers = props.stringNumbers;
+  const setStringNumbers = props.setStringNumbers;
 
   const label = props.label;
   const key = props.keyName;
   const style = props.style;
 
   const populator = (event, key) => {
-    setTheObject({ ...theObject, [key]: event.target.value });
+    let tempPieceObject = stringNumbers[pieceTitle];
+    tempPieceObject = { ...tempPieceObject, [key]: event.target.value };
+    setStringNumbers({ ...stringNumbers, [pieceTitle]: tempPieceObject });
+    console.log(stringNumbers);
   };
 
   return (

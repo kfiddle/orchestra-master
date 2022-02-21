@@ -3,43 +3,44 @@ import TextInput from "../../../../../../input/TextInput";
 import styles from "./StringsNumbersBox.module.css";
 
 const StringsNumbersBox = (props) => {
-  const localStrings = props.localStrings;
-  const setLocalStrings = props.setLocalStrings;
-  const piece = props.piece;
+  const stringNumbers = props.stringNumbers;
+  const setStringNumbers = props.setStringNumbers;
+  const pieceTitle = props.pieceTitle;
 
   return (
     <div className={styles.outerContainer}>
       <TextInput
-        piece={piece}
-        theObject={localStrings}
-        setTheObject={setLocalStrings}
+        pieceTitle={pieceTitle}
+        stringNumbers={stringNumbers}
+        setStringNumbers={setStringNumbers}
         label="VIOLIN 1"
         keyName="VIOLIN1"
       />
       <TextInput
-        piece={piece}
-        theObject={localStrings}
-        setTheObject={setLocalStrings}
+        pieceTitle={pieceTitle}
+        stringNumbers={stringNumbers}
+        setStringNumbers={setStringNumbers}
         label="VIOLIN 2"
         keyName="VIOLIN2"
       />
       <TextInput
-        piece={piece}
-        theObject={localStrings}
-        setTheObject={setLocalStrings}
+        pieceTitle={pieceTitle}
+        stringNumbers={stringNumbers}
+        setStringNumbers={setStringNumbers}
         label="VIOLA"
         keyName="VIOLA"
       />
       <TextInput
-        piece={piece}
-        theObject={localStrings}
-        setTheObject={setLocalStrings}
+        pieceTitle={pieceTitle}
+        stringNumbers={stringNumbers}
+        setStringNumbers={setStringNumbers}
         label="CELLO"
         keyName="CELLO"
       />
       <TextInput
-        theObject={localStrings}
-        setTheObject={setLocalStrings}
+        pieceTitle={pieceTitle}
+        stringNumbers={stringNumbers}
+        setStringNumbers={setStringNumbers}
         label="BASS"
         keyName="BASS"
       />

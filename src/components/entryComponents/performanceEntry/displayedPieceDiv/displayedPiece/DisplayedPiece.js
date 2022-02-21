@@ -13,15 +13,15 @@ const DisplayedPiece = (props) => {
   const [stringsRequired, setStringsRequired] = useState(false);
   const [stringsClicked, setStringsClicked] = useState(false);
   const { id, composerLastName, title, duration } = props.piece;
-
-  const [localStrings, setLocalStrings] = useState({[title]:stringsObject});
-
   const [stringNumbers, setStringNumbers] = props.stringSetters;
 
 
   useEffect(() => {
     const whichServer = WhichServer();
-    setStringNumbers(previous => [...previous, localStrings])
+
+    const setLocalToAllStrings = () => {
+      setStringNumbers({...stringNumbers, [title]:{stringsObject}})
+    }
 
     const getIFStringsNeeded = async () => {
       try {
@@ -36,6 +36,9 @@ const DisplayedPiece = (props) => {
     };
 
     getIFStringsNeeded();
+    setLocalToAllStrings();
+
+
   }, []);
 
   return (
@@ -48,7 +51,7 @@ const DisplayedPiece = (props) => {
           <SetStringsButton setStringsClicked={setStringsClicked} />
         )}
       </div>
-      {stringsClicked && <StringsNumbersBox localStrings={localStrings} setLocalStrings={setLocalStrings} />}
+      {stringsClicked && <StringsNumbersBox pieceTitle={title} stringNumbers={stringNumbers} setStringNumbers={setStringNumbers} />}
     </Fragment>
   );
 };
