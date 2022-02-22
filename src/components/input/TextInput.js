@@ -5,15 +5,22 @@ const TextInput = (props) => {
   const stringNumbers = props.stringNumbers;
   const setStringNumbers = props.setStringNumbers;
 
+  const [stringHashmaps, setStringHashmaps] = props.stringHashSetters;
+
+  const chairId = props.chairId;
   const label = props.label;
   const key = props.keyName;
   const style = props.style;
 
+  // const populator = (event, key) => {
+  //   let tempPieceObject = stringNumbers[pieceTitle];
+  //   tempPieceObject = { ...tempPieceObject, [key]: event.target.value };
+  //   setStringNumbers({ ...stringNumbers, [pieceTitle]: tempPieceObject });
+  // };
+
   const populator = (event, key) => {
-    let tempPieceObject = stringNumbers[pieceTitle];
-    tempPieceObject = { ...tempPieceObject, [key]: event.target.value };
-    setStringNumbers({ ...stringNumbers, [pieceTitle]: tempPieceObject });
-    console.log(stringNumbers);
+    setStringHashmaps({ ...stringHashmaps, [chairId]: +event.target.value });
+    console.log(stringHashmaps)
   };
 
   return (

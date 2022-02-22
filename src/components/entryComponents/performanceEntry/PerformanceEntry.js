@@ -14,17 +14,19 @@ import useConcertDates from "../../../hooks/useConcertDates";
 
 import classes from "./PerformanceEntry.module.css";
 import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFunctions";
-import TextInput from "../../input/TextInput";
 
 const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [performanceDates, setPerformanceDates] = useState([]);
-  const [stringNumbers, setStringNumbers] = useState([]);
+  const [stringNumbers, setStringNumbers] = useState({});
+
+  const [stringHashmaps, setStringHashmaps] = useState({});
 
   const [performance, setPerformance] = useState({});
 
   const stringSetters = [stringNumbers, setStringNumbers];
+  const stringHashSetters = [stringHashmaps, setStringHashmaps];
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -33,20 +35,19 @@ const PerformanceEntry = (props) => {
   const submitPerformance = async (event) => {
     event.preventDefault();
 
-    console.log(stringNumbers)
-
     let tempPerfList = [...performanceDates];
     rehearsalDatez.forEach((rehearsalDate) => tempPerfList.push(rehearsalDate));
     setPerformanceDates(tempPerfList);
 
-    // SubmitPerformance(
-    //   performance,
-    //   clickedPiecesList,
-    //   concertDates,
-    //   rehearsalDatez,
-    //   stringNumbers,
-    //   props.closeModal
-    // );
+    SubmitPerformance(
+      performance,
+      clickedPiecesList,
+      concertDates,
+      rehearsalDatez,
+      stringNumbers,
+      stringHashmaps,
+      props.closeModal
+    );
   };
 
   const pieceToList = (piece) => {
@@ -123,6 +124,7 @@ const PerformanceEntry = (props) => {
               <DisplayedPieces
                 piecesList={clickedPiecesList}
                 stringSetters={stringSetters}
+                stringHashSetters={stringHashSetters}
               />
             )}
             {rehearsalDateInputs}

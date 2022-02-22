@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import classes from "./StringInputs.module.css";
+import classes from "./StringAndOthers.module.css";
 
-const StringInputs = (props) => {
+const StringAndOthers = (props) => {
   const [stringsChecked, setStringsChecked] = props.stringsStateStuff;
 
   const setStrings = (event) => {
@@ -22,29 +22,14 @@ const StringInputs = (props) => {
       <div className={classes.label}>Custom</div>
       <input type={"checkBox"} className={classes.checkBox}></input>
 
-      <input
+      {/* <input
         type={"text"}
         className={`${classes.input} ${classes.strings}`}
-      ></input>
-
-      {/*
-      <input
-        type={"text"}
-        className={`${classes.input} ${classes.strings}`}
-        onChange={(event) => setANumber(event, "Viola")}
-      ></input>
-      <input
-        type={"text"}
-        className={`${classes.input} ${classes.strings}`}
-        onChange={(event) => setANumber(event, "Cello")}
-      ></input>
-      <input
-        type={"text"}
-        className={`${classes.input} ${classes.strings}`}
-        onChange={(event) => setANumber(event, "Bass")}
       ></input> */}
+
+      <button className={classes.extrasButton}>Extras</button>
     </div>
   );
 };
 
-export default StringInputs;
+export default StringAndOthers;

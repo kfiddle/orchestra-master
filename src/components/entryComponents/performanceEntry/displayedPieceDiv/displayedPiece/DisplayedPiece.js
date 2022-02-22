@@ -7,28 +7,39 @@ import classes from "./DisplayedPiece.module.css";
 import StringsNumbersBox from "./setStrings/stringsNumbersBox/StringsNumbersBox";
 import { Fragment } from "react/cjs/react.production.min";
 
-const stringsObject = { VIOLIN1: "", VIOLIN2: "", VIOLA: "", CELLO: "", BASS: "" }
+const stringsObject = {
+  VIOLIN1: "",
+  VIOLIN2: "",
+  VIOLA: "",
+  CELLO: "",
+  BASS: "",
+};
 
 const DisplayedPiece = (props) => {
   const [stringsRequired, setStringsRequired] = useState(false);
   const [stringsClicked, setStringsClicked] = useState(false);
   const { id, composerLastName, title, duration } = props.piece;
   const [stringNumbers, setStringNumbers] = props.stringSetters;
+  const stringHashSetters = props.stringHashSetters;
 
+  const [incomingStringChairs, setIncomingStringChairs] = useState([]);
 
   useEffect(() => {
     const whichServer = WhichServer();
 
     const setLocalToAllStrings = () => {
-      setStringNumbers({...stringNumbers, [title]:{stringsObject}})
-    }
+      setStringNumbers({ ...stringNumbers, [title]: stringsObject });
+    };
 
     const getIFStringsNeeded = async () => {
       try {
-        let response = await fetch(whichServer + "strings-required/" + id);
+        let response = await fetch(
+          whichServer + "get-string-chairs-in-piece/" + id
+        );
+
         if (response.ok) {
           let answer = await response.json();
-          setStringsRequired(answer);
+          setIncomingStringChairs(answer);
         }
       } catch (error) {
         console.log(error);
@@ -37,8 +48,6 @@ const DisplayedPiece = (props) => {
 
     getIFStringsNeeded();
     setLocalToAllStrings();
-
-
   }, []);
 
   return (
@@ -47,11 +56,20 @@ const DisplayedPiece = (props) => {
         <div className={classes.lastNameDiv}>{composerLastName}</div>
         <div className={classes.titleDiv}>{title}</div>
         <div className={classes.durationDiv}>{duration}'</div>
-        {stringsRequired && (
+
+        {incomingStringChairs.length > 0 && (
           <SetStringsButton setStringsClicked={setStringsClicked} />
         )}
       </div>
-      {stringsClicked && <StringsNumbersBox pieceTitle={title} stringNumbers={stringNumbers} setStringNumbers={setStringNumbers} />}
+      {stringsClicked && (
+        <StringsNumbersBox
+          incomingStringChairs={incomingStringChairs}
+          pieceTitle={title}
+          stringHashSetters={stringHashSetters}
+          stringNumbers={stringNumbers}
+          setStringNumbers={setStringNumbers}
+        />
+      )}
     </Fragment>
   );
 };

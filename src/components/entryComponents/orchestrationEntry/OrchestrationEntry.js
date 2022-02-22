@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import Modal from "../../UI/modal/Modal";
 
-import StringInputs from "./familyInputs/stringInputs/StringInputs";
+import StringAndOthers from './familyInputs/stringAndOthers/StringAndOthers';
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
@@ -110,7 +110,7 @@ const OrchestrationEntry = (props) => {
               {displayableInstruments.slice(8, 10)}
             </div>
 
-            <StringInputs stringsStateStuff={stringsStateStuff} />
+            <StringAndOthers stringsStateStuff={stringsStateStuff} />
           </div>
         </div>
 

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import TextInput from "../../../../../../input/TextInput";
 
 import styles from "./StringsNumbersBox.module.css";
@@ -7,9 +8,32 @@ const StringsNumbersBox = (props) => {
   const setStringNumbers = props.setStringNumbers;
   const pieceTitle = props.pieceTitle;
 
+  const incomingStringChairs = props.incomingStringChairs;
+  const stringHashSetters = props.stringHashSetters;
+
+  console.log(incomingStringChairs);
+  const hashmapChairs = incomingStringChairs.map((chair) => (
+    <TextInput
+      key={incomingStringChairs.indexOf(chair)}
+      pieceTitle={pieceTitle}
+      stringHashSetters={stringHashSetters}
+      stringNumbers={stringNumbers}
+      setStringNumbers={setStringNumbers}
+      chairId={chair.id}
+      label={chair.parts[0]}
+      keyName={chair.parts[0]}
+    />
+  ));
+
+  useEffect(() => {}, []);
+
   return (
     <div className={styles.outerContainer}>
-      <TextInput
+      {hashmapChairs}
+
+
+
+      {/* <TextInput
         pieceTitle={pieceTitle}
         stringNumbers={stringNumbers}
         setStringNumbers={setStringNumbers}
@@ -43,7 +67,7 @@ const StringsNumbersBox = (props) => {
         setStringNumbers={setStringNumbers}
         label="BASS"
         keyName="BASS"
-      />
+      /> */}
     </div>
   );
 };

@@ -14,6 +14,7 @@ const SubmitPerformance = async (
   concertDates,
   rehearsalDatez,
   stringNumbers,
+  stringHashMaps,
   modalCloser
 ) => {
   console.log(stringNumbers);
@@ -24,12 +25,11 @@ const SubmitPerformance = async (
     rehearsalDates: rehearsalDatez,
   };
 
-  console.log(clickedPiecesList);
-
   let response1 = await PushBasic(performanceToSendUp, "add-performance");
 
   if (response1.ok) {
     let newlySavedShow = await response1.json();
+    let chairsToSendUp = [];
 
     for (let clickedPiece of clickedPiecesList) {
       let showPieceToSendUp = {
@@ -40,8 +40,9 @@ const SubmitPerformance = async (
 
       let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
       if (response2.ok) {
-        let displayableReponse = await response2.json();
-        console.log(displayableReponse);
+        let jsonified = await response2.json();
+        let titleToFind = jsonified.piece.title;
+
       }
     }
   }

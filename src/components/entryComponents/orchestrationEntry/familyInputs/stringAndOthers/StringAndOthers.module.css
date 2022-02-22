@@ -1,6 +1,6 @@
 .outerContainer {
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-around;
   border: 4px solid #837f7f;
   box-shadow: 2px 2px #6b6969;
   border-radius: 5px;
@@ -47,4 +47,25 @@
 .control textarea:focus {
   background-color: #e9dcdc;
   outline-color: rgb(46, 40, 39);
+}
+
+.extrasButton {
+  width: fit-content;
+  background: none;
+  color: #0206fe;
+  border: 4px solid #0206fe;
+  padding: 8px 30px;
+  margin: 1rem;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  float: right;
+  transition: all 0.25s ease-out;
+}
+
+.extrasButton:hover {
+  background: #0206fe;
+  color: rgb(92, 82, 82);
 }
