@@ -21,12 +21,10 @@ const PerformanceEntry = (props) => {
   const [performanceDates, setPerformanceDates] = useState([]);
   const [stringNumbers, setStringNumbers] = useState({});
 
-  const [stringHashmaps, setStringHashmaps] = useState({});
 
   const [performance, setPerformance] = useState({});
 
   const stringSetters = [stringNumbers, setStringNumbers];
-  const stringHashSetters = [stringHashmaps, setStringHashmaps];
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -45,7 +43,6 @@ const PerformanceEntry = (props) => {
       concertDates,
       rehearsalDatez,
       stringNumbers,
-      stringHashmaps,
       props.closeModal
     );
   };
@@ -124,7 +121,6 @@ const PerformanceEntry = (props) => {
               <DisplayedPieces
                 piecesList={clickedPiecesList}
                 stringSetters={stringSetters}
-                stringHashSetters={stringHashSetters}
               />
             )}
             {rehearsalDateInputs}

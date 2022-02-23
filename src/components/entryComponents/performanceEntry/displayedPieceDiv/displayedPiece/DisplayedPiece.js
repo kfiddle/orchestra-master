@@ -20,7 +20,6 @@ const DisplayedPiece = (props) => {
   const [stringsClicked, setStringsClicked] = useState(false);
   const { id, composerLastName, title, duration } = props.piece;
   const [stringNumbers, setStringNumbers] = props.stringSetters;
-  const stringHashSetters = props.stringHashSetters;
 
   const [incomingStringChairs, setIncomingStringChairs] = useState([]);
 
@@ -65,7 +64,6 @@ const DisplayedPiece = (props) => {
         <StringsNumbersBox
           incomingStringChairs={incomingStringChairs}
           pieceTitle={title}
-          stringHashSetters={stringHashSetters}
           stringNumbers={stringNumbers}
           setStringNumbers={setStringNumbers}
         />

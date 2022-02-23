@@ -14,11 +14,8 @@ const SubmitPerformance = async (
   concertDates,
   rehearsalDatez,
   stringNumbers,
-  stringHashMaps,
   modalCloser
 ) => {
-  console.log(stringNumbers);
-
   const performanceToSendUp = {
     ...performance,
     performanceDates: concertDates,
@@ -29,7 +26,6 @@ const SubmitPerformance = async (
 
   if (response1.ok) {
     let newlySavedShow = await response1.json();
-    let chairsToSendUp = [];
 
     for (let clickedPiece of clickedPiecesList) {
       let showPieceToSendUp = {
@@ -40,9 +36,27 @@ const SubmitPerformance = async (
 
       let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
       if (response2.ok) {
-        let jsonified = await response2.json();
-        let titleToFind = jsonified.piece.title;
+        let newlySavedShowPiece = await response2.json();
+        let titleToFindHere = newlySavedShowPiece.piece.title;
 
+        for (let title in stringNumbers) {
+          if (title === titleToFindHere) {
+            let listOfStrings = [];
+            for (let partNum in stringNumbers[title]) {
+              listOfStrings.push({
+                stringPart: partNum,
+                number: +stringNumbers[title][partNum],
+              });
+            }
+
+            console.log(listOfStrings);
+
+            let response3 = await PushBasic(
+              listOfStrings,
+              "make-string-player-in-chairs/" + newlySavedShowPiece.id
+            );
+          }
+        }
       }
     }
   }
