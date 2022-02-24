@@ -36,6 +36,7 @@ const SubmitPerformance = async (
 
       let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
       if (response2.ok) {
+        modalCloser();
         let newlySavedShowPiece = await response2.json();
         let titleToFindHere = newlySavedShowPiece.piece.title;
 
@@ -55,6 +56,7 @@ const SubmitPerformance = async (
               listOfStrings,
               "make-string-player-in-chairs/" + newlySavedShowPiece.id
             );
+        
           }
         }
       }

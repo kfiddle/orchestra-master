@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./DoublingOption.module.css";
 
 const DoublingOption = (props) => {
@@ -13,11 +13,16 @@ const DoublingOption = (props) => {
 
   const instrumentName = props.instrumentName;
 
+  useEffect(() => {
+    if (partObject.active) {
+      setClickedInstrument(true);
+      console.log(clickedInstrument);
+    }
+  }, []);
+
   const clickedInstrumentHandler = () => {
-    console.log(partObject);
-    console.log(primaryPart);
-    console.log(index);
     let currentActive = partObject.active;
+    console.log(partObject.active);
 
     let tempParts = allParts;
     tempParts[primaryPart][rank - 1].doublesObjects[index].active =
@@ -25,7 +30,7 @@ const DoublingOption = (props) => {
     setter(tempParts);
   };
 
-  let classNames = !clickedInstrument
+  let classNames = !partObject.active
     ? styles.outerContainer
     : `${styles.outerContainer} ${styles.clicked}`;
 

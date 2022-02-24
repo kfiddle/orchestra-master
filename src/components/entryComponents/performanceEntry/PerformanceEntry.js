@@ -21,7 +21,6 @@ const PerformanceEntry = (props) => {
   const [performanceDates, setPerformanceDates] = useState([]);
   const [stringNumbers, setStringNumbers] = useState({});
 
-
   const [performance, setPerformance] = useState({});
 
   const stringSetters = [stringNumbers, setStringNumbers];
@@ -32,6 +31,10 @@ const PerformanceEntry = (props) => {
 
   const submitPerformance = async (event) => {
     event.preventDefault();
+
+    if (concertDates.length < 1) {
+      return;
+    }
 
     let tempPerfList = [...performanceDates];
     rehearsalDatez.forEach((rehearsalDate) => tempPerfList.push(rehearsalDate));
