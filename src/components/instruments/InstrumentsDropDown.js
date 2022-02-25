@@ -4,20 +4,19 @@ import InstrumentListItem from "./InstrumentListItem";
 import GetAList from "../helperFunctions/GetAList";
 
 import styles from "./InstrumentsDropDown.module.css";
+
 const InstrumentsDropDown = (props) => {
   const [instrumentsList, setInstrumentsList] = useState([]);
-
   const showOrHide = props.showOrHide;
-  const displayStyleObject = !showOrHide? {display: 'none'} : {};
+  const displayStyleObject = !showOrHide ? { display: "none" } : {};
 
   useEffect(() => {
-
-    const getInstruments = async () => {
+    const getAllInstruments = async () => {
       const allInstrumentsResponse = await GetAList("get-all-parts");
       setInstrumentsList(allInstrumentsResponse);
     };
 
-    getInstruments();
+    getAllInstruments();
   }, []);
 
   const listToDisplay = instrumentsList.map((instrument) => (

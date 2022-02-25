@@ -13,7 +13,6 @@ const DoublingOption = (props) => {
 
   const instrumentName = props.instrumentName;
 
-
   const clickedInstrumentHandler = () => {
     let currentActive = partObject.active;
 

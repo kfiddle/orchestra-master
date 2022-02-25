@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ExtrasButton from "./extrasButton/ExtrasButton";
 
 import classes from "./StringAndOthers.module.css";
 
@@ -22,12 +23,7 @@ const StringAndOthers = (props) => {
       <div className={classes.label}>Custom</div>
       <input type={"checkBox"} className={classes.checkBox}></input>
 
-      {/* <input
-        type={"text"}
-        className={`${classes.input} ${classes.strings}`}
-      ></input> */}
-
-      <button className={classes.extrasButton}>Extras</button>
+      <ExtrasButton />
     </div>
   );
 };

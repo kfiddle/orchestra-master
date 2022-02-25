@@ -16,6 +16,7 @@ import FoneInput from "../../../input/FoneInput";
 import SubOrContractBox from "./subOrContractBox/SubOrContractBox";
 import SubmitDeleteBox from "../submitDelete/SubmitDeleteBox";
 
+
 const nameMaker = (fullEnteredName) => {
   if (!fullEnteredName) {
     return;
@@ -144,7 +145,7 @@ const PlayerEntry = (props) => {
             </div>
           </div>
 
-          <InstrumentsDropDown showOrHide={clickedThings.instrumentDropDown} />
+          <InstrumentsDropDown showOrHide={clickedThings.instrumentDropDown}/>
 
           <div className={classes.phoneDiv}>
             <FoneInput
