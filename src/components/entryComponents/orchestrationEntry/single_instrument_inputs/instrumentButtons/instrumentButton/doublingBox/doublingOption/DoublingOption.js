@@ -13,24 +13,18 @@ const DoublingOption = (props) => {
 
   const instrumentName = props.instrumentName;
 
-  useEffect(() => {
-    if (partObject.active) {
-      setClickedInstrument(true);
-      console.log(clickedInstrument);
-    }
-  }, []);
 
   const clickedInstrumentHandler = () => {
     let currentActive = partObject.active;
-    console.log(partObject.active);
 
     let tempParts = allParts;
     tempParts[primaryPart][rank - 1].doublesObjects[index].active =
       !currentActive;
     setter(tempParts);
+    setClickedInstrument(previous => !previous)
   };
 
-  let classNames = !partObject.active
+  let classNames = !clickedInstrument
     ? styles.outerContainer
     : `${styles.outerContainer} ${styles.clicked}`;
 
