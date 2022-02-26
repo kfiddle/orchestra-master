@@ -8,6 +8,7 @@ import { Fragment } from "react/cjs/react.production.min";
 
 const ExtrasButton = (props) => {
   const [extrasButtonClicked, setExtrasButtonClicked] = useState(false);
+  const extrasStateStuff= props.extrasStateStuff;
 
   const extrasClickHandler = () => {
     setExtrasButtonClicked((previous) => !previous);
@@ -18,7 +19,7 @@ const ExtrasButton = (props) => {
       <button className={styles.extrasButton} onClick={extrasClickHandler}>
         Extras
       </button>
-      {extrasButtonClicked && <Extras  />}
+      {extrasButtonClicked && <Extras extrasStateStuff={extrasStateStuff} />}
     </Fragment>
   );
 };

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import Modal from "../../UI/modal/Modal";
 
-import StringAndOthers from './familyInputs/stringAndOthers/StringAndOthers';
+import StringAndOthers from "./familyInputs/stringAndOthers/StringAndOthers";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
@@ -29,9 +29,11 @@ const mainInstruments = [
 const OrchestrationEntry = (props) => {
   const [allParts, setAllParts] = useState({});
   const [stringsChecked, setStringsChecked] = useState(true);
+  const [extras, setExtras] = useState([]);
 
   const stateList = [allParts, setAllParts];
   const stringsStateStuff = [stringsChecked, setStringsChecked];
+  const extrasStateStuff = [extras, setExtras];
 
   const piece = props.piece;
 
@@ -45,6 +47,8 @@ const OrchestrationEntry = (props) => {
 
   const submitOrSetStrings = async () => {
     let primaryChairsToSend = [];
+
+    console.log(extras);
 
     for (let primaryPart in allParts) {
       for (let chair of allParts[primaryPart]) {
@@ -73,6 +77,12 @@ const OrchestrationEntry = (props) => {
         { parts: ["CELLO"], rank: 1 },
         { parts: ["BASS"], rank: 1 }
       );
+    }
+
+    if (extras.length > 0) {
+      for (let chair of extras) {
+        primaryChairsToSend.push(chair);
+      }
     }
 
     let response = await PushBasic(
@@ -110,7 +120,10 @@ const OrchestrationEntry = (props) => {
               {displayableInstruments.slice(8, 10)}
             </div>
 
-            <StringAndOthers stringsStateStuff={stringsStateStuff} />
+            <StringAndOthers
+              stringsStateStuff={stringsStateStuff}
+              extrasStateStuff={extrasStateStuff}
+            />
           </div>
         </div>
 

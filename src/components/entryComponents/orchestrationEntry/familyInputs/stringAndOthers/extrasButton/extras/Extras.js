@@ -16,9 +16,15 @@ const extrasList = [
   "CELESTE",
 ];
 
-const Extras = () => {
+const Extras = (props) => {
+  const extrasStateStuff = props.extrasStateStuff;
+
   const displayableExtras = extrasList.map((extra) => (
-    <Extra key={Math.random()} instrument={extra} />
+    <Extra
+      key={Math.random()}
+      instrument={extra}
+      extrasStateStuff={extrasStateStuff}
+    />
   ));
 
   return <div className={styles.outerContainer}>{displayableExtras}</div>;

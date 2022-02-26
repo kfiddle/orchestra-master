@@ -13,6 +13,7 @@ const RosterSpot = (props) => {
 
   let { parts, rank } = props.playerInChair.chair;
   let player = props.playerInChair.player;
+  let sectionSeat = props.playerInChair.sectionSeat;
   let primaryPart = parts[0];
   let doublingPart = parts.length > 1 ? `+${parts[1]}` : "";
   // let index = props.index;
@@ -39,8 +40,11 @@ const RosterSpot = (props) => {
 
   const spotClickedHandler = () => {
     // let clickedRosterSpot = { parts, index, player };
-    props.spotClicked(props.playerInChair);
+    // props.spotClicked(props.playerInChair);
+    console.log(sectionSeat)
   };
+
+  let printedSectionLabel = rank === 1 || sectionSeat === 1;
 
   return (
     <div
@@ -49,7 +53,9 @@ const RosterSpot = (props) => {
       style={{ opacity: "0.7" }}
       onClick={spotClickedHandler}
     >
-      <div className={classes.partDiv}>{rank === 1 && primaryPart}</div>
+      <div className={classes.partDiv}>
+        {printedSectionLabel && primaryPart}
+      </div>
       <div className={classes.rankDiv}>{rank}</div>
       <div className={classes.playerDiv}>{lastName}</div>
       <div className={classes.doublingDiv}>{doublingPart}</div>

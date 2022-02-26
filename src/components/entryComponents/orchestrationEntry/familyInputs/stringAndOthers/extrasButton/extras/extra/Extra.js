@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { Fragment } from "react/cjs/react.production.min";
-
 import styles from "./Extra.module.css";
 
 const originalBackground =
@@ -8,9 +6,46 @@ const originalBackground =
 
 const Extra = (props) => {
   const [clicked, setClicked] = useState(false);
+  const [extras, setExtras] = props.extrasStateStuff;
+  const [localNumber, setLocalNumber] = useState(0);
+
+  const instrument = props.instrument;
+
+  let tempList = extras;
+
+  const addInstrument = () => {
+    tempList.push({ parts: [instrument], rank: 1 });
+    setExtras(tempList);
+    setLocalNumber((previous) => previous + 1);
+  };
+
+  const subtractInstrument = () => {
+    for (let j = 0; j < tempList.length; j++) {
+      if (tempList[j].parts[0] === instrument) {
+        tempList.splice(j, 1);
+      }
+    }
+    setExtras(tempList);
+  };
 
   const clickHandler = () => {
     setClicked((previous) => !previous);
+
+    if (!clicked) {
+      addInstrument();
+    } else {
+      subtractInstrument();
+      setLocalNumber(0);
+    }
+  };
+
+  const addButtonClicker = () => {
+    addInstrument();
+  };
+
+  const subtractButtonClicker = () => {
+    subtractInstrument();
+    setLocalNumber((previous) => previous - 1);
   };
 
   let classNames = !clicked ? styles.instrumentItemDiv : styles.clickedItem;
@@ -18,9 +53,14 @@ const Extra = (props) => {
   return (
     <div className={styles.outerContainer}>
       <div onClick={clickHandler} className={classNames}>
-        <div className={styles.nameDiv}>{props.instrument}</div>
+        <div className={styles.nameDiv}>{instrument}</div>
       </div>
-      {clicked && <div style={{ color: "red" }}>howdy</div>}
+      {clicked && (
+        <div style={{ color: "red" }}>
+          {localNumber} <button onClick={addButtonClicker}>+</button>{" "}
+          <button onClick={subtractButtonClicker}>-</button>
+        </div>
+      )}
     </div>
   );
 };
