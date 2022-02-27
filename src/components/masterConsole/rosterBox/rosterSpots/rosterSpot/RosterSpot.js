@@ -20,6 +20,7 @@ const RosterSpot = (props) => {
   const rightClicker = props.rightClicker;
   const rightClicked = props.rightClicked;
   const fadeForOther = props.fadeForOther;
+  const setPlayerChange = props.setPlayerChange;
 
   let primaryPart = parts[0];
   let doublingPart = parts.length > 1 ? `+${parts[1]}` : "";
@@ -53,7 +54,7 @@ const RosterSpot = (props) => {
       "remove-player-from-pic"
     );
     if (response.ok) {
-      console.log("git it");
+      setPlayerChange(true)
     }
   };
 

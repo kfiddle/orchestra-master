@@ -11,7 +11,7 @@ const RosterBox = (props) => {
   const [chairsToFill, setChairsToFill] = useState([]);
   const [possiblePlayers, setPossiblePlayers] = useState([]);
   const [clickedChair, setClickedChair] = useState({});
-  const [playerWasPlaced, setPlayerWasPlaced] = useState(false);
+  const [playerChange, setPlayerChange] = useState(false);
 
   const piece = props.piece;
 
@@ -25,13 +25,13 @@ const RosterBox = (props) => {
       setPossiblePlayers([]);
     };
 
-    if (playerWasPlaced) {
+    if (playerChange) {
       getTheChairs();
-      setPlayerWasPlaced(false)
+      setPlayerChange(false)
     }
 
     getTheChairs();
-  }, [piece, playerWasPlaced]);
+  }, [piece, playerChange]);
 
   const clickedSpotHandler = async (chair) => {
     setClickedChair(chair);
@@ -51,7 +51,7 @@ const RosterBox = (props) => {
 
     if (response.ok) {
       setPossiblePlayers([]);
-      setPlayerWasPlaced(true);
+      setPlayerChange(true);
     }
   };
 
@@ -62,6 +62,7 @@ const RosterBox = (props) => {
           <RosterSpots
             chairsToFill={chairsToFill}
             clicked={clickedSpotHandler}
+            setPlayerChange={setPlayerChange}
           />
         )}
       </div>

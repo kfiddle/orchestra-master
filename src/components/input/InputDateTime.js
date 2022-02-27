@@ -1,8 +1,10 @@
 import classes from "./InputDate.module.css";
 
 const InputDateTime = (props) => {
-  const { label, index, datePopulator, style } = props.inputObject;
+  const { label, index, datePopulator, performanceDates, style } = props.inputObject;
   let dateTime = { date: "", startTime: [0, 0], endTime: [0, 0] };
+
+  let primaryDate = props.inputObject.pObject.performanceDates[0].date;
 
   const localPopulator = (event, key, clockHand) => {
     if (key === "date") {
@@ -13,7 +15,6 @@ const InputDateTime = (props) => {
         : (dateTime[key][1] = parseInt(event.target.value));
     }
     datePopulator(index, dateTime);
-   
   };
 
   return (
@@ -23,7 +24,8 @@ const InputDateTime = (props) => {
         <input
           type={"date"}
           onChange={(event) => localPopulator(event, "date")}
-          // placeholder={placeHolder}
+          placeholder={primaryDate}
+          defaultValue={primaryDate}
           style={style}
         ></input>
       </div>

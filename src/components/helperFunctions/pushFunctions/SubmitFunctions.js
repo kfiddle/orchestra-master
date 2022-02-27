@@ -50,7 +50,6 @@ const SubmitPerformance = async (
               });
             }
 
-            console.log(listOfStrings);
 
             let response3 = await PushBasic(
               listOfStrings,

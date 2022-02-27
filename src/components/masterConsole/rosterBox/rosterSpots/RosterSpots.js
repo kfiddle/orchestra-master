@@ -10,6 +10,7 @@ const RosterSpots = (props) => {
 
   const chairsToFill = props.chairsToFill;
   const clicked = props.clicked;
+  const setPlayerChange = props.setPlayerChange;
 
   const spotClickHandler = (chair) => {
     setRightClickedSpot(null);
@@ -34,6 +35,7 @@ const RosterSpots = (props) => {
       fadeForOther={
         rightClickedSpot && rightClickedSpot !== playerChair ? true : false
       }
+      setPlayerChange={setPlayerChange}
     />
   ));
 

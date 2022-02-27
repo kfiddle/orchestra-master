@@ -15,25 +15,15 @@ import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFun
 
 import classes from "./PerformanceEdit.module.css";
 
-let perfObject = {
-  id: "",
-  title: "",
-  performanceDateTimes: [],
-  notes: "",
-};
-
 const PerformanceEntry = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [performanceDates, setPerformanceDates] = useState([]);
 
-  useEffect(() => {
-    if (props.performance) {
-      perfObject = { ...props.performance };
-    }
-  }, [props.performance]);
+  let perfObject = props.performance;
+  // console.log(perfObject)
 
-  const [performance, setPerformance] = useState(perfObject);
+  const [performance, setPerformance] = useState(props.performance);
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -63,7 +53,7 @@ const PerformanceEntry = (props) => {
     setPerformance({ ...performance, [key]: event.target.value });
   };
 
-  const textInputter = { label: "", key: "", populator, pObject: perfObject };
+  const textInputter = { label: "", key: "", populator, pObject: performance };
 
   const [rehearsalDateInputs, rehearsalDatez, rehearsalClicked] = useDates(
     perfObject,
@@ -71,7 +61,7 @@ const PerformanceEntry = (props) => {
   );
 
   const [concertDateInputs, concertDates, concertClicked] =
-    useConcertDates(perfObject);
+    useConcertDates(performance);
 
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
