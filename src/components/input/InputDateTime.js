@@ -1,10 +1,10 @@
 import classes from "./InputDate.module.css";
 
 const InputDateTime = (props) => {
-  const { label, index, datePopulator, performanceDates, style } = props.inputObject;
+  const { label, index, datePopulator, pObject, style } = props.inputObject;
   let dateTime = { date: "", startTime: [0, 0], endTime: [0, 0] };
 
-  let primaryDate = props.inputObject.pObject.performanceDates[0].date;
+  let primaryDate = pObject.performanceDates? pObject.performanceDates[0].date: null;
 
   const localPopulator = (event, key, clockHand) => {
     if (key === "date") {

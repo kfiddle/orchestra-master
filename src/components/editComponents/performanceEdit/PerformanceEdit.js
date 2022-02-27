@@ -9,21 +9,25 @@ import PiecesDropDown from "../../piece/PiecesDropDown";
 import DisplayedPieces from '../../entryComponents/performanceEntry/displayedPieceDiv/DisplayedPieces'
 
 import useDates from "../../../hooks/useDates";
-import useConcertDates from "../../../hooks/useConcertDates";
 
 import { SubmitPerformance } from "../../helperFunctions/pushFunctions/SubmitFunctions";
 
 import classes from "./PerformanceEdit.module.css";
+import InputDateTime2 from "../../input/inputDateTime2/InputDateTime2";
 
 const PerformanceEntry = (props) => {
+  const [performance, setPerformance] = useState(props.performance);
+
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
-  const [performanceDates, setPerformanceDates] = useState([]);
+  const [performanceDates, setPerformanceDates] = useState(performance.performanceDates);
 
-  let perfObject = props.performance;
-  // console.log(perfObject)
+  console.log(performanceDates)
 
-  const [performance, setPerformance] = useState(props.performance);
+
+  const performanceDateInputs = performanceDates.map(dateTime => (
+    <InputDateTime2 key={Math.random()} dateTime={dateTime} performance={performance} setPerformance={setPerformance} />
+  ))
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -39,7 +43,7 @@ const PerformanceEntry = (props) => {
     SubmitPerformance(
       performance,
       clickedPiecesList,
-      concertDates,
+      // concertDates,
       rehearsalDatez,
       props.closeModal
     );
@@ -56,12 +60,9 @@ const PerformanceEntry = (props) => {
   const textInputter = { label: "", key: "", populator, pObject: performance };
 
   const [rehearsalDateInputs, rehearsalDatez, rehearsalClicked] = useDates(
-    perfObject,
+    performance,
     "Rehearsal"
   );
-
-  const [concertDateInputs, concertDates, concertClicked] =
-    useConcertDates(performance);
 
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
@@ -80,11 +81,11 @@ const PerformanceEntry = (props) => {
               }}
             />
 
-            {concertDateInputs}
+            {performanceDateInputs}
 
             <div className={classes.additionalPerfButtonDiv}>
               <button
-                onClick={concertClicked}
+                // onClick={concertClicked}
                 className={classes.button}
                 type={"button"}
               >
