@@ -4,6 +4,7 @@ import EmailPlayer from "./emailPlayer/EmailPlayer";
 
 import { AiOutlineMail } from "react-icons/ai";
 
+import PushBasic from "../../../../helperFunctions/pushFunctions/PushBasic";
 import classes from "./RosterSpot.module.css";
 import RightClickMenu from "./rightClickMenu/RightClickMenu";
 
@@ -46,6 +47,16 @@ const RosterSpot = (props) => {
     rightClicker(props.playerInChair);
   };
 
+  const removePlayerClicker = async () => {
+    let response = await PushBasic(
+      props.playerInChair,
+      "remove-player-from-pic"
+    );
+    if (response.ok) {
+      console.log("git it");
+    }
+  };
+
   let printSectionLabel = sectionSeat > 0 || rank != 1 ? false : true;
   let printRankOrSeat = sectionSeat > 0 ? sectionSeat : rank;
 
@@ -77,7 +88,12 @@ const RosterSpot = (props) => {
         </div>
         {mailClicked && <EmailPlayer closeModal={closeModal} />}
       </div>
-      {rightClicked && <RightClickMenu hasPlayer={player ? true : false} />}
+      {rightClicked && (
+        <RightClickMenu
+          hasPlayer={player ? true : false}
+          removePlayerClicker={removePlayerClicker}
+        />
+      )}
     </div>
   );
 };
