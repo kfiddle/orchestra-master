@@ -27,35 +27,35 @@ const SubmitPerformance = async (
   if (response1.ok) {
     let newlySavedShow = await response1.json();
 
-    for (let clickedPiece of clickedPiecesList) {
-      let showPieceToSendUp = {
-        piece: clickedPiece,
-        show: newlySavedShow,
-        orderNum: clickedPiecesList.indexOf(clickedPiece),
-      };
+    if (clickedPiecesList.length > 0) {
+      for (let clickedPiece of clickedPiecesList) {
+        let showPieceToSendUp = {
+          piece: clickedPiece,
+          show: newlySavedShow,
+          orderNum: clickedPiecesList.indexOf(clickedPiece),
+        };
 
-      let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
-      if (response2.ok) {
-        modalCloser();
-        let newlySavedShowPiece = await response2.json();
-        let titleToFindHere = newlySavedShowPiece.piece.title;
+        let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
+        if (response2.ok) {
+          modalCloser();
+          let newlySavedShowPiece = await response2.json();
+          let titleToFindHere = newlySavedShowPiece.piece.title;
 
-        for (let title in stringNumbers) {
-          if (title === titleToFindHere) {
-            let listOfStrings = [];
-            for (let partNum in stringNumbers[title]) {
-              listOfStrings.push({
-                stringPart: partNum,
-                number: +stringNumbers[title][partNum],
-              });
+          for (let title in stringNumbers) {
+            if (title === titleToFindHere) {
+              let listOfStrings = [];
+              for (let partNum in stringNumbers[title]) {
+                listOfStrings.push({
+                  stringPart: partNum,
+                  number: +stringNumbers[title][partNum],
+                });
+              }
+
+              let response3 = await PushBasic(
+                listOfStrings,
+                "make-string-player-in-chairs/" + newlySavedShowPiece.id
+              );
             }
-
-
-            let response3 = await PushBasic(
-              listOfStrings,
-              "make-string-player-in-chairs/" + newlySavedShowPiece.id
-            );
-        
           }
         }
       }

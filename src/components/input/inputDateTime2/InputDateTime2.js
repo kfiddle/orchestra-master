@@ -12,7 +12,7 @@ const InputDateTime2 = (props) => {
   const [hours, minutes] = useTimeFormatter(startTime);
   const [endHours, endMinutes] = useTimeFormatter(endTime);
 
-  console.log(startTime);
+  console.log(endMinutes);
 
 
   return (
@@ -22,9 +22,7 @@ const InputDateTime2 = (props) => {
         <input
           type={"date"}
         //   onChange={(event) => localPopulator(event, "date")}
-        //   placeholder={primaryDate}
           defaultValue={date}
-        //   style={style}
         ></input>
       </div>
 
