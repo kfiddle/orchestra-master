@@ -16,7 +16,6 @@ const RosterSpot = (props) => {
   let sectionSeat = props.playerInChair.sectionSeat;
   let primaryPart = parts[0];
   let doublingPart = parts.length > 1 ? `+${parts[1]}` : "";
-  // let index = props.index;
 
   let lastName = "";
 
@@ -24,11 +23,7 @@ const RosterSpot = (props) => {
     lastName = player.lastName;
   }
 
-  let outerClasses = props.active
-    ? classes.clickedSpot
-    : classes.outerContainer;
-
-  let playerOpacity = player ? 0.4 : 1.0;
+  let playerOpacity = player ? "0.6" : "1.0";
 
   const sendMessage = () => {
     setMailClicked(true);
@@ -39,24 +34,25 @@ const RosterSpot = (props) => {
   };
 
   const spotClickedHandler = () => {
-    // let clickedRosterSpot = { parts, index, player };
-    // props.spotClicked(props.playerInChair);
-    console.log(sectionSeat)
+    props.spotClicked(props.playerInChair);
   };
 
-  let printedSectionLabel = rank === 1 || sectionSeat === 1;
+  let printSectionLabel = sectionSeat > 0 || rank != 1 ? false : true;
+  let printRankOrSeat = sectionSeat > 0 ? sectionSeat : rank;
+
+  let marginClass = !printSectionLabel
+    ? classes.sectionMargin
+    : classes.sectionHeadMargin;
+
+  let backgroundClass = player? classes.hired: classes.unHired;
 
   return (
     <div
-      className={outerClasses}
-      style={{ opacity: playerOpacity }}
-      style={{ opacity: "0.7" }}
+      className={`${classes.outerContainer} ${marginClass} ${backgroundClass}`}
       onClick={spotClickedHandler}
     >
-      <div className={classes.partDiv}>
-        {printedSectionLabel && primaryPart}
-      </div>
-      <div className={classes.rankDiv}>{rank}</div>
+      <div className={classes.partDiv}>{printSectionLabel && primaryPart}</div>
+      <div className={classes.rankDiv}>{printRankOrSeat}</div>
       <div className={classes.playerDiv}>{lastName}</div>
       <div className={classes.doublingDiv}>{doublingPart}</div>
 

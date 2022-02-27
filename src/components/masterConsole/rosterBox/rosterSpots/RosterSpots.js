@@ -18,8 +18,6 @@ const RosterSpots = (props) => {
   const displayableChairs = chairsToFill.map((playerChair) => (
     <RosterSpot
       key={Math.random()}
-      // chair={playerChair.chair}
-
       playerInChair={playerChair}
       index={chairsToFill.indexOf(playerChair)}
       spotClicked={spotClickHandler}

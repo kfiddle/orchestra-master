@@ -2,13 +2,11 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin: 0.5rem 1rem 0.5rem 0;
   padding: 0.5rem;
-  width: 90%;
+  width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   height: 2.5rem;
-  background: rgb(67, 76, 83);
   color: rgb(255, 255, 255);
   font-weight: 900;
   font-size: 1rem;
@@ -16,43 +14,43 @@
   cursor: pointer;
 }
 
-.clickedSpot {
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: 0.5rem 1rem 0.5rem 0;
-  padding: 0.5rem;
-  width: 90%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  height: 2.5rem;
-  background: rgb(226, 231, 236);
-  color: rgb(75, 28, 59);
-  font-weight: 900;
-  font-size: 1rem;
-  letter-spacing: 0.15em;
-  cursor: pointer;
+.outerContainer:hover {
+  background: rgb(197, 219, 247);
+  color: rgb(82, 87, 9);
 }
 
-.outerContainer:hover{
-  background: rgb(228, 231, 235);
-  color: rgb(5, 70, 19);
+.sectionHeadMargin {
+  margin: 2rem 1rem 0.5rem 0;
 }
 
-.partDiv{
+.sectionMargin {
+  margin: 0.25rem 1rem 0.5rem 0;
+}
+
+.hired {
+  background: rgb(67, 76, 83);
+  opacity: 0.6;
+}
+
+.unHired {
+  background: rgb(107, 60, 114);
+  opacity: 1.0;
+}
+
+.partDiv {
   width: 20%;
-  padding-left: .5rem;
+  padding-left: 0.5rem;
 }
 
-.rankDiv{
+.rankDiv {
   width: 15%;
 }
 
-.playerDiv{
+.playerDiv {
   width: 25%;
 }
 
-.doublingDiv{
+.doublingDiv {
   /* color: rgb(231, 235, 23); */
 }
 
