@@ -8,6 +8,8 @@ const extrasList = [
   "ENGLISHHORN",
   "EBCLARINET",
   "BASSCLARINET",
+  "ACLARINET",
+  "CCLARINET",
   "SAX",
   "CONTRA",
   "FUGALHORN",

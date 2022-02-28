@@ -25,16 +25,17 @@ const PerformanceEntry = (props) => {
   );
 
   const addConcertClicked = () => {
-    setPerformanceDates([...performanceDates, {}])
-  }
+    setPerformanceDates([...performanceDates, {}]);
+  };
 
-  const performanceDateInputs = performanceDates.map((dateTime) => (
+  const performanceDateInputs = performanceDates.map((dateTime, index) => (
     <InputDateTime2
       key={performanceDates.indexOf(dateTime)}
       dateTime={dateTime}
       performance={performance}
       setPerformance={setPerformance}
       label={performanceDates.indexOf(dateTime) === 0 ? "Primary Date" : ""}
+      index={index}
     />
   ));
 
@@ -44,18 +45,7 @@ const PerformanceEntry = (props) => {
 
   const submitPerformance = async (event) => {
     event.preventDefault();
-
-    let tempPerfList = [...performanceDates];
-    rehearsalDatez.forEach((rehearsalDate) => tempPerfList.push(rehearsalDate));
-    setPerformanceDates(tempPerfList);
-
-    SubmitPerformance(
-      performance,
-      clickedPiecesList,
-      // concertDates,
-      rehearsalDatez,
-      props.closeModal
-    );
+    console.log(performance);
   };
 
   const pieceToList = (piece) => {
