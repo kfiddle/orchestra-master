@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import Modal from "../../UI/modal/Modal";
 
 import StringAndOthers from "./familyInputs/stringAndOthers/StringAndOthers";
+import Extras from "./familyInputs/stringAndOthers/extrasButton/extras/Extras";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
@@ -29,6 +30,7 @@ const mainInstruments = [
 const OrchestrationEntry = (props) => {
   const [allParts, setAllParts] = useState({});
   const [stringsChecked, setStringsChecked] = useState(true);
+  const [extrasClicked, setExtrasClicked] = useState(false);
   const [extras, setExtras] = useState([]);
 
   const stateList = [allParts, setAllParts];
@@ -94,6 +96,10 @@ const OrchestrationEntry = (props) => {
     }
   };
 
+  const extrasClicker = () => {
+    setExtrasClicked((previous) => !previous);
+  };
+
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
 
   return (
@@ -123,6 +129,7 @@ const OrchestrationEntry = (props) => {
             <StringAndOthers
               stringsStateStuff={stringsStateStuff}
               extrasStateStuff={extrasStateStuff}
+              extrasClicker={extrasClicker}
             />
           </div>
         </div>
@@ -133,6 +140,7 @@ const OrchestrationEntry = (props) => {
           </button>
         </div>
       </div>
+      {extrasClicked && <Extras extrasStateStuff={extrasStateStuff} />}
     </Modal>
   );
 };

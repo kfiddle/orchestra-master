@@ -11,9 +11,15 @@ const extrasList = [
   "SAX",
   "CONTRA",
   "FUGALHORN",
+  "BASSTROMBONE",
   "EUPHONIUM",
+  "WAGNERTUBA",
   "HARP",
+  "PIANO",
   "CELESTE",
+  "GLOCKENSPIEL",
+  "ORGAN",
+  "VOICES",
 ];
 
 const Extras = (props) => {
