@@ -1,3 +1,4 @@
+import useTimeFormatter from "../../hooks/useTimeFormatter";
 import classes from "./InputDate.module.css";
 
 const InputDateTime = (props) => {

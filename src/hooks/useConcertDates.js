@@ -36,7 +36,6 @@ const useConcertDates = (perfObject) => {
   };
 
   return [dateInputs, dates, clicked];
-
 };
 
 export default useConcertDates;

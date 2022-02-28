@@ -18,26 +18,36 @@ import InputDateTime2 from "../../input/inputDateTime2/InputDateTime2";
 const PerformanceEntry = (props) => {
   const [performance, setPerformance] = useState(props.performance);
 
+  const [dateTimes, setDateTimes] = useState([]);
+
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [performanceDates, setPerformanceDates] = useState(
     performance.performanceDates
   );
 
+  const dateTimeSetters = [dateTimes, setDateTimes];
+
+  const randomListToTry = [];
+
   const addConcertClicked = () => {
-    setPerformanceDates([...performanceDates, {}]);
+    setPerformanceDates([
+      ...performanceDates,
+      { date: "", startTime: "", endTime: "" },
+    ]);
   };
 
   const performanceDateInputs = performanceDates.map((dateTime, index) => (
     <InputDateTime2
       key={performanceDates.indexOf(dateTime)}
       dateTime={dateTime}
-      performance={performance}
-      setPerformance={setPerformance}
+      dateTimeSetters={dateTimeSetters}
       label={performanceDates.indexOf(dateTime) === 0 ? "Primary Date" : ""}
       index={index}
+      randomListToTry={randomListToTry}
     />
   ));
+
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -45,7 +55,7 @@ const PerformanceEntry = (props) => {
 
   const submitPerformance = async (event) => {
     event.preventDefault();
-    console.log(performance);
+    console.log(randomListToTry);
   };
 
   const pieceToList = (piece) => {
