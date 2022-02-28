@@ -6,7 +6,7 @@ import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 import BigInput from "../../input/BigInput";
 
 import PiecesDropDown from "../../piece/PiecesDropDown";
-import DisplayedPieces from '../../entryComponents/performanceEntry/displayedPieceDiv/DisplayedPieces'
+import DisplayedPieces from "../../entryComponents/performanceEntry/displayedPieceDiv/DisplayedPieces";
 
 import useDates from "../../../hooks/useDates";
 
@@ -20,14 +20,23 @@ const PerformanceEntry = (props) => {
 
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
-  const [performanceDates, setPerformanceDates] = useState(performance.performanceDates);
+  const [performanceDates, setPerformanceDates] = useState(
+    performance.performanceDates
+  );
 
-  console.log(performanceDates)
+  const addConcertClicked = () => {
+    setPerformanceDates([...performanceDates, {}])
+  }
 
-
-  const performanceDateInputs = performanceDates.map(dateTime => (
-    <InputDateTime2 key={Math.random()} dateTime={dateTime} performance={performance} setPerformance={setPerformance} />
-  ))
+  const performanceDateInputs = performanceDates.map((dateTime) => (
+    <InputDateTime2
+      key={performanceDates.indexOf(dateTime)}
+      dateTime={dateTime}
+      performance={performance}
+      setPerformance={setPerformance}
+      label={performanceDates.indexOf(dateTime) === 0 ? "Primary Date" : ""}
+    />
+  ));
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -85,7 +94,7 @@ const PerformanceEntry = (props) => {
 
             <div className={classes.additionalPerfButtonDiv}>
               <button
-                // onClick={concertClicked}
+                onClick={addConcertClicked}
                 className={classes.button}
                 type={"button"}
               >

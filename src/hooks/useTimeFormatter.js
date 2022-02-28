@@ -5,7 +5,7 @@ const useTimeFormatter = (timeString) => {
     let minutes = timeString[3] + timeString[4];
 
     return [hours, minutes];
-  } return [null, null];
+  } return [' ', ' '];
 };
 
 export default useTimeFormatter;

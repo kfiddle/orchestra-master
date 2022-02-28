@@ -1,29 +1,26 @@
+import useTimeFormatter from "../../../hooks/useTimeFormatter";
 
-
-import useTimeFormatter from '../../../hooks/useTimeFormatter';
-
-import classes from './InputDateTime2.module.css';
+import classes from "./InputDateTime2.module.css";
 
 const InputDateTime2 = (props) => {
   const performance = props.performance;
   const setPerformance = props.setPerformance;
-  const {date, startTime, endTime} = props.dateTime;
+  const label = props.label;
+  const { date, startTime, endTime } = props.dateTime;
 
   const [hours, minutes] = useTimeFormatter(startTime);
   const [endHours, endMinutes] = useTimeFormatter(endTime);
 
-  console.log(endMinutes);
-
+  const changer = (event) => {
+    event.preventDefault();
+    console.log(event);
+  };
 
   return (
-  <div className={classes.outerContainer}>
+    <div className={classes.outerContainer}>
       <div className={`${classes.control} ${classes.dateDiv}`}>
-        {/* <label>{label}</label> */}
-        <input
-          type={"date"}
-        //   onChange={(event) => localPopulator(event, "date")}
-          defaultValue={date}
-        ></input>
+        <label>{label}</label>
+        <input type={"date"} onChange={changer} defaultValue={date}></input>
       </div>
 
       <div className={classes.bothTimesHolder}>
@@ -33,16 +30,14 @@ const InputDateTime2 = (props) => {
             <input
               type={"text"}
               defaultValue={hours}
-            //   onChange={(event) => localPopulator(event, "startTime", "hour")}
+              //   onChange={(event) => localPopulator(event, "startTime", "hour")}
               style={{ width: "4rem", marginRight: ".5rem" }}
             ></input>
             <input
               type={"text"}
               defaultValue={endHours}
-
-            //   onChange={(event) => localPopulator(event, "startTime", "minute")}
-            defaultValue={minutes}
-
+              //   onChange={(event) => localPopulator(event, "startTime", "minute")}
+              defaultValue={minutes}
               style={{ width: "6rem" }}
             ></input>
           </div>
@@ -53,13 +48,13 @@ const InputDateTime2 = (props) => {
           <div className={classes.hoursMinutesHolder}>
             <input
               type={"text"}
-            //   onChange={(event) => localPopulator(event, "endTime", "hour")}
+              //   onChange={(event) => localPopulator(event, "endTime", "hour")}
               style={{ width: "4rem", marginRight: ".5rem" }}
             ></input>
             <input
               type={"text"}
               defaultValue={endMinutes}
-            //   onChange={(event) => localPopulator(event, "endTime", "minute")}
+              //   onChange={(event) => localPopulator(event, "endTime", "minute")}
               style={{ width: "6rem" }}
             ></input>
           </div>
