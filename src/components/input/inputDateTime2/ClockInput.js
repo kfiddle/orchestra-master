@@ -1,26 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import classes from "./ClockInput.module.css";
 
 const ClockInput = (props) => {
-  const [localHours, setLocalHours] = useState("");
-  const [localMinutes, setLocalMinutes] = useState("");
+  const timeString = props.time;
+  console.log(timeString)
+
+  //   const hours =
+  //     timeString[0] === "0" ? timeString[1] : timeString[0] + timeString[1];
+  //   const minutes = timeString[3] + timeString[4];
+
+  const [localTime, setLocalTime] = useState([+timeString[1], +timeString[3]]);
+
+  const submitting = props.submitting;
+  const sendUpTime = props.sendUpTime;
 
   const label = props.label;
-  const timeString = props.time;
-  const randomListToTry = props.randomListToTry;
+  const index = props.index;
 
-  const hours =
-    timeString[0] === "0" ? timeString[1] : timeString[0] + timeString[1];
-  const minutes = timeString[3] + timeString[4];
+  useEffect(() => {
+    if (submitting) {
+      sendUpTime(localTime, index);
+    }
+  }, [submitting]);
 
   const hoursSetter = (event) => {
-    setLocalHours(event.target.value);
-    randomListToTry.push(localHours);
+    setLocalTime([+event.target.value, localTime[1]]);
+    console.log(localTime[0]);
   };
 
   const minutesSetter = (event) => {
-    setLocalMinutes(event.target.value);
+    setLocalTime([localTime[0], +event.target.value]);
   };
 
   return (
@@ -29,15 +39,14 @@ const ClockInput = (props) => {
       <div className={classes.hoursMinutesHolder}>
         <input
           className={classes.hoursInput}
-          type={"text"}
-          placeholder={hours}
           onChange={hoursSetter}
+          value={localTime[0]}
         ></input>
         <input
           className={classes.minutesInput}
           type={"text"}
-          placeholder={minutes}
           onChange={minutesSetter}
+          value={localTime[1] === 0? '00': localTime[1]}
         ></input>
       </div>
     </div>

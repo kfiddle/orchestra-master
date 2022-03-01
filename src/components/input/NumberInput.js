@@ -1,14 +1,15 @@
 import { useState } from "react";
 
 const NumberInput = (props) => {
-const [inputValue, setInputValue]
-
+  const [inputNumber, setInputNumber] = useState(null);
+  originalNumber = props.originalNumber;
 
   return (
     <input
       type={"text"}
       className={styles.input}
-      onChange={setThisInstrument}
+      placeholder={originalNumber}
+      onChange={setNumber}
       value={inputValue}
     ></input>
   );

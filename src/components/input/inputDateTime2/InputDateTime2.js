@@ -8,9 +8,12 @@ let localDateTime = { date: "", startTime: [0, 0], endTime: [0, 0] };
 const InputDateTime2 = (props) => {
   const label = props.label;
   const index = props.index;
-  const randomListToTry = props.randomListToTry;
 
-  const [dateTimes, setDateTimes] = props.dateTimeSetters;
+  const submitting = props.submitting;
+  const sendUpTime = props.sendUpTime;
+
+  const dateTimeSetters = props.dateTimeSetters;
+  const [dateTimes, setDateTimes] = dateTimeSetters;
 
   const dateTime = props.dateTime;
   const { date, startTime, endTime } = dateTime;
@@ -46,18 +49,7 @@ const InputDateTime2 = (props) => {
   //   datePopulator(index, dateTime);
   // };
 
-  const startHourSetter = (event) => {
-    if (isNaN(event.nativeEvent.data) || event.target.value.length === 2) {
-      return;
-    }
-    let dateTimeToChange = dateTime;
-    dateTimeToChange = {
-      ...dateTimeToChange,
-      startTime: event.target.value,
-      // startTime: [+event.target.value, dateTimeToChange.startTime[1]],
-    };
-    console.log(dateTimeToChange);
-  };
+ 
 
   return (
     <div className={classes.outerContainer}>
@@ -67,43 +59,22 @@ const InputDateTime2 = (props) => {
       </div>
 
       <div className={classes.bothTimesHolder}>
-        <ClockInput label="Crazy" time={startTime} randomListToTry={randomListToTry} />
-
-        <div className={`${classes.control} ${classes.timeDiv}`}>
-          <label>Start Time</label>
-          <div className={classes.hoursMinutesHolder}>
-            <input
-              type={"text"}
-              placeholder={startHours}
-              onChange={startHourSetter}
-              style={{ width: "4rem", marginRight: ".5rem" }}
-            ></input>
-            <input
-              type={"text"}
-              placeholder={startMinutes}
-              //   onChange={(event) => localPopulator(event, "startTime", "minute")}
-              style={{ width: "6rem" }}
-            ></input>
-          </div>
-        </div>
-
-        <div className={`${classes.control} ${classes.timeDiv}`}>
-          <label>End Time?</label>
-          <div className={classes.hoursMinutesHolder}>
-            <input
-              type={"text"}
-              placeholder={endHours}
-              //   onChange={(event) => localPopulator(event, "endTime", "hour")}
-              style={{ width: "4rem", marginRight: ".5rem" }}
-            ></input>
-            <input
-              type={"text"}
-              placeholder={endMinutes}
-              //   onChange={(event) => localPopulator(event, "endTime", "minute")}
-              style={{ width: "6rem" }}
-            ></input>
-          </div>
-        </div>
+        <ClockInput
+          label="Start Time"
+          time={startTime}
+          dateTimeSetters={dateTimeSetters}
+          index={index}
+          submitting={submitting}
+          sendUpTime={sendUpTime}
+        />
+        <ClockInput
+          label="End Time"
+          time={startTime}
+          dateTimeSetters={dateTimeSetters}
+          index={index}
+          submitting={submitting}
+          sendUpTime={sendUpTime}
+        />
       </div>
     </div>
   );
