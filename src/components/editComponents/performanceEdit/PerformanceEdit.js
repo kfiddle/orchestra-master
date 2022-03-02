@@ -30,8 +30,8 @@ const PerformanceEntry = (props) => {
 
   const dateTimeSetters = [dateTimes, setDateTimes];
 
-  const acceptTimes = (number, index) => {
-    console.log(number);
+  const acceptTimes = (clockTime, index) => {
+    console.log(clockTime);
     console.log(index)
   };
 
