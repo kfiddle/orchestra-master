@@ -17,6 +17,7 @@ import InputDateTime2 from "../../input/inputDateTime2/InputDateTime2";
 
 const PerformanceEntry = (props) => {
   const [performance, setPerformance] = useState(props.performance);
+  const [testList, setTestList] = useState([]);
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -30,9 +31,10 @@ const PerformanceEntry = (props) => {
 
   const dateTimeSetters = [dateTimes, setDateTimes];
 
-  const acceptTimes = (clockTime, index) => {
-    console.log(clockTime);
-    console.log(index)
+  const acceptTimes = (clockTime, index, label) => {
+    let tempList = testList;
+    tempList[index] = { [label]: clockTime };
+    setTestList(tempList)
   };
 
   const addConcertClicked = () => {
@@ -61,6 +63,7 @@ const PerformanceEntry = (props) => {
   const submitPerformance = async (event) => {
     event.preventDefault();
     setSubmitting(true);
+    setTimeout(() => console.log(testList), 1000)
   };
 
   const pieceToList = (piece) => {

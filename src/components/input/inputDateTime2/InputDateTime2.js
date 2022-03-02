@@ -9,7 +9,9 @@ import classes from "./InputDateTime2.module.css";
 const InputDateTime2 = (props) => {
   const dateTime = props.dateTime;
   const { date, startTime, endTime } = dateTime;
-  const [localDate, setLocalDate] = useState(date);
+
+  // const [localDate, setLocalDate] = useState(date);
+  const [localDatetime, setLocalDateTime] = useState({});
 
   const label = props.label;
   const index = props.index;
@@ -17,16 +19,18 @@ const InputDateTime2 = (props) => {
   const submitting = props.submitting;
   const sendUpTime = props.sendUpTime;
 
-  const dateTimeSetters = props.dateTimeSetters;
-  const [dateTimes, setDateTimes] = dateTimeSetters;
-
-  console.log(props.dateTime);
-
   const [startHours, startMinutes] = useTimeFormatter(startTime);
   const [endHours, endMinutes] = useTimeFormatter(endTime);
 
   const dateSetter = (event) => {
-   setLocalDate(event.target.value)
+    setLocalDateTime({ ...localDatetime, date: event.target.value });
+  };
+
+  const gatherTimes = (times, label) => {
+    let tempDateTime = localDatetime;
+    tempDateTime[label] = times;
+    setLocalDateTime(tempDateTime);
+    setTimeout(() => console.log(localDatetime), 1000);
   };
 
   return (
@@ -38,18 +42,18 @@ const InputDateTime2 = (props) => {
 
       <div className={classes.bothTimesHolder}>
         <ClockInput
-          label="Start Time"
+          label="startTime"
           time={[startHours, startMinutes]}
-          index={index}
+          index={0}
           submitting={submitting}
-          sendUpTime={sendUpTime}
+          gatherTimes={gatherTimes}
         />
         <ClockInput
-          label="End Time"
+          label="endTime"
           time={[endHours, endMinutes]}
-          index={index}
+          index={1}
           submitting={submitting}
-          sendUpTime={sendUpTime}
+          gatherTimes={gatherTimes}
         />
       </div>
     </div>
