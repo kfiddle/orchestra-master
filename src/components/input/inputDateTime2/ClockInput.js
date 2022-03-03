@@ -3,13 +3,22 @@ import { useState, useEffect } from "react";
 import classes from "./ClockInput.module.css";
 
 const ClockInput = (props) => {
-  const [hours, minutes] = props.time;
+  let [hours, minutes] = props.time;
+
+  if (isNaN(hours)) {
+    hours = 0;
+  }
+
+  if (isNaN(minutes)) {
+    minutes = 0;
+  }
+
   const submitting = props.submitting;
   const gatherTimes = props.gatherTimes;
   const label = props.label;
   const index = props.index;
 
-  const printedLabel = label === 'startTime'? 'Start Time': 'End Time'
+  const printedLabel = label === "startTime" ? "Start Time" : "End Time";
 
   const [localTime, setLocalTime] = useState([hours, minutes]);
 

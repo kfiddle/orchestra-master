@@ -16,6 +16,7 @@ const MasterConsole3 = (props) => {
   const [pieces, setPieces] = useState([]);
   const [clickedPiece, setClickedPiece] = useState(null);
 
+
   const clickedPerformanceHandler = async (performance) => {
     const performancePiecesResponse = await PushBasic(
       performance,

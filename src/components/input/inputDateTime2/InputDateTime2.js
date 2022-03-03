@@ -9,9 +9,9 @@ import classes from "./InputDateTime2.module.css";
 const InputDateTime2 = (props) => {
   const dateTime = props.dateTime;
   const { date, startTime, endTime } = dateTime;
+  console.log(dateTime);
 
-  // const [localDate, setLocalDate] = useState(date);
-  const [localDatetime, setLocalDateTime] = useState({});
+  const [localDatetime, setLocalDateTime] = useState({ date: date });
 
   const label = props.label;
   const index = props.index;
@@ -30,7 +30,7 @@ const InputDateTime2 = (props) => {
     let tempDateTime = localDatetime;
     tempDateTime[label] = times;
     setLocalDateTime(tempDateTime);
-    setTimeout(() => console.log(localDatetime), 1000);
+    setTimeout(sendUpTime(localDatetime, index), 400);
   };
 
   return (

@@ -1,0 +1,54 @@
+.outerContainer {
+    width: 100%;
+    display: flex;
+  }
+  
+  .dateDiv {
+    width: 70%;
+  }
+  
+  .bothTimesHolder {
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+  }
+  
+  .timeDiv {
+    margin-right: 2rem;
+  }
+  
+  .hoursMinutesHolder {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .control {
+    margin-bottom: 0.5rem;
+  }
+  
+  .control label {
+    font-weight: bold;
+    color: rgb(233, 227, 227);
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .control input,
+  .control textarea {
+    font: inherit;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: #afaaaa;
+    border: 1px solid #c1d1d1;
+    display: block;
+    width: 70%;
+    font-size: 1.25rem;
+  }
+  
+  .control input:focus,
+  .control textarea:focus {
+    background-color: #e0e4fc;
+    outline-color: teal;
+  }
+  

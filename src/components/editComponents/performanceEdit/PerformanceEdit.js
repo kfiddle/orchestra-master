@@ -31,9 +31,9 @@ const PerformanceEntry = (props) => {
 
   const dateTimeSetters = [dateTimes, setDateTimes];
 
-  const acceptTimes = (clockTime, index, label) => {
+  const acceptTimes = (localDateTime, index) => {
     let tempList = testList;
-    tempList[index] = { [label]: clockTime };
+    tempList[index] = localDateTime;
     setTestList(tempList)
   };
 

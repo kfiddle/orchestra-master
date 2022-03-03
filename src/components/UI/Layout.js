@@ -3,7 +3,9 @@ import MainNavigation from "../mainNavigation/MainNavigation";
 
 import PlayerEntry from "../entryComponents/playerEntry/entry/PlayerEntry";
 import PieceEntry from "../entryComponents/pieceEntry/PieceEntry";
+
 import PerformanceEntry from "../entryComponents/performanceEntry/PerformanceEntry";
+import PerformanceEntry2 from "../entryComponents/performanceEntry2/PerformanceEntry2";
 
 import GetAList from "../helperFunctions/GetAList";
 import AllParts from "../../store/all-parts";
@@ -62,8 +64,12 @@ const Layout = (props) => {
       {playerEntryFormRendered && <PlayerEntry closeModal={closeModal} />}
       {pieceEntryFormRendered && <PieceEntry closeModal={closeModal} />}
 
-      {performanceEntryFormRendered && (
+      {/* {performanceEntryFormRendered && (
         <PerformanceEntry closeModal={closeModal} />
+      )} */}
+
+      {performanceEntryFormRendered && (
+        <PerformanceEntry2 closeModal={closeModal} />
       )}
 
       <main className={classes.main}>{props.children}</main>
