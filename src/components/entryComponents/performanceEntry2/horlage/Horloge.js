@@ -4,43 +4,33 @@ import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 import classes from "./Horloge.module.css";
 
 const Horloge = (props) => {
-  const [horloge, setHorloge] = useState({
-    date: "",
-    startHours: "",
-    startMinutes: "",
-    endHours: "",
-    endMinutes: "",
-  });
+  const [date, setDate] = useState("");
+  const [startHours, setStartHours] = useState("");
+  const [startMinutes, setStartMinutes] = useState("");
+  const [endHours, setEndHours] = useState("");
+  const [endMinutes, setEndMinutes] = useState("");
 
   const label = props.label;
-  const index = props.index;
-
+  const event = props.event;
   const newlySavedShow = props.newlySavedShow;
-  console.log(newlySavedShow);
 
   useEffect(() => {
     const sendUpHorloge = async () => {
-      let startTime = [
-        horloge.startHours ? horloge.startHours : null,
-        horloge.startMinutes ? horloge.startMinutes : null,
-      ];
-      let endTime = [
-        horloge.endHours ? horloge.endHours : null,
-        horloge.endMinutes ? horloge.endMinutes : null,
-      ];
-
       const horlogeToSend = {
         show: newlySavedShow,
-        date: horloge.date,
-        startTime: [8, 0],
-        endTime: [10, 0],
+        date: date,
+        event: event,
+        startTime: [startHours, startMinutes],
+        endTime: [endHours, endMinutes],
       };
 
-      let response = await PushBasic(horlogeToSend, "add-horloge");
-      if (response.ok) {
-        let printAnswer = await response.json();
-        console.log(printAnswer);
-      }
+      // let response = await PushBasic(horlogeToSend, "add-horloge");
+      // if (response.ok) {
+      //   let printAnswer = await response.json();
+      //   console.log(printAnswer);
+      // }
+
+      console.log(horlogeToSend);
     };
 
     if (newlySavedShow) {
@@ -49,12 +39,34 @@ const Horloge = (props) => {
   }, [newlySavedShow]);
 
   const dateSetter = (event) => {
-    setHorloge({ ...horloge, date: event.target.value });
+    setDate(event.target.value);
   };
 
-  const timeSetter = (event, keyName) => {
-    setHorloge({ ...horloge, [keyName]: [+event.target.value] });
+  const startHoursSetter = (event) => {
+    if (isNaN(event.nativeEvent.data) || event.target.value.length === 3) {
+      return;
+    }
+    setStartHours(+event.target.value);
+    if (startHours != '') {
+      setStartMinutes(0)
+    }
   };
+
+  const startMinutesSetter = (event) => {
+    if (isNaN(event.nativeEvent.data) || event.target.value.length === 3) {
+      return;
+    }
+    setStartMinutes(+event.target.value);
+  };
+
+  const endHoursSetter = (event) => {
+    if (isNaN(event.nativeEvent.data) || event.target.value.length === 3) {
+      return;
+    }
+    setEndHours(+event.target.value)
+  };
+
+  const endMinutesSetter = (event) => {};
 
   return (
     <div className={classes.outerContainer}>
@@ -70,12 +82,12 @@ const Horloge = (props) => {
             <div className={classes.hoursMinutesHolder}>
               <input
                 type={"text"}
-                onChange={(event) => timeSetter(event, "startHours")}
+                onChange={startHoursSetter}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
-                onChange={(event) => timeSetter(event, "startMinutes")}
+                onChange={startMinutesSetter}
                 style={{ width: "6rem" }}
               ></input>
             </div>
@@ -86,12 +98,12 @@ const Horloge = (props) => {
             <div className={classes.hoursMinutesHolder}>
               <input
                 type={"text"}
-                onChange={(event) => timeSetter(event, "endHours")}
+                onChange={endHoursSetter}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
-                onChange={(event) => timeSetter(event, "endMinutes")}
+                onChange={endMinutesSetter}
                 style={{ width: "6rem" }}
               ></input>
             </div>

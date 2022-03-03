@@ -32,6 +32,7 @@ const PerformanceEntry2 = (props) => {
       <Horloge
         key={number}
         label={number === 0 ? "Primary Date" : ""}
+        event={number === 0 ? 'PRIMARYDATE': 'CONCERT'}
         newlySavedShow={newlySavedShow}
       />
     );
