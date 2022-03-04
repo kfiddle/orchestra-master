@@ -12,6 +12,7 @@ import PiecesDropDown from "../../piece/PiecesDropDown";
 import DisplayedPieces from "../performanceEntry/displayedPieceDiv/DisplayedPieces";
 
 import classes from "./PerformanceEntry2.module.css";
+import Rehearsals from "./rehearsals/Rehearsals";
 
 const PerformanceEntry2 = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
@@ -156,16 +157,6 @@ const PerformanceEntry2 = (props) => {
               </button>
             </div>
 
-            <div className={classes.rehearsalButtonDiv}>
-              <button
-                onClick={addRehearsalClicked}
-                className={classes.button}
-                type={"button"}
-              >
-                Rehearsal Date
-              </button>
-            </div>
-
             <PiecesDropDown showOrHide={clickedRepDrop} />
 
             {clickedPiecesList.length > 0 && (
@@ -175,7 +166,7 @@ const PerformanceEntry2 = (props) => {
               />
             )}
 
-            {displayableRehearsals}
+            <Rehearsals />
 
             <div className={classes.submitDiv}>
               <button className={classes.button} onClick={submitPerformance}>
