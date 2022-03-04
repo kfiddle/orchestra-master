@@ -16,7 +16,10 @@ import classes from "./PerformanceEntry2.module.css";
 const PerformanceEntry2 = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
+
   const [concertsNumber, setConcertsNumber] = useState(1);
+  const [rehearsalsNumber, setRehearsalsNumber] = useState(0);
+
   const [stringNumbers, setStringNumbers] = useState({});
   const [newlySavedShow, setNewlySavedShow] = useState(null);
 
@@ -25,10 +28,11 @@ const PerformanceEntry2 = (props) => {
   const stringSetters = [stringNumbers, setStringNumbers];
   const stateFuncs = { setPerformance, performance };
 
-  const displayableHorlages = [];
+  const displayableConcerts = [];
+  const displayableRehearsals = [];
 
   for (let number = 0; number < concertsNumber; number++) {
-    displayableHorlages.push(
+    displayableConcerts.push(
       <Horloge
         key={number}
         label={number === 0 ? "Primary Date" : ""}
@@ -38,8 +42,23 @@ const PerformanceEntry2 = (props) => {
     );
   }
 
+  for (let number = 0; number < rehearsalsNumber; number++) {
+    displayableRehearsals.push(
+      <Horloge
+        key={number}
+        label={number === 0 ? "Rehearsal" : ""}
+        event={"REHEARSAL"}
+        newlySavedShow={newlySavedShow}
+      />
+    );
+  }
+
   const addConcertClicked = () => {
     setConcertsNumber((previous) => previous + 1);
+  };
+
+  const addRehearsalClicked = () => {
+    setRehearsalsNumber((previous) => previous + 1);
   };
 
   const repClickHandler = () => {
@@ -89,18 +108,6 @@ const PerformanceEntry2 = (props) => {
     }
   };
 
-  // if (clickedPiecesList.length > 0) {
-  //     for (let clickedPiece of clickedPiecesList) {
-  //       let showPieceToSendUp = {
-  //         piece: clickedPiece,
-  //         show: newlySavedShow,
-  //         orderNum: clickedPiecesList.indexOf(clickedPiece),
-  //       };
-
-  //       let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
-  // }
-  // };
-
   const pieceToList = (piece) => {
     ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
@@ -120,7 +127,7 @@ const PerformanceEntry2 = (props) => {
               keyName="title"
             />
 
-            {displayableHorlages}
+            {displayableConcerts}
 
             <div className={classes.additionalPerfButtonDiv}>
               <button
@@ -151,7 +158,7 @@ const PerformanceEntry2 = (props) => {
 
             <div className={classes.rehearsalButtonDiv}>
               <button
-                // onClick={rehearsalClicked}
+                onClick={addRehearsalClicked}
                 className={classes.button}
                 type={"button"}
               >
@@ -167,6 +174,8 @@ const PerformanceEntry2 = (props) => {
                 stringSetters={stringSetters}
               />
             )}
+
+            {displayableRehearsals}
 
             <div className={classes.submitDiv}>
               <button className={classes.button} onClick={submitPerformance}>
