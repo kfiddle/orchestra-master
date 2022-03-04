@@ -32,7 +32,7 @@ const PerformanceEntry2 = (props) => {
       <Horloge
         key={number}
         label={number === 0 ? "Primary Date" : ""}
-        event={number === 0 ? 'PRIMARYDATE': 'CONCERT'}
+        event={number === 0 ? "PRIMARYDATE" : "CONCERT"}
         newlySavedShow={newlySavedShow}
       />
     );
@@ -54,8 +54,52 @@ const PerformanceEntry2 = (props) => {
     if (response1.ok) {
       let newShow = await response1.json();
       setNewlySavedShow(newShow);
+      props.closeModal();
+
+      if (clickedPiecesList.length > 0) {
+        for (let clickedPiece of clickedPiecesList) {
+          let showPieceToSendUp = {
+            piece: clickedPiece,
+            show: newShow,
+            orderNum: clickedPiecesList.indexOf(clickedPiece),
+          };
+
+          let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
+
+          if (response2.ok) {
+            let newlySavedShowPiece = await response2.json();
+            let titleToFindHere = newlySavedShowPiece.piece.title;
+
+            for (let title in stringNumbers) {
+              let listOfStrings = [];
+              for (let partNum in stringNumbers[title]) {
+                listOfStrings.push({
+                  stringPart: partNum,
+                  number: +stringNumbers[title][partNum],
+                });
+              }
+              let response3 = await PushBasic(
+                listOfStrings,
+                "make-string-player-in-chairs/" + newlySavedShowPiece.id
+              );
+            }
+          }
+        }
+      }
     }
   };
+
+  // if (clickedPiecesList.length > 0) {
+  //     for (let clickedPiece of clickedPiecesList) {
+  //       let showPieceToSendUp = {
+  //         piece: clickedPiece,
+  //         show: newlySavedShow,
+  //         orderNum: clickedPiecesList.indexOf(clickedPiece),
+  //       };
+
+  //       let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
+  // }
+  // };
 
   const pieceToList = (piece) => {
     ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
