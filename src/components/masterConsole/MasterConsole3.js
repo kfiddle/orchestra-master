@@ -12,10 +12,9 @@ import styles from "./MasterConsole3.module.css";
 //season2 has this
 
 const MasterConsole3 = (props) => {
-  const performances = props.allPerformances;
+  const allPerformances = props.allPerformances;
   const [pieces, setPieces] = useState([]);
   const [clickedPiece, setClickedPiece] = useState(null);
-
 
   const clickedPerformanceHandler = async (performance) => {
     const performancePiecesResponse = await PushBasic(
@@ -35,7 +34,7 @@ const MasterConsole3 = (props) => {
     <div className={styles.outerContainer}>
       <div>
         <Performances
-          performances={performances}
+          allPerformances={allPerformances}
           clicked={clickedPerformanceHandler}
         />
       </div>

@@ -5,10 +5,10 @@ import classes from "./Horloge.module.css";
 
 const Horloge = (props) => {
   const [date, setDate] = useState("");
-  const [startHours, setStartHours] = useState("");
-  const [startMinutes, setStartMinutes] = useState("");
-  const [endHours, setEndHours] = useState("");
-  const [endMinutes, setEndMinutes] = useState("");
+  const [startHours, setStartHours] = useState(0);
+  const [startMinutes, setStartMinutes] = useState(0);
+  const [endHours, setEndHours] = useState(0);
+  const [endMinutes, setEndMinutes] = useState(0);
 
   const label = props.label;
   const event = props.event;
@@ -16,21 +16,27 @@ const Horloge = (props) => {
 
   useEffect(() => {
     const sendUpHorloge = async () => {
+      let startTimeToSend =
+        startHours === 0 ? null : [startHours, startMinutes];
+
+      let endTimeToSend = endHours === 0 ? null : [endHours, endMinutes];
+
       const horlogeToSend = {
         show: newlySavedShow,
         date: date,
         event: event,
-        startTime: [startHours, startMinutes],
-        endTime: [endHours, endMinutes],
+        startTime: startTimeToSend,
+        endTime: endTimeToSend,
       };
 
-      // let response = await PushBasic(horlogeToSend, "add-horloge");
-      // if (response.ok) {
-      //   let printAnswer = await response.json();
-      //   console.log(printAnswer);
-      // }
-
-      console.log(horlogeToSend);
+      if (horlogeToSend.date === "") {
+        return;
+      } else {
+        let response = await PushBasic(horlogeToSend, "add-horloge");
+        if (response.ok) {
+          let printAnswer = await response.json();
+        }
+      }
     };
 
     if (newlySavedShow) {
@@ -47,8 +53,8 @@ const Horloge = (props) => {
       return;
     }
     setStartHours(+event.target.value);
-    if (startHours != '') {
-      setStartMinutes(0)
+    if (startHours != "") {
+      setStartMinutes(0);
     }
   };
 
@@ -63,10 +69,15 @@ const Horloge = (props) => {
     if (isNaN(event.nativeEvent.data) || event.target.value.length === 3) {
       return;
     }
-    setEndHours(+event.target.value)
+    setEndHours(+event.target.value);
   };
 
-  const endMinutesSetter = (event) => {};
+  const endMinutesSetter = (event) => {
+    if (isNaN(event.nativeEvent.data) || event.target.value.length === 3) {
+      return;
+    }
+    setEndMinutes(+event.target.value);
+  };
 
   return (
     <div className={classes.outerContainer}>

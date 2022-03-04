@@ -1,18 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { FiEdit, FiPlus } from "react-icons/fi";
 
 import PerformanceEdit from "../../editComponents/performanceEdit/PerformanceEdit";
-import DateFormatter from "../../helperFunctions/DateFormatter";
+import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
+
+import useDateFormatter from "../../../hooks/useDateFormatter";
 
 import styles from "./Performance.module.css";
 
 const Performance = (props) => {
   const [addPieceClicked, setAddPieceClicked] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
+  const [date, setDate] = useState("");
 
-  const { title, performanceDates } = props.performance;
-  const displayDate = DateFormatter(performanceDates[0].date);
+  const { title } = props.performance;
+
+  useEffect(() => {
+    const getPrimaryDate = async () => {
+      const response = await PushBasic(props.performance, "get-date-from-show");
+      if (response.ok) {
+        let answeredDate = await response.json();
+        setDate(answeredDate);
+      }
+    };
+    getPrimaryDate();
+  }, []);
+
+  const displayDate = useDateFormatter(date);
 
   const clickedOrNot = props.active ? styles.clicked : styles.unclicked;
 

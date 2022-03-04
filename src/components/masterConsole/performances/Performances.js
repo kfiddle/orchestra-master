@@ -9,13 +9,14 @@ import styles from "./Performances.module.css";
 const Performances = (props) => {
   const [clickedPerformance, setClickedPerformance] = useState({});
 
-  const performances = props.performances;
+  const performances = props.allPerformances;
   const clicked = props.clicked;
 
   const clickedPerformanceHandler = (performance) => {
     setClickedPerformance(performance);
     clicked(performance);
   };
+
 
   const displayablePerformances = performances.map((performance) => (
     <Performance

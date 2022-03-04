@@ -13,8 +13,6 @@ const Season2 = (props) => {
   // let allPerformances = useGetAList2("get-all-performances", reloadFlag, setReloadFlag);
   let allPerformances = useGetAList2("get-performances-by-primary-date", reloadFlag, setReloadFlag);
 
-
-
   let isLoading = allPerformances.length < 1;
 
   return isLoading ? (
