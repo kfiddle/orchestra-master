@@ -22,9 +22,6 @@ const PerformanceEntry2 = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
 
-  const [concertsNumber, setConcertsNumber] = useState(1);
-  const [rehearsalsNumber, setRehearsalsNumber] = useState(0);
-
   const [stringNumbers, setStringNumbers] = useState({});
   const [newlySavedShow, setNewlySavedShow] = useState(null);
 
@@ -32,39 +29,6 @@ const PerformanceEntry2 = (props) => {
 
   const stringSetters = [stringNumbers, setStringNumbers];
   const stateFuncs = { setPerformance, performance };
-
-  const displayableConcerts = [];
-  const displayableRehearsals = [];
-
-  for (let number = 0; number < concertsNumber; number++) {
-    displayableConcerts.push(
-      <Horloge
-        key={number}
-        label={number === 0 ? "Primary Date" : ""}
-        event={number === 0 ? "PRIMARYDATE" : "CONCERT"}
-        newlySavedShow={newlySavedShow}
-      />
-    );
-  }
-
-  for (let number = 0; number < rehearsalsNumber; number++) {
-    displayableRehearsals.push(
-      <Horloge
-        key={number}
-        label={number === 0 ? "Rehearsal" : ""}
-        event={"REHEARSAL"}
-        newlySavedShow={newlySavedShow}
-      />
-    );
-  }
-
-  const addConcertClicked = () => {
-    setConcertsNumber((previous) => previous + 1);
-  };
-
-  const addRehearsalClicked = () => {
-    setRehearsalsNumber((previous) => previous + 1);
-  };
 
   const repClickHandler = () => {
     setClickedRepDrop((previous) => !previous);
@@ -135,18 +99,6 @@ const PerformanceEntry2 = (props) => {
 
               <Concerts />
 
-              {/* {displayableConcerts} */}
-
-              {/* <div className={classes.additionalPerfButtonDiv}>
-                <button
-                  onClick={addConcertClicked}
-                  className={classes.button}
-                  type={"button"}
-                >
-                  Additional Performance Date(s) ?
-                </button>
-              </div> */}
-
               <BigInput3
                 stateFuncs={stateFuncs}
                 label="Notes"
@@ -173,7 +125,7 @@ const PerformanceEntry2 = (props) => {
                 />
               )}
 
-              <Rehearsals newlySavedShow={newlySavedShow} />
+              <Rehearsals />
 
               <div className={classes.submitDiv}>
                 <button className={classes.button} onClick={submitPerformance}>
