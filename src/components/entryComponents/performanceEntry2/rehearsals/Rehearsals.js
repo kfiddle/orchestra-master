@@ -27,7 +27,7 @@ const Rehearsals = (props) => {
           className={styles.button}
           type={"button"}
         >
-          Rehearsal Date
+          Rehearsals
         </button>
       </div>
       <div className={styles.rehearsalsDiv}>{displayableRehearsals}</div>

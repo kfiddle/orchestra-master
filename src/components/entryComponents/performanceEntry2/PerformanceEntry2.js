@@ -11,8 +11,12 @@ import PiecesDropDown from "../../piece/PiecesDropDown";
 
 import DisplayedPieces from "../performanceEntry/displayedPieceDiv/DisplayedPieces";
 
-import classes from "./PerformanceEntry2.module.css";
+import Concerts from './concerts/Concerts';
 import Rehearsals from "./rehearsals/Rehearsals";
+
+import NewlySavedShow from "../../../store/newly-saved-show";
+
+import classes from "./PerformanceEntry2.module.css";
 
 const PerformanceEntry2 = (props) => {
   const [clickedRepDrop, setClickedRepDrop] = useState(false);
@@ -119,63 +123,67 @@ const PerformanceEntry2 = (props) => {
     <PiecesList.Provider
       value={{ clickedPiecesList: clickedPiecesList, pieceToList }}
     >
-      <Modal styleObject={perfEntryModalStyles} closeModal={props.closeModal}>
-        <div className={classes.outerContainer}>
-          <form>
-            <BigInput3
-              stateFuncs={stateFuncs}
-              label="Performance Title"
-              keyName="title"
-            />
-
-            {displayableConcerts}
-
-            <div className={classes.additionalPerfButtonDiv}>
-              <button
-                onClick={addConcertClicked}
-                className={classes.button}
-                type={"button"}
-              >
-                Additional Performance Date(s) ?
-              </button>
-            </div>
-
-            <BigInput3
-              stateFuncs={stateFuncs}
-              label="Notes"
-              keyName="notes"
-              style={{ width: "100%", height: "3rem" }}
-            />
-
-            <div className={classes.repButtonDiv}>
-              <button
-                onClick={repClickHandler}
-                className={classes.button}
-                type={"button"}
-              >
-                Repertoire
-              </button>
-            </div>
-
-            <PiecesDropDown showOrHide={clickedRepDrop} />
-
-            {clickedPiecesList.length > 0 && (
-              <DisplayedPieces
-                piecesList={clickedPiecesList}
-                stringSetters={stringSetters}
+      <NewlySavedShow.Provider value={{ newlySavedShow }}>
+        <Modal styleObject={perfEntryModalStyles} closeModal={props.closeModal}>
+          <div className={classes.outerContainer}>
+            <form>
+              <BigInput3
+                stateFuncs={stateFuncs}
+                label="Performance Title"
+                keyName="title"
               />
-            )}
 
-            <Rehearsals />
+              <Concerts />
 
-            <div className={classes.submitDiv}>
-              <button className={classes.button} onClick={submitPerformance}>
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </Modal>
+              {/* {displayableConcerts} */}
+
+              {/* <div className={classes.additionalPerfButtonDiv}>
+                <button
+                  onClick={addConcertClicked}
+                  className={classes.button}
+                  type={"button"}
+                >
+                  Additional Performance Date(s) ?
+                </button>
+              </div> */}
+
+              <BigInput3
+                stateFuncs={stateFuncs}
+                label="Notes"
+                keyName="notes"
+                style={{ width: "100%", height: "3rem" }}
+              />
+
+              <div className={classes.repButtonDiv}>
+                <button
+                  onClick={repClickHandler}
+                  className={classes.button}
+                  type={"button"}
+                >
+                  Repertoire
+                </button>
+              </div>
+
+              <PiecesDropDown showOrHide={clickedRepDrop} />
+
+              {clickedPiecesList.length > 0 && (
+                <DisplayedPieces
+                  piecesList={clickedPiecesList}
+                  stringSetters={stringSetters}
+                />
+              )}
+
+              <Rehearsals newlySavedShow={newlySavedShow} />
+
+              <div className={classes.submitDiv}>
+                <button className={classes.button} onClick={submitPerformance}>
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </Modal>
+      </NewlySavedShow.Provider>
     </PiecesList.Provider>
   );
 };

@@ -1,11 +1,13 @@
-.rehearsalButtonDiv {
-  display: flex;
-  width: 100%;
+.additionalPerfButtonDiv button {
+  font-size: 1rem;
+  color: white;
+  border: 4px solid white;
+  padding: 4px 30px;
 }
 
-.rehearsalButtonDiv button {
-  margin: 1rem auto;
-  font-size: 1.5rem;
+.additionalPerfButtonDiv button:hover {
+  background: white;
+  color: rgb(92, 82, 82);
 }
 
 .button {
@@ -26,9 +28,4 @@
 .button:hover {
   background: #fec302;
   color: rgb(92, 82, 82);
-}
-
-.rehearsalsDiv {
-  max-height: 30vh;
-  overflow: auto;
 }

@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+
+import NewlySavedShow from "../../../../store/newly-saved-show";
 
 import classes from "./Horloge.module.css";
 
@@ -10,9 +12,11 @@ const Horloge = (props) => {
   const [endHours, setEndHours] = useState(0);
   const [endMinutes, setEndMinutes] = useState(0);
 
+  const { newlySavedShow} = useContext(NewlySavedShow);
+
   const label = props.label;
   const event = props.event;
-  const newlySavedShow = props.newlySavedShow;
+
 
   useEffect(() => {
     const sendUpHorloge = async () => {
