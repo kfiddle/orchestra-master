@@ -1,9 +1,14 @@
+import { useContext } from "react";
+
+import PerformanceStateFunctions from "../../store/performance-state-functions";
+
 import React from "react";
 
 import classes from "./Input.module.css";
 
 const BigInput3 = (props) => {
-  const { setPerformance, performance } = props.stateFuncs;
+  const { setPerformance, performance } = useContext(PerformanceStateFunctions);
+
   const label = props.label;
   const key = props.keyName;
   const style = props.style;

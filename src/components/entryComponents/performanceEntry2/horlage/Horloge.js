@@ -12,10 +12,11 @@ const Horloge = (props) => {
   const [endHours, setEndHours] = useState(0);
   const [endMinutes, setEndMinutes] = useState(0);
 
-  const { newlySavedShow} = useContext(NewlySavedShow);
+  const { newlySavedShow } = useContext(NewlySavedShow);
 
   const label = props.label;
   const event = props.event;
+
 
 
   useEffect(() => {

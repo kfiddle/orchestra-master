@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { FiEdit, FiPlus } from "react-icons/fi";
 
 import PerformanceEdit from "../../editComponents/performanceEdit/PerformanceEdit";
+
+import PerformanceEdit2 from "../../editComponents/performanceEdit/PerformanceEdit2";
+
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import useDateFormatter from "../../../hooks/useDateFormatter";
@@ -62,7 +65,7 @@ const Performance = (props) => {
       </div>
 
       {editClicked && (
-        <PerformanceEdit
+        <PerformanceEdit2
           closeModal={closeModal}
           performance={props.performance}
         />
