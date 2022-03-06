@@ -9,8 +9,6 @@ const ProgramRep = () => {
   const [clickedRepDrop, setClickedRepoDrop] = useState(false);
   const { clickedPiecesList } = useContext(PiecesList);
 
-  console.log(clickedPiecesList);
-
   const repClickHandler = () => {
     setClickedRepoDrop((previous) => !previous);
   };

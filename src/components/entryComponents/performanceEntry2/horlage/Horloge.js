@@ -2,22 +2,28 @@ import { useState, useEffect, useContext } from "react";
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
 import NewlySavedShow from "../../../../store/newly-saved-show";
+import usePrintTime from "../../../../hooks/usePrintTime";
 
 import classes from "./Horloge.module.css";
+import useTimeFormatter from "../../../../hooks/useTimeFormatter";
+import useInitialTimeNums from "../../../../hooks/useInitialTimeNums";
 
 const Horloge = (props) => {
-  const [date, setDate] = useState("");
-  const [startHours, setStartHours] = useState(0);
-  const [startMinutes, setStartMinutes] = useState(0);
-  const [endHours, setEndHours] = useState(0);
-  const [endMinutes, setEndMinutes] = useState(0);
+  const preHorloge = props.horloge;
+
+  const [startingHours, startingMinutes, endingHours, endingMinutes] =
+    useInitialTimeNums(preHorloge ? preHorloge : null);
+
+  const [date, setDate] = useState(preHorloge ? preHorloge.date : "");
+  const [startHours, setStartHours] = useState(startingHours);
+  const [startMinutes, setStartMinutes] = useState(startingMinutes);
+  const [endHours, setEndHours] = useState(endingHours);
+  const [endMinutes, setEndMinutes] = useState(endingMinutes);
 
   const { newlySavedShow } = useContext(NewlySavedShow);
 
   const label = props.label;
   const event = props.event;
-
-
 
   useEffect(() => {
     const sendUpHorloge = async () => {
@@ -84,11 +90,20 @@ const Horloge = (props) => {
     setEndMinutes(+event.target.value);
   };
 
+  const [printedStartHours, printedStartMinutes] = usePrintTime(
+    startHours,
+    startMinutes
+  );
+  const [printedEndHours, printedEndMinutes] = usePrintTime(
+    endHours,
+    endMinutes
+  );
+
   return (
     <div className={classes.outerContainer}>
       <div className={`${classes.control} ${classes.dateDiv}`}>
         <label>{label}</label>
-        <input type={"date"} onChange={dateSetter}></input>
+        <input type={"date"} onChange={dateSetter} defaultValue={date}></input>
       </div>
 
       <div className={classes.bothTimesHolder}>
@@ -99,11 +114,13 @@ const Horloge = (props) => {
               <input
                 type={"text"}
                 onChange={startHoursSetter}
+                defaultValue={printedStartHours}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
                 onChange={startMinutesSetter}
+                defaultValue={printedStartMinutes}
                 style={{ width: "6rem" }}
               ></input>
             </div>
@@ -115,11 +132,13 @@ const Horloge = (props) => {
               <input
                 type={"text"}
                 onChange={endHoursSetter}
+                defaultValue={printedEndHours}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
                 onChange={endMinutesSetter}
+                defaultValue={printedEndMinutes}
                 style={{ width: "6rem" }}
               ></input>
             </div>

@@ -24,6 +24,7 @@ const BigInput3 = (props) => {
         className={classes.control}
         type="text"
         onChange={(event) => populator(event, key)}
+        placeholder={performance[key]}
         style={style}
       ></input>
     </div>

@@ -1,4 +1,10 @@
+import { useState } from "react";
+
 import Modal from "../../UI/modal/Modal";
+
+import BigInput3 from "../../input/BigInput3";
+
+import ConcertsEdit from "./concertsEdit/ConcertsEdit";
 
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
 import styles from "./PerformanceEdit2.module.css";
@@ -9,20 +15,17 @@ const PerformanceEdit2 = (props) => {
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
   return (
-    <Modal styleObject={perfEntryModalStyles} closeModal={props.closeModal}>
-      <PerformanceStateFunctions.Provider
-        value={{ setPerformance, performance }}
-      />
-      <div className={classes.outerContainer}>
-        <form>
+    <PerformanceStateFunctions.Provider value={{ setPerformance, performance }}>
+      <Modal styleObject={perfEntryModalStyles} closeModal={props.closeModal}>
+        <div className={styles.outerContainer}>
+          <form>
+            <BigInput3 label="Performance Title" keyName="title" />
 
-
-
-            
-        </form>
-      </div>
-      <PerformanceStateFunctions />
-    </Modal>
+            <ConcertsEdit />
+          </form>
+        </div>
+      </Modal>
+    </PerformanceStateFunctions.Provider>
   );
 };
 

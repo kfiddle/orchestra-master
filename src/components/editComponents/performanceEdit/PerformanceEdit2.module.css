@@ -1,0 +1,43 @@
+.outerContainer {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.perfEntryModal {
+  height: 50vh;
+  width: 100vw;
+}
+
+form {
+  width: 80%;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.control label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.control input,
+.control textarea {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #d4cccc;
+  border: 1px solid #c1d1d1;
+  display: block;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.control input:focus,
+.control textarea:focus {
+  background-color: #e0e4fc;
+  outline-color: teal;
+}
