@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-import Horloge from "../horlage/Horloge";
+// import Horloge from "../horlage/Horloge";
+import NewHorloge from "../horlage/NewHorloge";
 
 import styles from "./Concerts.module.css";
 
 const initialConcert = (
-  <Horloge key={0} label={"Primary Date"} event={"PRIMARYDATE"} />
+  <NewHorloge key={0} label={"Primary Date"} event={"PRIMARYDATE"} />
 );
 
 const Concerts = () => {
@@ -16,7 +17,7 @@ const Concerts = () => {
   const addConcertClicked = () => {
     let tempList = [...displayableConcerts];
     tempList.push(
-      <Horloge
+      <NewHorloge
         key={displayableConcerts.length}
         label={"additional"}
         event={"CONCERT"}
