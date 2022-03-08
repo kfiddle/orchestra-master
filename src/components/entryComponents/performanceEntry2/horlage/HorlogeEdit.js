@@ -1,14 +1,43 @@
+import { useState } from "react";
+
 import classes from "./Horloge.module.css";
 
-const EditingHorloge = (props) => {
+const HorlogeEdit = (props) => {
   const horloge = props.horloge;
-  const date = horloge.date;
   const label = props.label;
+  const event = horloge.event;
 
-  const dateSetter = () => {
-      console.log('date')
-  }
-  
+  const getHour = (timeString) => {
+    if (!timeString) {
+      return 0;
+    } else if (timeString[0] === "0") {
+      return +timeString[1];
+    } else {
+      return parseInt(timeString[0] + timeString[1]);
+    }
+  };
+
+  const getMinutes = (timeString) => {
+    if (!timeString) {
+      return 0;
+    } else {
+      return parseInt(timeString[3] + timeString[4]);
+    }
+  };
+
+  console.log(horloge);
+
+  const [date, setDate] = useState(horloge.date);
+  const [startHours, setStartHours] = useState(getHour(horloge.startTime));
+  const [startMinutes, setStartMinutes] = useState(
+    getMinutes(horloge.startTime)
+  );
+  const [endHours, setEndHours] = useState(getHour(horloge.endTime));
+  const [endMinutes, setEndMinutes] = useState(getMinutes(horloge.endTime));
+
+  const dateSetter = (event) => {
+    console.log(event.target.value);
+  };
 
   return (
     <div className={classes.outerContainer}>
@@ -24,11 +53,13 @@ const EditingHorloge = (props) => {
             <div className={classes.hoursMinutesHolder}>
               <input
                 type={"text"}
+                defaultValue={startHours}
                 // onChange={startHoursSetter}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
+                defaultValue={startMinutes < 10? '0' + startMinutes: startMinutes}
                 // onChange={startMinutesSetter}
                 style={{ width: "6rem" }}
               ></input>
@@ -40,11 +71,13 @@ const EditingHorloge = (props) => {
             <div className={classes.hoursMinutesHolder}>
               <input
                 type={"text"}
+                defaultValue={endHours}
                 // onChange={endHoursSetter}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
+                defaultValue={endMinutes < 10? '0' + endMinutes: endMinutes}
                 // onChange={endMinutesSetter}
                 style={{ width: "6rem" }}
               ></input>
@@ -56,4 +89,4 @@ const EditingHorloge = (props) => {
   );
 };
 
-export default EditingHorloge;
+export default HorlogeEdit;

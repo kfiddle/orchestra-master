@@ -37,8 +37,16 @@ const ConcertsEdit = () => {
     setExistingConcerts(tempList);
   };
 
+  //   event={horloge.event} horloge={horloge}
+
   const displayableConcerts = existingConcerts.map((horloge) => (
-    <Horloge key={Math.random()} label={"additional"} event={"CONCERT"} horloge={horloge} />
+    <Horloge
+      key={existingConcerts.indexOf(horloge)}
+      label={
+        existingConcerts.indexOf(horloge) === 0 ? "Primary Date" : "Additional"
+      }
+      horloge={horloge}
+    />
   ));
 
   return (

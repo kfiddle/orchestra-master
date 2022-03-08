@@ -9,8 +9,6 @@ import classes from "./PieceEntry.module.css";
 
 const pieceObject = {};
 
-
-
 const PieceEntry = (props) => {
   const [instrumentationClicked, setInstrumentationClicked] = useState(false);
   const [piece, setPiece] = useState(pieceObject);
@@ -47,17 +45,6 @@ const PieceEntry = (props) => {
     ["publisher", "Publisher"],
     ["libNumber", "Library Catolog #"],
   ];
-
-  // id,
-// prefix,
-// suffix,
-// instrumentation,
-// vocalistSoloist,
-// percBreakdown,
-// notes,
-// status,
-// sign,
-// updated,
 
   const theInputs = inputDeets.map((name) => (
     <BigInput

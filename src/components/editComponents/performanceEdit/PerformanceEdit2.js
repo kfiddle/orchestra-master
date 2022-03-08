@@ -8,6 +8,7 @@ import ConcertsEdit from "./concertsEdit/ConcertsEdit";
 
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
 import styles from "./PerformanceEdit2.module.css";
+import Horloge from "../../entryComponents/performanceEntry2/horlage/Horloge";
 
 const PerformanceEdit2 = (props) => {
   const [performance, setPerformance] = useState(props.performance);
