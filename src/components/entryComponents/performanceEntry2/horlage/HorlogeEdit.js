@@ -35,6 +35,19 @@ const HorlogeEdit = (props) => {
   const [endHours, setEndHours] = useState(getHour(horloge.endTime));
   const [endMinutes, setEndMinutes] = useState(getMinutes(horloge.endTime));
 
+  const defaultTime = (hours, minutes) => {
+    if (hours === 0) {
+      return ["", ""];
+    } else if (minutes < 10) {
+      return [hours, "0" + minutes];
+    } else {
+      return [hours, minutes];
+    }
+  };
+
+  const defaultStart = defaultTime(startHours, startMinutes);
+  const defaultEnd = defaultTime(endHours, endMinutes);
+
   const dateSetter = (event) => {
     console.log(event.target.value);
   };
@@ -53,13 +66,15 @@ const HorlogeEdit = (props) => {
             <div className={classes.hoursMinutesHolder}>
               <input
                 type={"text"}
-                defaultValue={startHours}
+                // defaultValue={startHours}
+                defaultValue={defaultStart[0]}
                 // onChange={startHoursSetter}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
-                defaultValue={startMinutes < 10? '0' + startMinutes: startMinutes}
+                // defaultValue={startMinutes < 10? '0' + startMinutes: startMinutes}
+                defaultValue={defaultStart[1]}
                 // onChange={startMinutesSetter}
                 style={{ width: "6rem" }}
               ></input>
@@ -71,13 +86,13 @@ const HorlogeEdit = (props) => {
             <div className={classes.hoursMinutesHolder}>
               <input
                 type={"text"}
-                defaultValue={endHours}
+                defaultValue={defaultEnd[0]}
                 // onChange={endHoursSetter}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
-                defaultValue={endMinutes < 10? '0' + endMinutes: endMinutes}
+                defaultValue={defaultEnd[1]}
                 // onChange={endMinutesSetter}
                 style={{ width: "6rem" }}
               ></input>
