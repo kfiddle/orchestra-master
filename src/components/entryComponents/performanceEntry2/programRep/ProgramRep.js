@@ -1,13 +1,12 @@
 import { useState, useContext } from "react";
 
 import PiecesDropDown from "../../../piece/PiecesDropDown";
-import PiecesList from "../../../../store/pieces-list";
+// import PiecesList from "../../../../store/pieces-list";
 
 import styles from "./ProgramRep.module.css";
 
 const ProgramRep = () => {
   const [clickedRepDrop, setClickedRepoDrop] = useState(false);
-  const { clickedPiecesList } = useContext(PiecesList);
 
   const repClickHandler = () => {
     setClickedRepoDrop((previous) => !previous);

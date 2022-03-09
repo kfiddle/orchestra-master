@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import classes from "./Horloge.module.css";
 
@@ -25,7 +25,6 @@ const HorlogeEdit = (props) => {
     }
   };
 
-  console.log(horloge);
 
   const [date, setDate] = useState(horloge.date);
   const [startHours, setStartHours] = useState(getHour(horloge.startTime));
@@ -34,6 +33,15 @@ const HorlogeEdit = (props) => {
   );
   const [endHours, setEndHours] = useState(getHour(horloge.endTime));
   const [endMinutes, setEndMinutes] = useState(getMinutes(horloge.endTime));
+
+
+// useEffect(() => {
+
+
+// })
+
+
+
 
   const defaultTime = (hours, minutes) => {
     if (hours === 0) {
@@ -49,8 +57,40 @@ const HorlogeEdit = (props) => {
   const defaultEnd = defaultTime(endHours, endMinutes);
 
   const dateSetter = (event) => {
-    console.log(event.target.value);
+    setDate(event.target.value);
   };
+
+  const startHoursSetter = (event) => {
+    if (isNaN(event.nativeEvent.data) || event.target.value.length === 3) {
+      return;
+    }
+    setStartHours(+event.target.value);
+    if (startHours != "") {
+      setStartMinutes(0);
+    }
+  };
+
+  const startMinutesSetter = (event) => {
+    if (isNaN(event.nativeEvent.data) || event.target.value.length === 3) {
+      return;
+    }
+    setStartMinutes(+event.target.value);
+  };
+
+  const endHoursSetter = (event) => {
+    if (isNaN(event.nativeEvent.data) || event.target.value.length === 3) {
+      return;
+    }
+    setEndHours(+event.target.value);
+  };
+
+  const endMinutesSetter = (event) => {
+    if (isNaN(event.nativeEvent.data) || event.target.value.length === 3) {
+      return;
+    }
+    setEndMinutes(+event.target.value);
+  };
+
 
   return (
     <div className={classes.outerContainer}>
@@ -66,16 +106,14 @@ const HorlogeEdit = (props) => {
             <div className={classes.hoursMinutesHolder}>
               <input
                 type={"text"}
-                // defaultValue={startHours}
                 defaultValue={defaultStart[0]}
-                // onChange={startHoursSetter}
+                onChange={startHoursSetter}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
-                // defaultValue={startMinutes < 10? '0' + startMinutes: startMinutes}
                 defaultValue={defaultStart[1]}
-                // onChange={startMinutesSetter}
+                onChange={startMinutesSetter}
                 style={{ width: "6rem" }}
               ></input>
             </div>
@@ -87,13 +125,13 @@ const HorlogeEdit = (props) => {
               <input
                 type={"text"}
                 defaultValue={defaultEnd[0]}
-                // onChange={endHoursSetter}
+                onChange={endHoursSetter}
                 style={{ width: "4rem", marginRight: ".5rem" }}
               ></input>
               <input
                 type={"text"}
                 defaultValue={defaultEnd[1]}
-                // onChange={endMinutesSetter}
+                onChange={endMinutesSetter}
                 style={{ width: "6rem" }}
               ></input>
             </div>
