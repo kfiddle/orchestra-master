@@ -16,7 +16,7 @@ const stringsObject = {
 };
 
 const DisplayedPiece = (props) => {
-  const [stringsRequired, setStringsRequired] = useState(false);
+  // const [stringsRequired, setStringsRequired] = useState(false);
   const [stringsClicked, setStringsClicked] = useState(false);
   const { id, composerLastName, title, duration } = props.piece;
   const [stringNumbers, setStringNumbers] = props.stringSetters;

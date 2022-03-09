@@ -4,7 +4,6 @@ import PieceListItem from "./pieceListItem/PieceListItem";
 
 import GetAList from "../helperFunctions/GetAList";
 
-
 import styles from "./PiecesDropDown.module.css";
 
 const PiecesDropDown = (props) => {

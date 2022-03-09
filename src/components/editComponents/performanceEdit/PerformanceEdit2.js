@@ -5,7 +5,7 @@ import Modal from "../../UI/modal/Modal";
 import BigInput3 from "../../input/BigInput3";
 
 import ConcertsEdit from "./concertsEdit/ConcertsEdit";
-import DisplayedPieces from "../../entryComponents/performanceEntry/displayedPieceDiv/DisplayedPieces";
+import DisplayedPiecesSimple from "./displayedPiecesSimple/DisplayedPiecesSimple";
 
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
 import PiecesList from "../../../store/pieces-list";
@@ -13,7 +13,6 @@ import PiecesList from "../../../store/pieces-list";
 import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 
 import styles from "./PerformanceEdit2.module.css";
-import Horloge from "../../entryComponents/performanceEntry2/horlage/Horloge";
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 const PerformanceEdit2 = (props) => {
@@ -59,7 +58,7 @@ const PerformanceEdit2 = (props) => {
                 style={{ width: "100%", height: "3rem" }}
               />
 
-              {clickedPiecesList.length > 0 && <DisplayedPieces />}
+              {clickedPiecesList.length > 0 && <DisplayedPiecesSimple />}
             </form>
           </div>
         </Modal>

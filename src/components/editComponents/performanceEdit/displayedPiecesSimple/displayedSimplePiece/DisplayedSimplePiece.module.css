@@ -1,0 +1,30 @@
+
+.pieceContainer {
+    display: flex;
+    width: 60%;
+    margin: 1rem;
+    padding: 1rem;
+    border: solid white 1px;
+    border-radius: 5px;
+    color: rgb(245, 240, 237);
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  
+  .lastNameDiv {
+    width: 25%;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  
+  .titleDiv {
+    width: 50%;
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  
+  .durationDiv {
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+  
