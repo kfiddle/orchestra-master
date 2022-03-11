@@ -7,10 +7,10 @@ import classes from "./DisplayedPiecesSimple.module.css";
 const DisplayedPiecesSimple = (props) => {
   const { clickedPiecesList } = useContext(PiecesList);
 
-  const displayedChosenPieces = clickedPiecesList.map((piece) => (
+  const displayedChosenPieces = clickedPiecesList.map((showTune) => (
     <DisplayedSimplePiece
-      key={clickedPiecesList.indexOf(piece)}
-      piece={piece}
+      key={clickedPiecesList.indexOf(showTune)}
+      showTune={showTune}
     />
   ));
 

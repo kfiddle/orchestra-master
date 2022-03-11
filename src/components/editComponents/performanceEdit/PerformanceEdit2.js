@@ -6,6 +6,7 @@ import BigInput3 from "../../input/BigInput3";
 
 import ConcertsEdit from "./concertsEdit/ConcertsEdit";
 import DisplayedPiecesSimple from "./displayedPiecesSimple/DisplayedPiecesSimple";
+import ProgramRep from "../../entryComponents/performanceEntry2/programRep/ProgramRep";
 
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
 import PiecesList from "../../../store/pieces-list";
@@ -57,6 +58,8 @@ const PerformanceEdit2 = (props) => {
                 keyName="notes"
                 style={{ width: "100%", height: "3rem" }}
               />
+
+              <ProgramRep />
 
               {clickedPiecesList.length > 0 && <DisplayedPiecesSimple />}
             </form>
