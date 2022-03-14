@@ -38,6 +38,15 @@ const PerformanceEdit2 = (props) => {
     ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
+  const submitPerformance = async (event) => {
+    event.preventDefault();
+    let response = await PushBasic(performance, "edit-performance");
+    if (response.ok) {
+      console.log("we got it there");
+      props.closeModal();
+    }
+  };
+
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
   return (
@@ -62,6 +71,12 @@ const PerformanceEdit2 = (props) => {
               <ProgramRep />
 
               {clickedPiecesList.length > 0 && <DisplayedPiecesSimple />}
+
+              <div className={styles.submitDiv}>
+                <button className={styles.button} onClick={submitPerformance}>
+                  Submit
+                </button>
+              </div>
             </form>
           </div>
         </Modal>

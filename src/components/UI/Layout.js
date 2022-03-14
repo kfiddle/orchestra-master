@@ -4,7 +4,6 @@ import MainNavigation from "../mainNavigation/MainNavigation";
 import PlayerEntry from "../entryComponents/playerEntry/entry/PlayerEntry";
 import PieceEntry from "../entryComponents/pieceEntry/PieceEntry";
 
-import PerformanceEntry from "../entryComponents/performanceEntry/PerformanceEntry";
 import PerformanceEntry2 from "../entryComponents/performanceEntry2/PerformanceEntry2";
 
 import GetAList from "../helperFunctions/GetAList";
@@ -63,10 +62,6 @@ const Layout = (props) => {
       />
       {playerEntryFormRendered && <PlayerEntry closeModal={closeModal} />}
       {pieceEntryFormRendered && <PieceEntry closeModal={closeModal} />}
-
-      {/* {performanceEntryFormRendered && (
-        <PerformanceEntry closeModal={closeModal} />
-      )} */}
 
       {performanceEntryFormRendered && (
         <PerformanceEntry2 closeModal={closeModal} />

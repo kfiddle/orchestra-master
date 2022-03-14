@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import GetAList from "../components/helperFunctions/GetAList";
 
-// import GetAList from "../components/helperFunctions/GetAList";
-
 import WhichServer from "../components/helperFunctions/WhichServer";
 
 const useGetAList2 = (listUrl, reload, setReload) => {

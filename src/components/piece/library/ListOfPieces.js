@@ -1,6 +1,8 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
 import LibraryPiece from "./LibraryPiece";
 import LibrarySortHeader from "./librarySortHeader/LibrarySortHeader";
+
+import ReloadFlagStore from "../../../store/reload-flag-store";
 
 import GetAList from "../../helperFunctions/GetAList";
 
@@ -10,8 +12,10 @@ const ListOfPieces = (props) => {
   const [pieces, setPieces] = useState([]);
   const [sortOption, setSortOption] = useState("title");
 
-  const reloadFlag = props.reloadFlag;
-  const setReloadFlag = props.setReloadFlag;
+  const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
+
+  // const reloadFlag = props.reloadFlag;
+  // const setReloadFlag = props.setReloadFlag;
 
   useEffect(() => {
     const getAllPieces = async () => {

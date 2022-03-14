@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import { FiEdit, FiPlus } from "react-icons/fi";
 
-import PerformanceEdit from "../../editComponents/performanceEdit/PerformanceEdit";
+import ReloadFlagStore from "../../../store/reload-flag-store";
 
 import PerformanceEdit2 from "../../editComponents/performanceEdit/PerformanceEdit2";
 
@@ -16,6 +16,7 @@ const Performance = (props) => {
   const [addPieceClicked, setAddPieceClicked] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
   const [date, setDate] = useState("");
+  const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
 
   const { title } = props.performance;
 
@@ -43,6 +44,7 @@ const Performance = (props) => {
   };
 
   const closeModal = () => {
+    setReloadFlag(true)
     setAddPieceClicked(false);
     setEditClicked(false);
   };
