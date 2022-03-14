@@ -1,10 +1,9 @@
 import { useState } from "react";
 
-import PiecesDropDown from "../../../piece/PiecesDropDown";
+import PiecesDropDownEdit from "./piecesDropDownEdit/PiecesDropDownEdit";
+import styles from "./ProgramRepEdit.module.css";
 
-import styles from "./ProgramRep.module.css";
-
-const ProgramRep = () => {
+const ProgramRepEdit = () => {
   const [clickedRepDrop, setClickedRepoDrop] = useState(false);
 
   const repClickHandler = () => {
@@ -23,9 +22,9 @@ const ProgramRep = () => {
         </button>
       </div>
 
-      <PiecesDropDown showOrHide={clickedRepDrop} />
+      <PiecesDropDownEdit showOrHide={clickedRepDrop} />
     </div>
   );
 };
 
-export default ProgramRep;
+export default ProgramRepEdit;

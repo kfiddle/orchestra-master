@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-import PieceListItem from "./pieceListItem/PieceListItem";
+import PieceItemEdit from "./pieceItemEdit/PieceItemEdit";
 
-import GetAList from "../helperFunctions/GetAList";
+import GetAList from "../../../../helperFunctions/GetAList";
 
-import styles from "./PiecesDropDown.module.css";
+import styles from "./PiecesDropDownEdit.module.css";
 
-const PiecesDropDown = (props) => {
+const PiecesDropDownEdit = (props) => {
   const [piecesList, setPiecesList] = useState([]);
   const showOrHide = props.showOrHide;
 
@@ -21,7 +21,7 @@ const PiecesDropDown = (props) => {
 
 
   const listToDisplay = piecesList.map((piece) => (
-    <PieceListItem key={piece.id} piece={piece} />
+    <PieceItemEdit key={piece.id} piece={piece} />
   ));
 
   const displayStyleObject = !showOrHide? {display: 'none'} : {};
@@ -33,4 +33,4 @@ const PiecesDropDown = (props) => {
   );
 };
 
-export default PiecesDropDown;
+export default PiecesDropDownEdit;

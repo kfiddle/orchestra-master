@@ -1,12 +1,12 @@
 import { useContext, useEffect } from "react";
 
-import PiecesList from "../../../store/pieces-list";
+import ShowTunesList from "../../../../../../store/showtunes-list";
 
-import classes from "./PieceListItem.module.css";
+import classes from "./PieceItemEdit.module.css";
 
-const PieceListItem = (props) => {
-  const { pieceToList, clickedPiecesList } = useContext(PiecesList);
-  const { title, composerLastName } = props.piece;
+const PieceItemEdit = (props) => {
+  const { pieceToList, clickedPiecesList } = useContext(ShowTunesList);
+  const { title, composerName } = props.piece;
 
   let outerContainerClass = classes.unclickedItem;
 
@@ -27,9 +27,9 @@ const PieceListItem = (props) => {
       className={`${classes.outerContainer} ${outerContainerClass}`}
     >
       <div className={classes.titleDiv}>{title}</div>
-      <div className={classes.composerLastNameDiv}>{composerLastName}</div>
+      <div className={classes.composerLastNameDiv}>{composerName}</div>
     </div>
   );
 };
 
-export default PieceListItem;
+export default PieceItemEdit;

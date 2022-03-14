@@ -1,0 +1,9 @@
+.outerContainer {
+    position: fixed;
+    width: 55%;
+    top: 10vh;
+    margin-left: 50vw;
+    max-height: 50vh;
+    overflow: auto;
+  }
+  
