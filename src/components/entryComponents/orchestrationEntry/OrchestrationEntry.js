@@ -50,8 +50,6 @@ const OrchestrationEntry = (props) => {
   const submitOrSetStrings = async () => {
     let primaryChairsToSend = [];
 
-    console.log(extras);
-
     for (let primaryPart in allParts) {
       for (let chair of allParts[primaryPart]) {
         let parts = [];
@@ -73,11 +71,21 @@ const OrchestrationEntry = (props) => {
 
     if (stringsChecked) {
       primaryChairsToSend.push(
-        { parts: ["VIOLIN1"], rank: 1 },
-        { parts: ["VIOLIN2"], rank: 1 },
-        { parts: ["VIOLA"], rank: 1 },
-        { parts: ["CELLO"], rank: 1 },
-        { parts: ["BASS"], rank: 1 }
+
+        { parts: ["VIOLIN1"] },
+        { parts: ["VIOLIN2"] },
+        { parts: ["VIOLA"] },
+        { parts: ["CELLO"] },
+        { parts: ["BASS"] }
+
+        // { parts: ["VIOLIN1"], rank: 1 },
+        // { parts: ["VIOLIN2"], rank: 1 },
+        // { parts: ["VIOLA"], rank: 1 },
+        // { parts: ["CELLO"], rank: 1 },
+        // { parts: ["BASS"], rank: 1 }
+
+
+
       );
     }
 

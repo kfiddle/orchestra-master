@@ -17,6 +17,15 @@ const RosterSpot = (props) => {
   let player = props.playerInChair.player;
   let sectionSeat = props.playerInChair.sectionSeat;
 
+  let stringPart =
+    parts[0] === "VIOLIN1" ||
+    parts[0] === "VIOLIN2" ||
+    parts[0] === "VIOLA" ||
+    parts[0] === "CELLO" ||
+    parts[0] === "BASS"
+      ? true
+      : false;
+
   const rightClicker = props.rightClicker;
   const rightClicked = props.rightClicked;
   const fadeForOther = props.fadeForOther;
@@ -54,12 +63,13 @@ const RosterSpot = (props) => {
       "remove-player-from-pic"
     );
     if (response.ok) {
-      setPlayerChange(true)
+      setPlayerChange(true);
     }
   };
 
-  let printSectionLabel = sectionSeat > 0 || rank != 1 ? false : true;
-  let printRankOrSeat = sectionSeat > 0 ? sectionSeat : rank;
+  let printSectionLabel = rank === 1 || (stringPart && sectionSeat === 0)? true: false;
+
+  let printRankOrSeat = stringPart ? sectionSeat + 1: rank;
 
   let marginClass = !printSectionLabel
     ? classes.sectionMargin
