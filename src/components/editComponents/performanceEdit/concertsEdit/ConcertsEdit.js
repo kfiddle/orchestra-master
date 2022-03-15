@@ -37,7 +37,6 @@ const ConcertsEdit = () => {
     setExistingConcerts(tempList);
   };
 
-  //   event={horloge.event} horloge={horloge}
 
   const displayableConcerts = existingConcerts.map((horloge) => (
     <Horloge

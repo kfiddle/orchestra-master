@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import classes from "./Horloge.module.css";
 
+import ShowEditSubmitted from "../../../../store/show-edit-submitted";
+import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+
 const HorlogeEdit = (props) => {
+  const { showEditsSubmitted, setShowEditsSubmitted } =
+    useContext(ShowEditSubmitted);
   const horloge = props.horloge;
   const label = props.label;
   const event = horloge.event;
@@ -25,7 +30,6 @@ const HorlogeEdit = (props) => {
     }
   };
 
-
   const [date, setDate] = useState(horloge.date);
   const [startHours, setStartHours] = useState(getHour(horloge.startTime));
   const [startMinutes, setStartMinutes] = useState(
@@ -34,14 +38,18 @@ const HorlogeEdit = (props) => {
   const [endHours, setEndHours] = useState(getHour(horloge.endTime));
   const [endMinutes, setEndMinutes] = useState(getMinutes(horloge.endTime));
 
+  useEffect(() => {
+    const pushHorlogeEdits = async () => {
+      let response = await PushBasic(horloge, "edit-horloge");
+      if (response.ok) {
+        setShowEditsSubmitted(false);
+      }
+    };
 
-// useEffect(() => {
-
-
-// })
-
-
-
+    if (showEditsSubmitted) {
+      pushHorlogeEdits();
+    }
+  }, [showEditsSubmitted]);
 
   const defaultTime = (hours, minutes) => {
     if (hours === 0) {
@@ -90,7 +98,6 @@ const HorlogeEdit = (props) => {
     }
     setEndMinutes(+event.target.value);
   };
-
 
   return (
     <div className={classes.outerContainer}>
