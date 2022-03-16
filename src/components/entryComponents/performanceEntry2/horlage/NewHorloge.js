@@ -3,6 +3,9 @@ import { useState, useEffect, useContext } from "react";
 import NewlySavedShow from "../../../../store/newly-saved-show";
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
+// import ShowEditSubmitted from "../../../../store/show-edit-submitted";
+import PerformanceToEdit from "../../../../store/performance-to-edit";
+
 import classes from "./Horloge.module.css";
 
 const NewHorloge = (props) => {
@@ -13,19 +16,25 @@ const NewHorloge = (props) => {
   const [endMinutes, setEndMinutes] = useState(0);
 
   const { newlySavedShow } = useContext(NewlySavedShow);
+  const { performance } = useContext(PerformanceToEdit);
+
+  // const { showEditsSubmitted, setShowEditsSubmitted } =
+  //   useContext(ShowEditSubmitted);
 
   const label = props.label;
   const event = props.event;
 
+  console.log('showEditsSubmitted')
+
   useEffect(() => {
-    const sendUpHorloge = async () => {
+    const sendUpHorloge = async (show) => {
       let startTimeToSend =
         startHours === 0 ? null : [startHours, startMinutes];
 
       let endTimeToSend = endHours === 0 ? null : [endHours, endMinutes];
 
       const horlogeToSend = {
-        show: newlySavedShow,
+        show: show,
         date: date,
         event: event,
         startTime: startTimeToSend,
@@ -43,8 +52,13 @@ const NewHorloge = (props) => {
     };
 
     if (newlySavedShow) {
-      sendUpHorloge();
+      sendUpHorloge(newlySavedShow);
     }
+
+    // if (showEditsSubmitted) {
+    //   // sendUpHorloge(performance);
+    //   console.log('Loxy Poo')
+    // }
   }, [newlySavedShow]);
 
   const dateSetter = (event) => {
@@ -82,8 +96,6 @@ const NewHorloge = (props) => {
     setEndMinutes(+event.target.value);
   };
 
-
-  
   return (
     <div className={classes.outerContainer}>
       <div className={`${classes.control} ${classes.dateDiv}`}>

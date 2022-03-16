@@ -11,6 +11,7 @@ import ProgramRep from "../../entryComponents/performanceEntry2/programRep/Progr
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
 import PiecesList from "../../../store/pieces-list";
 import ShowEditSubmitted from "../../../store/show-edit-submitted";
+import PerformanceToEdit from "../../../store/performance-to-edit";
 
 import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 
@@ -52,46 +53,51 @@ const PerformanceEdit2 = (props) => {
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
   return (
-    <ShowEditSubmitted.Provider
-      value={{ showEditsSubmitted, setShowEditsSubmitted }}
-    >
-      <PiecesList.Provider
-        value={{ clickedPiecesList: clickedPiecesList, pieceToList }}
+    <PerformanceToEdit.Provider value={{performance}}>
+      <ShowEditSubmitted.Provider
+        value={{ showEditsSubmitted, setShowEditsSubmitted }}
       >
-        <PerformanceStateFunctions.Provider
-          value={{ setPerformance, performance }}
+        <PiecesList.Provider
+          value={{ clickedPiecesList: clickedPiecesList, pieceToList }}
         >
-          <Modal
-            styleObject={perfEntryModalStyles}
-            closeModal={props.closeModal}
+          <PerformanceStateFunctions.Provider
+            value={{ setPerformance, performance }}
           >
-            <div className={styles.outerContainer}>
-              <form>
-                <BigInput3 label="Performance Title" keyName="title" />
+            <Modal
+              styleObject={perfEntryModalStyles}
+              closeModal={props.closeModal}
+            >
+              <div className={styles.outerContainer}>
+                <form>
+                  <BigInput3 label="Performance Title" keyName="title" />
 
-                <ConcertsEdit />
+                  <ConcertsEdit />
 
-                <BigInput3
-                  label="Notes"
-                  keyName="notes"
-                  style={{ width: "100%", height: "3rem" }}
-                />
+                  <BigInput3
+                    label="Notes"
+                    keyName="notes"
+                    style={{ width: "100%", height: "3rem" }}
+                  />
 
-                <ProgramRep />
+                  <ProgramRep />
 
-                {clickedPiecesList.length > 0 && <DisplayedPiecesSimple />}
+                  {clickedPiecesList.length > 0 && <DisplayedPiecesSimple />}
 
-                <div className={styles.submitDiv}>
-                  <button className={styles.button} onClick={submitPerformance}>
-                    Submit
-                  </button>
-                </div>
-              </form>
-            </div>
-          </Modal>
-        </PerformanceStateFunctions.Provider>
-      </PiecesList.Provider>
-    </ShowEditSubmitted.Provider>
+                  <div className={styles.submitDiv}>
+                    <button
+                      className={styles.button}
+                      onClick={submitPerformance}
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </Modal>
+          </PerformanceStateFunctions.Provider>
+        </PiecesList.Provider>
+      </ShowEditSubmitted.Provider>
+    </PerformanceToEdit.Provider>
   );
 };
 
