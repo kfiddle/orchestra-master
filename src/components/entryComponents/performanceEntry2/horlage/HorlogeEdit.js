@@ -40,7 +40,19 @@ const HorlogeEdit = (props) => {
 
   useEffect(() => {
     const pushHorlogeEdits = async () => {
-      let response = await PushBasic(horloge, "edit-horloge");
+      let startTimeToSend =
+        startHours === 0 ? null : [startHours, startMinutes];
+
+      let endTimeToSend = endHours === 0 ? null : [endHours, endMinutes];
+
+      const horlogeToSend = {
+        id:horloge.id,
+        date: date,
+        startTime: startTimeToSend,
+        endTime: endTimeToSend,
+      };
+
+      let response = await PushBasic(horlogeToSend, "edit-horloge");
       if (response.ok) {
         setShowEditsSubmitted(false);
       }
