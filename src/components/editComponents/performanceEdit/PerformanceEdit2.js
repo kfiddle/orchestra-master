@@ -35,6 +35,8 @@ const PerformanceEdit2 = (props) => {
     };
 
     getShowTunes();
+
+    return () => {};
   }, [performance]);
 
   const pieceToList = (piece) => {
@@ -53,7 +55,7 @@ const PerformanceEdit2 = (props) => {
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
 
   return (
-    <PerformanceToEdit.Provider value={{performance}}>
+    <PerformanceToEdit.Provider value={{ performance }}>
       <ShowEditSubmitted.Provider
         value={{ showEditsSubmitted, setShowEditsSubmitted }}
       >
