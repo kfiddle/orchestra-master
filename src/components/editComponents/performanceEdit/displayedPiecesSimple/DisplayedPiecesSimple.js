@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import PiecesList from "../../../../store/pieces-list";
+import ShowTunesList from "../../../../store/showtunes-list";
 
 import DisplayedSimplePiece from "./displayedSimplePiece/DisplayedSimplePiece";
 import classes from "./DisplayedPiecesSimple.module.css";
 
 const DisplayedPiecesSimple = (props) => {
-  const { clickedPiecesList } = useContext(PiecesList);
+  const { clickedPiecesList } = useContext(ShowTunesList);
 
   const displayedChosenPieces = clickedPiecesList.map((showTune) => (
     <DisplayedSimplePiece

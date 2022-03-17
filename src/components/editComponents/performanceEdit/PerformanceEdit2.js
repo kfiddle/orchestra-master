@@ -7,9 +7,9 @@ import BigInput3 from "../../input/BigInput3";
 import ConcertsEdit from "./concertsEdit/ConcertsEdit";
 import DisplayedPiecesSimple from "./displayedPiecesSimple/DisplayedPiecesSimple";
 
-import ProgramRep from "../../entryComponents/performanceEntry2/programRep/ProgramRep";
+import ProgramRepEdit from "./programRepEdit/ProgramRepEdit";
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
-import PiecesList from "../../../store/pieces-list";
+import ShowTunesList from "../../../store/showtunes-list";
 import ShowEditSubmitted from "../../../store/show-edit-submitted";
 import PerformanceToEdit from "../../../store/performance-to-edit";
 
@@ -59,7 +59,7 @@ const PerformanceEdit2 = (props) => {
       <ShowEditSubmitted.Provider
         value={{ showEditsSubmitted, setShowEditsSubmitted }}
       >
-        <PiecesList.Provider
+        <ShowTunesList.Provider
           value={{ clickedPiecesList: clickedPiecesList, pieceToList }}
         >
           <PerformanceStateFunctions.Provider
@@ -81,7 +81,7 @@ const PerformanceEdit2 = (props) => {
                     style={{ width: "100%", height: "3rem" }}
                   />
 
-                  <ProgramRep />
+                  <ProgramRepEdit />
 
                   {clickedPiecesList.length > 0 && <DisplayedPiecesSimple />}
 
@@ -97,7 +97,7 @@ const PerformanceEdit2 = (props) => {
               </div>
             </Modal>
           </PerformanceStateFunctions.Provider>
-        </PiecesList.Provider>
+        </ShowTunesList.Provider>
       </ShowEditSubmitted.Provider>
     </PerformanceToEdit.Provider>
   );
