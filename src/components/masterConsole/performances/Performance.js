@@ -22,13 +22,18 @@ const Performance = (props) => {
 
   useEffect(() => {
     const getPrimaryDate = async () => {
-      const response = await PushBasic(props.performance, "get-date-from-show");
-      if (response.ok) {
+      try {
+        const response = await PushBasic(
+          props.performance,
+          "get-date-from-show"
+        );
         let answeredDate = await response.json();
-        if (answeredDate) { 
-          setDate(answeredDate);
-        }
+        setDate(answeredDate);
+      } catch (error) {
+        return console.log(error);
+      }
     };
+
     getPrimaryDate();
   }, []);
 

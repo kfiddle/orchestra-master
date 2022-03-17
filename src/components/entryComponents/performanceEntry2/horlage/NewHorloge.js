@@ -24,8 +24,6 @@ const NewHorloge = (props) => {
   const label = props.label;
   const event = props.event;
 
-  console.log('showEditsSubmitted')
-
   useEffect(() => {
     const sendUpHorloge = async (show) => {
       let startTimeToSend =
