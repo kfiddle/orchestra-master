@@ -3,8 +3,8 @@ import { Fragment } from "react/cjs/react.production.min";
 import classes from "./DisplayedSimplePiece.module.css";
 
 const DisplayedSimplePiece = (props) => {
-  const { piece } = props.showTune;
-  const { composerName, title, duration } = piece;
+  // const { piece } = props.showTune;
+  const { composerName, title, duration } = props.piece;
 
   return (
     <Fragment>

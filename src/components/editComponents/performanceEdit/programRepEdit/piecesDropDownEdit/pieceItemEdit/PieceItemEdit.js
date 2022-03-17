@@ -10,8 +10,8 @@ const PieceItemEdit = (props) => {
 
   let outerContainerClass = classes.unclickedItem;
 
-  for (let showTune of clickedPiecesList) {
-    if (showTune.piece.title === title && showTune.piece.composerName === composerName) {
+  for (let piece of clickedPiecesList) {
+    if (piece.title === title && piece.composerName === composerName) {
       outerContainerClass = classes.clickedItem;
     }
   }

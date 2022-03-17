@@ -27,9 +27,9 @@ const PerformanceEdit2 = (props) => {
     const getShowTunes = async () => {
       const response = await PushBasic(performance, "get-pieces-on-program");
       if (response.ok) {
-        let listOfShowTunes = await response.json();
-        if (listOfShowTunes.length > 0) {
-          setClickedPiecesList(listOfShowTunes);
+        let listOfPieces = await response.json();
+        if (listOfPieces.length > 0) {
+          setClickedPiecesList(listOfPieces);
         }
       }
     };

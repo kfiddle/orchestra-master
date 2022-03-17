@@ -19,7 +19,7 @@ const MasterConsole3 = (props) => {
   const clickedPerformanceHandler = async (performance) => {
     const performancePiecesResponse = await PushBasic(
       performance,
-      "get-pieces-on-program"
+      "get-showtunes-on-program"
     );
     const ppsJsonified = await performancePiecesResponse.json();
     setPieces(ppsJsonified);
