@@ -25,8 +25,9 @@ const Performance = (props) => {
       const response = await PushBasic(props.performance, "get-date-from-show");
       if (response.ok) {
         let answeredDate = await response.json();
-        setDate(answeredDate);
-      }
+        if (answeredDate) { 
+          setDate(answeredDate);
+        }
     };
     getPrimaryDate();
   }, []);
@@ -44,7 +45,7 @@ const Performance = (props) => {
   };
 
   const closeModal = () => {
-    setReloadFlag(true)
+    setReloadFlag(true);
     setAddPieceClicked(false);
     setEditClicked(false);
   };
