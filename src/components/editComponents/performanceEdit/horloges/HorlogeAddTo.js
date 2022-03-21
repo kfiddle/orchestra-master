@@ -1,34 +1,35 @@
 import { useState, useEffect, useContext } from "react";
 
-import NewlySavedShow from "../../../../store/newly-saved-show";
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
-
+import ShowEditSubmitted from "../../../../store/show-edit-submitted";
 import PerformanceToEdit from "../../../../store/performance-to-edit";
+
+import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./Horloge.module.css";
 
-const NewHorloge = (props) => {
+const HorlogeAddTo = (props) => {
   const [date, setDate] = useState("");
   const [startHours, setStartHours] = useState(0);
   const [startMinutes, setStartMinutes] = useState(0);
   const [endHours, setEndHours] = useState(0);
   const [endMinutes, setEndMinutes] = useState(0);
 
-  const { newlySavedShow } = useContext(NewlySavedShow);
+  const { showEditsSubmitted, setShowEditsSubmitted } =
+    useContext(ShowEditSubmitted);
   const { performance } = useContext(PerformanceToEdit);
 
   const label = props.label;
   const event = props.event;
 
   useEffect(() => {
-    const sendUpHorloge = async (show) => {
+    const sendUpHorloge = async () => {
       let startTimeToSend =
         startHours === 0 ? null : [startHours, startMinutes];
 
       let endTimeToSend = endHours === 0 ? null : [endHours, endMinutes];
 
       const horlogeToSend = {
-        show: show,
+        show: performance,
         date: date,
         event: event,
         startTime: startTimeToSend,
@@ -45,11 +46,10 @@ const NewHorloge = (props) => {
       }
     };
 
-    if (newlySavedShow) {
-      sendUpHorloge(newlySavedShow);
+    if (showEditsSubmitted) {
+      sendUpHorloge();
     }
-
-  }, [newlySavedShow]);
+  }, [showEditsSubmitted]);
 
   const dateSetter = (event) => {
     setDate(event.target.value);
@@ -132,4 +132,4 @@ const NewHorloge = (props) => {
   );
 };
 
-export default NewHorloge;
+export default HorlogeAddTo;

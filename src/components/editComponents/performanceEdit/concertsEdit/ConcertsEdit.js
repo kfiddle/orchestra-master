@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 
-import Horloge from "../../../entryComponents/performanceEntry2/horlage/Horloge";
+
+import HorlogeAddTo from "../horloges/HorlogeAddTo";
+import HorlogeEdit from "../horloges/HorlogeEdit";
 
 import PerformanceStateFunctions from "../../../../store/performance-state-functions";
 
@@ -10,6 +12,7 @@ import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 const ConcertsEdit = () => {
   const { performance } = useContext(PerformanceStateFunctions);
   const [existingConcerts, setExistingConcerts] = useState([]);
+  const [addedConcerts, setAddedConcerts] = useState([]);
 
   useEffect(() => {
     const getExistingConcerts = async () => {
@@ -26,20 +29,20 @@ const ConcertsEdit = () => {
   }, []);
 
   const addConcertClicked = () => {
-    let tempList = [...existingConcerts];
+    let tempList = [...addedConcerts];
     tempList.push(
-      <Horloge
-        key={existingConcerts.length}
+      <HorlogeAddTo
+        key={addedConcerts.length}
         label={"additional"}
         event={"CONCERT"}
       />
     );
-    setExistingConcerts(tempList);
+    setAddedConcerts(tempList);
   };
 
 
-  const displayableConcerts = existingConcerts.map((horloge) => (
-    <Horloge
+  const displayableExistingConcerts = existingConcerts.map((horloge) => (
+    <HorlogeEdit
       key={existingConcerts.indexOf(horloge)}
       label={
         existingConcerts.indexOf(horloge) === 0 ? "Primary Date" : "Additional"
@@ -51,7 +54,8 @@ const ConcertsEdit = () => {
   return (
     <div>
       <div className={styles.additionalPerfButtonDiv}>
-        {displayableConcerts}
+        {displayableExistingConcerts}
+        {addedConcerts}
 
         <button
           onClick={addConcertClicked}
