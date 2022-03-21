@@ -1,8 +1,7 @@
 const ObjectToListHelper = (object, currentList, setListFunction) => {
   let tempList = currentList;
-
-  console.log(tempList);
-  tempList = tempList.filter((instr) => instr !== object);
+  
+  tempList = tempList.filter((element) => element !== object);
 
   if (tempList.length === currentList.length) {
     setListFunction((previous) => [...previous, object]);

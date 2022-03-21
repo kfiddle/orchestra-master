@@ -13,8 +13,7 @@ import ShowTunesList from "../../../store/showtunes-list";
 import ShowEditSubmitted from "../../../store/show-edit-submitted";
 import PerformanceToEdit from "../../../store/performance-to-edit";
 
-import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
-
+import PieceListHelper from "../../helperFunctions/PieceListHelper";
 import styles from "./PerformanceEdit2.module.css";
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
@@ -24,7 +23,7 @@ const PerformanceEdit2 = (props) => {
   const [showEditsSubmitted, setShowEditsSubmitted] = useState(false);
 
   useEffect(() => {
-    const getShowTunes = async () => {
+    const getPieces = async () => {
       const response = await PushBasic(performance, "get-pieces-on-program");
       if (response.ok) {
         let listOfPieces = await response.json();
@@ -34,13 +33,13 @@ const PerformanceEdit2 = (props) => {
       }
     };
 
-    getShowTunes();
+    getPieces();
 
     return () => {};
   }, [performance]);
 
   const pieceToList = (piece) => {
-    ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
+    PieceListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
   const submitPerformance = async (event) => {
