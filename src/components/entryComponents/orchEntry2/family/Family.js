@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import InstrumentNum from "../instrumentNum/InstrumentNum";
+import InstButton from "../instButton/InstButton";
 import styles from "./Family.module.css";
 
 const alternates = {
@@ -22,15 +23,23 @@ const Family = (props) => {
   const [alternateOptions, setAlternateOptions] = useState([]);
   const instrumentFamily = props.instrumentFamily;
 
-  const instrumentClicker = (instrument) => {
-    let optionsList = [];
+  const instrumentClicker = (instrument, number) => {
+    let primaries = [];
 
-    for (let option of alternates[instrumentFamily][instrument]) {
-      optionsList.push(option);
-      console.log(option);
+    for (let j = 1; j <= number; j++) {
+      primaries.push(<InstButton key={j} instrument={instrument} rank={j} />);
     }
 
-    setAlternateOptions(optionsList);
+    setAlternateOptions(primaries);
+
+    // let optionsList = [];
+
+    // for (let option of alternates[instrumentFamily][instrument]) {
+    //   optionsList.push();
+    //   console.log(option);
+    // }
+
+    
   };
 
   const displayableInputs = [];
