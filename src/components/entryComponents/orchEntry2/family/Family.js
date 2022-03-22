@@ -1,55 +1,45 @@
 import { useState } from "react";
 
 import InstrumentNum from "../instrumentNum/InstrumentNum";
-import InstButton from "../instButton/InstButton";
+import AlternateDiv from "../alternateDiv/AlternateDiv";
 import styles from "./Family.module.css";
 
-const alternates = {
-  WINDS: {
-    FLUTE: ["PICCOLO", "ALTOFLUTE"],
-    OBOE: ["ENGLISHHORN"],
-    CLARINET: ["EBCLARINET", "BASSCLARINET"],
-    BASSOON: ["CONTRA"],
-  },
-  BRASS: {
-    HORN: [""],
-    TRUMPET: ["CORNET", "FUGALHORN"],
-    TROMBONE: ["EUPHONIUM"],
-    TUBA: ["EUPHONIUM"],
-  },
+// const alternates = {
+//   WINDS: {
+//     FLUTE: ["PICCOLO", "ALTOFLUTE"],
+//     OBOE: ["ENGLISHHORN"],
+//     CLARINET: ["EBCLARINET", "BASSCLARINET"],
+//     BASSOON: ["CONTRA"],
+//   },
+//   BRASS: {
+//     HORN: [""],
+//     TRUMPET: ["CORNET", "FUGALHORN"],
+//     TROMBONE: ["EUPHONIUM"],
+//     TUBA: ["EUPHONIUM"],
+//   },
+// };
+
+const primaryList = {
+  WINDS: ["FLUTE", "OBOE", "CLARINET", "BASSOON"],
+  BRASS: ["HORN", "TRUMPET", "TROMBONE", "TUBA"],
 };
 
 const Family = (props) => {
-  const [alternateOptions, setAlternateOptions] = useState([]);
+  const [alternateClicked, setAlternateClicked] = useState(false);
+  const [primaries, setPrimaries] = useState({});
   const instrumentFamily = props.instrumentFamily;
 
-  const instrumentClicker = (instrument, number) => {
-    let primaries = [];
-
-    for (let j = 1; j <= number; j++) {
-      primaries.push(<InstButton key={j} instrument={instrument} rank={j} />);
-    }
-
-    setAlternateOptions(primaries);
-
-    // let optionsList = [];
-
-    // for (let option of alternates[instrumentFamily][instrument]) {
-    //   optionsList.push();
-    //   console.log(option);
-    // }
-
-    
+  const alternateClickHandler = () => {
+    setAlternateClicked((previous) => !previous);
   };
 
   const displayableInputs = [];
 
-  for (let instrument in alternates[instrumentFamily]) {
+  for (let instrument of primaryList[instrumentFamily]) {
     displayableInputs.push(
       <InstrumentNum
         key={displayableInputs.length}
         instrument={instrument}
-        clicked={instrumentClicker}
       />
     );
   }
@@ -57,10 +47,12 @@ const Family = (props) => {
   return (
     <div className={styles.outerContainer}>
       <div className={styles.familyDiv}>
-        <div className={styles.label}>{instrumentFamily}</div>
+        <div className={styles.label} onClick={alternateClickHandler}>
+          {instrumentFamily}
+        </div>
         {displayableInputs}
       </div>
-      <div>{alternateOptions}</div>
+      {alternateClicked && <AlternateDiv />}
     </div>
   );
 };

@@ -19,3 +19,11 @@
     color: rgb(39, 39, 143);
     font-weight: 900;
   }
+
+  .label:hover {
+    color: rgb(236, 22, 182);
+  }
+
+  .alternateDiv {
+    display: flex;
+  }
