@@ -77,15 +77,6 @@ const OrchestrationEntry = (props) => {
         { parts: ["VIOLA"] },
         { parts: ["CELLO"] },
         { parts: ["BASS"] }
-
-        // { parts: ["VIOLIN1"], rank: 1 },
-        // { parts: ["VIOLIN2"], rank: 1 },
-        // { parts: ["VIOLA"], rank: 1 },
-        // { parts: ["CELLO"], rank: 1 },
-        // { parts: ["BASS"], rank: 1 }
-
-
-
       );
     }
 

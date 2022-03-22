@@ -20,7 +20,6 @@ const Pieces = (props) => {
       key={piece.id}
       pp={piece}
       clicked={clickedPieceHandler}
-      //   playerPlaced={playerPlaced}
       activePiece={clickedPiece === piece ? true : false}
     />
   ));

@@ -128,6 +128,7 @@ const HorlogeAddTo = (props) => {
           </div>
         </div>
       </div>
+      <div className={classes.extraDiv}></div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { GiMusicalScore } from "react-icons/gi";
 import { useState } from "react";
 
 import OrchestrationEntry from "../../entryComponents/orchestrationEntry/OrchestrationEntry";
+import OrchEntry2 from "../../entryComponents/orchEntry2/OrchEntry2";
 
 import classes from "./LibraryPiece.module.css";
 
@@ -54,8 +55,12 @@ const LibraryPiece = (props) => {
         <FiEdit onClick={openOrchestration} />
       </div>
 
-      {orchestrationClicked && (
+      {/* {orchestrationClicked && (
         <OrchestrationEntry closeModal={closeModal} piece={props.piece} />
+      )} */}
+
+      {orchestrationClicked && (
+        <OrchEntry2 closeModal={closeModal} piece={props.piece} />
       )}
     </div>
   );

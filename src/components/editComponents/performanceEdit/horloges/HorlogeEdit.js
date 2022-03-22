@@ -1,9 +1,10 @@
 import { useEffect, useState, useContext } from "react";
 
-import classes from "./Horloge.module.css";
 
 import ShowEditSubmitted from "../../../../store/show-edit-submitted";
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+
+import classes from "./Horloge.module.css";
 
 const HorlogeEdit = (props) => {
   const { showEditsSubmitted, setShowEditsSubmitted } =
@@ -46,7 +47,7 @@ const HorlogeEdit = (props) => {
       let endTimeToSend = endHours === 0 ? null : [endHours, endMinutes];
 
       const horlogeToSend = {
-        id:horloge.id,
+        id: horloge.id,
         date: date,
         startTime: startTimeToSend,
         endTime: endTimeToSend,
@@ -156,6 +157,9 @@ const HorlogeEdit = (props) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className={classes.extraDiv}>
+      <button className={classes.removeButton}>Remove</button>
       </div>
     </div>
   );
