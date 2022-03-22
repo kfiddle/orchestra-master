@@ -1,22 +1,28 @@
 import { useState, useContext, useEffect } from "react";
 
 import AlternateClicked from "../../../../store/alternate-clicked";
+
+import { InstrumentationSubmit } from "../../../../store/submit-clicked";
 import NumberInput from "../../../input/numberInput/NumberInput";
 
 import styles from "./InstrumentNum.module.css";
 
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
-  const {alternateClicked} = useContext(AlternateClicked)
+  const { submitClicked } = useContext(InstrumentationSubmit)
+  const {alternateClicked, primaries, setPrimaries} = useContext(AlternateClicked)
   const instrument = props.instrument;
 
   useEffect(() => {
-    if (alternateClicked) {
-      console.log(instrument + '   ' +  number)
+    if (submitClicked) {
+        let tempObject = primaries;
+        tempObject[instrument] = number;
+        setPrimaries(tempObject)
+        console.log(instrument + '   ' + number)
     }
 
 
-  }, [alternateClicked]);
+  }, [submitClicked]);
 
   const clickHandler = () => {
     props.clicked(instrument, number);

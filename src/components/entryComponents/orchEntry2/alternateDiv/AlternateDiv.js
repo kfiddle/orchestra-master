@@ -2,7 +2,7 @@ import InstButton from "../instButton/InstButton";
 import styles from "./AlternateDiv.module.css";
 
 const AlternateDiv = (props) => {
-  
+  console.log(props.primaries);
   return (
     <div className={styles.outerContainer}>
       <div className={styles.sopranoDiv}>SOPRANO</div>

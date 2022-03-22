@@ -1,8 +1,10 @@
+import { useState } from "react";
+
 import Modal from "../../UI/modal/Modal";
+import SubmitButton from "../../UI/submitButton/SubmitButton";
 
 import Family from "./family/Family";
-import InstrumentNum from "./instrumentNum/InstrumentNum";
-
+import { InstrumentationSubmit } from "../../../store/submit-clicked";
 import styles from "./OrchEntry2.module.css";
 
 const mainInstruments = [
@@ -27,15 +29,25 @@ const winds = ["FLUTE", "OBOE", "CLARINET", "BASSOON"];
 const brass = ["HORN", "TRUMPET", "TROMBONE", "TUBA"];
 
 const OrchEntry2 = (props) => {
+  const [submitClicked, setSubmitClicked] = useState(false);
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
 
+  const submit = () => {
+    setSubmitClicked(true);
+  };
+
   return (
-    <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>
-      <div className={styles.outerContainer}>
-        <Family instrumentFamily={"WINDS"}></Family>
-        <Family instrumentFamily={"BRASS"}></Family>
-      </div>
-    </Modal>
+    <InstrumentationSubmit.Provider value={{submitClicked}}>
+      <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>
+        <div className={styles.outerContainer}>
+          <Family instrumentFamily={"WINDS"}></Family>
+          <Family instrumentFamily={"BRASS"}></Family>
+          <div className={styles.SubmitButtonDiv}>
+            <SubmitButton submit={submit} />
+          </div>
+        </div>
+      </Modal>
+    </InstrumentationSubmit.Provider>
   );
 };
 

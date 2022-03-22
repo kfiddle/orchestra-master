@@ -7,20 +7,6 @@ import AlternateClicked from "../../../../store/alternate-clicked";
 
 import styles from "./Family.module.css";
 
-// const alternates = {
-//   WINDS: {
-//     FLUTE: ["PICCOLO", "ALTOFLUTE"],
-//     OBOE: ["ENGLISHHORN"],
-//     CLARINET: ["EBCLARINET", "BASSCLARINET"],
-//     BASSOON: ["CONTRA"],
-//   },
-//   BRASS: {
-//     HORN: [""],
-//     TRUMPET: ["CORNET", "FUGALHORN"],
-//     TROMBONE: ["EUPHONIUM"],
-//     TUBA: ["EUPHONIUM"],
-//   },
-// };
 
 const primaryList = {
   WINDS: ["FLUTE", "OBOE", "CLARINET", "BASSOON"],
@@ -46,7 +32,7 @@ const Family = (props) => {
   }
 
   return (
-    <AlternateClicked.Provider value={{alternateClicked}}>
+    <AlternateClicked.Provider value={{alternateClicked, primaries, setPrimaries}}>
       <div className={styles.outerContainer}>
         <div className={styles.familyDiv}>
           <div className={styles.label} onClick={alternateClickHandler}>
@@ -54,10 +40,27 @@ const Family = (props) => {
           </div>
           {displayableInputs}
         </div>
-        {alternateClicked && <AlternateDiv />}
+        {alternateClicked && <AlternateDiv primaries={primaries} />}
       </div>
     </AlternateClicked.Provider>
   );
 };
 
 export default Family;
+
+
+
+// const alternates = {
+//   WINDS: {
+//     FLUTE: ["PICCOLO", "ALTOFLUTE"],
+//     OBOE: ["ENGLISHHORN"],
+//     CLARINET: ["EBCLARINET", "BASSCLARINET"],
+//     BASSOON: ["CONTRA"],
+//   },
+//   BRASS: {
+//     HORN: [""],
+//     TRUMPET: ["CORNET", "FUGALHORN"],
+//     TROMBONE: ["EUPHONIUM"],
+//     TUBA: ["EUPHONIUM"],
+//   },
+// };
