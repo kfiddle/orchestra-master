@@ -1,6 +1,7 @@
 import Modal from "../../UI/modal/Modal";
 
 import Family from "./family/Family";
+import InstrumentNum from "./instrumentNum/InstrumentNum";
 
 import styles from "./OrchEntry2.module.css";
 
@@ -23,6 +24,7 @@ const mainInstruments = [
 ];
 
 const winds = ["FLUTE", "OBOE", "CLARINET", "BASSOON"];
+const brass = ["HORN", "TRUMPET", "TROMBONE", "TUBA"];
 
 const OrchEntry2 = (props) => {
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
@@ -30,15 +32,8 @@ const OrchEntry2 = (props) => {
   return (
     <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>
       <div className={styles.outerContainer}>
-        <Family instrumentFamily={"winds"}>
-          <button>HELLO</button>
-          <button>GOODBYE</button>
-        </Family>
-        <Family instrumentFamily={"brass"}>
-          <button>GOODBYE</button>
-        </Family>
-        <Family instrumentFamily={"percussion"}></Family>
-        <Family instrumentFamily={"strings"}></Family>
+        <Family instrumentFamily={"WINDS"}></Family>
+        <Family instrumentFamily={"BRASS"}></Family>
       </div>
     </Modal>
   );
