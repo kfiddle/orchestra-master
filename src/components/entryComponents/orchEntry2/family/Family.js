@@ -2,6 +2,9 @@ import { useState } from "react";
 
 import InstrumentNum from "../instrumentNum/InstrumentNum";
 import AlternateDiv from "../alternateDiv/AlternateDiv";
+
+import AlternateClicked from "../../../../store/alternate-clicked";
+
 import styles from "./Family.module.css";
 
 // const alternates = {
@@ -24,6 +27,7 @@ const primaryList = {
   BRASS: ["HORN", "TRUMPET", "TROMBONE", "TUBA"],
 };
 
+
 const Family = (props) => {
   const [alternateClicked, setAlternateClicked] = useState(false);
   const [primaries, setPrimaries] = useState({});
@@ -37,23 +41,22 @@ const Family = (props) => {
 
   for (let instrument of primaryList[instrumentFamily]) {
     displayableInputs.push(
-      <InstrumentNum
-        key={displayableInputs.length}
-        instrument={instrument}
-      />
+      <InstrumentNum key={displayableInputs.length} instrument={instrument} />
     );
   }
 
   return (
-    <div className={styles.outerContainer}>
-      <div className={styles.familyDiv}>
-        <div className={styles.label} onClick={alternateClickHandler}>
-          {instrumentFamily}
+    <AlternateClicked.Provider value={{alternateClicked}}>
+      <div className={styles.outerContainer}>
+        <div className={styles.familyDiv}>
+          <div className={styles.label} onClick={alternateClickHandler}>
+            {instrumentFamily}
+          </div>
+          {displayableInputs}
         </div>
-        {displayableInputs}
+        {alternateClicked && <AlternateDiv />}
       </div>
-      {alternateClicked && <AlternateDiv />}
-    </div>
+    </AlternateClicked.Provider>
   );
 };
 
