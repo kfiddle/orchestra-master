@@ -1,0 +1,50 @@
+.outerContainer {
+    display: flex;
+    justify-content: space-around;
+    border: 4px solid #837f7f;
+    box-shadow: 2px 2px #6b6969;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    padding: 2rem;
+    cursor: pointer;
+  }
+  
+  .label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13%;
+    padding-right: 1rem;
+    color: rgb(39, 39, 143);
+    font-weight: 900;
+  }
+  
+  .checkBox {
+    font: inherit;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: #afaaaa;
+    border: 1px solid #c1d1d1;
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.25rem;
+  }
+  
+  .invalidEntry {
+    font: inherit;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: #e05c5c;
+    border: 1px solid #2e0202;
+    display: block;
+    width: 100%;
+    font-size: 1.25rem;
+  }
+  
+  .input:focus,
+  .control textarea:focus {
+    background-color: #e9dcdc;
+    outline-color: rgb(46, 40, 39);
+  }
+  

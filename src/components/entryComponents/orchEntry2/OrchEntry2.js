@@ -4,26 +4,28 @@ import Modal from "../../UI/modal/Modal";
 import SubmitButton from "../../UI/submitButton/SubmitButton";
 
 import Family from "./family/Family";
+import PercussionBox from "./percussionBox/PercussionBox";
+import StringsBox from "./stringsBox/StringsBox";
 import { InstrumentationSubmit } from "../../../store/submit-clicked";
 import styles from "./OrchEntry2.module.css";
 
-const mainInstruments = [
-  "FLUTE",
-  "OBOE",
-  "CLARINET",
-  "BASSOON",
-  "HORN",
-  "TRUMPET",
-  "TROMBONE",
-  "TUBA",
-  "TIMPANI",
-  "PERCUSSION",
-  "VIOLIN1",
-  "VIOLIN2",
-  "VIOLA",
-  "CELLO",
-  "BASS",
-];
+// const mainInstruments = [
+//   "FLUTE",
+//   "OBOE",
+//   "CLARINET",
+//   "BASSOON",
+//   "HORN",
+//   "TRUMPET",
+//   "TROMBONE",
+//   "TUBA",
+//   "TIMPANI",
+//   "PERCUSSION",
+//   "VIOLIN1",
+//   "VIOLIN2",
+//   "VIOLA",
+//   "CELLO",
+//   "BASS",
+// ];
 
 const winds = ["FLUTE", "OBOE", "CLARINET", "BASSOON"];
 const brass = ["HORN", "TRUMPET", "TROMBONE", "TUBA"];
@@ -37,11 +39,14 @@ const OrchEntry2 = (props) => {
   };
 
   return (
-    <InstrumentationSubmit.Provider value={{submitClicked}}>
+    <InstrumentationSubmit.Provider value={{ submitClicked }}>
       <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>
         <div className={styles.outerContainer}>
           <Family instrumentFamily={"WINDS"}></Family>
           <Family instrumentFamily={"BRASS"}></Family>
+          <PercussionBox />
+          <StringsBox />
+
           <div className={styles.SubmitButtonDiv}>
             <SubmitButton submit={submit} />
           </div>
