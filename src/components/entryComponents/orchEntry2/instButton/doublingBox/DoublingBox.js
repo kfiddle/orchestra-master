@@ -21,7 +21,7 @@ const DoublingBox = (props) => {
 
   const displayedOptions = doublingObject[primaryPart].map((part) => (
     <DoublingOption
-      key={Math.random()}
+      key={doublingObject[primaryPart].indexOf(part)}
       primaryPart={primaryPart}
       rank={rank}
       part={part}

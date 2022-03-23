@@ -1,0 +1,14 @@
+.outerContainer {
+    position: relative;
+    margin: 0 0 1rem 1rem;
+    color: rgb(243, 233, 233);
+    font-weight: 900;
+  }
+  
+  .clicked,
+  .outerContainer:hover {
+    color: #fec302;
+    cursor: pointer;
+  }
+  
+ 
