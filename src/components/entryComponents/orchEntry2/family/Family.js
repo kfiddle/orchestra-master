@@ -7,16 +7,14 @@ import AlternateClicked from "../../../../store/alternate-clicked";
 
 import styles from "./Family.module.css";
 
-
 const primaryList = {
   WINDS: ["FLUTE", "OBOE", "CLARINET", "BASSOON"],
   BRASS: ["HORN", "TRUMPET", "TROMBONE", "TUBA"],
 };
 
-
 const Family = (props) => {
   const [alternateClicked, setAlternateClicked] = useState(false);
-  const [primaries, setPrimaries] = useState({});
+  const [primariesObject, setPrimariesObject] = useState({});
   const instrumentFamily = props.instrumentFamily;
 
   const alternateClickHandler = () => {
@@ -32,7 +30,9 @@ const Family = (props) => {
   }
 
   return (
-    <AlternateClicked.Provider value={{alternateClicked, primaries, setPrimaries}}>
+    <AlternateClicked.Provider
+      value={{ alternateClicked, primariesObject, setPrimariesObject }}
+    >
       <div className={styles.outerContainer}>
         <div className={styles.familyDiv}>
           <div className={styles.label} onClick={alternateClickHandler}>
@@ -40,15 +40,13 @@ const Family = (props) => {
           </div>
           {displayableInputs}
         </div>
-        {alternateClicked && <AlternateDiv primaries={primaries} />}
+        {alternateClicked && <AlternateDiv />}
       </div>
     </AlternateClicked.Provider>
   );
 };
 
 export default Family;
-
-
 
 // const alternates = {
 //   WINDS: {

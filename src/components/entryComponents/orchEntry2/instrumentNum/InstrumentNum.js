@@ -9,27 +9,33 @@ import styles from "./InstrumentNum.module.css";
 
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
-  const { submitClicked } = useContext(InstrumentationSubmit)
-  const {alternateClicked, primaries, setPrimaries} = useContext(AlternateClicked)
+  const { submitClicked } = useContext(InstrumentationSubmit);
+  const { alternateClicked, primariesObject, setPrimariesObject } =
+    useContext(AlternateClicked);
   const instrument = props.instrument;
 
   useEffect(() => {
     if (submitClicked) {
-        let tempObject = primaries;
-        tempObject[instrument] = number;
-        setPrimaries(tempObject)
-        console.log(instrument + '   ' + number)
+      let tempObject = primariesObject;
+      tempObject[instrument] = number;
+      setPrimariesObject(tempObject);
     }
-
-
-  }, [submitClicked]);
+    if (alternateClicked) {
+      let tempObject = primariesObject;
+      tempObject[instrument] = number;
+      setPrimariesObject(tempObject);
+    }
+  }, [submitClicked, alternateClicked]);
 
   const clickHandler = () => {
     props.clicked(instrument, number);
   };
 
   const setThisInstrument = (number) => {
-   setNumber(+number)
+    for (let object in primariesObject) {
+      console.log(primariesObject[object]);
+    }
+    setNumber(+number);
   };
 
   return (
