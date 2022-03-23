@@ -1,11 +1,17 @@
+import { useState } from "react";
+
+import DoublingBox from "./doublingBox/DoublingBox";
+
 import styles from "./InstButton.module.css";
 
 const InstButton = (props) => {
+  const [doublingsClicked, setDoublingsClicked] = useState(false);
+
   const primaryPart = props.instrument;
   const rank = props.rank;
 
   const showDoublings = () => {
-    console.log(primaryPart);
+    setDoublingsClicked((previous) => !previous);
   };
 
   return (
@@ -15,6 +21,10 @@ const InstButton = (props) => {
           {primaryPart} {rank}
         </button>
       </div>
+
+      {doublingsClicked && (
+        <DoublingBox primaryPart={primaryPart} rank={rank} />
+      )}
     </div>
   );
 };
