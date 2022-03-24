@@ -13,7 +13,7 @@ const DoublingOption = (props) => {
 
   const clickedInstrumentHandler = () => {
     setClickedInstrument((previous) => !previous);
-    console.log(primaryPart + "    " + rank);
+    console.log(primaryPart + "    " + rank + " doubling on " + part);
   };
 
   let classNames = !clickedInstrument
