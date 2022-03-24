@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 
 import AlternateClicked from "../../../../store/alternate-clicked";
 
+import FullInstrumentation from "../../../../store/full-instrumentation";
 import { InstrumentationSubmit } from "../../../../store/submit-clicked";
 import NumberInput from "../../../input/numberInput/NumberInput";
 
@@ -9,9 +10,11 @@ import styles from "./InstrumentNum.module.css";
 
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
+
+  const { primariesObject, setPrimariesObject } = useContext(FullInstrumentation);
   const { submitClicked } = useContext(InstrumentationSubmit);
-  const { alternateClicked, primariesObject, setPrimariesObject } =
-    useContext(AlternateClicked);
+  const { alternateClicked } = useContext(AlternateClicked);
+
   const instrument = props.instrument;
 
   useEffect(() => {
@@ -19,6 +22,7 @@ const InstrumentNum = (props) => {
       let tempObject = primariesObject;
       tempObject[instrument] = number;
       setPrimariesObject(tempObject);
+      console.log(primariesObject)
     }
     if (alternateClicked) {
       let tempObject = primariesObject;
@@ -32,9 +36,6 @@ const InstrumentNum = (props) => {
   };
 
   const setThisInstrument = (number) => {
-    for (let object in primariesObject) {
-      console.log(primariesObject[object]);
-    }
     setNumber(+number);
   };
 

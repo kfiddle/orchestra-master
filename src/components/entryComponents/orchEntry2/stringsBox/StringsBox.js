@@ -3,7 +3,7 @@ import { useState } from "react";
 import classes from "./StringsBox.module.css";
 
 const StringsBox = (props) => {
-  const [stringsChecked, setStringsChecked] = useState(false);
+  const [stringsChecked, setStringsChecked] = useState(true);
 
 
   const setStrings = (event) => {

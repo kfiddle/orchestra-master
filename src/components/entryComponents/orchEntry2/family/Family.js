@@ -14,8 +14,8 @@ const primaryList = {
 
 const Family = (props) => {
   const [alternateClicked, setAlternateClicked] = useState(false);
-  const [primariesObject, setPrimariesObject] = useState({});
   const instrumentFamily = props.instrumentFamily;
+  const list = props.list;
 
   const alternateClickHandler = () => {
     setAlternateClicked((previous) => !previous);
@@ -23,7 +23,7 @@ const Family = (props) => {
 
   const displayableInputs = [];
 
-  for (let instrument of primaryList[instrumentFamily]) {
+  for (let instrument of list) {
     displayableInputs.push(
       <InstrumentNum key={displayableInputs.length} instrument={instrument} />
     );
@@ -31,7 +31,7 @@ const Family = (props) => {
 
   return (
     <AlternateClicked.Provider
-      value={{ alternateClicked, primariesObject, setPrimariesObject }}
+      value={{ alternateClicked }}
     >
       <div className={styles.outerContainer}>
         <div className={styles.familyDiv}>
@@ -40,7 +40,7 @@ const Family = (props) => {
           </div>
           {displayableInputs}
         </div>
-        {alternateClicked && <AlternateDiv />}
+        {alternateClicked && <AlternateDiv list={list}/>}
       </div>
     </AlternateClicked.Provider>
   );
@@ -48,17 +48,3 @@ const Family = (props) => {
 
 export default Family;
 
-// const alternates = {
-//   WINDS: {
-//     FLUTE: ["PICCOLO", "ALTOFLUTE"],
-//     OBOE: ["ENGLISHHORN"],
-//     CLARINET: ["EBCLARINET", "BASSCLARINET"],
-//     BASSOON: ["CONTRA"],
-//   },
-//   BRASS: {
-//     HORN: [""],
-//     TRUMPET: ["CORNET", "FUGALHORN"],
-//     TROMBONE: ["EUPHONIUM"],
-//     TUBA: ["EUPHONIUM"],
-//   },
-// };

@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 
 import AlternateClicked from "../../../../store/alternate-clicked";
+import FullInstrumentation from "../../../../store/full-instrumentation";
 
 import InstButton from "../instButton/InstButton";
 import styles from "./AlternateDiv.module.css";
 
 const AlternateDiv = (props) => {
-  const { primariesObject, setPrimariesObject } = useContext(AlternateClicked);
-  const [displayableInsts, setDisplayableInsts] = useState([]);
+  const list = props.list;
+
+  const { primariesObject, setPrimariesObject } =
+    useContext(FullInstrumentation);
   const [sopranos, setSopranos] = useState([]);
   const [altos, setAltos] = useState([]);
   const [tenors, setTenors] = useState([]);
@@ -24,13 +27,13 @@ const AlternateDiv = (props) => {
         let button = (
           <InstButton key={Math.random()} instrument={instrument} rank={j} />
         );
-        if (instrument === "FLUTE" || instrument === "HORN") {
+        if (instrument === list[0]) {
           tempSopranos.push(button);
-        } else if (instrument === "OBOE" || instrument === "TRUMPET") {
+        } else if (instrument === list[1]) {
           tempAltos.push(button);
-        } else if (instrument === "CLARINET" || instrument === "TROMBONE") {
+        } else if (instrument === list[2]) {
           tempTenors.push(button);
-        } else {
+        } else if (instrument === list[3]) {
           tempBasses.push(button);
         }
       }

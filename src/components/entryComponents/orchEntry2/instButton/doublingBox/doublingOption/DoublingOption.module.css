@@ -1,14 +1,26 @@
 .outerContainer {
-    position: relative;
-    margin: 0 0 1rem 1rem;
-    color: rgb(243, 233, 233);
-    font-weight: 900;
+  position: relative;
+  margin: 0 0 1rem 1rem;
+  color: rgb(243, 233, 233);
+  font-weight: 900;
+}
+
+.outerContainer:hover {
+  color: #c0cc14;
+  cursor: pointer;
+}
+
+.clicked {
+  color: #e3f308;
+  cursor: pointer;
+  animation: pop-text 300ms ease-out forwards;
+}
+
+@keyframes pop-text {
+  from {
+    font-size: 130%;
   }
-  
-  .clicked,
-  .outerContainer:hover {
-    color: #fec302;
-    cursor: pointer;
+  to {
+    font-size: 100%;
   }
-  
- 
+}
