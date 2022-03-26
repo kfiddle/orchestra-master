@@ -12,7 +12,7 @@ const InstButton = (props) => {
   const clicked = props.clicked;
 
   const showDoublings = () => {
-    // setDoublingsClicked((previous) => !previous);
+    setDoublingsClicked((previous) => !previous);
     clicked();
   };
 

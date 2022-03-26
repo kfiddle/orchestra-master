@@ -20,7 +20,7 @@ const Family = (props) => {
 
   for (let instrument of list) {
     displayableInputs.push(
-      <InstrumentNum key={displayableInputs.length} instrument={instrument} />
+      <InstrumentNum key={displayableInputs.length} instrument={instrument} showChairs={alternateClicked}/>
     );
   }
 
