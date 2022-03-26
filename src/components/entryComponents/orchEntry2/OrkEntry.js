@@ -25,12 +25,23 @@ const primaryParts = [
 ];
 
 const OrkEntry = (props) => {
+  const [allChairs, setAllChairs] = useState([]);
+
   const displayableParts = primaryParts.map((part) => (
-    <InstrumentNum key={primaryParts.indexOf(part)} instrument={part} />
+    <InstrumentNum
+      key={primaryParts.indexOf(part)}
+      instrument={part}
+      allChairs={allChairs}
+      setAllChairs={setAllChairs}
+    />
   ));
 
   const submit = () => {
-    console.log("submitting");
+    console.log(allChairs);
+  };
+
+  const alternateClickHandler = (familyLabel) => {
+    console.log(familyLabel);
   };
 
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
@@ -38,11 +49,17 @@ const OrkEntry = (props) => {
   return (
     <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>
       <div className={styles.outerContainer}>
-        <FamilyBox familyLabel={"WINDS"}>
+        <FamilyBox
+          familyLabel={"WINDS"}
+          alternateClicked={alternateClickHandler}
+        >
           {displayableParts.slice(0, 4)}
         </FamilyBox>
 
-        <FamilyBox familyLabel={"BRASS"}>
+        <FamilyBox
+          familyLabel={"BRASS"}
+          alternateClicked={alternateClickHandler}
+        >
           {displayableParts.slice(4, 8)}
         </FamilyBox>
 

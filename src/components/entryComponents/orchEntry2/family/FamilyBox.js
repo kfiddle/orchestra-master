@@ -2,8 +2,10 @@ import styles from "./FamilyBox.module.css";
 
 const FamilyBox = (props) => {
   const familyLabel = props.familyLabel;
+  const alternateClicked = props.alternateClicked;
+
   const alternateClickHandler = () => {
-    console.log("I got clicked");
+    alternateClicked(familyLabel);
   };
 
   return (

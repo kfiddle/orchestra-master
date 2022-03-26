@@ -1,11 +1,5 @@
 import { useState, useContext, useEffect } from "react";
 
-import AlternateClicked from "../../../../store/alternate-clicked";
-
-import FullInstrumentation from "../../../../store/full-instrumentation";
-
-import ChairsHolder from "../../../../store/chairs-holder";
-
 import { InstrumentationSubmit } from "../../../../store/submit-clicked";
 import NumberInput from "../../../input/numberInput/NumberInput";
 
@@ -16,11 +10,19 @@ import styles from "./InstrumentNum.module.css";
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
 
+  const allChairs = props.allChairs;
+  const setAllChairs = props.setAllChairs;
+
   const instrument = props.instrument;
 
   const chairs = useMakeChairs(instrument, number);
 
- 
+  useEffect(() => {
+    let tempChairs = allChairs;
+    tempChairs.push.apply(tempChairs, chairs);
+    setAllChairs(tempChairs);
+  }, [chairs]);
+
   const clickHandler = () => {
     props.clicked(instrument, number);
   };
