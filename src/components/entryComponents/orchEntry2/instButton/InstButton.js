@@ -9,9 +9,11 @@ const InstButton = (props) => {
 
   const primaryPart = props.instrument;
   const rank = props.rank;
+  const clicked = props.clicked;
 
   const showDoublings = () => {
-    setDoublingsClicked((previous) => !previous);
+    // setDoublingsClicked((previous) => !previous);
+    clicked();
   };
 
   return (

@@ -25,23 +25,23 @@ const primaryParts = [
 ];
 
 const OrkEntry = (props) => {
-  const [allChairs, setAllChairs] = useState([]);
+//   const [allChairs, setAllChairs] = useState([]);
+  const [showAlts, setShowAlts] = useState({ WINDS: false, BRASS: false });
 
   const displayableParts = primaryParts.map((part) => (
     <InstrumentNum
       key={primaryParts.indexOf(part)}
       instrument={part}
-      allChairs={allChairs}
-      setAllChairs={setAllChairs}
+      showChairs={showAlts['WINDS']}
     />
   ));
 
   const submit = () => {
-    console.log(allChairs);
+    console.log('submitting');
   };
 
   const alternateClickHandler = (familyLabel) => {
-    console.log(familyLabel);
+   setShowAlts({...showAlts, [familyLabel]: !showAlts[familyLabel]})
   };
 
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };

@@ -4,24 +4,28 @@ import { InstrumentationSubmit } from "../../../../store/submit-clicked";
 import NumberInput from "../../../input/numberInput/NumberInput";
 
 import useMakeChairs from "../../../../hooks/useMakeChairs";
+import Chair from "../chair/Chair";
 
 import styles from "./InstrumentNum.module.css";
+import InstButton from "../instButton/InstButton";
 
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
+  const [showChairs, setShowChairs] = useState(false);
 
-  const allChairs = props.allChairs;
-  const setAllChairs = props.setAllChairs;
+//   const allChairs = props.allChairs;
+//   const setAllChairs = props.setAllChairs;
+
 
   const instrument = props.instrument;
 
-  const chairs = useMakeChairs(instrument, number);
+  const displayableChairs = [];
 
-  useEffect(() => {
-    let tempChairs = allChairs;
-    tempChairs.push.apply(tempChairs, chairs);
-    setAllChairs(tempChairs);
-  }, [chairs]);
+  for (let j = 1; j <= number; j++) {
+    displayableChairs.push(
+      <Chair key={j} part={instrument} rank={j} show={showChairs} />
+    );
+  }
 
   const clickHandler = () => {
     props.clicked(instrument, number);
@@ -29,6 +33,10 @@ const InstrumentNum = (props) => {
 
   const setThisInstrument = (number) => {
     setNumber(+number);
+  };
+
+  const showInsts = () => {
+    setShowChairs(true);
   };
 
   return (
@@ -41,6 +49,9 @@ const InstrumentNum = (props) => {
         numberSetter={setThisInstrument}
         number={number}
       ></NumberInput>
+      <button onClick={showInsts}>randomButton</button>
+
+      <div>{displayableChairs}</div>
     </div>
   );
 };
