@@ -11,47 +11,43 @@ import InstButton from "../instButton/InstButton";
 
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
-  const [showChairs, setShowChairs] = useState(false);
-
-//   const allChairs = props.allChairs;
-//   const setAllChairs = props.setAllChairs;
-
+  const [chairsList, setChairsList] = useState([]);
 
   const instrument = props.instrument;
+  const family = props.family;
+  const showChairs = props.showChairs;
 
   const displayableChairs = [];
 
-  for (let j = 1; j <= number; j++) {
-    displayableChairs.push(
-      <Chair key={j} part={instrument} rank={j} show={showChairs} />
-    );
-  }
+  useEffect(() => {
+    const setChairs = () => {
+      setChairsList([]);
+      let tempList = [];
 
-  const clickHandler = () => {
-    props.clicked(instrument, number);
-  };
+      for (let j = 1; j <= number; j++) {
+        tempList.push(<Chair key={j} part={instrument} rank={j} show={true} />);
+      }
+      setChairsList(tempList);
+    };
+
+    setChairs();
+  }, [number]);
 
   const setThisInstrument = (number) => {
     setNumber(+number);
   };
 
-  const showInsts = () => {
-    setShowChairs(true);
-  };
-
   return (
-    <div className={styles.instrumentBubble}>
-      <div className={styles.labelAndClickerHolder} onClick={clickHandler}>
-        {instrument}
+    <div className={styles.outerContainer}>
+      <div className={styles.instrumentBubble}>
+        <div className={styles.labelAndClickerHolder}>{instrument}</div>
+        <NumberInput
+          type={"text"}
+          numberSetter={setThisInstrument}
+          number={number}
+        ></NumberInput>
       </div>
-      <NumberInput
-        type={"text"}
-        numberSetter={setThisInstrument}
-        number={number}
-      ></NumberInput>
-      <button onClick={showInsts}>randomButton</button>
-
-      <div>{displayableChairs}</div>
+      <div>{chairsList}</div>
     </div>
   );
 };

@@ -12,36 +12,22 @@ import PercussionBox from "./percussionBox/PercussionBox";
 import StringsBox from "./stringsBox/StringsBox";
 
 import styles from "./OrchEntry2.module.css";
+import AlternateDiv from "./alternateDiv/AlternateDiv";
 
-const primaryParts = [
-  "FLUTE",
-  "OBOE",
-  "CLARINET",
-  "BASSOON",
-  "HORN",
-  "TRUMPET",
-  "TROMBONE",
-  "TUBA",
-];
+const primaryParts = {
+  WINDS: { FLUTE: 0, OBOE: 0, CLARINET: 0, BASSOON: 0 },
+  BRASS: { HORN: 0, TRUMPET: 0, TROMBONE: 0, TUBA: 0 },
+};
 
 const OrkEntry = (props) => {
-//   const [allChairs, setAllChairs] = useState([]);
   const [showAlts, setShowAlts] = useState({ WINDS: false, BRASS: false });
 
-  const displayableParts = primaryParts.map((part) => (
-    <InstrumentNum
-      key={primaryParts.indexOf(part)}
-      instrument={part}
-      showChairs={showAlts['WINDS']}
-    />
-  ));
-
   const submit = () => {
-    console.log('submitting');
+    console.log('primaries');
   };
 
   const alternateClickHandler = (familyLabel) => {
-   setShowAlts({...showAlts, [familyLabel]: !showAlts[familyLabel]})
+    setShowAlts({ ...showAlts, [familyLabel]: !showAlts[familyLabel] });
   };
 
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
@@ -53,14 +39,20 @@ const OrkEntry = (props) => {
           familyLabel={"WINDS"}
           alternateClicked={alternateClickHandler}
         >
-          {displayableParts.slice(0, 4)}
+          <InstrumentNum instrument={"FLUTE"} family={'WINDS'} showChairs={showAlts['WINDS']} />
+          <InstrumentNum instrument={"OBOE"} family={'WINDS'} showChairs={showAlts['WINDS']} />
+          <InstrumentNum instrument={"CLARINET"} family={'WINDS'} showChairs={showAlts['WINDS']} />
+          <InstrumentNum instrument={"BASSOON"} family={'WINDS'} showChairs={showAlts['WINDS']}/>
         </FamilyBox>
 
         <FamilyBox
           familyLabel={"BRASS"}
           alternateClicked={alternateClickHandler}
         >
-          {displayableParts.slice(4, 8)}
+          <InstrumentNum instrument={"HORN"} family={'BRASS'} showChairs={showAlts['BRASS']} />
+          <InstrumentNum instrument={"TRUMPET"} family={'BRASS'} showChairs={showAlts['BRASS']}/>
+          <InstrumentNum instrument={"TROMBONE"} family={'BRASS'} showChairs={showAlts['BRASS']} />
+          <InstrumentNum instrument={"TUBA"} family={'BRASS'} showChairs={showAlts['BRASS']} />
         </FamilyBox>
 
         <div className={styles.SubmitButtonDiv}>

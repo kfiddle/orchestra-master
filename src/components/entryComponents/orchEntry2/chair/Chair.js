@@ -16,7 +16,6 @@ const doublingObject = {
 
 const Chair = (props) => {
   const [parts, setParts] = useState([]);
-  const [showButton, setShowButton] = useState(false);
 
   const rank = props.rank;
   const primaryPart = props.part;
@@ -24,11 +23,7 @@ const Chair = (props) => {
 
   useEffect(() => {
     setParts([primaryPart]);
-
-    if (props.show) {
-      setShowButton(true);
-    }
-  }, [primaryPart, show]);
+  }, [primaryPart]);
 
   const showDoublings = () => {
     console.log(doublingObject[primaryPart]);
@@ -40,7 +35,7 @@ const Chair = (props) => {
     setParts(tempList);
   };
 
-  if (showButton) {
+  if (show) {
     return (
       <InstButton
         instrument={primaryPart}

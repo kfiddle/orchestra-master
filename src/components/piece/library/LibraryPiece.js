@@ -60,11 +60,11 @@ const LibraryPiece = (props) => {
         <OrchestrationEntry closeModal={closeModal} piece={props.piece} />
       )} */}
 
-      {/* {orchestrationClicked && (
+      {orchestrationClicked && (
         <OrchEntry2 closeModal={closeModal} piece={props.piece} />
-      )} */}
+      )}
 
-      {orchestrationClicked && <OrkEntry closeModal={closeModal} piece={props.piece} />}
+      {/* {orchestrationClicked && <OrkEntry closeModal={closeModal} piece={props.piece} />} */}
     </div>
   );
 };
