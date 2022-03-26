@@ -25,14 +25,14 @@ const OrchEntry2 = (props) => {
 
   const submit = () => {
     setSubmitClicked(true);
-    // console.log(primariesObject)
+    console.log(allChairs);
   };
 
   return (
     <FullInstrumentation.Provider
       value={{ primariesObject, setPrimariesObject }}
     >
-      <ChairsHolder.Provider value={{allChairs, setAllChairs}}>
+      <ChairsHolder.Provider value = {{allChairs, setAllChairs}}>
         <InstrumentationSubmit.Provider value={{ submitClicked }}>
           <Modal
             closeModal={props.closeModal}
