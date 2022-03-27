@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import InstrumentNum from "../instrumentNum/InstrumentNum";
-import AlternateDiv from "../alternateDiv/AlternateDiv";
 
 import AlternateClicked from "../../../../store/alternate-clicked";
 
@@ -35,7 +34,6 @@ const Family = (props) => {
           </div>
           {displayableInputs}
         </div>
-        {alternateClicked && <AlternateDiv list={list}/>}
       </div>
     </AlternateClicked.Provider>
   );

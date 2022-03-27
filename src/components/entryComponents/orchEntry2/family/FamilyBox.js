@@ -16,7 +16,6 @@ const FamilyBox = (props) => {
         </div>
         {props.children}
       </div>
-      {/* {alternateClicked && <AlternateDiv list={list} />} */}
     </div>
   );
 };

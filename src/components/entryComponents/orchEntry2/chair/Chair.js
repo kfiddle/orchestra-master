@@ -2,7 +2,10 @@ import { useState, useEffect, useContext } from "react";
 
 import InstButton from "../instButton/InstButton";
 
+import PushBasic from '../../../helperFunctions/pushFunctions/PushBasic';
+
 import { InstrumentationSubmit } from "../../../../store/submit-clicked";
+import { PieceHolder } from "../../../../store/object-holder";
 
 const doublingObject = {
   FLUTE: ["PICCOLO", "ALTOFLUTE"],
@@ -19,6 +22,7 @@ const doublingObject = {
 const Chair = (props) => {
   const [parts, setParts] = useState([]);
   const { submitClicked } = useContext(InstrumentationSubmit);
+  const { piece } = useContext(PieceHolder);
 
   const chairPartz = [parts, setParts];
 
@@ -31,14 +35,20 @@ const Chair = (props) => {
   }, [primaryPart]);
 
   useEffect(() => {
+    const sendItUp = async () => {
+      let response = await PushBasic(
+        { parts: parts, rank: rank, piece: piece },
+        "add-chair-to-piece"
+      );
+      if (response.ok) {
+        console.log("gotcha");
+      }
+    };
+
     if (submitClicked) {
-      console.log(parts);
+      sendItUp();
     }
   }, [submitClicked]);
-
-  const showDoublings = () => {
-    console.log(doublingObject[primaryPart]);
-  };
 
   const addPart = (part) => {
     let tempList = parts;
@@ -51,7 +61,6 @@ const Chair = (props) => {
       <InstButton
         instrument={primaryPart}
         rank={rank}
-        clicked={showDoublings}
         chairPartz={chairPartz}
       />
     );

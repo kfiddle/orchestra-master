@@ -31,10 +31,6 @@ const DoubleOpt = (props) => {
     checkParts();
   };
 
-  //   let classNames = !parts.includes(part)
-  //     ? styles.outerContainer
-  //     : `${styles.outerContainer} ${styles.clicked}`;
-
   return (
     <div className={classNames} onClick={clickedInstrumentHandler}>
       {part}

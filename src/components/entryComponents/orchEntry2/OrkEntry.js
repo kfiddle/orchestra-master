@@ -12,7 +12,7 @@ import PercussionBox from "./percussionBox/PercussionBox";
 import StringsBox from "./stringsBox/StringsBox";
 
 import styles from "./OrchEntry2.module.css";
-import AlternateDiv from "./alternateDiv/AlternateDiv";
+// import AlternateDiv from "./alternateDiv/AlternateDiv";
 
 const primaryParts = {
   WINDS: { FLUTE: 0, OBOE: 0, CLARINET: 0, BASSOON: 0 },
