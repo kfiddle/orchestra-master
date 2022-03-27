@@ -1,6 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import InstButton from "../instButton/InstButton";
+
+import { InstrumentationSubmit } from "../../../../store/submit-clicked";
 
 const doublingObject = {
   FLUTE: ["PICCOLO", "ALTOFLUTE"],
@@ -16,6 +18,9 @@ const doublingObject = {
 
 const Chair = (props) => {
   const [parts, setParts] = useState([]);
+  const { submitClicked } = useContext(InstrumentationSubmit);
+
+  const chairPartz = [parts, setParts];
 
   const rank = props.rank;
   const primaryPart = props.part;
@@ -24,6 +29,12 @@ const Chair = (props) => {
   useEffect(() => {
     setParts([primaryPart]);
   }, [primaryPart]);
+
+  useEffect(() => {
+    if (submitClicked) {
+      console.log(parts);
+    }
+  }, [submitClicked]);
 
   const showDoublings = () => {
     console.log(doublingObject[primaryPart]);
@@ -41,6 +52,7 @@ const Chair = (props) => {
         instrument={primaryPart}
         rank={rank}
         clicked={showDoublings}
+        chairPartz={chairPartz}
       />
     );
   } else {

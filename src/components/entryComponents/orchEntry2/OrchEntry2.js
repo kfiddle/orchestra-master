@@ -25,7 +25,6 @@ const OrchEntry2 = (props) => {
 
   const submit = () => {
     setSubmitClicked(true);
-    console.log(allChairs);
   };
 
   return (

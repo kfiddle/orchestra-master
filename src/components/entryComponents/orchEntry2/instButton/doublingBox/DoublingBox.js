@@ -18,6 +18,8 @@ const doublingObject = {
 const DoublingBox = (props) => {
   const primaryPart = props.primaryPart;
   const rank = props.rank;
+  const chairPartz = props.chairPartz;
+
 
   const displayedOptions = doublingObject[primaryPart].map((part) => (
     <DoublingOption
@@ -25,6 +27,7 @@ const DoublingBox = (props) => {
       primaryPart={primaryPart}
       rank={rank}
       part={part}
+      chairPartz={chairPartz}
     />
   ));
 

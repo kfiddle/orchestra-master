@@ -10,6 +10,7 @@ const InstButton = (props) => {
   const primaryPart = props.instrument;
   const rank = props.rank;
   const clicked = props.clicked;
+  const chairPartz = props.chairPartz;
 
   const showDoublings = () => {
     setDoublingsClicked((previous) => !previous);
@@ -25,7 +26,11 @@ const InstButton = (props) => {
       </div>
 
       {doublingsClicked && (
-        <DoublingBox primaryPart={primaryPart} rank={rank} />
+        <DoublingBox
+          primaryPart={primaryPart}
+          rank={rank}
+          chairPartz={chairPartz}
+        />
       )}
     </div>
   );
