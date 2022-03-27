@@ -1,3 +1,14 @@
+.titleDiv {
+  margin: 5rem;
+}
+
+.titleDiv h2 {
+  color: midnightblue;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+
 .SubmitButtonDiv {
   display: flex;
   justify-content: center;

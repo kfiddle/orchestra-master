@@ -32,6 +32,16 @@ const RosterSpot = (props) => {
   const setPlayerChange = props.setPlayerChange;
 
   let primaryPart = parts[0];
+
+  let doublingParts = "";
+
+
+  if (parts.length > 1) {
+    for (let j = 1; j < parts.length; j++) {
+      doublingParts = doublingParts + '/ ' + parts[j];
+    }
+  }
+
   let doublingPart = parts.length > 1 ? `+${parts[1]}` : "";
 
   let lastName = "";
@@ -67,9 +77,10 @@ const RosterSpot = (props) => {
     }
   };
 
-  let printSectionLabel = rank === 1 || (stringPart && sectionSeat === 0)? true: false;
+  let printSectionLabel =
+    rank === 1 || (stringPart && sectionSeat === 0) ? true : false;
 
-  let printRankOrSeat = stringPart ? sectionSeat + 1: rank;
+  let printRankOrSeat = stringPart ? sectionSeat + 1 : rank;
 
   let marginClass = !printSectionLabel
     ? classes.sectionMargin
@@ -92,7 +103,7 @@ const RosterSpot = (props) => {
         </div>
         <div className={classes.rankDiv}>{printRankOrSeat}</div>
         <div className={classes.playerDiv}>{lastName}</div>
-        <div className={classes.doublingDiv}>{doublingPart}</div>
+        <div className={classes.doublingDiv}>{doublingParts}</div>
 
         <div className={classes.mailButtonDiv}>
           <AiOutlineMail className={classes.mailIcon} onClick={sendMessage} />

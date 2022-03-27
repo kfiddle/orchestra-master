@@ -32,6 +32,9 @@ const OrchEntry2 = (props) => {
       <PieceHolder.Provider value={{ piece }}>
         <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>
           <div className={styles.outerContainer}>
+          <div className={styles.titleDiv}>
+            <h2>{piece.title}</h2>
+          </div>
             <Family familyLabel={"WINDS"} list={winds}></Family>
             <Family familyLabel={"BRASS"} list={brass}></Family>
             <PercussionBox />
