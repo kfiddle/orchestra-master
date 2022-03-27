@@ -32,6 +32,13 @@ const DoublingOption = (props) => {
     }
   }, [clickedInstrument]);
 
+  useEffect(() => {
+    // if (parts.includes(part)) {
+    //   setClickedInstrument(true);
+    // }
+    console.log(parts)
+  }, [parts]);
+
   let classNames = !clickedInstrument
     ? styles.outerContainer
     : `${styles.outerContainer} ${styles.clicked}`;

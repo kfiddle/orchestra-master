@@ -12,13 +12,20 @@ const InstButton = (props) => {
   const clicked = props.clicked;
   const chairPartz = props.chairPartz;
 
+  const [parts, setParts] = chairPartz;
+
   const showDoublings = () => {
     setDoublingsClicked((previous) => !previous);
     clicked();
   };
 
+  const showParts = () => {
+    console.log(parts);
+  };
+
   return (
     <div className={styles.outerContainer}>
+      <button onClick={showParts}>test</button>
       <div className={styles.buttonContainer}>
         <button className={styles.button} onClick={showDoublings}>
           {primaryPart} {rank}

@@ -2,6 +2,7 @@ import DoublingOption from "./doublingOption/DoublingOption";
 import { useState } from "react";
 
 import styles from "./DoublingBox.module.css";
+import DoubleOpt from "./doublingOption/DoubleOpt";
 
 const doublingObject = {
   FLUTE: ["PICCOLO", "ALTOFLUTE"],
@@ -22,13 +23,19 @@ const DoublingBox = (props) => {
 
 
   const displayedOptions = doublingObject[primaryPart].map((part) => (
-    <DoublingOption
-      key={doublingObject[primaryPart].indexOf(part)}
-      primaryPart={primaryPart}
-      rank={rank}
-      part={part}
-      chairPartz={chairPartz}
-    />
+
+    // <DoublingOption
+    //   key={doublingObject[primaryPart].indexOf(part)}
+    //   primaryPart={primaryPart}
+    //   rank={rank}
+    //   part={part}
+    //   chairPartz={chairPartz}
+    // />
+
+    <DoubleOpt key={part} part={part} chairPartz={chairPartz}/>
+
+
+
   ));
 
   return <div className={styles.outerContainer}>{displayedOptions}</div>;
