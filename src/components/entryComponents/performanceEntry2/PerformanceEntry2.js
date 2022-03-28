@@ -16,9 +16,12 @@ import PerformanceStateFunctions from "../../../store/performance-state-function
 
 import classes from "./PerformanceEntry2.module.css";
 import ProgramRep from "./programRep/ProgramRep";
+import SubmitButton from "../../UI/submitButton/SubmitButton";
+import OrchEntry2 from "../orchEntry2/OrchEntry2";
 
 const PerformanceEntry2 = (props) => {
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
+  const [instButtonClicked, setInstButtonClicked] = useState(false);
 
   const [stringNumbers, setStringNumbers] = useState({});
   const [newlySavedShow, setNewlySavedShow] = useState(null);
@@ -70,6 +73,11 @@ const PerformanceEntry2 = (props) => {
     }
   };
 
+  const submitInstrumentation = (event) => {
+    event.preventDefault();
+    setInstButtonClicked((previous) => !previous);
+  };
+
   const pieceToList = (piece) => {
     ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
@@ -108,16 +116,21 @@ const PerformanceEntry2 = (props) => {
 
                 <Rehearsals />
 
-                <div className={classes.submitDiv}>
+                <div className={classes.instrumentationDiv}>
                   <button
-                    className={classes.button}
-                    onClick={submitPerformance}
+                    className={classes.instButton}
+                    onClick={submitInstrumentation}
                   >
-                    Submit
+                    Add Instrumentation
                   </button>
+                </div>
+
+                <div className={classes.submitDiv}>
+                  <SubmitButton submit={submitPerformance} />
                 </div>
               </form>
             </div>
+            {instButtonClicked && <OrchEntry2 />}
           </Modal>
         </NewlySavedShow.Provider>
       </PerformanceStateFunctions.Provider>

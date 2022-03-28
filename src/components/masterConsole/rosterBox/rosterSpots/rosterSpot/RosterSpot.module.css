@@ -54,7 +54,7 @@
 }
 
 .rankDiv {
-  width: 15%;
+  width: 5%;
 }
 
 .playerDiv {
@@ -62,8 +62,7 @@
 }
 
 .doublingDiv {
-  /* color: rgb(231, 235, 23); */
-  width: 25%;
+  width: 40%;
 }
 
 .mailButtonDiv {

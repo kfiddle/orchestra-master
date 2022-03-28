@@ -33,7 +33,7 @@ const OrchEntry2 = (props) => {
         <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>
           <div className={styles.outerContainer}>
           <div className={styles.titleDiv}>
-            <h2>{piece.title}</h2>
+            {piece? <h2>{piece.title}</h2>: ''}
           </div>
             <Family familyLabel={"WINDS"} list={winds}></Family>
             <Family familyLabel={"BRASS"} list={brass}></Family>
@@ -41,7 +41,7 @@ const OrchEntry2 = (props) => {
             <StringsBox />
 
             <div className={styles.SubmitButtonDiv}>
-              <SubmitButton submit={submit} />
+              {piece? <SubmitButton submit={submit} />: <button>CLOSE</button>}
             </div>
           </div>
         </Modal>
