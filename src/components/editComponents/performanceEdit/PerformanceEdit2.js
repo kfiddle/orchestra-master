@@ -6,6 +6,7 @@ import BigInput3 from "../../input/BigInput3";
 
 import ConcertsEdit from "./concertsEdit/ConcertsEdit";
 import DisplayedPiecesSimple from "./displayedPiecesSimple/DisplayedPiecesSimple";
+import OrchEntry2 from "../../entryComponents/orchEntry2/OrchEntry2";
 
 import ProgramRepEdit from "./programRepEdit/ProgramRepEdit";
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
@@ -21,10 +22,14 @@ const PerformanceEdit2 = (props) => {
   const [performance, setPerformance] = useState(props.performance);
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [showEditsSubmitted, setShowEditsSubmitted] = useState(false);
+  const [instButtonClicked, setInstButtonClicked] = useState(false);
 
   useEffect(() => {
     const getPieces = async () => {
-      const response = await PushBasic(performance, "get-pieces-on-program");
+      const response = await PushBasic(
+        props.performance,
+        "get-pieces-on-program"
+      );
       if (response.ok) {
         let listOfPieces = await response.json();
         if (listOfPieces.length > 0) {
@@ -42,6 +47,11 @@ const PerformanceEdit2 = (props) => {
     PieceListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
+  const submitInstrumentation = (event) => {
+    event.preventDefault();
+    setInstButtonClicked((previous) => !previous);
+  };
+
   const submitPerformanceEdits = async (event) => {
     event.preventDefault();
     let response = await PushBasic(performance, "edit-performance");
@@ -49,8 +59,6 @@ const PerformanceEdit2 = (props) => {
       setShowEditsSubmitted(true);
       props.closeModal();
     }
-
-
   };
 
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
@@ -84,6 +92,15 @@ const PerformanceEdit2 = (props) => {
 
                   <ProgramRepEdit />
 
+                  <div className={styles.instrumentationDiv}>
+                    <button
+                      className={styles.instButton}
+                      onClick={submitInstrumentation}
+                    >
+                      Add Instrumentation
+                    </button>
+                  </div>
+
                   {clickedPiecesList.length > 0 && <DisplayedPiecesSimple />}
 
                   <div className={styles.submitDiv}>
@@ -95,6 +112,7 @@ const PerformanceEdit2 = (props) => {
                     </button>
                   </div>
                 </form>
+                {instButtonClicked && <OrchEntry2 show={performance} />}
               </div>
             </Modal>
           </PerformanceStateFunctions.Provider>

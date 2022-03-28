@@ -24,7 +24,7 @@ const InstrumentNum = (props) => {
       let tempList = [];
 
       for (let j = 1; j <= number; j++) {
-        tempList.push(<Chair key={j} part={instrument} rank={j} show={showChairs} />);
+        tempList.push(<Chair key={j} part={instrument} rank={j} display={showChairs} />);
       }
       setChairsList(tempList);
     };
