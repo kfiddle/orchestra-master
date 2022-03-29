@@ -55,18 +55,10 @@ const Extra = (props) => {
     // setLocalNumber((previous) => previous - 1);
   };
 
-  let classNames = !clicked ? styles.instrumentItemDiv : styles.clickedItem;
+  let classNames = !clicked ? styles.outerContainer : `${styles.outerContainer} ${styles.clickedItem}`;
 
   return (
-    <div className={styles.outerContainer}>
-      <div className={styles.minusDiv}>
-        <FiMinus className={styles.plusMinusSign} />
-      </div>
-      <div className={styles.nameDiv}>{instrument}</div>
-      <div className={styles.plusDiv}>
-        <FiPlus className={styles.plusMinusSign} />
-      </div>
-    </div>
+    <div className={classNames} onClick={clickHandler} >{instrument}</div>
 
     // <div className={styles.outerContainer}>
     //   <div onClick={clickHandler} className={classNames}>
