@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import NumberInput from "../../../input/numberInput/NumberInput";
 
 import DoublingExtras from "../../../helperFunctions/DoublingExtras";
+import Extras from "../auxiliaries/Extras";
 
 import Chair from "../chair/Chair";
 
@@ -57,8 +58,11 @@ const InstrumentNum = (props) => {
         ></NumberInput>
       </div>
       <div className={styles.chairsAndExtrasDiv}>
-        {showChairs && <div>{chairsList}</div>}
-        {showExtras && <div>{extras[instrument]}</div>}
+        <div>{showChairs && <div>{chairsList}</div>}</div>
+        <div>
+          {showExtras && <Extras instrumentList={extras[instrument]} />}
+        </div>
+
       </div>
     </div>
   );

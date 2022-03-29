@@ -35,3 +35,7 @@
 .labelAndClickerHolder:hover {
   color: rgb(175, 33, 231);
 }
+
+.chairsAndExtrasDiv{
+  display: flex;
+}
