@@ -14,10 +14,11 @@ const RosterBox = (props) => {
   const [playerChange, setPlayerChange] = useState(false);
 
   const piece = props.piece;
+  const directList = props.directList;
 
   useEffect(() => {
     const getTheChairs = async () => {
-      let response = await PushBasic(piece, "get-chairs-in-show-piece");
+      let response = await PushBasic(piece, "get-pics-in-show-piece");
       if (response.ok) {
         let newChairs = await response.json();
         setChairsToFill(newChairs);
@@ -27,11 +28,11 @@ const RosterBox = (props) => {
 
     if (playerChange) {
       getTheChairs();
-      setPlayerChange(false)
+      setPlayerChange(false);
     }
 
-    getTheChairs();
-  }, [piece, playerChange]);
+    !directList ? getTheChairs() : setChairsToFill(directList);
+  }, [piece, directList, playerChange]);
 
   const clickedSpotHandler = async (chair) => {
     setClickedChair(chair);

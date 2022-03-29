@@ -52,6 +52,10 @@ const PerformanceEdit2 = (props) => {
     setInstButtonClicked((previous) => !previous);
   };
 
+  const closeModal = () => {
+    setInstButtonClicked(false);
+  };
+
   const submitPerformanceEdits = async (event) => {
     event.preventDefault();
     let response = await PushBasic(performance, "edit-performance");
@@ -112,7 +116,7 @@ const PerformanceEdit2 = (props) => {
                     </button>
                   </div>
                 </form>
-                {instButtonClicked && <OrchEntry2 show={performance} />}
+                {instButtonClicked && <OrchEntry2 show={performance} closeModal={closeModal} />}
               </div>
             </Modal>
           </PerformanceStateFunctions.Provider>

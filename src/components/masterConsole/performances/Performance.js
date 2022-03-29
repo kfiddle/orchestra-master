@@ -64,7 +64,7 @@ const Performance = (props) => {
       className={`${styles.outerContainer} ${clickedOrNot}`}
       onClick={clickedPerformance}
     >
-      <div className={styles.titleDiv}>{title}</div>
+      <div className={styles.titleDiv}>{title} </div>
       <div className={styles.dateDiv}>{displayDate}</div>
 
       <div className={styles.buttonsDiv}>

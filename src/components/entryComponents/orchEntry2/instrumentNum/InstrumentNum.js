@@ -1,13 +1,12 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-import { InstrumentationSubmit } from "../../../../store/submit-clicked";
 import NumberInput from "../../../input/numberInput/NumberInput";
 
-import useMakeChairs from "../../../../hooks/useMakeChairs";
+import DoublingExtras from "../../../helperFunctions/DoublingExtras";
+
 import Chair from "../chair/Chair";
 
 import styles from "./InstrumentNum.module.css";
-import InstButton from "../instButton/InstButton";
 
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
@@ -17,14 +16,15 @@ const InstrumentNum = (props) => {
   const family = props.family;
   const showChairs = props.showChairs;
 
-
   useEffect(() => {
     const setChairs = () => {
       setChairsList([]);
       let tempList = [];
 
       for (let j = 1; j <= number; j++) {
-        tempList.push(<Chair key={j} part={instrument} rank={j} display={showChairs} />);
+        tempList.push(
+          <Chair key={j} part={instrument} rank={j} display={showChairs} />
+        );
       }
       setChairsList(tempList);
     };
@@ -36,10 +36,17 @@ const InstrumentNum = (props) => {
     setNumber(+number);
   };
 
+  const showExtras = () => {
+    const { extras } = DoublingExtras();
+    console.log(extras[instrument]);
+  };
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.instrumentBubble}>
-        <div className={styles.labelAndClickerHolder}>{instrument}</div>
+        <div className={styles.labelAndClickerHolder} onClick={showExtras}>
+          {instrument}
+        </div>
         <NumberInput
           type={"text"}
           numberSetter={setThisInstrument}

@@ -5,7 +5,6 @@ import classes from "./StringsBox.module.css";
 const StringsBox = (props) => {
   const [stringsChecked, setStringsChecked] = useState(true);
 
-
   const setStrings = (event) => {
     setStringsChecked((previous) => !previous);
   };

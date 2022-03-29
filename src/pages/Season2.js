@@ -9,8 +9,6 @@ import useGetAList2 from "../hooks/useGetAList2";
 
 const Season2 = (props) => {
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
-  // const reloadFlag = props.reloadFlag;
-  // const setReloadFlag = props.setReloadFlag;
 
   let allPerformances = useGetAList2(
     "get-performances-by-primary-date",

@@ -9,17 +9,17 @@ import { InstrumentationSubmit } from "../../../../store/submit-clicked";
 import { PieceHolder } from "../../../../store/object-holder";
 import { ShowHolder } from "../../../../store/object-holder";
 
-const doublingObject = {
-  FLUTE: ["PICCOLO", "ALTOFLUTE"],
-  OBOE: ["ENGLISHHORN"],
-  CLARINET: ["EBCLARINET", "BASSCLARINET"],
-  BASSOON: ["CONTRA"],
+// const doublingObject = {
+//   FLUTE: ["PICCOLO", "ALTOFLUTE"],
+//   OBOE: ["ENGLISHHORN"],
+//   CLARINET: ["EBCLARINET", "BASSCLARINET"],
+//   BASSOON: ["CONTRA"],
 
-  HORN: [""],
-  TRUMPET: ["CORNET", "FUGALHORN"],
-  TROMBONE: ["EUPHONIUM"],
-  TUBA: ["EUPHONIUM"],
-};
+//   HORN: [""],
+//   TRUMPET: ["CORNET", "FUGALHORN"],
+//   TROMBONE: ["EUPHONIUM"],
+//   TUBA: ["EUPHONIUM"],
+// };
 
 const Chair = (props) => {
   const [parts, setParts] = useState([]);
@@ -36,9 +36,6 @@ const Chair = (props) => {
 
   useEffect(() => {
     setParts([primaryPart]);
-
-    console.log(piece);
-    console.log(show);
   }, [primaryPart]);
 
   useEffect(() => {
