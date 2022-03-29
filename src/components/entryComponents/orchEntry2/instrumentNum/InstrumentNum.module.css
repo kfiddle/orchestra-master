@@ -1,4 +1,3 @@
-
 .instrumentBubble {
   display: flex;
   justify-content: space-between;
@@ -31,4 +30,8 @@
   align-items: center;
   width: 13%;
   padding-right: 1rem;
+}
+
+.labelAndClickerHolder:hover {
+  color: rgb(175, 33, 231);
 }

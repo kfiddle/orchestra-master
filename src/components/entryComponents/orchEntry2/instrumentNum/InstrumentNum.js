@@ -11,10 +11,12 @@ import styles from "./InstrumentNum.module.css";
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
   const [chairsList, setChairsList] = useState([]);
+  const [showExtras, setShowExtras] = useState(false);
 
   const instrument = props.instrument;
-  const family = props.family;
   const showChairs = props.showChairs;
+
+  const { extras } = DoublingExtras();
 
   useEffect(() => {
     const setChairs = () => {
@@ -22,9 +24,7 @@ const InstrumentNum = (props) => {
       let tempList = [];
 
       for (let j = 1; j <= number; j++) {
-        tempList.push(
-          <Chair key={j} part={instrument} rank={j} display={showChairs} />
-        );
+        tempList.push(<Chair key={j} part={instrument} rank={j} />);
       }
       setChairsList(tempList);
     };
@@ -36,15 +36,18 @@ const InstrumentNum = (props) => {
     setNumber(+number);
   };
 
-  const showExtras = () => {
-    const { extras } = DoublingExtras();
+  const extrasClickHandler = () => {
+    setShowExtras((previous) => !previous);
     console.log(extras[instrument]);
   };
 
   return (
     <div className={styles.outerContainer}>
       <div className={styles.instrumentBubble}>
-        <div className={styles.labelAndClickerHolder} onClick={showExtras}>
+        <div
+          className={styles.labelAndClickerHolder}
+          onClick={extrasClickHandler}
+        >
           {instrument}
         </div>
         <NumberInput
@@ -53,7 +56,10 @@ const InstrumentNum = (props) => {
           number={number}
         ></NumberInput>
       </div>
-      <div>{chairsList}</div>
+      <div className={styles.chairsAndExtrasDiv}>
+        {showChairs && <div>{chairsList}</div>}
+        {showExtras && <div>{extras[instrument]}</div>}
+      </div>
     </div>
   );
 };

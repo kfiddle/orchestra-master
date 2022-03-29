@@ -9,18 +9,6 @@ import { InstrumentationSubmit } from "../../../../store/submit-clicked";
 import { PieceHolder } from "../../../../store/object-holder";
 import { ShowHolder } from "../../../../store/object-holder";
 
-// const doublingObject = {
-//   FLUTE: ["PICCOLO", "ALTOFLUTE"],
-//   OBOE: ["ENGLISHHORN"],
-//   CLARINET: ["EBCLARINET", "BASSCLARINET"],
-//   BASSOON: ["CONTRA"],
-
-//   HORN: [""],
-//   TRUMPET: ["CORNET", "FUGALHORN"],
-//   TROMBONE: ["EUPHONIUM"],
-//   TUBA: ["EUPHONIUM"],
-// };
-
 const Chair = (props) => {
   const [parts, setParts] = useState([]);
   const { submitClicked } = useContext(InstrumentationSubmit);
@@ -32,7 +20,6 @@ const Chair = (props) => {
 
   const rank = props.rank;
   const primaryPart = props.part;
-  const display = props.display;
 
   useEffect(() => {
     setParts([primaryPart]);
@@ -63,17 +50,9 @@ const Chair = (props) => {
     setParts(tempList);
   };
 
-  if (display) {
-    return (
-      <InstButton
-        instrument={primaryPart}
-        rank={rank}
-        chairPartz={chairPartz}
-      />
-    );
-  } else {
-    return null;
-  }
+  return (
+    <InstButton instrument={primaryPart} rank={rank} chairPartz={chairPartz} />
+  );
 };
 
 export default Chair;
