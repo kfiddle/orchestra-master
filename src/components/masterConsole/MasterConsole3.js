@@ -40,7 +40,7 @@ const MasterConsole3 = (props) => {
 
   return (
     <div className={styles.outerContainer}>
-      <div>
+      <div className={styles.performancesDiv}>
         <Performances
           allPerformances={allPerformances}
           clicked={clickedPerformanceHandler}
