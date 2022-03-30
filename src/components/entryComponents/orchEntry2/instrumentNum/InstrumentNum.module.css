@@ -1,6 +1,5 @@
 .instrumentBubble {
   display: flex;
-  /* justify-content: space-between; */
   border-radius: 25px;
   background: linear-gradient(
     to left,
@@ -25,10 +24,11 @@
 }
 
 .labelAndClickerHolder {
+  width: 10rem;
+
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 23%;
   padding-right: 1rem;
 }
 
@@ -36,7 +36,10 @@
   color: rgb(175, 33, 231);
 }
 
-.chairsAndExtrasDiv{
+.labelHolder {
+}
+
+.chairsAndExtrasDiv {
   display: flex;
   width: fit-content;
 }

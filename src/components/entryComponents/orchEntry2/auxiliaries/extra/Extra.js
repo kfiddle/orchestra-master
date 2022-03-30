@@ -55,10 +55,14 @@ const Extra = (props) => {
     // setLocalNumber((previous) => previous - 1);
   };
 
+  const flipLabel = () => {
+      console.log('flip these')
+  }
+
   let classNames = !clicked ? styles.outerContainer : `${styles.outerContainer} ${styles.clickedItem}`;
 
   return (
-    <div className={classNames} onClick={clickHandler} >{instrument}</div>
+    <div className={classNames} onClick={clickHandler}>{instrument}</div>
 
     // <div className={styles.outerContainer}>
     //   <div onClick={clickHandler} className={classNames}>
