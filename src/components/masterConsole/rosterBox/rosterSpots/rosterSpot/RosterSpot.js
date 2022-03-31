@@ -17,10 +17,6 @@ const RosterSpot = (props) => {
   let player = props.playerInChair.player;
   let sectionSeat = props.playerInChair.sectionSeat;
 
-  if (specialDesignate) {
-    console.log(specialDesignate);
-  }
-
   let stringPart =
     parts[0] === "VIOLIN1" ||
     parts[0] === "VIOLIN2" ||
@@ -83,7 +79,16 @@ const RosterSpot = (props) => {
   let printSectionLabel =
     rank === 1 || (stringPart && sectionSeat === 0) ? true : false;
 
-  let printRankOrSeat = stringPart ? sectionSeat + 1 : rank;
+  let printRankOrSeat = rank;
+
+  if (stringPart) {
+    printRankOrSeat = sectionSeat + 1;
+  }
+  if (specialDesignate) {
+    printRankOrSeat = specialDesignate;
+  }
+
+  // let printRankOrSeat = stringPart ? sectionSeat + 1 : rank;
 
   let marginClass = !printSectionLabel
     ? classes.sectionMargin
