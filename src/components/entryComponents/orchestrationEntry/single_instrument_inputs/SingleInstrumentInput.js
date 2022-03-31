@@ -9,7 +9,7 @@ const doublingOptionsObject = {
   CLARINET: ["EBCLARINET", "BASSCLARINET"],
   BASSOON: ["CONTRA"],
   HORN: [""],
-  TRUMPET: ["CORNET", 'FUGALHORN'],
+  TRUMPET: ["CORNET", "FUGALHORN"],
   TROMBONE: ["EUPHONIUM"],
   TUBA: ["EUPHONIUM"],
   TIMPANI: [],
@@ -33,14 +33,24 @@ const SingleInstrumentInput = (props) => {
     setInputValue(event.target.value);
 
     let chairs = [];
+
+    let doublesObjects = [];
+    for (let double of doublingOptionsObject[instrument]) {
+      doublesObjects.push({ secondaryPart: double, active: false });
+    }
+
     for (let j = 1; j <= event.target.value; j++) {
-      let doublesObjects = [];
-      for (let double of doublingOptionsObject[instrument]) {
-        doublesObjects.push({ secondaryPart: double, active: false });
-      }
       chairs.push({
         primaryPart: instrument,
         rank: j,
+        doublesObjects: doublesObjects,
+      });
+    }
+    if (instrument === "HORN") {
+      chairs.push({
+        primaryPart: instrument,
+        rank: chairs.length + 1,
+        displayedRank: "A",
         doublesObjects: doublesObjects,
       });
     }
@@ -67,7 +77,7 @@ const SingleInstrumentInput = (props) => {
       {optionsClicked && (
         <InstrumentButtons
           instrument={instrument}
-          number={+allParts[instrument]}
+          number={allParts[instrument].length}
           chairs={allParts[instrument]}
           setter={setAllParts}
           allParts={allParts}

@@ -10,18 +10,13 @@ const originalBackground =
 
 const Extra = (props) => {
   const [clicked, setClicked] = useState(false);
-  //   const [extras, setExtras] = props.extrasStateStuff;
   const [localNumber, setLocalNumber] = useState(0);
 
   const instrument = props.instrument;
 
-  //   let tempList = extras;
-
-  //   const addInstrument = () => {
-  //     tempList.push({ parts: [instrument], rank: 1 });
-  //     setExtras(tempList);
-  //     setLocalNumber((previous) => previous + 1);
-  //   };
+  const addInstrument = () => {
+    setLocalNumber((previous) => previous + 1);
+  };
 
   //   const subtractInstrument = () => {
   //     for (let j = 0; j < tempList.length; j++) {
@@ -55,14 +50,18 @@ const Extra = (props) => {
     // setLocalNumber((previous) => previous - 1);
   };
 
-  const flipLabel = () => {
-      console.log('flip these')
-  }
-
-  let classNames = !clicked ? styles.outerContainer : `${styles.outerContainer} ${styles.clickedItem}`;
+  let classNames =
+    localNumber === 0
+      ? styles.nameDiv
+      : `${styles.nameDiv} ${styles.clickedItem}`;
 
   return (
-    <div className={classNames} onClick={clickHandler}>{instrument}</div>
+    <div className={styles.outerContainer}>
+      <div className={classNames} onClick={addInstrument}>
+        {instrument}
+      </div>
+      <div className={styles.numberBox}>{localNumber}</div>
+    </div>
 
     // <div className={styles.outerContainer}>
     //   <div onClick={clickHandler} className={classNames}>

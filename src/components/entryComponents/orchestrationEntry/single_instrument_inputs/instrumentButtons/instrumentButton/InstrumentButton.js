@@ -6,7 +6,7 @@ import styles from "./InstrumentButton.module.css";
 const InstrumentButton = (props) => {
   const [doublingsClicked, setDoublingsClicked] = useState(false);
 
-  const { primaryPart, rank, doublesObjects } = props.chair;
+  const { primaryPart, rank, displayedRank, doublesObjects } = props.chair;
 
   const setter = props.setter;
   const allParts = props.allParts;
@@ -19,7 +19,7 @@ const InstrumentButton = (props) => {
     <div className={styles.outerContainer}>
       <div className={styles.buttonContainer}>
         <button className={styles.button} onClick={showDoublings}>
-          {primaryPart} {rank}
+          {primaryPart} {displayedRank? displayedRank: rank}
         </button>
       </div>
       <div className={styles.doublingContainer}>

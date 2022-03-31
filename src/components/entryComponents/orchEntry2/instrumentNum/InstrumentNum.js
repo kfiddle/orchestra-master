@@ -53,11 +53,11 @@ const InstrumentNum = (props) => {
       <div className={styles.instrumentBubble}>
         <div
           className={styles.labelAndClickerHolder}
-          onMouseEnter={flipLabel}
-          onMouseLeave={flipLabel}
+          //   onMouseEnter={flipLabel}
+          //   onMouseLeave={flipLabel}
           onClick={extrasClickHandler}
         >
-         <div className={styles.labelHolder}>{label}</div> 
+          <div className={styles.labelHolder}>{label}</div>
         </div>
         <NumberInput
           type={"text"}
@@ -67,7 +67,8 @@ const InstrumentNum = (props) => {
       </div>
       <div className={styles.chairsAndExtrasDiv}>
         <div>{showChairs && <div>{chairsList}</div>}</div>
-        <div>{showExtras && <Extras instrument={instrument} />}</div>
+        {/* <div>{showExtras && <Extras instrument={instrument} />}</div> */}
+        <Extras instrument={instrument} />
       </div>
     </div>
   );

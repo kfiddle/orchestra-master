@@ -1,10 +1,14 @@
 .outerContainer {
   display: flex;
+  position: relative;
+}
+
+.nameDiv {
+  display: flex;
   justify-content: center;
   align-items: center;
   margin: 0.25rem 2rem;
   padding: 0.5rem;
-  width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border: 3px solid white;
   border-radius: 12px;
@@ -12,12 +16,22 @@
   background: linear-gradient(to left, transparent, #eccbcb, rgb(90, 85, 85));
   font-weight: 900;
   cursor: pointer;
-  z-index: 2;
+  z-index: 1;
   transition: 0.1s linear;
 }
 
-.outerContainer:hover {
+.nameDiv:hover {
   background: rgb(44, 120, 182);
+}
+
+.numberBox {
+  position: absolute;
+  left: 0;
+  margin: 0.25rem 2rem;
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: 3px solid white;
+  border-radius: 12px;
 }
 
 .clickedItem {
@@ -28,7 +42,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  /* width: 60%; */
 }
 
 .plusDiv {

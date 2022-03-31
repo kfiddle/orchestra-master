@@ -4,8 +4,9 @@ import styles from "./InstrumentButtons.module.css";
 
 const InstrumentButtons = (props) => {
   const chairs = props.chairs;
+  const instrument = props.instrument;
   const setter = props.setter;
-const allParts = props.allParts;
+  const allParts = props.allParts;
 
   const displayableInstruments = chairs.map((chair) => (
     <InstrumentButton
@@ -13,12 +14,15 @@ const allParts = props.allParts;
       chair={chair}
       setter={setter}
       allParts={allParts}
-
-      // instrument={chair.primaryPart}
-      // rank={chair.rank}
-      // doubles={chair.doublesObjects}
+      displayedRank = {chair.displayedRank? chair.displayedRank: null}
     />
   ));
+
+  if (instrument === "HORN") {
+    let buttonToMove = displayableInstruments.pop();
+    console.log(buttonToMove.chair);
+    displayableInstruments.splice(1, 0, buttonToMove);
+  }
 
   return <div>{displayableInstruments}</div>;
 };
