@@ -64,6 +64,7 @@ const OrchestrationEntry = (props) => {
         let emptyChair = {
           parts: parts,
           rank: chair.rank,
+          specialDesignate: chair.displayedRank ? chair.displayedRank : null,
         };
         primaryChairsToSend.push(emptyChair);
       }
@@ -71,7 +72,6 @@ const OrchestrationEntry = (props) => {
 
     if (stringsChecked) {
       primaryChairsToSend.push(
-
         { parts: ["VIOLIN1"] },
         { parts: ["VIOLIN2"] },
         { parts: ["VIOLA"] },
@@ -90,6 +90,7 @@ const OrchestrationEntry = (props) => {
       primaryChairsToSend,
       "add-empty-chairs/" + piece.id
     );
+
     if (response.ok) {
       props.closeModal();
     }

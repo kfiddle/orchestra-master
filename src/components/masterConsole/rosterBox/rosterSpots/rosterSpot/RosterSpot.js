@@ -13,9 +13,13 @@ import RightClickMenu from "./rightClickMenu/RightClickMenu";
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
 
-  let { parts, rank } = props.playerInChair.chair;
+  let { parts, rank, specialDesignate } = props.playerInChair.chair;
   let player = props.playerInChair.player;
   let sectionSeat = props.playerInChair.sectionSeat;
+
+  if (specialDesignate) {
+    console.log(specialDesignate);
+  }
 
   let stringPart =
     parts[0] === "VIOLIN1" ||
@@ -35,10 +39,9 @@ const RosterSpot = (props) => {
 
   let doublingParts = "";
 
-
   if (parts.length > 1) {
     for (let j = 1; j < parts.length; j++) {
-      doublingParts = doublingParts + '/ ' + parts[j];
+      doublingParts = doublingParts + "/ " + parts[j];
     }
   }
 

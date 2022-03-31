@@ -19,7 +19,7 @@ const InstrumentButton = (props) => {
     <div className={styles.outerContainer}>
       <div className={styles.buttonContainer}>
         <button className={styles.button} onClick={showDoublings}>
-          {primaryPart} {displayedRank? displayedRank: rank}
+          {primaryPart} {displayedRank ? displayedRank : rank}
         </button>
       </div>
       <div className={styles.doublingContainer}>

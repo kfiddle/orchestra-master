@@ -14,13 +14,12 @@ const InstrumentButtons = (props) => {
       chair={chair}
       setter={setter}
       allParts={allParts}
-      displayedRank = {chair.displayedRank? chair.displayedRank: null}
+      displayedRank={chair.displayedRank ? chair.displayedRank : null}
     />
   ));
 
   if (instrument === "HORN") {
     let buttonToMove = displayableInstruments.pop();
-    console.log(buttonToMove.chair);
     displayableInstruments.splice(1, 0, buttonToMove);
   }
 
