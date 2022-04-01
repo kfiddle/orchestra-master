@@ -34,12 +34,12 @@ const SingleInstrumentInput = (props) => {
 
     let chairs = [];
 
-    let doublesObjects = [];
-    for (let double of doublingOptionsObject[instrument]) {
-      doublesObjects.push({ secondaryPart: double, active: false });
-    }
-
+ 
     for (let j = 1; j <= event.target.value; j++) {
+      let doublesObjects = [];
+      for (let double of doublingOptionsObject[instrument]) {
+        doublesObjects.push({ secondaryPart: double, active: false });
+      }
       chairs.push({
         primaryPart: instrument,
         rank: j,
@@ -51,7 +51,7 @@ const SingleInstrumentInput = (props) => {
         primaryPart: instrument,
         rank: chairs.length + 1,
         specialDesignate: "Assist",
-        doublesObjects: doublesObjects,
+        doublesObjects: [""],
       });
     }
     setAllParts({ ...allParts, [instrument]: chairs });
@@ -77,7 +77,7 @@ const SingleInstrumentInput = (props) => {
       {optionsClicked && (
         <InstrumentButtons
           instrument={instrument}
-          number={allParts[instrument].length}
+          number={allParts[instrument]}
           chairs={allParts[instrument]}
           setter={setAllParts}
           allParts={allParts}

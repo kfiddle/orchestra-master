@@ -11,24 +11,17 @@ const DoublingOption = (props) => {
   const setter = props.setter;
   const allParts = props.allParts;
 
-  console.log(allParts);
-
   const clickedInstrumentHandler = () => {
     let currentActive = partObject.active;
 
     let tempParts = allParts;
 
-    console.log("and the specific one at index " + index);
-    console.log({ ...tempParts[primaryPart]});
-
-    // console.log({ ...tempParts[primaryPart][rank - 1] });
-
     tempParts[primaryPart][rank - 1].doublesObjects[index].active =
       !currentActive;
     setter(tempParts);
-  };
+    console.log(allParts[primaryPart][rank + 1]);
     // setClickedInstrument((previous) => !previous);
-
+  };
 
   let classNames = !clickedInstrument
     ? styles.outerContainer
