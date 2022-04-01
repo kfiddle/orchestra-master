@@ -50,7 +50,7 @@ const SingleInstrumentInput = (props) => {
       chairs.push({
         primaryPart: instrument,
         rank: chairs.length + 1,
-        displayedRank: "A",
+        specialDesignate: "Assist",
         doublesObjects: doublesObjects,
       });
     }

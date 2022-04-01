@@ -50,6 +50,8 @@ const OrchestrationEntry = (props) => {
   const submitOrSetStrings = async () => {
     let primaryChairsToSend = [];
 
+    console.log(allParts)
+
     for (let primaryPart in allParts) {
       for (let chair of allParts[primaryPart]) {
         let parts = [];
@@ -64,7 +66,7 @@ const OrchestrationEntry = (props) => {
         let emptyChair = {
           parts: parts,
           rank: chair.rank,
-          specialDesignate: chair.displayedRank ? chair.displayedRank : null,
+          specialDesignate: chair.specialDesignate ? chair.specialDesignate : null,
         };
         primaryChairsToSend.push(emptyChair);
       }
