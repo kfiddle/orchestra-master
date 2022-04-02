@@ -58,6 +58,11 @@ const PerformanceEdit2 = (props) => {
 
   const submitPerformanceEdits = async (event) => {
     event.preventDefault();
+
+    console.log(clickedPiecesList);
+
+    //send up each piece in this list. I
+
     let response = await PushBasic(performance, "edit-performance");
     if (response.ok) {
       setShowEditsSubmitted(true);
