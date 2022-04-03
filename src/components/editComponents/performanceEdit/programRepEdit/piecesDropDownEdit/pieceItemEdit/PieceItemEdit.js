@@ -24,8 +24,10 @@ const PieceItemEdit = (props) => {
     if (showEditsSubmitted) {
       const previousList = showPiecesList.map((showtune) => showtune.piece);
 
-      console.log(title + "    " + ObjectOnList(previousList, piece));
-      console.log(title + "   " + ObjectOnList(clickedPiecesList, piece));
+
+      if (ObjectOnList(clickedPiecesList, piece) >= 0) {
+        console.log(title + "   " + ObjectOnList(clickedPiecesList, piece));
+      }
 
       const checkForEdits = async () => {
         if (
@@ -37,13 +39,13 @@ const PieceItemEdit = (props) => {
 
         if (
           !ObjectOnList(previousList, piece) &&
-          ObjectOnList(clickedPiecesList, piece)
+          ObjectOnList(clickedPiecesList, piece) 
         ) {
           let response = await PushBasic(
             {
               piece,
               show: performance,
-              orderNum: clickedPiecesList.indexOf(piece) + 1,
+              orderNum: clickedPiecesList.indexOf(piece),
             },
             "add-show-piece"
           );

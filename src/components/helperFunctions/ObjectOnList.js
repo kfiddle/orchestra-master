@@ -7,7 +7,7 @@ const ObjectOnList = (list, object) => {
 
   for (let j = 0; j < list.length; j++) {
     if (DeepEqual(list[j], object)) {
-      return j;
+      return { index: j };
     }
   }
   return false;
