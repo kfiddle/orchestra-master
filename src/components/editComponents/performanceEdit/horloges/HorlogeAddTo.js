@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 
-import ShowEditSubmitted from "../../../../store/show-edit-submitted";
+import { ShowEditsSubmitted } from "../../../../store/submit-clicked";
 import PerformanceToEdit from "../../../../store/performance-to-edit";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
@@ -15,7 +15,7 @@ const HorlogeAddTo = (props) => {
   const [endMinutes, setEndMinutes] = useState(0);
 
   const { showEditsSubmitted, setShowEditsSubmitted } =
-    useContext(ShowEditSubmitted);
+    useContext(ShowEditsSubmitted);
   const { performance } = useContext(PerformanceToEdit);
 
   const label = props.label;

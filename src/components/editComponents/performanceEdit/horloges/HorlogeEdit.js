@@ -1,14 +1,14 @@
 import { useEffect, useState, useContext } from "react";
 
 
-import ShowEditSubmitted from "../../../../store/show-edit-submitted";
+import { ShowEditsSubmitted } from "../../../../store/submit-clicked";
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./Horloge.module.css";
 
 const HorlogeEdit = (props) => {
-  const { showEditsSubmitted, setShowEditsSubmitted } =
-    useContext(ShowEditSubmitted);
+  const { showEditsSubmitted } =
+    useContext(ShowEditsSubmitted);
   const horloge = props.horloge;
   const label = props.label;
   const event = horloge.event;
@@ -54,9 +54,9 @@ const HorlogeEdit = (props) => {
       };
 
       let response = await PushBasic(horlogeToSend, "edit-horloge");
-      if (response.ok) {
-        setShowEditsSubmitted(false);
-      }
+      // if (response.ok) {
+      //   setShowEditsSubmitted(false);
+      // }
     };
 
     if (showEditsSubmitted) {
