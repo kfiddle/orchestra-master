@@ -82,10 +82,10 @@ const PerformanceEdit2 = (props) => {
 
     setShowEditsSubmitted(true);
 
-    // let response = await PushBasic(performance, "edit-performance");
-    // if (response.ok) {
-    //   props.closeModal();
-    // }
+    let response = await PushBasic(performance, "edit-performance");
+    if (response.ok) {
+      props.closeModal();
+    }
   };
 
   const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
