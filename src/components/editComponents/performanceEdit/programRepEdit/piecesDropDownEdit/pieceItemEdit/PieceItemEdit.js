@@ -24,7 +24,6 @@ const PieceItemEdit = (props) => {
     if (showEditsSubmitted) {
       const previousList = showPiecesList.map((showtune) => showtune.piece);
 
-
       if (ObjectOnList(clickedPiecesList, piece) >= 0) {
         console.log(title + "   " + ObjectOnList(clickedPiecesList, piece));
       }
@@ -32,14 +31,7 @@ const PieceItemEdit = (props) => {
       const checkForEdits = async () => {
         if (
           !ObjectOnList(previousList, piece) &&
-          !ObjectOnList(clickedPiecesList, piece)
-        ) {
-          return;
-        }
-
-        if (
-          !ObjectOnList(previousList, piece) &&
-          ObjectOnList(clickedPiecesList, piece) 
+          ObjectOnList(clickedPiecesList, piece)
         ) {
           let response = await PushBasic(
             {
@@ -48,6 +40,23 @@ const PieceItemEdit = (props) => {
               orderNum: clickedPiecesList.indexOf(piece),
             },
             "add-show-piece"
+          );
+        } else if (
+          ObjectOnList(previousList, piece) &&
+          !ObjectOnList(clickedPiecesList, piece)
+        ) {
+          let response = await PushBasic(
+            showPiecesList[ObjectOnList(previousList, piece).index],
+            "remove-showpiece"
+          );
+        } else if (
+          ObjectOnList(previousList, piece).index !==
+          ObjectOnList(clickedPiecesList, piece).index
+        ) {
+          let response = await PushBasic(
+            showPiecesList[ObjectOnList(previousList, piece).index],
+            "edit-showpiece-ordernum/" +
+              ObjectOnList(clickedPiecesList, piece).index
           );
         }
       };
