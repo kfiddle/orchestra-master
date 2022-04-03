@@ -2,6 +2,10 @@ import { useContext, useState, useEffect } from "react";
 
 import ShowTunesList from "../../../../../../store/showtunes-list";
 import { ShowEditsSubmitted } from "../../../../../../store/submit-clicked";
+import PerformanceToEdit from "../../../../../../store/performance-to-edit";
+
+import ObjectOnList from "../../../../../helperFunctions/ObjectOnList";
+import PushBasic from "../../../../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./PieceItemEdit.module.css";
 
@@ -9,17 +13,47 @@ const PieceItemEdit = (props) => {
   const { pieceToList, clickedPiecesList, showPiecesList } =
     useContext(ShowTunesList);
   const { showEditsSubmitted } = useContext(ShowEditsSubmitted);
-  const { title, composerName } = props.piece;
+  const { performance } = useContext(PerformanceToEdit);
+
+  const piece = props.piece;
+  const { title, composerName } = piece;
 
   let outerContainerClass = classes.unclickedItem;
 
   useEffect(() => {
     if (showEditsSubmitted) {
-      console.log(clickedPiecesList);
-      console.log("and now...");
-      console.log(showPiecesList);
+      const previousList = showPiecesList.map((showtune) => showtune.piece);
+
+      console.log(title + "    " + ObjectOnList(previousList, piece));
+      console.log(title + "   " + ObjectOnList(clickedPiecesList, piece));
+
+      const checkForEdits = async () => {
+        if (
+          !ObjectOnList(previousList, piece) &&
+          !ObjectOnList(clickedPiecesList, piece)
+        ) {
+          return;
+        }
+
+        if (
+          !ObjectOnList(previousList, piece) &&
+          ObjectOnList(clickedPiecesList, piece)
+        ) {
+          let response = await PushBasic(
+            {
+              piece,
+              show: performance,
+              orderNum: clickedPiecesList.indexOf(piece) + 1,
+            },
+            "add-show-piece"
+          );
+        }
+      };
+
+      checkForEdits();
     }
 
+    const previousList = showPiecesList.map((showtune) => showtune.piece);
   }, [showEditsSubmitted]);
 
   for (let piece of clickedPiecesList) {

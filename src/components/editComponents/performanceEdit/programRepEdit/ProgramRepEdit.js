@@ -1,10 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import PiecesDropDownEdit from "./piecesDropDownEdit/PiecesDropDownEdit";
+
+import DeepEqual from "../../../helperFunctions/DeepEqual";
+
+import ShowTunesList from "../../../../store/showtunes-list";
+import { ShowEditsSubmitted } from "../../../../store/submit-clicked";
+
 import styles from "./ProgramRepEdit.module.css";
+import ObjectOnList from "../../../helperFunctions/ObjectOnList";
 
 const ProgramRepEdit = () => {
   const [clickedRepDrop, setClickedRepoDrop] = useState(false);
+
+  const { pieceToList, clickedPiecesList, showPiecesList } =
+    useContext(ShowTunesList);
+  const { showEditsSubmitted } = useContext(ShowEditsSubmitted);
+
+  useEffect(() => {
+    const previousList = showPiecesList.map((showtune) => showtune.piece);
+
+    // for (let j = 0; j < clickedPiecesList.length; j++) {
+    //   if (ObjectOnList(clickedPiecesList, previousList[0])) {
+    //     console.log("yes sirr ee");
+    //   }
+    // }
+
+    console.log(DeepEqual(clickedPiecesList[0], previousList[1]));
+  }, [showEditsSubmitted]);
 
   const repClickHandler = () => {
     setClickedRepoDrop((previous) => !previous);
