@@ -12,6 +12,7 @@ const extrasList = [
   "CCLARINET",
   "SAX",
   "CONTRA",
+  "CORNET",
   "FUGALHORN",
   "BASSTROMBONE",
   "EUPHONIUM",
