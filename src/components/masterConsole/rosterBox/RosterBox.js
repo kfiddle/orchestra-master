@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import RosterSpots from "./rosterSpots/RosterSpots";
 import Possibles from "./possibles/Possibles";
 
+import Modal from "../../UI/modal/Modal";
+import StringsBox from './stringsBox/StringsBox';
+
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import styles from "./RosterBox.module.css";
@@ -12,6 +15,7 @@ const RosterBox = (props) => {
   const [possiblePlayers, setPossiblePlayers] = useState([]);
   const [clickedChair, setClickedChair] = useState({});
   const [playerChange, setPlayerChange] = useState(false);
+  const [stringNumbersClicked, setStringNumbersClicked] = useState(false);
 
   const piece = props.piece;
   const directList = props.directList;
@@ -56,6 +60,14 @@ const RosterBox = (props) => {
     }
   };
 
+  const stringsClicker = () => {
+    setStringNumbersClicked(true);
+  };
+
+  const closeModal = () => {
+    setStringNumbersClicked(false);
+  };
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.rosterSpotsDiv}>
@@ -66,7 +78,19 @@ const RosterBox = (props) => {
             setPlayerChange={setPlayerChange}
           />
         )}
+
+        <div>
+          <button className={styles.stringsButton} onClick={stringsClicker}>
+            EDIT STRING NUMBERS
+          </button>
+          {stringNumbersClicked && (
+            <Modal closeModal={closeModal}>
+              <StringsBox piece={piece}/>
+            </Modal>
+          )}
+        </div>
       </div>
+
       <div className={styles.possiblesDiv}>
         {possiblePlayers.length > 0 && (
           <Possibles

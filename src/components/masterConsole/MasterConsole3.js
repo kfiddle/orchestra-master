@@ -53,6 +53,8 @@ const MasterConsole3 = (props) => {
       </div>
       <div className={styles.RosterBoxDiv}>
         {clickedPiece && <RosterBox piece={clickedPiece} />}
+
+        {/* below is for when seats correlate directly with show, NOT with piece */}
         {directPICS.length > 0 && <RosterBox directList={directPICS}/>}
       </div>
     </div>
