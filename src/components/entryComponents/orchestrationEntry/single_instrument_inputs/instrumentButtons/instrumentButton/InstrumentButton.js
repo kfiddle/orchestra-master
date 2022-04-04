@@ -10,9 +10,19 @@ const InstrumentButton = (props) => {
 
   const setter = props.setter;
   const allParts = props.allParts;
+  const setHasAssistant = props.setHasAssistant;
 
   const showDoublings = () => {
     setDoublingsClicked((previous) => !previous);
+  };
+
+  const xButtonClicker = () => {
+    let tempParts = allParts;
+    tempParts["HORN"].pop();
+    setter(tempParts);
+
+    console.log(allParts);
+    setHasAssistant(false);
   };
 
   return (
@@ -21,6 +31,7 @@ const InstrumentButton = (props) => {
         <button className={styles.button} onClick={showDoublings}>
           {primaryPart} {specialDesignate ? specialDesignate : rank}
         </button>
+        {specialDesignate && <button onClick={xButtonClicker}>X</button>}
       </div>
       <div className={styles.doublingContainer}>
         {doublingsClicked && (

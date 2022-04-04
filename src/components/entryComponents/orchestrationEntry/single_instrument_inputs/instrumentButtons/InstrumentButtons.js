@@ -7,6 +7,7 @@ const InstrumentButtons = (props) => {
   const instrument = props.instrument;
   const setter = props.setter;
   const allParts = props.allParts;
+  const setHasAssistant = props.setHasAssistant;
 
   const displayableInstruments = chairs.map((chair) => (
     <InstrumentButton
@@ -15,6 +16,7 @@ const InstrumentButtons = (props) => {
       setter={setter}
       allParts={allParts}
       displayedRank={chair.displayedRank ? chair.displayedRank : null}
+      setHasAssistant={setHasAssistant}
     />
   ));
 

@@ -24,10 +24,6 @@ const PieceItemEdit = (props) => {
     if (showEditsSubmitted) {
       const previousList = showPiecesList.map((showtune) => showtune.piece);
 
-      if (ObjectOnList(clickedPiecesList, piece) >= 0) {
-        console.log(title + "   " + ObjectOnList(clickedPiecesList, piece));
-      }
-
       const checkForEdits = async () => {
         if (
           !ObjectOnList(previousList, piece) &&

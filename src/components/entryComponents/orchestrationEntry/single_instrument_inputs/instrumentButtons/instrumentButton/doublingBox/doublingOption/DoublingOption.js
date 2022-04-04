@@ -20,7 +20,6 @@ const DoublingOption = (props) => {
       !currentActive;
     setter(tempParts);
     console.log(allParts[primaryPart][rank + 1]);
-    // setClickedInstrument((previous) => !previous);
   };
 
   let classNames = !clickedInstrument

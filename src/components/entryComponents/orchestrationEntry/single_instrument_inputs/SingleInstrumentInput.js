@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import InstrumentButtons from "./instrumentButtons/InstrumentButtons";
 
 import styles from "./SingleInstrumentInput.module.css";
@@ -20,9 +20,10 @@ const doublingOptionsObject = {
 
 const SingleInstrumentInput = (props) => {
   const [allParts, setAllParts] = props.stateList;
-
   const [optionsClicked, setOptionsClicked] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [hasAssistant, setHasAssistant] = useState(true);
+
   const instrument = props.instrument;
 
   const setThisInstrument = (event) => {
@@ -31,31 +32,40 @@ const SingleInstrumentInput = (props) => {
     }
 
     setInputValue(event.target.value);
-
-    let chairs = [];
-
- 
-    for (let j = 1; j <= event.target.value; j++) {
-      let doublesObjects = [];
-      for (let double of doublingOptionsObject[instrument]) {
-        doublesObjects.push({ secondaryPart: double, active: false });
-      }
-      chairs.push({
-        primaryPart: instrument,
-        rank: j,
-        doublesObjects: doublesObjects,
-      });
-    }
-    if (instrument === "HORN") {
-      chairs.push({
-        primaryPart: instrument,
-        rank: chairs.length + 1,
-        specialDesignate: "Assist",
-        doublesObjects: [""],
-      });
-    }
-    setAllParts({ ...allParts, [instrument]: chairs });
   };
+
+  useEffect(() => {
+    const setChairs = () => {
+      let chairs = [];
+      for (let j = 1; j <= inputValue; j++) {
+        let doublesObjects = [];
+        for (let double of doublingOptionsObject[instrument]) {
+          doublesObjects.push({ secondaryPart: double, active: false });
+        }
+        chairs.push({
+          primaryPart: instrument,
+          rank: j,
+          doublesObjects: doublesObjects,
+        });
+      }
+      if (instrument === "HORN" && hasAssistant) {
+        chairs.push({
+          primaryPart: instrument,
+          rank: chairs.length + 1,
+          specialDesignate: "Assist",
+          doublesObjects: [""],
+        });
+      }
+      setAllParts({ ...allParts, [instrument]: chairs });
+    };
+
+    if (inputValue > 0) {
+      setChairs();
+    }
+    if (!hasAssistant) {
+      setChairs();
+    }
+  }, [inputValue, hasAssistant]);
 
   const clickHandler = () => {
     if (inputValue != "") {
@@ -81,6 +91,7 @@ const SingleInstrumentInput = (props) => {
           chairs={allParts[instrument]}
           setter={setAllParts}
           allParts={allParts}
+          setHasAssistant={setHasAssistant}
         />
       )}
     </div>
@@ -88,3 +99,34 @@ const SingleInstrumentInput = (props) => {
 };
 
 export default SingleInstrumentInput;
+
+// const setThisInstrument = (event) => {
+//   if (isNaN(event.target.value)) {
+//     return;
+//   }
+
+//   setInputValue(event.target.value);
+
+// let chairs = [];
+
+// for (let j = 1; j <= event.target.value; j++) {
+//   let doublesObjects = [];
+//   for (let double of doublingOptionsObject[instrument]) {
+//     doublesObjects.push({ secondaryPart: double, active: false });
+//   }
+//   chairs.push({
+//     primaryPart: instrument,
+//     rank: j,
+//     doublesObjects: doublesObjects,
+//   });
+// }
+// if (instrument === "HORN") {
+//   chairs.push({
+//     primaryPart: instrument,
+//     rank: chairs.length + 1,
+//     specialDesignate: "Assist",
+//     doublesObjects: [""],
+//   });
+// }
+// setAllParts({ ...allParts, [instrument]: chairs });
+// };
