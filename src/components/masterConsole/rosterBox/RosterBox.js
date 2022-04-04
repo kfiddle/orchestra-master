@@ -4,7 +4,7 @@ import RosterSpots from "./rosterSpots/RosterSpots";
 import Possibles from "./possibles/Possibles";
 
 import Modal from "../../UI/modal/Modal";
-import StringsBox from './stringsBox/StringsBox';
+import StringsBox from "./stringsBox/StringsBox";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
@@ -84,9 +84,7 @@ const RosterBox = (props) => {
             EDIT STRING NUMBERS
           </button>
           {stringNumbersClicked && (
-            <Modal closeModal={closeModal}>
-              <StringsBox piece={piece}/>
-            </Modal>
+            <StringsBox piece={piece} closeModal={closeModal} />
           )}
         </div>
       </div>

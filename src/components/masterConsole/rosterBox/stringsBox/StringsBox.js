@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import StringInput from "./stringInput/StringInput";
+import Modal from "../../../UI/modal/Modal";
 
 import SubmitButton from "../../../UI/submitButton/SubmitButton";
 import styles from "./StringsBox.module.css";
@@ -12,25 +13,37 @@ const StringsBox = (props) => {
   const title = showtune.piece.title;
 
   const displayableInputs = parts.map((part) => (
-    <StringInput key={parts.indexOf(part)} part={part} submitted={submitted} />
+    <StringInput
+      key={parts.indexOf(part)}
+      part={part}
+      submitted={submitted}
+      showtune={showtune}
+    />
   ));
 
   const submitStringNumbers = () => {
-    setSubmitted(true)
+    setSubmitted(true);
+    setTimeout(closeModal, 300);
+  };
+
+  const closeModal = () => {
+    props.closeModal();
   };
 
   return (
-    <div className={styles.outerContainer}>
-      <div className={styles.titleDiv}>
-        <h2>{title}</h2>
+    <Modal closeModal={closeModal}>
+      <div className={styles.outerContainer}>
+        <div className={styles.titleDiv}>
+          <h2>{title}</h2>
+        </div>
+        {displayableInputs}
+        <div className={styles.submitDiv}>
+          <button className={styles.button} onClick={submitStringNumbers}>
+            SUBMIT
+          </button>
+        </div>
       </div>
-      {displayableInputs}
-      <div className={styles.submitDiv}>
-        <button className={styles.button} onClick={submitStringNumbers}>
-          SUBMIT
-        </button>
-      </div>
-    </div>
+    </Modal>
   );
 };
 
