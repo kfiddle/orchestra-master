@@ -9,12 +9,14 @@ import StringsBox from "./stringsBox/StringsBox";
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import styles from "./RosterBox.module.css";
+import useGetAPushList from "../../../hooks/useGetAPushList";
 
 const RosterBox = (props) => {
   const [chairsToFill, setChairsToFill] = useState([]);
   const [possiblePlayers, setPossiblePlayers] = useState([]);
   const [clickedChair, setClickedChair] = useState({});
   const [playerChange, setPlayerChange] = useState(false);
+  const [stringsSubmitted, setStringsSubmitted] = useState(false);
   const [stringNumbersClicked, setStringNumbersClicked] = useState(false);
 
   const piece = props.piece;
@@ -35,8 +37,13 @@ const RosterBox = (props) => {
       setPlayerChange(false);
     }
 
+    if (stringsSubmitted) {
+      getTheChairs();
+      setStringsSubmitted(false);
+    }
+
     !directList ? getTheChairs() : setChairsToFill(directList);
-  }, [piece, directList, playerChange]);
+  }, [piece, directList, playerChange, stringsSubmitted]);
 
   const clickedSpotHandler = async (chair) => {
     setClickedChair(chair);
@@ -64,8 +71,9 @@ const RosterBox = (props) => {
     setStringNumbersClicked(true);
   };
 
-  const closeModal = () => {
+  const closeStrings = () => {
     setStringNumbersClicked(false);
+    setStringsSubmitted(true)
   };
 
   return (
@@ -84,7 +92,7 @@ const RosterBox = (props) => {
             EDIT STRING NUMBERS
           </button>
           {stringNumbersClicked && (
-            <StringsBox piece={piece} closeModal={closeModal} />
+            <StringsBox piece={piece} closeModal={closeStrings} />
           )}
         </div>
       </div>
