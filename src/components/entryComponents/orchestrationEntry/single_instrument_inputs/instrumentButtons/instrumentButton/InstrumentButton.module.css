@@ -1,10 +1,13 @@
 .outerContainer {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .buttonContainer {
   height: 40%;
+  display: flex;
+  align-items: center;
 }
 
 .doublingContainer {
@@ -19,10 +22,13 @@
   background: none;
   color: white;
   border: 3px solid white;
-  padding: 8px 30px;
+  padding: 6px 30px;
+
   margin: 1rem;
-  border-radius: 100px;
-  /* font-size: 24px; */
+  /* border-radius: 100px; */
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+
   font-weight: 900;
   text-transform: uppercase;
   cursor: pointer;
@@ -36,4 +42,13 @@
 .highlighted {
   background: white;
   color: #3b3b3b;
+}
+
+.deleteButton {
+  color: rgb(78, 12, 12);
+  font-size: 4rem;
+}
+
+.deleteButton:hover {
+  color: red;
 }
