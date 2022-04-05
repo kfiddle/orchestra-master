@@ -13,10 +13,10 @@ import useGetAPushList from "../../../hooks/useGetAPushList";
 
 const RosterBox = (props) => {
   const [chairsToFill, setChairsToFill] = useState([]);
+  const [reload, setReload] = useState(false);
   const [possiblePlayers, setPossiblePlayers] = useState([]);
   const [clickedChair, setClickedChair] = useState({});
-  const [playerChange, setPlayerChange] = useState(false);
-  const [stringsSubmitted, setStringsSubmitted] = useState(false);
+
   const [stringNumbersClicked, setStringNumbersClicked] = useState(false);
 
   const piece = props.piece;
@@ -32,18 +32,13 @@ const RosterBox = (props) => {
       setPossiblePlayers([]);
     };
 
-    if (playerChange) {
+    if (reload) {
       getTheChairs();
-      setPlayerChange(false);
-    }
-
-    if (stringsSubmitted) {
-      getTheChairs();
-      setStringsSubmitted(false);
+      setReload(false)
     }
 
     !directList ? getTheChairs() : setChairsToFill(directList);
-  }, [piece, directList, playerChange, stringsSubmitted]);
+  }, [piece, directList, reload]);
 
   const clickedSpotHandler = async (chair) => {
     setClickedChair(chair);
@@ -63,7 +58,7 @@ const RosterBox = (props) => {
 
     if (response.ok) {
       setPossiblePlayers([]);
-      setPlayerChange(true);
+      setReload(true)
     }
   };
 
@@ -73,7 +68,7 @@ const RosterBox = (props) => {
 
   const closeStrings = () => {
     setStringNumbersClicked(false);
-    setStringsSubmitted(true)
+    setReload(true)
   };
 
   return (
@@ -83,14 +78,13 @@ const RosterBox = (props) => {
           <RosterSpots
             chairsToFill={chairsToFill}
             clicked={clickedSpotHandler}
-            setPlayerChange={setPlayerChange}
           />
         )}
 
         <div>
-          <button className={styles.stringsButton} onClick={stringsClicker}>
+          {chairsToFill.length > 0 && <button className={styles.stringsButton} onClick={stringsClicker}>
             EDIT STRING NUMBERS
-          </button>
+          </button>}
           {stringNumbersClicked && (
             <StringsBox piece={piece} closeModal={closeStrings} />
           )}
