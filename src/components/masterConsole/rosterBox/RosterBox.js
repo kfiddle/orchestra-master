@@ -3,9 +3,7 @@ import { useState, useEffect } from "react";
 import RosterSpots from "./rosterSpots/RosterSpots";
 import Possibles from "./possibles/Possibles";
 
-import useGetPossiblePlayers from "../../../hooks/useGetPossiblePlayers";
 
-import Modal from "../../UI/modal/Modal";
 import StringsBox from "./stringsBox/StringsBox";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
@@ -15,7 +13,6 @@ import styles from "./RosterBox.module.css";
 import useGetAPushList from "../../../hooks/useGetAPushList";
 
 const RosterBox = (props) => {
-  const [chairsToFill, setChairsToFill] = useState([]);
   const [reload, setReload] = useState(false);
   const [possiblePlayers, setPossiblePlayers] = useState([]);
   const [clickedChair, setClickedChair] = useState({});
@@ -25,15 +22,16 @@ const RosterBox = (props) => {
   const piece = props.piece;
   const directList = props.directList;
 
-  const [listOfPossibles, reloadFlag, setPicToQuery] = useGetPossiblePlayers();
+  const [listOfPossibles, setPICToQuery] = useGetAPushList(
+    "get-possible-players"
+  );
+  const [chairsToFill, setPieceToQuery, chairsReloader] = useGetAPushList(
+    "get-pics-in-show-piece"
+  );
+
 
   useEffect(() => {
     const getTheChairs = async () => {
-      let response = await PushBasic(piece, "get-pics-in-show-piece");
-      if (response.ok) {
-        let newChairs = await response.json();
-        setChairsToFill(newChairs);
-      }
       setPossiblePlayers([]);
     };
 
@@ -42,7 +40,9 @@ const RosterBox = (props) => {
       setReload(false);
     }
 
-    !directList ? getTheChairs() : setChairsToFill(directList);
+    setPieceToQuery(piece);
+
+    // !directList ? getTheChairs() : setChairsToFill(directList);
   }, [piece, directList, reload]);
 
   const clickedSpotHandler = async (playerInChair) => {
@@ -50,8 +50,7 @@ const RosterBox = (props) => {
     setClickedChair(playerInChair);
 
     if (!playerInChair.player) {
-      setPicToQuery(playerInChair);
-
+      setPICToQuery(playerInChair);
     } else if (playerInChair.player) {
       console.log("delete?");
     }
@@ -65,7 +64,7 @@ const RosterBox = (props) => {
 
     if (response.ok) {
       setPossiblePlayers([]);
-      setReload(true);
+      chairsReloader(true);
     }
   };
 
@@ -83,7 +82,7 @@ const RosterBox = (props) => {
       <div className={styles.rosterSpotsDiv}>
         {chairsToFill.length > 0 && (
           <RosterSpots
-            chairsToFill={chairsToFill}
+            chairsToFill={directList? directList: chairsToFill}
             clicked={clickedSpotHandler}
           />
         )}

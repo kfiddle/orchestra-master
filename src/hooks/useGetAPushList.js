@@ -1,33 +1,32 @@
 import { useState, useEffect } from "react";
 
-import WhichServer from "../components/helperFunctions/WhichServer";
+import PushBasic from "../components/helperFunctions/pushFunctions/PushBasic";
 
-const useGetAPushList = (object, fetchUrl, reload, setReload) => {
+const useGetAPushList = (fetchUrl) => {
   const [list, setList] = useState([]);
-  const whichServer = WhichServer();
+  const [objectToQuery, setObjectToQuery] = useState(null);
+  const [reloadFlag, setReloadFlag] = useState(false);
 
   useEffect(() => {
-    const getList = async () => {
+    const grabList = async () => {
       try {
-        let response = await fetch(whichServer + fetchUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(object),
-        });
-
-        setList(response);
-        setReload(false);
+        const response = await PushBasic(objectToQuery, fetchUrl);
+        if (response.ok) {
+          let listToSet = await response.json();
+          setList(listToSet);
+        }
+        setReloadFlag(false);
       } catch (error) {
-        return console.log(error);
+        console.log(error);
       }
     };
 
-    getList();
-  }, [whichServer, reload]);
+    if (objectToQuery || reloadFlag) {
+      grabList();
+    }
+  }, [objectToQuery, reloadFlag]);
 
-  return list;
+  return [list, setObjectToQuery, setReloadFlag];
 };
 
 export default useGetAPushList;
