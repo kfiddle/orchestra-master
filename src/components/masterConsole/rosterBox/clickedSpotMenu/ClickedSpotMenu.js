@@ -1,7 +1,29 @@
+import { useContext } from "react";
+
+import { RosterBoxHolder } from "../../../../store/object-holder";
+
+import Possibles from "../possibles/Possibles";
+
 import styles from "./ClickedSpotMenu.module.css";
 
 const ClickedSpotMenu = (props) => {
-  return <Possibles />;
+  const { listOfPossibles, doubleClickedPossible } =
+    useContext(RosterBoxHolder);
+
+  const playerInChair = props.playerInChair;
+
+  return (
+    <div className={styles.outerContainer}>
+      {!playerInChair.player ? (
+        <Possibles
+          possibles={listOfPossibles}
+          doubleClicked={doubleClickedPossible}
+        />
+      ) : (
+        "CHANITT"
+      )}
+    </div>
+  );
 };
 
 export default ClickedSpotMenu;

@@ -24,6 +24,10 @@ const useGetAPushList = (fetchUrl) => {
     if (objectToQuery || reloadFlag) {
       grabList();
     }
+
+    if (!objectToQuery) {
+      setList([]);
+    }
   }, [objectToQuery, reloadFlag]);
 
   return [list, setObjectToQuery, setReloadFlag];

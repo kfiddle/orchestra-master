@@ -10,17 +10,15 @@ import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 import styles from "./RosterBox.module.css";
 
 import useGetAPushList from "../../../hooks/useGetAPushList";
+import { RosterBoxHolder } from "../../../store/object-holder";
+import ClickedSpotMenu from "./clickedSpotMenu/ClickedSpotMenu";
 
 const RosterBox = (props) => {
-  const [reload, setReload] = useState(false);
-  const [possiblePlayers, setPossiblePlayers] = useState([]);
   const [clickedChair, setClickedChair] = useState({});
-
   const [stringNumbersClicked, setStringNumbersClicked] = useState(false);
 
   const piece = props.piece;
   const directList = props.directList;
-  console.log(directList);
 
   const [listOfPossibles, setPICToQuery, possiblesReloader] = useGetAPushList(
     "get-possible-players"
@@ -31,13 +29,11 @@ const RosterBox = (props) => {
 
   useEffect(() => {
     setPieceToQuery(piece);
-
-  }, [piece, directList, reload]);
+    setPICToQuery(null);
+  }, [piece, directList]);
 
   const clickedSpotHandler = async (playerInChair) => {
-    setPossiblePlayers([]);
     setClickedChair(playerInChair);
-
     if (!playerInChair.player) {
       setPICToQuery(playerInChair);
     } else if (playerInChair.player) {
@@ -52,7 +48,7 @@ const RosterBox = (props) => {
     );
 
     if (response.ok) {
-      possiblesReloader(true)
+      setPICToQuery(null);
       chairsReloader(true);
     }
   };
@@ -63,7 +59,7 @@ const RosterBox = (props) => {
 
   const closeStrings = () => {
     setStringNumbersClicked(false);
-    setReload(true);
+    chairsReloader(true);
   };
 
   let whichRosterSpots = null;
@@ -80,31 +76,33 @@ const RosterBox = (props) => {
   }
 
   return (
-    <div className={styles.outerContainer}>
-      <div className={styles.rosterSpotsDiv}>
-        {whichRosterSpots}
+    <RosterBoxHolder.Provider
+      value={{ listOfPossibles, doubleClickedPossible }}
+    >
+      <div className={styles.outerContainer}>
+        <div className={styles.rosterSpotsDiv}>
+          {whichRosterSpots}
 
-        <div>
-          {chairsToFill.length > 0 && (
-            <button className={styles.stringsButton} onClick={stringsClicker}>
-              EDIT STRING NUMBERS
-            </button>
-          )}
-          {stringNumbersClicked && (
-            <StringsBox piece={piece} closeModal={closeStrings} />
-          )}
+          <div>
+            {chairsToFill.length > 0 && (
+              <button className={styles.stringsButton} onClick={stringsClicker}>
+                EDIT STRING NUMBERS
+              </button>
+            )}
+            {stringNumbersClicked && (
+              <StringsBox piece={piece} closeModal={closeStrings} />
+            )}
+          </div>
+        </div>
+
+        <div className={styles.clickedSpotMenuDiv}>
+          {clickedChair && <ClickedSpotMenu playerInChair={clickedChair} />}
+
+
+
         </div>
       </div>
-
-      <div className={styles.clickedSpotMenuDiv}>
-        {listOfPossibles.length > 0 && (
-          <Possibles
-            possibles={listOfPossibles}
-            doubleClicked={doubleClickedPossible}
-          />
-        )}
-      </div>
-    </div>
+    </RosterBoxHolder.Provider>
   );
 };
 
