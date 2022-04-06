@@ -41,8 +41,6 @@ const RosterSpot = (props) => {
     }
   }
 
-  let doublingPart = parts.length > 1 ? `+${parts[1]}` : "";
-
   let lastName = "";
 
   if (player) {

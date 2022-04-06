@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import RosterSpots from "./rosterSpots/RosterSpots";
 import Possibles from "./possibles/Possibles";
 
+import useGetPossiblePlayers from "../../../hooks/useGetPossiblePlayers";
+
 import Modal from "../../UI/modal/Modal";
 import StringsBox from "./stringsBox/StringsBox";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import styles from "./RosterBox.module.css";
+
 import useGetAPushList from "../../../hooks/useGetAPushList";
 
 const RosterBox = (props) => {
@@ -22,6 +25,8 @@ const RosterBox = (props) => {
   const piece = props.piece;
   const directList = props.directList;
 
+  const [listOfPossibles, reloadFlag, setPicToQuery] = useGetPossiblePlayers();
+
   useEffect(() => {
     const getTheChairs = async () => {
       let response = await PushBasic(piece, "get-pics-in-show-piece");
@@ -34,19 +39,21 @@ const RosterBox = (props) => {
 
     if (reload) {
       getTheChairs();
-      setReload(false)
+      setReload(false);
     }
 
     !directList ? getTheChairs() : setChairsToFill(directList);
   }, [piece, directList, reload]);
 
-  const clickedSpotHandler = async (chair) => {
-    setClickedChair(chair);
+  const clickedSpotHandler = async (playerInChair) => {
+    setPossiblePlayers([]);
+    setClickedChair(playerInChair);
 
-    const response = await PushBasic(chair, "get-possible-players");
-    if (response.ok) {
-      let listToSet = await response.json();
-      setPossiblePlayers(listToSet);
+    if (!playerInChair.player) {
+      setPicToQuery(playerInChair);
+
+    } else if (playerInChair.player) {
+      console.log("delete?");
     }
   };
 
@@ -58,7 +65,7 @@ const RosterBox = (props) => {
 
     if (response.ok) {
       setPossiblePlayers([]);
-      setReload(true)
+      setReload(true);
     }
   };
 
@@ -68,7 +75,7 @@ const RosterBox = (props) => {
 
   const closeStrings = () => {
     setStringNumbersClicked(false);
-    setReload(true)
+    setReload(true);
   };
 
   return (
@@ -82,19 +89,21 @@ const RosterBox = (props) => {
         )}
 
         <div>
-          {chairsToFill.length > 0 && <button className={styles.stringsButton} onClick={stringsClicker}>
-            EDIT STRING NUMBERS
-          </button>}
+          {chairsToFill.length > 0 && (
+            <button className={styles.stringsButton} onClick={stringsClicker}>
+              EDIT STRING NUMBERS
+            </button>
+          )}
           {stringNumbersClicked && (
             <StringsBox piece={piece} closeModal={closeStrings} />
           )}
         </div>
       </div>
 
-      <div className={styles.possiblesDiv}>
-        {possiblePlayers.length > 0 && (
+      <div className={styles.clickedSpotMenuDiv}>
+        {listOfPossibles.length > 0 && (
           <Possibles
-            possibles={possiblePlayers}
+            possibles={listOfPossibles}
             doubleClicked={doubleClickedPossible}
           />
         )}

@@ -7,8 +7,8 @@ const Possibles = (props) => {
   const doubleClicked = props.doubleClicked;
 
   const doubleClickHandler = (player) => {
-      doubleClicked(player)
-  }
+    doubleClicked(player);
+  };
 
   const displayablePossibles = possibles.map((player) => (
     <PossiblePlayer2
