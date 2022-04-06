@@ -3,22 +3,14 @@ import { useState, useEffect } from "react";
 import PieceItemEdit from "./pieceItemEdit/PieceItemEdit";
 
 import GetAList from "../../../../helperFunctions/GetAList";
+import useGetAList3 from "../../../../../hooks/useGetAList3";
 
 import styles from "./PiecesDropDownEdit.module.css";
 
 const PiecesDropDownEdit = (props) => {
-  const [piecesList, setPiecesList] = useState([]);
   const showOrHide = props.showOrHide;
 
-  useEffect(() => {
-    const getPieces = async () => {
-      const allPiecesResponse = await GetAList("get-all-pieces");
-      setPiecesList(allPiecesResponse);
-    };
-
-    getPieces();
-  }, []);
-
+  const [piecesList, refreshPieces] = useGetAList3("get-all-pieces");
 
   const listToDisplay = piecesList.map((piece) => (
     <PieceItemEdit key={piece.id} piece={piece} />

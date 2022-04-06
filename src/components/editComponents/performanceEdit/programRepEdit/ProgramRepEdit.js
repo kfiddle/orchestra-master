@@ -20,12 +20,6 @@ const ProgramRepEdit = () => {
   useEffect(() => {
     const previousList = showPiecesList.map((showtune) => showtune.piece);
 
-    // for (let j = 0; j < clickedPiecesList.length; j++) {
-    //   if (ObjectOnList(clickedPiecesList, previousList[0])) {
-    //     console.log("yes sirr ee");
-    //   }
-    // }
-
     console.log(DeepEqual(clickedPiecesList[0], previousList[1]));
   }, [showEditsSubmitted]);
 

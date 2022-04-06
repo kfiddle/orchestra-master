@@ -8,7 +8,6 @@ import ConcertsEdit from "./concertsEdit/ConcertsEdit";
 import DisplayedPiecesSimple from "./displayedPiecesSimple/DisplayedPiecesSimple";
 import OrchEntry2 from "../../entryComponents/orchEntry2/OrchEntry2";
 
-
 import ProgramRepEdit from "./programRepEdit/ProgramRepEdit";
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
 import ShowTunesList from "../../../store/showtunes-list";
@@ -18,6 +17,7 @@ import PerformanceToEdit from "../../../store/performance-to-edit";
 import PieceListHelper from "../../helperFunctions/PieceListHelper";
 import styles from "./PerformanceEdit2.module.css";
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
+import useGetAPushList from "../../../hooks/useGetAPushList";
 
 const PerformanceEdit2 = (props) => {
   const [performance, setPerformance] = useState(props.performance);
@@ -27,7 +27,6 @@ const PerformanceEdit2 = (props) => {
   const [instButtonClicked, setInstButtonClicked] = useState(false);
 
   useEffect(() => {
-  
     const getPieces = async () => {
       try {
         const response = await PushBasic(
@@ -60,8 +59,6 @@ const PerformanceEdit2 = (props) => {
     };
     getShowPieces();
 
-
-
     return () => {};
   }, [performance]);
 
@@ -93,11 +90,13 @@ const PerformanceEdit2 = (props) => {
 
   return (
     <PerformanceToEdit.Provider value={{ performance }}>
-      <ShowEditsSubmitted.Provider
-        value={{ showEditsSubmitted }}
-      >
+      <ShowEditsSubmitted.Provider value={{ showEditsSubmitted }}>
         <ShowTunesList.Provider
-          value={{ clickedPiecesList: clickedPiecesList, pieceToList, showPiecesList }}
+          value={{
+            clickedPiecesList: clickedPiecesList,
+            pieceToList,
+            showPiecesList,
+          }}
         >
           <PerformanceStateFunctions.Provider
             value={{ setPerformance, performance }}
