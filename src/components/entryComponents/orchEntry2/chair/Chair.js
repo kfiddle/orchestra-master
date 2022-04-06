@@ -4,6 +4,8 @@ import InstButton from "../instButton/InstButton";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
+import { OrchEntry2FormStore } from "../../../../store/form-holders";
+
 import { InstrumentationSubmit } from "../../../../store/submit-clicked";
 
 import { PieceHolder } from "../../../../store/object-holder";
@@ -11,10 +13,8 @@ import { ShowHolder } from "../../../../store/object-holder";
 
 const Chair = (props) => {
   const [parts, setParts] = useState([]);
-  const { submitClicked } = useContext(InstrumentationSubmit);
 
-  const { piece } = useContext(PieceHolder);
-  const { show } = useContext(ShowHolder);
+  const { piece, show, submitClicked } = useContext(OrchEntry2FormStore);
 
   const chairPartz = [parts, setParts];
 
@@ -42,6 +42,7 @@ const Chair = (props) => {
     if (submitClicked) {
       sendItUp();
     }
+
   }, [submitClicked]);
 
   const addPart = (part) => {

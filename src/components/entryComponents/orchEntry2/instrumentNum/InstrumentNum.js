@@ -68,7 +68,7 @@ const InstrumentNum = (props) => {
       <div className={styles.chairsAndExtrasDiv}>
         <div>{showChairs && <div>{chairsList}</div>}</div>
         {/* <div>{showExtras && <Extras instrument={instrument} />}</div> */}
-        <Extras instrument={instrument} />
+        {/* <Extras instrument={instrument} /> */}
       </div>
     </div>
   );

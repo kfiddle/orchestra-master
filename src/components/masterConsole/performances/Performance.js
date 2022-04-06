@@ -12,6 +12,8 @@ import useDateFormatter from "../../../hooks/useDateFormatter";
 
 import styles from "./Performance.module.css";
 
+//performances has this
+
 const Performance = (props) => {
   const [addPieceClicked, setAddPieceClicked] = useState(false);
   const [editClicked, setEditClicked] = useState(false);

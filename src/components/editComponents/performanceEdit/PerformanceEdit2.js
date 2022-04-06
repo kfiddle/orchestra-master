@@ -8,6 +8,7 @@ import ConcertsEdit from "./concertsEdit/ConcertsEdit";
 import DisplayedPiecesSimple from "./displayedPiecesSimple/DisplayedPiecesSimple";
 import OrchEntry2 from "../../entryComponents/orchEntry2/OrchEntry2";
 
+
 import ProgramRepEdit from "./programRepEdit/ProgramRepEdit";
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
 import ShowTunesList from "../../../store/showtunes-list";
@@ -124,7 +125,7 @@ const PerformanceEdit2 = (props) => {
                       className={styles.instButton}
                       onClick={submitInstrumentation}
                     >
-                      Add Instrumentation
+                      General Roster
                     </button>
                   </div>
 

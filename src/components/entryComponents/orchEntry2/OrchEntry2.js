@@ -7,7 +7,7 @@ import Family from "./family/Family";
 import PercussionBox from "./percussionBox/PercussionBox";
 import StringsBox from "./stringsBox/StringsBox";
 
-import FullInstrumentation from "../../../store/full-instrumentation";
+import { OrchEntry2FormStore } from "../../../store/form-holders";
 
 import { InstrumentationSubmit } from "../../../store/submit-clicked";
 import { PieceHolder } from "../../../store/object-holder";
@@ -33,31 +33,26 @@ const OrchEntry2 = (props) => {
     setTimeout(closeModal, 300);
   };
 
-  return (
-    <InstrumentationSubmit.Provider value={{ submitClicked }}>
-      <PieceHolder.Provider value={{ piece }}>
-        <ShowHolder.Provider value={{ show }}>
-          <Modal
-            closeModal={props.closeModal}
-            styleObject={orchEntryModalStyles}
-          >
-            <div className={styles.outerContainer}>
-              <div className={styles.titleDiv}>
-                <h2>{title}</h2>
-              </div>
-              <Family familyLabel={"WINDS"} list={winds}></Family>
-              <Family familyLabel={"BRASS"} list={brass}></Family>
-              <PercussionBox />
-              <StringsBox />
+  const providerObject = { piece, show, submitClicked };
 
-              <div className={styles.SubmitButtonDiv}>
-                <SubmitButton submit={submit} />
-              </div>
-            </div>
-          </Modal>
-        </ShowHolder.Provider>
-      </PieceHolder.Provider>
-    </InstrumentationSubmit.Provider>
+  return (
+    <OrchEntry2FormStore.Provider value={providerObject}>
+      <Modal closeModal={props.closeModal} styleObject={orchEntryModalStyles}>
+        <div className={styles.outerContainer}>
+          <div className={styles.titleDiv}>
+            <h2>{title}</h2>
+          </div>
+          <Family familyLabel={"WINDS"} list={winds}></Family>
+          <Family familyLabel={"BRASS"} list={brass}></Family>
+          <PercussionBox />
+          <StringsBox />
+
+          <div className={styles.SubmitButtonDiv}>
+            <SubmitButton submit={submit} />
+          </div>
+        </div>
+      </Modal>
+    </OrchEntry2FormStore.Provider>
   );
 };
 

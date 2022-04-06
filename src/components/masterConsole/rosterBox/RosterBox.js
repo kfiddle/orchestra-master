@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import RosterSpots from "./rosterSpots/RosterSpots";
 import Possibles from "./possibles/Possibles";
 
-
 import StringsBox from "./stringsBox/StringsBox";
 
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
@@ -21,28 +20,18 @@ const RosterBox = (props) => {
 
   const piece = props.piece;
   const directList = props.directList;
+  console.log(directList);
 
-  const [listOfPossibles, setPICToQuery] = useGetAPushList(
+  const [listOfPossibles, setPICToQuery, possiblesReloader] = useGetAPushList(
     "get-possible-players"
   );
   const [chairsToFill, setPieceToQuery, chairsReloader] = useGetAPushList(
     "get-pics-in-show-piece"
   );
 
-
   useEffect(() => {
-    const getTheChairs = async () => {
-      setPossiblePlayers([]);
-    };
-
-    if (reload) {
-      getTheChairs();
-      setReload(false);
-    }
-
     setPieceToQuery(piece);
 
-    // !directList ? getTheChairs() : setChairsToFill(directList);
   }, [piece, directList, reload]);
 
   const clickedSpotHandler = async (playerInChair) => {
@@ -63,7 +52,7 @@ const RosterBox = (props) => {
     );
 
     if (response.ok) {
-      setPossiblePlayers([]);
+      possiblesReloader(true)
       chairsReloader(true);
     }
   };
@@ -77,15 +66,23 @@ const RosterBox = (props) => {
     setReload(true);
   };
 
+  let whichRosterSpots = null;
+
+  if (directList) {
+    whichRosterSpots = (
+      <RosterSpots chairsToFill={directList} clicked={clickedSpotHandler} />
+    );
+  }
+  if (chairsToFill.length > 0) {
+    whichRosterSpots = (
+      <RosterSpots chairsToFill={chairsToFill} clicked={clickedSpotHandler} />
+    );
+  }
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.rosterSpotsDiv}>
-        {chairsToFill.length > 0 && (
-          <RosterSpots
-            chairsToFill={directList? directList: chairsToFill}
-            clicked={clickedSpotHandler}
-          />
-        )}
+        {whichRosterSpots}
 
         <div>
           {chairsToFill.length > 0 && (
