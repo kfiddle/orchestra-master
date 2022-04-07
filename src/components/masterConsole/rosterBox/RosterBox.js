@@ -97,9 +97,6 @@ const RosterBox = (props) => {
 
         <div className={styles.clickedSpotMenuDiv}>
           {clickedChair && <ClickedSpotMenu playerInChair={clickedChair} />}
-
-
-
         </div>
       </div>
     </RosterBoxHolder.Provider>

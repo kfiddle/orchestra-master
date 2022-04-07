@@ -86,8 +86,6 @@ const RosterSpot = (props) => {
     printRankOrSeat = specialDesignate;
   }
 
-  // let printRankOrSeat = stringPart ? sectionSeat + 1 : rank;
-
   let marginClass = !printSectionLabel
     ? classes.sectionMargin
     : classes.sectionHeadMargin;

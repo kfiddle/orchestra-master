@@ -17,7 +17,6 @@ const MasterConsole3 = (props) => {
   const [clickedPiece, setClickedPiece] = useState(null);
   const [directPICS, setDirectPICS] = useState([]);
 
-
   const clickedPerformanceHandler = async (performance) => {
     const performancePiecesResponse = await PushBasic(
       performance,
@@ -33,6 +32,7 @@ const MasterConsole3 = (props) => {
     );
     const picsListedOut = await getPICSDirectFromShow.json();
     setDirectPICS(picsListedOut);
+    // console.log(picsListedOut);
   };
 
   const clickedPieceHandler = async (piece) => {
