@@ -25,6 +25,11 @@ const InstButton = (props) => {
     setRightClicked((previous) => !previous);
   };
 
+  const partClicker = (part) => {
+    setRightClicked(false);
+    setDoublingsClicked([part]);
+  };
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.buttonContainer}>
@@ -45,9 +50,9 @@ const InstButton = (props) => {
         />
       )}
 
-      {rightClicked && <ExtrasBox primaryPart={primaryPart}/>}
-
-
+      {rightClicked && (
+        <ExtrasBox primaryPart={primaryPart} partClicker={partClicker} />
+      )}
     </div>
   );
 };

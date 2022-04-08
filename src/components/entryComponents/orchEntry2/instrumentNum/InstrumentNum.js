@@ -12,8 +12,6 @@ import styles from "./InstrumentNum.module.css";
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
   const [chairsList, setChairsList] = useState([]);
-  const [labelToExtras, setLabelToExtras] = useState(false);
-  const [showExtras, setShowExtras] = useState(false);
 
   const instrument = props.instrument;
   const showChairs = props.showChairs;
@@ -38,26 +36,11 @@ const InstrumentNum = (props) => {
     setNumber(+number);
   };
 
-  const extrasClickHandler = () => {
-    setShowExtras((previous) => !previous);
-  };
-
-  const flipLabel = () => {
-    setLabelToExtras((previous) => !previous);
-  };
-
-  const label = !labelToExtras ? instrument : "EXTRAS?";
-
   return (
     <div className={styles.outerContainer}>
       <div className={styles.instrumentBubble}>
-        <div
-          className={styles.labelAndClickerHolder}
-          //   onMouseEnter={flipLabel}
-          //   onMouseLeave={flipLabel}
-          onClick={extrasClickHandler}
-        >
-          <div className={styles.labelHolder}>{label}</div>
+        <div className={styles.labelAndClickerHolder}>
+          <div className={styles.labelHolder}>{instrument}</div>
         </div>
         <NumberInput
           type={"text"}
@@ -67,8 +50,6 @@ const InstrumentNum = (props) => {
       </div>
       <div className={styles.chairsAndExtrasDiv}>
         <div>{showChairs && <div>{chairsList}</div>}</div>
-        {/* <div>{showExtras && <Extras instrument={instrument} />}</div> */}
-        {/* <Extras instrument={instrument} /> */}
       </div>
     </div>
   );

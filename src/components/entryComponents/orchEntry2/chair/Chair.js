@@ -13,7 +13,6 @@ import { ShowHolder } from "../../../../store/object-holder";
 
 const Chair = (props) => {
   const [parts, setParts] = useState([]);
-
   const { piece, show, submitClicked } = useContext(OrchEntry2FormStore);
 
   const chairPartz = [parts, setParts];
@@ -23,7 +22,7 @@ const Chair = (props) => {
 
   useEffect(() => {
     setParts([primaryPart]);
-  }, [primaryPart]);
+  }, [primaryPart, parts]);
 
   useEffect(() => {
     const sendItUp = async () => {
@@ -52,7 +51,7 @@ const Chair = (props) => {
   };
 
   return (
-    <InstButton instrument={primaryPart} rank={rank} chairPartz={chairPartz} />
+    <InstButton instrument={parts[0]} rank={rank} chairPartz={chairPartz} />
   );
 };
 
