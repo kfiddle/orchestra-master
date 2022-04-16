@@ -27,7 +27,7 @@ const InstButton = (props) => {
 
   const partClicker = (part) => {
     setRightClicked(false);
-    setDoublingsClicked([part]);
+    setParts([part]);
   };
 
   return (

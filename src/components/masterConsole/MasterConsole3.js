@@ -32,7 +32,6 @@ const MasterConsole3 = (props) => {
     );
     const picsListedOut = await getPICSDirectFromShow.json();
     setDirectPICS(picsListedOut);
-    // console.log(picsListedOut);
   };
 
   const clickedPieceHandler = async (piece) => {

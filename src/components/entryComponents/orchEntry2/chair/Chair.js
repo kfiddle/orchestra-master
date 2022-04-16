@@ -4,33 +4,42 @@ import InstButton from "../instButton/InstButton";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
+import PartsEnumConverter from "../../../helperFunctions/PartsEnumConverter";
+
 import { OrchEntry2FormStore } from "../../../../store/form-holders";
-
-import { InstrumentationSubmit } from "../../../../store/submit-clicked";
-
-import { PieceHolder } from "../../../../store/object-holder";
-import { ShowHolder } from "../../../../store/object-holder";
 
 const Chair = (props) => {
   const [parts, setParts] = useState([]);
+  const [rank, setRank] = useState("");
   const { piece, show, submitClicked } = useContext(OrchEntry2FormStore);
+  const { stringToEnum } = PartsEnumConverter();
 
   const chairPartz = [parts, setParts];
 
-  const rank = props.rank;
-  const primaryPart = props.part;
+  const initialRank = props.rank;
+  const initialPrimaryPart = props.part;
 
   useEffect(() => {
-    setParts([primaryPart]);
-  }, [primaryPart, parts]);
+    setParts([initialPrimaryPart]);
+    setRank(initialRank);
+  }, [initialPrimaryPart]);
 
   useEffect(() => {
     const sendItUp = async () => {
       let pieceOrShow = piece ? "piece" : "show";
       let pieceOrShowObject = piece ? piece : show;
+      let partsToSend = [];
+
+      for (let part of parts) {
+        if (part === "D'AMORE") {
+          partsToSend.push("OBOEDAMORE");
+        } else {
+          partsToSend.push(part);
+        }
+      }
 
       let response = await PushBasic(
-        { parts: parts, rank: rank, [pieceOrShow]: pieceOrShowObject },
+        { parts: partsToSend, rank: rank, [pieceOrShow]: pieceOrShowObject },
         "add-chair-to-" + pieceOrShow
       );
       if (!response.ok) {
@@ -41,14 +50,7 @@ const Chair = (props) => {
     if (submitClicked) {
       sendItUp();
     }
-
   }, [submitClicked]);
-
-  const addPart = (part) => {
-    let tempList = parts;
-    tempList.push(part);
-    setParts(tempList);
-  };
 
   return (
     <InstButton instrument={parts[0]} rank={rank} chairPartz={chairPartz} />
