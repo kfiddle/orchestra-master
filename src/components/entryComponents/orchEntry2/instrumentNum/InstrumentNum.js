@@ -22,7 +22,10 @@ const InstrumentNum = (props) => {
 
   const { extras } = DoublingExtras();
 
-  const ourChairs = useMakeChairs(instrument, number, submitClicked);
+  const ourChairs = useMakeChairs(instrument, number, submitClicked, {
+    piece,
+    show,
+  });
 
   // useEffect(() => {
   //   const setChairs = () => {
@@ -42,7 +45,6 @@ const InstrumentNum = (props) => {
   //       console.log(chair);
   //     }
   //   }
-
 
   // }, [number, showChairs, submitClicked]);
 
@@ -67,10 +69,8 @@ const InstrumentNum = (props) => {
         ></NumberInput>
       </div>
       <div className={styles.chairsAndExtrasDiv}>
-
         {/* <div className={chairsDivClass}>{chairsList}</div> */}
         <div className={chairsDivClass}>{ourChairs}</div>
-
       </div>
     </div>
   );

@@ -2,9 +2,16 @@ import { useState, useEffect } from "react";
 
 import Chair from "../components/entryComponents/orchEntry2/chair/Chair";
 
-const useMakeChairs = (part, number, submitFlag) => {
+import PushBasic from "../components/helperFunctions/pushFunctions/PushBasic";
+
+const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
   const [chairsList, setChairsList] = useState([]);
   const [finalList, setFinalList] = useState([]);
+
+  const { piece, show } = pieceShowObject;
+
+  let pieceOrShow = piece ? "piece" : "show";
+  let pieceOrShowObject = piece ? piece : show;
 
   const putItTogether = (parts, rank) => {
     let tempList = finalList;
@@ -43,11 +50,23 @@ const useMakeChairs = (part, number, submitFlag) => {
           current.rank = previous.rank + 1;
         }
       }
-    }
 
-    setTimeout(() => {
-      console.log(finalList);
-    }, 2000);
+      setTimeout(async () => {
+        for (let chair of finalList) {
+          if (chair.parts[0] === "D'AMORE") {
+            chair.parts[0] = "OBOEDAMORE";
+          }
+          let response = await PushBasic(
+            {
+              parts: chair.parts,
+              rank: chair.rank,
+              [pieceOrShow]: pieceOrShowObject,
+            },
+            "add-chair-to-" + pieceOrShow
+          );
+        }
+      }, 500);
+    }
   }, [submitFlag]);
 
   return chairsList;
