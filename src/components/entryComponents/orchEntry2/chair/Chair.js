@@ -20,7 +20,6 @@ const Chair = (props) => {
   useEffect(() => {
     setParts([initialPrimaryPart]);
     setRank(initialRank);
-    putItTogether(initialPrimaryPart, initialRank);
   }, [initialPrimaryPart]);
 
   useEffect(() => {
@@ -51,7 +50,9 @@ const Chair = (props) => {
     };
 
     if (submitClicked) {
-      sendItUp();
+      putItTogether(parts, rank);
+
+      // sendItUp();
     }
   }, [submitClicked]);
 

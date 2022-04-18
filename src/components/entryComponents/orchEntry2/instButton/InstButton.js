@@ -27,8 +27,10 @@ const InstButton = (props) => {
   const partClicker = (part) => {
     setRightClicked(false);
     setParts([part]);
-    setRank(null);
+    setRank(0);
   };
+
+  let displayedRank = rank > 0? rank: null;
 
   return (
     <div className={styles.outerContainer}>
@@ -38,7 +40,7 @@ const InstButton = (props) => {
           onClick={showDoublings}
           onContextMenu={rightClickHandler}
         >
-          {primaryPart} {rank}
+          {primaryPart} {displayedRank}
         </button>
       </div>
 
