@@ -1,30 +1,38 @@
 import { useState, useEffect } from "react";
 
-import Chair2 from "../components/entryComponents/orchEntry2/chair2/Chair2";
+import Chair from "../components/entryComponents/orchEntry2/chair/Chair";
 
-const useMakeChairs = (part, number) => {
-  const [playerInChairs, setPlayerInChairs] = useState([]);
-  const [parts, setParts] = useState([]);
-  const [rank, setRank] = useState(null);
+const useMakeChairs = (part, number, submitFlag) => {
+  const [chairsList, setChairsList] = useState([]);
+  const [finalList, setFinalList] = useState([]);
+
+  const putItTogether = (part, rank) => {
+    let tempList = finalList;
+    tempList.push({ part, rank });
+    setFinalList(tempList);
+  };
 
   useEffect(() => {
-    const createList = () => {
-      let tempList = [];
+    let tempList = [];
+    for (let j = 0; j < number; j++) {
+      tempList.push(
+        <Chair key={j} part={part} rank={j} putItTogether={putItTogether} />
+      );
+    }
+    setChairsList(tempList);
 
-      for (let j = 1; j <= number; j++) {
-        tempList.push(Chair2(part, j));
-        setPlayerInChairs(tempList);
-      }
+    if (number === 0) {
+      setChairsList([]);
+    }
+  }, [number]);
 
-      if (rank === 0) {
-        setPlayerInChairs([]);
-      }
-    };
+  useEffect(() => {
+    if (submitFlag) {
+      console.log(finalList);
+    }
+  }, [submitFlag]);
 
-    createList();
-  }, [number, part]);
-
-  return playerInChairs;
+  return chairsList;
 };
 
 export default useMakeChairs;

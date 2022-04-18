@@ -29,6 +29,7 @@ const Extra = (props) => {
   };
 
   const clickHandler = () => {
+    console.log(clicked)
     setClicked((previous) => !previous);
 
     if (!clicked) {

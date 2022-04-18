@@ -10,6 +10,7 @@ import Chair from "../chair/Chair";
 import { OrchEntry2FormStore } from "../../../../store/form-holders";
 
 import styles from "./InstrumentNum.module.css";
+import useMakeChairs from "../../../../hooks/useMakeChairs";
 
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
@@ -21,25 +22,29 @@ const InstrumentNum = (props) => {
 
   const { extras } = DoublingExtras();
 
-  useEffect(() => {
-    const setChairs = () => {
-      setChairsList([]);
-      let tempList = [];
+  const ourChairs = useMakeChairs(instrument, number, submitClicked);
 
-      for (let j = 1; j <= number; j++) {
-        tempList.push(<Chair key={j} part={instrument} rank={j} />);
-      }
-      setChairsList(tempList);
-    };
+  // useEffect(() => {
+  //   const setChairs = () => {
+  //     setChairsList([]);
+  //     let tempList = [];
 
-    setChairs();
+  //     for (let j = 1; j <= number; j++) {
+  //       tempList.push(<Chair key={j} part={instrument} rank={j} />);
+  //     }
+  //     setChairsList(tempList);
+  //   };
 
-    if (submitClicked) {
-      for (let chair of chairsList) {
-        console.log(chair);
-      }
-    }
-  }, [number, showChairs, submitClicked]);
+  //   setChairs();
+
+  //   if (submitClicked) {
+  //     for (let chair of chairsList) {
+  //       console.log(chair);
+  //     }
+  //   }
+
+
+  // }, [number, showChairs, submitClicked]);
 
   const setThisInstrument = (number) => {
     setNumber(+number);
@@ -62,7 +67,10 @@ const InstrumentNum = (props) => {
         ></NumberInput>
       </div>
       <div className={styles.chairsAndExtrasDiv}>
-        <div className={chairsDivClass}>{chairsList}</div>
+
+        {/* <div className={chairsDivClass}>{chairsList}</div> */}
+        <div className={chairsDivClass}>{ourChairs}</div>
+
       </div>
     </div>
   );

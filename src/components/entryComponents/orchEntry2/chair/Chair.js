@@ -13,12 +13,14 @@ const Chair = (props) => {
 
   const chairPartz = [parts, setParts, rank, setRank];
 
+  const putItTogether = props.putItTogether;
   const initialRank = props.rank;
   const initialPrimaryPart = props.part;
 
   useEffect(() => {
     setParts([initialPrimaryPart]);
     setRank(initialRank);
+    putItTogether(initialPrimaryPart, initialRank);
   }, [initialPrimaryPart]);
 
   useEffect(() => {
@@ -36,7 +38,11 @@ const Chair = (props) => {
       }
 
       let response = await PushBasic(
-        { parts: partsToSend, rank: rank? rank: 1, [pieceOrShow]: pieceOrShowObject },
+        {
+          parts: partsToSend,
+          rank: rank ? rank : 1,
+          [pieceOrShow]: pieceOrShowObject,
+        },
         "add-chair-to-" + pieceOrShow
       );
       if (!response.ok) {

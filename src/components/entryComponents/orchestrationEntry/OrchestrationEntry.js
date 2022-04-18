@@ -8,6 +8,7 @@ import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./OrchestrationEntry.module.css";
 import SingleInstrumentInput from "./single_instrument_inputs/SingleInstrumentInput";
+import { Fragment } from "react/cjs/react.production.min";
 
 const mainInstruments = [
   "FLUTE",
@@ -53,7 +54,7 @@ const OrchestrationEntry = (props) => {
   const submitOrSetStrings = async () => {
     let primaryChairsToSend = [];
 
-    console.log(allParts)
+    console.log(allParts);
 
     for (let primaryPart in allParts) {
       for (let chair of allParts[primaryPart]) {
@@ -69,7 +70,9 @@ const OrchestrationEntry = (props) => {
         let emptyChair = {
           parts: parts,
           rank: chair.rank,
-          specialDesignate: chair.specialDesignate ? chair.specialDesignate : null,
+          specialDesignate: chair.specialDesignate
+            ? chair.specialDesignate
+            : null,
         };
         primaryChairsToSend.push(emptyChair);
       }
@@ -144,8 +147,9 @@ const OrchestrationEntry = (props) => {
             Submit
           </button>
         </div>
+
+        {extrasClicked && <Extras extrasStateStuff={extrasStateStuff} />}
       </div>
-      {extrasClicked && <Extras extrasStateStuff={extrasStateStuff} />}
     </Modal>
   );
 };
