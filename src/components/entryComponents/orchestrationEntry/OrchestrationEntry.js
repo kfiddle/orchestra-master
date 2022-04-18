@@ -38,6 +38,9 @@ const OrchestrationEntry = (props) => {
   const extrasStateStuff = [extras, setExtras];
 
   const piece = props.piece;
+  const show = props.show;
+
+  const title = piece ? piece.title : show.title;
 
   const displayableInstruments = mainInstruments.map((instrument) => (
     <SingleInstrumentInput
@@ -109,7 +112,7 @@ const OrchestrationEntry = (props) => {
       <div className={classes.outerContainer}>
         <div className={classes.inputsDiv}>
           <div className={classes.titleDiv}>
-            <h2>{piece.title}</h2>
+            <h2>{title}</h2>
           </div>
 
           <div className={classes.inputsContainer}>

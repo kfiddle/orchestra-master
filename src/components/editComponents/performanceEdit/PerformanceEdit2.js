@@ -6,7 +6,9 @@ import BigInput3 from "../../input/BigInput3";
 
 import ConcertsEdit from "./concertsEdit/ConcertsEdit";
 import DisplayedPiecesSimple from "./displayedPiecesSimple/DisplayedPiecesSimple";
+
 import OrchEntry2 from "../../entryComponents/orchEntry2/OrchEntry2";
+import OrchestrationEntry from "../../entryComponents/orchestrationEntry/OrchestrationEntry";
 
 import ProgramRepEdit from "./programRepEdit/ProgramRepEdit";
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
@@ -139,9 +141,17 @@ const PerformanceEdit2 = (props) => {
                     </button>
                   </div>
                 </form>
+
                 {instButtonClicked && (
                   <OrchEntry2 show={performance} closeModal={closeModal} />
                 )}
+
+                {/* {instButtonClicked && (
+                  <OrchestrationEntry
+                    show={performance}
+                    closeModal={closeModal}
+                  />
+                )} */}
               </div>
             </Modal>
           </PerformanceStateFunctions.Provider>

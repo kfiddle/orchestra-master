@@ -103,10 +103,16 @@ const RosterSpot = (props) => {
         onContextMenu={rightClickHandler}
       >
         <div className={classes.partDiv}>
-          {printSectionLabel && primaryPart}
+
+          {/* {printSectionLabel && primaryPart} */}
+          {primaryPart}
+
         </div>
-        <div className={classes.rankDiv}>{printRankOrSeat}</div>
+        {/* <div className={classes.rankDiv}>{printRankOrSeat}</div> */}
+        <div className={classes.rankDiv}>{rank}</div>
+
         <div className={classes.playerDiv}>{lastName}</div>
+
         <div className={classes.doublingDiv}>{doublingParts}</div>
 
         <div className={classes.mailButtonDiv}>

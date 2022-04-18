@@ -4,17 +4,14 @@ import InstButton from "../instButton/InstButton";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
-import PartsEnumConverter from "../../../helperFunctions/PartsEnumConverter";
-
 import { OrchEntry2FormStore } from "../../../../store/form-holders";
 
 const Chair = (props) => {
   const [parts, setParts] = useState([]);
   const [rank, setRank] = useState("");
   const { piece, show, submitClicked } = useContext(OrchEntry2FormStore);
-  const { stringToEnum } = PartsEnumConverter();
 
-  const chairPartz = [parts, setParts];
+  const chairPartz = [parts, setParts, rank, setRank];
 
   const initialRank = props.rank;
   const initialPrimaryPart = props.part;
@@ -39,7 +36,7 @@ const Chair = (props) => {
       }
 
       let response = await PushBasic(
-        { parts: partsToSend, rank: rank, [pieceOrShow]: pieceOrShowObject },
+        { parts: partsToSend, rank: rank? rank: 1, [pieceOrShow]: pieceOrShowObject },
         "add-chair-to-" + pieceOrShow
       );
       if (!response.ok) {

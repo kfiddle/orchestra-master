@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import NumberInput from "../../../input/numberInput/NumberInput";
 
@@ -7,11 +7,14 @@ import Extras from "../auxiliaries/Extras";
 
 import Chair from "../chair/Chair";
 
+import { OrchEntry2FormStore } from "../../../../store/form-holders";
+
 import styles from "./InstrumentNum.module.css";
 
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
   const [chairsList, setChairsList] = useState([]);
+  const { piece, show, submitClicked } = useContext(OrchEntry2FormStore);
 
   const instrument = props.instrument;
   const showChairs = props.showChairs;
@@ -30,11 +33,21 @@ const InstrumentNum = (props) => {
     };
 
     setChairs();
-  }, [number, showChairs]);
+
+    if (submitClicked) {
+      for (let chair of chairsList) {
+        console.log(chair);
+      }
+    }
+  }, [number, showChairs, submitClicked]);
 
   const setThisInstrument = (number) => {
     setNumber(+number);
   };
+
+  const chairsDivClass = showChairs
+    ? styles.visibleChairs
+    : styles.hiddenChairs;
 
   return (
     <div className={styles.outerContainer}>
@@ -49,7 +62,7 @@ const InstrumentNum = (props) => {
         ></NumberInput>
       </div>
       <div className={styles.chairsAndExtrasDiv}>
-        <div>{showChairs && <div>{chairsList}</div>}</div>
+        <div className={chairsDivClass}>{chairsList}</div>
       </div>
     </div>
   );

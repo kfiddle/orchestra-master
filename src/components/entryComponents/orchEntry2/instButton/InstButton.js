@@ -10,11 +10,10 @@ const InstButton = (props) => {
   const [rightClicked, setRightClicked] = useState(false);
 
   const primaryPart = props.instrument;
-  const rank = props.rank;
   const clicked = props.clicked;
   const chairPartz = props.chairPartz;
 
-  const [parts, setParts] = chairPartz;
+  const [parts, setParts, rank, setRank] = chairPartz;
 
   const showDoublings = () => {
     setDoublingsClicked((previous) => !previous);
@@ -28,6 +27,7 @@ const InstButton = (props) => {
   const partClicker = (part) => {
     setRightClicked(false);
     setParts([part]);
+    setRank(null);
   };
 
   return (

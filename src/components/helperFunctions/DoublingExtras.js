@@ -14,6 +14,7 @@ const DoublingExtras = () => {
     FLUTE: ["PICCOLO", "ALTOFLUTE"],
     OBOE: ["ENGLISHHORN", "D'AMORE"],
     CLARINET: ["EBCLARINET", "BASSCLARINET", "SAX"],
+    BASSOON: ["CONTRA"],
     HORN: ["WAGNERTUBA"],
     TRUMPET: ["CORNET", "FUGALHORN"],
     TUBA: ["EUPHONIUM"],

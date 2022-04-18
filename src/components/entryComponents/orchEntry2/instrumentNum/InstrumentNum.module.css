@@ -36,10 +36,15 @@
   color: rgb(175, 33, 231);
 }
 
-.labelHolder {
-}
-
 .chairsAndExtrasDiv {
   display: flex;
   width: fit-content;
+}
+
+.hiddenChairs {
+  display: none;
+}
+
+.visibleChairs {
+  display: block;
 }
