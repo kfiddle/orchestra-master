@@ -27,27 +27,6 @@ const InstrumentNum = (props) => {
     show,
   });
 
-  // useEffect(() => {
-  //   const setChairs = () => {
-  //     setChairsList([]);
-  //     let tempList = [];
-
-  //     for (let j = 1; j <= number; j++) {
-  //       tempList.push(<Chair key={j} part={instrument} rank={j} />);
-  //     }
-  //     setChairsList(tempList);
-  //   };
-
-  //   setChairs();
-
-  //   if (submitClicked) {
-  //     for (let chair of chairsList) {
-  //       console.log(chair);
-  //     }
-  //   }
-
-  // }, [number, showChairs, submitClicked]);
-
   const setThisInstrument = (number) => {
     setNumber(+number);
   };

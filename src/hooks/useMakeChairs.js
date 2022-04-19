@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 
 import Chair from "../components/entryComponents/orchEntry2/chair/Chair";
+import Chair2 from "../components/entryComponents/orchEntry2/chair2/Chair2";
 
 import PushBasic from "../components/helperFunctions/pushFunctions/PushBasic";
 
 const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
   const [chairsList, setChairsList] = useState([]);
   const [finalList, setFinalList] = useState([]);
+  const [deleteAssist, setDeleteAssist] = useState(false);
 
   const { piece, show } = pieceShowObject;
 
@@ -19,11 +21,30 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
     setFinalList(tempList);
   };
 
+  const deleteClicked = () => {
+    setDeleteAssist(true);
+  };
+
   useEffect(() => {
     let tempList = [];
     for (let j = 1; j <= number; j++) {
       tempList.push(
-        <Chair key={j} part={part} rank={j} putItTogether={putItTogether} />
+        <Chair2 key={j} part={part} rank={j} putItTogether={putItTogether} />
+      );
+    }
+
+    if (part === "HORN") {
+      tempList.splice(
+        1,
+        0,
+        <Chair2
+          key={8}
+          part={part}
+          rank={8}
+          putItTogether={putItTogether}
+          specialDesignate={"Assist"}
+          deleteClicked={deleteClicked}
+        />
       );
     }
     setChairsList(tempList);
@@ -68,6 +89,16 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
       }, 500);
     }
   }, [submitFlag]);
+
+  useEffect(() => {
+    if (deleteAssist) {
+      console.log('peekaboo')
+      let tempList = chairsList;
+      tempList.slice(1, 1);
+      setChairsList(tempList);
+      setDeleteAssist(false);
+    }
+  }, [deleteAssist]);
 
   return chairsList;
 };

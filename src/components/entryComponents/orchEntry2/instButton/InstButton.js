@@ -8,10 +8,11 @@ import styles from "./InstButton.module.css";
 const InstButton = (props) => {
   const [doublingsClicked, setDoublingsClicked] = useState(false);
   const [rightClicked, setRightClicked] = useState(false);
+  const [extraInPlace, setExtraInPlace] = useState(false);
 
   const primaryPart = props.instrument;
-  const clicked = props.clicked;
   const chairPartz = props.chairPartz;
+  const { initialPrimaryPart, initialRank } = props.initials;
 
   const [parts, setParts, rank, setRank] = chairPartz;
 
@@ -21,16 +22,22 @@ const InstButton = (props) => {
 
   const rightClickHandler = (event) => {
     event.preventDefault();
-    setRightClicked((previous) => !previous);
+    if (!extraInPlace) {
+      setRightClicked((previous) => !previous);
+    } else {
+      setParts([initialPrimaryPart]);
+      setRank(initialRank)
+    }
   };
 
   const partClicker = (part) => {
     setRightClicked(false);
     setParts([part]);
     setRank(0);
+    setExtraInPlace(true);
   };
 
-  let displayedRank = rank > 0? rank: null;
+  let displayedRank = rank > 0 ? rank : null;
 
   return (
     <div className={styles.outerContainer}>

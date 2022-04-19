@@ -17,47 +17,21 @@ const Chair = (props) => {
   const initialRank = props.rank;
   const initialPrimaryPart = props.part;
 
+  const initials = { initialPrimaryPart, initialRank };
+
   useEffect(() => {
     setParts([initialPrimaryPart]);
     setRank(initialRank);
   }, [initialPrimaryPart]);
 
   useEffect(() => {
-    const sendItUp = async () => {
-      let pieceOrShow = piece ? "piece" : "show";
-      let pieceOrShowObject = piece ? piece : show;
-      let partsToSend = [];
-
-      for (let part of parts) {
-        if (part === "D'AMORE") {
-          partsToSend.push("OBOEDAMORE");
-        } else {
-          partsToSend.push(part);
-        }
-      }
-
-      let response = await PushBasic(
-        {
-          parts: partsToSend,
-          rank: rank ? rank : 1,
-          [pieceOrShow]: pieceOrShowObject,
-        },
-        "add-chair-to-" + pieceOrShow
-      );
-      if (!response.ok) {
-        console.log(response);
-      }
-    };
-
     if (submitClicked) {
       putItTogether(parts, rank);
-
-      // sendItUp();
     }
   }, [submitClicked]);
 
   return (
-    <InstButton instrument={parts[0]} rank={rank} chairPartz={chairPartz} />
+    <InstButton instrument={parts[0]} rank={rank} chairPartz={chairPartz} initials={initials} />
   );
 };
 

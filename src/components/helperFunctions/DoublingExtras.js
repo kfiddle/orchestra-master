@@ -28,7 +28,12 @@ const DoublingExtras = () => {
     ],
   };
 
+
+
   return { doubling, extras };
 };
 
 export default DoublingExtras;
+
+
+
