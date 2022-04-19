@@ -1,9 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+
+import { OrchEntry2FormStore } from "../../../../store/form-holders";
+
+import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./StringsBox.module.css";
 
 const StringsBox = (props) => {
   const [stringsChecked, setStringsChecked] = useState(true);
+  const { pieceOrShow, object, submitClicked } = useContext(OrchEntry2FormStore);
+
+  useEffect(() => {
+    const sendUpStrings = async () => {
+      let stringParts = [
+        ["VIOLIN1"],
+        ["VIOLIN2"],
+        ["VIOLA"],
+        ["CELLO"],
+        ["BASS"],
+      ];
+      for (let parts of stringParts) {
+        let response = await PushBasic(
+          {
+            parts: parts,
+            [pieceOrShow]: object,
+          },
+          "add-chair-to-" + pieceOrShow
+        );
+      }
+    };
+
+    if (submitClicked && stringsChecked) {
+      sendUpStrings();
+    }
+  }, [submitClicked, stringsChecked]);
 
   const setStrings = (event) => {
     setStringsChecked((previous) => !previous);

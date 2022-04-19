@@ -10,10 +10,7 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
   const [finalList, setFinalList] = useState([]);
   const [deleteAssist, setDeleteAssist] = useState(false);
 
-  const { piece, show } = pieceShowObject;
-
-  let pieceOrShow = piece ? "piece" : "show";
-  let pieceOrShowObject = piece ? piece : show;
+  const { pieceOrShow, object } = pieceShowObject;
 
   const putItTogether = (parts, rank, specialDesignate) => {
     let tempList = finalList;
@@ -84,7 +81,7 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
             {
               parts: chair.parts,
               rank: chair.rank,
-              [pieceOrShow]: pieceOrShowObject,
+              [pieceOrShow]: object,
               specialDesignate: chair.specialDesignate? chair.specialDesignate: null,
             },
             "add-chair-to-" + pieceOrShow

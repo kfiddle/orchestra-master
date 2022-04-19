@@ -15,7 +15,7 @@ import useMakeChairs from "../../../../hooks/useMakeChairs";
 const InstrumentNum = (props) => {
   const [number, setNumber] = useState("");
   const [chairsList, setChairsList] = useState([]);
-  const { piece, show, submitClicked } = useContext(OrchEntry2FormStore);
+  const { pieceOrShow, object, submitClicked } = useContext(OrchEntry2FormStore);
 
   const instrument = props.instrument;
   const showChairs = props.showChairs;
@@ -23,8 +23,8 @@ const InstrumentNum = (props) => {
   const { extras } = DoublingExtras();
 
   const ourChairs = useMakeChairs(instrument, number, submitClicked, {
-    piece,
-    show,
+    pieceOrShow,
+    object,
   });
 
   const setThisInstrument = (number) => {

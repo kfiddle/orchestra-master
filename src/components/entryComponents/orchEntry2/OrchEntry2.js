@@ -9,9 +9,6 @@ import StringsBox from "./stringsBox/StringsBox";
 
 import { OrchEntry2FormStore } from "../../../store/form-holders";
 
-import { InstrumentationSubmit } from "../../../store/submit-clicked";
-import { PieceHolder } from "../../../store/object-holder";
-import { ShowHolder } from "../../../store/object-holder";
 import styles from "./OrchEntry2.module.css";
 
 const winds = ["FLUTE", "OBOE", "CLARINET", "BASSOON"];
@@ -24,6 +21,9 @@ const OrchEntry2 = (props) => {
   const show = props.show;
   const closeModal = props.closeModal;
 
+  const pieceOrShow = piece ? "piece" : "show";
+  const object = piece ? piece : show;
+
   const title = piece ? piece.title : show.title;
 
   const orchEntryModalStyles = { width: "80vw", top: "5vh" };
@@ -33,7 +33,8 @@ const OrchEntry2 = (props) => {
     setTimeout(closeModal, 300);
   };
 
-  const providerObject = { piece, show, submitClicked };
+  // const providerObject = { piece, show, submitClicked };
+  const providerObject = { pieceOrShow, object, submitClicked };
 
   return (
     <OrchEntry2FormStore.Provider value={providerObject}>
