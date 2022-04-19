@@ -63,7 +63,9 @@ const RosterBox = (props) => {
 
   const closeStrings = () => {
     setStringNumbersClicked(false);
-    chairsReloader(true);
+    if (piece) {
+      chairsReloader(true);
+    }
   };
 
   let whichRosterSpots = null;

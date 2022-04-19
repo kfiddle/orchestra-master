@@ -75,14 +75,14 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
             chair.parts[0] = "OBOEDAMORE";
           }
 
-          console.log(chair)
-
           let response = await PushBasic(
             {
               parts: chair.parts,
               rank: chair.rank,
               [pieceOrShow]: object,
-              specialDesignate: chair.specialDesignate? chair.specialDesignate: null,
+              specialDesignate: chair.specialDesignate
+                ? chair.specialDesignate
+                : null,
             },
             "add-chair-to-" + pieceOrShow
           );
