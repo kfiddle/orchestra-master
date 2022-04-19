@@ -29,7 +29,7 @@ const RosterSpot = (props) => {
   const rightClicker = props.rightClicker;
   const rightClicked = props.rightClicked;
   const fadeForOther = props.fadeForOther;
-  const setPlayerChange = props.setPlayerChange;
+  const chairsReloader = props.chairsReloader;
 
   let primaryPart = parts[0];
 
@@ -70,7 +70,8 @@ const RosterSpot = (props) => {
       "remove-player-from-pic"
     );
     if (response.ok) {
-      setPlayerChange(true);
+      chairsReloader(true);
+      rightClicker(null);
     }
   };
 
@@ -83,7 +84,7 @@ const RosterSpot = (props) => {
     printRankOrSeat = sectionSeat + 1;
   }
   if (specialDesignate) {
-    printRankOrSeat = specialDesignate;
+    printRankOrSeat = 'A';
   }
 
   let marginClass = !printSectionLabel
@@ -103,10 +104,8 @@ const RosterSpot = (props) => {
         onContextMenu={rightClickHandler}
       >
         <div className={classes.partDiv}>
-
           {printSectionLabel && primaryPart}
           {/* {primaryPart} */}
-
         </div>
         <div className={classes.rankDiv}>{printRankOrSeat}</div>
         {/* <div className={classes.rankDiv}>{rank}</div> */}

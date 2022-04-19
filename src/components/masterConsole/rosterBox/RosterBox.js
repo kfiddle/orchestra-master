@@ -22,19 +22,23 @@ const RosterBox = (props) => {
   const piece = props.piece;
   const show = props.show;
 
+  const pieceShow = props.piece ? props.piece : props.show;
+  const whichFetch = props.piece
+    ? "get-pics-in-show-piece"
+    : "get-pics-in-show";
+
   const directList = props.directList;
 
   const [listOfPossibles, setPICToQuery, possiblesReloader] = useGetAPushList(
     "get-possible-players"
   );
-  const [chairsToFill, setPieceToQuery, chairsReloader] = useGetAPushList(
-    "get-pics-in-show-piece"
-  );
+  const [chairsToFill, setObjectToQuery, chairsReloader] =
+    useGetAPushList(whichFetch);
 
   useEffect(() => {
-    setPieceToQuery(piece);
+    setObjectToQuery(pieceShow);
     setPICToQuery(null);
-  }, [piece, directList]);
+  }, [pieceShow, directList]);
 
   const clickedSpotHandler = async (playerInChair) => {
     setClickedChair(playerInChair);
@@ -72,12 +76,12 @@ const RosterBox = (props) => {
 
   if (directList) {
     whichRosterSpots = (
-      <RosterSpots chairsToFill={directList} clicked={clickedSpotHandler} />
+      <RosterSpots chairsToFill={directList} clicked={clickedSpotHandler} chairsReloader={chairsReloader} />
     );
   }
   if (chairsToFill.length > 0) {
     whichRosterSpots = (
-      <RosterSpots chairsToFill={chairsToFill} clicked={clickedSpotHandler} />
+      <RosterSpots chairsToFill={chairsToFill} clicked={clickedSpotHandler} chairsReloader={chairsReloader} />
     );
   }
 

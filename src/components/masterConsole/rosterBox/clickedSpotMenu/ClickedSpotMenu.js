@@ -14,13 +14,14 @@ const ClickedSpotMenu = (props) => {
 
   return (
     <div className={styles.outerContainer}>
+
       {!playerInChair.player ? (
         <Possibles
           possibles={listOfPossibles}
           doubleClicked={doubleClickedPossible}
         />
       ) : (
-        "CHANITT"
+        <div>help</div>
       )}
     </div>
   );
