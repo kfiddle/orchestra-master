@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import Performances from "./performances/Performances";
 import Pieces from "./pieces/Pieces";
-
 import RosterBox from "./rosterBox/RosterBox";
 
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
@@ -16,12 +15,14 @@ const MasterConsole3 = (props) => {
   const [pieces, setPieces] = useState([]);
   const [clickedPiece, setClickedPiece] = useState(null);
   const [directPICS, setDirectPICS] = useState([]);
+  const [clickedShow, setClickedShow] = useState(null);
 
   const clickedPerformanceHandler = async (performance) => {
     const performancePiecesResponse = await PushBasic(
       performance,
       "get-showtunes-on-program"
     );
+    setClickedShow(performance);
     const ppsJsonified = await performancePiecesResponse.json();
     setPieces(ppsJsonified);
     setClickedPiece(null);
@@ -55,7 +56,7 @@ const MasterConsole3 = (props) => {
         {clickedPiece && <RosterBox piece={clickedPiece} />}
 
         {/* below is for when seats correlate directly with show, NOT with piece */}
-        {directPICS.length > 0 && <RosterBox directList={directPICS} />}
+        {directPICS.length > 0 && <RosterBox directList={directPICS} show={clickedShow} />}
       </div>
     </div>
   );

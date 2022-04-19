@@ -10,30 +10,25 @@ const StringInput = (props) => {
 
   const part = props.part;
   const showtune = props.showtune;
+  const show = props.show;
   const submitted = props.submitted;
 
+  const showOrPiece = showtune ? "piece" : "show";
+  const idToSend = showtune ? showtune.id : show.id;
 
   useEffect(() => {
-
     if (submitted) {
       const sendItUp = async () => {
         let partAndNumber = { stringPart: part, number: localNumber };
         let response = await PushBasic(
           partAndNumber,
-          "make-single-string-section/" + showtune.id
+          "make-single-string-section-in-" + showOrPiece + "/" + idToSend
         );
       };
 
       sendItUp();
     }
   }, [submitted]);
-
-  //   const inputNumber = (event) => {
-  //     if (isNaN(event.target.value)) {
-  //       return;
-  //     }
-  //     setLocalNumber(event.target.value);
-  //   };
 
   return (
     <div className={`${classes.control} ${classes.outerContainer}`}>

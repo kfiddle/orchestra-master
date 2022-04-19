@@ -13,11 +13,15 @@ import useGetAPushList from "../../../hooks/useGetAPushList";
 import { RosterBoxHolder } from "../../../store/object-holder";
 import ClickedSpotMenu from "./clickedSpotMenu/ClickedSpotMenu";
 
+//MasterConsole3 has this
+
 const RosterBox = (props) => {
   const [clickedChair, setClickedChair] = useState({});
   const [stringNumbersClicked, setStringNumbersClicked] = useState(false);
 
   const piece = props.piece;
+  const show = props.show;
+
   const directList = props.directList;
 
   const [listOfPossibles, setPICToQuery, possiblesReloader] = useGetAPushList(
@@ -84,13 +88,14 @@ const RosterBox = (props) => {
           {whichRosterSpots}
 
           <div>
-            {chairsToFill.length > 0 && (
+            {whichRosterSpots && (
               <button className={styles.stringsButton} onClick={stringsClicker}>
                 EDIT STRING NUMBERS
               </button>
             )}
+
             {stringNumbersClicked && (
-              <StringsBox piece={piece} closeModal={closeStrings} />
+              <StringsBox piece={piece} show={show} closeModal={closeStrings} />
             )}
           </div>
         </div>
