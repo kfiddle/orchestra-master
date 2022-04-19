@@ -15,9 +15,9 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
   let pieceOrShow = piece ? "piece" : "show";
   let pieceOrShowObject = piece ? piece : show;
 
-  const putItTogether = (parts, rank) => {
+  const putItTogether = (parts, rank, specialDesignate) => {
     let tempList = finalList;
-    tempList.push({ parts, rank });
+    tempList.push({ parts, rank, specialDesignate });
     setFinalList(tempList);
   };
 
@@ -33,7 +33,7 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
       );
     }
 
-    if (part === "HORN") {
+    if (part === "HORN" && number > 0) {
       tempList.splice(
         1,
         0,
@@ -77,11 +77,15 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
           if (chair.parts[0] === "D'AMORE") {
             chair.parts[0] = "OBOEDAMORE";
           }
+
+          console.log(chair)
+
           let response = await PushBasic(
             {
               parts: chair.parts,
               rank: chair.rank,
               [pieceOrShow]: pieceOrShowObject,
+              specialDesignate: chair.specialDesignate? chair.specialDesignate: null,
             },
             "add-chair-to-" + pieceOrShow
           );
@@ -92,9 +96,8 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
 
   useEffect(() => {
     if (deleteAssist) {
-      console.log('peekaboo')
       let tempList = chairsList;
-      tempList.slice(1, 1);
+      tempList.splice(1, 1);
       setChairsList(tempList);
       setDeleteAssist(false);
     }

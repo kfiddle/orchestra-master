@@ -33,7 +33,7 @@ const Chair2 = (props) => {
 
   useEffect(() => {
     if (submitClicked) {
-      putItTogether(parts, rank);
+      putItTogether(parts, rank, specialDesignate);
     }
   }, [submitClicked]);
 
