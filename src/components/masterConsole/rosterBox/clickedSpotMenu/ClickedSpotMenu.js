@@ -21,7 +21,7 @@ const ClickedSpotMenu = (props) => {
           doubleClicked={doubleClickedPossible}
         />
       ) : (
-        <div>help</div>
+        <div></div>
       )}
     </div>
   );
