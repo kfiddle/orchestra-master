@@ -1,22 +1,24 @@
 import { useState } from "react";
-import useAutoFill from "../../../../../../../hooks/useAutoFill";
+
+import { Hint } from "react-autocomplete-hint";
+
+import useGetAList3 from "../../../../../../../hooks/useGetAList3";
 
 import styles from "./AutoFillInput.module.css";
 
-
-
 const AutoFillInput = (props) => {
-  const [hintArray, setHintArray] = useState([]);
-  const [currentNameFragment, setCurrentNameFragment] = useState("");
-  const [setNameFragment, hintName] = useAutoFill();
+  const [playersList, setReload] = useGetAList3("get-all-players");
 
-  console.log(hintName)
+  const playerLastNames = playersList.map((player) => player.lastName);
 
-  const nameFinder = (event) => {
-    setNameFragment(event.target.value.toUpperCase());
-  };
 
-  return <input className={styles.testInput} onChange={nameFinder}></input>;
+  return (
+    <Hint options={playerLastNames} allowTabFill={true} allowEnterFill={true}>
+      <input
+        className={styles.testInput}
+      ></input>
+    </Hint>
+  );
 };
 
 export default AutoFillInput;
