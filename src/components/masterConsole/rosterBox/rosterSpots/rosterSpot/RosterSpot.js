@@ -105,10 +105,8 @@ const RosterSpot = (props) => {
       >
         <div className={classes.partDiv}>
           {printSectionLabel && primaryPart}
-          {/* {primaryPart} */}
         </div>
         <div className={classes.rankDiv}>{printRankOrSeat}</div>
-        {/* <div className={classes.rankDiv}>{rank}</div> */}
 
         <div className={classes.playerDiv}>{lastName}</div>
 
