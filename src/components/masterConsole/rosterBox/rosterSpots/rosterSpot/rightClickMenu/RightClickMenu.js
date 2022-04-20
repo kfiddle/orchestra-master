@@ -1,11 +1,10 @@
 import { Fragment, useState } from "react";
+import AutoFillInput from "./autoFillInput/AutoFillInput";
 import styles from "./RightClickMenu.module.css";
 
-const testWords = ["apple", "plum", "orange", "blueberry", "apricot"];
 
 const RightClickMenu = (props) => {
   const [manEntryClicked, setManEntryClicked] = useState(false);
-  const [hintArray, setHintArray] = useState([]);
   const hasPlayer = props.hasPlayer;
 
   const removePlayerClicker = props.removePlayerClicker;
@@ -18,21 +17,7 @@ const RightClickMenu = (props) => {
     setManEntryClicked(true);
   };
 
-  const nameFinder = (event) => {
-    let nameFragment = event.target.value;
-    let wordFlag = false;
-
-    for (let word of testWords) {
-      if (nameFragment === word.slice(0, nameFragment.length)) {
-        setHintArray(word);
-        wordFlag = true;
-      }
-    }
-
-    if (!wordFlag || nameFragment.length < 1) {
-      setHintArray([]);
-    }
-  };
+ 
 
   const menu = hasPlayer ? (
     <div className={styles.outerContainer}>
@@ -56,8 +41,7 @@ const RightClickMenu = (props) => {
       {menu}
       {manEntryClicked && (
         <div>
-          <input className={styles.testInput} onChange={nameFinder}></input>
-          <h2 style={{ color: "red" }}>{hintArray}</h2>
+          <AutoFillInput />
         </div>
       )}
     </Fragment>
