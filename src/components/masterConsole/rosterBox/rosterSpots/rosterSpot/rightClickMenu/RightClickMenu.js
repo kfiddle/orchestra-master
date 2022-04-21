@@ -15,12 +15,12 @@ const RightClickMenu = (props) => {
     isSubscribed
   );
 
-  const [readyToSend, setReadyToSend] = useState(false);
   const [playerOnDeck, setPlayerOnDeck] = useState(null);
 
   const hasPlayer = props.hasPlayer;
   const pic = props.pic;
   const chairsReloader = props.chairsReloader;
+  const rightClicker = props.rightClicker;
 
   const removePlayerClicker = props.removePlayerClicker;
 
@@ -37,13 +37,10 @@ const RightClickMenu = (props) => {
   const sendUpPlayer = async () => {
     console.log(playerOnDeck);
     console.log(pic);
-    let response = await PushBasic(
-      playerOnDeck,
-      "put-player-in-pic/" + pic.id
-    );
+    let response = await PushBasic(playerOnDeck, "put-player-in-pic/" + pic.id);
     if (response.ok) {
       chairsReloader(true);
-      // rightClicker(null);
+      rightClicker(null);
     }
   };
 
@@ -66,9 +63,6 @@ const RightClickMenu = (props) => {
     <div className={styles.outerContainer}>
       <button className={styles.button} onClick={removeClicker}>
         Remove Player
-      </button>
-      <button className={styles.button} onClick={manualClicker}>
-        {playerOnDeck ? "Enter?" : "Manual Entry"}
       </button>
     </div>
   ) : (

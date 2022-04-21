@@ -6,7 +6,9 @@ import { AiOutlineMail } from "react-icons/ai";
 
 import PushBasic from "../../../../helperFunctions/pushFunctions/PushBasic";
 import classes from "./RosterSpot.module.css";
+
 import RightClickMenu from "./rightClickMenu/RightClickMenu";
+import RightClick2 from "./rightClick2/RightClick2";
 
 // RosterSpots has this
 
@@ -123,11 +125,12 @@ const RosterSpot = (props) => {
         {mailClicked && <EmailPlayer closeModal={closeModal} />}
       </div>
       {rightClicked && (
-        <RightClickMenu
+        <RightClick2
           hasPlayer={player ? true : false}
           removePlayerClicker={removePlayerClicker}
           pic={pic}
           chairsReloader={chairsReloader}
+          rightClicker={rightClicker}
         />
       )}
     </div>
