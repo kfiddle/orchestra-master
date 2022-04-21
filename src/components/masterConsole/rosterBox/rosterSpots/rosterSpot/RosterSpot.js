@@ -8,12 +8,14 @@ import PushBasic from "../../../../helperFunctions/pushFunctions/PushBasic";
 import classes from "./RosterSpot.module.css";
 import RightClickMenu from "./rightClickMenu/RightClickMenu";
 
-// Roster has this
+// RosterSpots has this
 
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
 
-  let { parts, rank, specialDesignate } = props.playerInChair.chair;
+  let pic = props.playerInChair;
+  let chair = pic.chair;
+  let { parts, rank, specialDesignate } = chair;
   let player = props.playerInChair.player;
   let sectionSeat = props.playerInChair.sectionSeat;
 
@@ -69,6 +71,7 @@ const RosterSpot = (props) => {
       props.playerInChair,
       "remove-player-from-pic"
     );
+
     if (response.ok) {
       chairsReloader(true);
       rightClicker(null);
@@ -76,7 +79,9 @@ const RosterSpot = (props) => {
   };
 
   let printSectionLabel =
-    rank === 1 || (stringPart && sectionSeat === 0) || rightClicked ? true : false;
+    rank === 1 || (stringPart && sectionSeat === 0) || rightClicked
+      ? true
+      : false;
 
   let printRankOrSeat = rank;
 
@@ -84,7 +89,7 @@ const RosterSpot = (props) => {
     printRankOrSeat = sectionSeat + 1;
   }
   if (specialDesignate) {
-    printRankOrSeat = 'A';
+    printRankOrSeat = "A";
   }
 
   let marginClass = !printSectionLabel
@@ -121,6 +126,8 @@ const RosterSpot = (props) => {
         <RightClickMenu
           hasPlayer={player ? true : false}
           removePlayerClicker={removePlayerClicker}
+          pic={pic}
+          chairsReloader={chairsReloader}
         />
       )}
     </div>

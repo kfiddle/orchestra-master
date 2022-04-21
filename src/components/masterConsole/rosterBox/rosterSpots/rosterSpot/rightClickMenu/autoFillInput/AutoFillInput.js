@@ -22,7 +22,7 @@ const AutoFillInput = (props) => {
     >
       <input
         className={styles.testInput}
-        onChange={(event) => console.log(event.target.value)}
+        // onChange={(event) => console.log(event.target.value)}
       ></input>
     </Hint>
   );

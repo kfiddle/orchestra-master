@@ -3,6 +3,9 @@ import AutoFillInput from "./autoFillInput/AutoFillInput";
 import useGetAList3 from "../../../../../../hooks/useGetAList3";
 
 import styles from "./RightClickMenu.module.css";
+import PushBasic from "../../../../../helperFunctions/pushFunctions/PushBasic";
+
+//rosterSpot has this
 
 const RightClickMenu = (props) => {
   const [manEntryClicked, setManEntryClicked] = useState(false);
@@ -16,6 +19,8 @@ const RightClickMenu = (props) => {
   const [playerOnDeck, setPlayerOnDeck] = useState(null);
 
   const hasPlayer = props.hasPlayer;
+  const pic = props.pic;
+  const chairsReloader = props.chairsReloader;
 
   const removePlayerClicker = props.removePlayerClicker;
 
@@ -29,17 +34,32 @@ const RightClickMenu = (props) => {
     removePlayerClicker();
   };
 
+  const sendUpPlayer = async () => {
+    console.log(playerOnDeck);
+    console.log(pic);
+    let response = await PushBasic(
+      playerOnDeck,
+      "put-player-in-pic/" + pic.id
+    );
+    if (response.ok) {
+      chairsReloader(true);
+      // rightClicker(null);
+    }
+  };
+
   const manualClicker = () => {
-    if (!readyToSend) {
+    if (!playerOnDeck) {
       setManEntryClicked(true);
     } else {
-      console.log("we gonna send");
+      sendUpPlayer();
     }
   };
 
   const foundName = (name) => {
-    if (playersList.filter((player) => player.lastName === name))
-      setReadyToSend(true);
+    const chosenPlayer = playersList.find((player) => player.lastName === name);
+    if (chosenPlayer) {
+      setPlayerOnDeck(chosenPlayer);
+    }
   };
 
   const menu = hasPlayer ? (
@@ -48,13 +68,13 @@ const RightClickMenu = (props) => {
         Remove Player
       </button>
       <button className={styles.button} onClick={manualClicker}>
-        {readyToSend ? "Enter?" : "Manual Entry"}
+        {playerOnDeck ? "Enter?" : "Manual Entry"}
       </button>
     </div>
   ) : (
     <div className={styles.outerContainer}>
       <button className={styles.button} onClick={manualClicker}>
-        {readyToSend ? "Enter?" : "Manual Entry"}
+        {playerOnDeck ? "Enter?" : "Manual Entry"}
       </button>
     </div>
   );
