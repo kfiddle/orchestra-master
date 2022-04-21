@@ -45,7 +45,8 @@
 .rightClicked {
   margin-top: 5rem;
   background: rgb(236, 234, 241);
-  color: rgb(34, 34, 68);
+  color: rgb(114, 5, 69);
+  font-size: 120%;
 }
 
 .partDiv {

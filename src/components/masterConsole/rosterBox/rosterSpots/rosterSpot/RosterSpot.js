@@ -76,7 +76,7 @@ const RosterSpot = (props) => {
   };
 
   let printSectionLabel =
-    rank === 1 || (stringPart && sectionSeat === 0) ? true : false;
+    rank === 1 || (stringPart && sectionSeat === 0) || rightClicked ? true : false;
 
   let printRankOrSeat = rank;
 

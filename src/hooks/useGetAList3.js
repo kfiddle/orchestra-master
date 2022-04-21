@@ -3,7 +3,7 @@ import GetAList from "../components/helperFunctions/GetAList";
 
 import WhichServer from "../components/helperFunctions/WhichServer";
 
-const useGetAList3 = (listUrl) => {
+const useGetAList3 = (listUrl, isSubscribed) => {
   const [list, setList] = useState([]);
   const [reload, setReload] = useState(false);
   const whichServer = WhichServer();
@@ -24,8 +24,12 @@ const useGetAList3 = (listUrl) => {
       getList();
     }
 
+    if (!isSubscribed) {
+      return;
+    }
+
     getList();
-  }, [whichServer, listUrl, reload]);
+  }, [whichServer, listUrl, reload, isSubscribed]);
 
   return [list, setReload];
 };
