@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import Performance from "./Performance";
+
+import { MasterConsole3Holder } from "../../../store/object-holder";
 
 import styles from "./Performances.module.css";
 
@@ -16,7 +18,6 @@ const Performances = (props) => {
     setClickedPerformance(performance);
     clicked(performance);
   };
-
 
   const displayablePerformances = performances.map((performance) => (
     <Performance

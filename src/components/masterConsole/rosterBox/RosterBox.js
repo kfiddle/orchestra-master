@@ -10,6 +10,8 @@ import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 import styles from "./RosterBox.module.css";
 
 import useGetAPushList from "../../../hooks/useGetAPushList";
+import usePossibleNames from "../../../hooks/usePossibleNames";
+
 import { RosterBoxHolder } from "../../../store/object-holder";
 import ClickedSpotMenu from "./clickedSpotMenu/ClickedSpotMenu";
 
@@ -32,6 +34,7 @@ const RosterBox = (props) => {
   const [listOfPossibles, setPICToQuery, possiblesReloader] = useGetAPushList(
     "get-possible-players"
   );
+
   const [chairsToFill, setObjectToQuery, chairsReloader] =
     useGetAPushList(whichFetch);
 
@@ -76,12 +79,20 @@ const RosterBox = (props) => {
 
   if (directList) {
     whichRosterSpots = (
-      <RosterSpots chairsToFill={directList} clicked={clickedSpotHandler} chairsReloader={chairsReloader} />
+      <RosterSpots
+        chairsToFill={directList}
+        clicked={clickedSpotHandler}
+        chairsReloader={chairsReloader}
+      />
     );
   }
   if (chairsToFill.length > 0) {
     whichRosterSpots = (
-      <RosterSpots chairsToFill={chairsToFill} clicked={clickedSpotHandler} chairsReloader={chairsReloader} />
+      <RosterSpots
+        chairsToFill={chairsToFill}
+        clicked={clickedSpotHandler}
+        chairsReloader={chairsReloader}
+      />
     );
   }
 
@@ -106,8 +117,8 @@ const RosterBox = (props) => {
           </div>
         </div>
 
-        <div className={styles.clickedSpotMenuDiv}>
-          {clickedChair && <ClickedSpotMenu playerInChair={clickedChair} />}
+        <div className={styles.possiblesDiv}>
+          {clickedChair && <Possibles />}
         </div>
       </div>
     </RosterBoxHolder.Provider>
