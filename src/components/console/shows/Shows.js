@@ -1,31 +1,32 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import Show from "./show/Show";
 
 import { ConsoleHolder } from "../../../store/object-holder";
 
 import styles from "./Shows.module.css";
+import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 //MasterConsole4 has this
 
 const Shows = (props) => {
-  const [clickedPerformance, setClickedPerformance] = useState({});
-  const { shows } = useContext(ConsoleHolder);
+  const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  const clicked = props.clicked;
-
-  const clickedPerformanceHandler = (performance) => {
-    setClickedPerformance(performance);
-    clicked(performance);
-  };
-
-  const displayablePerformances = shows.map((performance) => (
-    <Show
-      key={performance.id}
-      performance={performance}
-      clicked={clickedPerformanceHandler}
-      active={clickedPerformance === performance ? true : false}
-    />
+  useEffect(() => {
+    const grabThePieces = async () => {
+      const showPieces = await PushBasic(
+        dashboard.clickedShow,
+        "get-showtunes-on-program"
+      );
+      const jsonified = await showPieces.json();
+      dispatch({ type: "pieces", list: jsonified });
+    };
+    if (dashboard.clickedShow) {
+      grabThePieces();
+    }
+  }, [dashboard.clickedShow]);
+  const displayablePerformances = dashboard.shows.map((show) => (
+    <Show key={show.id} show={show} />
   ));
 
   return <div className={styles.outerContainer}>{displayablePerformances}</div>;

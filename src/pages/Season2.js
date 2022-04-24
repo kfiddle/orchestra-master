@@ -9,10 +9,11 @@ import ReloadFlagStore from "../store/reload-flag-store";
 
 import useGetAList2 from "../hooks/useGetAList2";
 import MasterConsole4 from "../components/console/MasterConsole4";
+import useGetAPushList from "../hooks/useGetAPushList";
 
 const initialState = {
-  performances: [],
-  clickedPerformance: null,
+  shows: [],
+  clickedShow: null,
   pieces: [],
   clickedPiece: null,
   pics: [],
@@ -23,7 +24,7 @@ const showReducer = (state, action) => {
     case "shows":
       return { ...state, shows: action.list };
     case "clickedShow":
-      return { ...state, clickedShow: action.clickedPerformance };
+      return { ...state, clickedShow: action.clickedShow };
     case "pieces":
       return { ...state, pieces: action.list };
     case "clickedPiece":
@@ -47,7 +48,6 @@ const Season2 = (props) => {
     dispatch({ type: "shows", list: allPerformances });
   }, [allPerformances]);
 
-  // let isLoading = allPerformances.length < 1;
   let isLoading = allPerformances.length < 1;
 
   return isLoading ? (
@@ -55,7 +55,7 @@ const Season2 = (props) => {
   ) : (
     // <MasterConsole3 allPerformances={allPerformances} />
 
-    <ConsoleHolder.Provider value={dashboard}>
+    <ConsoleHolder.Provider value={{ dashboard, dispatch }}>
       <MasterConsole4 />
     </ConsoleHolder.Provider>
   );

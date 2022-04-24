@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { FiEdit, FiPlus } from "react-icons/fi";
 
 import ReloadFlagStore from "../../../../store/reload-flag-store";
+import { ConsoleHolder } from "../../../../store/object-holder";
 
 import PerformanceEdit2 from "../../../editComponents/performanceEdit/PerformanceEdit2";
 
@@ -15,20 +16,19 @@ import styles from "./Show.module.css";
 //shows has this
 
 const Show = (props) => {
-  const [addPieceClicked, setAddPieceClicked] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
   const [date, setDate] = useState("");
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
 
-  const { title } = props.performance;
+  const { dashboard, dispatch } = useContext(ConsoleHolder);
+
+  const show = props.show;
+  const { title } = show;
 
   useEffect(() => {
     const getPrimaryDate = async () => {
       try {
-        const response = await PushBasic(
-          props.performance,
-          "get-date-from-show"
-        );
+        const response = await PushBasic(props.show, "get-date-from-show");
         let answeredDate = await response.json();
         setDate(answeredDate);
       } catch (error) {
@@ -41,10 +41,11 @@ const Show = (props) => {
 
   const displayDate = useDateFormatter(date);
 
-  const clickedOrNot = props.active ? styles.clicked : styles.unclicked;
+  const clickedOrNot =
+    show === dashboard.clickedShow ? styles.clicked : styles.unclicked;
 
   const clickedPerformance = () => {
-    props.clicked(props.performance);
+    dispatch({ type: "clickedShow", clickedShow: props.show });
   };
 
   const editPerformance = () => {
@@ -53,12 +54,7 @@ const Show = (props) => {
 
   const closeModal = () => {
     setReloadFlag(true);
-    setAddPieceClicked(false);
     setEditClicked(false);
-  };
-
-  const openAddPieceModal = () => {
-    setAddPieceClicked(true);
   };
 
   return (
@@ -70,7 +66,6 @@ const Show = (props) => {
       <div className={styles.dateDiv}>{displayDate}</div>
 
       <div className={styles.buttonsDiv}>
-        <FiPlus className={styles.plusSign} onClick={openAddPieceModal} />
         <FiEdit onClick={editPerformance} className={styles.editButton} />
       </div>
 
