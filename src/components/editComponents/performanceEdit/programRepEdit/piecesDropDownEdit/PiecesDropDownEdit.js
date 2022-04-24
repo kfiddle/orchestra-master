@@ -12,11 +12,15 @@ const PiecesDropDownEdit = (props) => {
 
   const [piecesList, refreshPieces] = useGetAList3("get-all-pieces");
 
+  useEffect(() => {
+    refreshPieces(true);
+  }, []);
+
   const listToDisplay = piecesList.map((piece) => (
     <PieceItemEdit key={piece.id} piece={piece} />
   ));
 
-  const displayStyleObject = !showOrHide? {display: 'none'} : {};
+  const displayStyleObject = !showOrHide ? { display: "none" } : {};
 
   return (
     <div className={styles.outerContainer} style={displayStyleObject}>

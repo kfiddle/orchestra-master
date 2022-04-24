@@ -72,7 +72,7 @@ const Show = (props) => {
       {editClicked && (
         <PerformanceEdit2
           closeModal={closeModal}
-          performance={props.performance}
+          performance={show}
         />
       )}
     </div>
