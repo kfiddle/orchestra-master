@@ -1,36 +1,36 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FiEdit } from "react-icons/fi";
 
-import Roster from "../../../piece/roster/Roster";
-
 import OrchestrationEntry from "../../../entryComponents/orchestrationEntry/OrchestrationEntry";
+
+import { ConsoleHolder } from "../../../../store/object-holder";
 
 import styles from "./ConsolePiece.module.css";
 
 const ConsolePiece = (props) => {
   const pp = props.pp;
-  const { title, composer } = pp.piece;
-  const [orchestrationClicked, setOrchestrationClicked] = useState(false);
-  const [clickedPiece, setClickedPiece] = useState(false);
+  const piece = pp.piece;
+  const { title, composer } = piece;
+
+  const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const clickedOrNot = props.activePiece ? styles.clicked : styles.unclicked;
 
   const clickedPieceHandler = () => {
-    props.clicked(props.pp);
-    setClickedPiece(true);
+    dispatch({ type: "clickedPiece", clickedPiece: piece });
   };
 
-  const closeModal = () => {
-    setOrchestrationClicked(false);
-  };
+  // const closeModal = () => {
+  //   setOrchestrationClicked(false);
+  // };
 
-  const openOrchestration = () => {
-    setOrchestrationClicked(true);
-  };
+  // const openOrchestration = () => {
+  //   setOrchestrationClicked(true);
+  // };
 
-  const playerPlaced = () => {
-    props.playerPlaced(true);
-  };
+  // const playerPlaced = () => {
+  //   props.playerPlaced(true);
+  // };
 
   return (
     <div

@@ -6,6 +6,7 @@ import Pieces from "./pieces/Pieces";
 import { ConsoleHolder } from "../../store/object-holder";
 
 import styles from "./MasterConsole4.module.css";
+import RosterBox from "./rosterBox/RosterBox";
 
 //season2 has this
 
@@ -20,7 +21,9 @@ const MasterConsole4 = (props) => {
       <div>
         <Pieces />
       </div>
-      <div></div>
+      <div>
+        <RosterBox />
+      </div>
       <div></div>
     </div>
   );
