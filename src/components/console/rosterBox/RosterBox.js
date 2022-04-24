@@ -5,19 +5,27 @@ import { ConsoleHolder } from "../../../store/object-holder";
 import RosterSpot from "./rosterSpot/RosterSpot";
 
 import styles from "./RosterBox.module.css";
+import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 const RosterBox = (props) => {
-  const [clickedRosterSpot, setClickedRosterSpot] = useState(null);
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
 
-  const { dashboard, dispatch} = useContext(ConsoleHolder);
+  const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-//   const chairsReloader = props.chairsReloader;
+  useEffect(() => {
+    const getPossibles = async () => {
+      const possiblesList = await PushBasic(
+        dashboard.chosenPic,
+        "get-possible-players"
+      );
+      const jsonified = await possiblesList.json();
+      dispatch({ type: "possibles", list: jsonified });
+    };
 
-  const spotClickHandler = (chair) => {
-    setRightClickedSpot(null);
-    setClickedRosterSpot(chair);
-  };
+    if (dashboard.chosenPic) {
+      getPossibles();
+    }
+  }, [dashboard.chosenPic]);
 
   const rightClicker = (rosterSpot) => {
     rightClickedSpot === rosterSpot
@@ -30,13 +38,13 @@ const RosterBox = (props) => {
       key={Math.random()}
       playerInChair={playerChair}
       index={dashboard.pics.indexOf(playerChair)}
-    //   spotClicked={spotClickHandler}
+      //   spotClicked={spotClickHandler}
       rightClicker={rightClicker}
       rightClicked={rightClickedSpot === playerChair ? true : false}
       fadeForOther={
         rightClickedSpot && rightClickedSpot !== playerChair ? true : false
       }
-    //   chairsReloader={chairsReloader}
+      //   chairsReloader={chairsReloader}
     />
   ));
 

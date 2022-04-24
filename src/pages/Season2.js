@@ -9,7 +9,6 @@ import ReloadFlagStore from "../store/reload-flag-store";
 
 import useGetAList2 from "../hooks/useGetAList2";
 import MasterConsole4 from "../components/console/MasterConsole4";
-import useGetAPushList from "../hooks/useGetAPushList";
 
 const initialState = {
   shows: [],
@@ -17,6 +16,9 @@ const initialState = {
   pieces: [],
   clickedPiece: null,
   pics: [],
+  clickedPic: null,
+  possibles: [],
+  clickedPossible: null,
 };
 
 const showReducer = (state, action) => {
@@ -31,6 +33,10 @@ const showReducer = (state, action) => {
       return { ...state, clickedPiece: action.clickedPiece };
     case "pics":
       return { ...state, pics: action.list };
+    case "chosenPic":
+      return { ...state, chosenPic: action.chosenPic };
+    case "possibles":
+      return { ...state, possibles: action.list };
   }
 };
 

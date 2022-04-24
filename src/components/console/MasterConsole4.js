@@ -9,6 +9,7 @@ import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import styles from "./MasterConsole4.module.css";
 import RosterBox from "./rosterBox/RosterBox";
+import PossiblesBox from "./possiblesBox/PossiblesBox";
 
 //season2 has this
 
@@ -51,7 +52,9 @@ const MasterConsole4 = (props) => {
       <div>
         <RosterBox />
       </div>
-      <div></div>
+      <div>
+        <PossiblesBox />
+      </div>
     </div>
   );
 };

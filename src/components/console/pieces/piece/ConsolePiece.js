@@ -17,7 +17,7 @@ const ConsolePiece = (props) => {
   const clickedOrNot = props.activePiece ? styles.clicked : styles.unclicked;
 
   const clickedPieceHandler = () => {
-    dispatch({ type: "clickedPiece", clickedPiece: piece });
+    dispatch({ type: "clickedPiece", clickedPiece: pp });
   };
 
   // const closeModal = () => {

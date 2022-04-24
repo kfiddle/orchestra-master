@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import EmailPlayer from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/emailPlayer/EmailPlayer";
 
@@ -9,12 +9,14 @@ import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 import RightClickMenu from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/rightClickMenu/RightClickMenu";
 import RightClick2 from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/rightClick2/RightClick2";
 
+import { ConsoleHolder } from "../../../../store/object-holder";
 import classes from "./RosterSpot.module.css";
 
 // RosterSpots has this
 
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
+  const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   let pic = props.playerInChair;
   let chair = pic.chair;
@@ -61,7 +63,7 @@ const RosterSpot = (props) => {
   };
 
   const spotClickedHandler = () => {
-    props.spotClicked(props.playerInChair);
+    dispatch({ type: "chosenPic", chosenPic: pic });
   };
 
   const rightClickHandler = (event) => {
