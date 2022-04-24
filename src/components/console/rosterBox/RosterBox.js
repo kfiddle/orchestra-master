@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 
 import { ConsoleHolder } from "../../../store/object-holder";
 
-import RosterSpot from "../../masterConsole/rosterBox/rosterSpots/rosterSpot/RosterSpot";
+import RosterSpot from "./rosterSpot/RosterSpot";
 
 import styles from "./RosterBox.module.css";
 

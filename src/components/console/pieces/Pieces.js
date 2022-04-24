@@ -9,10 +9,6 @@ import styles from "./Pieces.module.css";
 const Pieces = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  useEffect(() => {
-    console.log(dashboard.clickedPiece);
-  }, [dashboard.clickedPiece]);
-
   const displayablePieces = dashboard.pieces.map((piece) => (
     <ConsolePiece key={piece.id} pp={piece} />
   ));

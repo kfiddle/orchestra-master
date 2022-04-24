@@ -5,6 +5,8 @@ import Pieces from "./pieces/Pieces";
 
 import { ConsoleHolder } from "../../store/object-holder";
 
+import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+
 import styles from "./MasterConsole4.module.css";
 import RosterBox from "./rosterBox/RosterBox";
 
@@ -12,6 +14,31 @@ import RosterBox from "./rosterBox/RosterBox";
 
 const MasterConsole4 = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
+
+  useEffect(() => {
+    const grabThePieces = async () => {
+      const showPieces = await PushBasic(
+        dashboard.clickedShow,
+        "get-showtunes-on-program"
+      );
+      const jsonified = await showPieces.json();
+      dispatch({ type: "pieces", list: jsonified });
+    };
+
+    const grabPICSFromShow = async () => {
+      const directPICS = await PushBasic(
+        dashboard.clickedShow,
+        "get-pics-in-show"
+      );
+      const jsonified = await directPICS.json();
+      dispatch({ type: "pics", list: jsonified });
+    };
+
+    if (dashboard.clickedShow) {
+      grabThePieces();
+      grabPICSFromShow();
+    }
+  }, [dashboard.clickedShow]);
 
   return (
     <div className={styles.outerContainer}>

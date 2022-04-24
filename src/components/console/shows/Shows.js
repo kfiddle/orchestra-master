@@ -12,19 +12,6 @@ import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 const Shows = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  useEffect(() => {
-    const grabThePieces = async () => {
-      const showPieces = await PushBasic(
-        dashboard.clickedShow,
-        "get-showtunes-on-program"
-      );
-      const jsonified = await showPieces.json();
-      dispatch({ type: "pieces", list: jsonified });
-    };
-    if (dashboard.clickedShow) {
-      grabThePieces();
-    }
-  }, [dashboard.clickedShow]);
   const displayablePerformances = dashboard.shows.map((show) => (
     <Show key={show.id} show={show} />
   ));
