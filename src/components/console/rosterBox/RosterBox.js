@@ -1,54 +1,62 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useReducer } from "react";
 
-import { ConsoleHolder } from "../../../store/object-holder";
-
-import RosterSpot from "./rosterSpot/RosterSpot";
-
-import styles from "./RosterBox.module.css";
+import RosterSpots from "./rosterSpots/RosterSpots";
+import PossiblesBox from "../possiblesBox/PossiblesBox";
 import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
-const RosterBox = (props) => {
-  const [rightClickedSpot, setRightClickedSpot] = useState(null);
+import { ChairsHolder } from "../../../store/object-holder";
 
-  const { dashboard, dispatch } = useContext(ConsoleHolder);
+import styles from "./RosterBox.module.css";
+
+const initialState = {
+  chosenPic: null,
+  possibles: [],
+  clickedPossible: null,
+};
+
+const chairsReducer = (state, action) => {
+  switch (action.type) {
+    case "chosenPic":
+      return { ...state, chosenPic: action.chosenPic };
+    case "possibles":
+      return { ...state, possibles: action.list };
+  }
+};
+
+const RosterBox = (props) => {
+  const [chairState, dispatch] = useReducer(chairsReducer, initialState);
 
   useEffect(() => {
     const getPossibles = async () => {
       const possiblesList = await PushBasic(
-        dashboard.chosenPic,
+        chairState.chosenPic,
         "get-possible-players"
       );
       const jsonified = await possiblesList.json();
       dispatch({ type: "possibles", list: jsonified });
     };
 
-    if (dashboard.chosenPic) {
+    if (chairState.chosenPic) {
       getPossibles();
     }
-  }, [dashboard.chosenPic]);
 
-  const rightClicker = (rosterSpot) => {
-    rightClickedSpot === rosterSpot
-      ? setRightClickedSpot(null)
-      : setRightClickedSpot(rosterSpot);
-  };
+    if (!chairState.chosenPic) {
+        dispatch({type: 'chosenPic', list: []})
+    }
+  }, [chairState.chosenPic]);
 
-  const displayableChairs = dashboard.pics.map((playerChair) => (
-    <RosterSpot
-      key={Math.random()}
-      playerInChair={playerChair}
-      index={dashboard.pics.indexOf(playerChair)}
-      //   spotClicked={spotClickHandler}
-      rightClicker={rightClicker}
-      rightClicked={rightClickedSpot === playerChair ? true : false}
-      fadeForOther={
-        rightClickedSpot && rightClickedSpot !== playerChair ? true : false
-      }
-      //   chairsReloader={chairsReloader}
-    />
-  ));
-
-  return <div>{displayableChairs}</div>;
+  return (
+    <div className={styles.outerContainer}>
+      <ChairsHolder.Provider value={{ chairState, dispatch }}>
+        <div>
+          <RosterSpots />
+        </div>
+        <div>
+          <PossiblesBox />
+        </div>
+      </ChairsHolder.Provider>
+    </div>
+  );
 };
 
 export default RosterBox;

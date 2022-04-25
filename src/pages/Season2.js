@@ -33,10 +33,10 @@ const showReducer = (state, action) => {
       return { ...state, clickedPiece: action.clickedPiece };
     case "pics":
       return { ...state, pics: action.list };
-    case "chosenPic":
-      return { ...state, chosenPic: action.chosenPic };
-    case "possibles":
-      return { ...state, possibles: action.list };
+    // case "chosenPic":
+    //   return { ...state, chosenPic: action.chosenPic };
+    // case "possibles":
+    //   return { ...state, possibles: action.list };
   }
 };
 

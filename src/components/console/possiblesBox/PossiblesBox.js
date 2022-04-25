@@ -2,14 +2,13 @@ import { useContext } from "react";
 
 import PossiblePlayer2 from "../../masterConsole/rosterBox/possibles/possiblePlayer/PossiblePlayer2";
 
-import { ConsoleHolder } from "../../../store/object-holder";
-
+import { ChairsHolder } from "../../../store/object-holder";
 import styles from "./PossiblesBox.module.css";
 
 const PossiblesBox = () => {
-  const { dashboard, dispatch } = useContext(ConsoleHolder);
+  const { chairState, dispatch } = useContext(ChairsHolder);
 
-  const possibles = dashboard.possibles;
+  const possibles = chairState.possibles;
 
   const displayablePossibles = possibles.map((player) => (
     <PossiblePlayer2

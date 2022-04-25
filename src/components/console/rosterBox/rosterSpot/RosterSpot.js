@@ -9,14 +9,14 @@ import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 import RightClickMenu from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/rightClickMenu/RightClickMenu";
 import RightClick2 from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/rightClick2/RightClick2";
 
-import { ConsoleHolder } from "../../../../store/object-holder";
+import { ChairsHolder } from "../../../../store/object-holder";
 import classes from "./RosterSpot.module.css";
 
 // RosterSpots has this
 
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
-  const { dashboard, dispatch } = useContext(ConsoleHolder);
+  const { chairState, dispatch } = useContext(ChairsHolder);
 
   let pic = props.playerInChair;
   let chair = pic.chair;

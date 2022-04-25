@@ -16,6 +16,7 @@ import PossiblesBox from "./possiblesBox/PossiblesBox";
 const MasterConsole4 = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
+
   useEffect(() => {
     const grabThePieces = async () => {
       const showPieces = await PushBasic(
@@ -51,9 +52,6 @@ const MasterConsole4 = (props) => {
       </div>
       <div>
         <RosterBox />
-      </div>
-      <div>
-        <PossiblesBox />
       </div>
     </div>
   );
