@@ -1,11 +1,13 @@
 import { useContext, useEffect } from "react";
 
-import PossiblePlayer2 from "../../masterConsole/rosterBox/possibles/possiblePlayer/PossiblePlayer2";
+import Possible from "./possible/Possible";
 
 import { ChairsHolder } from "../../../store/object-holder";
 import { ConsoleHolder } from "../../../store/object-holder";
 
 import styles from "./PossiblesBox.module.css";
+
+//rosterBox has this
 
 const PossiblesBox = () => {
   const { chairState, dispatch: chairsDispatch } = useContext(ChairsHolder);
@@ -17,16 +19,17 @@ const PossiblesBox = () => {
     };
 
     emptyPossibles();
-  }, [dashboard.clickedPiece, dashboard.clickedShow]);
+  }, [dashboard.clickedPiece, dashboard.clickedShow, dashboard.playerChanged]);
 
   const possibles = chairState.possibles;
+  console.log(possibles);
 
   const displayablePossibles = possibles.map((player) => (
-    <PossiblePlayer2
+    <Possible
       key={possibles.indexOf(player)}
       player={player}
       //   doubleClicked={doubleClickHandler}
-    ></PossiblePlayer2>
+    ></Possible>
   ));
 
   return <div>{displayablePossibles}</div>;

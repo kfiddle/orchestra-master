@@ -6,10 +6,11 @@ import { AiOutlineMail } from "react-icons/ai";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
-import RightClickMenu from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/rightClickMenu/RightClickMenu";
-import RightClick2 from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/rightClick2/RightClick2";
+import RightClick from "./rightClick/RightClick";
 
 import { ChairsHolder } from "../../../../store/object-holder";
+import { ConsoleHolder } from "../../../../store/object-holder";
+
 import classes from "./RosterSpot.module.css";
 
 // RosterSpots has this
@@ -17,6 +18,7 @@ import classes from "./RosterSpot.module.css";
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
   const { chairState, dispatch } = useContext(ChairsHolder);
+  const { dashboard, dispatch: dashDisp } = useContext(ConsoleHolder);
 
   let pic = props.playerInChair;
   let chair = pic.chair;
@@ -36,7 +38,6 @@ const RosterSpot = (props) => {
   const rightClicker = props.rightClicker;
   const rightClicked = props.rightClicked;
   const fadeForOther = props.fadeForOther;
-  const chairsReloader = props.chairsReloader;
 
   let primaryPart = parts[0];
 
@@ -64,6 +65,7 @@ const RosterSpot = (props) => {
 
   const spotClickedHandler = () => {
     dispatch({ type: "chosenPic", chosenPic: pic });
+    rightClicker(null);
   };
 
   const rightClickHandler = (event) => {
@@ -78,7 +80,9 @@ const RosterSpot = (props) => {
     );
 
     if (response.ok) {
-      chairsReloader(true);
+      dispatch({ type: "chosenPic", chosenPic: null });
+      dispatch({ type: "possibles", list: [] });
+      dashDisp({ type: "playerChanged", playerChanged: true });
       rightClicker(null);
     }
   };
@@ -128,11 +132,10 @@ const RosterSpot = (props) => {
         {mailClicked && <EmailPlayer closeModal={closeModal} />}
       </div>
       {rightClicked && (
-        <RightClick2
+        <RightClick
           hasPlayer={player ? true : false}
           removePlayerClicker={removePlayerClicker}
           pic={pic}
-          chairsReloader={chairsReloader}
           rightClicker={rightClicker}
         />
       )}

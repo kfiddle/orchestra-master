@@ -21,10 +21,11 @@ const Pieces = (props) => {
       dispatch({ type: "pics", list: jsonified });
     };
 
-    if (dashboard.clickedPiece) {
-        grabThePics();
+    if (dashboard.clickedPiece || dashboard.playerPlaced) {
+      grabThePics();
+      dispatch({ type: "playerChanged", playerChanged: false });
     }
-  }, [dashboard.clickedPiece]);
+  }, [dashboard.clickedPiece, dashboard.playerChanged]);
 
   const displayablePieces = dashboard.pieces.map((piece) => (
     <ConsolePiece key={piece.id} pp={piece} />

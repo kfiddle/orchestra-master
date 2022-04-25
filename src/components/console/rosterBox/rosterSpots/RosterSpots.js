@@ -23,7 +23,7 @@ const RosterSpots = () => {
       playerInChair={playerChair}
       index={dashboard.pics.indexOf(playerChair)}
       rightClicker={rightClicker}
-      //   rightClicked={rightClickedSpot === playerChair ? true : false}
+      rightClicked={rightClickedSpot === playerChair ? true : false}
       fadeForOther={
         rightClickedSpot && rightClickedSpot !== playerChair ? true : false
       }

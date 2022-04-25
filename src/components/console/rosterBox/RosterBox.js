@@ -39,10 +39,6 @@ const RosterBox = (props) => {
     if (chairState.chosenPic) {
       getPossibles();
     }
-
-    return () => {
-      dispatch({ type: "possibles", list: [] });
-    };
   }, [chairState.chosenPic]);
 
   return (
