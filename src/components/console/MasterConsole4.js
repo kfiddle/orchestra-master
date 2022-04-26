@@ -39,6 +39,7 @@ const MasterConsole4 = (props) => {
     if (dashboard.clickedShow) {
       grabThePieces();
       grabPICSFromShow();
+      dispatch({type: 'clickedPiece', clickedPiece: null})
     }
   }, [dashboard.clickedShow]);
 

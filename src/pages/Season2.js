@@ -53,6 +53,8 @@ const Season2 = (props) => {
     dispatch({ type: "shows", list: allPerformances });
   }, [allPerformances]);
 
+  
+
   let isLoading = allPerformances.length < 1;
 
   return isLoading ? (
