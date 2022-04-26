@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
+import StringsBox from "../../../masterConsole/rosterBox/stringsBox/StringsBox";
 
 import { ConsoleHolder } from "../../../../store/object-holder";
 import { ChairsHolder } from "../../../../store/object-holder";
@@ -9,9 +10,9 @@ import styles from "./RosterSpots.module.css";
 
 const RosterSpots = React.memo((props) => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
+  const [addStringsClicked, setAddStringsClicked] = useState(false);
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
-  //   const { chairState } = useContext(ChairsHolder);
 
   useEffect(() => {
     setRightClickedSpot(null);
@@ -37,7 +38,31 @@ const RosterSpots = React.memo((props) => {
     />
   ));
 
-  return <div>{displayableChairs}</div>;
+  const stringsClicker = () => {
+    setAddStringsClicked(true);
+  };
+
+  const closeStrings = () => {
+    setAddStringsClicked(false);
+  };
+
+  return (
+    <div>
+      {displayableChairs}
+      {displayableChairs.length > 0 && (
+        <button className={styles.stringsButton} onClick={stringsClicker}>
+          EDIT STRING NUMBERS
+        </button>
+      )}
+      {addStringsClicked && (
+        <StringsBox
+          piece={dashboard.clickedPiece}
+          show={dashboard.clickedShow}
+          closeModal={closeStrings}
+        />
+      )}
+    </div>
+  );
 });
 
 export default RosterSpots;
