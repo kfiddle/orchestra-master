@@ -1,0 +1,16 @@
+.control {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #afaaaa;
+  border: 1px solid #c1d1d1;
+  display: block;
+  width: 90%;
+  font-size: 1.25rem;
+}
+
+.control:focus,
+.control:focus {
+  background-color: #e9dcdc;
+  outline-color: rgb(46, 40, 39);
+}

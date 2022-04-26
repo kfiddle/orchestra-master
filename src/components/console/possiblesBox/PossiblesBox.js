@@ -9,7 +9,7 @@ import styles from "./PossiblesBox.module.css";
 
 //rosterBox has this
 
-const PossiblesBox = () => {
+const PossiblesBox = (props) => {
   const { chairState, dispatch: chairsDispatch } = useContext(ChairsHolder);
   const { dashboard, dashDispatch } = useContext(ConsoleHolder);
 
@@ -21,8 +21,8 @@ const PossiblesBox = () => {
     emptyPossibles();
   }, [dashboard.clickedPiece, dashboard.clickedShow, dashboard.playerChanged]);
 
-  const possibles = chairState.possibles;
-  console.log(possibles);
+  // const possibles = chairState.possibles;
+  const possibles = props.maybies;
 
   const displayablePossibles = possibles.map((player) => (
     <Possible

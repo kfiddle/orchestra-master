@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext, useReducer } from "react";
+import React from "react";
 
 import RosterSpots from "./rosterSpots/RosterSpots";
 import PossiblesBox from "../possiblesBox/PossiblesBox";
@@ -25,6 +26,7 @@ const chairsReducer = (state, action) => {
 
 const RosterBox = (props) => {
   const [chairState, dispatch] = useReducer(chairsReducer, initialState);
+  const [maybies, setMaybies] = useState([]);
 
   useEffect(() => {
     const getPossibles = async () => {
@@ -45,10 +47,10 @@ const RosterBox = (props) => {
     <div className={styles.outerContainer}>
       <ChairsHolder.Provider value={{ chairState, dispatch }}>
         <div>
-          <RosterSpots />
+          <RosterSpots setMaybies={setMaybies} />
         </div>
         <div>
-          <PossiblesBox />
+          <PossiblesBox maybies={maybies} />
         </div>
       </ChairsHolder.Provider>
     </div>

@@ -25,6 +25,7 @@ const RosterSpot = (props) => {
   let { parts, rank, specialDesignate } = chair;
   let player = props.playerInChair.player;
   let sectionSeat = props.playerInChair.sectionSeat;
+  const setMaybies = props.setMaybies;
 
   let stringPart =
     parts[0] === "VIOLIN1" ||
@@ -63,9 +64,12 @@ const RosterSpot = (props) => {
     setMailClicked(false);
   };
 
-  const spotClickedHandler = () => {
-    dispatch({ type: "chosenPic", chosenPic: pic });
+  const spotClickedHandler = async () => {
+    // dispatch({ type: "chosenPic", chosenPic: pic });
     rightClicker(null);
+    const possiblesList = await PushBasic(pic, "get-possible-players");
+    const jsonified = await possiblesList.json();
+    setMaybies(jsonified);
   };
 
   const rightClickHandler = (event) => {
@@ -137,6 +141,7 @@ const RosterSpot = (props) => {
           removePlayerClicker={removePlayerClicker}
           pic={pic}
           rightClicker={rightClicker}
+          setMaybies={setMaybies}
         />
       )}
     </div>

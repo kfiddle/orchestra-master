@@ -1,45 +1,53 @@
-import { useState, useEffect, useContext, Fragment } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  Fragment,
+  useRef,
+  useMemo,
+} from "react";
 
+import Input from "../../../../../input/plainInput/Input";
 import useGetAList3 from "../../../../../../hooks/useGetAList3";
 
-import { RosterBoxHolder } from "../../../../../../store/object-holder";
+import { ChairsHolder } from "../../../../../../store/object-holder";
 
 import styles from "./LastNameInput.module.css";
 
-const LastNameInput = (props) => {
+const LastNameInput = React.memo((props) => {
   const [isSubscribed, setIsSubscribed] = useState(true);
 
-  const [possibleNames, setPossibleNames] = useState([]);
+  const { chairState, dispatch } = useContext(ChairsHolder);
+
+  const testingRef = useRef();
+
+  const setMaybies = props.setMaybies;
 
   const [playersList, setReload] = useGetAList3(
     "get-all-players",
     isSubscribed
   );
 
-  const nameTyping = (event) => {
-    let nameFragment = event.target.value;
+  const nameTyping = (incomingFragment) => {
+    let nameFragment = incomingFragment;
+
     if (nameFragment.length < 1) {
-      setPossibleNames([]);
+      setMaybies([]);
     } else {
       let fragments = playersList.filter(
         (player) =>
           player.lastName.toUpperCase().slice(0, nameFragment.length) ===
           nameFragment.toUpperCase()
       );
-      setPossibleNames(fragments);
+      setMaybies(fragments);
     }
   };
 
   return (
     <Fragment>
-      <input
-        className={styles.input}
-        placeholder={"enter last name"}
-        onChange={nameTyping}
-      />
-      {/* {possibleNames.length > 0 && <Possibles nameMatches={possibleNames} />} */}
+      <Input placeholder={"enter last name"} nameTyping={nameTyping} />
     </Fragment>
   );
-};
+});
 
 export default LastNameInput;
