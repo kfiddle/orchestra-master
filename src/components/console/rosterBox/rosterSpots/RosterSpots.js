@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
 
 import { ConsoleHolder } from "../../../../store/object-holder";
+import { ChairsHolder } from "../../../../store/object-holder";
 
 import styles from "./RosterSpots.module.css";
 
@@ -10,6 +11,11 @@ const RosterSpots = React.memo((props) => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
+  //   const { chairState } = useContext(ChairsHolder);
+
+  useEffect(() => {
+    setRightClickedSpot(null);
+  }, [dashboard.playerChanged]);
 
   const rightClicker = (rosterSpot) => {
     rightClickedSpot === rosterSpot

@@ -65,16 +65,14 @@ const RosterSpot = (props) => {
   };
 
   const spotClickedHandler = async () => {
-    // dispatch({ type: "chosenPic", chosenPic: pic });
+    dispatch({ type: "chosenPic", chosenPic: pic });
     rightClicker(null);
-    const possiblesList = await PushBasic(pic, "get-possible-players");
-    const jsonified = await possiblesList.json();
-    setMaybies(jsonified);
   };
 
   const rightClickHandler = (event) => {
     event.preventDefault();
     rightClicker(props.playerInChair);
+    dispatch({ type: "chosenPic", chosenPic: pic });
   };
 
   const removePlayerClicker = async () => {

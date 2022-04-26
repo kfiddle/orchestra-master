@@ -21,15 +21,10 @@ const PossiblesBox = (props) => {
     emptyPossibles();
   }, [dashboard.clickedPiece, dashboard.clickedShow, dashboard.playerChanged]);
 
-  // const possibles = chairState.possibles;
-  const possibles = props.maybies;
+  const possibles = chairState.possibles;
 
   const displayablePossibles = possibles.map((player) => (
-    <Possible
-      key={possibles.indexOf(player)}
-      player={player}
-      //   doubleClicked={doubleClickHandler}
-    ></Possible>
+    <Possible key={possibles.indexOf(player)} player={player}></Possible>
   ));
 
   return <div>{displayablePossibles}</div>;
