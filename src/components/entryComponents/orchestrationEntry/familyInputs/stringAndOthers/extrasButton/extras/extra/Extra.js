@@ -29,7 +29,7 @@ const Extra = (props) => {
   };
 
   const clickHandler = () => {
-    console.log(clicked)
+    console.log(clicked);
     setClicked((previous) => !previous);
 
     if (!clicked) {
@@ -53,15 +53,14 @@ const Extra = (props) => {
 
   return (
     <div className={styles.outerContainer}>
+      <div style={{ color: "red" }}>
+        {localNumber} <button onClick={addButtonClicker}>+</button>{" "}
+        <button onClick={subtractButtonClicker}>-</button>
+      </div>
+
       <div onClick={clickHandler} className={classNames}>
         <div className={styles.nameDiv}>{instrument}</div>
       </div>
-      {clicked && (
-        <div style={{ color: "red" }}>
-          {localNumber} <button onClick={addButtonClicker}>+</button>{" "}
-          <button onClick={subtractButtonClicker}>-</button>
-        </div>
-      )}
     </div>
   );
 };
