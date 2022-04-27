@@ -25,7 +25,16 @@ const Pieces = (props) => {
       grabThePics();
       dispatch({ type: "playerChanged", playerChanged: false });
     }
-  }, [dashboard.clickedPiece, dashboard.playerChanged]);
+
+    if (dashboard.stringNumsSubmitted && dashboard.clickedPiece) {
+      grabThePics();
+      dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: false });
+    }
+  }, [
+    dashboard.clickedPiece,
+    dashboard.playerChanged,
+    dashboard.stringNumsSubmitted,
+  ]);
 
   const displayablePieces = dashboard.pieces.map((piece) => (
     <ConsolePiece key={piece.id} pp={piece} />

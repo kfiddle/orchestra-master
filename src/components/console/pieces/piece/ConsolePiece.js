@@ -14,23 +14,13 @@ const ConsolePiece = (props) => {
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  const clickedOrNot = props.activePiece ? styles.clicked : styles.unclicked;
+  const isPieceClicked = dashboard.clickedPiece === pp; 
+
+  const clickedOrNot = isPieceClicked ? styles.clicked : styles.unclicked;
 
   const clickedPieceHandler = () => {
     dispatch({ type: "clickedPiece", clickedPiece: pp });
   };
-
-  // const closeModal = () => {
-  //   setOrchestrationClicked(false);
-  // };
-
-  // const openOrchestration = () => {
-  //   setOrchestrationClicked(true);
-  // };
-
-  // const playerPlaced = () => {
-  //   props.playerPlaced(true);
-  // };
 
   return (
     <div

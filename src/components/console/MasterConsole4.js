@@ -16,7 +16,6 @@ import PossiblesBox from "./possiblesBox/PossiblesBox";
 const MasterConsole4 = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-
   useEffect(() => {
     const grabThePieces = async () => {
       const showPieces = await PushBasic(
@@ -39,9 +38,14 @@ const MasterConsole4 = (props) => {
     if (dashboard.clickedShow) {
       grabThePieces();
       grabPICSFromShow();
-      dispatch({type: 'clickedPiece', clickedPiece: null})
+      dispatch({ type: "clickedPiece", clickedPiece: null });
     }
-  }, [dashboard.clickedShow]);
+
+    if (dashboard.stringNumsSubmitted) {
+      grabPICSFromShow();
+      dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: false });
+    }
+  }, [dashboard.clickedShow, dashboard.stringNumsSubmitted]);
 
   return (
     <div className={styles.outerContainer}>

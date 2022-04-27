@@ -1,0 +1,37 @@
+.outerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .control {
+    margin-bottom: 0.5rem;
+  }
+  
+  .control label {
+    font-weight: bold;
+    color: rgb(233, 227, 227);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .control input,
+  .control textarea {
+    font: inherit;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: #afaaaa;
+    border: 1px solid #c1d1d1;
+    display: block;
+    width: 50%;
+    font-size: 1.25rem;
+  }
+  
+  .control input:focus,
+  .control textarea:focus {
+    background-color: #e9dcdc;
+    outline-color: rgb(46, 40, 39);
+  }
+  

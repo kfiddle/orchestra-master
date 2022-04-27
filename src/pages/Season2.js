@@ -20,6 +20,7 @@ const initialState = {
   possibles: [],
   clickedPossible: null,
   playerChanged: false,
+  stringNumsSubmitted: false
 };
 
 const showReducer = (state, action) => {
@@ -36,6 +37,8 @@ const showReducer = (state, action) => {
       return { ...state, pics: action.list };
     case "playerChanged":
       return { ...state, playerChanged: action.playerChanged };
+    case "stringNumsSubmitted":
+      return { ...state, stringNumsSubmitted: action.stringNumsSubmitted };
   }
 };
 
@@ -52,8 +55,6 @@ const Season2 = (props) => {
   useEffect(() => {
     dispatch({ type: "shows", list: allPerformances });
   }, [allPerformances]);
-
-  
 
   let isLoading = allPerformances.length < 1;
 

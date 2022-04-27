@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
-import StringsBox from "../../../masterConsole/rosterBox/stringsBox/StringsBox";
+
+import StringsBox from "../stringsBox/StringsBox";
 
 import { ConsoleHolder } from "../../../../store/object-holder";
 import { ChairsHolder } from "../../../../store/object-holder";
