@@ -8,7 +8,6 @@ import SubmitButton from "../../UI/submitButton/SubmitButton";
 import Family from "./family/Family";
 import FamilyBox from "./family/FamilyBox";
 
-import PercussionBox from "./percussionBox/PercussionBox";
 import StringsBox from "./stringsBox/StringsBox";
 
 import styles from "./OrchEntry2.module.css";

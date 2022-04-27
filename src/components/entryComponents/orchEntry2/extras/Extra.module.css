@@ -1,0 +1,44 @@
+.outerContainer {
+    display: flex;
+  }
+  
+  .instrumentItemDiv {
+    position: relative;
+    margin:0.25rem 4rem;
+    padding: 1rem;
+    display: flex;
+    width: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background: linear-gradient(to left, transparent, #e5eccb, rgb(90, 90, 85));
+    font-weight: 900;
+    z-index: 1;
+    cursor: pointer;
+    transition: 0.1s linear;
+  }
+  
+  .instrumentItemDiv:hover {
+    background: rgb(44, 120, 182);
+  }
+  
+  .clickedItem {
+    margin: 0.5rem 4rem;
+    padding: 1rem;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    width: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    background-color: #c7bf4d;
+    font-weight: 900;
+    transform: translateX(-3rem);
+    transition: 0.1s linear;
+  }
+  
+  .nameDiv {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  

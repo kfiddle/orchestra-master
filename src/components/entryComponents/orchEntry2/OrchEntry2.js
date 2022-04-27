@@ -4,7 +4,7 @@ import Modal from "../../UI/modal/Modal";
 import SubmitButton from "../../UI/submitButton/SubmitButton";
 
 import Family from "./family/Family";
-import PercussionBox from "./percussionBox/PercussionBox";
+import PercussionExtrasBox from "./percussionAndExtrasBox/PercussionExtrasBox";
 import StringsBox from "./stringsBox/StringsBox";
 
 import { OrchEntry2FormStore } from "../../../store/form-holders";
@@ -45,7 +45,9 @@ const OrchEntry2 = (props) => {
           </div>
           <Family familyLabel={"WINDS"} list={winds}></Family>
           <Family familyLabel={"BRASS"} list={brass}></Family>
-          <PercussionBox />
+         <PercussionExtrasBox />
+
+
           <StringsBox />
 
           <div className={styles.SubmitButtonDiv}>
