@@ -16,14 +16,16 @@ const Extra = (props) => {
 
   useEffect(() => {
     const sendItUp = async () => {
-      let response = await PushBasic(
-        {
-          parts: [instrument],
-          rank: 1,
-          [pieceOrShow]: object,
-        },
-        "add-chair-to-" + pieceOrShow
-      );
+      for (let j = 1; j <= localNumber; j++) {
+        let response = await PushBasic(
+          {
+            parts: [instrument],
+            rank: j,
+            [pieceOrShow]: object,
+          },
+          "add-chair-to-" + pieceOrShow
+        );
+      }
     };
 
     if (submitClicked) {

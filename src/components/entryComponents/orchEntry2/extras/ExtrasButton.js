@@ -1,7 +1,6 @@
 import { useState, Fragment } from "react";
 import Extras from "./Extras";
 
-
 import styles from "./ExtrasButton.module.css";
 
 const ExtrasButton = () => {
@@ -16,7 +15,7 @@ const ExtrasButton = () => {
       <button className={styles.button} onClick={extrasClickHandler}>
         Extras
       </button>
-      {extrasClicked && <Extras />}
+      <Extras visible={extrasClicked} />
     </Fragment>
   );
 };
