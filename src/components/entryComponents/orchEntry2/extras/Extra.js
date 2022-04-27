@@ -45,11 +45,14 @@ const Extra = (props) => {
     setLocalNumber((previous) => previous - 1);
   };
 
-  let classNames = !clicked ? styles.instrumentItemDiv : styles.clickedItem;
+  let outerClassNames = !clicked
+    ? styles.instrumentItemDiv
+    : styles.clickedItem;
+  let buttonsClassNames = !clicked ? styles.invisible : styles.buttonsAndNumber;
 
   return (
     <div className={styles.outerContainer}>
-      <div className={styles.buttonsAndNumber}>
+      <div className={buttonsClassNames}>
         <button onClick={addButtonClicker} className={styles.button}>
           +
         </button>{" "}
@@ -59,7 +62,7 @@ const Extra = (props) => {
         <div className={styles.numberDiv}>{localNumber}</div>
       </div>
 
-      <div onClick={clickHandler} className={classNames}>
+      <div onClick={clickHandler} className={outerClassNames}>
         <div className={styles.nameDiv}>{instrument}</div>
       </div>
     </div>

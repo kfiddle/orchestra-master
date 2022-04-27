@@ -47,7 +47,12 @@
 }
 
 .buttonsAndNumber {
-    display: flex;
+  display: flex;
+}
+
+.invisible {
+  display: none;
+  transition: 0.3s linear;
 }
 
 .numberDiv {
@@ -61,22 +66,22 @@
 }
 
 .button {
-    width: fit-content;
-    background: none;
-    color: rgb(21, 1, 69);
-    border: 3px solid rgb(32, 32, 255);
-    padding: 1px 6px;
-    /* margin: 1rem; */
-    border-radius: 100px;
-    font-size: 1.5rem;
-    font-weight: 900;
-    text-transform: uppercase;
-    cursor: pointer;
-    /* float: right; */
-    transition: all 0.25s ease-out;
-  }
-  
-  .button:hover {
-    background: midnightblue;
-    color: rgb(173, 151, 151);
-  }
+  width: fit-content;
+  background: none;
+  color: rgb(21, 1, 69);
+  border: 3px solid rgb(32, 32, 255);
+  padding: 1px 6px;
+  /* margin: 1rem; */
+  border-radius: 100px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  /* float: right; */
+  transition: all 0.25s ease-out;
+}
+
+.button:hover {
+  background: midnightblue;
+  color: rgb(173, 151, 151);
+}
