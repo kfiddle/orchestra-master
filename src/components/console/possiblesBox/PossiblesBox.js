@@ -27,7 +27,7 @@ const PossiblesBox = (props) => {
     <Possible key={possibles.indexOf(player)} player={player}></Possible>
   ));
 
-  return <div>{displayablePossibles}</div>;
+  return <div className={styles.outerContainer}>{displayablePossibles}</div>;
 };
 
 export default PossiblesBox;

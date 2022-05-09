@@ -38,7 +38,9 @@ const RosterBox = (props) => {
     };
 
     if (chairState.chosenPic) {
-      getPossibles();
+      !chairState.chosenPic.player
+        ? getPossibles()
+        : dispatch({ type: 'possibles', list: [] });
     }
   }, [chairState.chosenPic]);
 
