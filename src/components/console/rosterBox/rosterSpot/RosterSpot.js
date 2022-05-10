@@ -23,6 +23,7 @@ const RosterSpot = (props) => {
 
   let pic = props.playerInChair;
   let chair = pic.chair;
+  let index = props.index;
   let { parts, rank, specialDesignate } = chair;
   let player = props.playerInChair.player;
   let sectionSeat = props.playerInChair.sectionSeat;
@@ -66,24 +67,6 @@ const RosterSpot = (props) => {
     setMailClicked(false);
   };
 
-  //38 is up, 40 is down
-
-  const doubleClickedListener = () => {
-    document.addEventListener("keyup", (event) => {
-      if (event.keyCode === 38) {
-        console.log("up");
-      } else if (event.keyCode === 40) {
-        console.log("down");
-      }
-
-      // console.log(
-      //   `Key: ${event.key} with keycode ${event.keyCode} has been pressed`
-      // );
-    });
-  };
-
-  doubleClicked && doubleClickedListener();
-
   const spotClickedHandler = async () => {
     dispatch({ type: "chosenPic", chosenPic: pic });
     rightClicker(null);
@@ -98,7 +81,7 @@ const RosterSpot = (props) => {
   const doubleClickHandler = (event) => {
     event.preventDefault();
     if (player) {
-      doubleClicker(props.playerInChair);
+      doubleClicker(props.playerInChair, index);
     }
   };
 
