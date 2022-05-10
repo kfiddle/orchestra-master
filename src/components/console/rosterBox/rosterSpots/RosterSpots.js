@@ -11,6 +11,8 @@ import styles from "./RosterSpots.module.css";
 
 const RosterSpots = React.memo((props) => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
+  const [doubleClickedSpot, setDoubleClickedSpot] = useState(null);
+
   const [addStringsClicked, setAddStringsClicked] = useState(false);
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
@@ -19,10 +21,26 @@ const RosterSpots = React.memo((props) => {
     setRightClickedSpot(null);
   }, [dashboard.playerChanged]);
 
+  const doubleClickedListener = () => {
+    document.addEventListener("keyup", (event) => {
+      if (event.keyCode === 38) {
+        console.log("up");
+      } else if (event.keyCode === 40) {
+        console.log("down");
+      }
+    });
+  };
+
   const rightClicker = (rosterSpot) => {
     rightClickedSpot === rosterSpot
       ? setRightClickedSpot(null)
       : setRightClickedSpot(rosterSpot);
+  };
+
+  const doubleClicker = (rosterSpot) => {
+    doubleClickedSpot === rosterSpot
+      ? setDoubleClickedSpot(null)
+      : setDoubleClickedSpot(rosterSpot) && doubleClickedListener();
   };
 
   const displayableChairs = dashboard.pics.map((playerChair) => (
@@ -33,6 +51,8 @@ const RosterSpots = React.memo((props) => {
       setMaybies={props.setMaybies}
       rightClicker={rightClicker}
       rightClicked={rightClickedSpot === playerChair ? true : false}
+      doubleClicker={doubleClicker}
+      doubleClicked={doubleClickedSpot === playerChair ? true : false}
       fadeForOther={
         rightClickedSpot && rightClickedSpot !== playerChair ? true : false
       }

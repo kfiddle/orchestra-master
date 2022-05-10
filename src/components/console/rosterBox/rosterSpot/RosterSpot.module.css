@@ -47,6 +47,12 @@
     background: rgb(250, 249, 250);
     color: rgb(253, 7, 28);
   }
+
+  .doubleClicked { 
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    transform: translateX(-.75rem);
+  }
   
   .partDiv {
     width: 20%;

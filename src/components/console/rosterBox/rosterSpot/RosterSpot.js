@@ -17,6 +17,7 @@ import classes from "./RosterSpot.module.css";
 
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
+
   const { chairState, dispatch } = useContext(ChairsHolder);
   const { dashboard, dispatch: dashDisp } = useContext(ConsoleHolder);
 
@@ -25,7 +26,6 @@ const RosterSpot = (props) => {
   let { parts, rank, specialDesignate } = chair;
   let player = props.playerInChair.player;
   let sectionSeat = props.playerInChair.sectionSeat;
-  const setMaybies = props.setMaybies;
 
   let stringPart =
     parts[0] === "VIOLIN1" ||
@@ -38,6 +38,8 @@ const RosterSpot = (props) => {
 
   const rightClicker = props.rightClicker;
   const rightClicked = props.rightClicked;
+  const doubleClicked = props.doubleClicked;
+  const doubleClicker = props.doubleClicker;
   const fadeForOther = props.fadeForOther;
 
   let primaryPart = parts[0];
@@ -64,6 +66,24 @@ const RosterSpot = (props) => {
     setMailClicked(false);
   };
 
+  //38 is up, 40 is down
+
+  const doubleClickedListener = () => {
+    document.addEventListener("keyup", (event) => {
+      if (event.keyCode === 38) {
+        console.log("up");
+      } else if (event.keyCode === 40) {
+        console.log("down");
+      }
+
+      // console.log(
+      //   `Key: ${event.key} with keycode ${event.keyCode} has been pressed`
+      // );
+    });
+  };
+
+  doubleClicked && doubleClickedListener();
+
   const spotClickedHandler = async () => {
     dispatch({ type: "chosenPic", chosenPic: pic });
     rightClicker(null);
@@ -73,6 +93,13 @@ const RosterSpot = (props) => {
     event.preventDefault();
     rightClicker(props.playerInChair);
     dispatch({ type: "chosenPic", chosenPic: pic });
+  };
+
+  const doubleClickHandler = (event) => {
+    event.preventDefault();
+    if (player) {
+      doubleClicker(props.playerInChair);
+    }
   };
 
   const removePlayerClicker = async () => {
@@ -111,13 +138,15 @@ const RosterSpot = (props) => {
 
   let fadeForOtherClass = fadeForOther ? classes.fadeForOther : null;
   let rightClickedClass = rightClicked ? classes.rightClicked : null;
+  let doubleClickedClass = doubleClicked ? classes.doubleClicked : null;
 
   return (
     <div>
       <div
-        className={`${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass}`}
+        className={`${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass} ${doubleClickedClass}`}
         onClick={spotClickedHandler}
         onContextMenu={rightClickHandler}
+        onDoubleClick={doubleClickHandler}
       >
         <div className={classes.partDiv}>
           {printSectionLabel && primaryPart}
@@ -139,7 +168,6 @@ const RosterSpot = (props) => {
           removePlayerClicker={removePlayerClicker}
           pic={pic}
           rightClicker={rightClicker}
-          setMaybies={setMaybies}
         />
       )}
     </div>
