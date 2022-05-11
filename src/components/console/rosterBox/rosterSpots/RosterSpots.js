@@ -24,11 +24,16 @@ const RosterSpots = React.memo((props) => {
     setRightClickedSpot(null);
   }, [dashboard.playerChanged]);
 
-  const doubleClickedListener = () => {
+  const doubleClickedListener = (rosterSpot, index) => {
     document.addEventListener("keyup", (event) => {
+      event.preventDefault();
       if (event.keyCode === 38) {
-        console.log("urp");
-        dispatch({ type: "pics", list: dashboard.pics.slice(7) });
+        let currentList = dashboard.pics;
+        let chairToMove = currentList[index];
+        currentList[index] = currentList[index - 1];
+        currentList[index - 1] = chairToMove;
+
+        dispatch({ type: "pics", list: currentList });
       } else if (event.keyCode === 40) {
         console.log("down");
       }
@@ -46,7 +51,7 @@ const RosterSpots = React.memo((props) => {
       setDoubleClickedSpot({ doubleClickedSpot: null, index: null });
     } else {
       setDoubleClickedSpot({ rosterSpot: rosterSpot, index: index });
-      doubleClickedListener();
+      doubleClickedListener(rosterSpot, index);
     }
   };
 
