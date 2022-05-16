@@ -5,17 +5,11 @@ import RosterSpot from "../rosterSpot/RosterSpot";
 import StringsBox from "../stringsBox/StringsBox";
 
 import { ConsoleHolder } from "../../../../store/object-holder";
-import { ChairsHolder } from "../../../../store/object-holder";
 
 import styles from "./RosterSpots.module.css";
 
 const RosterSpots = React.memo((props) => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
-  // const [doubleClickedSpot, setDoubleClickedSpot] = useState({
-  //   doubleClickedSpot: null,
-  //   index: null,
-  // });
-
   const [doubleClickedSpot, setDoubleClickedSpot] = useState({
     player: null,
     index: null,
@@ -29,17 +23,10 @@ const RosterSpots = React.memo((props) => {
     setRightClickedSpot(null);
   }, [dashboard.playerChanged]);
 
-  const rightClicker = (rosterSpot) => {
-    rightClickedSpot === rosterSpot
-      ? setRightClickedSpot(null)
-      : setRightClickedSpot(rosterSpot);
-  };
-
-  const doubleClicker = (player, index) => {
+  useEffect(() => {
     const doubleClickListener = (event) => {
-      // let index = doubleClickedSpot.index;
+      let index = doubleClickedSpot.index;
       if (event.keyCode === 38) {
-        console.log(index);
         let currentList = dashboard.pics;
         let playerToMove = currentList[index].player;
         let playerToSwap = currentList[index - 1].player;
@@ -51,16 +38,36 @@ const RosterSpots = React.memo((props) => {
         }
 
         dispatch({ type: "pics", list: currentList });
-        document.removeEventListener("keyup", doubleClickListener);
+        index = index - 1;
       } else if (event.keyCode === 40) {
         console.log("down");
       }
     };
+
+    if (doubleClickedSpot) {
+      document.addEventListener(
+        "keyup",
+        doubleClickListener
+      );
+    }
+
+    if (doubleClickedSpot.index === null) {
+      document.removeEventListener("keyup", doubleClickListener);
+      console.log("removing");
+    }
+  }, [doubleClickedSpot, dashboard.pics, dispatch]);
+
+  const rightClicker = (rosterSpot) => {
+    rightClickedSpot === rosterSpot
+      ? setRightClickedSpot(null)
+      : setRightClickedSpot(rosterSpot);
+  };
+
+  const doubleClicker = (player, index) => {
     if (doubleClickedSpot.player === player) {
       setDoubleClickedSpot({ player: null, index: null });
     } else {
       setDoubleClickedSpot({ player, index });
-      document.addEventListener("keyup", doubleClickListener);
     }
   };
 
