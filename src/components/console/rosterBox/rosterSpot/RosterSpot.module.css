@@ -51,7 +51,7 @@
   .doubleClicked { 
     margin-top: 1rem;
     margin-bottom: 1rem;
-    transform: translateX(-.75rem);
+    transform: translateX(-1.2rem);
   }
   
   .partDiv {

@@ -1,3 +1,8 @@
+.outerContainer:focus {
+  visibility: hidden;
+}
+
+
 .stringsButton  {
     width: fit-content;
     background: none;

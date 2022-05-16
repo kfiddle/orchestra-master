@@ -7,6 +7,7 @@ import StringsBox from "../stringsBox/StringsBox";
 import { ConsoleHolder } from "../../../../store/object-holder";
 
 import styles from "./RosterSpots.module.css";
+import useKeyPress from "../../../../hooks/useKeyPress";
 
 const RosterSpots = React.memo((props) => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
@@ -16,6 +17,7 @@ const RosterSpots = React.memo((props) => {
   });
 
   const [addStringsClicked, setAddStringsClicked] = useState(false);
+  const keyPressed = useKeyPress("ArrowUp");
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
@@ -23,39 +25,40 @@ const RosterSpots = React.memo((props) => {
     setRightClickedSpot(null);
   }, [dashboard.playerChanged]);
 
+  // useEffect(() => {
+  //   const doubleClickListener = (event) => {
+  //     // let index = doubleClickedSpot.index;
+  //     if (event.keyCode === 38) {
+  //       console.log("we are here");
+  //       let currentList = dashboard.pics;
+  //       let playerToMove = currentList[doubleClickedSpot.index].player;
+  //       let playerToSwap = currentList[doubleClickedSpot.index - 1].player;
+  //       currentList[doubleClickedSpot.index - 1].player = playerToMove;
+  //       if (playerToSwap) {
+  //         currentList[doubleClickedSpot.index].player = playerToSwap;
+  //       } else {
+  //         currentList[doubleClickedSpot.index].player = null;
+  //       }
+
+  //       dispatch({ type: "pics", list: currentList });
+  //       setDoubleClickedSpot({
+  //         player: doubleClickedSpot.player,
+  //         index: doubleClickedSpot.index - 1,
+  //       });
+  //       console.log("resetting the spot");
+  //       document.removeEventListener("keyup", doubleClickListener);
+  //     } else if (event.keyCode === 40) {
+  //       console.log("down");
+  //     }
+  //   };
+
+  //   document.addEventListener("keyup", doubleClickListener);
+
+  // }, []);
+
   useEffect(() => {
-    const doubleClickListener = (event) => {
-      let index = doubleClickedSpot.index;
-      if (event.keyCode === 38) {
-        let currentList = dashboard.pics;
-        let playerToMove = currentList[index].player;
-        let playerToSwap = currentList[index - 1].player;
-        currentList[index - 1].player = playerToMove;
-        if (playerToSwap) {
-          currentList[index].player = playerToSwap;
-        } else {
-          currentList[index].player = null;
-        }
-
-        dispatch({ type: "pics", list: currentList });
-        index = index - 1;
-      } else if (event.keyCode === 40) {
-        console.log("down");
-      }
-    };
-
-    if (doubleClickedSpot) {
-      document.addEventListener(
-        "keyup",
-        doubleClickListener
-      );
-    }
-
-    if (doubleClickedSpot.index === null) {
-      document.removeEventListener("keyup", doubleClickListener);
-      console.log("removing");
-    }
-  }, [doubleClickedSpot, dashboard.pics, dispatch]);
+    console.log(keyPressed);
+  }, [keyPressed]);
 
   const rightClicker = (rosterSpot) => {
     rightClickedSpot === rosterSpot
@@ -80,9 +83,6 @@ const RosterSpots = React.memo((props) => {
       rightClicker={rightClicker}
       rightClicked={rightClickedSpot === playerChair ? true : false}
       doubleClicker={doubleClicker}
-      // doubleClicked={
-      //   doubleClickedSpot.rosterSpot === playerChair ? true : false
-      // }
       doubleClicked={
         doubleClickedSpot.player === playerChair.player ? true : false
       }
@@ -100,8 +100,14 @@ const RosterSpots = React.memo((props) => {
     setAddStringsClicked(false);
   };
 
+  const keyCheck = (event) => {
+    // if (doubleClickedSpot.index !== null) {
+    console.log(event.key);
+    // }
+  };
+
   return (
-    <div>
+    <div className={styles.outerContainer} onKeyDown={keyCheck} tabIndex={0}>
       {displayableChairs}
       {displayableChairs.length > 0 && (
         <button className={styles.stringsButton} onClick={stringsClicker}>

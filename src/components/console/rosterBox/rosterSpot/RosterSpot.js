@@ -131,6 +131,7 @@ const RosterSpot = (props) => {
         onClick={spotClickedHandler}
         onContextMenu={rightClickHandler}
         onDoubleClick={doubleClickHandler}
+      
       >
         <div className={classes.partDiv}>
           {printSectionLabel && primaryPart}
