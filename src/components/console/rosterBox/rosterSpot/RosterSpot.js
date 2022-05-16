@@ -124,14 +124,14 @@ const RosterSpot = (props) => {
   let rightClickedClass = rightClicked ? classes.rightClicked : null;
   let doubleClickedClass = doubleClicked ? classes.doubleClicked : null;
 
+
   return (
     <div>
       <div
-        className={`${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass} ${doubleClickedClass}`}
+        className={`${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass} ${doubleClickedClass} `}
         onClick={spotClickedHandler}
         onContextMenu={rightClickHandler}
         onDoubleClick={doubleClickHandler}
-      
       >
         <div className={classes.partDiv}>
           {printSectionLabel && primaryPart}

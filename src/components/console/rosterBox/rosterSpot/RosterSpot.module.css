@@ -51,8 +51,12 @@
   .doubleClicked { 
     margin-top: 1rem;
     margin-bottom: 1rem;
-    transform: translateX(-1.2rem);
+    background: rgb(236, 239, 244);
+    color: rgb(60, 2, 2);
+    transform: translateX(-4rem);
   }
+
+ 
   
   .partDiv {
     width: 20%;

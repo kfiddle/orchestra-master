@@ -17,7 +17,9 @@ const RosterSpots = React.memo((props) => {
   });
 
   const [addStringsClicked, setAddStringsClicked] = useState(false);
-  const keyPressed = useKeyPress("ArrowUp");
+
+  const upArrowPressed = useKeyPress("ArrowUp");
+  const downArrowPressed = useKeyPress("ArrowDown");
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
@@ -25,40 +27,30 @@ const RosterSpots = React.memo((props) => {
     setRightClickedSpot(null);
   }, [dashboard.playerChanged]);
 
-  // useEffect(() => {
-  //   const doubleClickListener = (event) => {
-  //     // let index = doubleClickedSpot.index;
-  //     if (event.keyCode === 38) {
-  //       console.log("we are here");
-  //       let currentList = dashboard.pics;
-  //       let playerToMove = currentList[doubleClickedSpot.index].player;
-  //       let playerToSwap = currentList[doubleClickedSpot.index - 1].player;
-  //       currentList[doubleClickedSpot.index - 1].player = playerToMove;
-  //       if (playerToSwap) {
-  //         currentList[doubleClickedSpot.index].player = playerToSwap;
-  //       } else {
-  //         currentList[doubleClickedSpot.index].player = null;
-  //       }
-
-  //       dispatch({ type: "pics", list: currentList });
-  //       setDoubleClickedSpot({
-  //         player: doubleClickedSpot.player,
-  //         index: doubleClickedSpot.index - 1,
-  //       });
-  //       console.log("resetting the spot");
-  //       document.removeEventListener("keyup", doubleClickListener);
-  //     } else if (event.keyCode === 40) {
-  //       console.log("down");
-  //     }
-  //   };
-
-  //   document.addEventListener("keyup", doubleClickListener);
-
-  // }, []);
-
   useEffect(() => {
-    console.log(keyPressed);
-  }, [keyPressed]);
+    if (
+      (upArrowPressed || downArrowPressed) &&
+      doubleClickedSpot.index !== null
+    ) {
+      const increment = upArrowPressed ? -1 : 1;
+      let index = doubleClickedSpot.index;
+      let currentList = dashboard.pics;
+      let playerToMove = currentList[index].player;
+      let playerToSwap = currentList[index + increment].player;
+      currentList[index + increment].player = playerToMove;
+      if (playerToSwap) {
+        currentList[index].player = playerToSwap;
+      } else {
+        currentList[index].player = null;
+      }
+
+      dispatch({ type: "pics", list: currentList });
+      setDoubleClickedSpot({
+        player: doubleClickedSpot.player,
+        index: index + increment,
+      });
+    }
+  }, [upArrowPressed, downArrowPressed]);
 
   const rightClicker = (rosterSpot) => {
     rightClickedSpot === rosterSpot
@@ -74,6 +66,13 @@ const RosterSpots = React.memo((props) => {
     }
   };
 
+  const doubleClickedCheck = (pic) => {
+    return (
+      doubleClickedSpot.player !== null &&
+      doubleClickedSpot.player === pic.player
+    );
+  };
+
   const displayableChairs = dashboard.pics.map((playerChair) => (
     <RosterSpot
       key={Math.random()}
@@ -83,9 +82,7 @@ const RosterSpots = React.memo((props) => {
       rightClicker={rightClicker}
       rightClicked={rightClickedSpot === playerChair ? true : false}
       doubleClicker={doubleClicker}
-      doubleClicked={
-        doubleClickedSpot.player === playerChair.player ? true : false
-      }
+      doubleClicked={doubleClickedCheck(playerChair)}
       fadeForOther={
         rightClickedSpot && rightClickedSpot !== playerChair ? true : false
       }
