@@ -81,7 +81,8 @@ const RosterSpot = (props) => {
   const doubleClickHandler = (event) => {
     event.preventDefault();
     if (player) {
-      doubleClicker(props.playerInChair, index);
+      // doubleClicker(props.playerInChair, index);
+      doubleClicker(player, index);
     }
   };
 

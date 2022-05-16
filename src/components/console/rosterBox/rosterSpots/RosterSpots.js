@@ -11,8 +11,13 @@ import styles from "./RosterSpots.module.css";
 
 const RosterSpots = React.memo((props) => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
+  // const [doubleClickedSpot, setDoubleClickedSpot] = useState({
+  //   doubleClickedSpot: null,
+  //   index: null,
+  // });
+
   const [doubleClickedSpot, setDoubleClickedSpot] = useState({
-    doubleClickedSpot: null,
+    player: null,
     index: null,
   });
 
@@ -24,34 +29,38 @@ const RosterSpots = React.memo((props) => {
     setRightClickedSpot(null);
   }, [dashboard.playerChanged]);
 
-  const doubleClickedListener = (rosterSpot, index) => {
-    document.addEventListener("keyup", (event) => {
-      event.preventDefault();
-      if (event.keyCode === 38) {
-        let currentList = dashboard.pics;
-        let chairToMove = currentList[index];
-        currentList[index] = currentList[index - 1];
-        currentList[index - 1] = chairToMove;
-
-        dispatch({ type: "pics", list: currentList });
-      } else if (event.keyCode === 40) {
-        console.log("down");
-      }
-    });
-  };
-
   const rightClicker = (rosterSpot) => {
     rightClickedSpot === rosterSpot
       ? setRightClickedSpot(null)
       : setRightClickedSpot(rosterSpot);
   };
 
-  const doubleClicker = (rosterSpot, index) => {
-    if (doubleClickedSpot.rosterSpot === rosterSpot) {
-      setDoubleClickedSpot({ doubleClickedSpot: null, index: null });
+  const doubleClicker = (player, index) => {
+    const doubleClickListener = (event) => {
+      // let index = doubleClickedSpot.index;
+      if (event.keyCode === 38) {
+        console.log(index);
+        let currentList = dashboard.pics;
+        let playerToMove = currentList[index].player;
+        let playerToSwap = currentList[index - 1].player;
+        currentList[index - 1].player = playerToMove;
+        if (playerToSwap) {
+          currentList[index].player = playerToSwap;
+        } else {
+          currentList[index].player = null;
+        }
+
+        dispatch({ type: "pics", list: currentList });
+        document.removeEventListener("keyup", doubleClickListener);
+      } else if (event.keyCode === 40) {
+        console.log("down");
+      }
+    };
+    if (doubleClickedSpot.player === player) {
+      setDoubleClickedSpot({ player: null, index: null });
     } else {
-      setDoubleClickedSpot({ rosterSpot: rosterSpot, index: index });
-      doubleClickedListener(rosterSpot, index);
+      setDoubleClickedSpot({ player, index });
+      document.addEventListener("keyup", doubleClickListener);
     }
   };
 
@@ -64,8 +73,11 @@ const RosterSpots = React.memo((props) => {
       rightClicker={rightClicker}
       rightClicked={rightClickedSpot === playerChair ? true : false}
       doubleClicker={doubleClicker}
+      // doubleClicked={
+      //   doubleClickedSpot.rosterSpot === playerChair ? true : false
+      // }
       doubleClicked={
-        doubleClickedSpot.rosterSpot === playerChair ? true : false
+        doubleClickedSpot.player === playerChair.player ? true : false
       }
       fadeForOther={
         rightClickedSpot && rightClickedSpot !== playerChair ? true : false
