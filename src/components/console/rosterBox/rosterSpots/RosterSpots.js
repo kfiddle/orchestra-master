@@ -8,6 +8,7 @@ import { ConsoleHolder } from "../../../../store/object-holder";
 
 import styles from "./RosterSpots.module.css";
 import useKeyPress from "../../../../hooks/useKeyPress";
+import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 
 const RosterSpots = React.memo((props) => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
@@ -58,9 +59,16 @@ const RosterSpots = React.memo((props) => {
       : setRightClickedSpot(rosterSpot);
   };
 
+  const sendUpNewSeating = async () => {
+    let response = await PushBasic(dashboard.pics, "change-seating");
+    console.log(dashboard.pics);
+  };
+
   const doubleClicker = (player, index) => {
     if (doubleClickedSpot.player === player) {
       setDoubleClickedSpot({ player: null, index: null });
+
+      sendUpNewSeating();
     } else {
       setDoubleClickedSpot({ player, index });
     }
@@ -78,7 +86,6 @@ const RosterSpots = React.memo((props) => {
       key={Math.random()}
       playerInChair={playerChair}
       index={dashboard.pics.indexOf(playerChair)}
-      setMaybies={props.setMaybies}
       rightClicker={rightClicker}
       rightClicked={rightClickedSpot === playerChair ? true : false}
       doubleClicker={doubleClicker}
@@ -97,14 +104,8 @@ const RosterSpots = React.memo((props) => {
     setAddStringsClicked(false);
   };
 
-  const keyCheck = (event) => {
-    // if (doubleClickedSpot.index !== null) {
-    console.log(event.key);
-    // }
-  };
-
   return (
-    <div className={styles.outerContainer} onKeyDown={keyCheck} tabIndex={0}>
+    <div className={styles.outerContainer}>
       {displayableChairs}
       {displayableChairs.length > 0 && (
         <button className={styles.stringsButton} onClick={stringsClicker}>
