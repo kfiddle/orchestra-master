@@ -1,5 +1,10 @@
 import { Switch, Route } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import { useDispatch } from "react-redux";
+
+import { authActions } from "./redux/Auth";
+import PushBasic from "./components/helperFunctions/pushFunctions/PushBasic";
 
 import "./App.css";
 
@@ -15,6 +20,25 @@ import Season2 from "./pages/Season2";
 function App() {
   const [modalIsClosed, setModalIsClosed] = useState(false);
   const [reloadFlag, setReloadFlag] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const login = async () => {
+      const response = await PushBasic(
+        { username: "cn@Email", password: "ChrisPass" },
+        "login"
+      );
+      if (response.ok) {
+        const jwtToken = response.headers.get("Authorization");
+        dispatch(authActions.login({ jwtToken }));
+      } else {
+        console.log("no login accepted");
+      }
+    };
+
+    login();
+  }, []);
 
   const modalCloseHandler = (flag) => {
     setModalIsClosed(flag);

@@ -14,9 +14,9 @@ const StringsBox = (props) => {
 
   const title = showtune? showtune.piece.title: show.title;
 
-  const displayableInputs = parts.map((part) => (
+  const displayableInputs = parts.map((part, index) => (
     <StringInput
-      key={parts.indexOf(part)}
+      key={index}
       part={part}
       submitted={submitted}
       showtune={showtune}

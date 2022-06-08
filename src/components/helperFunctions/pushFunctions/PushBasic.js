@@ -1,3 +1,4 @@
+
 import WhichServer from "../WhichServer";
 
 const PushBasic = async (objectToPush, pushFunction) => {
@@ -12,7 +13,8 @@ const PushBasic = async (objectToPush, pushFunction) => {
   });
 
   return response;
-
 };
 
 export default PushBasic;
+
+

@@ -10,6 +10,7 @@ import GetAList from "../helperFunctions/GetAList";
 import AllParts from "../../store/all-parts";
 
 import classes from "./Layout.module.css";
+import useGetAList2 from "../../hooks/useGetAList2";
 
 const Layout = (props) => {
   const [playerEntryFormRendered, setPlayerEntryFormRendered] = useState(false);
@@ -17,7 +18,7 @@ const Layout = (props) => {
   const [performanceEntryFormRendered, setPerformanceEntryFormRendered] =
     useState(false);
 
-  const [partsList, setPartsList] = useState([]);
+  // const [partsList, setPartsList] = useState([]);
 
   const playerEntryClicked = () => {
     setPlayerEntryFormRendered(true);
@@ -41,16 +42,18 @@ const Layout = (props) => {
     props.modalCloseHandler(true);
   };
 
-  useEffect(() => {
-    const getAllParts = async () => {
-      const allParts = await GetAList("get-all-parts");
-      if (allParts.length > 0) {
-        setPartsList(allParts);
-      }
-    };
+  let partsList = useGetAList2("get-all-parts");
 
-    getAllParts();
-  }, []);
+  // useEffect(() => {
+  //   const getAllParts = async () => {
+  //     const allParts = await GetAList("get-all-parts");
+  //     if (allParts.length > 0) {
+  //       setPartsList(allParts);
+  //     }
+  //   };
+
+  //   getAllParts();
+  // }, []);
 
   return (
     <AllParts.Provider value={{ partsList }}>
