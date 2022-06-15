@@ -1,13 +1,14 @@
 
 import WhichServer from "../WhichServer";
 
-const PushBasic = async (objectToPush, pushFunction) => {
+const PushBasic = async (objectToPush, pushFunction, jwtToken) => {
   const whichServer = WhichServer();
 
   let response = await fetch(whichServer + pushFunction, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      'Authorization': jwtToken, 
     },
     body: JSON.stringify(objectToPush),
   });

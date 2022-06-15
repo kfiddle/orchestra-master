@@ -9,6 +9,7 @@ import PushBasic from "./components/helperFunctions/pushFunctions/PushBasic";
 import "./App.css";
 
 import ReloadFlagStore from "./store/reload-flag-store";
+import WhichServer from "./components/helperFunctions/WhichServer";
 
 import Layout from "./components/UI/Layout";
 
@@ -22,13 +23,17 @@ function App() {
   const [reloadFlag, setReloadFlag] = useState(false);
 
   const dispatch = useDispatch();
+  const whichServer = WhichServer();
 
   useEffect(() => {
     const login = async () => {
-      const response = await PushBasic(
-        { username: "cn@Email", password: "ChrisPass" },
-        "login"
-      );
+      const userDeets = { username: "cn@Email", password: "ChrisPass" };
+
+      const response = await fetch(whichServer + "login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userDeets),
+      });
       if (response.ok) {
         const jwtToken = response.headers.get("Authorization");
         dispatch(authActions.login({ jwtToken }));

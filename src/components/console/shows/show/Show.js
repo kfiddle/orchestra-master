@@ -8,6 +8,7 @@ import { ConsoleHolder } from "../../../../store/object-holder";
 import PerformanceEdit2 from "../../../editComponents/performanceEdit/PerformanceEdit2";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+import usePushBasic from "../../../../hooks/usePushBasic";
 
 import useDateFormatter from "../../../../hooks/useDateFormatter";
 
@@ -17,7 +18,6 @@ import styles from "./Show.module.css";
 
 const Show = (props) => {
   const [editClicked, setEditClicked] = useState(false);
-  const [date, setDate] = useState("");
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
@@ -25,20 +25,7 @@ const Show = (props) => {
   const show = props.show;
   const { title } = show;
 
-  useEffect(() => {
-    const getPrimaryDate = async () => {
-      try {
-        const response = await PushBasic(props.show, "get-date-from-show");
-        let answeredDate = await response.json();
-        setDate(answeredDate);
-      } catch (error) {
-        return console.log(error);
-      }
-    };
-
-    getPrimaryDate();
-  }, []);
-
+  const date = usePushBasic(props.show, "get-date-from-show");
   const displayDate = useDateFormatter(date);
 
   const clickedOrNot =
@@ -70,10 +57,7 @@ const Show = (props) => {
       </div>
 
       {editClicked && (
-        <PerformanceEdit2
-          closeModal={closeModal}
-          performance={show}
-        />
+        <PerformanceEdit2 closeModal={closeModal} performance={show} />
       )}
     </div>
   );

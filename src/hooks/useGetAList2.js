@@ -12,7 +12,6 @@ const useGetAList2 = (listUrl, reload, setReload) => {
   const { jwtToken } = auth;
 
   useEffect(() => {
-    console.log(jwtToken);
     const getList = async () => {
       try {
         let response = await fetch(whichServer + listUrl, {
