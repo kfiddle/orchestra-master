@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 
-import useGetAList3 from "./useGetAList3";
+import useGetAList2 from "./useGetAList2";
 
 const useAutoFill = () => {
-  const [playersList, setReload] = useGetAList3("get-all-players");
+
+  const playersList = useGetAList2("get-all-players");
   const [nameFragment, setNameFragment] = useState("");
   const [hintName, setHintName] = useState("");
 

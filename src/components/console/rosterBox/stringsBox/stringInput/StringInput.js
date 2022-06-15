@@ -4,7 +4,6 @@ import NumberInput from "../../../../input/numberInput/NumberInput";
 
 import { ConsoleHolder } from "../../../../../store/object-holder";
 
-// import PushBasic from "../../../../helperFunctions/pushFunctions/PushBasic";
 import useFetch from "../../../../../hooks/useFetch";
 
 import classes from "./StringInput.module.css";
@@ -31,11 +30,10 @@ const StringInput = (props) => {
           partAndNumber,
           "make-single-string-section-in-" + showOrPiece + "/" + idToSend
         );
-        dispatch({type: "stringNumsSubmitted", stringNumsSubmitted: true  })
 
-        // if (response.ok) {
-        //   dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: true });
-        // }
+        if (response !== 'phoey') {
+          dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: true });
+        }
       };
 
       sendItUp();

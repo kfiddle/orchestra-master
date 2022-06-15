@@ -8,7 +8,8 @@ import { ConsoleHolder } from "../../../../store/object-holder";
 
 import styles from "./RosterSpots.module.css";
 import useKeyPress from "../../../../hooks/useKeyPress";
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+// import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+import useFetch from "../../../../hooks/useFetch";
 
 const RosterSpots = React.memo((props) => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
@@ -18,6 +19,8 @@ const RosterSpots = React.memo((props) => {
   });
 
   const [addStringsClicked, setAddStringsClicked] = useState(false);
+
+  const pusher = useFetch();
 
   const upArrowPressed = useKeyPress("ArrowUp");
   const downArrowPressed = useKeyPress("ArrowDown");
@@ -60,8 +63,7 @@ const RosterSpots = React.memo((props) => {
   };
 
   const sendUpNewSeating = async () => {
-    let response = await PushBasic(dashboard.pics, "change-seating");
-    console.log(dashboard.pics);
+    let response = await pusher(dashboard.pics, "change-seating");
   };
 
   const doubleClicker = (player, index) => {

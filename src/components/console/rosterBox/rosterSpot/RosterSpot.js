@@ -4,7 +4,7 @@ import EmailPlayer from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot
 
 import { AiOutlineMail } from "react-icons/ai";
 
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+import useFetch from "../../../../hooks/useFetch";
 
 import RightClick from "./rightClick/RightClick";
 
@@ -20,6 +20,8 @@ const RosterSpot = (props) => {
 
   const { chairState, dispatch } = useContext(ChairsHolder);
   const { dashboard, dispatch: dashDisp } = useContext(ConsoleHolder);
+
+  const pusher = useFetch();
 
   let pic = props.playerInChair;
   let chair = pic.chair;
@@ -81,18 +83,17 @@ const RosterSpot = (props) => {
   const doubleClickHandler = (event) => {
     event.preventDefault();
     if (player) {
-      // doubleClicker(props.playerInChair, index);
       doubleClicker(player, index);
     }
   };
 
   const removePlayerClicker = async () => {
-    let response = await PushBasic(
+    let response = await pusher(
       props.playerInChair,
       "remove-player-from-pic"
     );
 
-    if (response.ok) {
+    if (response !== 'phoey') {
       dispatch({ type: "chosenPic", chosenPic: null });
       dispatch({ type: "possibles", list: [] });
       dashDisp({ type: "playerChanged", playerChanged: true });
