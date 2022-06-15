@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { useSelector } from "react-redux";
 
 import { OrchEntry2FormStore } from "../../../../store/form-holders";
 
@@ -8,7 +9,11 @@ import classes from "./StringsBox.module.css";
 
 const StringsBox = (props) => {
   const [stringsChecked, setStringsChecked] = useState(true);
-  const { pieceOrShow, object, submitClicked } = useContext(OrchEntry2FormStore);
+  const { pieceOrShow, object, submitClicked } =
+    useContext(OrchEntry2FormStore);
+
+  const auth = useSelector((state) => state.auth);
+  const { jwtToken } = auth;
 
   useEffect(() => {
     const sendUpStrings = async () => {
@@ -25,7 +30,8 @@ const StringsBox = (props) => {
             parts: parts,
             [pieceOrShow]: object,
           },
-          "add-chair-to-" + pieceOrShow
+          "add-chair-to-" + pieceOrShow,
+          jwtToken
         );
       }
     };

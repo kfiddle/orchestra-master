@@ -8,7 +8,7 @@ import LoadingSpinner from "../components/UI/loading/LoadingSpinner";
 import ReloadFlagStore from "../store/reload-flag-store";
 
 import useGetAList2 from "../hooks/useGetAList2";
-import MasterConsole4 from "../components/console/MasterConsole4";
+import MasterConsole5 from "../components/console/MasterConsole5";
 
 const initialState = {
   shows: [],
@@ -61,10 +61,9 @@ const Season2 = (props) => {
   return isLoading ? (
     <LoadingSpinner />
   ) : (
-    // <MasterConsole3 allPerformances={allPerformances} />
 
     <ConsoleHolder.Provider value={{ dashboard, dispatch }}>
-      <MasterConsole4 />
+      <MasterConsole5 />
     </ConsoleHolder.Provider>
   );
 };

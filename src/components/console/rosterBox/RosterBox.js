@@ -3,7 +3,7 @@ import React from "react";
 
 import RosterSpots from "./rosterSpots/RosterSpots";
 import PossiblesBox from "../possiblesBox/PossiblesBox";
-import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
+import useFetch from "../../../hooks/useFetch";
 
 import { ChairsHolder } from "../../../store/object-holder";
 
@@ -27,20 +27,21 @@ const chairsReducer = (state, action) => {
 const RosterBox = (props) => {
   const [chairState, dispatch] = useReducer(chairsReducer, initialState);
 
+  const pusher = useFetch();
+
   useEffect(() => {
     const getPossibles = async () => {
-      const possiblesList = await PushBasic(
+      const possiblesList = await pusher(
         chairState.chosenPic,
         "get-possible-players"
       );
-      const jsonified = await possiblesList.json();
-      dispatch({ type: "possibles", list: jsonified });
+      dispatch({ type: "possibles", list: possiblesList });
     };
 
     if (chairState.chosenPic) {
       !chairState.chosenPic.player
         ? getPossibles()
-        : dispatch({ type: 'possibles', list: [] });
+        : dispatch({ type: "possibles", list: [] });
     }
   }, [chairState.chosenPic]);
 

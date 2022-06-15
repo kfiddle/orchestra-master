@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { useSelector } from "react-redux";
+
 import Chair from "../components/entryComponents/orchEntry2/chair/Chair";
 import Chair2 from "../components/entryComponents/orchEntry2/chair2/Chair2";
 
@@ -11,6 +13,9 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
   const [deleteAssist, setDeleteAssist] = useState(false);
 
   const { pieceOrShow, object } = pieceShowObject;
+
+  const auth = useSelector(state => state.auth);
+  const { jwtToken } = auth;
 
   const putItTogether = (parts, rank, specialDesignate) => {
     let tempList = finalList;
@@ -84,7 +89,7 @@ const useMakeChairs = (part, number, submitFlag, pieceShowObject) => {
                 ? chair.specialDesignate
                 : null,
             },
-            "add-chair-to-" + pieceOrShow
+            "add-chair-to-" + pieceOrShow, jwtToken
           );
         }
       }, 500);

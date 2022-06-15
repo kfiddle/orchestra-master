@@ -10,36 +10,33 @@ import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import styles from "./MasterConsole4.module.css";
 import RosterBox from "./rosterBox/RosterBox";
-import usePushBasic from "../../hooks/usePushBasic";
 import useFetch from "../../hooks/useFetch";
 
 //season2 has this
 
-const MasterConsole4 = (props) => {
+const MasterConsole5 = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const auth = useSelector((state) => state.auth);
   const { jwtToken } = auth;
 
+  const pusher = useFetch();
 
   useEffect(() => {
     const grabThePieces = async () => {
-      const showPieces = await PushBasic(
+      const showPieces = await pusher(
         dashboard.clickedShow,
-        "get-showtunes-on-program", jwtToken
+        "get-showtunes-on-program"
       );
-      const jsonified = await showPieces.json();
-      dispatch({ type: "pieces", list: jsonified });
+      dispatch({ type: "pieces", list: showPieces });
     };
 
     const grabPICSFromShow = async () => {
-      const directPICS = await PushBasic(
+      const directPICS = await pusher(
         dashboard.clickedShow,
-        "get-pics-in-show",
-        jwtToken
+        "get-pics-in-show"
       );
-      const jsonified = await directPICS.json();
-      dispatch({ type: "pics", list: jsonified });
+      dispatch({ type: "pics", list: directPICS });
     };
 
     if (dashboard.clickedShow) {
@@ -69,4 +66,4 @@ const MasterConsole4 = (props) => {
   );
 };
 
-export default MasterConsole4;
+export default MasterConsole5;

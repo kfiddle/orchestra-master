@@ -4,13 +4,16 @@ import NumberInput from "../../../../input/numberInput/NumberInput";
 
 import { ConsoleHolder } from "../../../../../store/object-holder";
 
-import PushBasic from "../../../../helperFunctions/pushFunctions/PushBasic";
+// import PushBasic from "../../../../helperFunctions/pushFunctions/PushBasic";
+import useFetch from "../../../../../hooks/useFetch";
 
 import classes from "./StringInput.module.css";
 
 const StringInput = (props) => {
   const [localNumber, setLocalNumber] = useState();
   const { dashboard, dispatch } = useContext(ConsoleHolder);
+
+  const pusher = useFetch();
 
   const part = props.part;
   const showtune = props.showtune;
@@ -24,13 +27,15 @@ const StringInput = (props) => {
     if (submitted) {
       const sendItUp = async () => {
         let partAndNumber = { stringPart: part, number: localNumber };
-        let response = await PushBasic(
+        let response = await pusher(
           partAndNumber,
           "make-single-string-section-in-" + showOrPiece + "/" + idToSend
         );
-        if (response.ok) {
-          dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: true });
-        }
+        dispatch({type: "stringNumsSubmitted", stringNumsSubmitted: true  })
+
+        // if (response.ok) {
+        //   dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: true });
+        // }
       };
 
       sendItUp();
