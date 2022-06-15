@@ -4,12 +4,12 @@ import LibrarySortHeader from "./librarySortHeader/LibrarySortHeader";
 
 import ReloadFlagStore from "../../../store/reload-flag-store";
 
-import GetAList from "../../helperFunctions/GetAList";
+import useGetAList2 from "../../../hooks/useGetAList2";
 
 import classes from "./ListOfPieces.module.css";
 
 const ListOfPieces = (props) => {
-  const [pieces, setPieces] = useState([]);
+  // const [pieces, setPieces] = useState([]);
   const [sortOption, setSortOption] = useState("title");
 
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
@@ -17,19 +17,21 @@ const ListOfPieces = (props) => {
   // const reloadFlag = props.reloadFlag;
   // const setReloadFlag = props.setReloadFlag;
 
-  useEffect(() => {
-    const getAllPieces = async () => {
-      const allPieces = await GetAList("get-sorted-pieces/" + sortOption);
-      setPieces(allPieces);
-    };
+  let pieces = useGetAList2("get-sorted-pieces/" + sortOption, reloadFlag, setReloadFlag);
 
-    if (reloadFlag) {
-      getAllPieces();
-      setReloadFlag(false);
-    }
+  // useEffect(() => {
+  //   const getAllPieces = async () => {
+  //     const allPieces = await GetAList("get-sorted-pieces/" + sortOption);
+  //     setPieces(allPieces);
+  //   };
 
-    getAllPieces();
-  }, [props.modalIsClosed, sortOption, reloadFlag]);
+  //   if (reloadFlag) {
+  //     getAllPieces();
+  //     setReloadFlag(false);
+  //   }
+
+  //   getAllPieces();
+  // }, [props.modalIsClosed, sortOption, reloadFlag]);
 
   const displayablePieces = pieces.map((piece) => (
     <LibraryPiece key={piece.id} piece={piece} closeModal={props.closeModal} />
