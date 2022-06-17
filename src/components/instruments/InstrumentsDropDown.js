@@ -2,22 +2,15 @@ import { useState, useEffect } from "react";
 import InstrumentListItem from "./InstrumentListItem";
 
 import GetAList from "../helperFunctions/GetAList";
+import useGetAList2 from '../../hooks/useGetAList2';
 
 import styles from "./InstrumentsDropDown.module.css";
 
 const InstrumentsDropDown = (props) => {
-  const [instrumentsList, setInstrumentsList] = useState([]);
   const showOrHide = props.showOrHide;
   const displayStyleObject = !showOrHide ? { display: "none" } : {};
 
-  useEffect(() => {
-    const getAllInstruments = async () => {
-      const allInstrumentsResponse = await GetAList("get-all-parts");
-      setInstrumentsList(allInstrumentsResponse);
-    };
-
-    getAllInstruments();
-  }, []);
+  const instrumentsList = useGetAList2('get-all-parts');
 
   const listToDisplay = instrumentsList.map((instrument) => (
     <InstrumentListItem

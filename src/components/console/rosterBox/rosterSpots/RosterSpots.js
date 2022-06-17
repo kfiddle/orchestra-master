@@ -8,7 +8,6 @@ import { ConsoleHolder } from "../../../../store/object-holder";
 
 import styles from "./RosterSpots.module.css";
 import useKeyPress from "../../../../hooks/useKeyPress";
-// import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 import useFetch from "../../../../hooks/useFetch";
 
 const RosterSpots = React.memo((props) => {

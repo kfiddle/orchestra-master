@@ -10,12 +10,12 @@ import BigInput from "../../../input/BigInput";
 import BigInput2 from "../../../input/BigInput2";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+import useFetch from "../../../../hooks/useFetch";
 
 import classes from "./PlayerEntry.module.css";
 import FoneInput from "../../../input/FoneInput";
 import SubOrContractBox from "./subOrContractBox/SubOrContractBox";
 import SubmitDeleteBox from "../submitDelete/SubmitDeleteBox";
-
 
 const nameMaker = (fullEnteredName) => {
   if (!fullEnteredName) {
@@ -37,6 +37,8 @@ const PlayerEntry = (props) => {
     instrumentDropDown: false,
     deleteButton: false,
   });
+
+  const pusher = useFetch();
 
   useEffect(() => {
     if (props.player) {
@@ -61,8 +63,10 @@ const PlayerEntry = (props) => {
     });
 
     if (clickedThings.deleteButton) {
-      const response = await PushBasic(props.player, "delete-player");
-      if (response.ok) {
+      // const response = await PushBasic(props.player, "delete-player");
+      const response = await pusher(props.player, "delete-player");
+
+      if (response !== "phoey") {
         props.closeModal();
       }
     }
@@ -92,11 +96,18 @@ const PlayerEntry = (props) => {
 
     const sendPlayerOff = async () => {
       let pushFunction = !props.player ? "add-player" : "edit-player";
-      console.log(playerToSend);
-      let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
-      if (mainPlayerResponse.ok) {
+
+      // let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
+      // if (mainPlayerResponse.ok) {
+      //   props.closeModal();
+      // }
+
+      let mainPlayerResponse = await pusher(playerToSend, pushFunction);
+      if (mainPlayerResponse !== 'phoey') {
         props.closeModal();
       }
+
+
     };
 
     setTimeout(sendPlayerOff, 200);
@@ -145,7 +156,7 @@ const PlayerEntry = (props) => {
             </div>
           </div>
 
-          <InstrumentsDropDown showOrHide={clickedThings.instrumentDropDown}/>
+          <InstrumentsDropDown showOrHide={clickedThings.instrumentDropDown} />
 
           <div className={classes.phoneDiv}>
             <FoneInput

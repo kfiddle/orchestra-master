@@ -7,7 +7,6 @@ import { ConsoleHolder } from "../../../../store/object-holder";
 
 import PerformanceEdit2 from "../../../editComponents/performanceEdit/PerformanceEdit2";
 
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 import usePushBasic from "../../../../hooks/usePushBasic";
 
 import useDateFormatter from "../../../../hooks/useDateFormatter";
@@ -21,6 +20,7 @@ const Show = (props) => {
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
+
 
   const show = props.show;
   const { title } = show;
