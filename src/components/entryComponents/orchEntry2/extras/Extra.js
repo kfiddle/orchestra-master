@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 
 import { OrchEntry2FormStore } from "../../../../store/form-holders";
 
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+import useFetch from "../../../../hooks/useFetch";
 
 import styles from "./Extra.module.css";
 
@@ -12,12 +12,14 @@ const Extra = (props) => {
   const { pieceOrShow, object, submitClicked } =
     useContext(OrchEntry2FormStore);
 
+  const pusher = useFetch();
+
   const instrument = props.instrument;
 
   useEffect(() => {
     const sendItUp = async () => {
       for (let j = 1; j <= localNumber; j++) {
-        let response = await PushBasic(
+        let response = await pusher(
           {
             parts: [instrument],
             rank: j,

@@ -5,12 +5,9 @@ import HorlogeEdit from "../horloges/HorlogeEdit";
 
 import PerformanceStateFunctions from "../../../../store/performance-state-functions";
 
-import styles from "./ConcertsEdit.module.css";
-
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 import useFetch from "../../../../hooks/useFetch";
 
-import useGetAList2 from "../../../../hooks/useGetAList2";
+import styles from "./ConcertsEdit.module.css";
 
 const ConcertsEdit = () => {
   const { performance } = useContext(PerformanceStateFunctions);
@@ -30,19 +27,6 @@ const ConcertsEdit = () => {
     getExistingConcerts();
   }, []);
 
-  // useEffect(() => {
-  //   const getExistingConcerts = async () => {
-  //     let response = await PushBasic(performance, "get-all-concerts-of-show");
-  //     if (response.ok) {
-  //       let finalList = await response.json();
-  //       if (finalList.length > 0) {
-  //         setExistingConcerts(finalList);
-  //       }
-  //     }
-  //   };
-
-  //   getExistingConcerts();
-  // }, []);
 
   const addConcertClicked = () => {
     let tempList = [...addedConcerts];

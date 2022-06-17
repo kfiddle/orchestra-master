@@ -33,7 +33,6 @@ const OrchEntry2 = (props) => {
     setTimeout(closeModal, 300);
   };
 
-  // const providerObject = { piece, show, submitClicked };
   const providerObject = { pieceOrShow, object, submitClicked };
 
   return (

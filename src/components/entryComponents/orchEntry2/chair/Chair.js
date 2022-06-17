@@ -2,8 +2,6 @@ import { useState, useEffect, useContext } from "react";
 
 import InstButton from "../instButton/InstButton";
 
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
-
 import { OrchEntry2FormStore } from "../../../../store/form-holders";
 
 const Chair = (props) => {

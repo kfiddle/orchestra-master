@@ -6,7 +6,6 @@ import PieceEntry from "../entryComponents/pieceEntry/PieceEntry";
 
 import PerformanceEntry2 from "../entryComponents/performanceEntry2/PerformanceEntry2";
 
-import GetAList from "../helperFunctions/GetAList";
 import AllParts from "../../store/all-parts";
 
 import classes from "./Layout.module.css";
@@ -17,8 +16,6 @@ const Layout = (props) => {
   const [pieceEntryFormRendered, setPieceEntryFormRendered] = useState(false);
   const [performanceEntryFormRendered, setPerformanceEntryFormRendered] =
     useState(false);
-
-  // const [partsList, setPartsList] = useState([]);
 
   const playerEntryClicked = () => {
     setPlayerEntryFormRendered(true);
@@ -43,17 +40,6 @@ const Layout = (props) => {
   };
 
   let partsList = useGetAList2("get-all-parts");
-
-  // useEffect(() => {
-  //   const getAllParts = async () => {
-  //     const allParts = await GetAList("get-all-parts");
-  //     if (allParts.length > 0) {
-  //       setPartsList(allParts);
-  //     }
-  //   };
-
-  //   getAllParts();
-  // }, []);
 
   return (
     <AllParts.Provider value={{ partsList }}>

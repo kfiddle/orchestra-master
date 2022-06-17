@@ -4,7 +4,8 @@ import PiecesList from "../../../store/pieces-list";
 import ObjectToListHelper from "../../helperFunctions/ObjectToListHelper";
 
 import BigInput3 from "../../input/BigInput3";
-import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
+
+import useFetch from "../../../hooks/useFetch";
 
 import DisplayedPieces from "../performanceEntry/displayedPieceDiv/DisplayedPieces";
 
@@ -27,19 +28,22 @@ const PerformanceEntry2 = (props) => {
 
   const [performance, setPerformance] = useState({});
 
+  const pusher = useFetch();
+
   const stringSetters = [stringNumbers, setStringNumbers];
 
   const submitPerformance = async (event) => {
     event.preventDefault();
     const performanceToSendUp = { ...performance };
 
-    let response1 = await PushBasic(performanceToSendUp, "add-performance");
-    if (response1.ok) {
-      let newShow = await response1.json();
+    let response1 = await pusher(performanceToSendUp, "add-performance");
+    if (response1 !== "phoey") {
+      let newShow = response1;
       setNewlySavedShow(newShow);
       props.closeModal();
 
       if (clickedPiecesList.length > 0) {
+        console.log(clickedPiecesList);
         for (let clickedPiece of clickedPiecesList) {
           let showPieceToSendUp = {
             piece: clickedPiece,
@@ -47,32 +51,11 @@ const PerformanceEntry2 = (props) => {
             orderNum: clickedPiecesList.indexOf(clickedPiece),
           };
 
-          let response2 = await PushBasic(showPieceToSendUp, "add-show-piece");
-
-          if (response2.ok) {
-            let newlySavedShowPiece = await response2.json();
-            let titleToFindHere = newlySavedShowPiece.piece.title;
-
-            for (let title in stringNumbers) {
-              let listOfStrings = [];
-              for (let partNum in stringNumbers[title]) {
-                listOfStrings.push({
-                  stringPart: partNum,
-                  number: +stringNumbers[title][partNum],
-                });
-              }
-              let response3 = await PushBasic(
-                listOfStrings,
-                "make-string-player-in-chairs/" + newlySavedShowPiece.id
-              );
-            }
-          }
+          let response2 = await pusher(showPieceToSendUp, "add-show-piece");
         }
       }
     }
   };
-
-
 
   const pieceToList = (piece) => {
     ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);

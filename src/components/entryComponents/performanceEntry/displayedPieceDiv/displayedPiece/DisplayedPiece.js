@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 
+import { useSelector } from "react-redux";
+
 import SetStringsButton from "./setStrings/SetStringsButton";
 
 import WhichServer from "../../../../helperFunctions/WhichServer";
 import classes from "./DisplayedPiece.module.css";
 import StringsNumbersBox from "./setStrings/stringsNumbersBox/StringsNumbersBox";
-import { Fragment } from "react/cjs/react.production.min";
+import { Fragment } from "react";
 
 const stringsObject = {
   VIOLIN1: "",
@@ -17,10 +19,13 @@ const stringsObject = {
 
 const DisplayedPiece = (props) => {
   const [stringsClicked, setStringsClicked] = useState(false);
+  const [incomingStringChairs, setIncomingStringChairs] = useState([]);
+
+  const auth = useSelector((state) => state.auth);
+  const { jwtToken } = auth;
+
   const { id, composerLastName, title, duration } = props.piece;
   const [stringNumbers, setStringNumbers] = props.stringSetters;
-
-  const [incomingStringChairs, setIncomingStringChairs] = useState([]);
 
   useEffect(() => {
     const whichServer = WhichServer();
@@ -32,10 +37,11 @@ const DisplayedPiece = (props) => {
     const getIFStringsNeeded = async () => {
       try {
         let response = await fetch(
-          whichServer + "get-string-chairs-in-piece/" + id
+          whichServer + "get-string-chairs-in-piece/" + id,
+          { headers: { Authorization: jwtToken } }
         );
 
-        if (response.ok) {
+        if (response.ok && response !== null) {
           let answer = await response.json();
           setIncomingStringChairs(answer);
         }

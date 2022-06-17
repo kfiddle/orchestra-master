@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 
 import { OrchEntry2FormStore } from "../../../../store/form-holders";
 
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+// import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+
+import useFetch from "../../../../hooks/useFetch";
 
 import classes from "./StringsBox.module.css";
 
@@ -12,8 +14,7 @@ const StringsBox = (props) => {
   const { pieceOrShow, object, submitClicked } =
     useContext(OrchEntry2FormStore);
 
-  const auth = useSelector((state) => state.auth);
-  const { jwtToken } = auth;
+  const pusher = useFetch();
 
   useEffect(() => {
     const sendUpStrings = async () => {
@@ -25,13 +26,12 @@ const StringsBox = (props) => {
         ["BASS"],
       ];
       for (let parts of stringParts) {
-        let response = await PushBasic(
+        let response = await pusher(
           {
             parts: parts,
             [pieceOrShow]: object,
           },
-          "add-chair-to-" + pieceOrShow,
-          jwtToken
+          "add-chair-to-" + pieceOrShow
         );
       }
     };

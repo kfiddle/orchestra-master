@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 
 import NewlySavedShow from "../../../../store/newly-saved-show";
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+
+import useFetch from "../../../../hooks/useFetch";
 
 import PerformanceToEdit from "../../../../store/performance-to-edit";
 
@@ -16,6 +17,8 @@ const NewHorloge = (props) => {
 
   const { newlySavedShow } = useContext(NewlySavedShow);
   const { performance } = useContext(PerformanceToEdit);
+
+  const pusher = useFetch();
 
   const label = props.label;
   const event = props.event;
@@ -38,9 +41,9 @@ const NewHorloge = (props) => {
       if (horlogeToSend.date === "") {
         return;
       } else {
-        let response = await PushBasic(horlogeToSend, "add-horloge");
-        if (response.ok) {
-          let printAnswer = await response.json();
+        let response = await pusher(horlogeToSend, "add-horloge");
+        if (response !== 'phoey') {
+          let printAnswer = response;
         }
       }
     };
