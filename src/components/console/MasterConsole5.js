@@ -6,8 +6,6 @@ import Pieces from "./pieces/Pieces";
 
 import { ConsoleHolder } from "../../store/object-holder";
 
-import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
-
 import styles from "./MasterConsole4.module.css";
 import RosterBox from "./rosterBox/RosterBox";
 import useFetch from "../../hooks/useFetch";
@@ -45,11 +43,19 @@ const MasterConsole5 = (props) => {
       dispatch({ type: "clickedPiece", clickedPiece: null });
     }
 
+    if (dashboard.playerChanged) {
+      grabPICSFromShow();
+    }
+
     if (dashboard.stringNumsSubmitted) {
       grabPICSFromShow();
       dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: false });
     }
-  }, [dashboard.clickedShow, dashboard.stringNumsSubmitted]);
+  }, [
+    dashboard.clickedShow,
+    dashboard.stringNumsSubmitted,
+    dashboard.playerChanged,
+  ]);
 
   return (
     <div className={styles.outerContainer}>
