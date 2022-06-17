@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 
-
 import HorlogeAddTo from "../horloges/HorlogeAddTo";
 import HorlogeEdit from "../horloges/HorlogeEdit";
 
@@ -9,25 +8,41 @@ import PerformanceStateFunctions from "../../../../store/performance-state-funct
 import styles from "./ConcertsEdit.module.css";
 
 import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+import useFetch from "../../../../hooks/useFetch";
+
+import useGetAList2 from "../../../../hooks/useGetAList2";
 
 const ConcertsEdit = () => {
   const { performance } = useContext(PerformanceStateFunctions);
   const [existingConcerts, setExistingConcerts] = useState([]);
   const [addedConcerts, setAddedConcerts] = useState([]);
 
+  const pusher = useFetch();
+
   useEffect(() => {
     const getExistingConcerts = async () => {
-      let response = await PushBasic(performance, "get-all-concerts-of-show");
-      if (response.ok) {
-        let finalList = await response.json();
-        if (finalList.length > 0) {
-          setExistingConcerts(finalList);
-        }
+      let concertsList = await pusher(performance, "get-all-concerts-of-show");
+      if (concertsList !== "phoey") {
+        setExistingConcerts(concertsList);
       }
     };
 
     getExistingConcerts();
   }, []);
+
+  // useEffect(() => {
+  //   const getExistingConcerts = async () => {
+  //     let response = await PushBasic(performance, "get-all-concerts-of-show");
+  //     if (response.ok) {
+  //       let finalList = await response.json();
+  //       if (finalList.length > 0) {
+  //         setExistingConcerts(finalList);
+  //       }
+  //     }
+  //   };
+
+  //   getExistingConcerts();
+  // }, []);
 
   const addConcertClicked = () => {
     let tempList = [...addedConcerts];
@@ -40,7 +55,6 @@ const ConcertsEdit = () => {
     );
     setAddedConcerts(tempList);
   };
-
 
   const displayableExistingConcerts = existingConcerts.map((horloge) => (
     <HorlogeEdit

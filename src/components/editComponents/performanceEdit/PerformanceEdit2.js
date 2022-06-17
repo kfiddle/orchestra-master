@@ -18,8 +18,8 @@ import PerformanceToEdit from "../../../store/performance-to-edit";
 
 import PieceListHelper from "../../helperFunctions/PieceListHelper";
 import styles from "./PerformanceEdit2.module.css";
-import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
-import useGetAPushList from "../../../hooks/useGetAPushList";
+
+import useFetch from "../../../hooks/useFetch";
 
 const PerformanceEdit2 = (props) => {
   const [performance, setPerformance] = useState(props.performance);
@@ -28,16 +28,17 @@ const PerformanceEdit2 = (props) => {
   const [showEditsSubmitted, setShowEditsSubmitted] = useState(false);
   const [instButtonClicked, setInstButtonClicked] = useState(false);
 
+  const pusher = useFetch();
+
   useEffect(() => {
     const getPieces = async () => {
       try {
-        const response = await PushBasic(
+        const response = await pusher(
           props.performance,
           "get-pieces-on-program"
         );
-        let listOfPieces = await response.json();
-        if (listOfPieces.length > 0) {
-          setClickedPiecesList(listOfPieces);
+        if (response !== 'phoey') {
+          setClickedPiecesList(response);
         }
       } catch (error) {
         return console.log(error);
@@ -47,13 +48,12 @@ const PerformanceEdit2 = (props) => {
 
     const getShowPieces = async () => {
       try {
-        const response = await PushBasic(
+        const response = await pusher(
           props.performance,
           "get-showtunes-on-program"
         );
-        let listOfShowPieces = await response.json();
-        if (listOfShowPieces.length > 0) {
-          setShowPiecesList(listOfShowPieces);
+        if (response !== 'phoey') {
+          setShowPiecesList(response);
         }
       } catch (error) {
         return console.log(error);
@@ -82,8 +82,8 @@ const PerformanceEdit2 = (props) => {
 
     setShowEditsSubmitted(true);
 
-    let response = await PushBasic(performance, "edit-performance");
-    if (response.ok) {
+    let response = await pusher(performance, "edit-performance");
+    if (response !== 'phoey') {
       props.closeModal();
     }
   };

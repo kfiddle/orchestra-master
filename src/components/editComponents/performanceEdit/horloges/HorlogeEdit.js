@@ -2,7 +2,8 @@ import { useEffect, useState, useContext } from "react";
 
 
 import { ShowEditsSubmitted } from "../../../../store/submit-clicked";
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+
+import useFetch from "../../../../hooks/useFetch";
 
 import classes from "./Horloge.module.css";
 
@@ -39,6 +40,8 @@ const HorlogeEdit = (props) => {
   const [endHours, setEndHours] = useState(getHour(horloge.endTime));
   const [endMinutes, setEndMinutes] = useState(getMinutes(horloge.endTime));
 
+  const pusher = useFetch();
+
   useEffect(() => {
     const pushHorlogeEdits = async () => {
       let startTimeToSend =
@@ -53,7 +56,7 @@ const HorlogeEdit = (props) => {
         endTime: endTimeToSend,
       };
 
-      let response = await PushBasic(horlogeToSend, "edit-horloge");
+      let response = await pusher(horlogeToSend, "edit-horloge");
       // if (response.ok) {
       //   setShowEditsSubmitted(false);
       // }

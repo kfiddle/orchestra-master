@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import PieceItemEdit from "./pieceItemEdit/PieceItemEdit";
 
-import GetAList from "../../../../helperFunctions/GetAList";
 import useGetAList3 from "../../../../../hooks/useGetAList3";
 
 import styles from "./PiecesDropDownEdit.module.css";

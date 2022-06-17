@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { ShowEditsSubmitted } from "../../../../store/submit-clicked";
 import PerformanceToEdit from "../../../../store/performance-to-edit";
 
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
+import useFetch from "../../../../hooks/useFetch";
 
 import classes from "./Horloge.module.css";
 
@@ -17,6 +17,8 @@ const HorlogeAddTo = (props) => {
   const { showEditsSubmitted, setShowEditsSubmitted } =
     useContext(ShowEditsSubmitted);
   const { performance } = useContext(PerformanceToEdit);
+
+  const pusher = useFetch();
 
   const label = props.label;
   const event = props.event;
@@ -39,10 +41,7 @@ const HorlogeAddTo = (props) => {
       if (horlogeToSend.date === "") {
         return;
       } else {
-        let response = await PushBasic(horlogeToSend, "add-horloge");
-        if (response.ok) {
-          let printAnswer = await response.json();
-        }
+        let response = await pusher(horlogeToSend, "add-horloge");
       }
     };
 

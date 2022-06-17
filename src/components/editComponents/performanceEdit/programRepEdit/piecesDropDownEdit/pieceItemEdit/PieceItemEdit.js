@@ -5,7 +5,9 @@ import { ShowEditsSubmitted } from "../../../../../../store/submit-clicked";
 import PerformanceToEdit from "../../../../../../store/performance-to-edit";
 
 import ObjectOnList from "../../../../../helperFunctions/ObjectOnList";
-import PushBasic from "../../../../../helperFunctions/pushFunctions/PushBasic";
+
+// import PushBasic from "../../../../../helperFunctions/pushFunctions/PushBasic";
+import useFetch from "../../../../../../hooks/useFetch";
 
 import classes from "./PieceItemEdit.module.css";
 
@@ -14,6 +16,8 @@ const PieceItemEdit = (props) => {
     useContext(ShowTunesList);
   const { showEditsSubmitted } = useContext(ShowEditsSubmitted);
   const { performance } = useContext(PerformanceToEdit);
+
+  const pusher = useFetch();
 
   const piece = props.piece;
   const { title, composerName } = piece;
@@ -29,7 +33,7 @@ const PieceItemEdit = (props) => {
           !ObjectOnList(previousList, piece) &&
           ObjectOnList(clickedPiecesList, piece)
         ) {
-          let response = await PushBasic(
+          let response = await pusher(
             {
               piece,
               show: performance,
@@ -41,7 +45,7 @@ const PieceItemEdit = (props) => {
           ObjectOnList(previousList, piece) &&
           !ObjectOnList(clickedPiecesList, piece)
         ) {
-          let response = await PushBasic(
+          let response = await pusher(
             showPiecesList[ObjectOnList(previousList, piece).index],
             "remove-showpiece"
           );
@@ -49,7 +53,7 @@ const PieceItemEdit = (props) => {
           ObjectOnList(previousList, piece).index !==
           ObjectOnList(clickedPiecesList, piece).index
         ) {
-          let response = await PushBasic(
+          let response = await pusher(
             showPiecesList[ObjectOnList(previousList, piece).index],
             "edit-showpiece-ordernum/" +
               ObjectOnList(clickedPiecesList, piece).index

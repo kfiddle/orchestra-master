@@ -8,7 +8,6 @@ import ShowTunesList from "../../../../store/showtunes-list";
 import { ShowEditsSubmitted } from "../../../../store/submit-clicked";
 
 import styles from "./ProgramRepEdit.module.css";
-import ObjectOnList from "../../../helperFunctions/ObjectOnList";
 
 const ProgramRepEdit = () => {
   const [clickedRepDrop, setClickedRepoDrop] = useState(false);
