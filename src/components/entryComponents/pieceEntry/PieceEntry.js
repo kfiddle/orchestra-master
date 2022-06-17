@@ -3,7 +3,8 @@ import { useState } from "react";
 import Modal from "../../UI/modal/Modal";
 import BigInput from "../../input/BigInput";
 import LibraryUploader from "../../piece/LibraryUploader";
-import { SubmitPiece } from "../../helperFunctions/pushFunctions/SubmitFunctions";
+
+import useFetch from "../../../hooks/useFetch";
 
 import classes from "./PieceEntry.module.css";
 
@@ -12,6 +13,8 @@ const pieceObject = {};
 const PieceEntry = (props) => {
   const [instrumentationClicked, setInstrumentationClicked] = useState(false);
   const [piece, setPiece] = useState(pieceObject);
+
+  const pusher = useFetch();
 
   if (props.piece) {
     setPiece({ ...props.piece });
@@ -25,9 +28,12 @@ const PieceEntry = (props) => {
     }
   };
 
-  const submitPiece = (event) => {
-    event.preventDefault();
-    SubmitPiece(piece, props.closeModal);
+  const submitPiece = async () => {
+    const pieceToSendUp = { ...piece };
+    let response = await pusher(pieceToSendUp, "add-piece");
+    if (response !== "phoey") {
+      props.closeModal();
+    }
   };
 
   const populator = (event, key) => {
