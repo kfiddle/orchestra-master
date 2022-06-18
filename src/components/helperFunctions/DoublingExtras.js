@@ -1,7 +1,7 @@
 const DoublingExtras = () => {
   const doubling = {
     FLUTE: ["PICCOLO", "ALTOFLUTE"],
-    OBOE: ["ENGLISHHORN"],
+    OBOE: ["ENGLISHHORN", "BSOBOE"],
     CLARINET: ["EBCLARINET", "BASSCLARINET"],
     BASSOON: ["CONTRA"],
     HORN: [""],
@@ -12,11 +12,12 @@ const DoublingExtras = () => {
 
   const extras = {
     FLUTE: ["PICCOLO", "ALTOFLUTE"],
-    OBOE: ["ENGLISHHORN", "D'AMORE"],
+    OBOE: ["ENGLISHHORN", "D'AMORE", "BSOBOE"],
     CLARINET: ["EBCLARINET", "BASSCLARINET", "SAX"],
     BASSOON: ["CONTRA"],
     HORN: ["WAGNERTUBA"],
     TRUMPET: ["CORNET", "FUGALHORN", "PICCTRUMPET"],
+    TROMBONE:['BASSTROMBONE'],
     TUBA: ["EUPHONIUM"],
     PERCUSSION: [
       "HARP",
@@ -25,6 +26,7 @@ const DoublingExtras = () => {
       "CELESTE",
       "GLOCKENSPIEL",
       "ORGAN",
+      "SAX",
     ],
   };
 

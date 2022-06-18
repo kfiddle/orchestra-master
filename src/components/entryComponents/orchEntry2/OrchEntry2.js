@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Modal from "../../UI/modal/Modal";
 import SubmitButton from "../../UI/submitButton/SubmitButton";
@@ -9,6 +9,8 @@ import StringsBox from "./stringsBox/StringsBox";
 
 import { OrchEntry2FormStore } from "../../../store/form-holders";
 
+import usePushBasic from "../../../hooks/usePushBasic";
+
 import styles from "./OrchEntry2.module.css";
 
 const winds = ["FLUTE", "OBOE", "CLARINET", "BASSOON"];
@@ -16,6 +18,13 @@ const brass = ["HORN", "TRUMPET", "TROMBONE", "TUBA"];
 
 const OrchEntry2 = (props) => {
   const [submitClicked, setSubmitClicked] = useState(false);
+
+  const fullChairs = usePushBasic(props.piece, "get-chairs-in-piece");
+  const currentParts = [];
+  for (let chair of fullChairs) {
+    currentParts.push(chair.parts);
+  }
+  console.log(currentParts);
 
   const piece = props.piece;
   const show = props.show;
@@ -44,8 +53,7 @@ const OrchEntry2 = (props) => {
           </div>
           <Family familyLabel={"WINDS"} list={winds}></Family>
           <Family familyLabel={"BRASS"} list={brass}></Family>
-         <PercussionExtrasBox />
-
+          <PercussionExtrasBox />
 
           <StringsBox />
 
