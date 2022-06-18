@@ -55,15 +55,9 @@ const LibraryPiece = (props) => {
         <FiEdit onClick={openOrchestration} />
       </div>
 
-      {/* {orchestrationClicked && (
-        <OrchestrationEntry closeModal={closeModal} piece={props.piece} />
-      )} */}
-
       {orchestrationClicked && (
         <OrchEntry2 closeModal={closeModal} piece={props.piece} />
       )}
-
-      {/* {orchestrationClicked && <OrkEntry closeModal={closeModal} piece={props.piece} />} */}
     </div>
   );
 };
