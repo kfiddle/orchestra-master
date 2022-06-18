@@ -18,9 +18,25 @@ const StringInput = (props) => {
   const showtune = props.showtune;
   const show = props.show;
   const submitted = props.submitted;
+  const standardChecked = props.standardChecked;
 
   const showOrPiece = showtune ? "piece" : "show";
   const idToSend = showtune ? showtune.id : show.id;
+
+  useEffect(() => {
+    switch (part) {
+      case "VIOLIN1":
+        setLocalNumber(12);
+      case "VIOLIN2":
+        setLocalNumber(10);
+      // case "VIOLA":
+      //   setLocalNumber(8);
+      // case "CELLO":
+      //   setLocalNumber(8);
+      // case "BASS":
+      //   setLocalNumber(6);
+    }
+  }, []);
 
   useEffect(() => {
     if (submitted) {
@@ -31,7 +47,7 @@ const StringInput = (props) => {
           "make-single-string-section-in-" + showOrPiece + "/" + idToSend
         );
 
-        if (response !== 'phoey') {
+        if (response !== "phoey") {
           dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: true });
         }
       };
@@ -42,8 +58,14 @@ const StringInput = (props) => {
 
   return (
     <div className={`${classes.control} ${classes.outerContainer}`}>
-      <label>{part}</label>
-      <NumberInput number={localNumber} numberSetter={setLocalNumber} />
+      <div className={classes.labelDiv}>
+        <label className={classes.label}>{part}</label>
+      </div>
+      <NumberInput
+        number={localNumber}
+        numberSetter={setLocalNumber}
+        standardChecked={standardChecked}
+      />
     </div>
   );
 };

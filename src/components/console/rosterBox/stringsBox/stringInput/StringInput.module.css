@@ -1,8 +1,12 @@
 .outerContainer {
-    width: 100%;
     display: flex;
-    justify-content: space-around;
     align-items: center;
+    width: 50%;
+  }
+
+  .labelDiv {
+    width: 50%;
+    margin-right: 2rem;
   }
   
   .control {
@@ -25,7 +29,7 @@
     background-color: #afaaaa;
     border: 1px solid #c1d1d1;
     display: block;
-    width: 50%;
+    width: 4rem;
     font-size: 1.25rem;
   }
   

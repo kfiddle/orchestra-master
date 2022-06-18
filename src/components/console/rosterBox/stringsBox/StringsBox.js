@@ -7,12 +7,14 @@ import styles from "./StringsBox.module.css";
 
 const StringsBox = (props) => {
   const [submitted, setSubmitted] = useState(false);
+  const [standardChecked, setStandardChecked] = useState(true);
+
   const parts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
 
   const showtune = props.piece;
   const show = props.show;
 
-  const title = showtune? showtune.piece.title: show.title;
+  const title = showtune ? showtune.piece.title : show.title;
 
   const displayableInputs = parts.map((part, index) => (
     <StringInput
@@ -21,6 +23,7 @@ const StringsBox = (props) => {
       submitted={submitted}
       showtune={showtune}
       show={show}
+      standardChecked={standardChecked}
     />
   ));
 
@@ -33,13 +36,30 @@ const StringsBox = (props) => {
     props.closeModal();
   };
 
+  const checkHandler = () => {
+    setStandardChecked((previous) => !previous);
+  };
+
+  const stringsModalStyles = { width: "fit-content", top: "5vh" };
+
   return (
-    <Modal closeModal={closeModal}>
+    <Modal closeModal={closeModal} styleObject={stringsModalStyles}>
       <div className={styles.outerContainer}>
-        <div className={styles.titleDiv}>
-          <h2>{title}</h2>
+        <div className={styles.leftSide}>
+          <div className={styles.titleDiv}>
+            <h2>{title}</h2>
+          </div>
+          <div className={styles.standardStrings}>
+            Standard?
+            <input
+              type={"checkbox"}
+              className={styles.checkBox}
+              checked={standardChecked}
+              onChange={checkHandler}
+            />
+          </div>
         </div>
-        {displayableInputs}
+        <div className={styles.rightSide}>{displayableInputs}</div>
         <div className={styles.submitDiv}>
           <button className={styles.button} onClick={submitStringNumbers}>
             SUBMIT

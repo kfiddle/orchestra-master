@@ -3,6 +3,7 @@ import styles from "./NumberInput.module.css";
 const NumberInput = (props) => {
   const number = props.number;
   const numberSetter = props.numberSetter;
+  const standardChecked = props.standardChecked;
 
   const setNumber = (event) => {
     if (isNaN(event.target.value)) {
@@ -17,7 +18,7 @@ const NumberInput = (props) => {
       type={"text"}
       className={styles.input}
       onChange={setNumber}
-      // value={number}
+      value={number}
     ></input>
   );
 };
