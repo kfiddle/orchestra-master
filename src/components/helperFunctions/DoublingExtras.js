@@ -17,7 +17,7 @@ const DoublingExtras = () => {
     BASSOON: ["CONTRA"],
     HORN: ["WAGNERTUBA"],
     TRUMPET: ["CORNET", "FUGALHORN", "PICCTRUMPET"],
-    TROMBONE:['BASSTROMBONE'],
+    TROMBONE: ["BASSTROMBONE"],
     TUBA: ["EUPHONIUM"],
     PERCUSSION: [
       "HARP",
@@ -30,12 +30,17 @@ const DoublingExtras = () => {
     ],
   };
 
+  const auxiliaries = [
+    "HARP",
+    "PIANO",
+    "CELESTE",
+    "GLOCKENSPIEL",
+    "ORGAN",
+    "SAX",
+    "DRUMSET",
+  ];
 
-
-  return { doubling, extras };
+  return { doubling, extras, auxiliaries };
 };
 
 export default DoublingExtras;
-
-
-

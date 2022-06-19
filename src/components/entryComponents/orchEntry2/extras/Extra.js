@@ -55,12 +55,12 @@ const Extra = (props) => {
   return (
     <div className={styles.outerContainer}>
       <div className={buttonsClassNames}>
-        <button onClick={addButtonClicker} className={styles.button}>
-          +
-        </button>{" "}
         <button onClick={subtractButtonClicker} className={styles.button}>
           -
         </button>
+        <button onClick={addButtonClicker} className={styles.button}>
+          +
+        </button>{" "}
         <div className={styles.numberDiv}>{localNumber}</div>
       </div>
 
