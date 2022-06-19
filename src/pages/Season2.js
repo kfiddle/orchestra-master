@@ -10,6 +10,7 @@ import ReloadFlagStore from "../store/reload-flag-store";
 import useGetAList2 from "../hooks/useGetAList2";
 import MasterConsole5 from "../components/console/MasterConsole5";
 
+
 const initialState = {
   shows: [],
   clickedShow: null,
@@ -20,7 +21,7 @@ const initialState = {
   possibles: [],
   clickedPossible: null,
   playerChanged: false,
-  stringNumsSubmitted: false
+  stringNumsSubmitted: false,
 };
 
 const showReducer = (state, action) => {
@@ -46,6 +47,7 @@ const Season2 = (props) => {
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
   const [dashboard, dispatch] = useReducer(showReducer, initialState);
 
+
   let allPerformances = useGetAList2(
     "get-performances-by-primary-date",
     reloadFlag,
@@ -56,12 +58,13 @@ const Season2 = (props) => {
     dispatch({ type: "shows", list: allPerformances });
   }, [allPerformances]);
 
+
+
   let isLoading = allPerformances.length < 1;
 
   return isLoading ? (
     <LoadingSpinner />
   ) : (
-
     <ConsoleHolder.Provider value={{ dashboard, dispatch }}>
       <MasterConsole5 />
     </ConsoleHolder.Provider>

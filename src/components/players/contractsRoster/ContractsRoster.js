@@ -3,8 +3,9 @@ import { useState, useEffect, useContext } from "react";
 import Player from "../Player";
 import PlayerInfoBox from "../playerInfoBox/PlayerInfoBox";
 
-import GetAList from "../../helperFunctions/GetAList";
 import AllParts from "../../../store/all-parts";
+
+import useGetAList2 from "../../../hooks/useGetAList2";
 
 import classes from "./ContractsRoster.module.css";
 
@@ -14,13 +15,20 @@ const ContractsRoster = (props) => {
   const { partsList } = useContext(AllParts);
   const playersList = props.list;
 
+  const [playerId, setPlayerId] = useState(null);
+
   const possibleEdit = () => {
     props.possibleEdit(true);
   };
 
+  const kenOffers = useGetAList2("offers-by-player/" + playerId);
+  console.log(kenOffers);
+
   const clickedPlayerHandler = (player) => {
     setInfoBoxClicked(true);
     setClickedPlayer(player);
+    console.log(player.id);
+    setPlayerId(player.id);
   };
 
   const sections = partsList.map((section) => {
