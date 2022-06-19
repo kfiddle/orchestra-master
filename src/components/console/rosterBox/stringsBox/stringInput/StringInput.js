@@ -9,7 +9,7 @@ import useFetch from "../../../../../hooks/useFetch";
 import classes from "./StringInput.module.css";
 
 const StringInput = (props) => {
-  const [localNumber, setLocalNumber] = useState();
+  const [localNumber, setLocalNumber] = useState(0);
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const pusher = useFetch();
@@ -24,19 +24,23 @@ const StringInput = (props) => {
   const idToSend = showtune ? showtune.id : show.id;
 
   useEffect(() => {
-    switch (part) {
-      case "VIOLIN1":
+    const setStringNums = () => {
+      if (!standardChecked) {
+        setLocalNumber(0);
+        console.log("not this time");
+      } else if (part === "VIOLIN1") {
         setLocalNumber(12);
-      case "VIOLIN2":
+      } else if (part === "VIOLIN2") {
         setLocalNumber(10);
-      // case "VIOLA":
-      //   setLocalNumber(8);
-      // case "CELLO":
-      //   setLocalNumber(8);
-      // case "BASS":
-      //   setLocalNumber(6);
-    }
-  }, []);
+      } else if (part === "VIOLA" || part === "CELLO") {
+        setLocalNumber(8);
+      } else {
+        setLocalNumber(6);
+      }
+    };
+
+    setStringNums();
+  }, [standardChecked]);
 
   useEffect(() => {
     if (submitted) {

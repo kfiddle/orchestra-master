@@ -18,7 +18,7 @@ const NumberInput = (props) => {
       type={"text"}
       className={styles.input}
       onChange={setNumber}
-      value={number}
+      value={number === 0 ? "" : number}
     ></input>
   );
 };
