@@ -7,9 +7,18 @@ import styles from "./StringsBox.module.css";
 
 const StringsBox = (props) => {
   const [submitted, setSubmitted] = useState(false);
-  const [standardChecked, setStandardChecked] = useState(true);
+  const [symChecked, setSymChecked] = useState(true);
+  const [popsChecked, setPopsChecked] = useState(false);
 
-  const parts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
+  // const parts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
+
+  const parts = [
+    { part: "VIOLIN1", sym: 12, pops: 10 },
+    { part: "VIOLIN2", sym: 10, pops: 8 },
+    { part: "VIOLA", sym: 8, pops: 6 },
+    { part: "CELLO", sym: 8, pops: 6 },
+    { part: "BASS", sym: 5, pops: 4 },
+  ];
 
   const showtune = props.piece;
   const show = props.show;
@@ -19,11 +28,12 @@ const StringsBox = (props) => {
   const displayableInputs = parts.map((part, index) => (
     <StringInput
       key={index}
-      part={part}
+      partObject={part}
       submitted={submitted}
       showtune={showtune}
       show={show}
-      standardChecked={standardChecked}
+      symChecked={symChecked}
+      popsChecked={popsChecked}
     />
   ));
 
@@ -36,8 +46,18 @@ const StringsBox = (props) => {
     props.closeModal();
   };
 
-  const checkHandler = () => {
-    setStandardChecked((previous) => !previous);
+  const symCheckHandler = () => {
+    setSymChecked((previous) => !previous);
+    if (!symChecked) {
+      setPopsChecked(false);
+    }
+  };
+
+  const popsCheckHandler = () => {
+    setPopsChecked((previous) => !previous);
+    if (!popsChecked) {
+      setSymChecked(false);
+    }
   };
 
   const stringsModalStyles = { width: "fit-content", top: "5vh" };
@@ -50,12 +70,22 @@ const StringsBox = (props) => {
             <h2>{title}</h2>
           </div>
           <div className={styles.standardStrings}>
-            Standard?
+            <div className={styles.gigLabelDiv}>Sym</div>
             <input
               type={"checkbox"}
               className={styles.checkBox}
-              checked={standardChecked}
-              onChange={checkHandler}
+              checked={symChecked}
+              onChange={symCheckHandler}
+            />
+          </div>
+
+          <div className={styles.standardStrings}>
+            <div className={styles.gigLabelDiv}>Pops</div>
+            <input
+              type={"checkbox"}
+              className={styles.checkBox}
+              checked={popsChecked}
+              onChange={popsCheckHandler}
             />
           </div>
         </div>

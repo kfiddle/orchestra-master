@@ -1,6 +1,5 @@
 .outerContainer {
   display: flex;
-  
 }
 
 .leftSide {
@@ -24,7 +23,11 @@
 
 .standardStrings {
   display: flex;
+}
 
+.gigLabelDiv {
+  width: 10rem;
+  display: flex;
   color: midnightblue;
   font-size: 2rem;
   font-weight: 900;

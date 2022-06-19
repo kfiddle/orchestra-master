@@ -14,33 +14,31 @@ const StringInput = (props) => {
 
   const pusher = useFetch();
 
-  const part = props.part;
+  const partObject = props.partObject;
+  const { part, sym, pops } = partObject;
   const showtune = props.showtune;
   const show = props.show;
   const submitted = props.submitted;
-  const standardChecked = props.standardChecked;
+
+  const symChecked = props.symChecked;
+  const popsChecked = props.popsChecked;
 
   const showOrPiece = showtune ? "piece" : "show";
   const idToSend = showtune ? showtune.id : show.id;
 
   useEffect(() => {
     const setStringNums = () => {
-      if (!standardChecked) {
+      if (!symChecked && !popsChecked) {
         setLocalNumber(0);
-        console.log("not this time");
-      } else if (part === "VIOLIN1") {
-        setLocalNumber(12);
-      } else if (part === "VIOLIN2") {
-        setLocalNumber(10);
-      } else if (part === "VIOLA" || part === "CELLO") {
-        setLocalNumber(8);
-      } else {
-        setLocalNumber(6);
+      } else if (symChecked) {
+        setLocalNumber(sym);
+      } else if (popsChecked) {
+        setLocalNumber(pops);
       }
     };
 
     setStringNums();
-  }, [standardChecked]);
+  }, [symChecked, popsChecked]);
 
   useEffect(() => {
     if (submitted) {
@@ -68,7 +66,7 @@ const StringInput = (props) => {
       <NumberInput
         number={localNumber}
         numberSetter={setLocalNumber}
-        standardChecked={standardChecked}
+        checked={symChecked}
       />
     </div>
   );
