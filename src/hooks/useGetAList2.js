@@ -13,15 +13,19 @@ const useGetAList2 = (listUrl, reload, setReload) => {
 
   useEffect(() => {
     const getList = async () => {
-      try {
-        let response = await fetch(whichServer + listUrl, {
-          headers: { Authorization: jwtToken },
-        });
-        let jsonified = await response.json();
-        setList(jsonified);
-        setReload(false);
-      } catch (error) {
-        return console.log(error);
+      if (!jwtToken) {
+        return;
+      } else {
+        try {
+          let response = await fetch(whichServer + listUrl, {
+            headers: { Authorization: jwtToken },
+          });
+          let jsonified = await response.json();
+          setList(jsonified);
+          setReload(false);
+        } catch (error) {
+          return console.log(error);
+        }
       }
     };
 

@@ -21,13 +21,12 @@ const ContractsRoster = (props) => {
     props.possibleEdit(true);
   };
 
-  const kenOffers = useGetAList2("offers-by-player/" + playerId);
-  console.log(kenOffers);
+  // const kenOffers = useGetAList2("offers-by-player/" + playerId);
+  // console.log(kenOffers);
 
   const clickedPlayerHandler = (player) => {
     setInfoBoxClicked(true);
     setClickedPlayer(player);
-    console.log(player.id);
     setPlayerId(player.id);
   };
 
