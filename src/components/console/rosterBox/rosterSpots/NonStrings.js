@@ -5,6 +5,8 @@ import { ConsoleHolder } from "../../../../store/object-holder";
 import RosterSpot from "../rosterSpot/RosterSpot";
 
 const NonStrings = () => {
+  const [rightClickedSpot, setRightClickedSpot] = useState(null);
+  const [dbClickedOtherSpot, setDbClickedOtherSpot] = useState(null);
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const stringParts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
@@ -16,21 +18,42 @@ const NonStrings = () => {
     }
   }
 
+  useEffect(() => {
+    setRightClickedSpot(null);
+  }, [dashboard.playerChanged]);
+
+  const rightClicker = (rosterSpot) => {
+    rightClickedSpot === rosterSpot
+      ? setRightClickedSpot(null)
+      : setRightClickedSpot(rosterSpot);
+  };
+
+  const doubleClicker = (pic) => {
+    if (dbClickedOtherSpot === pic) {
+      setDbClickedOtherSpot(null);
+    } else {
+      setDbClickedOtherSpot(pic);
+    }
+  };
+
   const displayableOthers = others.map((pic) => (
     <RosterSpot
       key={Math.random()}
       pic={pic}
       index={dashboard.pics.indexOf(pic)}
-      //   rightClicker={rightClicker}
-      //   rightClicked={rightClickedSpot === playerChair ? true : false}
-      //   doubleClicker={doubleClicker}
-      //   doubleClicked={doubleClickedCheck(playerChair)}
-      //   fadeForOther={
-      //     rightClickedSpot && rightClickedSpot !== playerChair ? true : false
-      //   }
+      rightClicker={rightClicker}
+      rightClicked={rightClickedSpot === pic ? true : false}
+      doubleClicker={doubleClicker}
+      //   doubleClicked={doubleClickedCheck(pic)}
+      fadeForOther={rightClickedSpot && rightClickedSpot !== pic ? true : false}
     />
   ));
 
-  return <div>{displayableOthers}</div>;
+  return (
+    <div>
+      {displayableOthers}
+      {dbClickedOtherSpot && <div>a new div</div>}
+    </div>
+  );
 };
 export default NonStrings;

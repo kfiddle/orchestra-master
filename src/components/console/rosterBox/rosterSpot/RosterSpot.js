@@ -36,14 +36,8 @@ const RosterSpot = (props) => {
   let player = props.pic.player;
   let sectionSeat = props.pic.sectionSeat;
 
-  let stringPart =
-    parts[0] === "VIOLIN1" ||
-    parts[0] === "VIOLIN2" ||
-    parts[0] === "VIOLA" ||
-    parts[0] === "CELLO" ||
-    parts[0] === "BASS"
-      ? true
-      : false;
+  const stringParts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
+  let stringPart = stringParts.includes(parts[0]);
 
   const rightClicker = props.rightClicker;
   const rightClicked = props.rightClicked;
@@ -82,24 +76,19 @@ const RosterSpot = (props) => {
 
   const rightClickHandler = (event) => {
     event.preventDefault();
-    rightClicker(props.playerInChair);
+    rightClicker(props.pic);
     dispatch({ type: "chosenPic", chosenPic: pic });
   };
 
   const doubleClickHandler = (event) => {
     event.preventDefault();
-    if (player) {
-      doubleClicker(player, index);
-    }
-  };
+    doubleClicker(pic, index);
+  }
 
   const removePlayerClicker = async () => {
-    let response = await pusher(
-      props.playerInChair,
-      "remove-player-from-pic"
-    );
+    let response = await pusher(props.pic, "remove-player-from-pic");
 
-    if (response !== 'phoey') {
+    if (response !== "phoey") {
       dispatch({ type: "chosenPic", chosenPic: null });
       dispatch({ type: "possibles", list: [] });
       dashDisp({ type: "playerChanged", playerChanged: true });
@@ -130,7 +119,6 @@ const RosterSpot = (props) => {
   let fadeForOtherClass = fadeForOther ? classes.fadeForOther : null;
   let rightClickedClass = rightClicked ? classes.rightClicked : null;
   let doubleClickedClass = doubleClicked ? classes.doubleClicked : null;
-
 
   return (
     <div>

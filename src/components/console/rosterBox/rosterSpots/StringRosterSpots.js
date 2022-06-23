@@ -6,6 +6,9 @@ import useFetch from "../../../../hooks/useFetch";
 import useKeyPress from "../../../../hooks/useKeyPress";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
+import StringsBox from "../stringsBox/StringsBox";
+
+import styles from "./StringRosterSpots.module.css";
 
 const StringRosterSpots = () => {
   const [addStringsClicked, setAddStringsClicked] = useState(false);
@@ -63,13 +66,14 @@ const StringRosterSpots = () => {
     let response = await pusher(dashboard.pics, "change-seating");
   };
 
-  const doubleClicker = (player, index) => {
-    if (doubleClickedSpot.player === player) {
-      setDoubleClickedSpot({ player: null, index: null });
-
-      sendUpNewSeating();
-    } else {
-      setDoubleClickedSpot({ player, index });
+  const doubleClicker = (pic, index) => {
+    if (pic.player) {
+      if (doubleClickedSpot.player === pic.player) {
+        setDoubleClickedSpot({ player: null, index: null });
+        sendUpNewSeating();
+      } else {
+        setDoubleClickedSpot({ player: pic.player, index });
+      }
     }
   };
 
@@ -78,6 +82,14 @@ const StringRosterSpots = () => {
       doubleClickedSpot.player !== null &&
       doubleClickedSpot.player === pic.player
     );
+  };
+
+  const stringsClicker = () => {
+    setAddStringsClicked(true);
+  };
+
+  const closeStrings = () => {
+    setAddStringsClicked(false);
   };
 
   for (let pic of dashboard.pics) {
@@ -95,13 +107,27 @@ const StringRosterSpots = () => {
       rightClicked={rightClickedSpot === pic ? true : false}
       doubleClicker={doubleClicker}
       doubleClicked={doubleClickedCheck(pic)}
-      fadeForOther={
-        rightClickedSpot && rightClickedSpot !== pic ? true : false
-      }
+      fadeForOther={rightClickedSpot && rightClickedSpot !== pic ? true : false}
     />
   ));
 
-  return <div>{displayableStrings}</div>;
+  return (
+    <div>
+      {displayableStrings}
+      {displayableStrings.length > 0 && (
+        <button className={styles.stringsButton} onClick={stringsClicker}>
+          EDIT STRING NUMBERS
+        </button>
+      )}
+      {addStringsClicked && (
+        <StringsBox
+          piece={dashboard.clickedPiece}
+          show={dashboard.clickedShow}
+          closeModal={closeStrings}
+        />
+      )}
+    </div>
+  );
 };
 
 export default StringRosterSpots;
