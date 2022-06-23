@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 
 import LastNameInput from "./lastNameInput/LastNameInput";
 import styles from "./RightClick.module.css";
@@ -20,12 +20,15 @@ const RightClick = React.memo((props) => {
 
   if (player) {
     playerRemoveButton = (
-      <button className={styles.button} onClick={removeClicker}>
-        Remove Player
-      </button>
+      <Fragment>
+        <button className={styles.button} onClick={removeClicker}>
+          Remove Player
+        </button>
+        {/* <button className={styles.button}>Adjust Chair</button> */}
+      </Fragment>
     );
   } else {
-    lastNameInput = <LastNameInput setMaybies={setMaybies}/>;
+    lastNameInput = <LastNameInput setMaybies={setMaybies} />;
   }
 
   return (

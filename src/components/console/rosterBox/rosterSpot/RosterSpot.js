@@ -23,12 +23,18 @@ const RosterSpot = (props) => {
 
   const pusher = useFetch();
 
-  let pic = props.playerInChair;
+  // let pic = props.playerInChair;
+  let pic = props.pic;
+
   let chair = pic.chair;
   let index = props.index;
   let { parts, rank, specialDesignate } = chair;
-  let player = props.playerInChair.player;
-  let sectionSeat = props.playerInChair.sectionSeat;
+
+  // let player = props.playerInChair.player;
+  // let sectionSeat = props.playerInChair.sectionSeat;
+
+  let player = props.pic.player;
+  let sectionSeat = props.pic.sectionSeat;
 
   let stringPart =
     parts[0] === "VIOLIN1" ||

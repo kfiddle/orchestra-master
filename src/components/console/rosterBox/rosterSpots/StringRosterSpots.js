@@ -1,33 +1,28 @@
-import React, { useContext, useState, useEffect } from "react";
-
-import RosterSpot from "../rosterSpot/RosterSpot";
-
-import StringsBox from "../stringsBox/StringsBox";
+import { useState, useEffect, useContext } from "react";
 
 import { ConsoleHolder } from "../../../../store/object-holder";
 
-import styles from "./RosterSpots.module.css";
-import useKeyPress from "../../../../hooks/useKeyPress";
 import useFetch from "../../../../hooks/useFetch";
-import RosterSpotsInitial from "./RosterSpotsInitial";
-import NonStrings from "./NonStrings";
-import StringRosterSpots from "./StringRosterSpots";
+import useKeyPress from "../../../../hooks/useKeyPress";
 
-const RosterSpots = React.memo((props) => {
+import RosterSpot from "../rosterSpot/RosterSpot";
+
+const StringRosterSpots = () => {
+  const [addStringsClicked, setAddStringsClicked] = useState(false);
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
   const [doubleClickedSpot, setDoubleClickedSpot] = useState({
     player: null,
     index: null,
   });
+  const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  const [addStringsClicked, setAddStringsClicked] = useState(false);
+  const stringParts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
+  const strings = [];
 
   const pusher = useFetch();
 
   const upArrowPressed = useKeyPress("ArrowUp");
   const downArrowPressed = useKeyPress("ArrowDown");
-
-  const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   useEffect(() => {
     setRightClickedSpot(null);
@@ -85,54 +80,28 @@ const RosterSpots = React.memo((props) => {
     );
   };
 
-  const displayableChairs = dashboard.pics.map((playerChair) => (
+  for (let pic of dashboard.pics) {
+    if (stringParts.includes(pic.chair.parts[0])) {
+      strings.push(pic);
+    }
+  }
+
+  const displayableStrings = strings.map((pic) => (
     <RosterSpot
       key={Math.random()}
-      playerInChair={playerChair}
-      index={dashboard.pics.indexOf(playerChair)}
+      pic={pic}
+      index={dashboard.pics.indexOf(pic)}
       rightClicker={rightClicker}
-      rightClicked={rightClickedSpot === playerChair ? true : false}
+      rightClicked={rightClickedSpot === pic ? true : false}
       doubleClicker={doubleClicker}
-      doubleClicked={doubleClickedCheck(playerChair)}
+      doubleClicked={doubleClickedCheck(pic)}
       fadeForOther={
-        rightClickedSpot && rightClickedSpot !== playerChair ? true : false
+        rightClickedSpot && rightClickedSpot !== pic ? true : false
       }
     />
   ));
 
-  const stringsClicker = () => {
-    setAddStringsClicked(true);
-  };
+  return <div>{displayableStrings}</div>;
+};
 
-  const closeStrings = () => {
-    setAddStringsClicked(false);
-  };
-
-  return (
-    <div className={styles.outerContainer}>
-
-      <NonStrings />
-      <StringRosterSpots />
-
-
-      {/* {displayableChairs}
-      {displayableChairs.length > 0 && (
-        <button className={styles.stringsButton} onClick={stringsClicker}>
-          EDIT STRING NUMBERS
-        </button>
-      )}
-      {addStringsClicked && (
-        <StringsBox
-          piece={dashboard.clickedPiece}
-          show={dashboard.clickedShow}
-          closeModal={closeStrings}
-        />
-      )} */}
-
-
-
-    </div>
-  );
-});
-
-export default RosterSpots;
+export default StringRosterSpots;
