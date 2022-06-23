@@ -6,7 +6,6 @@
   width: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  /* background-color: #c2e7f0; */
   background: linear-gradient(to left, transparent, #eccbcb, rgb(90, 85, 85));
   font-weight: 900;
   z-index: 1;

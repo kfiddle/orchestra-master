@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 
 import ConsolePiece from "./piece/ConsolePiece";
 
-import useFetch from '../../../hooks/useFetch';
+import useFetch from "../../../hooks/useFetch";
 
 import { ConsoleHolder } from "../../../store/object-holder";
 
@@ -22,7 +22,7 @@ const Pieces = (props) => {
       dispatch({ type: "pics", list: piecePics });
     };
 
-    if (dashboard.clickedPiece || dashboard.playerPlaced) {
+    if (dashboard.clickedPiece || dashboard.playerChanged) {
       grabThePics();
       dispatch({ type: "playerChanged", playerChanged: false });
     }

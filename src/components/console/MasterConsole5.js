@@ -15,9 +15,6 @@ import useFetch from "../../hooks/useFetch";
 const MasterConsole5 = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  const auth = useSelector((state) => state.auth);
-  const { jwtToken } = auth;
-
   const pusher = useFetch();
 
   useEffect(() => {
@@ -34,7 +31,9 @@ const MasterConsole5 = (props) => {
         dashboard.clickedShow,
         "get-pics-in-show"
       );
-      dispatch({ type: "pics", list: directPICS });
+      if (directPICS.length > 0) {
+        dispatch({ type: "pics", list: directPICS });
+      }
     };
 
     if (dashboard.clickedShow) {
@@ -56,6 +55,8 @@ const MasterConsole5 = (props) => {
     dashboard.stringNumsSubmitted,
     dashboard.playerChanged,
   ]);
+
+  useEffect(() => {}, []);
 
   return (
     <div className={styles.outerContainer}>
