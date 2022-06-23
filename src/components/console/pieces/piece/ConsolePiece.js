@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { FiEdit } from "react-icons/fi";
 
 import OrchestrationEntry from "../../../entryComponents/orchestrationEntry/OrchestrationEntry";
@@ -14,10 +14,11 @@ const ConsolePiece = (props) => {
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  const isPieceClicked = dashboard.clickedPiece === pp; 
+  const isPieceClicked = dashboard.clickedPiece === pp;
 
   const clickedOrNot = isPieceClicked ? styles.clicked : styles.unclicked;
 
+ 
   const clickedPieceHandler = () => {
     dispatch({ type: "clickedPiece", clickedPiece: pp });
   };

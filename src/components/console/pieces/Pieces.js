@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import ConsolePiece from "./piece/ConsolePiece";
 
@@ -13,16 +13,19 @@ const Pieces = (props) => {
 
   const pusher = useFetch();
 
-  useEffect(() => {
-    const grabThePics = async () => {
-      const piecePics = await pusher(
-        dashboard.clickedPiece,
-        "get-pics-in-show-piece"
-      );
-      dispatch({ type: "pics", list: piecePics });
-    };
+  const grabThePics = async () => {
+    const piecePics = await pusher(
+      dashboard.clickedPiece,
+      "get-pics-in-show-piece"
+    );
+    dispatch({ type: "pics", list: piecePics });
+  };
 
-    if (dashboard.clickedPiece || dashboard.playerChanged) {
+  useEffect(() => {
+    if (
+      dashboard.clickedPiece ||
+      (dashboard.playerChanged && dashboard.clickedPiece)
+    ) {
       grabThePics();
       dispatch({ type: "playerChanged", playerChanged: false });
     }

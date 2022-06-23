@@ -17,46 +17,42 @@ const MasterConsole5 = (props) => {
 
   const pusher = useFetch();
 
+  const grabThePieces = async () => {
+    const showPieces = await pusher(
+      dashboard.clickedShow,
+      "get-showtunes-on-program"
+    );
+    dispatch({ type: "pieces", list: showPieces });
+  };
+
+  const grabPICSFromShow = async () => {
+    const directPICS = await pusher(dashboard.clickedShow, "get-pics-in-show");
+    if (directPICS.length > 0) {
+      dispatch({ type: "pics", list: directPICS });
+    }
+  };
+
   useEffect(() => {
-    const grabThePieces = async () => {
-      const showPieces = await pusher(
-        dashboard.clickedShow,
-        "get-showtunes-on-program"
-      );
-      dispatch({ type: "pieces", list: showPieces });
-    };
-
-    const grabPICSFromShow = async () => {
-      const directPICS = await pusher(
-        dashboard.clickedShow,
-        "get-pics-in-show"
-      );
-      if (directPICS.length > 0) {
-        dispatch({ type: "pics", list: directPICS });
-      }
-    };
-
     if (dashboard.clickedShow) {
       grabThePieces();
       grabPICSFromShow();
       dispatch({ type: "clickedPiece", clickedPiece: null });
+      dispatch({ type: "pics", list: [] });
     }
+  }, [dashboard.clickedShow]);
 
-    if (dashboard.playerChanged) {
-      grabPICSFromShow();
-    }
-
+  useEffect(() => {
     if (dashboard.stringNumsSubmitted) {
       grabPICSFromShow();
       dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: false });
     }
-  }, [
-    dashboard.clickedShow,
-    dashboard.stringNumsSubmitted,
-    dashboard.playerChanged,
-  ]);
+  }, [dashboard.stringNumsSubmitted]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (dashboard.playerChanged) {
+      grabPICSFromShow();
+    }
+  }, [dashboard.playerChanged]);
 
   return (
     <div className={styles.outerContainer}>
