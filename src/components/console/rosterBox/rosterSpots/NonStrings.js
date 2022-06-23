@@ -3,6 +3,9 @@ import { useState, useEffect, useContext } from "react";
 import { ConsoleHolder } from "../../../../store/object-holder";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
+import DbClickedBox from "./dbClickedOthers/DbClickedBox";
+
+import styles from "./NonStrings.module.css";
 
 const NonStrings = () => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
@@ -44,7 +47,7 @@ const NonStrings = () => {
       rightClicker={rightClicker}
       rightClicked={rightClickedSpot === pic ? true : false}
       doubleClicker={doubleClicker}
-      //   doubleClicked={doubleClickedCheck(pic)}
+      // doubleClicked={doubleClickedCheck(pic)}
       fadeForOther={rightClickedSpot && rightClickedSpot !== pic ? true : false}
     />
   ));
@@ -52,7 +55,7 @@ const NonStrings = () => {
   return (
     <div>
       {displayableOthers}
-      {dbClickedOtherSpot && <div>a new div</div>}
+      {dbClickedOtherSpot && <DbClickedBox pic={dbClickedOtherSpot} />}
     </div>
   );
 };

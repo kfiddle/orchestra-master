@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import EmailPlayer from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/emailPlayer/EmailPlayer";
 
 import { AiOutlineMail } from "react-icons/ai";
+import { FiEdit } from "react-icons/fi";
 
 import useFetch from "../../../../hooks/useFetch";
 
@@ -17,21 +18,17 @@ import classes from "./RosterSpot.module.css";
 
 const RosterSpot = (props) => {
   const [mailClicked, setMailClicked] = useState(false);
+  const [editClicked, setEditClicked] = useState(false);
 
   const { chairState, dispatch } = useContext(ChairsHolder);
   const { dashboard, dispatch: dashDisp } = useContext(ConsoleHolder);
 
   const pusher = useFetch();
 
-  // let pic = props.playerInChair;
   let pic = props.pic;
-
   let chair = pic.chair;
   let index = props.index;
   let { parts, rank, specialDesignate } = chair;
-
-  // let player = props.playerInChair.player;
-  // let sectionSeat = props.playerInChair.sectionSeat;
 
   let player = props.pic.player;
   let sectionSeat = props.pic.sectionSeat;
@@ -83,7 +80,7 @@ const RosterSpot = (props) => {
   const doubleClickHandler = (event) => {
     event.preventDefault();
     doubleClicker(pic, index);
-  }
+  };
 
   const removePlayerClicker = async () => {
     let response = await pusher(props.pic, "remove-player-from-pic");
@@ -120,6 +117,10 @@ const RosterSpot = (props) => {
   let rightClickedClass = rightClicked ? classes.rightClicked : null;
   let doubleClickedClass = doubleClicked ? classes.doubleClicked : null;
 
+  const editClicker = () => {
+    setEditClicked(true);
+  };
+
   return (
     <div>
       <div
@@ -136,9 +137,12 @@ const RosterSpot = (props) => {
         <div className={classes.playerDiv}>{lastName}</div>
 
         <div className={classes.doublingDiv}>{doublingParts}</div>
+        <div className={classes.editButtonDiv}>
+          <FiEdit className={classes.icon} onClick={editClicker} />
+        </div>
 
         <div className={classes.mailButtonDiv}>
-          <AiOutlineMail className={classes.mailIcon} onClick={sendMessage} />
+          <AiOutlineMail className={classes.icon} onClick={sendMessage} />
         </div>
         {mailClicked && <EmailPlayer closeModal={closeModal} />}
       </div>

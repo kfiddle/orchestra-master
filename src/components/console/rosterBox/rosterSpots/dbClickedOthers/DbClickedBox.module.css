@@ -1,0 +1,23 @@
+.outerContainer {
+  position: fixed;
+  /* right: 20%; */
+  right: 0;
+  top: 10vh;
+  background: linear-gradient(to left, transparent, #362d2d, rgb(90, 85, 85));
+  height: 100vh;
+  width: fit-content;
+  padding: 2rem;
+  color: white;
+  animation: slide-in 300ms ease-out forwards;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(0rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-20rem);
+  }
+}
