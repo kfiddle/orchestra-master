@@ -17,6 +17,7 @@ import AllContractedPlayers from "./pages/AllContractedPlayers";
 import AllSubPlayers from "./pages/AllSubPlayers";
 import Library from "./pages/Library";
 import Season2 from "./pages/Season2";
+import Log from "./pages/Log";
 
 function App() {
   const [modalIsClosed, setModalIsClosed] = useState(false);
@@ -68,6 +69,10 @@ function App() {
 
           <Route path={"/season"} exact>
             <Season2 modalIsClosed={modalIsClosed} />
+          </Route>
+
+          <Route path={"/log"} exact>
+            <Log />
           </Route>
         </Switch>
       </Layout>

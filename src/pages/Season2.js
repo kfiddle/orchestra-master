@@ -47,7 +47,6 @@ const Season2 = (props) => {
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
   const [dashboard, dispatch] = useReducer(showReducer, initialState);
 
-
   let allPerformances = useGetAList2(
     "get-performances-by-primary-date",
     reloadFlag,

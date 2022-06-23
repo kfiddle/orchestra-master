@@ -15,7 +15,9 @@ const MainNavigation = (props) => {
         <ul>
           <div className={classes.newFormDiv}>
             <li className={classes.navItem}>
-              <IoMdAlert />
+              <NavLink to={"/log"} activeClassName={classes.active}>
+                <IoMdAlert />
+              </NavLink>
             </li>
             <li className={classes.navItem} onClick={props.playerEntryClicked}>
               <FaUserPlus />
