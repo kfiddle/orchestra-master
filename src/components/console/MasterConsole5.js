@@ -49,10 +49,10 @@ const MasterConsole5 = (props) => {
   }, [dashboard.stringNumsSubmitted]);
 
   useEffect(() => {
-    if (dashboard.playerChanged) {
+    if (dashboard.chairChanged) {
       grabPICSFromShow();
     }
-  }, [dashboard.playerChanged]);
+  }, [dashboard.chairChanged]);
 
   return (
     <div className={styles.outerContainer}>

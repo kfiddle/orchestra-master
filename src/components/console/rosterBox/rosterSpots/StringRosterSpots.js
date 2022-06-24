@@ -29,7 +29,7 @@ const StringRosterSpots = () => {
 
   useEffect(() => {
     setRightClickedSpot(null);
-  }, [dashboard.playerChanged]);
+  }, [dashboard.chairChanged]);
 
   useEffect(() => {
     if (

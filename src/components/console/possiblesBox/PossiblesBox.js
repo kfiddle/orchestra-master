@@ -19,7 +19,7 @@ const PossiblesBox = (props) => {
     };
 
     emptyPossibles();
-  }, [dashboard.clickedPiece, dashboard.clickedShow, dashboard.playerChanged]);
+  }, [dashboard.clickedPiece, dashboard.clickedShow, dashboard.chairChanged]);
 
   const possibles = chairState.possibles;
 

@@ -23,7 +23,7 @@ const Possible = (props) => {
       "put-player-in-pic/" + chairState.chosenPic.id
     );
     if (response !== "phoey") {
-      dashDispatch({ type: "playerChanged", playerChanged: true });
+      dashDispatch({ type: "chairChanged", chairChanged: true });
       chairsDispatch({ type: "possibles", list: [] });
     }
   };

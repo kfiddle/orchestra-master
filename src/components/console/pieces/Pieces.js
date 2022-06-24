@@ -24,10 +24,10 @@ const Pieces = (props) => {
   useEffect(() => {
     if (
       dashboard.clickedPiece ||
-      (dashboard.playerChanged && dashboard.clickedPiece)
+      (dashboard.chairChanged && dashboard.clickedPiece)
     ) {
       grabThePics();
-      dispatch({ type: "playerChanged", playerChanged: false });
+      dispatch({ type: "chairChanged", chairChanged: false });
     }
 
     if (dashboard.stringNumsSubmitted && dashboard.clickedPiece) {
@@ -36,7 +36,7 @@ const Pieces = (props) => {
     }
   }, [
     dashboard.clickedPiece,
-    dashboard.playerChanged,
+    dashboard.chairChanged,
     dashboard.stringNumsSubmitted,
   ]);
 

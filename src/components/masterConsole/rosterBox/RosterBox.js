@@ -15,7 +15,7 @@ import usePossibleNames from "../../../hooks/usePossibleNames";
 import { RosterBoxHolder } from "../../../store/object-holder";
 import ClickedSpotMenu from "./clickedSpotMenu/ClickedSpotMenu";
 
-//MasterConsole3 has this
+//MasterConsole5 has this
 
 const RosterBox = (props) => {
   const [clickedChair, setClickedChair] = useState({});

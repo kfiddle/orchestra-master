@@ -20,7 +20,7 @@ const initialState = {
   clickedPic: null,
   possibles: [],
   clickedPossible: null,
-  playerChanged: false,
+  chairChanged: false,
   stringNumsSubmitted: false,
 };
 
@@ -36,8 +36,8 @@ const showReducer = (state, action) => {
       return { ...state, clickedPiece: action.clickedPiece };
     case "pics":
       return { ...state, pics: action.list };
-    case "playerChanged":
-      return { ...state, playerChanged: action.playerChanged };
+    case "chairChanged":
+      return { ...state, chairChanged: action.chairChanged };
     case "stringNumsSubmitted":
       return { ...state, stringNumsSubmitted: action.stringNumsSubmitted };
   }

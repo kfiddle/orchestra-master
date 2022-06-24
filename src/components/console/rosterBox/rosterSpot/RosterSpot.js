@@ -13,7 +13,7 @@ import { ChairsHolder } from "../../../../store/object-holder";
 import { ConsoleHolder } from "../../../../store/object-holder";
 
 import classes from "./RosterSpot.module.css";
-import EditChair from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/editChair/EditChair";
+import EditChair from "./editChair/EditChair";
 
 // RosterSpots has this
 
@@ -90,7 +90,7 @@ const RosterSpot = (props) => {
     if (response !== "phoey") {
       dispatch({ type: "chosenPic", chosenPic: null });
       dispatch({ type: "possibles", list: [] });
-      dashDisp({ type: "playerChanged", playerChanged: true });
+      dashDisp({ type: "chairChanged", chairChanged: true });
       rightClicker(null);
     }
   };
@@ -112,7 +112,6 @@ const RosterSpot = (props) => {
   let marginClass = !printSectionLabel
     ? classes.sectionMargin
     : classes.sectionHeadMargin;
-
   let backgroundClass = player ? classes.hired : classes.unHired;
 
   let fadeForOtherClass = fadeForOther ? classes.fadeForOther : null;
