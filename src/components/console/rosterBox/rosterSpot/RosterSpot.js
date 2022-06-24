@@ -13,6 +13,7 @@ import { ChairsHolder } from "../../../../store/object-holder";
 import { ConsoleHolder } from "../../../../store/object-holder";
 
 import classes from "./RosterSpot.module.css";
+import EditChair from "../../../masterConsole/rosterBox/rosterSpots/rosterSpot/editChair/EditChair";
 
 // RosterSpots has this
 
@@ -64,6 +65,7 @@ const RosterSpot = (props) => {
 
   const closeModal = () => {
     setMailClicked(false);
+    setEditClicked(false)
   };
 
   const spotClickedHandler = async () => {
@@ -146,6 +148,7 @@ const RosterSpot = (props) => {
         </div>
         {mailClicked && <EmailPlayer closeModal={closeModal} />}
       </div>
+
       {rightClicked && (
         <RightClick
           hasPlayer={player ? true : false}
@@ -154,6 +157,7 @@ const RosterSpot = (props) => {
           rightClicker={rightClicker}
         />
       )}
+      {editClicked && <EditChair closeModal={closeModal} pic={pic} />}
     </div>
   );
 };

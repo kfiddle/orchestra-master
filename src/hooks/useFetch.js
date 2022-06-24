@@ -22,6 +22,7 @@ const useFetch = () => {
     });
 
     if (response.ok) {
+      console.log(response);
       let answer = await response.json();
       return answer;
     }
@@ -31,7 +32,4 @@ const useFetch = () => {
   return pusher;
 };
 
-
 export default useFetch;
-
-
