@@ -1,26 +1,25 @@
-const useContractFormatter = (parts, rank) => {
-  if (parts || rank) {
+const useContractFormatter = (primaryInstrument, otherInstruments, rank) => {
+  if (primaryInstrument || rank) {
+    let part = primaryInstrument.name;
 
-    let part = parts[0];
-    
     let part2 = null;
 
-    if (parts[1] != null) {
-      part2 = parts[1]
+    if (otherInstruments[0] != null) {
+      part2 = otherInstruments[0].name;
+      console.log(otherInstruments[0].name);
     }
-
 
     let abbreviatedPart = "";
 
-    if (part2 === "EbClarinet") {
+    if (part2 === "EB CLARINET") {
       abbreviatedPart = "Eb";
-    } else if (part2 === "BassClarinet") {
+    } else if (part2 === "BASS CLARINET") {
       abbreviatedPart = "bcl";
-    } else if (part2 === "EnglishHorn") {
+    } else if (part2 === "ENGLISH HORN") {
       abbreviatedPart = "eh";
-    } else if (part2 === "BassTrombone") {
+    } else if (part2 === "BASS TROMBONE") {
       abbreviatedPart = "Bass";
-    } else if (part2 === "Piccolo") {
+    } else if (part2 === "PICCOLO") {
       abbreviatedPart = "pic";
     }
 

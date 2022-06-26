@@ -11,6 +11,7 @@ const AllContractedPlayers = (props) => {
   let players = useGetAList2("get-all-contracted-players", reload, setReload);
   let isLoading = players.length < 1;
 
+
   const possibleEdit = () => {
     setReload(true);
   };

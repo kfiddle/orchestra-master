@@ -2,21 +2,21 @@ import { useState, useEffect, useContext } from "react";
 
 import SubPart from "./SubPart";
 
-import AllParts from "../../store/all-parts";
+import AllInstruments from "../../store/all-instruments";
 import GetAList from "../helperFunctions/GetAList";
 import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 
 import classes from "./InstrumentsSidebar.module.css";
 
 const InstrumentsSidebar = (props) => {
-  const { partsList } = useContext(AllParts);
+  const { instrumentsList } = useContext(AllInstruments);
   const [currentChoice, setCurrentChoice] = useState("");
 
   const partChooser = (part) => {
     props.partChooser(part);
   };
 
-  const displayableParts = partsList.map((part) => (
+  const displayableParts = instrumentsList.map((part) => (
     <SubPart
       part={part}
       clicked={partChooser}

@@ -6,7 +6,7 @@ import PieceEntry from "../entryComponents/pieceEntry/PieceEntry";
 
 import PerformanceEntry2 from "../entryComponents/performanceEntry2/PerformanceEntry2";
 
-import AllParts from "../../store/all-parts";
+import AllInstruments from "../../store/all-instruments";
 
 import classes from "./Layout.module.css";
 import useGetAList2 from "../../hooks/useGetAList2";
@@ -39,10 +39,10 @@ const Layout = (props) => {
     props.modalCloseHandler(true);
   };
 
-  let partsList = useGetAList2("get-all-instruments");
+  let allInstruments = useGetAList2("get-all-instruments");
 
   return (
-    <AllParts.Provider value={{ partsList }}>
+    <AllInstruments.Provider value={{ allInstruments }}>
       <MainNavigation
         playerEntryClicked={playerEntryClicked}
         pieceEntryClicked={pieceEntryClicked}
@@ -57,7 +57,7 @@ const Layout = (props) => {
       )}
 
       <main className={classes.main}>{props.children}</main>
-    </AllParts.Provider>
+    </AllInstruments.Provider>
   );
 };
 
