@@ -9,16 +9,16 @@ import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import classes from "./InstrumentsSidebar.module.css";
 
 const InstrumentsSidebar = (props) => {
-  const { instrumentsList } = useContext(AllInstruments);
+  const { allInstruments } = useContext(AllInstruments);
   const [currentChoice, setCurrentChoice] = useState("");
 
   const partChooser = (part) => {
     props.partChooser(part);
   };
 
-  const displayableParts = instrumentsList.map((part) => (
+  const displayableParts = allInstruments.map((instrument) => (
     <SubPart
-      part={part}
+      instrument={instrument}
       clicked={partChooser}
       chosenpart={props.chosenPart}
       key={Math.random()}

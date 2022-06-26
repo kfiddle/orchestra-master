@@ -3,20 +3,21 @@ import { useState } from "react";
 import classes from './SubPart.module.css';
 
 const SubPart = (props) => {
-  const name  = props.part;
+  const instrument  = props.instrument;
+  const instrumentName = instrument.name;
 
   const clickHandler = () => {
-    props.clicked(name);
+    props.clicked(instrument);
   };
 
-  const active = props.chosenpart === props.part;
+  const active = props.chosenpart === instrumentName;
 
   return (
     <div
       className={!active ? classes.partDiv : classes.highlightedDiv}
       onClick={clickHandler}
     >
-      <li className={!active? classes.partLi : classes.highlightedLi}>{name}</li>
+      <li className={!active? classes.partLi : classes.highlightedLi}>{instrumentName}</li>
     </div>
   );
 };

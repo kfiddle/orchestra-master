@@ -19,7 +19,6 @@ const Player = (props) => {
 
   const [editClicked, setEditClicked] = useState(false);
 
-  console.log(otherInstruments);
 
   const formattedContract = useContractFormatter(
     primaryInstrument,

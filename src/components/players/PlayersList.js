@@ -1,8 +1,9 @@
 import { Fragment, useState } from "react";
 
-import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
 import Player from "./Player";
 import InstrumentsSidebar from "../instrumentsSidebar/InstrumentsSidebar";
+
+import useFetch from "../../hooks/useFetch";
 
 import styles from "./PlayersList.module.css";
 import GetAList from "../helperFunctions/GetAList";
@@ -10,6 +11,8 @@ import GetAList from "../helperFunctions/GetAList";
 const PlayersList = (props) => {
   const [byInstrumentList, setByInstrumentList] = useState([]);
   const [chosenInstrument, setChosenInstrument] = useState("");
+
+  const pusher = useFetch();
 
   const clickedPlayerHandler = (player) => {
     console.log(player.lastName);
@@ -19,10 +22,10 @@ const PlayersList = (props) => {
     props.possibleEdit()
   }
 
-  const partChooser = async (part) => {
-    setChosenInstrument(part);
+  const partChooser = async (instrument) => {
+    setChosenInstrument(instrument);
 
-    const allSubsOfInstrumentResponse = await GetAList("subs/" + part);
+    const allSubsOfInstrumentResponse = await pusher(instrument, "subs-by-instrument");
     setByInstrumentList(allSubsOfInstrumentResponse);
 
   };
