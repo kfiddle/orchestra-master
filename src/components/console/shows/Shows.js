@@ -5,7 +5,6 @@ import Show from "./show/Show";
 import { ConsoleHolder } from "../../../store/object-holder";
 
 import styles from "./Shows.module.css";
-import PushBasic from "../../helperFunctions/pushFunctions/PushBasic";
 
 //MasterConsole4 has this
 

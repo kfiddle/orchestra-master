@@ -1,8 +1,0 @@
-.noNames {
-  position: fixed;
-}
-
-.fromNames {
-  position: fixed;
-  transform: translateX(100%);
-}

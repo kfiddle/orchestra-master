@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext, useReducer } from "react";
 
-import MasterConsole3 from "../components/masterConsole/MasterConsole3";
-
 import { ConsoleHolder } from "../store/object-holder";
 
 import LoadingSpinner from "../components/UI/loading/LoadingSpinner";

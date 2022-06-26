@@ -39,7 +39,7 @@ const Layout = (props) => {
     props.modalCloseHandler(true);
   };
 
-  let partsList = useGetAList2("get-all-parts");
+  let partsList = useGetAList2("get-all-instruments");
 
   return (
     <AllParts.Provider value={{ partsList }}>
