@@ -1,9 +1,9 @@
-.input,
+.valid,
 .control textarea {
   font: inherit;
   padding: 1rem;
   border-radius: 4px;
-  background-color: #afaaaa;
+  background-color: #e8e9f8;
   border: 1px solid #c1d1d1;
   display: block;
   font-size: 1.25rem;
@@ -11,8 +11,21 @@
   margin: 1.5rem;
 }
 
-.input:focus,
+.valid:focus,
 .control textarea:focus {
-  background-color: #e9dcdc;
+  background-color: #dcdde9;
   outline-color: rgb(100, 100, 231);
+}
+
+.invalid {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: rgb(244, 167, 167);
+  outline-color: rgb(90, 4, 4);
+  border: 1px solid #c1d1d1;
+  display: block;
+  font-size: 1.25rem;
+  width: 20%;
+  margin: 1.5rem;
 }

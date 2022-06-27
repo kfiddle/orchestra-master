@@ -10,7 +10,7 @@ import styles from "./InstEntry.module.css";
 import StringsBox from "./stringsBox/StringsBox";
 
 const InstEntry = (props) => {
-  const modalStyle = { background: "grey", height: "50rem" };
+  const modalStyle = { background: "slategrey", padding:'5rem', width: '70vw', top: '20vh' };
 
   const piece = props.piece;
   const show = props.show;
