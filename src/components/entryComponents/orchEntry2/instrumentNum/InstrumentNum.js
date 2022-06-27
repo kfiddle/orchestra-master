@@ -48,7 +48,6 @@ const InstrumentNum = (props) => {
         ></NumberInput>
       </div>
       <div className={styles.chairsAndExtrasDiv}>
-        {/* <div className={chairsDivClass}>{chairsList}</div> */}
         <div className={chairsDivClass}>{ourChairs}</div>
       </div>
     </div>

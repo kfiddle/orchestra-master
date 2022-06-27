@@ -5,6 +5,8 @@ import { useState } from "react";
 import OrchestrationEntry from "../../entryComponents/orchestrationEntry/OrchestrationEntry";
 import OrchEntry2 from "../../entryComponents/orchEntry2/OrchEntry2";
 
+import InstEntry from "../../entryComponents/instEntry/InstEntry";
+
 import classes from "./LibraryPiece.module.css";
 
 const LibraryPiece = (props) => {
@@ -55,8 +57,12 @@ const LibraryPiece = (props) => {
         <FiEdit onClick={openOrchestration} />
       </div>
 
-      {orchestrationClicked && (
+      {/* {orchestrationClicked && (
         <OrchEntry2 closeModal={closeModal} piece={props.piece} />
+      )} */}
+
+      {orchestrationClicked && (
+        <InstEntry closeModal={closeModal} piece={props.piece}  />
       )}
     </div>
   );

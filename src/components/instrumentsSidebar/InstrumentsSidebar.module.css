@@ -1,49 +1,50 @@
 .sidebar {
-    width: fit-content;
-    height: 100%;
-    border-radius: 8px;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    background: linear-gradient(to right, rgb(39, 1, 1),rgb(39, 1, 1), rgb(39, 1, 1), rgb(39, 1, 1), rgb(39, 1, 1),rgb(75, 5, 5));
-    animation: slide-in 300ms ease-out forwards;
+  height: 100%;
+  border-radius: 8px;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(to right, rgb(164, 50, 35),rgb(39, 1, 1), rgb(39, 1, 1), rgb(39, 1, 1), rgb(53, 23, 23), rgb(57, 44, 44));
+  animation: slide-in 300ms ease-out forwards;
+}
+
+.ul {
+  width: fit-content;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-3rem);
   }
-  
-  @keyframes slide-in {
-    from {
-      opacity: 0;
-      transform: translateX(-3rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(5rem);
-    }
+  to {
+    opacity: 1;
+    transform: translateX(5rem);
   }
-  
-  .nav ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav li {
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-  
-  .nav a {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .instrumentDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-    padding: 0 1rem;
-  }
-  
-  
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.instrumentDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  padding: 0 1rem;
+}

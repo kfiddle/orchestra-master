@@ -28,7 +28,7 @@ const InstrumentsSidebar = (props) => {
   return (
     <div className={classes.sidebar}>
       <nav className={classes.nav}>
-        <ul>{displayableParts}</ul>
+        <ul className={classes.ul}>{displayableParts}</ul>
       </nav>
     </div>
   );
