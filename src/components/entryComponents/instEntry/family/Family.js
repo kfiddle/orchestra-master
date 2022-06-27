@@ -1,12 +1,16 @@
+import { useState } from "react";
+
+import OrchInput from "./orchInput/OrchInput";
 import styles from "./Family.module.css";
 
 const Family = (props) => {
+  const [number, setNumber] = useState("");
   const familyName = props.family;
 
   return (
     <div className={styles.familyDiv}>
       <label className={styles.label}>{familyName}</label>
-      <input className={styles.input}></input>
+      <OrchInput number={number} numberSetter={setNumber} />
     </div>
   );
 };

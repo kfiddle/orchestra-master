@@ -7,6 +7,7 @@ import { InstEntryStore } from "../../../store/form-holders";
 import Family from "./family/Family";
 
 import styles from "./InstEntry.module.css";
+import StringsBox from "./stringsBox/StringsBox";
 
 const InstEntry = (props) => {
   const modalStyle = { background: "grey", height: "50rem" };
@@ -34,11 +35,7 @@ const InstEntry = (props) => {
             <ExtrasButton />
           </div>
         </div>
-        <div>
-          <label>STRINGS</label>
-
-          <input />
-        </div>
+        <StringsBox />
       </Modal>
     </InstEntryStore.Provider>
   );

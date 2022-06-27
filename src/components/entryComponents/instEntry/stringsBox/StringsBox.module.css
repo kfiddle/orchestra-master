@@ -1,9 +1,6 @@
-.familyDiv {
+.outerContainer {
   display: flex;
   margin: 1rem 2rem;
-  border: 1px dotted rgb(39, 39, 143);
-  
-  border-radius: 10px;
 }
 
 .label {
@@ -19,6 +16,25 @@
 
 .label:hover {
   color: rgb(171, 13, 13);
+}
+
+.button {
+  width: fit-content;
+  background: none;
+  color: rgb(39, 39, 143);
+  border: 3px solid rgb(39, 39, 143);
+  padding: 8px 30px;
+  margin: 1rem;
+  border-radius: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+.button:hover {
+  background: midnightblue;
+  color: rgb(173, 151, 151);
 }
 
 .input {
