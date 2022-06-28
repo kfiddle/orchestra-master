@@ -1,0 +1,9 @@
+.outerContainer {
+  height: inherit;
+  display: flex;
+}
+
+.button {
+  height: 100%;
+  cursor: pointer;
+}

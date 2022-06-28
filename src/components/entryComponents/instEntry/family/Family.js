@@ -21,9 +21,6 @@ const Family = (props) => {
   const displayableButtons = [];
   let whichInst = 0;
 
-// [horn, trumpet, trombone, tuba]
-  //   2a212
-
   for (let j = 0; j < shownInput.length; j++) {
     if (shownInput[j + 1] === "a") {
       displayableButtons.push(
@@ -35,7 +32,7 @@ const Family = (props) => {
           specialDesignate={"a"}
         />
       );
-      whichInst = j+1;
+      whichInst = j + 1;
       j = j + 1;
     } else {
       displayableButtons.push(
@@ -47,7 +44,7 @@ const Family = (props) => {
           specialDesignate={null}
         />
       );
-      whichInst = whichInst+1;
+      whichInst = whichInst + 1;
     }
   }
 
@@ -57,7 +54,7 @@ const Family = (props) => {
         {familyName}
       </label>
       <OrchInput shownInput={shownInput} inputSetter={setShownInput} />
-      {specialClicked && displayableButtons}
+      {specialClicked && <div className={styles.buttonsDiv}>{displayableButtons}</div>}
     </div>
   );
 };
