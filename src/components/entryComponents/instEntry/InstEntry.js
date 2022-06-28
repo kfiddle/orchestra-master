@@ -9,8 +9,18 @@ import Family from "./family/Family";
 import styles from "./InstEntry.module.css";
 import StringsBox from "./stringsBox/StringsBox";
 
+const families = {
+  WINDS: ["FLUTE", "OBOE", "CLARINET", "BASSOON"],
+  BRASS: ["HORN", "TRUMPET", "TROMBONE", "TUBA"],
+};
+
 const InstEntry = (props) => {
-  const modalStyle = { background: "slategrey", padding:'5rem', width: '70vw', top: '20vh' };
+  const modalStyle = {
+    background: "slategrey",
+    padding: "5rem",
+    width: "70vw",
+    top: "20vh",
+  };
 
   const piece = props.piece;
   const show = props.show;
@@ -27,8 +37,8 @@ const InstEntry = (props) => {
     <InstEntryStore.Provider value={providerObject}>
       <Modal closeModal={props.closeModal} styleObject={modalStyle}>
         <div className={styles.outerContainer}>
-          <Family family={"WINDS"} />
-          <Family family={"BRASS"} />
+          <Family family={"WINDS"} insts={families['WINDS']} />
+          <Family family={"BRASS"} insts={families["BRASS"]}/>
           <Family family={"PERCUSSION"} />
 
           <div className={styles.extrasButtonDiv}>

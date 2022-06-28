@@ -8,22 +8,48 @@ const Family = (props) => {
   const [shownInput, setShownInput] = useState([]);
   const [specialClicked, setSpecialClicked] = useState(false);
   const familyName = props.family;
+  const insts = props.insts;
 
   const showNumber = () => {
-    if (shownInput.length > 3) {
+    if (shownInput.length > 3 && !specialClicked) {
       setSpecialClicked(true);
+    } else {
+      setSpecialClicked(false);
     }
   };
 
   const displayableButtons = [];
+  let whichInst = 0;
 
-  for (let instNum of showNumber) {
+// [horn, trumpet, trombone, tuba]
+  //   2a212
 
-    displayableButtons.push(<InstNum key={Math.random()} instNum={instNum} familyName={familyName} />);
-  
-
-}
-
+  for (let j = 0; j < shownInput.length; j++) {
+    if (shownInput[j + 1] === "a") {
+      displayableButtons.push(
+        <InstNum
+          key={Math.random()}
+          instNum={shownInput[j]}
+          familyName={familyName}
+          inst={insts[whichInst]}
+          specialDesignate={"a"}
+        />
+      );
+      whichInst = j+1;
+      j = j + 1;
+    } else {
+      displayableButtons.push(
+        <InstNum
+          key={Math.random()}
+          instNum={shownInput[j]}
+          familyName={familyName}
+          inst={insts[whichInst]}
+          specialDesignate={null}
+        />
+      );
+      whichInst = whichInst+1;
+    }
+  }
 
   return (
     <div className={styles.familyDiv}>
