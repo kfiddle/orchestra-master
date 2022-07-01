@@ -1,0 +1,24 @@
+.outerContainer {
+  position: relative;
+  margin: 0.25rem 4rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  /* background: linear-gradient(
+    to left,
+    transparent,
+    #cdcbec,
+    rgb(85, 85, 90),
+    rgb(85, 85, 90),
+    rgb(85, 85, 90),
+    rgb(85, 85, 90)
+  ); */
+  background: lightblue;
+  font-weight: 900;
+  transform: translateX(-5rem);
+  z-index: 2;
+  cursor: pointer;
+  transition: 0.2s linear;
+}

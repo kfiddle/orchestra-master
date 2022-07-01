@@ -1,0 +1,53 @@
+.outerContainer {
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+  background: none;
+  color: #0f02fe;
+  border: 4px solid #0f02fe;
+  padding: 4px 10px;
+  margin: 1rem;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
+
+.slashDiv {
+  float: right;
+}
+
+.doubles {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  transform: translateY(-6rem);
+  animation: slide-in 0.1s linear;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(0rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-5rem);
+  }
+}
+
+/* animation: slide-out 250ms ease-out forwards;
+} */
+
+/* @keyframes slide-out {
+  from {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(15rem);
+  }
+} */

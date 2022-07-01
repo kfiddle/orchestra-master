@@ -30,6 +30,26 @@ const DoublingExtras = () => {
     ],
   };
 
+  const doublingAndExtras = {
+    FLUTE: ["PICCOLO", "ALTOFLUTE"],
+    OBOE: ["ENGLISHHORN", "BSOBOE", "D'AMORE"],
+    CLARINET: ["EBCLARINET", "BASSCLARINET", "SAX"],
+    BASSOON: ["CONTRA"],
+    HORN: ["WAGNERTUBA"],
+    TRUMPET: ["CORNET", "FUGALHORN", "PICCTRUMPET"],
+    TROMBONE: ["BASSTROMBONE"],
+    TUBA: ["EUPHONIUM"],
+    PERCUSSION: [
+      "HARP",
+      "PIANO",
+      "KEYBOARD",
+      "CELESTE",
+      "GLOCKENSPIEL",
+      "ORGAN",
+      "SAX",
+    ],
+  };
+
   const auxiliaries = [
     "HARP",
     "PIANO",
@@ -40,7 +60,7 @@ const DoublingExtras = () => {
     "DRUMSET",
   ];
 
-  return { doubling, extras, auxiliaries };
+  return { doubling, extras, doublingAndExtras, auxiliaries };
 };
 
 export default DoublingExtras;

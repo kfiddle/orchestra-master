@@ -40,7 +40,7 @@
 
 .buttonsDiv {
   display: flex;
-  margin-left: 5rem;
+  margin-left: 7rem;
   animation: slide-in linear .3s;
 }
 
