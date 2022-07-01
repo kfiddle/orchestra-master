@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SingleChair from "../singleChair/SingleChair";
 
 import styles from "./InstNum.module.css";
 
@@ -16,7 +17,21 @@ const InstNum = (props) => {
   const displayableNums = [];
 
   for (let j = 1; j <= number; j++) {
-    displayableNums.push(<button key={j}>{j}</button>)
+    displayableNums.push(
+      <SingleChair
+        key={j}
+        rank={j}
+        inst={inst}
+      />
+    );
+  }
+
+  if (specialDesignate) {
+    displayableNums.splice(
+      1,
+      0,
+      <SingleChair key={displayableNums.length + 1} inst={inst} rank="A"/>
+    );
   }
 
   return (
@@ -24,7 +39,7 @@ const InstNum = (props) => {
       <button onClick={bracketsClicker} className={styles.button}>
         {number} {inst}
       </button>
-      {bracketsClicked && <div>{displayableNums}</div>}
+      {bracketsClicked && <div className={styles.chairsDiv}>{displayableNums}</div>}
     </div>
   );
 };

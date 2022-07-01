@@ -4,6 +4,10 @@
 }
 
 .button {
-  height: 100%;
   cursor: pointer;
+}
+
+.chairsDiv {
+  display: flex;
+  margin: 0 1rem;
 }
