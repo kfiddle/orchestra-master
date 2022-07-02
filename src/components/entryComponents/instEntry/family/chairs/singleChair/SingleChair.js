@@ -10,7 +10,6 @@ import useInstAbbreviator from "../../../../../../hooks/useInstAbbreviator";
 
 const SingleChair = (props) => {
   const [dbsExtrasClicked, setDbsExtrasClicked] = useState(false);
-  const [dbsPosition, setDbsPosition] = useState(0);
 
   const [doublings, setDoublings] = useState([]);
   const [fullInst, setFullInst] = useState("");
@@ -24,9 +23,10 @@ const SingleChair = (props) => {
     <DoubleEx
       key={inst + rank}
       inst={inst}
+      doublings={doublings}
       setDoublings={setDoublings}
-      setFullInst={setFullInst}
       fullInst={fullInst}
+      setFullInst={setFullInst}
       setDbsExtrasClicked={setDbsExtrasClicked}
     />
   ));

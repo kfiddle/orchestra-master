@@ -1,4 +1,9 @@
 .outerContainer {
+  display: flex;
+}
+
+
+.instContainer {
   position: relative;
   margin: 0.25rem 4rem;
   padding: 1rem;
