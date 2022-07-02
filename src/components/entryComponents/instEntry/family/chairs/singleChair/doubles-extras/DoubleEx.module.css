@@ -15,10 +15,30 @@
     rgb(85, 85, 90),
     rgb(85, 85, 90)
   ); */
-  background: lightblue;
+  background: rgb(147, 164, 247);
   font-weight: 900;
   transform: translateX(-5rem);
   z-index: 2;
   cursor: pointer;
   transition: 0.2s linear;
 }
+
+.triangle {
+  border-right: 20px solid rgb(14, 2, 63);
+  border-top: 20px solid transparent;
+  display: inline-block;
+  margin-right: 0.75rem;
+  cursor: pointer;
+}
+
+.triangle:hover {
+  border-right: 20px solid rgb(235, 231, 9);
+
+}
+
+/* .triangle {
+  border-left: 20px solid cyan;
+  border-right: 20px solid red;
+  border-bottom: 20px solid green;
+  border-top: 20px solid blue;
+} */

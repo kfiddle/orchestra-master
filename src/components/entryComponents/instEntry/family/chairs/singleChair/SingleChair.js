@@ -5,9 +5,12 @@ import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import styles from "./SingleChair.module.css";
 import DoublingExtras from "../../../../../helperFunctions/DoublingExtras";
 import DoubleEx from "./doubles-extras/DoubleEx";
+import MovingDiv from "../../../../../UI/movingDiv/MovingDiv";
 
 const SingleChair = (props) => {
   const [dbsExtrasClicked, setDbsExtrasClicked] = useState(false);
+  const [dbsPosition, setDbsPosition] = useState(0);
+
   const [doublings, setDoublings] = useState([]);
 
   const rank = props.rank;
@@ -23,13 +26,17 @@ const SingleChair = (props) => {
     setDbsExtrasClicked((previous) => !previous);
   };
 
+  const dbsHeight = displayableDoubles.length * -5;
+
+  const stylesToggle = dbsExtrasClicked? styles.clickedOuter : styles.unclickedOuter;
+
   return (
     <div>
       {dbsExtrasClicked && (
-        <div className={styles.doubles}>{displayableDoubles}</div>
+        <MovingDiv goToSpot={`${dbsHeight}rem`}>{displayableDoubles}</MovingDiv>
       )}
 
-      <div className={styles.outerContainer} onClick={showit}>
+      <div className={`${styles.outerContainer} ${stylesToggle}`} onClick={showit}>
         {rank}
       </div>
     </div>

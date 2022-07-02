@@ -8,12 +8,12 @@ const DoubleEx = (props) => {
   const doublingClicker = () => {};
 
   const fullInstClicker = () => {
-    
+
   };
 
   return (
     <div onClick={fullInstClicker} className={styles.outerContainer}>
-      <button onClick={doublingClicker}>/</button>
+      <div className={styles.triangle} onClick={doublingClicker}></div>
       {inst}
     </div>
   );
