@@ -23,6 +23,13 @@
   transition: 0.2s linear;
 }
 
+.instNameDiv {
+}
+
+.instNameDiv:hover {
+  color: white;
+}
+
 .triangle {
   border-right: 20px solid rgb(14, 2, 63);
   border-top: 20px solid transparent;
@@ -32,8 +39,7 @@
 }
 
 .triangle:hover {
-  border-right: 20px solid rgb(235, 231, 9);
-
+  border-right: 20px solid white;
 }
 
 /* .triangle {

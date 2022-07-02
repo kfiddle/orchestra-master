@@ -6,7 +6,6 @@ const useContractFormatter = (primaryInstrument, otherInstruments, rank) => {
 
     if (otherInstruments[0] != null) {
       part2 = otherInstruments[0].name;
-      console.log(otherInstruments[0].name);
     }
 
     let abbreviatedPart = "";
