@@ -53,3 +53,35 @@
   border-bottom: 20px solid green;
   border-top: 20px solid blue;
 } */
+
+
+.numberDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 2rem;
+  color: rgb(2, 26, 68);
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.button {
+  width: fit-content;
+  background: none;
+  color: rgb(21, 1, 69);
+  border: 3px solid rgb(32, 32, 255);
+  padding: 1px 6px;
+  /* margin: 1rem; */
+  border-radius: 100px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  /* float: right; */
+  transition: all 0.25s ease-out;
+}
+
+.button:hover {
+  background: midnightblue;
+  color: rgb(173, 151, 151);
+}

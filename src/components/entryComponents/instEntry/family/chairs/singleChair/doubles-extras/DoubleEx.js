@@ -1,27 +1,46 @@
 import { useState, Fragment } from "react";
 
+import usePart from "../../../../../../../hooks/usePart";
+
 import styles from "./DoubleEx.module.css";
 
-const DoubleEx = (props) => {
+const DoubleEx = ({
+  extraInst,
+  setInst,
+  doublings,
+  setDoublings,
+  inst,
+  setDbsExtrasClicked,
+}) => {
   const [openRankBox, SetOpenRankBox] = useState(false);
+  const [dblRank, setDblRank] = useState(1);
 
-  const inst = props.inst;
-  const setFullInst = props.setFullInst;
-  const doublings = props.doublings;
-  const setDoublings = props.setDoublings;
-
-  const fullInst = props.fullInst;
-  const setDbsExtrasClicked = props.setDbsExtrasClicked;
+  const ourPart = usePart(extraInst, dblRank);
 
   const doublingClicker = () => {
-    SetOpenRankBox(previous => !previous);
+    SetOpenRankBox((previous) => !previous);
 
-    setDoublings([...doublings, inst]);
-    console.log(doublings);
+    let tempList = doublings.filter(
+      (doubling) => doubling.instrument === extraInst
+    );
+
+    tempList.length > 0
+      ? setDoublings(tempList)
+      : setDoublings([...doublings, ourPart]);
+  };
+
+  const addButtonClicker = () => {
+    setDblRank((previous) => previous + 1);
+    console.log(ourPart);
+  };
+
+  const subtractButtonClicker = () => {
+    setDblRank((previous) => previous - 1);
+    console.log(ourPart);
   };
 
   const fullInstClicker = () => {
-    inst === fullInst ? setFullInst("") : setFullInst(inst);
+    extraInst === inst ? setInst("") : setInst(extraInst);
     setDbsExtrasClicked(false);
   };
 
@@ -30,10 +49,21 @@ const DoubleEx = (props) => {
       <div className={styles.instContainer}>
         <div className={styles.triangle} onClick={doublingClicker}></div>
         <div className={styles.instNameDiv} onClick={fullInstClicker}>
-          {inst}
+          {extraInst}
         </div>
       </div>
-      {openRankBox && <div>rankBox</div>}
+
+      {openRankBox && (
+        <div>
+          <button onClick={subtractButtonClicker} className={styles.button}>
+            -
+          </button>
+          <button onClick={addButtonClicker} className={styles.button}>
+            +
+          </button>{" "}
+          <div className={styles.numberDiv}>{dblRank}</div>
+        </div>
+      )}
     </div>
   );
 };

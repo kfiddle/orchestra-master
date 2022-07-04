@@ -15,26 +15,6 @@ const Extra = (props) => {
 
   const instrument = props.instrument;
 
-  // useEffect(() => {
-
-  //   const sendItUp = async () => {
-  //     for (let j = 1; j <= localNumber; j++) {
-  //       let response = await pusher(
-  //         {
-  //           parts: [instrument],
-  //           rank: j,
-  //           [pieceOrShow]: object,
-  //         },
-  //         "add-chair-to-" + pieceOrShow
-  //       );
-  //     }
-  //   };
-
-  //   if (submitClicked) {
-  //     sendItUp();
-  //   }
-  // }, [submitClicked]);
-
   const clickHandler = () => {
     setClicked((previous) => !previous);
   };

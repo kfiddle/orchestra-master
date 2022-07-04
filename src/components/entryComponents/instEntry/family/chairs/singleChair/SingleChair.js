@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 
@@ -6,27 +6,30 @@ import styles from "./SingleChair.module.css";
 import DoublingExtras from "../../../../../helperFunctions/DoublingExtras";
 import DoubleEx from "./doubles-extras/DoubleEx";
 import MovingDiv from "../../../../../UI/movingDiv/MovingDiv";
-import useInstAbbreviator from "../../../../../../hooks/useInstAbbreviator";
 
-const SingleChair = (props) => {
+import useInstAbbreviator from "../../../../../../hooks/useInstAbbreviator";
+import useAChair from "../../../../../../hooks/useAChair";
+
+const SingleChair = ({ inst: initialInst, rank }) => {
   const [dbsExtrasClicked, setDbsExtrasClicked] = useState(false);
 
   const [doublings, setDoublings] = useState([]);
-  const [fullInst, setFullInst] = useState("");
-
-  const rank = props.rank;
-  const inst = props.inst;
-
+  const [inst, setInst] = useState(initialInst);
   const { doublingAndExtras } = DoublingExtras();
 
-  const displayableDoubles = doublingAndExtras[inst].map((inst) => (
+
+  const chair = useAChair();
+
+  
+
+  const displayableDoubles = doublingAndExtras[initialInst].map((extraInst) => (
     <DoubleEx
-      key={inst + rank}
-      inst={inst}
+      key={extraInst + rank}
+      extraInst={extraInst}
       doublings={doublings}
       setDoublings={setDoublings}
-      fullInst={fullInst}
-      setFullInst={setFullInst}
+      inst={inst}
+      setInst={setInst}
       setDbsExtrasClicked={setDbsExtrasClicked}
     />
   ));
@@ -40,7 +43,9 @@ const SingleChair = (props) => {
     ? styles.clickedOuter
     : styles.unclickedOuter;
 
-  const printedInst = useInstAbbreviator(fullInst);
+  const printedInst = useInstAbbreviator(inst);
+
+  // const printedInst = useChairPrinter(inst, initialInst, doublings);
 
   return (
     <div>
@@ -52,7 +57,8 @@ const SingleChair = (props) => {
         className={`${styles.outerContainer} ${stylesToggle}`}
         onClick={showit}
       >
-        {fullInst === "" ? rank : printedInst}
+        {inst === initialInst ? rank : printedInst}
+        <button onClick={() => console.log(doublings)}>testDbl</button>
       </div>
     </div>
   );

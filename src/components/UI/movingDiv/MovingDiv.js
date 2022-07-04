@@ -2,12 +2,9 @@ import { useState, useEffect } from "react";
 
 import styles from "./MovingDiv.module.css";
 
-const MovingDiv = (props) => {
+const MovingDiv = ({ goToSpot, opac, children }) => {
   const [position, setPosition] = useState(0);
   const [opacity, setOpacity] = useState(0);
-
-  const goToSpot = props.goToSpot;
-  const opac = props.opac;
 
   useEffect(() => {
     setPosition(goToSpot);
@@ -23,7 +20,7 @@ const MovingDiv = (props) => {
         position: "fixed",
       }}
     >
-      {props.children}
+      {children}
     </div>
   );
 };
