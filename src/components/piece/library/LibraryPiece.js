@@ -4,8 +4,8 @@ import { useState } from "react";
 
 import OrchestrationEntry from "../../entryComponents/orchestrationEntry/OrchestrationEntry";
 import OrchEntry2 from "../../entryComponents/orchEntry2/OrchEntry2";
-
 import InstEntry from "../../entryComponents/instEntry/InstEntry";
+import InstEntry2 from "../../entryComponents/instEntry2/InstEntry2";
 
 import classes from "./LibraryPiece.module.css";
 
@@ -61,8 +61,12 @@ const LibraryPiece = (props) => {
         <OrchEntry2 closeModal={closeModal} piece={props.piece} />
       )} */}
 
-      {orchestrationClicked && (
+      {/* {orchestrationClicked && (
         <InstEntry closeModal={closeModal} piece={props.piece}  />
+      )} */}
+
+      {orchestrationClicked && (
+        <InstEntry2 closeModal={closeModal} piece={props.piece} />
       )}
     </div>
   );

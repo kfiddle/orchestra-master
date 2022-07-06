@@ -1,0 +1,25 @@
+.buttonDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button {
+    width: fit-content;
+    background: none;
+    color: rgb(39, 39, 143);
+    border: 3px solid rgb(39, 39, 143);
+    padding: 8px 100px;
+    margin: 1rem;
+    border-radius: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+  }
+  
+  .button:hover {
+    background: midnightblue;
+    color: rgb(173, 151, 151);
+  }
+  

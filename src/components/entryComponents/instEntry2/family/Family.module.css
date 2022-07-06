@@ -1,0 +1,49 @@
+.outerContainer {
+  display: flex;
+}
+
+.input,
+.control textarea {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #e8e9f8;
+  border: 1px solid #c1d1d1;
+  display: block;
+  font-size: 1.25rem;
+  width: 40%;
+  margin: 1rem; 
+}
+
+.input:focus,
+.control textarea:focus {
+  background-color: #dcdde9;
+  outline-color: rgb(100, 100, 231);
+}
+
+.invalid {
+  font: inherit;
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: rgb(244, 167, 167);
+  outline-color: rgb(90, 4, 4);
+  border: 1px solid #c1d1d1;
+  display: block;
+  font-size: 1.25rem;
+  /* width: 6em; */
+  /* margin: 1.5rem; */
+}
+
+.label {
+  display: flex;
+  justify-content: center;
+  transform: translateY(3rem);
+  width: 10%;
+  color: rgb(39, 39, 143);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.label:hover {
+  color: rgb(171, 13, 13);
+}
