@@ -17,22 +17,35 @@ const StringsBox = () => {
   const symClicked = clickedOption === SYM ? styles.clicked : null;
   const popsClicked = clickedOption === POPS ? styles.clicked : null;
 
-  const clicker = (symOrPops) => {
-    setClickedOption(symOrPops);
+  const symClicker = () => {
+    if (clickedOption !== SYM) {
+      setClickedOption(SYM);
+    } else {
+      setClickedOption(null);
+    }
   };
+
+  const popsClicker = () => {
+    if (clickedOption !== POPS) {
+      setClickedOption(POPS);
+    } else {
+      setClickedOption(null);
+    }
+  };
+
   return (
     <div className={styles.outerContainer}>
       <label className={styles.label}>STRINGS</label>
 
       <button
         className={`${styles.button} ${symClicked}`}
-        onClick={() => clicker(SYM)}
+        onClick={symClicker}
       >
         SYM
       </button>
       <button
         className={`${styles.button} ${popsClicked}`}
-        onClick={() => clicker(POPS)}
+        onClick={popsClicker}
       >
         POPS
       </button>
