@@ -64,7 +64,9 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
         </div>
 
         <div className={styles.SubmitButtonDiv}>
-        <button className={styles.button} onClick={submit}>SUBMIT</button>
+          <button className={styles.button} onClick={submit}>
+            SUBMIT
+          </button>
         </div>
       </Modal>
     </InstEntryStore.Provider>

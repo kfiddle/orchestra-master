@@ -2,34 +2,34 @@ import { useState } from "react";
 
 import styles from "./StringsBox.module.css";
 
-const initialInput = "12.10.8.8.5";
+const symInput = "12.10.8.8.5";
+const popsInput = "10.8.6.6.4";
 const SYM = "SYM";
 const POPS = "POPS";
 
 const StringsBox = () => {
-  const [input, setInput] = useState(initialInput);
-  const [clickedOption, setClickedOption] = useState(SYM);
+  const [input, setInput] = useState(symInput);
 
   const setStrings = (event) => {
     setInput(event.target.value);
   };
 
-  const symClicked = clickedOption === SYM ? styles.clicked : null;
-  const popsClicked = clickedOption === POPS ? styles.clicked : null;
+  const symClicked = input === symInput ? styles.clicked : null;
+  const popsClicked = input === popsInput ? styles.clicked : null;
 
   const symClicker = () => {
-    if (clickedOption !== SYM) {
-      setClickedOption(SYM);
+    if (input !== symInput) {
+      setInput(symInput);
     } else {
-      setClickedOption(null);
+      setInput('');
     }
   };
 
   const popsClicker = () => {
-    if (clickedOption !== POPS) {
-      setClickedOption(POPS);
+    if (input !== popsInput) {
+      setInput(popsInput);
     } else {
-      setClickedOption(null);
+      setInput('');
     }
   };
 
@@ -37,10 +37,7 @@ const StringsBox = () => {
     <div className={styles.outerContainer}>
       <label className={styles.label}>STRINGS</label>
 
-      <button
-        className={`${styles.button} ${symClicked}`}
-        onClick={symClicker}
-      >
+      <button className={`${styles.button} ${symClicked}`} onClick={symClicker}>
         SYM
       </button>
       <button
