@@ -1,7 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Chairs from "../../instEntry/family/chairs/Chairs";
 
+import FamilyChairsSend from "./FamilyChairsSend";
+
+import { InstEntryStore } from "../../../../store/form-holders";
+
 import { Chair, Part } from "../Chair";
+
 import useSetPrimary from "../../../../hooks/useSetPrimary";
 
 import styles from "./Family.module.css";
@@ -9,8 +14,15 @@ import styles from "./Family.module.css";
 const Family = ({ label, chairs, setChairs, insts }) => {
   const [invalidEntry, setInvalidEntry] = useState(false);
   const [localText, setLocalText] = useState([]);
+  const { submitClicked } = useContext(InstEntryStore);
 
   const flutes = useSetPrimary(localText[0], "FLUTE", chairs, setChairs);
+
+  useEffect(() => {
+    if (submitClicked) {
+      FamilyChairsSend(localText);
+    }
+  }, [submitClicked]);
 
   const setBigNums = (index, instName) => {
     let list = [];
@@ -25,32 +37,10 @@ const Family = ({ label, chairs, setChairs, insts }) => {
     setChairs([...chairs, ...list]);
   };
 
-  useEffect(() => {
-    // const setFlutes = () => {
-    //   setBigNums(0, "FLUTE");
-    //   setBigNums(1, "Clarinet");
-    // };
-    // const setClarinets = () => {
-    //   setBigNums(1, "Clarinet");
-    // };
-    // setFlutes();
-    // setClarinets();
-  }, [localText]);
-
   const handleInput = (event) => {
-    if (event.target.value.length === 0) {
-      setInvalidEntry(false);
-    } else {
-      for (let char of event.target.value) {
-        if ((isNaN(char) && char !== "a") || event.target.value.length > 5) {
-          setInvalidEntry(true);
-        } else {
-          setInvalidEntry(false);
-        }
-      }
-    }
-
-    setLocalText(event.target.value);
+    const initialText = event.target.value;
+    const textNoDashes = initialText.replace(/-/g, "");
+    setLocalText(textNoDashes.replace(/\s+/g, ""));
   };
 
   return (
