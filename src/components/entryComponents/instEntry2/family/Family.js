@@ -20,7 +20,8 @@ const Family = ({ label, chairs, setChairs, insts }) => {
 
   useEffect(() => {
     if (submitClicked) {
-      FamilyChairsSend(localText);
+      const chairsList = FamilyChairsSend(localText);
+      console.log(chairsList)
     }
   }, [submitClicked]);
 
@@ -40,7 +41,7 @@ const Family = ({ label, chairs, setChairs, insts }) => {
   const handleInput = (event) => {
     const initialText = event.target.value;
     const textNoDashes = initialText.replace(/-/g, "");
-    setLocalText(textNoDashes.replace(/\s+/g, ""));
+    setLocalText(textNoDashes.replace(/\s+/g, "").toUpperCase());
   };
 
   return (

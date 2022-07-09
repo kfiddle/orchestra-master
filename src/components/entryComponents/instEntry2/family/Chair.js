@@ -33,9 +33,9 @@ export const Chair = (parts) => {
   return { parts, removeAPart };
 };
 
-export const Part = (instrument, incomingRank) => {
-  let specialDesignate = isNaN(incomingRank) ? rank : null;
-  let rank = !isNaN(incomingRank) ? incomingRank : null;
+export const Part = (instrument, rankOrDesignate) => {
+  let specialDesignate = isNaN(rankOrDesignate) ? rankOrDesignate : null;
+  let rank = !isNaN(rankOrDesignate) ? +rankOrDesignate : null;
 
   const changeInst = (instName) => {
     instrument = instName;

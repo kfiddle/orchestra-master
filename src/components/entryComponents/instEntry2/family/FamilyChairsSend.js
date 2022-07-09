@@ -1,14 +1,15 @@
 import { Part, Chair, extras, primaries } from "./Chair";
 
 const FamilyChairsSend = (text) => {
-  let tempList = [];
+  console.log(text);
+  let chairsList = [];
 
   const renderChair = (inst, rank) => {
     let parts = [];
     let part = Part(inst, rank);
     parts.push(part);
     let chair = Chair(parts);
-    tempList.push(chair);
+    chairsList.push(chair);
   };
 
   const renderDoublings = (inst, chair) => {
@@ -27,7 +28,7 @@ const FamilyChairsSend = (text) => {
       }
     }
 
-    tempList.push(Chair(partsToAdd));
+    chairsList.push(Chair(partsToAdd));
   };
 
   const goBetweenBrackets = (j, index) => {
@@ -49,8 +50,16 @@ const FamilyChairsSend = (text) => {
   const mainLoop = () => {
     let times = 0;
     for (let j = 0; j < text.length; j++) {
-      if (text[j + 1] === "[") {
+      let nextChar = text[j + 1];
+      if (nextChar === "[") {
         j = goBetweenBrackets(j, times);
+      } else if (nextChar === "A") {
+        console.log("we are here");
+        for (let k = 1; k <= text[j]; k++) {
+          renderChair(primaries[times], k);
+        }
+        renderChair(primaries[times], "a");
+        times++;
       } else {
         for (let k = 1; k <= text[j]; k++) {
           renderChair(primaries[times], k);
@@ -61,7 +70,7 @@ const FamilyChairsSend = (text) => {
   };
 
   mainLoop();
-  console.log(tempList);
+  return chairsList;
 };
 
 export default FamilyChairsSend;
