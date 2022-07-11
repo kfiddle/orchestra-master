@@ -26,10 +26,11 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
   const [chairs, setChairs] = useState([]);
   const [submitClicked, setSubmitClicked] = useState(false);
 
-  const pieceOrShow = piece ? "piece" : "show";
-  const object = piece ? piece : show;
+  const pieceShow = { show: show, piece, piece };
+  // const pieceOrShow = piece ? "piece" : "show";
+  // const object = piece ? piece : show;
   const title = piece ? piece.title : show.title;
-  const providerObject = { pieceOrShow, submitClicked };
+  const providerObject = { pieceShow, submitClicked, setSubmitClicked };
 
   const submit = () => {
     setSubmitClicked(true);
@@ -40,18 +41,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
       <Modal closeModal={closeModal} styleObject={modalStyle}>
         <div className={styles.titleDiv}>{title}</div>
         <div className={styles.outerContainer}>
-          <Family
-            label={"WINDS"}
-            chairs={chairs}
-            setChairs={setChairs}
-            insts={families["WINDS"]}
-          />
-          <Family
-            label={"BRASS"}
-            chairs={chairs}
-            setChairs={setChairs}
-            insts={families["BRASS"]}
-          />
+          <Family label={"WINDS AND BRASS"} />
 
           <div className={styles.extrasButtonDiv}>
             <ExtrasButton />

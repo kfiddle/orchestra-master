@@ -1,14 +1,12 @@
-import { useState, useEffect } from "react";
-
 export const extras = {
-  FLUTE: ["PIC", "AFL", "BFL", "FDA"],
-  OBOE: ["EH", "BOB", "ODA"],
-  CLARINET: ["EB", "BCL", "SAX"],
-  BASSOON: ["CBN"],
-  HORN: ["WTBA"],
-  TRUMPET: ["CRT", "FGH", "PIC"],
-  TROMBONE: ["BASS"],
-  TUBA: ["EUPH"],
+  FL: ["PIC", "AFL", "BFL", "FDA"],
+  OB: ["EH", "BOB", "ODA"],
+  CL: ["EB", "BCL", "SAX"],
+  BSN: ["CBN"],
+  HN: ["WTBA"],
+  TPT: ["CRT", "FGH", "PTPT"],
+  TBN: ["BASS"],
+  TBA: ["EUPH"],
 };
 
 export const primaries = Object.keys(extras);
@@ -26,26 +24,15 @@ const isValidInst = (instName) => {
 };
 
 export const Chair = (parts) => {
-  const removeAPart = (index) => {
-    parts.splice(index, 1);
-  };
-
-  return { parts, removeAPart };
+  return { parts };
 };
 
-export const Part = (instrument, rankOrDesignate) => {
+export const Part = (instAbbrev, rankOrDesignate) => {
   let specialDesignate = isNaN(rankOrDesignate) ? rankOrDesignate : null;
   let rank = !isNaN(rankOrDesignate) ? +rankOrDesignate : null;
 
-  const changeInst = (instName) => {
-    instrument = instName;
-  };
-
-  const changeRank = (newRank) => {
-    rank = newRank;
-  };
-  if (isValidInst(instrument)) {
-    return { instrument, rank, specialDesignate, changeInst, changeRank };
+  if (isValidInst(instAbbrev)) {
+    return { instrument: { abbreviation: instAbbrev }, rank, specialDesignate };
   } else {
     return null;
   }

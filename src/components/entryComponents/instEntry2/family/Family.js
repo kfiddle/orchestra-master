@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import Chairs from "../../instEntry/family/chairs/Chairs";
+
+import useFetch from "../../../../hooks/useFetch";
 
 import FamilyChairsSend from "./FamilyChairsSend";
 
@@ -7,36 +8,32 @@ import { InstEntryStore } from "../../../../store/form-holders";
 
 import { Chair, Part } from "../Chair";
 
-import useSetPrimary from "../../../../hooks/useSetPrimary";
-
 import styles from "./Family.module.css";
 
 const Family = ({ label, chairs, setChairs, insts }) => {
   const [invalidEntry, setInvalidEntry] = useState(false);
   const [localText, setLocalText] = useState([]);
-  const { submitClicked } = useContext(InstEntryStore);
+  const { pieceShow, submitClicked, setSubmitClicked } =
+    useContext(InstEntryStore);
 
-  const flutes = useSetPrimary(localText[0], "FLUTE", chairs, setChairs);
+  const pusher = useFetch();
 
   useEffect(() => {
+    const sendUpChairs = async (chairsList) => {
+      let testingId = pieceShow.piece.id;
+      let response = await pusher(chairsList, "add-empty-chairs/" + testingId);
+    };
+
     if (submitClicked) {
       const chairsList = FamilyChairsSend(localText);
-      console.log(chairsList)
+      sendUpChairs(chairsList);
+      console.log(chairsList);
+      setSubmitClicked(false);
     }
+
+    console.log(pieceShow);
   }, [submitClicked]);
 
-  const setBigNums = (index, instName) => {
-    let list = [];
-    for (let num = 1; num <= localText[index]; num++) {
-      let parts = [];
-      let part = Part(instName, num);
-      parts.push(part);
-      let chair = Chair(parts);
-      console.log(chair);
-      list.push(chair);
-    }
-    setChairs([...chairs, ...list]);
-  };
 
   const handleInput = (event) => {
     const initialText = event.target.value;

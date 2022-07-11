@@ -30,6 +30,7 @@ const RosterSpot = (props) => {
   let index = props.index;
   let { parts, rank, specialDesignate } = chair;
 
+
   let player = props.pic.player;
   let sectionSeat = props.pic.sectionSeat;
 
@@ -43,12 +44,14 @@ const RosterSpot = (props) => {
   const fadeForOther = props.fadeForOther;
 
   let primaryPart = parts[0];
+  let primaryPartName = primaryPart.instrument.name;
+  let primaryRank = primaryPart.instrument.rank;
 
   let doublingParts = "";
 
   if (parts.length > 1) {
     for (let j = 1; j < parts.length; j++) {
-      doublingParts = doublingParts + "/ " + parts[j];
+      doublingParts = doublingParts + "/ " + parts[j].instrument.name;
     }
   }
 
@@ -95,7 +98,7 @@ const RosterSpot = (props) => {
   };
 
   let printSectionLabel =
-    rank === 1 || (stringPart && sectionSeat === 0) || rightClicked
+    primaryPart.rank === 1 || (stringPart && sectionSeat === 0) || rightClicked
       ? true
       : false;
 
@@ -130,7 +133,7 @@ const RosterSpot = (props) => {
         onDoubleClick={doubleClickHandler}
       >
         <div className={classes.partDiv}>
-          {printSectionLabel && primaryPart}
+          {printSectionLabel && primaryPartName}
         </div>
         <div className={classes.rankDiv}>{printRankOrSeat}</div>
 

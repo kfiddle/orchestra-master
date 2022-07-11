@@ -1,7 +1,6 @@
 import { Part, Chair, extras, primaries } from "./Chair";
 
 const FamilyChairsSend = (text) => {
-  console.log(text);
   let chairsList = [];
 
   const renderChair = (inst, rank) => {
@@ -54,7 +53,6 @@ const FamilyChairsSend = (text) => {
       if (nextChar === "[") {
         j = goBetweenBrackets(j, times);
       } else if (nextChar === "A") {
-        console.log("we are here");
         for (let k = 1; k <= text[j]; k++) {
           renderChair(primaries[times], k);
         }
