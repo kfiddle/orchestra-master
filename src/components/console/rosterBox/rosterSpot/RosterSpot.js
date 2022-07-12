@@ -45,7 +45,8 @@ const RosterSpot = (props) => {
 
   let primaryPart = parts[0];
   let primaryPartName = primaryPart.instrument.name;
-  let primaryRank = primaryPart.instrument.rank;
+
+  console.log(parts[0])
 
   let doublingParts = "";
 
@@ -133,7 +134,8 @@ const RosterSpot = (props) => {
         onDoubleClick={doubleClickHandler}
       >
         <div className={classes.partDiv}>
-          {printSectionLabel && primaryPartName}
+          {/* {printSectionLabel && primaryPartName} */}
+          {primaryPartName}  {primaryPart.rank}
         </div>
         <div className={classes.rankDiv}>{printRankOrSeat}</div>
 

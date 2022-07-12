@@ -31,20 +31,37 @@ const FamilyChairsSend = (text) => {
   };
 
   const goBetweenBrackets = (j, index) => {
+    // let primaryInst = primaries[index];
+    // let closingIndex = text.indexOf("]");
+    // let withinBracketsChairs = text.slice(j + 2, closingIndex).split(".");
+    // withinBracketsChairs.forEach((chair) => {
+    //   if (!isNaN(chair)) {
+    //     renderChair(primaryInst, chair);
+    //   } else if (extras[primaryInst].includes(chair)) {
+    //     renderChair(primaryInst, 1);
+    //   } else {
+    //     renderDoublings(primaryInst, chair);
+    //   }
+    // });
+    // return closingIndex;
+
     let primaryInst = primaries[index];
-    let closingIndex = text.indexOf("]");
-    let withinBracketsChairs = text.slice(j + 2, closingIndex).split(".");
+    let bracketSlice = text.slice(j + 1);
+    let closingIndex = bracketSlice.indexOf("]");
+    let withinBracketsChairs = bracketSlice.slice(1, closingIndex).split(".");
     withinBracketsChairs.forEach((chair) => {
       if (!isNaN(chair)) {
         renderChair(primaryInst, chair);
       } else if (extras[primaryInst].includes(chair)) {
-        renderChair(primaryInst, 1);
+        renderChair(chair, 1);
       } else {
         renderDoublings(primaryInst, chair);
       }
     });
-    return closingIndex;
+    return closingIndex + j;
   };
+
+  // 3[1.2.pic] 2 3[1.2.Bcl] 2 – 4a221
 
   const mainLoop = () => {
     let times = 0;
@@ -52,11 +69,13 @@ const FamilyChairsSend = (text) => {
       let nextChar = text[j + 1];
       if (nextChar === "[") {
         j = goBetweenBrackets(j, times);
+        // times++;
       } else if (nextChar === "A") {
         for (let k = 1; k <= text[j]; k++) {
           renderChair(primaries[times], k);
         }
         renderChair(primaries[times], "a");
+        j++;
         times++;
       } else {
         for (let k = 1; k <= text[j]; k++) {
