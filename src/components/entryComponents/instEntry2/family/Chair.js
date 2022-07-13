@@ -2,10 +2,10 @@ export const extras = {
   FL: ["PIC", "AFL", "BFL", "FDA"],
   OB: ["EH", "BOB", "ODA"],
   CL: ["EB", "BCL", "SAX"],
-  BSN: ["CBN"],
+  BSN: ["CBSN"],
   HN: ["WTBA"],
   TPT: ["CRT", "FGH", "PTPT"],
-  TBN: ["BASS"],
+  TBN: ["BTRBN"],
   TBA: ["EUPH"],
 };
 

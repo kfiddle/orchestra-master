@@ -9,11 +9,21 @@ import styles from "./Extra.module.css";
 const Extra = (props) => {
   const [clicked, setClicked] = useState(false);
   const [localNumber, setLocalNumber] = useState(0);
-  const { pieceOrShow } = useContext(InstEntryStore);
+  const { pieceShow, submitClicked } = useContext(InstEntryStore);
 
   const pusher = useFetch();
 
   const instrument = props.instrument;
+
+  useEffect(() => {
+    const sendUpExtras = async () => {
+      let testingId = pieceShow.piece.id;
+      // let response = await pusher(chairsList, "add-empty-chairs/" + testingId);
+    };
+
+    if (submitClicked) {
+    }
+  }, [submitClicked]);
 
   const clickHandler = () => {
     setClicked((previous) => !previous);

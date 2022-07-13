@@ -31,20 +31,6 @@ const FamilyChairsSend = (text) => {
   };
 
   const goBetweenBrackets = (j, index) => {
-    // let primaryInst = primaries[index];
-    // let closingIndex = text.indexOf("]");
-    // let withinBracketsChairs = text.slice(j + 2, closingIndex).split(".");
-    // withinBracketsChairs.forEach((chair) => {
-    //   if (!isNaN(chair)) {
-    //     renderChair(primaryInst, chair);
-    //   } else if (extras[primaryInst].includes(chair)) {
-    //     renderChair(primaryInst, 1);
-    //   } else {
-    //     renderDoublings(primaryInst, chair);
-    //   }
-    // });
-    // return closingIndex;
-
     let primaryInst = primaries[index];
     let bracketSlice = text.slice(j + 1);
     let closingIndex = bracketSlice.indexOf("]");
@@ -54,6 +40,10 @@ const FamilyChairsSend = (text) => {
         renderChair(primaryInst, chair);
       } else if (extras[primaryInst].includes(chair)) {
         renderChair(chair, 1);
+      } else if (extras[primaryInst].includes(chair.slice(0, -1))) {
+        const inst = chair.slice(0, -1);
+        const rank = chair.slice(-1);
+        renderChair(inst, rank);
       } else {
         renderDoublings(primaryInst, chair);
       }
@@ -69,7 +59,6 @@ const FamilyChairsSend = (text) => {
       let nextChar = text[j + 1];
       if (nextChar === "[") {
         j = goBetweenBrackets(j, times);
-        // times++;
       } else if (nextChar === "A") {
         for (let k = 1; k <= text[j]; k++) {
           renderChair(primaries[times], k);

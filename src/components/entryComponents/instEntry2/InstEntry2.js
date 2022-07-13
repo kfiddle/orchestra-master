@@ -9,6 +9,7 @@ import SubmitButton from "../../UI/submitButton/SubmitButton";
 
 import styles from "./InstEntry2.module.css";
 import StringsBox from "./stringsBox/StringsBox";
+import PercBox from "./percBox/PercBox";
 
 const modalStyle = {
   background: "slategrey",
@@ -27,8 +28,6 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
 
   const pieceShow = { show: show, piece, piece };
-  // const pieceOrShow = piece ? "piece" : "show";
-  // const object = piece ? piece : show;
   const title = piece ? piece.title : show.title;
   const providerObject = { pieceShow, submitClicked, setSubmitClicked };
 
@@ -43,6 +42,8 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
         <div className={styles.outerContainer}>
           <Family label={"WINDS AND BRASS"} />
 
+         <PercBox />
+
           <div className={styles.extrasButtonDiv}>
             <ExtrasButton />
           </div>
@@ -51,10 +52,9 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
             <StringsBox />
           </div>
 
-          <button onClick={() => console.log(chairs)}>CHECK</button>
         </div>
 
-        <div className={styles.SubmitButtonDiv}>
+        <div className={styles.submitButtonDiv}>
           <button className={styles.button} onClick={submit}>
             SUBMIT
           </button>

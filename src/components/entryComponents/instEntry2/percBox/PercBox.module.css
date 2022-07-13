@@ -1,7 +1,9 @@
 .outerContainer {
-  display: flex;
-  margin-bottom: 1rem;
+    width: 100%;
+    display: flex;
 }
+
+
 
 .input,
 .control textarea {
@@ -12,26 +14,14 @@
   border: 1px solid #c1d1d1;
   display: block;
   font-size: 1.25rem;
-  width: 60%;
-  margin: 1rem; 
+  width: 4em;
+  margin: 1rem;
 }
 
 .input:focus,
 .control textarea:focus {
   background-color: #dcdde9;
   outline-color: rgb(100, 100, 231);
-}
-
-.invalid {
-  font: inherit;
-  padding: 1rem;
-  border-radius: 4px;
-  background-color: rgb(244, 167, 167);
-  outline-color: rgb(90, 4, 4);
-  border: 1px solid #c1d1d1;
-  display: block;
-  font-size: 1.25rem;
-
 }
 
 .label {

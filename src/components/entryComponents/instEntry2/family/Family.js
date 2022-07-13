@@ -24,21 +24,27 @@ const Family = ({ label, chairs, setChairs, insts }) => {
       let response = await pusher(chairsList, "add-empty-chairs/" + testingId);
     };
 
+    const storeOrchWithPiece = async () => {
+      const pieceToSend = { ...pieceShow.piece, instrumentation: localText };
+      let response = await pusher(pieceToSend, "edit-piece");
+    };
+
     if (submitClicked) {
       const chairsList = FamilyChairsSend(localText);
       sendUpChairs(chairsList);
-      console.log(chairsList);
-      setSubmitClicked(false);
+      storeOrchWithPiece();
     }
-
-    console.log(pieceShow);
   }, [submitClicked]);
 
-
   const handleInput = (event) => {
-    const initialText = event.target.value;
-    const textNoDashes = initialText.replace(/-/g, "");
-    setLocalText(textNoDashes.replace(/\s+/g, "").toUpperCase());
+    let tempString = "";
+    const onlyAllowed = /^[0-9a-zA-Z[\]./]+$/;
+    for (let char of event.target.value) {
+      if (onlyAllowed.test(char)) {
+        tempString += char.toUpperCase();
+      }
+    }
+    setLocalText(tempString);
   };
 
   return (

@@ -35,7 +35,7 @@
 .clicked,
 .button:hover {
   background: midnightblue;
-  color: rgb(173, 151, 151);
+  color: white;
 }
 
 .input {
