@@ -12,6 +12,7 @@ import usePushBasic from "../../../../hooks/usePushBasic";
 import useDateFormatter from "../../../../hooks/useDateFormatter";
 
 import styles from "./Show.module.css";
+import InstEntry2 from "../../../entryComponents/instEntry2/InstEntry2";
 
 //shows has this
 
@@ -20,7 +21,6 @@ const Show = (props) => {
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
-
 
   const show = props.show;
   const { title } = show;

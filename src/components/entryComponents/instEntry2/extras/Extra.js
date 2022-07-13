@@ -17,11 +17,20 @@ const Extra = (props) => {
 
   useEffect(() => {
     const sendUpExtras = async () => {
-      let testingId = pieceShow.piece.id;
-      // let response = await pusher(chairsList, "add-empty-chairs/" + testingId);
+      for (let j = 1; j <= localNumber; j++) {
+        let chairToSend = {
+          piece: pieceShow.piece,
+          show: pieceShow.show,
+          parts: [{ instrument: { name: instrument }, rank: j }],
+        };
+        console.log(chairToSend)
+
+        let response = await pusher(chairToSend, "add-chair");
+      }
     };
 
-    if (submitClicked) {
+    if (submitClicked && localNumber > 0) {
+      sendUpExtras();
     }
   }, [submitClicked]);
 

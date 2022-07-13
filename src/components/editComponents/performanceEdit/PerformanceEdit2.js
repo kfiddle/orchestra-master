@@ -9,6 +9,7 @@ import DisplayedPiecesSimple from "./displayedPiecesSimple/DisplayedPiecesSimple
 
 import OrchEntry2 from "../../entryComponents/orchEntry2/OrchEntry2";
 import OrchestrationEntry from "../../entryComponents/orchestrationEntry/OrchestrationEntry";
+import InstEntry2 from "../../entryComponents/instEntry2/InstEntry2";
 
 import ProgramRepEdit from "./programRepEdit/ProgramRepEdit";
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
@@ -37,7 +38,7 @@ const PerformanceEdit2 = (props) => {
           props.performance,
           "get-pieces-on-program"
         );
-        if (response !== 'phoey') {
+        if (response !== "phoey") {
           setClickedPiecesList(response);
         }
       } catch (error) {
@@ -52,7 +53,7 @@ const PerformanceEdit2 = (props) => {
           props.performance,
           "get-showtunes-on-program"
         );
-        if (response !== 'phoey') {
+        if (response !== "phoey") {
           setShowPiecesList(response);
         }
       } catch (error) {
@@ -83,7 +84,7 @@ const PerformanceEdit2 = (props) => {
     setShowEditsSubmitted(true);
 
     let response = await pusher(performance, "edit-performance");
-    if (response !== 'phoey') {
+    if (response !== "phoey") {
       props.closeModal();
     }
   };
@@ -143,7 +144,8 @@ const PerformanceEdit2 = (props) => {
                 </form>
 
                 {instButtonClicked && (
-                  <OrchEntry2 show={performance} closeModal={closeModal} />
+                  // <OrchEntry2 show={performance} closeModal={closeModal} />
+                  <InstEntry2 closeModal={closeModal} show={performance} />
                 )}
 
                 {/* {instButtonClicked && (
