@@ -29,7 +29,6 @@ const Family = ({ label, chairs, setChairs, insts }) => {
       });
 
       let response = await pusher(chairsToSend, "add-empty-chairs");
-      console.log(chairsToSend);
     };
 
     const storeOrchWithPiece = async () => {

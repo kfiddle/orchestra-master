@@ -11,6 +11,8 @@ export const extras = {
 
 export const primaries = Object.keys(extras);
 
+export const strings = ['VIOLIN1', 'VIOLIN2', 'VIOLA', 'CELLO', 'BASS'];
+
 const allInsts = [];
 for (let key in extras) {
   allInsts.push(key);
