@@ -32,6 +32,8 @@ const LibraryPiece = (props) => {
     updated,
   } = props.piece;
 
+  console.log(title + "   " + instrumentation)
+
   const openOrchestration = () => {
     setOrchestrationClicked(true);
   };

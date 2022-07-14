@@ -39,7 +39,8 @@ const Family = ({ label, chairs, setChairs, insts }) => {
     if (submitClicked) {
       const chairsList = FamilyChairsSend(localText);
       sendUpChairs(chairsList);
-      // storeOrchWithPiece();
+      console.log(chairsList);
+      storeOrchWithPiece();
     }
   }, [submitClicked]);
 
