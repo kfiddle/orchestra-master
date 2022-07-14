@@ -20,8 +20,6 @@ const Family = ({ label, chairs, setChairs, insts }) => {
 
   useEffect(() => {
     const sendUpChairs = async (chairsList) => {
-      // let response = await pusher(chairsList, "add-empty-chairs/" + testingId);
-
       const chairsToSend = chairsList.map((chair) => {
         return {
           piece: pieceShow.piece,
@@ -30,6 +28,7 @@ const Family = ({ label, chairs, setChairs, insts }) => {
         };
       });
 
+      let response = await pusher(chairsToSend, "add-empty-chairs");
       console.log(chairsToSend);
     };
 
@@ -41,7 +40,7 @@ const Family = ({ label, chairs, setChairs, insts }) => {
     if (submitClicked) {
       const chairsList = FamilyChairsSend(localText);
       sendUpChairs(chairsList);
-      storeOrchWithPiece();
+      // storeOrchWithPiece();
     }
   }, [submitClicked]);
 
