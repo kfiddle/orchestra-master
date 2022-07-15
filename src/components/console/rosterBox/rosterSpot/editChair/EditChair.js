@@ -3,14 +3,13 @@ import useFetch from "../../../../../hooks/useFetch";
 import Modal from "../../../../UI/modal/Modal";
 
 import styles from "./EditChair.module.css";
+import SinglePartAdjuster from "./singlePartAdjuster/SinglePartAdjuster";
 
 const EditChair = ({ closeModal, pic }) => {
   const { chair } = pic;
   const { parts } = chair;
 
   const pusher = useFetch();
-
-  console.log(parts);
 
   const deleteChair = async () => {
     const response = await pusher(pic, "delete-pic");
@@ -20,9 +19,7 @@ const EditChair = ({ closeModal, pic }) => {
   };
 
   const displayableParts = parts.map((part) => (
-    <div key={parts.indexOf(part)}>
-      {part.instrument.name} {part.rank}
-    </div>
+    <SinglePartAdjuster key={parts.indexOf(part)} part={part} />
   ));
 
   const styleObject = { height: "15rem" };
