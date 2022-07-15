@@ -1,6 +1,7 @@
 import { Part, Chair, extras, primaries } from "./Chair";
 
-const FamilyChairsSend = (text) => {
+const FamilyChairsProcessor = (text) => {
+  let isValid = true;
   let chairsList = [];
 
   const renderChair = (inst, rank) => {
@@ -13,7 +14,7 @@ const FamilyChairsSend = (text) => {
 
   const renderDoublings = (inst, chair) => {
     let partsToAdd = [];
-    partsToAdd.push(Part(inst, chair[0]));
+    !isNaN(chair[0]) ? partsToAdd.push(Part(inst, chair[0])) : isValid = false;
     const partsString = chair.split("/");
     const endsWithDigit = /\w\d$/;
 
@@ -76,7 +77,7 @@ const FamilyChairsSend = (text) => {
   };
 
   mainLoop();
-  return chairsList;
+  return isValid ? chairsList : false;
 };
 
-export default FamilyChairsSend;
+export default FamilyChairsProcessor;

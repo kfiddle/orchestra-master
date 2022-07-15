@@ -16,7 +16,15 @@ import EditChair from "./editChair/EditChair";
 
 // RosterSpots has this
 
-const RosterSpot = (props) => {
+const RosterSpot = ({
+  pic,
+  index,
+  rightClicker,
+  rightClicked,
+  doubleClicker,
+  doubleClicked,
+  fadeForOther,
+}) => {
   const [mailClicked, setMailClicked] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
 
@@ -25,23 +33,15 @@ const RosterSpot = (props) => {
 
   const pusher = useFetch();
 
-  let pic = props.pic;
   let chair = pic.chair;
-  let index = props.index;
   let { parts } = chair;
   let { rank, specialDesignate } = parts[0];
 
-  let player = props.pic.player;
-  let sectionSeat = props.pic.sectionSeat;
+  let player = pic.player;
+  let sectionSeat = pic.sectionSeat;
 
   const stringParts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
   let stringPart = stringParts.includes(parts[0]);
-
-  const rightClicker = props.rightClicker;
-  const rightClicked = props.rightClicked;
-  const doubleClicked = props.doubleClicked;
-  const doubleClicker = props.doubleClicker;
-  const fadeForOther = props.fadeForOther;
 
   let primaryPart = parts[0];
   let primaryPartName = primaryPart.instrument.name;
@@ -66,7 +66,7 @@ const RosterSpot = (props) => {
 
   const closeModal = () => {
     setMailClicked(false);
-    setEditClicked(false)
+    setEditClicked(false);
   };
 
   const spotClickedHandler = async () => {
@@ -76,7 +76,7 @@ const RosterSpot = (props) => {
 
   const rightClickHandler = (event) => {
     event.preventDefault();
-    rightClicker(props.pic);
+    rightClicker(pic);
     dispatch({ type: "chosenPic", chosenPic: pic });
   };
 
@@ -86,7 +86,7 @@ const RosterSpot = (props) => {
   };
 
   const removePlayerClicker = async () => {
-    let response = await pusher(props.pic, "remove-player-from-pic");
+    let response = await pusher(pic, "remove-player-from-pic");
 
     if (response !== "phoey") {
       dispatch({ type: "chosenPic", chosenPic: null });

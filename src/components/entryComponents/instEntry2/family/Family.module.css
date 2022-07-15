@@ -13,7 +13,7 @@
   display: block;
   font-size: 1.25rem;
   width: 60%;
-  margin: 1rem; 
+  margin: 1rem;
 }
 
 .input:focus,
@@ -31,7 +31,7 @@
   border: 1px solid #c1d1d1;
   display: block;
   font-size: 1.25rem;
-
+  width: 60%;
 }
 
 .label {

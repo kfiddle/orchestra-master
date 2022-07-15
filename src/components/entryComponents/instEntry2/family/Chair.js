@@ -25,15 +25,23 @@ const isValidInst = (instName) => {
   return allInsts.includes(instName);
 };
 
+
 export const Chair = (parts) => {
   return { parts };
 };
 
 export const Part = (instAbbrev, rankOrDesignate) => {
   let specialDesignate = isNaN(rankOrDesignate) ? rankOrDesignate : null;
-  let rank = !isNaN(rankOrDesignate) ? +rankOrDesignate : null;
+  let rank;
+  if (!isNaN(rankOrDesignate)) {
+    rank = +rankOrDesignate;
+  } else if (rankOrDesignate === 'A') {
+    rank = rankOrDesignate;
+  } else {
+    rank = null;
+  }
 
-  if (isValidInst(instAbbrev)) {
+  if (isValidInst(instAbbrev) && rankOrDesignate) {
     return { instrument: { abbreviation: instAbbrev }, rank, specialDesignate };
   } else {
     return null;

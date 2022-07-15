@@ -4,7 +4,7 @@ import Extras from "./Extras";
 import styles from "./ExtrasButton.module.css";
 
 const ExtrasButton = () => {
-  const [extrasClicked, setExtrasClicked] = useState(false);
+  const [extrasClicked, setExtrasClicked] = useState(true);
 
   const extrasClickHandler = () => {
     setExtrasClicked((previous) => !previous);
@@ -12,9 +12,9 @@ const ExtrasButton = () => {
 
   return (
     <Fragment>
-      <button className={styles.button} onClick={extrasClickHandler}>
+      {/* <button className={styles.button} onClick={extrasClickHandler}>
         Extras
-      </button>
+      </button> */}
       <Extras visible={extrasClicked} />
     </Fragment>
   );
