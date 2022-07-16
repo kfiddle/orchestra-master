@@ -157,7 +157,7 @@ const RosterSpot = ({
           rightClicker={rightClicker}
         />
       )}
-      {editClicked && <EditChair closeModal={closeModal} pic={pic} />}
+      {editClicked && <EditChair closeModal={closeModal} incomingPic={pic} />}
     </div>
   );
 };
