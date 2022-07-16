@@ -4,9 +4,10 @@ import InstrumentsList from "../../store/instruments-list";
 
 import classes from "./InstrumentListItem.module.css";
 
-const InstrumentListItem = ({instrument}) => {
+const InstrumentListItem = ({ instrument }) => {
   const { instrumentToList, clickedInstrumentList } =
     useContext(InstrumentsList);
+
 
   const name = instrument.name;
 
@@ -17,7 +18,7 @@ const InstrumentListItem = ({instrument}) => {
   for (let instr of clickedInstrumentList) {
     if (instr === instrument) {
       outerContainerClass = classes.clickedItem;
-      transformVar = 6 - (clickedInstrumentList.indexOf(instr)*2);
+      transformVar = 6 - clickedInstrumentList.indexOf(instr) * 2;
       innerNameShift = 5;
     }
   }
@@ -32,7 +33,12 @@ const InstrumentListItem = ({instrument}) => {
       className={outerContainerClass}
       style={{ transform: `translateX(-${transformVar}rem)` }}
     >
-      <div className={classes.nameDiv} style={{ marginLeft:`${innerNameShift}rem` }}>{name}</div>
+      <div
+        className={classes.nameDiv}
+        style={{ marginLeft: `${innerNameShift}rem` }}
+      >
+        {name}
+      </div>
     </div>
   );
 };

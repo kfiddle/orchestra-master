@@ -80,17 +80,13 @@ const PlayerEntry = (props) => {
         : `${player.firstNameArea} ${player.lastName}`
     );
 
-    let instrumentsToSend = clickedInstrumentList.map((instrument) =>
-      instrument.name.split(" ").join("")
-    );
-
     let playerToSend = {
       ...player,
       firstNameArea: !enteredFirstNameArea
         ? props.player.firstNameArea
         : enteredFirstNameArea,
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
-      instruments: instrumentsToSend,
+      instruments: clickedInstrumentList,
     };
 
     const sendPlayerOff = async () => {

@@ -9,7 +9,7 @@ import InstEntry2 from "../../entryComponents/instEntry2/InstEntry2";
 
 import classes from "./LibraryPiece.module.css";
 
-const LibraryPiece = (props) => {
+const LibraryPiece = ({piece}) => {
   const [orchestrationClicked, setOrchestrationClicked] = useState(false);
 
   const {
@@ -23,16 +23,15 @@ const LibraryPiece = (props) => {
     otherName,
     publisher,
     duration,
-    instrumentation,
+    windBrass,
     vocalistSoloist,
     percBreakdown,
     notes,
     status,
     sign,
     updated,
-  } = props.piece;
+  } = piece;
 
-  console.log(title + "   " + instrumentation)
 
   const openOrchestration = () => {
     setOrchestrationClicked(true);
@@ -68,7 +67,7 @@ const LibraryPiece = (props) => {
       )} */}
 
       {orchestrationClicked && (
-        <InstEntry2 closeModal={closeModal} piece={props.piece} />
+        <InstEntry2 closeModal={closeModal} piece={piece} />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import InstrumentsList from '../../../../../../store/instruments-list';
+import InstrumentsList from "../../../../../../store/instruments-list";
 
 import classes from "./ExtraType.module.css";
 
@@ -21,37 +21,29 @@ const ExtraTypeBox = (props) => {
   const player = props.player;
   const setPlayer = props.setPlayer;
 
+  const windInsts = ["FLUTE", "OBOE", "CLARINET", "BASSOON"];
+  const twosInsts = ["HARP", "KEYBOARD", "TIMPANI", "TUBA"];
 
   useEffect(() => {
     if (clickedInstrumentList.length > 0) {
-      if (
-        clickedInstrumentList[0] === "Flute" ||
-        clickedInstrumentList[0] === "Oboe" ||
-        clickedInstrumentList[0] === "Clarinet" ||
-        clickedInstrumentList[0] === "Bassoon"
-      ) {
+      const inst = clickedInstrumentList[0].name;
+      if (windInsts.includes(inst)) {
         setWhichContracts(winds);
-      } else if (clickedInstrumentList[0] === "Trombone") {
+      } else if (inst === "TROMBONE") {
         setWhichContracts(trombones);
-      } else if (
-        clickedInstrumentList[0] === "Harp" ||
-        clickedInstrumentList[0] === "Keyboard" ||
-        clickedInstrumentList[0] === "Timpani" ||
-        clickedInstrumentList[0] === "Tuba"
-      ) {
+      } else if (twosInsts.includes(inst)) {
         setWhichContracts(twos);
-      } else if (clickedInstrumentList[0] === "Violin1") {
+      } else if (inst === "VIOLIN1") {
         setWhichContracts(violin1);
-      } else if (clickedInstrumentList[0] === "Trumpet") {
+      } else if (inst === "TRUMPET") {
         setWhichContracts(trumpets);
-      } else if (clickedInstrumentList[0] === "Horn") {
+      } else if (inst === "HORN") {
         setWhichContracts(horns);
-      } else if (clickedInstrumentList[0] === "Percussion") {
+      } else if (inst === "PERCUSSION") {
         setWhichContracts(threes);
       } else {
         setWhichContracts(allElse);
       }
-      console.log(clickedInstrumentList[0]);
     }
   }, [clickedInstrumentList]);
 
@@ -76,7 +68,7 @@ const ExtraTypeBox = (props) => {
 
   const subRankComponents = subRanks.map((rank) => (
     <button
-    key={subRanks.indexOf(rank)}
+      key={subRanks.indexOf(rank)}
       className={
         player.rank === subRanks.indexOf(rank) + 1
           ? classes.highlightedSubButton
