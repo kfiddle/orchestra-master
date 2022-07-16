@@ -21,8 +21,6 @@ const ContractsRoster = (props) => {
     props.possibleEdit(true);
   };
 
-  console.log(allInstruments);
-
   const clickedPlayerHandler = (player) => {
     setInfoBoxClicked(true);
     setClickedPlayer(player);

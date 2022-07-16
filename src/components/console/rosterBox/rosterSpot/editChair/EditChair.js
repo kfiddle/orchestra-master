@@ -58,6 +58,12 @@ const EditChair = ({ closeModal, incomingPic }) => {
       ))
     : [];
 
+  const addDoubling = () => {
+    let templist = [...parts];
+    templist.push({ instrument: { name: "instrument" }, rank: "rank or assist" });
+    setParts([...templist]);
+  };
+
   const styleObject = {
     height: `${parts.length * 20}rem`,
     height: `${2 * 20}rem`,
@@ -72,7 +78,10 @@ const EditChair = ({ closeModal, incomingPic }) => {
             {player && <div className={styles.playerNameDiv}>{playerName}</div>}
             {displayableParts}
 
-            <button className={`${styles.button} ${styles.addDoubling}`}>
+            <button
+              className={`${styles.button} ${styles.addDoubling}`}
+              onClick={addDoubling}
+            >
               <AiOutlinePlus />
               ADD DOUBLING
             </button>
