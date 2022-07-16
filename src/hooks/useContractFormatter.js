@@ -1,11 +1,11 @@
-const useContractFormatter = (primaryInstrument, otherInstruments, rank) => {
-  if (primaryInstrument || rank) {
-    let part = primaryInstrument.name;
+const useContractFormatter = (instruments, rank) => {
+  if (instruments || rank) {
+    let part = instruments[0].name;
 
     let part2 = null;
 
-    if (otherInstruments[0] != null) {
-      part2 = otherInstruments[0].name;
+    if (instruments[1] != null) {
+      part2 = instruments[1].name;
     }
 
     let abbreviatedPart = "";

@@ -63,7 +63,6 @@ const PlayerEntry = (props) => {
     });
 
     if (clickedThings.deleteButton) {
-      // const response = await PushBasic(props.player, "delete-player");
       const response = await pusher(props.player, "delete-player");
 
       if (response !== "phoey") {
@@ -81,8 +80,8 @@ const PlayerEntry = (props) => {
         : `${player.firstNameArea} ${player.lastName}`
     );
 
-    let partsToSend = clickedInstrumentList.map((part) =>
-      part.split(" ").join("")
+    let instrumentsToSend = clickedInstrumentList.map((instrument) =>
+      instrument.name.split(" ").join("")
     );
 
     let playerToSend = {
@@ -91,23 +90,16 @@ const PlayerEntry = (props) => {
         ? props.player.firstNameArea
         : enteredFirstNameArea,
       lastName: !enteredLastName ? props.player.lastName : enteredLastName,
-      parts: partsToSend,
+      instruments: instrumentsToSend,
     };
 
     const sendPlayerOff = async () => {
       let pushFunction = !props.player ? "add-player" : "edit-player";
 
-      // let mainPlayerResponse = await PushBasic(playerToSend, pushFunction);
-      // if (mainPlayerResponse.ok) {
-      //   props.closeModal();
-      // }
-
       let mainPlayerResponse = await pusher(playerToSend, pushFunction);
-      if (mainPlayerResponse !== 'phoey') {
+      if (mainPlayerResponse !== "phoey") {
         props.closeModal();
       }
-
-
     };
 
     setTimeout(sendPlayerOff, 200);

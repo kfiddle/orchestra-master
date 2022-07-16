@@ -10,7 +10,7 @@ const InstrumentsDropDown = (props) => {
   const showOrHide = props.showOrHide;
   const displayStyleObject = !showOrHide ? { display: "none" } : {};
 
-  const instrumentsList = useGetAList2('get-all-parts');
+  const instrumentsList = useGetAList2('get-all-instruments');
 
   const listToDisplay = instrumentsList.map((instrument) => (
     <InstrumentListItem

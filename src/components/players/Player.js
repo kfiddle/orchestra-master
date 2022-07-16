@@ -6,25 +6,13 @@ import useContractFormatter from "../../hooks/useContractFormatter";
 
 import styles from "./Player.module.css";
 
-const Player = (props) => {
-  const {
-    firstNameArea,
-    lastName,
-    email,
-    cellPhone,
-    primaryInstrument,
-    otherInstruments,
-    rank,
-  } = props.player;
+const Player = ({ player, possibleEdit, clicked }) => {
+  const { firstNameArea, lastName, email, cellPhone, instruments, rank } =
+    player;
 
   const [editClicked, setEditClicked] = useState(false);
 
-
-  const formattedContract = useContractFormatter(
-    primaryInstrument,
-    otherInstruments,
-    rank
-  );
+  const formattedContract = useContractFormatter(instruments, rank);
 
   const editPlayer = () => {
     setEditClicked(true);
@@ -32,11 +20,11 @@ const Player = (props) => {
 
   const closeModal = () => {
     setEditClicked(false);
-    props.possibleEdit();
+    possibleEdit();
   };
 
   const showInfo = () => {
-    props.clicked(props.player);
+    clicked(player);
   };
 
   return (
@@ -52,7 +40,7 @@ const Player = (props) => {
       </div>
 
       {editClicked && (
-        <PlayerEntry player={props.player} closeModal={closeModal} />
+        <PlayerEntry player={player} closeModal={closeModal} />
       )}
     </div>
   );
