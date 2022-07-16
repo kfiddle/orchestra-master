@@ -15,18 +15,20 @@ const EditChair = ({ closeModal, incomingPic }) => {
   const [parts, setParts] = useState([]);
   const [player, setPlayer] = useState({});
 
-  // const { chair } = pic;
-  // const { player } = pic;
-  // const { parts } = chair;
-
   const pusher = useFetch();
 
   console.log(parts);
 
   useEffect(() => {
-    setPic(incomingPic);
-    setParts(incomingPic.chair.parts);
-    setPlayer(incomingPic.player);
+    const initialSet = () => {
+      setPic(incomingPic);
+      setParts(incomingPic.chair.parts);
+      setPlayer(incomingPic.player);
+    };
+
+    if (incomingPic) {
+      initialSet();
+    }
   }, [incomingPic]);
 
   const playerName = player ? `${player.firstNameArea} ${player.lastName}` : "";
@@ -38,37 +40,55 @@ const EditChair = ({ closeModal, incomingPic }) => {
     }
   };
 
-  const displayableParts = parts? parts.map((part) => (
-    <SinglePartAdjuster key={parts.indexOf(part)} part={part} />
-  )) : [];
+  const partDeleter = (index) => {
+    let tempList = [...parts];
+    tempList.splice(index, 1);
+    console.log(tempList);
+    setParts([...tempList]);
+  };
+
+  const displayableParts = parts
+    ? parts.map((part, index) => (
+        <SinglePartAdjuster
+          key={index}
+          part={part}
+          index={index}
+          partDeleter={partDeleter}
+        />
+      ))
+    : [];
 
   const styleObject = {
-    // height: `${parts.length * 17}rem`,
-    height: `${2 * 17}rem`,
+    height: `${parts.length * 20}rem`,
+    height: `${2 * 20}rem`,
     width: "fitContent",
   };
 
   return (
     <Modal closeModal={closeModal} styleObject={styleObject}>
       <div className={styles.outerContainer}>
-        <div className={styles.partsNameDiv}>
-          {player && (
-            <div className={styles.playerNameDiv}>
-              {playerName} <TiDelete />
-            </div>
-          )}
-          {displayableParts}
+        <div className={styles.mainForm}>
+          <div className={styles.partsNameDiv}>
+            {player && <div className={styles.playerNameDiv}>{playerName}</div>}
+            {displayableParts}
 
-          <button className={`${styles.button} ${styles.addDoubling}`}>
-            <AiOutlinePlus />
-            DOUBLING
-          </button>
+            <button className={`${styles.button} ${styles.addDoubling}`}>
+              <AiOutlinePlus />
+              ADD DOUBLING
+            </button>
+          </div>
+
+          <div className={styles.buttonsDiv}>
+            {player && <button className={styles.button}>REMOVE PLAYER</button>}
+            <button className={styles.button} onClick={deleteChair}>
+              Remove Chair
+            </button>
+          </div>
         </div>
 
-        <div className={styles.buttonsDiv}>
-          {player && <button className={styles.button}>REMOVE PLAYER</button>}
-          <button className={styles.button} onClick={deleteChair}>
-            Remove Chair
+        <div className={styles.submitDiv}>
+          <button className={`${styles.button} ${styles.submitButton}`}>
+            SUBMIT EDITS
           </button>
         </div>
       </div>

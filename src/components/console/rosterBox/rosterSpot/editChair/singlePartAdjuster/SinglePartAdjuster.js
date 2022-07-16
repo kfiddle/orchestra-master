@@ -3,7 +3,7 @@ import { TiDelete } from "react-icons/ti";
 
 import styles from "./SinglePartAdjuster.module.css";
 
-const SinglePartAdjuster = ({ part }) => {
+const SinglePartAdjuster = ({ part, index, partDeleter }) => {
   const { instrument, rank, specialDesignate } = part;
   const instName = instrument.name;
 
@@ -15,12 +15,16 @@ const SinglePartAdjuster = ({ part }) => {
     rankOrDesignate = "ASSIST";
   }
 
+  const deleteClicker = () => {
+    partDeleter(index);
+  };
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.innerDiv}>{instName}</div>
       <div className={styles.innerDiv}>{rankOrDesignate} </div>
       <div className={styles.innerDiv}>
-        <TiDelete className={styles.icon} />
+        <TiDelete className={styles.icon} onClick={deleteClicker} />
       </div>
     </div>
   );
