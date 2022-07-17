@@ -10,14 +10,17 @@ import Modal from "../../../../UI/modal/Modal";
 import styles from "./EditChair.module.css";
 import SinglePartAdjuster from "./singlePartAdjuster/SinglePartAdjuster";
 
+const Part = () => {
+  return { instrument: {}, rank: "", specialDesignate: null };
+};
+
 const EditChair = ({ closeModal, incomingPic }) => {
   const [pic, setPic] = useState({});
   const [parts, setParts] = useState([]);
   const [player, setPlayer] = useState({});
+  const [submitClicked, setSubmitClicked] = useState(false);
 
   const pusher = useFetch();
-
-  console.log(parts);
 
   useEffect(() => {
     const initialSet = () => {
@@ -30,6 +33,8 @@ const EditChair = ({ closeModal, incomingPic }) => {
       initialSet();
     }
   }, [incomingPic]);
+
+  useEffect(() => {}, [submitClicked]);
 
   const playerName = player ? `${player.firstNameArea} ${player.lastName}` : "";
 
@@ -47,20 +52,26 @@ const EditChair = ({ closeModal, incomingPic }) => {
     setParts([...tempList]);
   };
 
-  const displayableParts = parts
-    ? parts.map((part, index) => (
-        <SinglePartAdjuster
-          key={index}
-          part={part}
-          index={index}
-          partDeleter={partDeleter}
-        />
-      ))
-    : [];
+  const displayableParts =
+    parts.length > 0
+      ? parts.map((part, index) => (
+          <SinglePartAdjuster
+            key={index}
+            part={part}
+            index={index}
+            partDeleter={partDeleter}
+            parts={parts}
+            setParts={setParts}
+          />
+        ))
+      : [];
 
   const addDoubling = () => {
     let templist = [...parts];
-    templist.push({ instrument: { name: "instrument" }, rank: "rank or assist" });
+    templist.push({
+      instrument: { name: null },
+      rank: "rank or assist",
+    });
     setParts([...templist]);
   };
 
@@ -68,6 +79,17 @@ const EditChair = ({ closeModal, incomingPic }) => {
     height: `${parts.length * 20}rem`,
     height: `${2 * 20}rem`,
     width: "fitContent",
+  };
+
+  const testParts = () => {
+    let tempList = parts;
+    tempList.push(Part());
+    setParts(tempList);
+    console.log(parts);
+  };
+
+  const printTestParts = () => {
+    console.log(parts);
   };
 
   return (
@@ -94,6 +116,10 @@ const EditChair = ({ closeModal, incomingPic }) => {
             </button>
           </div>
         </div>
+
+        <button onClick={testParts}>AddStuff</button>
+
+        <button onClick={printTestParts}>PrintTest</button>
 
         <div className={styles.submitDiv}>
           <button className={`${styles.button} ${styles.submitButton}`}>
