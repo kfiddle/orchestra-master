@@ -33,8 +33,6 @@ const RosterSpot = ({
 
   const pusher = useFetch();
 
-  // let chair = pic.chair;
-
   let { parts } = pic;
   let { rank, specialDesignate } = parts[0];
 

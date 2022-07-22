@@ -19,33 +19,6 @@ const Family = ({ label, chairs, setChairs, insts }) => {
 
   const pusher = useFetch();
 
-  // useEffect(() => {
-  //   const sendUpChairs = async (chairsList) => {
-  //     const chairsToSend = chairsList.map((chair) => {
-    
-  //       return {
-  //         piece: pieceShow.piece,
-  //         show: pieceShow.show,
-  //         parts: [...chair.parts],
-  //       };
-  //     });
-
-  //     let response = await pusher(chairsToSend, "add-empty-chairs");
-  //   };
-
-  //   const storeWindsBrassWithPiece = async () => {
-  //     const pieceToSend = { ...pieceShow.piece, instrumentation: localText };
-  //     let response = await pusher(pieceToSend, "edit-piece");
-  //   };
-
-  //   if (submitClicked) {
-  //     const chairsList = FamilyChairsProcessor(localText);
-  //     chairsList ? sendUpChairs(chairsList) : setIsvalidEntry(false);
-  //     storeWindsBrassWithPiece();
-  //     setSubmitClicked(false);
-  //   }
-  // }, [submitClicked]);
-
   useEffect(() => {
     const sendUpScoreLines = async (scoreLinesList) => {
       console.log(scoreLinesList)

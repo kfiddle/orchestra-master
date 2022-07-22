@@ -17,7 +17,6 @@ const Pieces = (props) => {
     const piecePics = await pusher(
       dashboard.clickedPiece,
       "get-better-pics-in-show-piece"
-      // "get-pics-in-show-piece"
     );
     dispatch({ type: "pics", list: piecePics });
   };

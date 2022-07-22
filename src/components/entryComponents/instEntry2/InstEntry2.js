@@ -40,7 +40,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
 
   useEffect(() => {
     const getFormerChairs = async () => {
-      const chairs = await pusher(piece, "get-chairs-in-piece");
+      const chairs = await pusher(piece, "get-scorelines-in-piece");
       if (chairs.length > 0) {
         setPreviousList(chairs);
       }
@@ -52,9 +52,11 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
   }, []);
 
   if (previousList) {
-    return <Modal closeModal={closeModal} styleObject={modalStyle}>
-      This piece already has a saved orchestration. {previousList.length}
-    </Modal>
+    return (
+      <Modal closeModal={closeModal} styleObject={modalStyle}>
+        This piece already has a saved orchestration. {previousList.length}
+      </Modal>
+    );
   } else
     return (
       <InstEntryStore.Provider value={providerObject}>
