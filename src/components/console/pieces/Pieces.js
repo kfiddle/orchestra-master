@@ -16,7 +16,16 @@ const Pieces = (props) => {
   const grabThePics = async () => {
     const piecePics = await pusher(
       dashboard.clickedPiece,
-      "get-pics-in-show-piece"
+      "get-better-pics-in-show-piece"
+      // "get-pics-in-show-piece"
+    );
+    dispatch({ type: "pics", list: piecePics });
+  };
+
+  const grabThePICS = async () => {
+    const piecePics = await pusher(
+      dashboard.clickedPiece,
+      "get-better-pics-in-show-piece"
     );
     dispatch({ type: "pics", list: piecePics });
   };

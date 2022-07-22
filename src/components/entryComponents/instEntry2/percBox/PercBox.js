@@ -33,7 +33,8 @@ const PercBox = () => {
         });
       }
 
-      const response = await pusher(allPercChairs, "add-empty-chairs");
+      // const response = await pusher(allPercChairs, "add-empty-chairs");
+      const response = await pusher(allPercChairs, "add-scorelines");
     };
 
     if (submitClicked) {

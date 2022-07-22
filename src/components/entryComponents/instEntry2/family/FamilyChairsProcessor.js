@@ -76,7 +76,12 @@ const FamilyChairsProcessor = (text) => {
     }
   };
 
+  // const finalCheckValid = () => {
+
+  // }
+
   mainLoop();
+  // finalCheckValid();
   return isValid ? chairsList : false;
 };
 

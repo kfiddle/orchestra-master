@@ -93,7 +93,8 @@ const StringRosterSpots = () => {
   };
 
   for (let pic of dashboard.pics) {
-    if (stringParts.includes(pic.chair.parts[0])) {
+    // if (stringParts.includes(pic.chair.parts[0])) {
+      if (stringParts.includes(pic.parts[0])) {
       strings.push(pic);
     }
   }

@@ -15,7 +15,8 @@ const NonStrings = () => {
   const others = [];
 
   for (let pic of dashboard.pics) {
-    if (!stringParts.includes(pic.chair.parts[0])) {
+    // if (!stringParts.includes(pic.chair.parts[0])) {
+    if (!stringParts.includes(pic.parts[0])) {
       others.push(pic);
     }
   }
@@ -50,10 +51,6 @@ const NonStrings = () => {
     />
   ));
 
-  return (
-    <div>
-      {displayableOthers}
-    </div>
-  );
+  return <div>{displayableOthers}</div>;
 };
 export default NonStrings;

@@ -25,7 +25,8 @@ const Extra = (props) => {
         };
         console.log(chairToSend)
 
-        let response = await pusher(chairToSend, "add-chair");
+        // let response = await pusher(chairToSend, "add-chair");
+        let response = await pusher(chairToSend, "add-scoreline");
       }
     };
 

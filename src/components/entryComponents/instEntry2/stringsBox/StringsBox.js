@@ -40,7 +40,8 @@ const StringsBox = () => {
         }
       }
 
-      let response = await pusher(allStringChairs, "add-empty-chairs");
+      // let response = await pusher(allStringChairs, "add-empty-chairs");
+      let response = await pusher(allStringChairs, "add-scorelines");
     };
 
     if (submitClicked) {
