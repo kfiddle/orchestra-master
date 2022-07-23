@@ -15,7 +15,7 @@ const NonStrings = () => {
   const others = [];
 
   for (let pic of dashboard.pics) {
-    if (!stringParts.includes(pic.parts[0])) {
+    if (!stringParts.includes(pic.parts[0].instrument.name)) {
       others.push(pic);
     }
   }

@@ -23,9 +23,7 @@ const Extra = (props) => {
           show: pieceShow.show,
           parts: [{ instrument: { name: instrument }, rank: j }],
         };
-        console.log(chairToSend)
 
-        // let response = await pusher(chairToSend, "add-chair");
         let response = await pusher(chairToSend, "add-scoreline");
       }
     };

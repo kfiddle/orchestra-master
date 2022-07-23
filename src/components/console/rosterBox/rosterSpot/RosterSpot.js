@@ -16,7 +16,7 @@ import EditChair from "./editChair/EditChair";
 
 // RosterSpots has this
 
-const RosterSpot = ({
+const RosterSpot = function ({
   pic,
   index,
   rightClicker,
@@ -24,7 +24,7 @@ const RosterSpot = ({
   doubleClicker,
   doubleClicked,
   fadeForOther,
-}) => {
+}) {
   const [mailClicked, setMailClicked] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
 

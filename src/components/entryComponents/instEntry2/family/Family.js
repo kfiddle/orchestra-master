@@ -21,7 +21,6 @@ const Family = ({ label, chairs, setChairs, insts }) => {
 
   useEffect(() => {
     const sendUpScoreLines = async (scoreLinesList) => {
-      console.log(scoreLinesList)
       const scoreLinesToSend = scoreLinesList.map((scoreLine) => {
         return {
           piece: pieceShow.piece,
