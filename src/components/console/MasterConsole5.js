@@ -43,11 +43,11 @@ const MasterConsole5 = (props) => {
   }, [dashboard.clickedShow]);
 
   useEffect(() => {
-    if (dashboard.stringNumsSubmitted) {
+    if (dashboard.refreshPICS) {
       grabPICSFromShow();
-      dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: false });
+      dispatch({ type: "refreshPICS", refreshPICS: false });
     }
-  }, [dashboard.stringNumsSubmitted]);
+  }, [dashboard.refreshPICS]);
 
   useEffect(() => {
     if (dashboard.chairChanged) {

@@ -19,7 +19,7 @@ const initialState = {
   possibles: [],
   clickedPossible: null,
   chairChanged: false,
-  stringNumsSubmitted: false,
+  refreshPICS: false,
 };
 
 const showReducer = (state, action) => {
@@ -36,8 +36,8 @@ const showReducer = (state, action) => {
       return { ...state, pics: action.list };
     case "chairChanged":
       return { ...state, chairChanged: action.chairChanged };
-    case "stringNumsSubmitted":
-      return { ...state, stringNumsSubmitted: action.stringNumsSubmitted };
+    case "refreshPICS":
+      return { ...state, refreshPICS: action.refreshPICS };
   }
 };
 

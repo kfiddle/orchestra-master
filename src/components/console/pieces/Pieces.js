@@ -21,14 +21,6 @@ const Pieces = (props) => {
     dispatch({ type: "pics", list: piecePics });
   };
 
-  const grabThePICS = async () => {
-    const piecePics = await pusher(
-      dashboard.clickedPiece,
-      "get-better-pics-in-show-piece"
-    );
-    dispatch({ type: "pics", list: piecePics });
-  };
-
   useEffect(() => {
     if (
       dashboard.clickedPiece ||
@@ -38,14 +30,14 @@ const Pieces = (props) => {
       dispatch({ type: "chairChanged", chairChanged: false });
     }
 
-    if (dashboard.stringNumsSubmitted && dashboard.clickedPiece) {
+    if (dashboard.refreshPICS && dashboard.clickedPiece) {
       grabThePics();
-      dispatch({ type: "stringNumsSubmitted", stringNumsSubmitted: false });
+      dispatch({ type: "refreshPICS", refreshPICS: false });
     }
   }, [
     dashboard.clickedPiece,
     dashboard.chairChanged,
-    dashboard.stringNumsSubmitted,
+    dashboard.refreshPICS,
   ]);
 
   const displayablePieces = dashboard.pieces.map((piece) => (

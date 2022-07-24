@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { AiOutlinePlus } from "react-icons/ai";
 import { TiDelete } from "react-icons/ti";
@@ -10,6 +10,8 @@ import Modal from "../../../../UI/modal/Modal";
 import styles from "./EditChair.module.css";
 import SinglePartAdjuster from "./singlePartAdjuster/SinglePartAdjuster";
 
+import { ConsoleHolder } from "../../../../../store/object-holder";
+
 const Part = () => {
   return { instrument: {}, rank: "", specialDesignate: null };
 };
@@ -19,6 +21,8 @@ const EditChair = ({ closeModal, incomingPic }) => {
   const [parts, setParts] = useState([]);
   const [player, setPlayer] = useState({});
   const [submitClicked, setSubmitClicked] = useState(false);
+
+  const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const pusher = useFetch();
 
@@ -41,6 +45,10 @@ const EditChair = ({ closeModal, incomingPic }) => {
   const submitEdits = async () => {
     const picToSend = { ...pic, parts };
     const response = await pusher(picToSend, "edit-pic-parts");
+    if (response !== "phoey") {
+      closeModal();
+      dispatch({ type: "refreshPICS", refreshPICS: true });
+    }
   };
 
   const deleteChair = async () => {

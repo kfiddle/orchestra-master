@@ -36,6 +36,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
 
   const submit = () => {
     setSubmitClicked(true);
+    // closeModal();
   };
 
   useEffect(() => {

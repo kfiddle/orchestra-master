@@ -35,7 +35,7 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
 
   const changeRank = (event) => {
     let tempList = [...parts];
-    tempList[index].rank = event.target.value;
+    tempList[index].rank = +event.target.value;
     setParts([...tempList]);
   };
 
