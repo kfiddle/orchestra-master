@@ -25,7 +25,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
   useEffect(() => {
     const initialSet = () => {
       setPic(incomingPic);
-      setParts(incomingPic.chair.parts);
+      setParts(incomingPic.parts);
       setPlayer(incomingPic.player);
     };
 
@@ -37,6 +37,11 @@ const EditChair = ({ closeModal, incomingPic }) => {
   useEffect(() => {}, [submitClicked]);
 
   const playerName = player ? `${player.firstNameArea} ${player.lastName}` : "";
+
+  const submitEdits = async () => {
+    const picToSend = { ...pic, parts };
+    const response = await pusher(picToSend, "edit-pic-parts");
+  };
 
   const deleteChair = async () => {
     const response = await pusher(pic, "delete-pic");
@@ -122,7 +127,10 @@ const EditChair = ({ closeModal, incomingPic }) => {
         <button onClick={printTestParts}>PrintTest</button>
 
         <div className={styles.submitDiv}>
-          <button className={`${styles.button} ${styles.submitButton}`}>
+          <button
+            className={`${styles.button} ${styles.submitButton}`}
+            onClick={submitEdits}
+          >
             SUBMIT EDITS
           </button>
         </div>

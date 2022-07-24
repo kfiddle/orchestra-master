@@ -45,7 +45,7 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
 
     tempList[index].instrument = allInstruments.filter(
       (inst) => inst.name === fullName.toUpperCase()
-    );
+    )[0];
 
     setParts([...tempList]);
   };
