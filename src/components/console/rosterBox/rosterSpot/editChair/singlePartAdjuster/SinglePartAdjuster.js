@@ -17,11 +17,8 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
   const { allInstruments } = useContext(AllInstruments);
 
   let nameRef = useRef();
-  let rankOrDesignate;
 
-  specialDesignate === "a"
-    ? (rankOrDesignate = "Assist")
-    : (rankOrDesignate = rank);
+  let rankOrDesignate = specialDesignate === 'a'? 'Assist': !rank ? 'Rank or Assist' : rank;
 
   useEffect(() => {
     if (instrument.name) {

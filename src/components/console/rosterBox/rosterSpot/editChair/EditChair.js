@@ -42,20 +42,33 @@ const EditChair = ({ closeModal, incomingPic }) => {
 
   const playerName = player ? `${player.firstNameArea} ${player.lastName}` : "";
 
-  const submitEdits = async () => {
-    const picToSend = { ...pic, parts };
-    const response = await pusher(picToSend, "edit-pic-parts");
+  const responseHandler = (response) => {
     if (response !== "phoey") {
       closeModal();
       dispatch({ type: "refreshPICS", refreshPICS: true });
     }
   };
 
+  const submitEdits = async () => {
+    parts.forEach((part) => {
+      if (part.rank == null) {
+        part.rank = 1;
+      }
+    });
+
+    const picToSend = { ...pic, parts };
+    const response = await pusher(picToSend, "edit-pic-parts");
+    responseHandler(response);
+  };
+
   const deleteChair = async () => {
     const response = await pusher(pic, "delete-pic");
-    if (response !== "phoey") {
-      closeModal();
-    }
+    responseHandler(response);
+  };
+
+  const removePlayer = async () => {
+    const response = await pusher(pic, "remove-player-from-pic");
+    responseHandler(response);
   };
 
   const partDeleter = (index) => {
@@ -83,7 +96,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
     let templist = [...parts];
     templist.push({
       instrument: { name: null },
-      rank: "rank or assist",
+      rank: null,
     });
     setParts([...templist]);
   };
@@ -123,7 +136,11 @@ const EditChair = ({ closeModal, incomingPic }) => {
           </div>
 
           <div className={styles.buttonsDiv}>
-            {player && <button className={styles.button}>REMOVE PLAYER</button>}
+            {player && (
+              <button className={styles.button} onClick={removePlayer}>
+                REMOVE PLAYER
+              </button>
+            )}
             <button className={styles.button} onClick={deleteChair}>
               Remove Chair
             </button>
