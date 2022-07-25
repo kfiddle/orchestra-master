@@ -39,12 +39,11 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
     setParts([...tempList]);
   };
 
-  const fullNameHandler = (event) => {
-    let fullName = nameRef.current.value;
+  const nameFromOnChangeHandler = (event) => {
+    setInstName(event.target.value);
     let tempList = [...parts];
-
     tempList[index].instrument = allInstruments.filter(
-      (inst) => inst.name === fullName.toUpperCase()
+      (inst) => inst.name === event.target.value.toUpperCase()
     )[0];
 
     setParts([...tempList]);
@@ -57,18 +56,13 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
   return (
     <div className={styles.outerContainer}>
       <div className={styles.innerDiv}>
-        <Hint
-          options={options}
-          allowTabFill={true}
-          allowEnterFill={true}
-          onFill={fullNameHandler}
-        >
+        <Hint options={options} allowTabFill={true} allowEnterFill={true}>
           <input
             className={styles.input}
             value={instName}
             ref={nameRef}
             placeholder={"enter instrument"}
-            onChange={(e) => setInstName(e.target.value)}
+            onChange={nameFromOnChangeHandler}
           />
         </Hint>
       </div>
