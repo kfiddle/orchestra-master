@@ -6,11 +6,12 @@ import Pieces from "./pieces/Pieces";
 
 import { ConsoleHolder } from "../../store/object-holder";
 
-import styles from "./MasterConsole4.module.css";
 import RosterBox from "./rosterBox/RosterBox";
 import useFetch from "../../hooks/useFetch";
 
 //season2 has this
+
+import styles from "./MasterConsole5.module.css";
 
 const MasterConsole5 = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
@@ -60,10 +61,10 @@ const MasterConsole5 = (props) => {
       <div className={styles.performancesDiv}>
         <Shows />
       </div>
-      <div>
+      <div className={styles.piecesDiv}>
         <Pieces />
       </div>
-      <div>
+      <div className={styles.rosterBoxDiv}>
         <RosterBox />
       </div>
     </div>
