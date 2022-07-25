@@ -1,5 +1,5 @@
 .outerContainer {
-  width: 100%;
+  width: 90vw;
   display: flex;
   /* display: grid;
   grid-template-columns: 1fr 1fr 2.5fr; */
@@ -7,14 +7,14 @@
 }
 
 .performancesDiv {
-  width: 50rem;
+  width: 25%;
   margin-right: 2rem;
 }
 
 .piecesDiv {
-  width: 50rem;
+  width: 25%;
 }
 
 .rosterBoxDiv {
-  width: 100rem;
+  width: 50%;
 }
