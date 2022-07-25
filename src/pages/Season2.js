@@ -18,7 +18,6 @@ const initialState = {
   clickedPic: null,
   possibles: [],
   clickedPossible: null,
-  chairChanged: false,
   refreshPICS: false,
 };
 
@@ -34,8 +33,6 @@ const showReducer = (state, action) => {
       return { ...state, clickedPiece: action.clickedPiece };
     case "pics":
       return { ...state, pics: action.list };
-    case "chairChanged":
-      return { ...state, chairChanged: action.chairChanged };
     case "refreshPICS":
       return { ...state, refreshPICS: action.refreshPICS };
   }

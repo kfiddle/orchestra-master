@@ -74,7 +74,6 @@ const EditChair = ({ closeModal, incomingPic }) => {
   const partDeleter = (index) => {
     let tempList = [...parts];
     tempList.splice(index, 1);
-    console.log(tempList);
     setParts([...tempList]);
   };
 
@@ -147,8 +146,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
           </div>
         </div>
 
-        <button onClick={testParts}>AddStuff</button>
-
+        <button onClick={testParts}>AddStuff</button>{" "}
         <button onClick={printTestParts}>PrintTest</button>
 
         <div className={styles.submitDiv}>

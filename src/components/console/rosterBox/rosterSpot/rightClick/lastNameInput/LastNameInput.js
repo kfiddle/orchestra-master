@@ -1,30 +1,24 @@
 import React, { useState, useContext, useEffect, Fragment } from "react";
 
 import Input from "../../../../../input/plainInput/Input";
-import useGetAList3 from "../../../../../../hooks/useGetAList3";
+
+import useFetch from "../../../../../../hooks/useFetch";
 
 import { ChairsHolder } from "../../../../../../store/object-holder";
 
 import styles from "./LastNameInput.module.css";
 
 const LastNameInput = (props) => {
-  const [isSubscribed, setIsSubscribed] = useState(true);
-
   const { chairState, dispatch } = useContext(ChairsHolder);
 
-  const [playersList, setReload] = useGetAList3(
-    "get-all-players",
-    isSubscribed
-  );
+  const pusher = useFetch();
 
-  useEffect(() => {
-    return () => {
-      setIsSubscribed(false);
-    };
-  }, []);
-
-  const nameTyping = (incomingFragment) => {
+  const nameTyping = async (incomingFragment) => {
     let nameFragment = incomingFragment;
+    const playersList = await pusher(
+      chairState.chosenPic,
+      "get-all-available-players"
+    );
 
     if (nameFragment.length < 1) {
       dispatch({ type: "possibles", list: [] });

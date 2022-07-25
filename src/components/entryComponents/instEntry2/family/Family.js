@@ -28,7 +28,6 @@ const Family = ({ label, chairs, setChairs, insts }) => {
           parts: [...scoreLine.parts],
         };
       });
-
       let response = await pusher(scoreLinesToSend, "add-scorelines");
     };
 
@@ -39,8 +38,12 @@ const Family = ({ label, chairs, setChairs, insts }) => {
 
     if (submitClicked) {
       const scoreLinesList = FamilyScoreLinesProcessor(localText);
-      scoreLinesList ? sendUpScoreLines(scoreLinesList) : setIsvalidEntry(false);
-      storeWindsBrassWithPiece();
+      scoreLinesList
+        ? sendUpScoreLines(scoreLinesList)
+        : setIsvalidEntry(false);
+      if (pieceShow.piece) {
+        storeWindsBrassWithPiece();
+      }
       setSubmitClicked(false);
     }
   }, [submitClicked]);

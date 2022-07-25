@@ -22,7 +22,7 @@ const NonStrings = () => {
 
   useEffect(() => {
     setRightClickedSpot(null);
-  }, [dashboard.chairChanged]);
+  }, [dashboard.refreshPICS]);
 
   const rightClicker = (rosterSpot) => {
     rightClickedSpot === rosterSpot

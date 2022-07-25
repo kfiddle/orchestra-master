@@ -50,10 +50,10 @@ const MasterConsole5 = (props) => {
   }, [dashboard.refreshPICS]);
 
   useEffect(() => {
-    if (dashboard.chairChanged) {
+    if (dashboard.refreshPICS) {
       grabPICSFromShow();
     }
-  }, [dashboard.chairChanged]);
+  }, [dashboard.refreshPICS]);
 
   return (
     <div className={styles.outerContainer}>

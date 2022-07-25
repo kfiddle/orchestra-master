@@ -90,7 +90,7 @@ const RosterSpot = function ({
     if (response !== "phoey") {
       dispatch({ type: "chosenPic", chosenPic: null });
       dispatch({ type: "possibles", list: [] });
-      dashDisp({ type: "chairChanged", chairChanged: true });
+      dashDisp({ type: "refreshPICS", refreshPICS: true });
       rightClicker(null);
     }
   };
@@ -150,7 +150,6 @@ const RosterSpot = function ({
 
       {rightClicked && (
         <RightClick
-          hasPlayer={player ? true : false}
           removePlayerClicker={removePlayerClicker}
           pic={pic}
           rightClicker={rightClicker}

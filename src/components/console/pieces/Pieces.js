@@ -24,21 +24,17 @@ const Pieces = (props) => {
   useEffect(() => {
     if (
       dashboard.clickedPiece ||
-      (dashboard.chairChanged && dashboard.clickedPiece)
+      (dashboard.refreshPICS && dashboard.clickedPiece)
     ) {
       grabThePics();
-      dispatch({ type: "chairChanged", chairChanged: false });
+      dispatch({ type: "refreshPICS", refreshPICS: false });
     }
 
     if (dashboard.refreshPICS && dashboard.clickedPiece) {
       grabThePics();
       dispatch({ type: "refreshPICS", refreshPICS: false });
     }
-  }, [
-    dashboard.clickedPiece,
-    dashboard.chairChanged,
-    dashboard.refreshPICS,
-  ]);
+  }, [dashboard.clickedPiece, dashboard.refreshPICS]);
 
   const displayablePieces = dashboard.pieces.map((piece) => (
     <ConsolePiece key={piece.id} pp={piece} />
