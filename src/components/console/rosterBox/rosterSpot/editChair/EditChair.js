@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 
 import { AiOutlinePlus } from "react-icons/ai";
 import { TiDelete } from "react-icons/ti";
@@ -28,6 +28,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const pusher = useFetch();
+  const testRef = useRef({});
 
   useEffect(() => {
     const initialSet = () => {
@@ -51,16 +52,20 @@ const EditChair = ({ closeModal, incomingPic }) => {
   };
 
   const submitEdits = async () => {
-    parts.forEach((part) => {
-      if (part.rank == null) {
-        part.rank = 1;
-      }
-    });
-
-    const picToSend = { ...pic, parts };
-    const response = await pusher(picToSend, "edit-pic-parts");
-    responseHandler(response);
+    console.log(parts);
   };
+
+  // const submitEdits = async () => {
+  //   parts.forEach((part) => {
+  //     if (part.rank == null) {
+  //       part.rank = 1;
+  //     }
+  //   });
+
+  //   const picToSend = { ...pic, parts };
+  //   const response = await pusher(picToSend, "edit-pic-parts");
+  //   responseHandler(response);
+  // };
 
   const deleteChair = async () => {
     const response = await pusher(pic, "delete-pic");
@@ -86,6 +91,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
       partDeleter={partDeleter}
       parts={parts}
       setParts={setParts}
+      testRef={testRef}
     />
   ));
 
@@ -150,6 +156,12 @@ const EditChair = ({ closeModal, incomingPic }) => {
             )}
             <button className={styles.button} onClick={deleteChair}>
               Remove Chair
+            </button>
+            <button
+              onClick={() => console.log(testRef)}
+              className={styles.button}
+            >
+              t
             </button>
           </div>
         </div>

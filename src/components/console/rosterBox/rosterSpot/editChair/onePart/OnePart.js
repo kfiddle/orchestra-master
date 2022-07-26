@@ -9,7 +9,7 @@ import AllInstruments from "../../../../../../store/all-instruments";
 
 import styles from "./OnePart.module.css";
 
-const OnePart = ({ part, index, partDeleter, parts, setParts }) => {
+const OnePart = ({ part, index, partDeleter, parts, setParts, testRef }) => {
   const [printedRank, setPrintedRank] = useState("rank or assist");
   const [instName, setInstName] = useState("");
   const { instrument, rank, specialDesignate } = part;
@@ -17,6 +17,7 @@ const OnePart = ({ part, index, partDeleter, parts, setParts }) => {
 
   let nameRef = useRef();
 
+  testRef.current = { ...testRef.current, [index]: instName };
 
   let rankOrDesignate =
     specialDesignate === "a" ? "Assist" : !rank ? "Rank or Assist" : rank;
@@ -30,6 +31,12 @@ const OnePart = ({ part, index, partDeleter, parts, setParts }) => {
       setPrintedRank(rank);
     }
   }, [part]);
+
+  useEffect(() => {
+    // let refObj = testRef.current;
+    // delete refObj[index];
+    return () => delete testRef.current[index];
+  }, []);
 
   const deleteClicker = () => {
     partDeleter(index);
@@ -47,7 +54,6 @@ const OnePart = ({ part, index, partDeleter, parts, setParts }) => {
     tempList[index].instrument = allInstruments.filter(
       (inst) => inst.name === event.target.value.toUpperCase()
     )[0];
-
   };
 
   const options = allInstruments.map((instrument) =>
@@ -63,7 +69,7 @@ const OnePart = ({ part, index, partDeleter, parts, setParts }) => {
             className={styles.input}
             value={instName}
             ref={nameRef}
-            placeholder={instName === ''? 'enter instrument' : instName}
+            placeholder={instName === "" ? "enter instrument" : instName}
             onChange={nameFromOnChangeHandler}
           />
         </Hint>
