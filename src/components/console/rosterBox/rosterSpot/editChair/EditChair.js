@@ -12,6 +12,7 @@ import styles from "./EditChair.module.css";
 import SinglePartAdjuster from "./singlePartAdjuster/SinglePartAdjuster";
 
 import { ConsoleHolder } from "../../../../../store/object-holder";
+import OnePart from "./onePart/OnePart";
 
 const Part = () => {
   return { instrument: {}, rank: "", specialDesignate: null };
@@ -20,8 +21,6 @@ const Part = () => {
 const EditChair = ({ closeModal, incomingPic }) => {
   const [pic, setPic] = useState({});
   const [parts, setParts] = useState([]);
-
-  const [displayableParts, setDisplayableParts] = useState([]);
 
   const [player, setPlayer] = useState({});
   const [submitClicked, setSubmitClicked] = useState(false);
@@ -41,21 +40,6 @@ const EditChair = ({ closeModal, incomingPic }) => {
       initialSet();
     }
   }, [incomingPic]);
-
-  useEffect(() => {
-    setDisplayableParts(
-      parts.map((part, index) => (
-        <SinglePartAdjuster
-          key={index}
-          part={part}
-          index={index}
-          partDeleter={partDeleter}
-          parts={parts}
-          setParts={setParts}
-        />
-      ))
-    );
-  }, [parts]);
 
   const playerName = player ? `${player.firstNameArea} ${player.lastName}` : "";
 
@@ -93,6 +77,17 @@ const EditChair = ({ closeModal, incomingPic }) => {
     tempList.splice(index, 1);
     setParts([...tempList]);
   };
+
+  const displayableParts = parts.map((part, index) => (
+    <OnePart
+      key={index}
+      part={part}
+      index={index}
+      partDeleter={partDeleter}
+      parts={parts}
+      setParts={setParts}
+    />
+  ));
 
   // const displayableParts = parts.map((part, index) => (
   //   <SinglePartAdjuster

@@ -7,26 +7,29 @@ import { TiDelete } from "react-icons/ti";
 
 import AllInstruments from "../../../../../../store/all-instruments";
 
+import styles from "./OnePart.module.css";
 
-import styles from "./SinglePartAdjuster.module.css";
-
-const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
+const OnePart = ({ part, index, partDeleter, parts, setParts }) => {
+  const [printedRank, setPrintedRank] = useState("rank or assist");
   const [instName, setInstName] = useState("");
   const { instrument, rank, specialDesignate } = part;
   const { allInstruments } = useContext(AllInstruments);
 
   let nameRef = useRef();
 
-  let displayName = part.instrument.name? part.instrument.name : 'enter';
 
   let rankOrDesignate =
     specialDesignate === "a" ? "Assist" : !rank ? "Rank or Assist" : rank;
 
   useEffect(() => {
-    if (instrument.name) {
+    if (instrument.name !== null) {
       setInstName(instrument.name.toLowerCase());
     }
-  }, []);
+
+    if (rank !== null) {
+      setPrintedRank(rank);
+    }
+  }, [part]);
 
   const deleteClicker = () => {
     partDeleter(index);
@@ -39,13 +42,12 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
   };
 
   const nameFromOnChangeHandler = (event) => {
-    // setInstName(event.target.value);
+    setInstName(event.target.value);
     let tempList = [...parts];
     tempList[index].instrument = allInstruments.filter(
       (inst) => inst.name === event.target.value.toUpperCase()
     )[0];
 
-    setParts([...tempList]);
   };
 
   const options = allInstruments.map((instrument) =>
@@ -55,23 +57,23 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
   return (
     <div className={styles.outerContainer}>
       <div className={styles.innerDiv}>
-        <label>{displayName}</label>
+        {/* <label>{instName}</label> */}
         <Hint options={options} allowTabFill={true} allowEnterFill={true}>
           <input
             className={styles.input}
-            // value={instName}
+            value={instName}
             ref={nameRef}
-            placeholder={"enter instrument"}
+            placeholder={instName === ''? 'enter instrument' : instName}
             onChange={nameFromOnChangeHandler}
           />
         </Hint>
       </div>
       <div className={styles.innerDiv}>
-        {/* <input
+        <input
           className={styles.input}
-          placeholder={rankOrDesignate}
+          placeholder={printedRank}
           onChange={changeRank}
-        ></input> */}
+        ></input>
       </div>
       <div className={styles.innerDiv}>
         <TiDelete className={styles.icon} onClick={deleteClicker} />
@@ -80,4 +82,4 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
   );
 };
 
-export default SinglePartAdjuster;
+export default OnePart;
