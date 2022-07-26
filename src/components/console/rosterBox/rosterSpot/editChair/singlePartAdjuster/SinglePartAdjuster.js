@@ -26,6 +26,7 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
     }
   }, []);
 
+
   const deleteClicker = () => {
     partDeleter(index);
   };

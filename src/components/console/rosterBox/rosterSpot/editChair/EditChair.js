@@ -8,6 +8,8 @@ import useFetch from "../../../../../hooks/useFetch";
 import Modal from "../../../../UI/modal/Modal";
 
 import styles from "./EditChair.module.css";
+
+import OnePart from "./onePart/OnePart";
 import SinglePartAdjuster from "./singlePartAdjuster/SinglePartAdjuster";
 
 import { ConsoleHolder } from "../../../../../store/object-holder";
@@ -19,6 +21,9 @@ const Part = () => {
 const EditChair = ({ closeModal, incomingPic }) => {
   const [pic, setPic] = useState({});
   const [parts, setParts] = useState([]);
+
+  const [displayableParts, setDisplayableParts] = useState([]);
+
   const [player, setPlayer] = useState({});
   const [submitClicked, setSubmitClicked] = useState(false);
 
@@ -38,7 +43,20 @@ const EditChair = ({ closeModal, incomingPic }) => {
     }
   }, [incomingPic]);
 
-  useEffect(() => {}, [submitClicked]);
+  useEffect(() => {
+    setDisplayableParts(
+      parts.map((part, index) => (
+        <OnePart
+          key={index}
+          part={part}
+          index={index}
+          partDeleter={partDeleter}
+          parts={parts}
+          setParts={setParts}
+        />
+      ))
+    );
+  }, [parts]);
 
   const playerName = player ? `${player.firstNameArea} ${player.lastName}` : "";
 
@@ -77,19 +95,16 @@ const EditChair = ({ closeModal, incomingPic }) => {
     setParts([...tempList]);
   };
 
-  const displayableParts =
-    parts.length > 0
-      ? parts.map((part, index) => (
-          <SinglePartAdjuster
-            key={index}
-            part={part}
-            index={index}
-            partDeleter={partDeleter}
-            parts={parts}
-            setParts={setParts}
-          />
-        ))
-      : [];
+  // const displayableParts = parts.map((part, index) => (
+  //   <SinglePartAdjuster
+  //     key={index}
+  //     part={part}
+  //     index={index}
+  //     partDeleter={partDeleter}
+  //     parts={parts}
+  //     setParts={setParts}
+  //   />
+  // ));
 
   const addDoubling = () => {
     let templist = [...parts];
@@ -145,10 +160,8 @@ const EditChair = ({ closeModal, incomingPic }) => {
             </button>
           </div>
         </div>
-
         <button onClick={testParts}>AddStuff</button>{" "}
         <button onClick={printTestParts}>PrintTest</button>
-
         <div className={styles.submitDiv}>
           <button
             className={`${styles.button} ${styles.submitButton}`}

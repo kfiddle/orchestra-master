@@ -36,6 +36,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
 
   const submit = () => {
     setSubmitClicked(true);
+    setTimeout(closeModal, 1000);
     // closeModal();
   };
 
