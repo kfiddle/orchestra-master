@@ -9,7 +9,6 @@ import Modal from "../../../../UI/modal/Modal";
 
 import styles from "./EditChair.module.css";
 
-import OnePart from "./onePart/OnePart";
 import SinglePartAdjuster from "./singlePartAdjuster/SinglePartAdjuster";
 
 import { ConsoleHolder } from "../../../../../store/object-holder";
@@ -46,7 +45,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
   useEffect(() => {
     setDisplayableParts(
       parts.map((part, index) => (
-        <OnePart
+        <SinglePartAdjuster
           key={index}
           part={part}
           index={index}
@@ -117,7 +116,6 @@ const EditChair = ({ closeModal, incomingPic }) => {
 
   const styleObject = {
     height: `${parts.length * 20}rem`,
-    height: `${2 * 20}rem`,
     width: "fitContent",
   };
 

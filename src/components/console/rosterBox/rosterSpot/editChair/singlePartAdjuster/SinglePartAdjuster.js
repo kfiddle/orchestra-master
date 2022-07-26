@@ -7,7 +7,6 @@ import { TiDelete } from "react-icons/ti";
 
 import AllInstruments from "../../../../../../store/all-instruments";
 
-import Input from "../../../../../input/plainInput/Input";
 
 import styles from "./SinglePartAdjuster.module.css";
 
@@ -18,14 +17,14 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
 
   let nameRef = useRef();
 
-  let rankOrDesignate = specialDesignate === 'a'? 'Assist': !rank ? 'Rank or Assist' : rank;
+  let rankOrDesignate =
+    specialDesignate === "a" ? "Assist" : !rank ? "Rank or Assist" : rank;
 
   useEffect(() => {
     if (instrument.name) {
       setInstName(instrument.name.toLowerCase());
     }
   }, []);
-
 
   const deleteClicker = () => {
     partDeleter(index);
@@ -54,6 +53,7 @@ const SinglePartAdjuster = ({ part, index, partDeleter, parts, setParts }) => {
   return (
     <div className={styles.outerContainer}>
       <div className={styles.innerDiv}>
+        <label>{instName}</label>
         <Hint options={options} allowTabFill={true} allowEnterFill={true}>
           <input
             className={styles.input}
