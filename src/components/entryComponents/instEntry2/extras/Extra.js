@@ -42,7 +42,9 @@ const Extra = (props) => {
   };
 
   const subtractButtonClicker = () => {
-    setLocalNumber((previous) => previous - 1);
+    if (localNumber > 0) {
+      setLocalNumber((previous) => previous - 1);
+    }
   };
 
   let outerClassNames = !clicked

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { InstEntryStore } from "../../../store/form-holders";
 
@@ -27,6 +27,7 @@ const families = {
 const InstEntry2 = ({ closeModal, piece, show }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
   const [previousList, setPreviousList] = useState(null);
+  const [validSub, setValidSub] = useState(false);
 
   const pieceShow = { show: show, piece, piece };
   const title = piece ? piece.title : show.title;
@@ -36,9 +37,13 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
 
   const submit = () => {
     setSubmitClicked(true);
-    setTimeout(closeModal, 1000);
-    // closeModal();
   };
+
+  useEffect(() => {
+    if (validSub) {
+      closeModal();
+    }
+  }, [validSub]);
 
   useEffect(() => {
     const getFormerChairs = async () => {
@@ -65,7 +70,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
         <Modal closeModal={closeModal} styleObject={modalStyle}>
           <div className={styles.titleDiv}>{title}</div>
           <div className={styles.outerContainer}>
-            <Family label={"WINDS AND BRASS"} />
+            <Family label={"WINDS AND BRASS"} setValidSub={setValidSub} />
 
             <PercBox />
 

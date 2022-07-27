@@ -7,11 +7,9 @@ import FamilyScoreLinesProcessor from "./FamilyScoreLinesProcessor";
 
 import { InstEntryStore } from "../../../../store/form-holders";
 
-import { Chair, Part } from "../Chair";
-
 import styles from "./Family.module.css";
 
-const Family = ({ label, chairs, setChairs, insts }) => {
+const Family = ({ label, setValidSub }) => {
   const [isValidEntry, setIsvalidEntry] = useState(true);
   const [localText, setLocalText] = useState([]);
   const { pieceShow, submitClicked, setSubmitClicked } =
@@ -29,6 +27,9 @@ const Family = ({ label, chairs, setChairs, insts }) => {
         };
       });
       let response = await pusher(scoreLinesToSend, "add-scorelines");
+      if (response !== "phoey") {
+        setValidSub(true)
+      }
     };
 
     const storeWindsBrassWithPiece = async () => {
@@ -38,12 +39,15 @@ const Family = ({ label, chairs, setChairs, insts }) => {
 
     if (submitClicked) {
       const scoreLinesList = FamilyScoreLinesProcessor(localText);
-      scoreLinesList
-        ? sendUpScoreLines(scoreLinesList)
-        : setIsvalidEntry(false);
-      if (pieceShow.piece) {
-        storeWindsBrassWithPiece();
+      if (scoreLinesList) {
+        sendUpScoreLines(scoreLinesList);
+        if (pieceShow.piece) {
+          storeWindsBrassWithPiece();
+        }
+      } else {
+        setIsvalidEntry(false);
       }
+
       setSubmitClicked(false);
     }
   }, [submitClicked]);

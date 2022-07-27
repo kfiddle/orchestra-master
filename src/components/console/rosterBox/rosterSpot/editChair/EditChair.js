@@ -116,11 +116,11 @@ const EditChair = ({ closeModal, incomingPic }) => {
     setParts([...tempList]);
   };
 
-  const displayableParts = parts.map((part, index) => (
+  const displayableParts = parts.map(part => (
     <OnePart
-      key={index}
+      key={parts.indexOf(part)}
       part={part}
-      index={index}
+      index={parts.indexOf(part)}
       partDeleter={partDeleter}
       parts={parts}
       setParts={setParts}
@@ -137,8 +137,10 @@ const EditChair = ({ closeModal, incomingPic }) => {
     setParts([...templist]);
   };
 
+
   const styleObject = {
-    height: `${parts.length * 22}rem`,
+    minHeight: '30rem',
+    height: `${parts.length * 14}rem`,
     width: "fitContent",
   };
 
