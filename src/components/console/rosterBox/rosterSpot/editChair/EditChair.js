@@ -71,10 +71,12 @@ const EditChair = ({ closeModal, incomingPic }) => {
       let rank = null;
       let specialDesignate = null;
 
+      let rankIsDesignate = isNaN(incomingRank);
+
       if (
-        incomingRank === "Assist" ||
-        incomingRank === "a" ||
-        incomingRank === "Assistant"
+        (rankIsDesignate && incomingRank.toUpperCase() === "ASSIST") ||
+        (rankIsDesignate && incomingRank.toUpperCase() === "A") ||
+        (rankIsDesignate && incomingRank.toUpperCase() === "ASSISTANT")
       ) {
         specialDesignate = "a";
         rank = null;

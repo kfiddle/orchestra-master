@@ -131,7 +131,8 @@ const RosterSpot = function ({
         onDoubleClick={doubleClickHandler}
       >
         <div className={classes.partDiv}>
-          {printSectionLabel && primaryPartName}
+          {/* {printSectionLabel && primaryPartName} */}
+          {primaryPartName}
         </div>
         <div className={classes.rankDiv}>{printRankOrSeat}</div>
 
