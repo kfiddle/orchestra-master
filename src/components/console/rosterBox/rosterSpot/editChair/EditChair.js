@@ -24,7 +24,6 @@ const EditChair = ({ closeModal, incomingPic }) => {
   const [parts, setParts] = useState([]);
 
   const [player, setPlayer] = useState({});
-  const [submitClicked, setSubmitClicked] = useState(false);
 
   const { allInstruments } = useContext(AllInstruments);
 
@@ -56,7 +55,6 @@ const EditChair = ({ closeModal, incomingPic }) => {
 
   const submit = async (partsList) => {
     const picToSend = { ...pic, parts: partsList };
-
     const response = await pusher(picToSend, "edit-pic-parts");
     responseHandler(response);
   };
@@ -73,9 +71,12 @@ const EditChair = ({ closeModal, incomingPic }) => {
       )[0];
       if (!officialInst) {
         return;
+      } else {
+        partsToSend.push({ instrument: officialInst, rank: +rank });
       }
-      partsToSend.push({ instrument: officialInst, rank: +rank });
     }
+    submit(partsToSend);
+
     console.log(partsToSend);
   };
 
@@ -117,7 +118,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
   };
 
   const styleObject = {
-    height: `${parts.length * 20}rem`,
+    height: `${parts.length * 22}rem`,
     width: "fitContent",
   };
 
