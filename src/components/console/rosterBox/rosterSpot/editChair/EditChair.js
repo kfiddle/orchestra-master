@@ -65,14 +65,32 @@ const EditChair = ({ closeModal, incomingPic }) => {
 
     for (let part in partsOb) {
       let instName = partsOb[part].instName;
-      let rank = partsOb[part].rank;
+
+      let incomingRank = partsOb[part].rank;
+
+      let rank = null;
+      let specialDesignate = null;
+
+      if (
+        incomingRank === "Assist" ||
+        incomingRank === "a" ||
+        incomingRank === "Assistant"
+      ) {
+        specialDesignate = "a";
+        rank = null;
+      } else if (incomingRank > 0) {
+        rank = +incomingRank;
+      } else {
+        rank = 1;
+      }
+
       let officialInst = allInstruments.filter(
         (inst) => inst.name === instName.toUpperCase()
       )[0];
       if (!officialInst) {
         return;
       } else {
-        partsToSend.push({ instrument: officialInst, rank: +rank });
+        partsToSend.push({ instrument: officialInst, rank, specialDesignate });
       }
     }
     submit(partsToSend);
