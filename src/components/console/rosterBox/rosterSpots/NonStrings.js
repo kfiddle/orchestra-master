@@ -6,8 +6,7 @@ import RosterSpot from "../rosterSpot/RosterSpot";
 
 import styles from "./NonStrings.module.css";
 
-const NonStrings = () => {
-  const [rightClickedSpot, setRightClickedSpot] = useState(null);
+const NonStrings = ({rightClicker, rightClickedSpot}) => {
   const [dbClickedOtherSpot, setDbClickedOtherSpot] = useState(null);
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
@@ -20,15 +19,6 @@ const NonStrings = () => {
     }
   }
 
-  useEffect(() => {
-    setRightClickedSpot(null);
-  }, [dashboard.refreshPICS]);
-
-  const rightClicker = (rosterSpot) => {
-    rightClickedSpot === rosterSpot
-      ? setRightClickedSpot(null)
-      : setRightClickedSpot(rosterSpot);
-  };
 
   const doubleClicker = (pic) => {
     if (dbClickedOtherSpot === pic) {

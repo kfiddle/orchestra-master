@@ -10,9 +10,9 @@ import StringsBox from "../stringsBox/StringsBox";
 
 import styles from "./StringRosterSpots.module.css";
 
-const StringRosterSpots = () => {
+const StringRosterSpots = ({rightClicker, rightClickedSpot}) => {
   const [addStringsClicked, setAddStringsClicked] = useState(false);
-  const [rightClickedSpot, setRightClickedSpot] = useState(null);
+
   const [doubleClickedSpot, setDoubleClickedSpot] = useState({
     player: null,
     index: null,
@@ -26,10 +26,6 @@ const StringRosterSpots = () => {
 
   const upArrowPressed = useKeyPress("ArrowUp");
   const downArrowPressed = useKeyPress("ArrowDown");
-
-  useEffect(() => {
-    setRightClickedSpot(null);
-  }, [dashboard.chairChanged]);
 
   useEffect(() => {
     if (
@@ -56,11 +52,6 @@ const StringRosterSpots = () => {
     }
   }, [upArrowPressed, downArrowPressed]);
 
-  const rightClicker = (rosterSpot) => {
-    rightClickedSpot === rosterSpot
-      ? setRightClickedSpot(null)
-      : setRightClickedSpot(rosterSpot);
-  };
 
   const sendUpNewSeating = async () => {
     let response = await pusher(dashboard.pics, "change-seating");

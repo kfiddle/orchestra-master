@@ -10,7 +10,6 @@ const StringsBox = (props) => {
   const [symChecked, setSymChecked] = useState(true);
   const [popsChecked, setPopsChecked] = useState(false);
 
-  // const parts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
 
   const parts = [
     { part: "VIOLIN1", sym: 12, pops: 10 },
