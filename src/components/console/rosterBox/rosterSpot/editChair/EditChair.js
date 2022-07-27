@@ -13,6 +13,7 @@ import SinglePartAdjuster from "./singlePartAdjuster/SinglePartAdjuster";
 
 import { ConsoleHolder } from "../../../../../store/object-holder";
 import OnePart from "./onePart/OnePart";
+import AllInstruments from "../../../../../store/all-instruments";
 
 const Part = () => {
   return { instrument: {}, rank: "", specialDesignate: null };
@@ -25,10 +26,12 @@ const EditChair = ({ closeModal, incomingPic }) => {
   const [player, setPlayer] = useState({});
   const [submitClicked, setSubmitClicked] = useState(false);
 
+  const { allInstruments } = useContext(AllInstruments);
+
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const pusher = useFetch();
-  const testRef = useRef({});
+  const partsRef = useRef({});
 
   useEffect(() => {
     const initialSet = () => {
@@ -51,21 +54,30 @@ const EditChair = ({ closeModal, incomingPic }) => {
     }
   };
 
-  const submitEdits = async () => {
-    console.log(parts);
+  const submit = async (partsList) => {
+    const picToSend = { ...pic, parts: partsList };
+
+    const response = await pusher(picToSend, "edit-pic-parts");
+    responseHandler(response);
   };
 
-  // const submitEdits = async () => {
-  //   parts.forEach((part) => {
-  //     if (part.rank == null) {
-  //       part.rank = 1;
-  //     }
-  //   });
+  const isValidSubmit = async () => {
+    const partsOb = partsRef.current;
+    const partsToSend = [];
 
-  //   const picToSend = { ...pic, parts };
-  //   const response = await pusher(picToSend, "edit-pic-parts");
-  //   responseHandler(response);
-  // };
+    for (let part in partsOb) {
+      let instName = partsOb[part].instName;
+      let rank = partsOb[part].rank;
+      let officialInst = allInstruments.filter(
+        (inst) => inst.name === instName.toUpperCase()
+      )[0];
+      if (!officialInst) {
+        return;
+      }
+      partsToSend.push({ instrument: officialInst, rank: +rank });
+    }
+    console.log(partsToSend);
+  };
 
   const deleteChair = async () => {
     const response = await pusher(pic, "delete-pic");
@@ -91,20 +103,9 @@ const EditChair = ({ closeModal, incomingPic }) => {
       partDeleter={partDeleter}
       parts={parts}
       setParts={setParts}
-      testRef={testRef}
+      partsRef={partsRef}
     />
   ));
-
-  // const displayableParts = parts.map((part, index) => (
-  //   <SinglePartAdjuster
-  //     key={index}
-  //     part={part}
-  //     index={index}
-  //     partDeleter={partDeleter}
-  //     parts={parts}
-  //     setParts={setParts}
-  //   />
-  // ));
 
   const addDoubling = () => {
     let templist = [...parts];
@@ -158,7 +159,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
               Remove Chair
             </button>
             <button
-              onClick={() => console.log(testRef)}
+              onClick={() => console.log(partsRef)}
               className={styles.button}
             >
               t
@@ -170,7 +171,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
         <div className={styles.submitDiv}>
           <button
             className={`${styles.button} ${styles.submitButton}`}
-            onClick={submitEdits}
+            onClick={isValidSubmit}
           >
             SUBMIT EDITS
           </button>

@@ -22,6 +22,17 @@
     width: 100%;
     font-size: 1.25rem;
   }
+
+  .invalid {
+    font: inherit;
+    padding: 1rem;
+    border-radius: 4px;
+    background-color: #b05a5a;
+    border: 1px solid #c1d1d1;
+    display: block;
+    width: 100%;
+    font-size: 1.25rem;
+  }
   
   .input:focus {
     background-color: #e9dcdc;

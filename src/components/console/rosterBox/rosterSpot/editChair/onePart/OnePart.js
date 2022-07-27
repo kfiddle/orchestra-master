@@ -9,15 +9,22 @@ import AllInstruments from "../../../../../../store/all-instruments";
 
 import styles from "./OnePart.module.css";
 
-const OnePart = ({ part, index, partDeleter, parts, setParts, testRef }) => {
-  const [printedRank, setPrintedRank] = useState("rank or assist");
+const OnePart = ({ part, index, partDeleter, parts, setParts, partsRef }) => {
   const [instName, setInstName] = useState("");
+  const [inputtedRank, setInputtedRank] = useState("");
+
+  const [isValidName, setIsValidName] = useState(true);
   const { instrument, rank, specialDesignate } = part;
   const { allInstruments } = useContext(AllInstruments);
 
   let nameRef = useRef();
 
-  testRef.current = { ...testRef.current, [index]: instName };
+  let inputStyle = isValidName ? styles.input : styles.invalid;
+
+  partsRef.current = {
+    ...partsRef.current,
+    [index]: { instName, rank: inputtedRank },
+  };
 
   let rankOrDesignate =
     specialDesignate === "a" ? "Assist" : !rank ? "Rank or Assist" : rank;
@@ -28,14 +35,12 @@ const OnePart = ({ part, index, partDeleter, parts, setParts, testRef }) => {
     }
 
     if (rank !== null) {
-      setPrintedRank(rank);
+      setInputtedRank(rank);
     }
   }, [part]);
 
   useEffect(() => {
-    // let refObj = testRef.current;
-    // delete refObj[index];
-    return () => delete testRef.current[index];
+    return () => delete partsRef.current[index];
   }, []);
 
   const deleteClicker = () => {
@@ -43,41 +48,45 @@ const OnePart = ({ part, index, partDeleter, parts, setParts, testRef }) => {
   };
 
   const changeRank = (event) => {
-    let tempList = [...parts];
-    tempList[index].rank = +event.target.value;
-    setParts([...tempList]);
+    setInputtedRank(event.target.value);
   };
 
   const nameFromOnChangeHandler = (event) => {
+    setIsValidName(true);
     setInstName(event.target.value);
-    let tempList = [...parts];
-    tempList[index].instrument = allInstruments.filter(
-      (inst) => inst.name === event.target.value.toUpperCase()
-    )[0];
   };
 
   const options = allInstruments.map((instrument) =>
     instrument.name.toLowerCase()
   );
 
+  const isNameValid = () => {
+    if (
+      allInstruments.filter((inst) => inst.name === instName.toUpperCase())
+        .length === 0
+    ) {
+      setIsValidName(false);
+    }
+  };
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.innerDiv}>
-        {/* <label>{instName}</label> */}
         <Hint options={options} allowTabFill={true} allowEnterFill={true}>
           <input
-            className={styles.input}
+            className={inputStyle}
             value={instName}
             ref={nameRef}
             placeholder={instName === "" ? "enter instrument" : instName}
             onChange={nameFromOnChangeHandler}
+            onBlur={isNameValid}
           />
         </Hint>
       </div>
       <div className={styles.innerDiv}>
         <input
           className={styles.input}
-          placeholder={printedRank}
+          placeholder={inputtedRank === "" ? "Rank Or Assistant" : inputtedRank}
           onChange={changeRank}
         ></input>
       </div>
