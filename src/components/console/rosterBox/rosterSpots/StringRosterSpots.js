@@ -107,13 +107,14 @@ const StringRosterSpots = ({rightClicker, rightClickedSpot}) => {
       {displayableStrings}
       {displayableStrings.length > 0 && (
         <button className={styles.stringsButton} onClick={stringsClicker}>
-          EDIT STRING NUMBERS
+          ADJUST STRING NUMBERS
         </button>
       )}
       {addStringsClicked && (
         <StringsBox
           piece={dashboard.clickedPiece}
           show={dashboard.clickedShow}
+          strings={strings}
           closeModal={closeStrings}
         />
       )}

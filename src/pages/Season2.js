@@ -8,7 +8,6 @@ import ReloadFlagStore from "../store/reload-flag-store";
 import useGetAList2 from "../hooks/useGetAList2";
 import MasterConsole5 from "../components/console/MasterConsole5";
 
-
 const initialState = {
   shows: [],
   clickedShow: null,
@@ -19,6 +18,7 @@ const initialState = {
   possibles: [],
   clickedPossible: null,
   refreshPICS: false,
+  modalClosed: false,
 };
 
 const showReducer = (state, action) => {
@@ -35,10 +35,12 @@ const showReducer = (state, action) => {
       return { ...state, pics: action.list };
     case "refreshPICS":
       return { ...state, refreshPICS: action.refreshPICS };
+    case "modalClosed":
+      return { ...state, modalClosed: action.modalClosed };
   }
 };
 
-const Season2 = (props) => {
+const Season2 = () => {
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
   const [dashboard, dispatch] = useReducer(showReducer, initialState);
 
@@ -51,8 +53,6 @@ const Season2 = (props) => {
   useEffect(() => {
     dispatch({ type: "shows", list: allPerformances });
   }, [allPerformances]);
-
-
 
   let isLoading = allPerformances.length < 1;
 

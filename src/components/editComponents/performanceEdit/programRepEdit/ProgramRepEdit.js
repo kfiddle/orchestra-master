@@ -18,8 +18,6 @@ const ProgramRepEdit = () => {
 
   useEffect(() => {
     const previousList = showPiecesList.map((showtune) => showtune.piece);
-
-    console.log(DeepEqual(clickedPiecesList[0], previousList[1]));
   }, [showEditsSubmitted]);
 
   const repClickHandler = () => {

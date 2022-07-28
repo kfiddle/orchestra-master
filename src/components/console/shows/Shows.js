@@ -6,7 +6,7 @@ import { ConsoleHolder } from "../../../store/object-holder";
 
 import styles from "./Shows.module.css";
 
-//MasterConsole4 has this
+//MasterConsole5 has this
 
 const Shows = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);

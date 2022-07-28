@@ -18,8 +18,6 @@ import InstEntry2 from "../../../entryComponents/instEntry2/InstEntry2";
 
 const Show = (props) => {
   const [editClicked, setEditClicked] = useState(false);
-  const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
-
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const show = props.show;
@@ -40,8 +38,8 @@ const Show = (props) => {
   };
 
   const closeModal = () => {
-    setReloadFlag(true);
     setEditClicked(false);
+    dispatch({ type: "modalClosed", modalClosed: true });
   };
 
   return (

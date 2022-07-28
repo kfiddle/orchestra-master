@@ -40,8 +40,9 @@ const MasterConsole5 = (props) => {
       grabPICSFromShow();
       dispatch({ type: "clickedPiece", clickedPiece: null });
       dispatch({ type: "pics", list: [] });
+      dispatch({ type: "modalClosed", modalClosed: false });
     }
-  }, [dashboard.clickedShow]);
+  }, [dashboard.clickedShow, dashboard.modalClosed]);
 
   useEffect(() => {
     if (dashboard.refreshPICS) {
