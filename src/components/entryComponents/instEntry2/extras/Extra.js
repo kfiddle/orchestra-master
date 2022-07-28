@@ -6,14 +6,12 @@ import useFetch from "../../../../hooks/useFetch";
 
 import styles from "./Extra.module.css";
 
-const Extra = (props) => {
+const Extra = ({ instrument }) => {
   const [clicked, setClicked] = useState(false);
   const [localNumber, setLocalNumber] = useState(0);
   const { pieceShow, submitClicked } = useContext(InstEntryStore);
 
   const pusher = useFetch();
-
-  const instrument = props.instrument;
 
   useEffect(() => {
     const sendUpExtras = async () => {
@@ -34,6 +32,10 @@ const Extra = (props) => {
   }, [submitClicked]);
 
   const clickHandler = () => {
+    if (!clicked && localNumber === 0) {
+      setLocalNumber(1);
+    }
+
     setClicked((previous) => !previous);
   };
 

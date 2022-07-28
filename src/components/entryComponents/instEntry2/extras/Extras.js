@@ -4,8 +4,7 @@ import DoublingExtras from "../../../helperFunctions/DoublingExtras";
 
 import styles from "./Extras.module.css";
 
-const Extras = (props) => {
-  const visible = props.visible;
+const Extras = ({ visible }) => {
   const { auxiliaries } = DoublingExtras();
 
   const displayableExtras = auxiliaries.map((instrument) => (

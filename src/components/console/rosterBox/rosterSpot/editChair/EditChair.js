@@ -96,8 +96,6 @@ const EditChair = ({ closeModal, incomingPic }) => {
       }
     }
     submit(partsToSend);
-
-    console.log(partsToSend);
   };
 
   const deleteChair = async () => {

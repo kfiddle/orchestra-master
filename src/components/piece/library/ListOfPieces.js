@@ -39,19 +39,11 @@ const ListOfPieces = (props) => {
     }
   };
 
-  const [allPICS, setReload] = useGetAList3("get-all-new-pics");
-
-  const picTest = () => {
-    setReload(true);
-    console.log(allPICS);
-  };
-
   return (
     <Fragment>
       <LibrarySortHeader sorter={sorter} />
       <div className={classes.outerContainer}>
         {displayablePieces}
-        <button onClick={picTest}>TestMe</button>
       </div>
     </Fragment>
   );

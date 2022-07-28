@@ -9,7 +9,7 @@ import InstEntry2 from "../../entryComponents/instEntry2/InstEntry2";
 
 import classes from "./LibraryPiece.module.css";
 
-const LibraryPiece = ({piece}) => {
+const LibraryPiece = ({ piece }) => {
   const [orchestrationClicked, setOrchestrationClicked] = useState(false);
 
   const {
@@ -32,7 +32,6 @@ const LibraryPiece = ({piece}) => {
     updated,
   } = piece;
 
-
   const openOrchestration = () => {
     setOrchestrationClicked(true);
   };
@@ -52,10 +51,10 @@ const LibraryPiece = ({piece}) => {
       <div className={classes.durationDiv}>{duration > 0 && duration}</div>
 
       <div className={classes.editIconDiv}>
-        <GiMusicalScore />
+        <GiMusicalScore onClick={openOrchestration} className={classes.icon} />
       </div>
       <div className={classes.orchestrationIconDiv}>
-        <FiEdit onClick={openOrchestration} />
+        <FiEdit className={classes.icon}/>
       </div>
 
       {/* {orchestrationClicked && (

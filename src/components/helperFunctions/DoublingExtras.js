@@ -60,6 +60,7 @@ const DoublingExtras = () => {
     "ORGAN",
     "SAX",
     "DRUMSET",
+    "TENOR TUBA",
   ];
 
   return { doubling, extras, doublingAndExtras, auxiliaries };

@@ -9,7 +9,7 @@ import { InstEntryStore } from "../../../../store/form-holders";
 
 import styles from "./Family.module.css";
 
-const Family = ({ label, setValidSub }) => {
+const Family = ({ label, setValidFamilySub }) => {
   const [isValidEntry, setIsvalidEntry] = useState(true);
   const [localText, setLocalText] = useState([]);
   const { pieceShow, submitClicked, setSubmitClicked } =
@@ -28,7 +28,7 @@ const Family = ({ label, setValidSub }) => {
       });
       let response = await pusher(scoreLinesToSend, "add-scorelines");
       if (response !== "phoey") {
-        setValidSub(true)
+        setValidFamilySub(true)
       }
     };
 

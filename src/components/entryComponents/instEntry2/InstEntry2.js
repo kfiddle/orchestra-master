@@ -27,7 +27,9 @@ const families = {
 const InstEntry2 = ({ closeModal, piece, show }) => {
   const [submitClicked, setSubmitClicked] = useState(false);
   const [previousList, setPreviousList] = useState(null);
-  const [validSub, setValidSub] = useState(false);
+
+  const [validFamilySub, setValidFamilySub] = useState(false);
+  const [validStringsSub, setValidStringsSub] = useState(false);
 
   const pieceShow = { show: show, piece, piece };
   const title = piece ? piece.title : show.title;
@@ -40,10 +42,13 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
   };
 
   useEffect(() => {
-    if (validSub) {
+    if (validFamilySub && validStringsSub) {
+      console.log(validFamilySub);
+      console.log(validStringsSub);
       closeModal();
     }
-  }, [validSub]);
+    return () => closeModal;
+  }, [validFamilySub, validStringsSub]);
 
   useEffect(() => {
     const getFormerChairs = async () => {
@@ -70,7 +75,10 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
         <Modal closeModal={closeModal} styleObject={modalStyle}>
           <div className={styles.titleDiv}>{title}</div>
           <div className={styles.outerContainer}>
-            <Family label={"WINDS AND BRASS"} setValidSub={setValidSub} />
+            <Family
+              label={"WINDS AND BRASS"}
+              setValidFamilySub={setValidFamilySub}
+            />
 
             <PercBox />
 
@@ -79,7 +87,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
             </div>
 
             <div>
-              <StringsBox />
+              <StringsBox setValidStringsSub={setValidStringsSub} />
             </div>
           </div>
 

@@ -13,17 +13,31 @@ const popsInput = "10.8.6.6.4";
 const SYM = "SYM";
 const POPS = "POPS";
 
-const StringsBox = () => {
+const StringsBox = ({ setValidStringsSub }) => {
   const [input, setInput] = useState(symInput);
+  const [isValidEntry, setIsvalidEntry] = useState(true);
+
   const { pieceShow, submitClicked } = useContext(InstEntryStore);
 
   const pusher = useFetch();
 
+  const testString = "12.2.8.7.5";
+  const testList = testString.split(".");
+
   useEffect(() => {
     const sendUpStrings = async () => {
       const list = input.split(".");
-      const allStringChairs = [];
 
+      if (
+        list.length !== 5 ||
+        list.filter((el) => isNaN(el)).length > 0 ||
+        list.includes("")
+      ) {
+        setIsvalidEntry(false);
+        return;
+      }
+
+      const allStringChairs = [];
       const sections = list.map((number, index) => {
         return { name: strings[index], number };
       });
@@ -41,6 +55,9 @@ const StringsBox = () => {
       }
 
       let response = await pusher(allStringChairs, "add-scorelines");
+      if (response !== "phoey") {
+        setValidStringsSub(true);
+      }
     };
 
     if (submitClicked) {
@@ -49,6 +66,7 @@ const StringsBox = () => {
   }, [submitClicked]);
 
   const setStrings = (event) => {
+    setIsvalidEntry(true);
     setInput(event.target.value);
   };
 
@@ -71,6 +89,8 @@ const StringsBox = () => {
     }
   };
 
+  const classNames = isValidEntry ? styles.input : styles.invalid;
+
   return (
     <div className={styles.outerContainer}>
       <label className={styles.label}>STRINGS</label>
@@ -85,7 +105,7 @@ const StringsBox = () => {
         POPS
       </button>
 
-      <input className={styles.input} onChange={setStrings} value={input} />
+      <input className={classNames} onChange={setStrings} value={input} />
     </div>
   );
 };

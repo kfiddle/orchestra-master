@@ -61,3 +61,7 @@
 .orchestrationIconDiv:hover {
   color: blue;
 }
+
+.icon:hover {
+color: rgb(239, 38, 38);
+}
