@@ -1,14 +1,27 @@
 import { useEffect, useState } from "react";
 
+import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
+
+import useFetch from "../../../../hooks/useFetch";
+
 import styles from "./Adjuster.module.css";
 
 const Adjuster = ({ section, count }) => {
   const [clicked, setClicked] = useState(false);
   const [localNumber, setLocalNumber] = useState(0);
 
+  const pusher = useFetch();
+
   useEffect(() => {
     setLocalNumber(count);
   }, []);
+
+  useEffect(() => {
+    // const response = await pusher(pic, "delete-pic");
+
+
+
+  }, [localNumber])
 
   const clickHandler = () => {
     if (!clicked && localNumber === 0) {
@@ -28,7 +41,6 @@ const Adjuster = ({ section, count }) => {
   };
 
   let outerClassNames = !clicked ? styles.sectionDiv : styles.clickedSection;
-
   let buttonsClassNames = !clicked ? styles.invisible : styles.buttonsAndNumber;
 
   return (
@@ -37,12 +49,8 @@ const Adjuster = ({ section, count }) => {
         <div className={styles.nameDiv}>{section}</div>
       </div>
       <div className={buttonsClassNames}>
-        <button onClick={subtractButtonClicker} className={styles.button}>
-          -
-        </button>
-        <button onClick={addButtonClicker} className={styles.button}>
-          +
-        </button>{" "}
+       <AiOutlineMinusCircle onClick={subtractButtonClicker} className={styles.button} />
+        <AiOutlinePlusCircle onClick={addButtonClicker} className={styles.button}/>
         <div className={styles.numberDiv}>{localNumber}</div>
       </div>
     </div>

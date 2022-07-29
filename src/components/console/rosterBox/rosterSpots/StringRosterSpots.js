@@ -6,13 +6,15 @@ import useFetch from "../../../../hooks/useFetch";
 import useKeyPress from "../../../../hooks/useKeyPress";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
+import StringsAdjusters from "../stringsAdjusters/StringsAdjusters";
+import EditChair from "../rosterSpot/editChair/EditChair";
 import StringsBox from "../stringsBox/StringsBox";
 
 import styles from "./StringRosterSpots.module.css";
-import StringsAdjusters from "../stringsAdjusters/StringsAdjusters";
 
 const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
   const [addStringsClicked, setAddStringsClicked] = useState(false);
+  const [addChairClicked, setAddChairClicked] = useState(false);
 
   const [doubleClickedSpot, setDoubleClickedSpot] = useState({
     player: null,
@@ -79,8 +81,16 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
     setAddStringsClicked((previous) => !previous);
   };
 
+  const addChairClicker = () => {
+    setAddChairClicked(true);
+  };
+
   const closeStrings = () => {
     setAddStringsClicked(false);
+  };
+
+  const closeModal = () => {
+    setAddChairClicked(false);
   };
 
   for (let pic of dashboard.pics) {
@@ -105,10 +115,18 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
   return (
     <div>
       {displayableStrings}
-      {displayableStrings.length > 0 && (
-        <button className={styles.stringsButton} onClick={stringsClicker}>
-          ADJUST STRING NUMBERS
+      <div className={styles.buttonsDiv}>
+        <button className={styles.stringsButton} onClick={addChairClicker}>
+          ADD CHAIR
         </button>
+        {displayableStrings.length > 0 && (
+          <button className={styles.stringsButton} onClick={stringsClicker}>
+            ADJUST STRING NUMBERS
+          </button>
+        )}
+      </div>
+      {addChairClicked && (
+        <EditChair closeModal={closeModal}  />
       )}
 
       <StringsAdjusters strings={strings} visible={addStringsClicked} />

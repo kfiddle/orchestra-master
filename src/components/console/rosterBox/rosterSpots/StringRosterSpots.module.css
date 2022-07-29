@@ -1,3 +1,9 @@
+.buttonsDiv{
+  display: flex;
+}
+
+
+
 .stringsButton  {
     width: fit-content;
     background: none;
