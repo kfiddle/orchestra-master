@@ -3,7 +3,7 @@
 } */
 
 
-.stringsButton  {
+.addChairButton  {
     width: fit-content;
     background: none;
     color: #c10df3;
@@ -15,11 +15,10 @@
     font-weight: 900;
     text-transform: uppercase;
     cursor: pointer;
-    float: right;
     transition: all 0.25s ease-out;
   }
   
-  .stringsButton:hover {
+  .addChairButton:hover {
     background: #620e79;
     color: rgb(192, 174, 174);
   }

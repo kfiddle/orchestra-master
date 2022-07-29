@@ -16,14 +16,21 @@ const Part = () => {
 };
 
 const AddChairBox = ({ closeModal }) => {
-  //   const [pic, setPic] = useState({});
   const [parts, setParts] = useState([]);
-
   const { allInstruments } = useContext(AllInstruments);
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   console.log(dashboard);
+
+  useEffect(() => {
+    const tempList = [];
+    tempList.push({
+      instrument: { name: null },
+      rank: null,
+    });
+    setParts([...tempList]);
+  }, []);
 
   const pusher = useFetch();
   const partsRef = useRef({});

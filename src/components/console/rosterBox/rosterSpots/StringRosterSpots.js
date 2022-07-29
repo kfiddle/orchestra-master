@@ -16,7 +16,6 @@ import styles from "./StringRosterSpots.module.css";
 
 const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
   const [addStringsClicked, setAddStringsClicked] = useState(false);
-  const [addChairClicked, setAddChairClicked] = useState(false);
 
   const [doubleClickedSpot, setDoubleClickedSpot] = useState({
     player: null,
@@ -83,17 +82,10 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
     setAddStringsClicked((previous) => !previous);
   };
 
-  const addChairClicker = () => {
-    setAddChairClicked(true);
-  };
-
   const closeStrings = () => {
     setAddStringsClicked(false);
   };
 
-  const closeModal = () => {
-    setAddChairClicked(false);
-  };
 
   for (let pic of dashboard.pics) {
     if (stringParts.includes(pic.parts[0].instrument.name)) {
@@ -118,18 +110,14 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
     <div>
       {displayableStrings}
       <div className={styles.buttonsDiv}>
-        <button className={styles.stringsButton} onClick={addChairClicker}>
-          ADD CHAIR
-        </button>
+
         {displayableStrings.length > 0 && (
           <button className={styles.stringsButton} onClick={stringsClicker}>
             ADJUST STRING NUMBERS
           </button>
         )}
       </div>
-      {addChairClicked && (
-        <AddChairBox closeModal={closeModal}  />
-      )}
+    
 
       <StringsAdjusters strings={strings} visible={addStringsClicked} />
     </div>
