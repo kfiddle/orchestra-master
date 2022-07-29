@@ -7,6 +7,8 @@ import useKeyPress from "../../../../hooks/useKeyPress";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
 import StringsAdjusters from "../stringsAdjusters/StringsAdjusters";
+
+import AddChairBox from "./addChairBox/AddChairBox";
 import EditChair from "../rosterSpot/editChair/EditChair";
 import StringsBox from "../stringsBox/StringsBox";
 
@@ -126,7 +128,7 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
         )}
       </div>
       {addChairClicked && (
-        <EditChair closeModal={closeModal}  />
+        <AddChairBox closeModal={closeModal}  />
       )}
 
       <StringsAdjusters strings={strings} visible={addStringsClicked} />
