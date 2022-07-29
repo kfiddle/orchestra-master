@@ -15,18 +15,15 @@
   cursor: pointer;
 }
 
+.clicked,
 .outerContainer:hover {
   background: rgb(197, 219, 247);
   color: rgb(82, 87, 9);
 }
 
-.clicked {
-  background: rgb(171, 185, 43);
-}
-
-.highlighted {
+/* .highlighted {
   transform: translateX(-3rem);
-}
+} */
 
 .sectionHeadMargin {
   margin: 2rem 1rem 0.5rem 0;

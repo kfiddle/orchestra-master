@@ -21,8 +21,6 @@ const AddChairBox = ({ closeModal }) => {
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  console.log(dashboard);
-
   useEffect(() => {
     const tempList = [];
     tempList.push({
@@ -124,19 +122,8 @@ const AddChairBox = ({ closeModal }) => {
 
   const styleObject = {
     minHeight: "30rem",
-    height: `${parts.length * 14}rem`,
+    height: `${parts.length * 17}rem`,
     width: "fitContent",
-  };
-
-  const testParts = () => {
-    let tempList = parts;
-    tempList.push(Part());
-    setParts(tempList);
-    console.log(parts);
-  };
-
-  const printTestParts = () => {
-    console.log(parts);
   };
 
   return (
@@ -156,23 +143,14 @@ const AddChairBox = ({ closeModal }) => {
             </button>
           </div>
 
-          <div className={styles.buttonsDiv}>
-            <button
-              onClick={() => console.log(partsRef)}
-              className={styles.button}
-            >
-              t
-            </button>
-          </div>
+          <div className={styles.buttonsDiv}></div>
         </div>
-        <button onClick={testParts}>AddStuff</button>{" "}
-        <button onClick={printTestParts}>PrintTest</button>
         <div className={styles.submitDiv}>
           <button
             className={`${styles.button} ${styles.submitButton}`}
             onClick={isValidSubmit}
           >
-            SUBMIT EDITS
+            SUBMIT CHAIR
           </button>
         </div>
       </div>

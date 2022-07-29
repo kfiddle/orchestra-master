@@ -17,8 +17,6 @@
   
  
   .buttonsDiv {
-    /* position: absolute;
-    right: 10%; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,19 +55,18 @@
   
   .submitDiv {
     position: absolute;
-  
     display: flex;
     justify-content: center;
     bottom: 2rem;
   }
   
   .submitButton {
-    color: #252730;
-    border: 4px solid #252730;
+    color: #11193d;
+    border: 5px solid #11193d;
   }
   
   .submitButton:hover {
     color: white;
-    background: #252730;
+    background: #11193d;
   }
   
