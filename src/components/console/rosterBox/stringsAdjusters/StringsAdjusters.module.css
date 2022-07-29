@@ -1,0 +1,17 @@
+.outerContainer {
+  
+  transform: translate(-40rem, -30rem);
+}
+
+.visible {
+  display: block;
+}
+
+/* position: fixed;
+  display: block;
+  width: 55%;
+  top: 13vh;
+  right: -25vw;
+  margin-left: 10vw;
+  max-height: 50vh;
+  overflow: auto; */

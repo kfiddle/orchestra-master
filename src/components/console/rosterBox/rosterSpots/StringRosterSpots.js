@@ -9,8 +9,9 @@ import RosterSpot from "../rosterSpot/RosterSpot";
 import StringsBox from "../stringsBox/StringsBox";
 
 import styles from "./StringRosterSpots.module.css";
+import StringsAdjusters from "../stringsAdjusters/StringsAdjusters";
 
-const StringRosterSpots = ({rightClicker, rightClickedSpot}) => {
+const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
   const [addStringsClicked, setAddStringsClicked] = useState(false);
 
   const [doubleClickedSpot, setDoubleClickedSpot] = useState({
@@ -52,7 +53,6 @@ const StringRosterSpots = ({rightClicker, rightClickedSpot}) => {
     }
   }, [upArrowPressed, downArrowPressed]);
 
-
   const sendUpNewSeating = async () => {
     let response = await pusher(dashboard.pics, "change-seating");
   };
@@ -76,7 +76,7 @@ const StringRosterSpots = ({rightClicker, rightClickedSpot}) => {
   };
 
   const stringsClicker = () => {
-    setAddStringsClicked(true);
+    setAddStringsClicked((previous) => !previous);
   };
 
   const closeStrings = () => {
@@ -111,12 +111,14 @@ const StringRosterSpots = ({rightClicker, rightClickedSpot}) => {
         </button>
       )}
       {addStringsClicked && (
-        <StringsBox
-          piece={dashboard.clickedPiece}
-          show={dashboard.clickedShow}
-          strings={strings}
-          closeModal={closeStrings}
-        />
+        // <StringsBox
+        //   piece={dashboard.clickedPiece}
+        //   show={dashboard.clickedShow}
+        //   strings={strings}
+        //   closeModal={closeStrings}
+        // />
+
+        <StringsAdjusters strings={strings} />
       )}
     </div>
   );

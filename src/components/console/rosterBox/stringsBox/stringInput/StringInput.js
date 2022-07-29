@@ -8,9 +8,15 @@ import useFetch from "../../../../../hooks/useFetch";
 
 import classes from "./StringInput.module.css";
 
-const StringInput = ({ part, count }) => {
+const StringInput = ({ part, count, submitted }) => {
   const [localNumber, setLocalNumber] = useState(0);
   const { dashboard, dispatch } = useContext(ConsoleHolder);
+
+  useEffect(() => {
+    setLocalNumber(count);
+  }, []);
+
+ 
 
   // useEffect(() => {
   //   if (submitted) {
@@ -35,10 +41,7 @@ const StringInput = ({ part, count }) => {
       <div className={classes.labelDiv}>
         <label className={classes.label}>{part}</label>
       </div>
-      <NumberInput
-        number={localNumber}
-        numberSetter={setLocalNumber}
-      />
+      <NumberInput number={localNumber} numberSetter={setLocalNumber} />
     </div>
   );
 };

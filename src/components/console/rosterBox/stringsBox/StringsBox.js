@@ -23,12 +23,35 @@ const StringsBox = ({ piece: showtune, show, strings, closeModal }) => {
   const title = showtune ? showtune.piece.title : show.title;
 
   const displayableInputs = sections.map((part, index) => (
-    <StringInput key={index} part={part} count={countOf(part)} />
+    <StringInput
+      key={index}
+      part={part}
+      count={countOf(part)}
+      submitted={submitted}
+    />
   ));
 
+  function getAllStringNums() {
+    return new Promise((resolve) => {
+      const someFunc = () => {
+        let n = 1;
+        for (let j = 1; j < 10000; j++) {
+          console.log(j)
+        }
+      };
+      resolve();
+    });
+  }
+
+  async function printNums() {
+    const response = await getAllStringNums();
+    console.log("made it wait!");
+  }
+
   const submitStringNumbers = () => {
-    setSubmitted(true);
-    setTimeout(closeModal, 300);
+    printNums();
+    // setSubmitted(true);
+    // setTimeout(closeModal, 300);
   };
 
   const stringsModalStyles = { width: "fit-content", top: "5vh" };
