@@ -1,6 +1,9 @@
 .outerContainer {
-  
-  transform: translate(-40rem, -30rem);
+  display: none;
+  width: 30%;
+  position: fixed;
+  bottom: 20rem;
+  left: 20%;
 }
 
 .visible {

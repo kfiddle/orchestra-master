@@ -110,16 +110,8 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
           ADJUST STRING NUMBERS
         </button>
       )}
-      {addStringsClicked && (
-        // <StringsBox
-        //   piece={dashboard.clickedPiece}
-        //   show={dashboard.clickedShow}
-        //   strings={strings}
-        //   closeModal={closeStrings}
-        // />
 
-        <StringsAdjusters strings={strings} />
-      )}
+      <StringsAdjusters strings={strings} visible={addStringsClicked} />
     </div>
   );
 };

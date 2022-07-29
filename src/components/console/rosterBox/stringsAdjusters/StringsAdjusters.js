@@ -1,7 +1,7 @@
 import Adjuster from "./Adjuster";
 import styles from "./StringsAdjusters.module.css";
 
-const StringsAdjusters = ({ strings }) => {
+const StringsAdjusters = ({ strings, visible }) => {
   const sections = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
 
   const countOf = (stringPart) => {
@@ -17,11 +17,11 @@ const StringsAdjusters = ({ strings }) => {
       count={countOf(section)}
     />
   ));
-  return (
-    <div className={styles.outerContainer}>
-      {displayableAdjusters}
-    </div>
-  );
+
+  const classNames = visible
+    ? `${styles.outerContainer} ${styles.visible}`
+    : styles.outerContainer;
+  return <div className={classNames}>{displayableAdjusters}</div>;
 };
 
 export default StringsAdjusters;
