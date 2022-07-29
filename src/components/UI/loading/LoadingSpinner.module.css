@@ -4,7 +4,7 @@
     top: 50vh;
     left: 50vw;
     animation: spin 1s ease-in-out infinite;
-    border: 5px solid rgb(241, 51, 44);
+    border: 5px solid #c10df3;
     border-top-color: #333;
     border-radius: 50%;
     display: block;

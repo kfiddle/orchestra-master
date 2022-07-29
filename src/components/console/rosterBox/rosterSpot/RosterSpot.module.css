@@ -20,8 +20,12 @@
   color: rgb(82, 87, 9);
 }
 
+.clicked {
+  background: rgb(171, 185, 43);
+}
+
 .highlighted {
- transform: translateX(-3rem);
+  transform: translateX(-3rem);
 }
 
 .sectionHeadMargin {

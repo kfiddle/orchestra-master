@@ -109,10 +109,18 @@ const RosterSpot = function ({
     printRankOrSeat = "A";
   }
 
+
   let marginClass = !printSectionLabel
     ? classes.sectionMargin
     : classes.sectionHeadMargin;
-  let backgroundClass = player ? classes.hired : classes.unHired;
+
+  let backgroundClass = classes.unHired;
+  if (chairState.chosenPic === pic) {
+    backgroundClass = classes.clicked;
+  }
+  if (player) {
+    backgroundClass = classes.hired;
+  }
 
   let fadeForOtherClass = fadeForOther ? classes.fadeForOther : null;
   let rightClickedClass = rightClicked ? classes.rightClicked : null;
@@ -125,7 +133,7 @@ const RosterSpot = function ({
   return (
     <div>
       <div
-        className={`${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass} ${doubleClickedClass}`}
+        className={` ${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass} ${doubleClickedClass}`}
         onClick={spotClickedHandler}
         onContextMenu={rightClickHandler}
         onDoubleClick={doubleClickHandler}

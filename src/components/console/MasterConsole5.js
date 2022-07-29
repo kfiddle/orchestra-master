@@ -35,7 +35,7 @@ const MasterConsole5 = (props) => {
   };
 
   useEffect(() => {
-    if (dashboard.clickedShow) {
+    if (dashboard.clickedShow || dashboard.modalClosed) {
       grabThePieces();
       grabPICSFromShow();
       dispatch({ type: "clickedPiece", clickedPiece: null });

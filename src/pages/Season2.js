@@ -14,7 +14,6 @@ const initialState = {
   pieces: [],
   clickedPiece: null,
   pics: [],
-  clickedPic: null,
   possibles: [],
   clickedPossible: null,
   refreshPICS: false,

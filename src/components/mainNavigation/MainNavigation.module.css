@@ -1,70 +1,71 @@
 .header {
-    width: 100%;
-    height: 5.2rem;
-    display: flex;
-    position: fixed;
-    top: 0;
-    padding: 2% 3%;
-    justify-content: space-between;
-    align-items: center;
-    background: rgb(14, 0, 10);
-    /* background-color: #008080; */
-  }
-  
-  .logo h1 {
-    font-size: 2.3rem;
-    color: rgb(216, 67, 47);
-    font-weight: 900;
-    margin-right: 0;
-    /* text-shadow: .5px .5px rgb(243, 237, 237); */
-  }
-  
-  .nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav li {
-    margin-left: 3.5rem;
-    font-size: 1.25rem;
-    font-weight: 900;
-  }
-  
-  .newFormDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    white-space: nowrap;
-    margin-left: 0;
-    border: rgb(9, 8, 63) solid 3px;
-    border-radius: 3px;
-  }
-  
-  .newFormDiv li {
-    font-size: 10px;
-  }
-  
-  .nav a,
-  .navItem {
-    text-decoration: none;
-    color: rgb(216, 67, 47);
-  }
-  
-  .navItem:hover,
-  .nav a:hover,
-  .nav a:active,
-  .nav a.active {
-    color: #e2f53a;
-  }
-  
-  .active {
-    color: #f7bc1b;
-  }
-  
-  .navItem {
-    cursor: pointer;
-  }
-  
+  width: 100%;
+  height: 5.2rem;
+  display: flex;
+  position: fixed;
+  top: 0;
+  padding: 2% 3%;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(14, 0, 10);
+  /* background-color: #008080; */
+}
+
+.logo h1 {
+  font-size: 2.3rem;
+  /* color: rgb(216, 67, 47); */
+  color: #c10df3;
+  font-weight: 900;
+  margin-right: 0;
+  /* text-shadow: .5px .5px rgb(243, 237, 237); */
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  margin-left: 3.5rem;
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
+.newFormDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  white-space: nowrap;
+  margin-left: 0;
+  border: rgb(9, 8, 63) solid 3px;
+  border-radius: 3px;
+}
+
+.newFormDiv li {
+  font-size: 10px;
+}
+
+.nav a,
+.navItem {
+  text-decoration: none;
+  /* color: rgb(216, 67, 47); */
+  color: #c10df3;
+}
+
+.navItem:hover,
+.nav a:hover,
+.nav a:active,
+.nav a.active {
+  color: #e2f53a;
+}
+
+.active {
+  color: #f7bc1b;
+}
+
+.navItem {
+  cursor: pointer;
+}

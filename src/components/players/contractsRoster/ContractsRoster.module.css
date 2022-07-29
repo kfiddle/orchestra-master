@@ -12,7 +12,7 @@
   position: relative;
   margin-bottom: 2rem;
   padding: 2rem;
-  background: rgb(48, 45, 45);
+  background: rgb(48, 45, 47);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -23,8 +23,8 @@
   position: absolute;
   left: 2rem;
   top: 50%;
-  color: brown;
-  font-weight: bold;
+  color: #c10df3;
+  font-weight: 900;
   font-size: 1.5rem;
   opacity: 0.8;
 
