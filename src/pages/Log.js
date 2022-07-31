@@ -4,6 +4,7 @@ import LoadingSpinner from "../components/UI/loading/LoadingSpinner";
 import ReloadFlagStore from "../store/reload-flag-store";
 
 import useGetAList2 from "../hooks/useGetAList2";
+import LogEvents from "../components/logFolder/LogEvents";
 
 const Log = (props) => {
   let allLogEvents = useGetAList2("get-all-log-events");
@@ -14,7 +15,10 @@ const Log = (props) => {
 
   let isLoading = allLogEvents.length < 1;
 
-  return isLoading ? <LoadingSpinner /> : <div>  Am I HERE {allLogEvents.length}</div>;
+  return isLoading ? <LoadingSpinner /> : 
+
+    <LogEvents events={allLogEvents}/>
+  ;
 };
 
 export default Log;
