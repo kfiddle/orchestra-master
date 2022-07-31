@@ -16,18 +16,18 @@ const MainNavigation = (props) => {
           <div className={classes.newFormDiv}>
             <li className={classes.navItem}>
               <NavLink to={"/log"} activeClassName={classes.active}>
-                <IoMdAlert />
+                <IoMdAlert className={classes.icon} />
               </NavLink>
             </li>
             <li className={classes.navItem} onClick={props.playerEntryClicked}>
-              <FaUserPlus />
+              <FaUserPlus className={classes.icon} />
             </li>
             <li
               className={classes.navItem}
               onClick={props.pieceEntryClicked}
               style={{ marginRight: "3rem" }}
             >
-              <GiBlackBook />
+              <GiBlackBook className={classes.icon} />
             </li>
 
             <li
@@ -35,7 +35,7 @@ const MainNavigation = (props) => {
               onClick={props.performanceEntryClicked}
               style={{ marginRight: "7rem" }}
             >
-              <GiDramaMasks />
+              <GiDramaMasks className={classes.icon} />
             </li>
           </div>
 

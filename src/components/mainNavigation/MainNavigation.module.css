@@ -23,13 +23,13 @@
 .nav ul {
   list-style: none;
   display: flex;
-  margin: 0;
+  margin-left: 5rem;
   padding: 0;
 }
 
 .nav li {
-  margin-left: 3.5rem;
-  font-size: 1.25rem;
+  margin-left: 4rem;
+  font-size: 1.4rem;
   font-weight: 900;
 }
 
@@ -40,29 +40,38 @@
   width: fit-content;
   white-space: nowrap;
   margin-left: 0;
-  border: rgb(9, 8, 63) solid 3px;
-  border-radius: 3px;
+
 }
 
 .newFormDiv li {
-  font-size: 10px;
+  font-size: 14px;
+}
+
+.icon {
+  font-size: 3rem;
+}
+
+.icon:hover {
+  color: #d5ced4;
 }
 
 .nav a,
 .navItem {
   text-decoration: none;
   color: #b107e0;
+  transition: .1s;
+  font-size: 1.8rem;
 }
 
-.navItem:hover,
-.nav a:hover,
+
+.nav a:hover{
+  color: #d5ced4;
+}
+
+
 .nav a:active,
 .nav a.active {
-  color: #e2f53a;
-}
-
-.active {
-  color: #f7bc1b;
+  color: #f5eef3;
 }
 
 .navItem {
