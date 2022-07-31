@@ -13,7 +13,7 @@
   margin-bottom: 2rem;
   padding: 2rem;
   background: rgb(48, 45, 47);
-  border-radius: 10px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -23,7 +23,7 @@
   position: absolute;
   left: 2rem;
   top: 50%;
-  color: #c10df3;
+  color: whitesmoke;
   font-weight: 900;
   font-size: 1.5rem;
   opacity: 0.8;

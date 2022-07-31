@@ -1,0 +1,49 @@
+.outerContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem 1rem 2rem;
+  width: 90%;
+  background: #4e4a4e;
+  border-radius: 3px;
+  border: 2px solid rgb(102, 98, 98);
+  color: rgb(245, 220, 237);
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.outerContainer:hover {
+  background: rgb(197, 155, 166);
+}
+
+.nameDiv {
+  width: 15%;
+}
+
+.showTitleDiv {
+  width: 20%;
+}
+
+.replyDiv {
+  height: 100%;
+}
+
+.checkIcon {
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgb(120, 249, 7);
+}
+
+.xIcon {
+  font-size: 2rem;
+  font-weight: 900;
+  color: rgb(180, 4, 10);
+}
+
+.questionIcon {
+  font-size: 2rem;
+  font-weight: 900;
+  color: lightblue;
+}
