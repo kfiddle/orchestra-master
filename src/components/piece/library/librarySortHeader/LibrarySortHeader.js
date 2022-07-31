@@ -31,7 +31,7 @@ const LibrarySortHeader = (props) => {
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>
-        <ul>{displayableSortOptions}</ul>
+        {displayableSortOptions}
       </nav>
     </header>
   );

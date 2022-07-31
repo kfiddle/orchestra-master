@@ -23,11 +23,12 @@
 }
 
 .showTitleDiv {
-  width: 20%;
+  width: 30%;
 }
 
 .replyDiv {
   height: 100%;
+  width: 10%;
 }
 
 .checkIcon {

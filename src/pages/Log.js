@@ -7,7 +7,10 @@ import useGetAList2 from "../hooks/useGetAList2";
 import LogEvents from "../components/logFolder/LogEvents";
 
 const Log = (props) => {
-  let allLogEvents = useGetAList2("get-all-log-events");
+  // let allLogEvents = useGetAList2("get-all-log-events");
+
+  let allLogEvents = useGetAList2("get-log-events-by/DATE");
+  // "get-log-events-by/{sortType}"
 
   //   useEffect(() => {
   //     dispatch({ type: "shows", list: allPerformances });
