@@ -5,12 +5,12 @@
   display: flex;
   justify-content: center;
   background: linear-gradient(
-    rgb(39, 1, 1),
-    rgb(39, 1, 1),
-    rgb(39, 1, 1),
-    rgb(39, 1, 1),
-    rgb(39, 1, 1),
-    rgb(75, 5, 5)
+    #260030,
+    #260030,
+    #260030,
+    #260030,
+    #370145,
+    #710290
   );
 
   animation: slide-down 300ms ease-out forwards;
@@ -61,12 +61,12 @@
 }
 
 .clickedOption {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3rem;
-    padding: 0 3rem;
-    color: rgb(39, 1, 1);
-    background: white;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  padding: 0 3rem;
+  color: rgb(39, 1, 1);
+  background: white;
+  cursor: pointer;
 }

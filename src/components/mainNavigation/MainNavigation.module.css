@@ -7,14 +7,14 @@
   padding: 2% 3%;
   justify-content: space-between;
   align-items: center;
-  background: rgb(14, 0, 10);
-  /* background-color: #008080; */
+  /* background: rgb(14, 0, 10); */
+  /* background: #a19fa1; */
+  background: #2c2b2c;
 }
 
 .logo h1 {
   font-size: 2.3rem;
-  /* color: rgb(216, 67, 47); */
-  color: #c10df3;
+  color: #b107e0;
   font-weight: 900;
   margin-right: 0;
   /* text-shadow: .5px .5px rgb(243, 237, 237); */
@@ -51,8 +51,7 @@
 .nav a,
 .navItem {
   text-decoration: none;
-  /* color: rgb(216, 67, 47); */
-  color: #c10df3;
+  color: #b107e0;
 }
 
 .navItem:hover,
