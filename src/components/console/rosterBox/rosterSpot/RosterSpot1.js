@@ -133,7 +133,8 @@ const RosterSpot1 = function ({
   return (
     <div>
       <div
-        className={` ${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass} ${doubleClickedClass}`}
+        // className={` ${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass} ${doubleClickedClass}`}
+        className={`${classes.outerContainer} ${marginClass}`}
         onClick={spotClickedHandler}
         onContextMenu={rightClickHandler}
         onDoubleClick={doubleClickHandler}

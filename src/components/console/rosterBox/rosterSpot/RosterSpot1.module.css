@@ -2,17 +2,23 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0.5rem;
+  padding: 1.25rem;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
-  height: 2.5rem;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
+  border: 2px solid #b107e0;
+  border-radius: 3px;
+  margin: 0.5rem;
+  height: 3rem;
   color: rgb(255, 255, 255);
   font-weight: 900;
   font-size: 1rem;
   letter-spacing: 0.15em;
   transition: 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
   cursor: pointer;
+}
+
+.outerContainer:hover {
+    background: rgb(95, 93, 93) ;
 }
 
 .clicked {

@@ -96,7 +96,7 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
   }
 
   const displayableStrings = strings.map((pic) => (
-    <RosterSpot1
+    <RosterSpot
       key={Math.random()}
       pic={pic}
       index={dashboard.pics.indexOf(pic)}

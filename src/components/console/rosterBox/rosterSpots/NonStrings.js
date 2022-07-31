@@ -31,7 +31,7 @@ const NonStrings = ({rightClicker, rightClickedSpot}) => {
   };
 
   const displayableOthers = others.map((pic) => (
-    <RosterSpot1
+    <RosterSpot
       key={Math.random()}
       pic={pic}
       index={dashboard.pics.indexOf(pic)}

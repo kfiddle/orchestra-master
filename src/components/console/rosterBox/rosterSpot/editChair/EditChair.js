@@ -114,7 +114,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
     setParts([...tempList]);
   };
 
-  const displayableParts = parts.map(part => (
+  const displayableParts = parts.map((part) => (
     <OnePart
       key={parts.indexOf(part)}
       part={part}
@@ -135,10 +135,7 @@ const EditChair = ({ closeModal, incomingPic }) => {
     setParts([...templist]);
   };
 
-
   const styleObject = {
-    minHeight: '30rem',
-    height: `${parts.length * 14}rem`,
     width: "fitContent",
   };
 
@@ -146,10 +143,6 @@ const EditChair = ({ closeModal, incomingPic }) => {
     let tempList = parts;
     tempList.push(Part());
     setParts(tempList);
-    console.log(parts);
-  };
-
-  const printTestParts = () => {
     console.log(parts);
   };
 
@@ -179,16 +172,9 @@ const EditChair = ({ closeModal, incomingPic }) => {
             <button className={styles.button} onClick={deleteChair}>
               Remove Chair
             </button>
-            <button
-              onClick={() => console.log(partsRef)}
-              className={styles.button}
-            >
-              t
-            </button>
           </div>
         </div>
-        <button onClick={testParts}>AddStuff</button>{" "}
-        <button onClick={printTestParts}>PrintTest</button>
+
         <div className={styles.submitDiv}>
           <button
             className={`${styles.button} ${styles.submitButton}`}
