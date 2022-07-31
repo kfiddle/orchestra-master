@@ -13,18 +13,12 @@
   letter-spacing: 0.15em;
   transition: 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
   cursor: pointer;
-
 }
 
-.clicked,
-.outerContainer:hover {
+.clicked {
   background: rgb(197, 219, 247);
   color: rgb(82, 87, 9);
 }
-
-/* .highlighted {
-  transform: translateX(-3rem);
-} */
 
 .sectionHeadMargin {
   margin: 2rem 1rem 0.5rem 0;

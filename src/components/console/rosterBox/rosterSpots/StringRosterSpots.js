@@ -6,6 +6,8 @@ import useFetch from "../../../../hooks/useFetch";
 import useKeyPress from "../../../../hooks/useKeyPress";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
+import RosterSpot1 from "../rosterSpot/RosterSpot1";
+
 import StringsAdjusters from "../stringsAdjusters/StringsAdjusters";
 
 import AddChairBox from "./addChairBox/AddChairBox";
@@ -94,7 +96,7 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
   }
 
   const displayableStrings = strings.map((pic) => (
-    <RosterSpot
+    <RosterSpot1
       key={Math.random()}
       pic={pic}
       index={dashboard.pics.indexOf(pic)}

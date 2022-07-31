@@ -3,6 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import { ConsoleHolder } from "../../../../store/object-holder";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
+import RosterSpot1 from "../rosterSpot/RosterSpot1";
+
 
 import styles from "./NonStrings.module.css";
 
@@ -29,7 +31,7 @@ const NonStrings = ({rightClicker, rightClickedSpot}) => {
   };
 
   const displayableOthers = others.map((pic) => (
-    <RosterSpot
+    <RosterSpot1
       key={Math.random()}
       pic={pic}
       index={dashboard.pics.indexOf(pic)}
