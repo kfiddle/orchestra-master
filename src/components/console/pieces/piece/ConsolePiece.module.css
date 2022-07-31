@@ -7,22 +7,23 @@
   padding: 1rem;
   width: 80%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border: 4px solid #b107e0;
+  border: 4px solid #c82af4;
   border-radius: 4px;
   height: 3.5rem;
   cursor: pointer;
   transition: 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-
 .unclicked {
-  color: #b107e0;
+  color: #c82af4;
   background: transparent;
 }
 
 .clicked {
   background: #b107e0;
   color: whitesmoke;
+  border: none;
+
 }
 
 .rosterDiv {
