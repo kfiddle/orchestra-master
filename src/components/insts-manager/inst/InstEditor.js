@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import ReactDOM from "react-dom";
 
@@ -22,6 +22,8 @@ const portalElement = document.getElementById("overlays");
 
 const InstEditor = ({ inst, closeModal, children }) => {
   const [enteredAbrev, setEnteredAbrev] = useState("");
+  const { setReloadFlag } = useContext(ReloadFlagStore);
+
   const pusher = useFetch();
 
   const abbrevHandler = (e) => {
@@ -31,7 +33,8 @@ const InstEditor = ({ inst, closeModal, children }) => {
   const submit = async () => {
     const instToSend = { ...inst, abbreviation: enteredAbrev };
     const response = await pusher(instToSend, "edit-abbreviation");
-    if (response !== 'phoey') {
+    if (response !== "phoey") {
+      setReloadFlag(true);
       closeModal();
     }
   };
@@ -55,7 +58,7 @@ const InstEditor = ({ inst, closeModal, children }) => {
               />
             </div>
             <label className={classes.instruction}>
-              Enter preferred abbreviation above
+              Enter preferred abbreviation above. *Capitalization is not relevent*
             </label>
             <div>
               <button className={classes.button} onClick={submit}>
