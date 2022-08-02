@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { authActions } from "./redux/Auth";
-import PushBasic from "./components/helperFunctions/pushFunctions/PushBasic";
 
 import "./App.css";
 
@@ -18,6 +17,7 @@ import AllSubPlayers from "./pages/AllSubPlayers";
 import Library from "./pages/Library";
 import Season2 from "./pages/Season2";
 import Log from "./pages/Log";
+import InstsPage from "./pages/InstsPage";
 
 function App() {
   const [modalIsClosed, setModalIsClosed] = useState(false);
@@ -73,6 +73,10 @@ function App() {
 
           <Route path={"/log"} exact>
             <Log />
+          </Route>
+
+          <Route path={"/instruments"} exact>
+            <InstsPage />
           </Route>
         </Switch>
       </Layout>

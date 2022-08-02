@@ -1,6 +1,11 @@
 import { NavLink } from "react-router-dom";
 import { FaUserPlus } from "react-icons/fa";
-import { GiBlackBook, GiMusicalKeyboard, GiDramaMasks } from "react-icons/gi";
+import {
+  GiBlackBook,
+  GiMusicalKeyboard,
+  GiDramaMasks,
+  GiViolin,
+} from "react-icons/gi";
 import { IoMdAlert } from "react-icons/io";
 
 import classes from "./MainNavigation.module.css";
@@ -21,6 +26,12 @@ const MainNavigation = (props) => {
             </li>
             <li className={classes.navItem} onClick={props.playerEntryClicked}>
               <FaUserPlus className={classes.icon} />
+            </li>
+
+            <li className={classes.navItem}>
+              <NavLink to={"/instruments"} activeClassName={classes.active}>
+                <GiViolin className={classes.icon} />
+              </NavLink>
             </li>
             <li
               className={classes.navItem}

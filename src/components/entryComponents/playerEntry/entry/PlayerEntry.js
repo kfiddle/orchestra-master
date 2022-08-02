@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import ObjectToListHelper from "../../../helperFunctions/ObjectToListHelper";
 import InstrumentsList from "../../../../store/instruments-list";
-import InstrumentsDropDown from "../../../instruments/InstrumentsDropDown";
+import InstrumentsDropDown from "../../../instruments-drop/InstrumentsDropDown";
 
 import Modal from "../../../UI/modal/Modal";
 import InputText from "../../../input/InputText";
