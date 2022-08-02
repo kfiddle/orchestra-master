@@ -2,15 +2,17 @@ import { useState } from "react";
 
 import ReactDOM from "react-dom";
 
+import Backdrop from "../../UI/modal/Backdrop";
+
+import ReloadFlagStore from "../../../store/reload-flag-store";
+
+import useFetch from "../../../hooks/useFetch";
+
 import classes from "./InstEditor.module.css";
 
-const Backdrop = ({ closeModal }) => {
-  return <div className={classes.backdrop} onClick={closeModal} />;
-};
-
-const ModalOverlay = ({ styleObject, children }) => {
+const ModalOverlay = ({ children }) => {
   return (
-    <div className={classes.modal} style={styleObject}>
+    <div className={classes.modal}>
       <div className={classes.content}>{children}</div>
     </div>
   );
@@ -18,7 +20,22 @@ const ModalOverlay = ({ styleObject, children }) => {
 
 const portalElement = document.getElementById("overlays");
 
-const InstEditor = ({ inst, styleObject, closeModal, children }) => {
+const InstEditor = ({ inst, closeModal, children }) => {
+  const [enteredAbrev, setEnteredAbrev] = useState("");
+  const pusher = useFetch();
+
+  const abbrevHandler = (e) => {
+    setEnteredAbrev(e.target.value);
+  };
+
+  const submit = async () => {
+    const instToSend = { ...inst, abbreviation: enteredAbrev };
+    const response = await pusher(instToSend, "edit-abbreviation");
+    if (response !== 'phoey') {
+      closeModal();
+    }
+  };
+
   return (
     <div className={classes.outerContainer}>
       {ReactDOM.createPortal(
@@ -27,18 +44,23 @@ const InstEditor = ({ inst, styleObject, closeModal, children }) => {
       )}
 
       {ReactDOM.createPortal(
-        <ModalOverlay styleObject={styleObject}>
+        <ModalOverlay>
           <div className={classes.outerContainer}>
             <label className={classes.label}>{inst.name}</label>
             <div>
               <input
                 className={classes.input}
                 placeholder={inst.abbreviation}
+                onChange={abbrevHandler}
               />
             </div>
-            <label className={classes.instruction}>Enter preferred abbreviation above</label>
+            <label className={classes.instruction}>
+              Enter preferred abbreviation above
+            </label>
             <div>
-              <button className={classes.button}>SUBMIT</button>
+              <button className={classes.button} onClick={submit}>
+                SUBMIT
+              </button>
             </div>
           </div>
         </ModalOverlay>,

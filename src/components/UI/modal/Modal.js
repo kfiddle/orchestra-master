@@ -1,11 +1,8 @@
 import ReactDOM from "react-dom";
 
 import Card from "../Card";
+import Backdrop from "./Backdrop";
 import classes from "./Modal.module.css";
-
-const Backdrop = (props) => {
-  return <div className={classes.backdrop} onClick={props.closeModal} />;
-};
 
 const ModalOverlay = (props) => {
   const { styleObject } = props;
@@ -19,7 +16,6 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const Modal = ({ styleObject, closeModal, children }) => {
-
   return (
     <div className={classes.outerContainer}>
       {ReactDOM.createPortal(
