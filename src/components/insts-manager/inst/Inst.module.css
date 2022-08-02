@@ -7,9 +7,9 @@
   width: 50%;
   border-radius: 12px;
   border: 2px solid rgb(102, 98, 98);
-  color: rgb(245, 220, 220);
+  color: rgb(241, 228, 228);
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 900;
   cursor: pointer;
 }
 
@@ -18,11 +18,23 @@
   color: #3b3b3b;
 }
 
-.nameDiv{
-    width: 20%;
-    padding-left: 5rem;
+.nameDiv {
+  width: 40%;
+  padding-left: 10rem;
 }
 
-.abbrevDiv{
+.abbrevDiv {
+}
 
+.iconDiv {
+  position: absolute;
+  right: 5rem;
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.icon:hover {
+  color: rgb(219, 4, 165);
 }

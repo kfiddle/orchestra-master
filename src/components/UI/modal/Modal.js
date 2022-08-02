@@ -18,19 +18,18 @@ const ModalOverlay = (props) => {
 
 const portalElement = document.getElementById("overlays");
 
-const Modal = (props) => {
-  const { styleObject } = props;
+const Modal = ({ styleObject, closeModal, children }) => {
 
   return (
     <div className={classes.outerContainer}>
       {ReactDOM.createPortal(
-        <Backdrop closeModal={props.closeModal} />,
+        <Backdrop closeModal={closeModal} />,
         portalElement
       )}
 
       {ReactDOM.createPortal(
         <ModalOverlay styleObject={styleObject}>
-          <Card>{props.children}</Card>
+          <Card>{children}</Card>
         </ModalOverlay>,
         portalElement
       )}

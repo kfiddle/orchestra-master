@@ -20,8 +20,6 @@
 }
 
 .buttonsDiv {
-  /* position: absolute;
-  right: 10%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +58,6 @@
 
 .submitDiv {
   position: absolute;
-
   display: flex;
   justify-content: center;
   bottom: 2rem;
