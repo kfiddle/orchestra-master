@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import WhichServer from "../components/helperFunctions/WhichServer";
 
-const useFetch = () => {
+const useStringResponse = () => {
   const auth = useSelector((state) => state.auth);
   const { jwtToken } = auth;
 
@@ -14,21 +14,17 @@ const useFetch = () => {
   }
 
   const pusher = async (objectToPush, url) => {
-
     let response = await fetch(whichServer + url, {
       method: "POST",
       headers,
       body: JSON.stringify(objectToPush),
     });
 
-    if (response.ok) {
-      let answer = await response.json();
-      return answer;
-    }
+    console.log(response.body());
     return "phoey";
   };
 
   return pusher;
 };
 
-export default useFetch;
+export default useStringResponse;
