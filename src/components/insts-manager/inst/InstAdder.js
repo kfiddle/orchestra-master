@@ -41,10 +41,12 @@ const InstAdder = ({ closeModal }) => {
       abbreviation: enteredAbrev.toUpperCase(),
     };
     const response = await pusher(instToSend, "add-instrument");
-    if (response !== "phoey") {
-      setReloadFlag(true);
-      closeModal();
-    }
+    console.log(response)
+
+    // if (response !== "phoey") {
+    //   setReloadFlag(true);
+    //   closeModal();
+    // }
   };
 
   return (
