@@ -20,7 +20,8 @@ const useStringResponse = () => {
       body: JSON.stringify(objectToPush),
     });
 
-    console.log(response.headers);
+    let answer = await response.text();
+    return answer;
   };
 
   return pusher;
