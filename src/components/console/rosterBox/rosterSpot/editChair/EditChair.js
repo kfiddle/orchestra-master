@@ -139,13 +139,6 @@ const EditChair = ({ closeModal, incomingPic }) => {
     width: "fitContent",
   };
 
-  const testParts = () => {
-    let tempList = parts;
-    tempList.push(Part());
-    setParts(tempList);
-    console.log(parts);
-  };
-
   return (
     <Modal closeModal={closeModal} styleObject={styleObject}>
       <div className={styles.outerContainer}>

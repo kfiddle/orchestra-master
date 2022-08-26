@@ -40,7 +40,9 @@ const OnePart = ({ part, index, partDeleter, parts, setParts, partsRef }) => {
   }, [part]);
 
   useEffect(() => {
-    return () => delete partsRef.current[index];
+    return () => {
+      delete partsRef.current[index];
+    };
   }, []);
 
   const deleteClicker = () => {
@@ -49,11 +51,17 @@ const OnePart = ({ part, index, partDeleter, parts, setParts, partsRef }) => {
 
   const changeRank = (event) => {
     setInputtedRank(event.target.value);
+    let tempParts = [...parts];
+    tempParts[index].rank = event.target.value;
+    setParts(tempParts);
   };
 
   const nameFromOnChangeHandler = (event) => {
     setIsValidName(true);
     setInstName(event.target.value);
+    let tempParts = [...parts];
+    tempParts[index].instrument.name = event.target.value;
+    setParts(tempParts);
   };
 
   const options = allInstruments.map((instrument) =>

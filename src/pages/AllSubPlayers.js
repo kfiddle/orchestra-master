@@ -9,7 +9,7 @@ import useGetAList2 from "../hooks/useGetAList2";
 const AllSubPlayers = (props) => {
   const [reload, setReload] = useState(false);
   let players = useGetAList2("get-all-sub-players", reload, setReload);
-  let isLoading = players.length < 1;
+  let isLoading = !players.length;
 
   const possibleEdit = () => {
     setReload(true);

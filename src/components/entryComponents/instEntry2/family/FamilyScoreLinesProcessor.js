@@ -56,7 +56,7 @@ const FamilyScoreLinesProcessor = (text) => {
     return closingIndex + j;
   };
 
-  // 3[1.2.pic] 2 3[1.2.Bcl] 2 – 4a221
+  // 3[1.2.3/pic1.pic2] 2 3[1.2.Bcl] 2 – 4a221
 
   const mainLoop = () => {
     let times = 0;

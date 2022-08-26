@@ -9,7 +9,7 @@ import useGetAList2 from "../hooks/useGetAList2";
 const AllContractedPlayers = (props) => {
   const [reload, setReload] = useState(false);
   let players = useGetAList2("get-all-contracted-players", reload, setReload);
-  let isLoading = players.length < 1;
+  let isLoading = !players.length;
 
 
   const possibleEdit = () => {

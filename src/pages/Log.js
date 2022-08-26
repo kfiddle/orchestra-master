@@ -11,12 +11,9 @@ const Log = (props) => {
 
   let allLogEvents = useGetAList2("get-log-events-by/DATE");
 
-  let isLoading = allLogEvents.length < 1;
+  let isLoading = !allLogEvents.length;
 
-  return isLoading ? <LoadingSpinner /> : 
-
-    <LogEvents events={allLogEvents}/>
-  ;
+  return isLoading ? <LoadingSpinner /> : <LogEvents events={allLogEvents} />;
 };
 
 export default Log;

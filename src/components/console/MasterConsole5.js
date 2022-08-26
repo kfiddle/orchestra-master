@@ -29,7 +29,7 @@ const MasterConsole5 = (props) => {
   const grabPICSFromShow = async () => {
     const directPICS = await pusher(dashboard.clickedShow, "get-pics-in-show");
 
-    if (directPICS.length > 0) {
+    if (directPICS.length) {
       dispatch({ type: "pics", list: directPICS });
     }
   };

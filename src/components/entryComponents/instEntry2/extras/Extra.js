@@ -4,6 +4,8 @@ import { InstEntryStore } from "../../../../store/form-holders";
 
 import useFetch from "../../../../hooks/useFetch";
 
+import NumLoop from "../../../helperFunctions/NumLoop";
+
 import styles from "./Extra.module.css";
 
 const Extra = ({ instrument }) => {
@@ -13,17 +15,19 @@ const Extra = ({ instrument }) => {
 
   const pusher = useFetch();
 
+  const makeChair = async (j) => {
+    let chairToSend = {
+      piece: pieceShow.piece,
+      show: pieceShow.show,
+      parts: [{ instrument: { name: instrument }, rank: j }],
+    };
+
+    let response = await pusher(chairToSend, "add-scoreline");
+  };
+
   useEffect(() => {
     const sendUpExtras = async () => {
-      for (let j = 1; j <= localNumber; j++) {
-        let chairToSend = {
-          piece: pieceShow.piece,
-          show: pieceShow.show,
-          parts: [{ instrument: { name: instrument }, rank: j }],
-        };
-
-        let response = await pusher(chairToSend, "add-scoreline");
-      }
+      NumLoop(localNumber, makeChair);
     };
 
     if (submitClicked && localNumber > 0) {
