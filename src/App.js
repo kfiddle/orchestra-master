@@ -44,7 +44,11 @@ function App() {
     };
 
     login();
+
   }, []);
+
+  
+
 
   const modalCloseHandler = (flag) => {
     setModalIsClosed(flag);

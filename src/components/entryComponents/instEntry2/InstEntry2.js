@@ -43,8 +43,6 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
 
   useEffect(() => {
     if (validFamilySub && validStringsSub) {
-      console.log(validFamilySub);
-      console.log(validStringsSub);
       closeModal();
     }
     return () => closeModal;

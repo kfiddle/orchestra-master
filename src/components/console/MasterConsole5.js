@@ -12,6 +12,7 @@ import useFetch from "../../hooks/useFetch";
 //season2 has this
 
 import styles from "./MasterConsole5.module.css";
+import useGetAList2 from "../../hooks/useGetAList2";
 
 const MasterConsole5 = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
@@ -57,9 +58,11 @@ const MasterConsole5 = (props) => {
     }
   }, [dashboard.refreshPICS]);
 
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.performancesDiv}>
+
         <Shows />
       </div>
       <div className={styles.piecesDiv}>

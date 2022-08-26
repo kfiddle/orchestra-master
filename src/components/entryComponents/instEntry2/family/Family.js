@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from "react";
 
 import useFetch from "../../../../hooks/useFetch";
 
-import FamilyChairsProcessor from "./FamilyChairsProcessor";
-import FamilyScoreLinesProcessor from "./FamilyScoreLinesProcessor";
+// import FamilyScoreLinesProcessor from "./FamilyScoreLinesProcessor";
+import useScoreProcessor from "../../../../hooks/useScoreProcessor";
 
 import { InstEntryStore } from "../../../../store/form-holders";
 
@@ -16,6 +16,7 @@ const Family = ({ label, setValidFamilySub }) => {
     useContext(InstEntryStore);
 
   const pusher = useFetch();
+  const process = useScoreProcessor();
 
   useEffect(() => {
     const sendUpScoreLines = async (scoreLinesList) => {
@@ -38,7 +39,7 @@ const Family = ({ label, setValidFamilySub }) => {
     };
 
     if (submitClicked) {
-      const scoreLinesList = FamilyScoreLinesProcessor(localText);
+      const scoreLinesList = process(localText);
       if (scoreLinesList) {
         sendUpScoreLines(scoreLinesList);
         if (pieceShow.piece) {
