@@ -6,44 +6,14 @@ import {
   extras,
 } from "../components/entryComponents/instEntry2/family/ScoreLine";
 
-// export const isValidInst = (instName) => {
-//   return allInsts.includes(instName);
-// };
-
-// export const ScoreLine = (parts) => {
-//   return { parts };
-// };
-
-// export const Part = (instAbbrev, rankOrDesignate) => {
-//   let specialDesignate = isNaN(rankOrDesignate) ? rankOrDesignate : null;
-//   let rank;
-//   if (!isNaN(rankOrDesignate)) {
-//     rank = +rankOrDesignate;
-//   } else if (rankOrDesignate === "A") {
-//     rank = rankOrDesignate;
-//   } else {
-//     rank = null;
-//   }
-
-//   if (isValidInst(instAbbrev) && rankOrDesignate) {
-//     return {
-//       instrument: { abbreviation: instAbbrev },
-//       rank,
-//       specialDesignate,
-//     };
-//   } else {
-//     return null;
-//   }
-// };
-
 const useScoreProcessor = () => {
   const fullOrch = useFullOrch();
   const extras = {};
-//   for (let key in fullOrch) {
-//     extras[key] = fullOrch[key].map((inst) => inst.abbreviation);
-//   }
+  for (let [primary, dbs] of Object.entries(fullOrch)) {
+    extras[primary] = dbs.map((inst) => inst.abbreviation);
+  }
 
-  console.log(fullOrch);
+  console.log(extras);
 
   const process = (text) => {
     let isValid = true;

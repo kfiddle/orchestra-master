@@ -8,16 +8,19 @@ import { ConsoleHolder } from "../../store/object-holder";
 
 import RosterBox from "./rosterBox/RosterBox";
 import useFetch from "../../hooks/useFetch";
+import useRequestMapping from "../../hooks/useRequestMapping";
 
 //season2 has this
 
 import styles from "./MasterConsole5.module.css";
 import useGetAList2 from "../../hooks/useGetAList2";
+import useFullOrch from "../../hooks/useFullOrch";
 
 const MasterConsole5 = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const pusher = useFetch();
+  const requester = useRequestMapping();
 
   const grabThePieces = async () => {
     const showPieces = await pusher(
@@ -58,11 +61,22 @@ const MasterConsole5 = (props) => {
     }
   }, [dashboard.refreshPICS]);
 
+  // const grabIt = async () => {
+  //   const response = await requester('get-inst-by-name/FLUTE');
+  //   console.log(response)
+  // }
+
+  const orch = useFullOrch();
+  const testOrch = () => {
+    for (let key of Object.keys(orch)) {
+      console.log(key);
+    }
+  };
 
   return (
     <div className={styles.outerContainer}>
       <div className={styles.performancesDiv}>
-
+        <button onClick={testOrch}>TEST</button>
         <Shows />
       </div>
       <div className={styles.piecesDiv}>

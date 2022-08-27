@@ -1,28 +1,46 @@
 import { useEffect, useState } from "react";
 import useRequestMapping from "./useRequestMapping";
 
+const initialOrch = {
+  flute: ["piccolo", "alto flute", "bass flute", "flute d'amore"],
+  oboe: ["english horn", "oboe d'amore", "bass oboe"],
+  clarinet: ["eb clarinet", "bass clarinet", "sax"],
+  bassoon: ["contra"],
+  horn: ["wagner tuba"],
+  trumpet: ["cornet", "flugelhorn", "picc trumpet"],
+  trombone: ["bass trombone"],
+  tuba: ["euphonium"],
+};
+
 const useFullOrch = () => {
   const [orch, setOrch] = useState({});
-  const orchGetter = useRequestMapping("get-orchestra");
+  const requester = useRequestMapping();
+
+  const findInst = async (name) => {
+    let reply = await requester(`get-inst-by-name/${name}`);
+    if (reply) {
+      return reply;
+    }
+    return false;
+  };
 
   useEffect(() => {
-    const getOrch = async () => {
-      const reply = await orchGetter();
-      console.log((reply) => console.log(reply));
+    const putItTogether = async () => {
+      const tempOrch = {};
+      for (let [primary, dbs] of Object.entries(initialOrch)) {
+        const primaryInst = await findInst(primary);
+        const dbsList = [];
+        for (let db of dbs) {
+          const dbInst = await findInst(db);
+          dbsList.push(dbInst);
+        }
 
-      //   setOrch({
-      //     FL: reply.fluteDbs,
-      //     OB: reply.oboeDbs,
-      //     CL: reply.clarinetDbs,
-      //     BSN: reply.bassoonDbs,
-      //     HN: reply.hornDbs,
-      //     TPT: reply.trumpetDbs,
-      //     TBN: reply.tromboneDbs,
-      //     TBA: reply.tubaDbs,
-      //   });
+        tempOrch[primaryInst.abbreviation] = dbsList;
+      }
+      setOrch(tempOrch);
     };
 
-    getOrch();
+    putItTogether();
   }, []);
 
   return orch;

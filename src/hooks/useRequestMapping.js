@@ -1,31 +1,29 @@
-import { useEffect, useState } from "react";
-
 import { useSelector } from "react-redux";
 
 import WhichServer from "../components/helperFunctions/WhichServer";
 
-const useRequestMapping = (url) => {
-  const whichServer = WhichServer();
-
+const useRequestMapping = () => {
   const auth = useSelector((state) => state.auth);
   const { jwtToken } = auth;
 
-  const getResponse = async () => {
-    if (!jwtToken) {
-      return;
-    } else {
-      try {
-        let response = await fetch(whichServer + url, {
-          headers: { Authorization: jwtToken },
-        });
-        return await response.json();
-      } catch (error) {
-        return console.log(error);
-      }
+  const whichServer = WhichServer();
+
+  let headers = { "Content-Type": "application/json" };
+  if (jwtToken) {
+    headers = { ...headers, Authorization: jwtToken };
+  }
+
+  const pusher = async (url) => {
+    let response = await fetch(whichServer + url, { headers });
+
+    if (response.ok) {
+      let answer = await response.json();
+      return answer;
     }
+    return false;
   };
 
-  return getResponse;
+  return pusher;
 };
 
 export default useRequestMapping;
