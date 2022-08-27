@@ -8,16 +8,18 @@ const useFullOrch = () => {
   useEffect(() => {
     const getOrch = async () => {
       const reply = await orchGetter();
-      setOrch({
-        FL: reply.fluteDbs,
-        OB: reply.oboeDbs,
-        CL: reply.clarinetDbs,
-        BSN: reply.bassoonDbs,
-        HN: reply.hornDbs,
-        TPT: reply.trumpetDbs,
-        TBN: reply.tromboneDbs,
-        TBA: reply.tubaDbs,
-      });
+      console.log((reply) => console.log(reply));
+
+      //   setOrch({
+      //     FL: reply.fluteDbs,
+      //     OB: reply.oboeDbs,
+      //     CL: reply.clarinetDbs,
+      //     BSN: reply.bassoonDbs,
+      //     HN: reply.hornDbs,
+      //     TPT: reply.trumpetDbs,
+      //     TBN: reply.tromboneDbs,
+      //     TBA: reply.tubaDbs,
+      //   });
     };
 
     getOrch();
