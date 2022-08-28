@@ -61,22 +61,9 @@ const MasterConsole5 = (props) => {
     }
   }, [dashboard.refreshPICS]);
 
-  // const grabIt = async () => {
-  //   const response = await requester('get-inst-by-name/FLUTE');
-  //   console.log(response)
-  // }
-
-  const orch = useFullOrch();
-  const testOrch = () => {
-    for (let key of Object.keys(orch)) {
-      console.log(key);
-    }
-  };
-
   return (
     <div className={styles.outerContainer}>
       <div className={styles.performancesDiv}>
-        <button onClick={testOrch}>TEST</button>
         <Shows />
       </div>
       <div className={styles.piecesDiv}>

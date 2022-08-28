@@ -39,6 +39,7 @@ const InstAdder = ({ closeModal }) => {
     const instToSend = {
       name: enteredName.toUpperCase(),
       abbreviation: enteredAbrev.toUpperCase(),
+      scoreOrder: 5
     };
     const answer = await pusher(instToSend, "add-instrument");
 

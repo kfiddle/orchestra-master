@@ -61,10 +61,10 @@ const PercBox = () => {
     <div className={styles.outerContainer}>
       <label className={styles.label}>Timpani</label>
       <input className={styles.input} onChange={setTimp}></input>
-      <label className={styles.label} onChange={setPerc}>
+      <label className={styles.label} >
         Percussion
       </label>
-      <input className={styles.input}></input>
+      <input className={styles.input} onChange={setPerc}></input>
     </div>
   );
 };
