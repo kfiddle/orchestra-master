@@ -1,10 +1,4 @@
 import useFullOrch from "./useFullOrch";
-import {
-  Part,
-  ScoreLine,
-  primaries,
-  extras,
-} from "../components/entryComponents/instEntry2/family/ScoreLine";
 
 const useScoreProcessor = () => {
   const fullOrch = useFullOrch();
@@ -13,7 +7,40 @@ const useScoreProcessor = () => {
     extras[primary] = dbs.map((inst) => inst.abbreviation);
   }
 
-  console.log(extras);
+  const primaries = Object.keys(extras);
+
+  const allInsts = [];
+  for (let [key, list] of Object.entries(extras)) {
+    allInsts.push(key);
+    for (let inst of list) {
+      allInsts.push(inst);
+    }
+  }
+
+  const isValidInst = (instName) => {
+    return allInsts.includes(instName);
+  };
+
+  const Part = (instAbbrev, rankOrDesignate) => {
+    let specialDesignate = isNaN(rankOrDesignate) ? rankOrDesignate : null;
+    let rank;
+    if (!isNaN(rankOrDesignate)) {
+      rank = +rankOrDesignate;
+    } else if (rankOrDesignate === "A") {
+      rank = rankOrDesignate;
+    } else {
+      rank = null;
+    }
+    if (isValidInst(instAbbrev) && rankOrDesignate) {
+      return {
+        instrument: { abbreviation: instAbbrev },
+        rank,
+        specialDesignate,
+      };
+    } else {
+      return null;
+    }
+  };
 
   const process = (text) => {
     let isValid = true;
@@ -23,9 +50,10 @@ const useScoreProcessor = () => {
       let parts = [];
       let part = Part(inst, rank);
       parts.push(part);
-      let scoreLine = ScoreLine(parts);
-      scoreLinesList.push(scoreLine);
+      scoreLinesList.push({ parts });
     };
+
+    // 4[1.2.3/pic.4/pic] 4[1.2.3.Eh] 4[1.2.3.bcl] 4 — 6431
 
     const renderDoublings = (inst, scoreLine) => {
       let partsToAdd = [];
@@ -45,9 +73,11 @@ const useScoreProcessor = () => {
         }
       }
 
-      scoreLinesList.push(ScoreLine(partsToAdd));
+      scoreLinesList.push({ parts: partsToAdd });
+      console.log(scoreLinesList);
     };
 
+    //      1.2.3/pic.4/pic
     const goBetweenBrackets = (j, index) => {
       let primaryInst = primaries[index];
       let bracketSlice = text.slice(j + 1);
@@ -72,6 +102,7 @@ const useScoreProcessor = () => {
     };
 
     // 3[1.2.3/pic1.pic2] 2 3[1.2.Bcl] 2 – 4a221
+    // 4[1.2.3/pic.4/pic] 4[1.2.3.Eh] 4[1.2.3.bcl] 4 — 6431
 
     const mainLoop = () => {
       let times = 0;
@@ -96,13 +127,13 @@ const useScoreProcessor = () => {
     };
 
     const finalCheckValid = () => {
-      for (let scoreLine of scoreLinesList) {
-        for (let part of scoreLine.parts) {
-          if (part == null) {
-            isValid = false;
+        for (let scoreLine of scoreLinesList) {
+          for (let part of scoreLine.parts) {
+            if (part == null) {
+              isValid = false;
+            }
           }
         }
-      }
     };
 
     mainLoop();
