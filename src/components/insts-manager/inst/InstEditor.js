@@ -31,7 +31,7 @@ const InstEditor = ({ inst, closeModal, children }) => {
   };
 
   const submit = async () => {
-    const instToSend = { ...inst, abbreviation: enteredAbrev };
+    const instToSend = { ...inst, abbreviation: enteredAbrev.toUpperCase() };
     const response = await pusher(instToSend, "edit-abbreviation");
     if (response !== "phoey") {
       setReloadFlag(true);

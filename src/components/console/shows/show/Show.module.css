@@ -2,21 +2,21 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin: 1rem 1rem;
+  margin: .5rem 1rem;
   padding: 2rem;
   width: 100%;
-  border-radius: 2px;
-  /* border: 4px solid rgb(245, 220, 240); */
-  /* border: 4px solid rgb(88, 82, 88); */
-  /* text-transform: uppercase; */
   font-weight: 900;
-  color: rgb(222, 214, 214);
+  color: #b3b4ad;
   cursor: pointer;
+  transition: 0.25s linear;
 }
 
 .outerContainer:hover {
-  background: #635f63;
-  color: rgb(222, 214, 214);
+  /* background: #635f63; */
+  /* color: rgb(236, 228, 228); */
+  /* border-bottom: 3px solid #c3c4b7; */
+  text-decoration: underline;
+
 }
 
 .unclicked {
@@ -26,20 +26,16 @@
   /* background: transparent;  */
   /* color: rgb(245, 220, 220); */
   /* /* color: rgb(201, 192, 199); */
-  background: #2c2b2c;
+  /* background: #2c2b2c; */
 }
 
 .clicked {
-  /* background: rgb(243, 215, 237);
-    color: #3b3b3b;  */
-  /* border: 4px solid rgb(248, 193, 246); */
-  background: rgb(198, 182, 194);
-  color: #3b3b3b;
+  color: #faf029;
 }
 
 .titleDiv {
-  width: 70%;
-  font-size: 1.25rem;
+  width: 80%;
+  font-size: 2rem;
 }
 
 .dateDiv {

@@ -17,7 +17,7 @@
 
 .clicked,
 .outerContainer:hover {
-  background: rgb(197, 219, 247);
+  background: rgb(239, 241, 227);
   color: rgb(82, 87, 9);
 }
 
@@ -43,9 +43,10 @@
 .unHired {
   /* background: rgb(167, 45, 208); */
   /* background: rgb(109, 46, 109); */
-  background: #b107e0;
+  background: #b3b4ad;
   opacity: .85;
-  color: rgb(248, 244, 248);
+  color: #2c2b2c;
+  font-weight: 900;
 
 }
 

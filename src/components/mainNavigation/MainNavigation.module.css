@@ -7,14 +7,12 @@
   padding: 2% 3%;
   justify-content: space-between;
   align-items: center;
-  /* background: rgb(14, 0, 10); */
-  /* background: #a19fa1; */
   background: #2c2b2c;
 }
 
 .logo h1 {
   font-size: 2.3rem;
-  color: #b107e0;
+  color: #f2edf4;
   font-weight: 900;
   margin-right: 0;
   /* text-shadow: .5px .5px rgb(243, 237, 237); */
@@ -58,8 +56,8 @@
 .nav a,
 .navItem {
   text-decoration: none;
-  color: #b107e0;
-  transition: .1s;
+  color: #f2edf4;
+  transition: .3s;
   font-size: 1.8rem;
   cursor: pointer;
 }
@@ -67,12 +65,13 @@
 
 .nav a:hover{
   color: #d5ced4;
+  text-decoration: underline;
 }
 
 
 .nav a:active,
 .nav a.active {
-  color: #f5eef3;
+  color: #faf029;;
 }
 
 

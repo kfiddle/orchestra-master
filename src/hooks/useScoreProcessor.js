@@ -8,6 +8,7 @@ const useScoreProcessor = () => {
   }
 
   const primaries = Object.keys(extras);
+  console.log(extras)
 
   const allInsts = [];
   for (let [key, list] of Object.entries(extras)) {
@@ -74,7 +75,6 @@ const useScoreProcessor = () => {
       }
 
       scoreLinesList.push({ parts: partsToAdd });
-      console.log(scoreLinesList);
     };
 
     //      1.2.3/pic.4/pic

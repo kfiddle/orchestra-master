@@ -1,5 +1,5 @@
 .outerContainer {
-  width: 90vw;
+  width: 95vw;
   display: flex;
   /* display: grid;
   grid-template-columns: 1fr 1fr 2.5fr; */
@@ -7,7 +7,7 @@
 }
 
 .performancesDiv {
-  width: 25%;
+  width: 27%;
   margin-right: 2rem;
 }
 
