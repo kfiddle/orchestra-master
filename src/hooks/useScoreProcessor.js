@@ -8,7 +8,7 @@ const useScoreProcessor = () => {
   }
 
   const primaries = Object.keys(extras);
-  console.log(extras)
+  console.log(extras);
 
   const allInsts = [];
   for (let [key, list] of Object.entries(extras)) {
@@ -127,13 +127,14 @@ const useScoreProcessor = () => {
     };
 
     const finalCheckValid = () => {
-        for (let scoreLine of scoreLinesList) {
-          for (let part of scoreLine.parts) {
-            if (part == null) {
-              isValid = false;
-            }
+      for (let scoreLine of scoreLinesList) {
+        console.log(scoreLine);
+        for (let part of scoreLine.parts) {
+          if (part == null) {
+            isValid = false;
           }
         }
+      }
     };
 
     mainLoop();

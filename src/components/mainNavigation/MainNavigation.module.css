@@ -50,7 +50,8 @@
 }
 
 .icon:hover {
-  color: #d5ced4;
+  /* color: #faf029; */
+  color: #fc4242;
 }
 
 .nav a,
@@ -66,12 +67,15 @@
 .nav a:hover{
   color: #d5ced4;
   text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 1rem;
 }
 
 
 .nav a:active,
 .nav a.active {
-  color: #faf029;;
+  /* color: #faf029; */
+  color: #fc4242;
 }
 
 

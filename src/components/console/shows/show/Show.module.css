@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin: .5rem 1rem;
+  margin: 0.5rem 1rem;
   padding: 2rem;
   width: 100%;
   font-weight: 900;
@@ -12,11 +12,9 @@
 }
 
 .outerContainer:hover {
-  /* background: #635f63; */
-  /* color: rgb(236, 228, 228); */
-  /* border-bottom: 3px solid #c3c4b7; */
   text-decoration: underline;
-
+  text-decoration-thickness: 2px;
+  text-underline-offset: 1rem;
 }
 
 .unclicked {
@@ -30,7 +28,9 @@
 }
 
 .clicked {
-  color: #faf029;
+  /* color: #faf029; */
+  color: #fc4242;
+
 }
 
 .titleDiv {

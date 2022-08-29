@@ -1,15 +1,18 @@
 import { useState } from "react";
 
+import { useSelector } from "react-redux";
+
 import Inst from "./inst/Inst";
 import InstAdder from "./inst/InstAdder";
 
 import styles from "./Insts.module.css";
 
-const Insts = ({ insts }) => {
+const Insts = () => {
   const [addInstClicked, setAddInstClicked] = useState(false);
+  const { allInsts } = useSelector((state) => state.insts);
 
-  const displayableInsts = insts.map((inst) => (
-    <Inst key={insts.indexOf(inst)} inst={inst} />
+  const displayableInsts = allInsts.map((inst) => (
+    <Inst key={allInsts.indexOf(inst)} inst={inst} />
   ));
 
   const addInstClicker = (onOrOff) => {

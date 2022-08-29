@@ -1,10 +1,9 @@
 .pieceContainer {
   position: relative;
   display: flex;
-  justify-content: center;
   align-items: center;
   margin: 1.5rem;
-  padding: 1rem;
+  padding: 1rem 0 0 5rem;
   width: 80%;
   height: 3.5rem;
   cursor: pointer;
@@ -13,6 +12,8 @@
 
 .pieceContainer:hover {
   text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 1rem;
 }
 
 .unclicked {
@@ -21,7 +22,9 @@
 }
 
 .clicked {
-  color: #faf029;
+  /* color: #faf029; */
+  color: #fc4242;
+
 }
 
 .rosterDiv {
