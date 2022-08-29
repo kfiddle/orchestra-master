@@ -30,12 +30,18 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
 
   const [validFamilySub, setValidFamilySub] = useState(false);
   const [validStringsSub, setValidStringsSub] = useState(false);
+  const [goodToSend, setGoodToSend] = useState(false);
+
+  const familyRef = useRef();
+  const stringsRef = useRef();
 
   const pieceShow = { show: show, piece, piece };
   const title = piece ? piece.title : show.title;
-  const providerObject = { pieceShow, submitClicked, setSubmitClicked };
+  const providerObject = { pieceShow, submitClicked, setSubmitClicked, familyRef, stringsRef, goodToSend };
 
   const pusher = useFetch();
+
+ 
 
   const submit = () => {
     setSubmitClicked(true);
@@ -43,6 +49,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
 
   useEffect(() => {
     if (validFamilySub && validStringsSub) {
+      setGoodToSend(true)
       closeModal();
     }
     return () => closeModal;
