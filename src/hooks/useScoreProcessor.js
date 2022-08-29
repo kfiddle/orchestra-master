@@ -8,7 +8,6 @@ const useScoreProcessor = () => {
   }
 
   const primaries = Object.keys(extras);
-  console.log(extras);
 
   const allInsts = [];
   for (let [key, list] of Object.entries(extras)) {

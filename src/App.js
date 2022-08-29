@@ -1,9 +1,12 @@
 import { Switch, Route } from "react-router";
 import { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import useRequestMapping from "./hooks/useRequestMapping";
 
 import { authActions } from "./redux/Auth";
+import { instsActions } from "./redux/Insts";
 
 import "./App.css";
 
@@ -23,8 +26,11 @@ function App() {
   const [modalIsClosed, setModalIsClosed] = useState(false);
   const [reloadFlag, setReloadFlag] = useState(false);
 
+  const { isLoggedIn } = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
   const whichServer = WhichServer();
+  const requester = useRequestMapping();
 
   useEffect(() => {
     const login = async () => {
@@ -45,6 +51,17 @@ function App() {
 
     login();
   }, []);
+
+  useEffect(() => {
+    const getAllInsts = async () => {
+      const allInsts = await requester("get-all-instruments");
+      dispatch(instsActions.refresh(allInsts));
+      setReloadFlag(false);
+    };
+    if (isLoggedIn) {
+      getAllInsts();
+    }
+  }, [isLoggedIn]);
 
   const modalCloseHandler = (flag) => {
     setModalIsClosed(flag);

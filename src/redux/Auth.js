@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialLoggedState = {
-  loggedIn: false,
+  isLoggedIn: false,
   jwtToken: null,
 };
 
@@ -10,11 +10,11 @@ const authSlice = createSlice({
   initialState: initialLoggedState,
   reducers: {
     login(state, action) {
-      state.loggedIn = true;
+      state.isLoggedIn = true;
       state.jwtToken = action.payload.jwtToken;
     },
     logout(state) {
-      state.loggedIn = false;
+      state.isLoggedIn = false;
       state.jwtToken = null;
     },
   },
