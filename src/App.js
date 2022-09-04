@@ -34,7 +34,7 @@ function App() {
 
   useEffect(() => {
     const login = async () => {
-      const userDeets = { username: "cn@Email", password: "ChrisPass" };
+      const userDeets = { username: "manager@Email", password: "managerPass" };
 
       const response = await fetch(whichServer + "login", {
         method: "POST",

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useReducer } from "react";
 
 import { InstEntryStore } from "../../../store/form-holders";
 
@@ -19,41 +19,38 @@ const modalStyle = {
   top: "20vh",
 };
 
-const families = {
-  WINDS: ["FLUTE", "OBOE", "CLARINET", "BASSOON"],
-  BRASS: ["HORN", "TRUMPET", "TROMBONE", "TUBA"],
+const initialState = {
+  submitClicked: false,
+  familyWasAccepted: false,
+  stringsWasAccepted: false,
+};
+
+const reducer = (state, { type, value }) => {
+  return { ...state, [type]: value };
 };
 
 const InstEntry2 = ({ closeModal, piece, show }) => {
-  const [submitClicked, setSubmitClicked] = useState(false);
+  const [formState, dispatch] = useReducer(reducer, initialState);
+  const { submitClicked, familyWasAccepted, stringsWasAccepted } = formState;
+
   const [previousList, setPreviousList] = useState(null);
-
-  const [validFamilySub, setValidFamilySub] = useState(false);
-  const [validStringsSub, setValidStringsSub] = useState(false);
-  const [goodToSend, setGoodToSend] = useState(false);
-
-  const familyRef = useRef();
-  const stringsRef = useRef();
 
   const pieceShow = { show: show, piece, piece };
   const title = piece ? piece.title : show.title;
-  const providerObject = { pieceShow, submitClicked, setSubmitClicked, familyRef, stringsRef, goodToSend };
+  const providerObject = { pieceShow, submitClicked, dispatch };
 
   const pusher = useFetch();
 
- 
-
   const submit = () => {
-    setSubmitClicked(true);
+    dispatch({ type: "submitClicked", value: true });
   };
 
   useEffect(() => {
-    if (validFamilySub && validStringsSub) {
-      setGoodToSend(true)
+    if (familyWasAccepted && stringsWasAccepted) {
       closeModal();
     }
     return () => closeModal;
-  }, [validFamilySub, validStringsSub]);
+  }, [familyWasAccepted, stringsWasAccepted]);
 
   useEffect(() => {
     const getFormerChairs = async () => {
@@ -80,10 +77,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
         <Modal closeModal={closeModal} styleObject={modalStyle}>
           <div className={styles.titleDiv}>{title}</div>
           <div className={styles.outerContainer}>
-            <Family
-              label={"WINDS AND BRASS"}
-              setValidFamilySub={setValidFamilySub}
-            />
+            <Family label={"WINDS AND BRASS"} />
 
             <PercBox />
 
@@ -92,7 +86,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
             </div>
 
             <div>
-              <StringsBox setValidStringsSub={setValidStringsSub} />
+              <StringsBox />
             </div>
           </div>
 
@@ -100,6 +94,7 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
             <button className={styles.button} onClick={submit}>
               SUBMIT
             </button>
+            <button onClick={() => console.log(formState)}>TEST</button>
           </div>
         </Modal>
       </InstEntryStore.Provider>

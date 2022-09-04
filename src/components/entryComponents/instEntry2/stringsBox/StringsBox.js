@@ -13,11 +13,11 @@ const popsInput = "10.8.6.6.4";
 const SYM = "SYM";
 const POPS = "POPS";
 
-const StringsBox = ({ setValidStringsSub }) => {
+const StringsBox = () => {
   const [input, setInput] = useState(symInput);
   const [isValidEntry, setIsvalidEntry] = useState(true);
 
-  const { pieceShow, submitClicked } = useContext(InstEntryStore);
+  const { pieceShow, submitClicked, dispatch } = useContext(InstEntryStore);
 
   const pusher = useFetch();
 
@@ -56,7 +56,7 @@ const StringsBox = ({ setValidStringsSub }) => {
 
       let response = await pusher(allStringChairs, "add-scorelines");
       if (response !== "phoey") {
-        setValidStringsSub(true);
+        dispatch({ type: "stringsWasAccepted", value: true });
       }
     };
 

@@ -9,7 +9,6 @@ import InputText from "../../../input/InputText";
 import BigInput from "../../../input/BigInput";
 import BigInput2 from "../../../input/BigInput2";
 
-import PushBasic from "../../../helperFunctions/pushFunctions/PushBasic";
 import useFetch from "../../../../hooks/useFetch";
 
 import classes from "./PlayerEntry.module.css";
