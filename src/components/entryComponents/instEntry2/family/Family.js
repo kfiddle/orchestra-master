@@ -12,43 +12,46 @@ const Family = ({ label }) => {
   const [isValidEntry, setIsvalidEntry] = useState(true);
   const [localText, setLocalText] = useState([]);
 
-  const { pieceShow, submitClicked, dispatch } = useContext(InstEntryStore);
+  const { pieceShow, submitClicked, formState, dispatch } =
+    useContext(InstEntryStore);
 
   const pusher = useFetch();
   const process = useScoreProcessor();
 
-  useEffect(() => {
-    const sendUpScoreLines = async (scoreLinesList) => {
-      const scoreLinesToSend = scoreLinesList.map((scoreLine) => {
-        return {
-          piece: pieceShow.piece,
-          show: pieceShow.show,
-          parts: [...scoreLine.parts],
-        };
-      });
-      let response = await pusher(scoreLinesToSend, "add-scorelines");
-      if (response !== "phoey") {
-        dispatch({ type: "familyWasAccepted", value: true });
-      }
-    };
+  const sendUpScoreLines = async (scoreLinesList) => {
+    const scoreLinesToSend = scoreLinesList.map((scoreLine) => {
+      return {
+        piece: pieceShow.piece,
+        show: pieceShow.show,
+        parts: [...scoreLine.parts],
+      };
+    });
+    let response = await pusher(scoreLinesToSend, "add-scorelines");
+    if (response !== "phoey") {
+      dispatch({ type: "familyWasAccepted", value: true });
+    }
 
-    const storeWindsBrassWithPiece = async () => {
+    if (pieceShow.piece) {
       const pieceToSend = { ...pieceShow.piece, instrumentation: localText };
       let response = await pusher(pieceToSend, "edit-piece");
-    };
+    }
+  };
 
+  useEffect(() => {
+    if (formState.goodToGo) {
+      const scoreLinesList = process(localText);
+      sendUpScoreLines(scoreLinesList);
+    }
+  }, [formState.goodToGo]);
+
+  useEffect(() => {
     if (submitClicked) {
       const scoreLinesList = process(localText);
       if (scoreLinesList) {
-        sendUpScoreLines(scoreLinesList);
-        if (pieceShow.piece) {
-          storeWindsBrassWithPiece();
-        }
+        dispatch({ type: "familyisValid", value: true });
       } else {
         setIsvalidEntry(false);
       }
-
-      dispatch({ type: "submitClicked", value: false });
     }
   }, [submitClicked]);
 

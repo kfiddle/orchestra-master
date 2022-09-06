@@ -21,6 +21,9 @@ const modalStyle = {
 
 const initialState = {
   submitClicked: false,
+  familyisValid: false,
+  stringsIsValid: false,
+  goodToGo: false,
   familyWasAccepted: false,
   stringsWasAccepted: false,
 };
@@ -31,13 +34,19 @@ const reducer = (state, { type, value }) => {
 
 const InstEntry2 = ({ closeModal, piece, show }) => {
   const [formState, dispatch] = useReducer(reducer, initialState);
-  const { submitClicked, familyWasAccepted, stringsWasAccepted } = formState;
+  const {
+    submitClicked,
+    familyisValid,
+    stringsIsValid,
+    familyWasAccepted,
+    stringsWasAccepted,
+  } = formState;
 
   const [previousList, setPreviousList] = useState(null);
 
   const pieceShow = { show: show, piece, piece };
   const title = piece ? piece.title : show.title;
-  const providerObject = { pieceShow, submitClicked, dispatch };
+  const providerObject = { pieceShow, submitClicked, formState, dispatch };
 
   const pusher = useFetch();
 
@@ -49,8 +58,17 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
     if (familyWasAccepted && stringsWasAccepted) {
       closeModal();
     }
+
     return () => closeModal;
   }, [familyWasAccepted, stringsWasAccepted]);
+
+  useEffect(() => {
+    if (familyisValid && stringsIsValid) {
+      dispatch({ type: "goodToGo", value: true });
+    } else if (familyisValid || stringsIsValid) {
+      dispatch({ type: "submitClicked", value: false });
+    }
+  }, [familyisValid, stringsIsValid]);
 
   useEffect(() => {
     const getFormerChairs = async () => {

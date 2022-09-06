@@ -17,53 +17,62 @@ const StringsBox = () => {
   const [input, setInput] = useState(symInput);
   const [isValidEntry, setIsvalidEntry] = useState(true);
 
-  const { pieceShow, submitClicked, dispatch } = useContext(InstEntryStore);
+  const { pieceShow, submitClicked, formState, dispatch } =
+    useContext(InstEntryStore);
 
   const pusher = useFetch();
 
   const testString = "12.2.8.7.5";
   const testList = testString.split(".");
 
+  const stringsIsValid = () => {
+    const list = input.split(".");
+    if (
+      list.length !== 5 ||
+      list.filter((el) => isNaN(el)).length > 0 ||
+      list.includes("")
+    ) {
+      return false;
+    }
+    return true;
+  };
+
+  const sendUpStrings = async () => {
+    const list = input.split(".");
+    const allStringChairs = [];
+    const sections = list.map((number, index) => {
+      return { name: strings[index], number };
+    });
+
+    // 10, 8, 6, 6, 4
+
+    for (const section of sections) {
+      for (let j = 1; j <= section.number; j++) {
+        allStringChairs.push({
+          piece: pieceShow.piece,
+          show: pieceShow.show,
+          parts: [{ instrument: { name: section.name }, rank: j }],
+        });
+      }
+    }
+
+    let response = await pusher(allStringChairs, "add-scorelines");
+    if (response !== "phoey") {
+      dispatch({ type: "stringsWasAccepted", value: true });
+    }
+  };
+
   useEffect(() => {
-    const sendUpStrings = async () => {
-      const list = input.split(".");
-
-      if (
-        list.length !== 5 ||
-        list.filter((el) => isNaN(el)).length > 0 ||
-        list.includes("")
-      ) {
-        setIsvalidEntry(false);
-        return;
-      }
-
-      const allStringChairs = [];
-      const sections = list.map((number, index) => {
-        return { name: strings[index], number };
-      });
-
-      // 10, 8, 6, 6, 4
-
-      for (const section of sections) {
-        for (let j = 1; j <= section.number; j++) {
-          allStringChairs.push({
-            piece: pieceShow.piece,
-            show: pieceShow.show,
-            parts: [{ instrument: { name: section.name }, rank: j }],
-          });
-        }
-      }
-
-      let response = await pusher(allStringChairs, "add-scorelines");
-      if (response !== "phoey") {
-        dispatch({ type: "stringsWasAccepted", value: true });
-      }
-    };
-
     if (submitClicked) {
-      sendUpStrings();
+      dispatch({ type: "stringsIsValid", value: stringsIsValid() });
     }
   }, [submitClicked]);
+
+  useEffect(() => {
+    if (formState.goodToGo) {
+      sendUpStrings();
+    }
+  }, [formState.goodToGo]);
 
   const setStrings = (event) => {
     setIsvalidEntry(true);
