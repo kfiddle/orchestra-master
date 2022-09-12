@@ -47,6 +47,7 @@ const Family = ({ label }) => {
   useEffect(() => {
     if (submitClicked) {
       const scoreLinesList = process(localText);
+      console.log(scoreLinesList);
       if (scoreLinesList) {
         dispatch({ type: "familyisValid", value: true });
       } else {

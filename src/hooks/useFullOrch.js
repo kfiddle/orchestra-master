@@ -17,14 +17,10 @@ const initialOrch = {
 const useFullOrch = () => {
   const [orch, setOrch] = useState({});
   const requester = useRequestMapping();
- 
 
   const findInst = async (name) => {
     let reply = await requester(`get-inst-by-name/${name}`);
-    if (reply) {
-      return reply;
-    }
-    return false;
+    return reply ? reply : false;
   };
 
   useEffect(() => {

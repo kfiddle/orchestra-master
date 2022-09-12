@@ -112,7 +112,6 @@ const InstEntry2 = ({ closeModal, piece, show }) => {
             <button className={styles.button} onClick={submit}>
               SUBMIT
             </button>
-            <button onClick={() => console.log(formState)}>TEST</button>
           </div>
         </Modal>
       </InstEntryStore.Provider>

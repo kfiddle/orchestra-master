@@ -49,7 +49,7 @@ const useScoreProcessor = () => {
     const renderScoreLine = (inst, rank) => {
       let parts = [];
       let part = Part(inst, rank);
-      parts.push(part);
+      part ? parts.push(part) : (isValid = false);
       scoreLinesList.push({ parts });
     };
 
@@ -79,11 +79,20 @@ const useScoreProcessor = () => {
     //      1.2.3/pic.4/pic
     const goBetweenBrackets = (j, index) => {
       let primaryInst = primaries[index];
+      if (primaryInst === undefined) {
+        isValid = false;
+        return;
+      }
       let bracketSlice = text.slice(j + 1);
       let closingIndex = bracketSlice.indexOf("]");
+      if (closingIndex === -1) {
+        isValid = false;
+        return;
+      }
       let withinBracketsScoreLines = bracketSlice
         .slice(1, closingIndex)
         .split(".");
+
       withinBracketsScoreLines.forEach((scoreLine) => {
         if (!isNaN(scoreLine)) {
           renderScoreLine(primaryInst, scoreLine);
@@ -102,6 +111,7 @@ const useScoreProcessor = () => {
 
     // 3[1.2.3/pic1.pic2] 2 3[1.2.Bcl] 2 – 4a221
     // 4[1.2.3/pic.4/pic] 4[1.2.3.Eh] 4[1.2.3.bcl] 4 — 6431
+    //2222 - 3333
 
     const mainLoop = () => {
       let times = 0;
@@ -127,6 +137,7 @@ const useScoreProcessor = () => {
 
     const finalCheckValid = () => {
       for (let scoreLine of scoreLinesList) {
+        console.log(scoreLine)
         for (let part of scoreLine.parts) {
           if (part == null) {
             isValid = false;
