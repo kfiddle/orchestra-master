@@ -11,7 +11,7 @@ import styles from "./Extra.module.css";
 const Extra = ({ instrument }) => {
   const [clicked, setClicked] = useState(false);
   const [localNumber, setLocalNumber] = useState(0);
-  const { pieceShow, submitClicked } = useContext(InstEntryStore);
+  const { pieceShow, submitClicked, formState } = useContext(InstEntryStore);
 
   const pusher = useFetch();
 
@@ -33,7 +33,7 @@ const Extra = ({ instrument }) => {
     if (submitClicked && localNumber > 0) {
       sendUpExtras();
     }
-  }, [submitClicked]);
+  }, [formState.goodToGo]);
 
   const clickHandler = () => {
     if (!clicked && localNumber === 0) {

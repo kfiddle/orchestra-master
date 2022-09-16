@@ -46,6 +46,8 @@ const useScoreProcessor = () => {
     let isValid = true;
     let scoreLinesList = [];
 
+    console.log(fullOrch);
+
     const renderScoreLine = (inst, rank) => {
       let parts = [];
       let part = Part(inst, rank);
@@ -137,7 +139,6 @@ const useScoreProcessor = () => {
 
     const finalCheckValid = () => {
       for (let scoreLine of scoreLinesList) {
-        console.log(scoreLine)
         for (let part of scoreLine.parts) {
           if (part == null) {
             isValid = false;

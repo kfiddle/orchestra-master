@@ -9,7 +9,7 @@ import styles from "./PercBox.module.css";
 const PercBox = () => {
   const [timpsInput, setTimpsInput] = useState(0);
   const [percsInput, setPercsInput] = useState(0);
-  const { pieceShow, submitClicked } = useContext(InstEntryStore);
+  const { pieceShow, submitClicked, formState } = useContext(InstEntryStore);
 
   const pusher = useFetch();
 
@@ -39,7 +39,7 @@ const PercBox = () => {
     if (submitClicked) {
       sendUpPercChairs();
     }
-  }, [submitClicked]);
+  }, [formState.goodToGo]);
 
   const setTimp = (event) => {
     if (isNaN(event.target.value)) {
