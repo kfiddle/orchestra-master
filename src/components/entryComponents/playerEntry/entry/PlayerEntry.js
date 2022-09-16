@@ -42,7 +42,12 @@ const PlayerEntry = (props) => {
   useEffect(() => {
     if (props.player) {
       setPlayer({ ...props.player });
-      setClickedInstrumentList(props.player.parts);
+      // setClickedInstrumentList(props.player.instruments);
+      setClickedInstrumentList(
+        props.player.instruments.map((inst) => inst.name)
+      );
+
+      console.log(props.player.instruments.map((inst) => inst.name));
     }
   }, [props.player]);
 
