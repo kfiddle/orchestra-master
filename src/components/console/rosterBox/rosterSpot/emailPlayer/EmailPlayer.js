@@ -1,6 +1,10 @@
-import Modal from "../../../../UI/modal/Modal";
+import { useContext } from "react";
 
 import emailjs from "emailjs-com";
+
+import Modal from "../../../../UI/modal/Modal";
+
+import { ConsoleHolder } from "../../../../../store/object-holder";
 
 import styles from "./EmailPlayer.module.css";
 
@@ -10,11 +14,14 @@ const serviceId = "service_whc7i1l";
 const testTemplateId = "template_38pylf2";
 
 const EmailPlayer = ({ closeModal, player }) => {
+  const { dashboard } = useContext(ConsoleHolder);
+  const { clickedShow } = dashboard;
+
   const submit = () => {
     const testContact = {
-      toEmail: player.email,
+      toEmail: "chris@eriephil.org",
       message:
-        "If anyone actually gets this, it means I can email from pushing a button on this app",
+        "CN, if you get this, it means I can email from pushing a button on this app",
     };
 
     emailjs.send(serviceId, testTemplateId, testContact, userId);
@@ -22,7 +29,9 @@ const EmailPlayer = ({ closeModal, player }) => {
   return (
     <Modal closeModal={closeModal}>
       <div className={styles.outerContainer}>
-        These players are nutso
+        <div>{clickedShow.title}</div>
+        <div></div>
+        <div></div>
         <div className={styles.submitButtonDiv}>
           <button className={styles.button} onClick={submit}>
             SUBMIT

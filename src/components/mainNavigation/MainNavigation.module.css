@@ -52,6 +52,8 @@
 .icon:hover {
   /* color: #faf029; */
   color: #fc4242;
+  color: rgb(117, 189, 248);
+
 }
 
 .nav a,
@@ -76,6 +78,8 @@
 .nav a.active {
   /* color: #faf029; */
   color: #fc4242;
+  /* color: rgb(44, 120, 182); */
+
 }
 
 

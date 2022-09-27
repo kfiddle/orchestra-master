@@ -8,7 +8,6 @@ const InstrumentListItem = ({ instrument }) => {
   const { instrumentToList, clickedInstrumentList } =
     useContext(InstrumentsList);
 
-
   const name = instrument.name;
 
   let outerContainerClass = classes.instrumentItemDiv;
@@ -17,6 +16,7 @@ const InstrumentListItem = ({ instrument }) => {
 
   for (let instr of clickedInstrumentList) {
     if (instr === instrument) {
+      console.log(instrument.name);
       outerContainerClass = classes.clickedItem;
       transformVar = 6 - clickedInstrumentList.indexOf(instr) * 2;
       innerNameShift = 5;

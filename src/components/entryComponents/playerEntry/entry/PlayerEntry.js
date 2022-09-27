@@ -42,14 +42,10 @@ const PlayerEntry = (props) => {
   useEffect(() => {
     if (props.player) {
       setPlayer({ ...props.player });
-      // setClickedInstrumentList(props.player.instruments);
-      setClickedInstrumentList(
-        props.player.instruments.map((inst) => inst.name)
-      );
-
-      console.log(props.player.instruments.map((inst) => inst.name));
+      setClickedInstrumentList([...props.player.instruments]);
     }
   }, [props.player]);
+
 
   const instrumentsClickHandler = () => {
     setClickedThings({
