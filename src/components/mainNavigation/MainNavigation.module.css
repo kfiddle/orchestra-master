@@ -10,12 +10,16 @@
   background: #f3f1f1;
 }
 
+.logo {
+  display: flex;
+}
+
 .logo h1 {
   /* font-size: 2.3rem; */
   font-size: 44px;
   color: #1c1b1c;
   font-weight: 900;
-  margin-right: 0;
+  margin-left: 3rem;
 }
 
 .nav ul {

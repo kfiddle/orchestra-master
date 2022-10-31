@@ -9,11 +9,16 @@ import {
 import { IoMdAlert } from "react-icons/io";
 
 import classes from "./MainNavigation.module.css";
+import WarrantOfficerStripes from "./warrantOfficerStripes/WarrantOfficerStripes";
 
 const MainNavigation = (props) => {
+
+  const stripesHandler = () => props.stripesHandler();
+
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
+      <WarrantOfficerStripes stripesHandler={stripesHandler}/>
         <h1>OrchMaster</h1>
       </div>
       <nav className={classes.nav}>
@@ -51,11 +56,18 @@ const MainNavigation = (props) => {
           </div>
 
           <li className={classes.navItem}>
-            <NavLink to={"/sub-players"} activeClassName={classes.active}>
+            <NavLink to={"/season"} activeClassName={classes.active}>
               {" "}
-              Subs
+              Season
             </NavLink>
           </li>
+
+          <li className={classes.navItem}>
+            <NavLink to={"library"} activeClassName={classes.active}>
+              Library
+            </NavLink>
+          </li>
+
           <li className={classes.navItem}>
             <NavLink
               to={"/contracted-players"}
@@ -67,16 +79,17 @@ const MainNavigation = (props) => {
           </li>
 
           <li className={classes.navItem}>
-            <NavLink to={"library"} activeClassName={classes.active}>
-              Library
-            </NavLink>
-          </li>
-          <li className={classes.navItem}>
-            <NavLink to={"/season"} activeClassName={classes.active}>
+            <NavLink to={"/sub-players"} activeClassName={classes.active}>
               {" "}
-              Season
+              Subs
             </NavLink>
           </li>
+       
+
+       
+
+    
+
         </ul>
       </nav>
     </header>

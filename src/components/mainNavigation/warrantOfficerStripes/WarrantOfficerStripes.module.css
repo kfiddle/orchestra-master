@@ -1,0 +1,44 @@
+.outerHamburger {
+   left: 2rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   cursor: pointer;
+ }
+ 
+ .barsAndLabel {
+   display: flex;
+ }
+ 
+ .menuLabel {
+   margin-left: 2rem;
+   color: rgb(229, 234, 250);
+ }
+ 
+ .bars {
+   display: inline-block;
+   padding: 0 20px;
+   width: 75px;
+   height: 50px;
+   overflow: hidden;
+   position: relative;
+   vertical-align: middle;
+ }
+ 
+ .bar {
+   display: block;
+   position: absolute;
+   width: 8rem;
+   height: 10px;
+   /* background-color: #1f165a; */
+    background: #1c1b1c;
+   transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
+   transform: translateY(0);
+ }
+ 
+ .hover {
+   background-color: darkblue;
+   opacity: 0.5;
+   transform: translateY(-13px);
+ }
+ 

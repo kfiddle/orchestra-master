@@ -1,0 +1,8 @@
+.sideBar {
+  /* visibility: hidden; */
+  position: fixed;
+  height: 100%;
+  left: 0;
+  top: 60px;
+  z-index: 50;
+}

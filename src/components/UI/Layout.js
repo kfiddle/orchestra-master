@@ -10,12 +10,15 @@ import AllInstruments from "../../store/all-instruments";
 
 import classes from "./Layout.module.css";
 import useGetAList2 from "../../hooks/useGetAList2";
+import SideBar from "./sideBar/SideBar";
 
 const Layout = (props) => {
   const [playerEntryFormRendered, setPlayerEntryFormRendered] = useState(false);
   const [pieceEntryFormRendered, setPieceEntryFormRendered] = useState(false);
   const [performanceEntryFormRendered, setPerformanceEntryFormRendered] =
     useState(false);
+
+    const [sideBarOpen, setSideBarOpen] = useState(true);
 
   const playerEntryClicked = () => {
     setPlayerEntryFormRendered(true);
@@ -39,6 +42,8 @@ const Layout = (props) => {
     props.modalCloseHandler(true);
   };
 
+  const stripesHandler = () => setSideBarOpen(previous => !previous)
+
   let allInstruments = useGetAList2("get-all-instruments");
 
   return (
@@ -48,6 +53,7 @@ const Layout = (props) => {
         pieceEntryClicked={pieceEntryClicked}
         performanceEntryClicked={performanceEntryClicked}
         modalChange={playerEntryFormRendered}
+        stripesHandler={stripesHandler}
       />
       {playerEntryFormRendered && <PlayerEntry closeModal={closeModal} />}
       {pieceEntryFormRendered && <PieceEntry closeModal={closeModal} />}
@@ -56,7 +62,10 @@ const Layout = (props) => {
         <PerformanceEntry2 closeModal={closeModal} />
       )}
 
-      <main className={classes.main}>{props.children}</main>
+      
+      <main className={classes.main}> 
+      {sideBarOpen && <SideBar/>} 
+      {props.children}</main>
     </AllInstruments.Provider>
   );
 };
