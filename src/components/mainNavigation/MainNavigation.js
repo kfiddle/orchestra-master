@@ -14,7 +14,7 @@ const MainNavigation = (props) => {
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
-        <h1>Orchestra Master</h1>
+        <h1>OrchMaster</h1>
       </div>
       <nav className={classes.nav}>
         <ul>

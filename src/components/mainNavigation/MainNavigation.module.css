@@ -7,15 +7,15 @@
   padding: 2% 3%;
   justify-content: space-between;
   align-items: center;
-  background: #2c2b2c;
+  background: #f3f1f1;
 }
 
 .logo h1 {
-  font-size: 2.3rem;
-  color: #f2edf4;
+  /* font-size: 2.3rem; */
+  font-size: 44px;
+  color: #1c1b1c;
   font-weight: 900;
   margin-right: 0;
-  /* text-shadow: .5px .5px rgb(243, 237, 237); */
 }
 
 .nav ul {
@@ -29,6 +29,7 @@
   margin-left: 5rem;
   font-size: 1.4rem;
   font-weight: 900;
+  text-transform: uppercase;
 }
 
 .newFormDiv {
@@ -50,7 +51,6 @@
 }
 
 .icon:hover {
-  /* color: #faf029; */
   color: #fc4242;
   color: rgb(117, 189, 248);
 
@@ -59,15 +59,17 @@
 .nav a,
 .navItem {
   text-decoration: none;
-  color: #f2edf4;
+  color: #122238;
   transition: .3s;
   font-size: 1.8rem;
+  letter-spacing: 0.1em;
   cursor: pointer;
 }
 
 
 .nav a:hover{
-  color: #d5ced4;
+  /* color: #55cbdb; */
+  color: #3b50be;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 1rem;
@@ -76,10 +78,7 @@
 
 .nav a:active,
 .nav a.active {
-  /* color: #faf029; */
-  color: #fc4242;
-  /* color: rgb(44, 120, 182); */
-
+  color: #55cbdb;
 }
 
 
