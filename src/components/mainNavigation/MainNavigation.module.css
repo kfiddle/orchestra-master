@@ -15,7 +15,6 @@
 }
 
 .logo h1 {
-  /* font-size: 2.3rem; */
   font-size: 44px;
   color: #1c1b1c;
   font-weight: 900;
@@ -55,7 +54,7 @@
 }
 
 .icon:hover {
-  color: #fc4242;
+  /* color: #fc4242; */
   color: rgb(117, 189, 248);
 
 }
@@ -72,7 +71,6 @@
 
 
 .nav a:hover{
-  /* color: #55cbdb; */
   color: #3b50be;
   text-decoration: underline;
   text-decoration-thickness: 1px;
