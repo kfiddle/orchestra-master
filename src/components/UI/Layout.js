@@ -64,7 +64,12 @@ const Layout = (props) => {
 
       
       <main className={classes.main}> 
-      {sideBarOpen && <SideBar/>} 
+      {sideBarOpen && <SideBar
+      playerEntryClicked={playerEntryClicked}
+      pieceEntryClicked={pieceEntryClicked}
+      performanceEntryClicked={performanceEntryClicked}
+      
+      />} 
       {props.children}</main>
     </AllInstruments.Provider>
   );

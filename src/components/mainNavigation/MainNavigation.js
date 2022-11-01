@@ -26,33 +26,33 @@ const MainNavigation = (props) => {
           <div className={classes.newFormDiv}>
             <li className={classes.navItem}>
               <NavLink to={"/log"} activeClassName={classes.active}>
-                <IoMdAlert className={classes.icon} />
+                NOTIFICATIONS
               </NavLink>
             </li>
-            <li className={classes.navItem} onClick={props.playerEntryClicked}>
+            {/* <li className={classes.navItem} onClick={props.playerEntryClicked}>
               <FaUserPlus className={classes.icon} />
-            </li>
+            </li> */}
 
-            <li className={classes.navItem}>
+            {/* <li className={classes.navItem}>
               <NavLink to={"/instruments"} activeClassName={classes.active}>
                 <GiViolin className={classes.icon} />
               </NavLink>
-            </li>
-            <li
+            </li> */}
+            {/* <li
               className={classes.navItem}
               onClick={props.pieceEntryClicked}
               style={{ marginRight: "3rem" }}
             >
               <GiBlackBook className={classes.icon} />
-            </li>
+            </li> */}
 
-            <li
+            {/* <li
               className={classes.navItem}
               onClick={props.performanceEntryClicked}
               style={{ marginRight: "7rem" }}
             >
               <GiDramaMasks className={classes.icon} />
-            </li>
+            </li> */}
           </div>
 
           <li className={classes.navItem}>
