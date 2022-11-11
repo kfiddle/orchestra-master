@@ -1,6 +1,7 @@
 .sideBar {
   position: fixed;
   height: 100%;
+  border-radius: 2px;
   left: 0;
   z-index: 5;
   background: #1c1b1c;

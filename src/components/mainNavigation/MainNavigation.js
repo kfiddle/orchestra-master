@@ -12,13 +12,12 @@ import classes from "./MainNavigation.module.css";
 import WarrantOfficerStripes from "./warrantOfficerStripes/WarrantOfficerStripes";
 
 const MainNavigation = (props) => {
-
   const stripesHandler = () => props.stripesHandler();
 
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
-      <WarrantOfficerStripes stripesHandler={stripesHandler}/>
+        <WarrantOfficerStripes stripesHandler={stripesHandler} />
         <h1>OrchMaster</h1>
       </div>
       <nav className={classes.nav}>
@@ -29,30 +28,6 @@ const MainNavigation = (props) => {
                 NOTIFICATIONS
               </NavLink>
             </li>
-            {/* <li className={classes.navItem} onClick={props.playerEntryClicked}>
-              <FaUserPlus className={classes.icon} />
-            </li> */}
-
-            {/* <li className={classes.navItem}>
-              <NavLink to={"/instruments"} activeClassName={classes.active}>
-                <GiViolin className={classes.icon} />
-              </NavLink>
-            </li> */}
-            {/* <li
-              className={classes.navItem}
-              onClick={props.pieceEntryClicked}
-              style={{ marginRight: "3rem" }}
-            >
-              <GiBlackBook className={classes.icon} />
-            </li> */}
-
-            {/* <li
-              className={classes.navItem}
-              onClick={props.performanceEntryClicked}
-              style={{ marginRight: "7rem" }}
-            >
-              <GiDramaMasks className={classes.icon} />
-            </li> */}
           </div>
 
           <li className={classes.navItem}>
@@ -84,12 +59,6 @@ const MainNavigation = (props) => {
               Subs
             </NavLink>
           </li>
-       
-
-       
-
-    
-
         </ul>
       </nav>
     </header>

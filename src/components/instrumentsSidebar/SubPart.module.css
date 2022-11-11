@@ -1,38 +1,38 @@
 .partDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    height: 3.2rem;
-    padding: 0 1rem;
-    border-radius: 10px;
-  }
-  
-  .highlightedDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 3.2rem;
-    padding: 0 1rem;
-    background: rgb(243, 243, 248);
-  }
-  
-  .partLi {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: white;
-  }
-  
-  .highlightedLi {
-    color: rgb(58, 6, 6);
-    font-weight: 900;
-  }
-  
-  .partDiv:hover {
-    background: rgb(243, 243, 248);
-  }
-  
-  .partDiv:hover li {
-    color: rgb(46, 4, 4);
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 3.2rem;
+  padding: 0 1rem;
+  margin: .25rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+}
+
+.highlightedDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.2rem;
+  padding: 0 1rem;
+  background: rgb(243, 243, 248);
+}
+
+.partLi {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+}
+
+.highlightedLi {
+  color: rgb(58, 6, 6);
+  font-weight: 900;
+}
+
+
+.partDiv:hover li {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 1rem;
+}
