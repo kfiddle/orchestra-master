@@ -1,52 +1,68 @@
-import { useState, useEffect } from "react";
-
-// import { useMediaQuery } from "react-responsive";
+import { useState, useReducer } from "react";
+import { FaLeaf } from "react-icons/fa";
 
 import styles from "./WarrantOfficerStripes.module.css";
 
-const WarrantOfficerStripes = ({stripesHandler, panel}) => {
-  const [counter, setCounter] = useState(0);
+const initialState = {
+  bar1: "",
+  bar2: "",
+  bar3: "",
+  clicked: false,
+  spin: [0, 0, 0],
+};
 
-  const [bar1, setBar1] = useState("");
-  const [bar2, setBar2] = useState("");
-  const [bar3, setBar3] = useState("");
+const barsReducer = (state, action) => {
+  switch (action.type) {
+    case "bar1":
+      return { ...state, bar1: action.bar1 };
+    case "bar2":
+      return { ...state, bar2: action.bar2 };
+    case "bar3":
+      return { ...state, bar3: action.bar3 };
+    case "clicked":
+      return { ...state, clicked: action.clicked };
+    case "spin":
+      return { ...state, spin: action.spin };
+  }
+};
 
-  const [spin, setSpin] = useState([0, 0, 0]);
-  const [clicked, setClicked] = useState(false);
-
-//   const isMobile = useMediaQuery({ maxWidth: 767 });
-
+const WarrantOfficerStripes = ({ stripesHandler, panel }) => {
+  const [barState, dispatch] = useReducer(barsReducer, initialState);
 
   const hovering = (up) => {
     setTimeout(() => {
       if (!up) {
-        setBar1("");
-        setClicked(false);
+        dispatch({ type: "bar1", bar1: "" });
+        dispatch({ type: "clicked", clicked: false });
       } else {
-        setBar1("hover");
+        dispatch({ type: "bar1", bar1: "hover" });
       }
     }, 50);
 
     setTimeout(() => {
-      !up ? setBar2("") && setClicked(false) : setBar2("hover");
+      !up
+        ? dispatch({ type: "bar2", bar2: "" }) && dispatch({ type: "clicked", clicked: false })
+        : dispatch({ type: "bar2", bar2: "hover" });
     }, 150);
 
     setTimeout(() => {
-      !up ? setBar3("") && setClicked(false) : setBar3("hover");
+      !up
+        ? dispatch({ type: "bar3", bar3: "" }) && dispatch({ type: "clicked", clicked: false })
+        : dispatch({ type: "bar3", bar3: "hover" });
     }, 250);
   };
 
   const spinTheBars = () => {
-    setClicked(true);
+    dispatch({ type: "clicked", clicked: true });
 
     for (let j = 0; j < 3; j++) {
       setTimeout(() => {
         if (j === 0) {
-          setSpin((previous) => [previous[j] + 0.5, previous[1], previous[2]]);
+          dispatch({ type: "spin", spin: [0.5, 0, 0] });
         } else if (j === 1) {
-          setSpin((previous) => [previous[0], previous[j] + 0.5, previous[2]]);
+          dispatch({ type: "spin", spin: [0.5, 0.5, 0] });
         } else {
-          setSpin((previous) => [previous[0], previous[1], previous[j] + 0.5]);
+          dispatch({ type: "spin", spin: [0.5, 0.5, 0.5] });
         }
       }, j * 70);
     }
@@ -71,24 +87,30 @@ const WarrantOfficerStripes = ({stripesHandler, panel}) => {
       <div className={styles.barsAndLabel}>
         <div className={styles.bars}>
           <span
-            className={`${styles.bar} ${styles[bar1]}`}
+            className={`${styles.bar} ${styles[barState.bar1]}`}
             style={{
               top: "10px",
-              transform: clicked ? `rotate(${spin[0]}turn)` : "",
+              transform: barState.clicked
+                ? `rotate(${barState.spin[0]}turn)`
+                : "",
             }}
           ></span>
           <span
-            className={`${styles.bar} ${styles[bar2]}`}
+            className={`${styles.bar} ${styles[barState.bar2]}`}
             style={{
               top: "26px",
-              transform: clicked ? `rotate(${spin[1]}turn)` : "",
+              transform: barState.clicked
+                ? `rotate(${barState.spin[1]}turn)`
+                : "",
             }}
           ></span>
           <span
-            className={`${styles.bar} ${styles[bar3]}`}
+            className={`${styles.bar} ${styles[barState.bar3]}`}
             style={{
               top: "41px",
-              transform: clicked ? `rotate(${spin[2]}turn)` : "",
+              transform: barState.clicked
+                ? `rotate(${barState.spin[2]}turn)`
+                : "",
             }}
           ></span>
         </div>

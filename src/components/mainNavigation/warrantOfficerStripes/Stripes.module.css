@@ -1,0 +1,41 @@
+.outerHamburger {
+  left: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 2rem;
+}
+
+.bar1 {
+  display: block;
+  position: absolute;
+  top: 10px;
+  width: 5rem;
+  height: 5px;
+  background: #1c1b1c;
+  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
+  transform: translateY(0);
+}
+
+.bar2 {
+  display: block;
+  position: absolute;
+  top: 26px;
+  width: 5rem;
+  height: 5px;
+  background: #1c1b1c;
+  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
+  transform: translateY(0);
+}
+
+.bar3 {
+  display: block;
+  position: absolute;
+  top: 41px;
+  width: 5rem;
+  height: 5px;
+  background: #1c1b1c;
+  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
+  transform: translateY(0);
+}

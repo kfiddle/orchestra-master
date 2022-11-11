@@ -10,6 +10,7 @@ import { IoMdAlert } from "react-icons/io";
 
 import classes from "./MainNavigation.module.css";
 import WarrantOfficerStripes from "./warrantOfficerStripes/WarrantOfficerStripes";
+import Stripes from "./warrantOfficerStripes/Stripes";
 
 const MainNavigation = (props) => {
   const stripesHandler = () => props.stripesHandler();
@@ -17,7 +18,9 @@ const MainNavigation = (props) => {
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
-        <WarrantOfficerStripes stripesHandler={stripesHandler} />
+        {/* <WarrantOfficerStripes stripesHandler={stripesHandler} /> */}
+        <Stripes />
+
         <h1>OrchMaster</h1>
       </div>
       <nav className={classes.nav}>
