@@ -25,7 +25,7 @@ const Modal = ({ styleObject, closeModal, children }) => {
 
       {ReactDOM.createPortal(
         <ModalOverlay styleObject={styleObject}>
-          <Card>{children}</Card>
+          <Card closeModal={closeModal}>{children}</Card>
         </ModalOverlay>,
         portalElement
       )}

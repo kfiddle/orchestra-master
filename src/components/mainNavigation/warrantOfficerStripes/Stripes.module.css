@@ -14,7 +14,7 @@
   width: 5rem;
   height: 5px;
   background: #1c1b1c;
-  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
+  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.15s;
 }
 
 .bar2 {
@@ -24,7 +24,7 @@
   width: 5rem;
   height: 5px;
   background: #1c1b1c;
-  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.45s;
+  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
 }
 
 .bar3 {
@@ -34,7 +34,7 @@
   width: 5rem;
   height: 5px;
   background: #1c1b1c;
-  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.65s;
+  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.35s;
 }
 
 .hover1 {

@@ -10,8 +10,10 @@
 }
 
 .control label {
+  font-size: 1.5rem;
   font-weight: bold;
-  color: rgb(233, 227, 227);
+  color: #1c1b1c;
+
   text-transform: uppercase;
   letter-spacing: .2em;
   display: block;
@@ -22,7 +24,9 @@
   font: inherit;
   padding: 1rem;
   border-radius: 4px;
-  background-color: #afaaaa;
+  /* background-color: #afaaaa; */
+  background: #f3f1f1;
+
   border: 1px solid #c1d1d1;
   display: block;
   width: 70%;

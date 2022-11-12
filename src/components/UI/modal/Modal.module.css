@@ -57,7 +57,8 @@
   font: inherit;
   padding: 1rem;
   border-radius: 4px;
-  background-color: #f0f0f0;
+  background: #f3f1f1;
+
   border: 1px solid #c1d1d1;
   display: block;
   width: 100%;
@@ -66,7 +67,7 @@
 
 .control input:focus,
 .control textarea:focus {
-  background-color: #cbf8f8;
+  background: #f3f1f1;
   outline-color: teal;
 }
 

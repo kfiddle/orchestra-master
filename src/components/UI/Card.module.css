@@ -3,13 +3,16 @@
   margin: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  /* background: rgb(131, 124, 124); */
-  background: rgb(139, 135, 137);
+  background: white;
   height: 100%;
 }
 
-.closeIcon{
+.closeIcon {
   font-size: 5rem;
   font-weight: 900;
   cursor: pointer;
+}
+
+.closeIcon:hover {
+  color: #6e7cfd;
 }
