@@ -1,5 +1,6 @@
 .outerHamburger {
   left: 2rem;
+  width: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,33 +10,47 @@
 
 .bar1 {
   display: block;
-  position: absolute;
-  top: 10px;
+  position: relative;
   width: 5rem;
   height: 5px;
   background: #1c1b1c;
-  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
-  transform: translateY(0);
+  transition: cubic-bezier(0.3, 0, 0.5, 1) .25s;
 }
 
 .bar2 {
   display: block;
-  position: absolute;
-  top: 26px;
+  position: relative;
+  top: 4px;
   width: 5rem;
   height: 5px;
   background: #1c1b1c;
-  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
-  transform: translateY(0);
+  transition: cubic-bezier(0.3, 0, 0.5, 1) .45s;
 }
 
 .bar3 {
   display: block;
-  position: absolute;
-  top: 41px;
+  position: relative;
+  top: 8px;
   width: 5rem;
   height: 5px;
   background: #1c1b1c;
-  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
-  transform: translateY(0);
+  transition: cubic-bezier(0.3, 0, 0.5, 1) .65s;
+}
+
+.hover1 {
+  background: darkblue;
+  opacity: 0.5;
+  transform: translateY(-6px);
+}
+
+.hover2 {
+  background: darkblue;
+  opacity: 0.5;
+  transform: translateY(-3px);
+}
+
+.hover3 {
+  background: darkblue;
+  opacity: 0.5;
+  transform: translateY(1px);
 }

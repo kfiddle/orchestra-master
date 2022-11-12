@@ -29,7 +29,7 @@
   display: block;
   position: absolute;
   width: 8rem;
-  height: 10px;
+  height: 7px;
   background: #1c1b1c;
   transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
   transform: translateY(0);
