@@ -39,10 +39,11 @@ const Layout = (props) => {
     setPlayerEntryFormRendered(false);
     setPieceEntryFormRendered(false);
     setPerformanceEntryFormRendered(false);
+    setSideBarOpen(false);
     props.modalCloseHandler(true);
   };
 
-  const stripesHandler = () => setSideBarOpen(previous => !previous)
+  const stripesHandler = () => setSideBarOpen((previous) => !previous);
 
   let allInstruments = useGetAList2("get-all-instruments");
 
@@ -63,15 +64,16 @@ const Layout = (props) => {
         <PerformanceEntry2 closeModal={closeModal} />
       )}
 
-      
-      <main className={classes.main}> 
-      {sideBarOpen && <SideBar
-      playerEntryClicked={playerEntryClicked}
-      pieceEntryClicked={pieceEntryClicked}
-      performanceEntryClicked={performanceEntryClicked}
-      
-      />} 
-      {props.children}</main>
+      <main className={classes.main}>
+        {sideBarOpen && (
+          <SideBar
+            playerEntryClicked={playerEntryClicked}
+            pieceEntryClicked={pieceEntryClicked}
+            performanceEntryClicked={performanceEntryClicked}
+          />
+        )}
+        {props.children}
+      </main>
     </AllInstruments.Provider>
   );
 };

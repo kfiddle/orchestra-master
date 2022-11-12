@@ -7,3 +7,9 @@
   background: rgb(139, 135, 137);
   height: 100%;
 }
+
+.closeIcon{
+  font-size: 5rem;
+  font-weight: 900;
+  cursor: pointer;
+}
