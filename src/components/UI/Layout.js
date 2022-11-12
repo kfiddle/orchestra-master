@@ -18,7 +18,7 @@ const Layout = (props) => {
   const [performanceEntryFormRendered, setPerformanceEntryFormRendered] =
     useState(false);
 
-    const [sideBarOpen, setSideBarOpen] = useState(true);
+  const [sideBarOpen, setSideBarOpen] = useState(true);
 
   const playerEntryClicked = () => {
     setPlayerEntryFormRendered(true);
@@ -54,6 +54,7 @@ const Layout = (props) => {
         performanceEntryClicked={performanceEntryClicked}
         modalChange={playerEntryFormRendered}
         stripesHandler={stripesHandler}
+        sideBarOpen={sideBarOpen}
       />
       {playerEntryFormRendered && <PlayerEntry closeModal={closeModal} />}
       {pieceEntryFormRendered && <PieceEntry closeModal={closeModal} />}

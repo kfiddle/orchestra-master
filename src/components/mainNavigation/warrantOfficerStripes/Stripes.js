@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import styles from "./Stripes.module.css";
 
-const Stripes = ({ stripesHandler }) => {
+const Stripes = ({ stripesHandler, sideBarOpen }) => {
   const [hovering, setHovering] = useState(false);
   const [clicked, setClicked] = useState(false);
 
@@ -10,15 +10,17 @@ const Stripes = ({ stripesHandler }) => {
     return () => setHovering(truFalse);
   };
 
-  const stripeOnHover = (stripeNum) => {
-    return !hovering
-      ? styles[`bar${stripeNum}`]
-      : `${styles.bar1} ${styles[`hover${stripeNum}`]}`;
+  const stripeMover = (stripeNum) => {
+    if (!sideBarOpen && !hovering) {
+      return styles[`bar${stripeNum}`];
+    } else if (sideBarOpen) {
+      return `${styles[`bar${stripeNum}`]} ${styles[`clickedBar${stripeNum}`]}`;
+    }
+    return `${styles[`bar${stripeNum}`]} ${styles[`hover${stripeNum}`]}`;
   };
 
   const clicker = () => {
-    clicked && stripesHandler();
-    setClicked((previous) => !previous);
+    stripesHandler();
   };
 
   return (
@@ -29,9 +31,9 @@ const Stripes = ({ stripesHandler }) => {
       onClick={clicker}
     >
       <div className={styles.centeringBox}>
-        <span className={stripeOnHover(1)}></span>
-        <span className={stripeOnHover(2)}></span>
-        <span className={stripeOnHover(3)}></span>
+        <span className={stripeMover(1)}></span>
+        <span className={stripeMover(2)}></span>
+        <span className={stripeMover(3)}></span>
       </div>
     </div>
   );

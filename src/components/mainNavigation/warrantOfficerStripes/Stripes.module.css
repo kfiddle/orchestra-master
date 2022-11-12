@@ -14,7 +14,7 @@
   width: 5rem;
   height: 5px;
   background: #1c1b1c;
-  transition: cubic-bezier(0.3, 0, 0.5, 1) .25s;
+  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
 }
 
 .bar2 {
@@ -24,7 +24,7 @@
   width: 5rem;
   height: 5px;
   background: #1c1b1c;
-  transition: cubic-bezier(0.3, 0, 0.5, 1) .45s;
+  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.45s;
 }
 
 .bar3 {
@@ -34,7 +34,7 @@
   width: 5rem;
   height: 5px;
   background: #1c1b1c;
-  transition: cubic-bezier(0.3, 0, 0.5, 1) .65s;
+  transition: cubic-bezier(0.3, 0, 0.5, 1) 0.65s;
 }
 
 .hover1 {
@@ -53,4 +53,16 @@
   background: darkblue;
   opacity: 0.5;
   transform: translateY(1px);
+}
+
+.clickedBar1 {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.clickedBar2 {
+  display: none;
+}
+
+.clickedBar3 {
+  transform: rotate(-45deg) translateY(-8px);
 }

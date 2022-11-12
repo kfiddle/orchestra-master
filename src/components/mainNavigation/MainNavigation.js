@@ -19,7 +19,7 @@ const MainNavigation = (props) => {
     <header className={classes.header}>
       <div className={classes.logo}>
         {/* <WarrantOfficerStripes stripesHandler={stripesHandler} /> */}
-        <Stripes stripesHandler={stripesHandler}/>
+        <Stripes stripesHandler={stripesHandler} sideBarOpen={props.sideBarOpen}/>
 
         <h1>OrchMaster</h1>
       </div>
