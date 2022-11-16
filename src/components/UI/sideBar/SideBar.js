@@ -8,21 +8,22 @@ const SideBar = ({
   pieceEntryClicked,
 }) => {
   return (
-    <div className={styles.sideBar}>
-      <div className={styles.menuOption} onClick={playerEntryClicked}>
+    <nav className={styles.sideBar}>
+      <li className={styles.menuOption} onClick={playerEntryClicked}>
         Add Player
-      </div>
-      <div className={styles.menuOption} onClick={pieceEntryClicked}>
+      </li>
+      <li className={styles.menuOption} onClick={pieceEntryClicked}>
         Add Piece
-      </div>
+      </li>
 
-      <div className={styles.menuOption} onClick={performanceEntryClicked}>
+      <li className={styles.menuOption} onClick={performanceEntryClicked}>
         Add Performance
-      </div>
-      <NavLink to={"/instruments"} activeClassName={styles.active}>
-        <div className={styles.menuOption}>Instrumentation Settings</div>
+      </li>
+
+      <NavLink to={"/instruments"} className={styles.menuOption}>
+        Instrumentation Settings
       </NavLink>
-    </div>
+    </nav>
   );
 };
 
