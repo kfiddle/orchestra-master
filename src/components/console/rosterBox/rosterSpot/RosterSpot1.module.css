@@ -4,7 +4,6 @@
   align-items: center;
   padding: 1.25rem;
   width: 100%;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); */
   border: 2px solid #b107e0;
   border-radius: 3px;
   margin: 0.5rem;
@@ -23,6 +22,7 @@
 
 .clicked {
   background: rgb(197, 219, 247);
+  background: #f3f1f1;;
   color: rgb(82, 87, 9);
 }
 
@@ -40,8 +40,8 @@
 }
 
 .unHired {
-  /* background: rgb(167, 45, 208); */
-  background: rgb(138, 136, 138);
+  /* background: rgb(138, 136, 138); */
+  background: #f3f1f1;;
   opacity: 1;
 }
 

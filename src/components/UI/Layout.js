@@ -18,7 +18,7 @@ const Layout = (props) => {
   const [performanceEntryFormRendered, setPerformanceEntryFormRendered] =
     useState(false);
 
-  const [sideBarOpen, setSideBarOpen] = useState(true);
+  const [sideBarOpen, setSideBarOpen] = useState(false);
 
   const playerEntryClicked = () => {
     setPlayerEntryFormRendered(true);

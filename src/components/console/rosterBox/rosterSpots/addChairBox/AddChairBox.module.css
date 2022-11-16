@@ -15,7 +15,6 @@
     margin-bottom: 2rem;
   }
   
- 
   .buttonsDiv {
     display: flex;
     flex-direction: column;
@@ -44,29 +43,27 @@
   
   .addDoubling {
     padding: 2px 15px;
-    color: midnightblue;
-    border: 3px solid midnightblue;
+    color: #3B50BE;
+    border: 3px solid #3B50BE;
   }
   
   .addDoubling:hover {
-    background: midnightblue;
-    color: rgb(190, 160, 160);
+    background: #3B50BE;
+    color: white;
   }
   
   .submitDiv {
-    position: absolute;
     display: flex;
     justify-content: center;
-    bottom: 2rem;
   }
   
   .submitButton {
-    color: #11193d;
-    border: 5px solid #11193d;
+    color: #3B50BE;
+    border: 5px solid #3B50BE;
   }
   
   .submitButton:hover {
     color: white;
-    background: #11193d;
+    background: #3B50BE;
   }
   

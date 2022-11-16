@@ -19,18 +19,22 @@ const EmailPlayer = ({ closeModal, player }) => {
 
   const submit = () => {
     const testContact = {
-      toEmail: "chris@eriephil.org",
+      toEmail: player.email,
       message:
-        "CN, if you get this, it means I can email from pushing a button on this app",
+        "KJ, if you get this, it means I can email from pushing a button on this app",
     };
 
     emailjs.send(serviceId, testTemplateId, testContact, userId);
+    console.log(player.email)
   };
+
+  const initialText = `Hello ${player.firstNameArea}, I am wondering if you are available to join the Erie Philharmonic`
+
   return (
     <Modal closeModal={closeModal}>
       <div className={styles.outerContainer}>
         <div>{clickedShow.title}</div>
-        <div></div>
+        <input placeholder={initialText} style={{width:'100%'}}></input>
         <div></div>
         <div className={styles.submitButtonDiv}>
           <button className={styles.button} onClick={submit}>

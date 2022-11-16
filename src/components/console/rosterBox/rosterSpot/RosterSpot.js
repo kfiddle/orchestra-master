@@ -109,7 +109,6 @@ const RosterSpot = function ({
     printRankOrSeat = "A";
   }
 
-
   let marginClass = !printSectionLabel
     ? classes.sectionMargin
     : classes.sectionHeadMargin;

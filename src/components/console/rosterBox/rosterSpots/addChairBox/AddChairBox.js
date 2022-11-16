@@ -121,8 +121,8 @@ const AddChairBox = ({ closeModal }) => {
   };
 
   const styleObject = {
-    minHeight: "30rem",
-    height: `${parts.length * 17}rem`,
+    minHeight: "35rem",
+    height: `${parts.length * 20}rem`,
     width: "fitContent",
   };
 

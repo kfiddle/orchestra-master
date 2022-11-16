@@ -16,13 +16,13 @@
 }
 
 .outerContainer:hover {
-  background: rgb(254, 152, 152);
-  color: rgb(87, 9, 9);
+  background: rgb(117, 189, 248);
 }
 
 .clicked {
-  background: rgb(239, 241, 227);
+  background: rgb(117, 189, 248);
   color: rgb(82, 87, 9);
+  
 }
 
 /* .highlighted {
@@ -41,13 +41,11 @@
   background: rgb(78, 77, 71);
   opacity: 0.6;
   /* color: rgb(245, 226, 245); */
-  color: rgb(248, 136, 136);
+  color: white;
 }
 
 .unHired {
-  /* background: rgb(167, 45, 208); */
-  /* background: rgb(109, 46, 109); */
-  background: #b3b4ad;
+  background: #f3f1f1;
   opacity: 0.85;
   color: #2c2b2c;
   font-weight: 900;
@@ -60,14 +58,14 @@
 .rightClicked {
   margin-top: 5rem;
   background: rgb(250, 249, 250);
-  color: rgb(253, 7, 28);
+  color: rgb(117, 189, 248);;
 }
 
 .doubleClicked {
   margin-top: 1rem;
   margin-bottom: 1rem;
   background: rgb(236, 239, 244);
-  color: rgb(60, 2, 2);
+  color: #1c1b1c;
   transform: translateX(-4rem);
 }
 
