@@ -56,6 +56,7 @@ const Layout = (props) => {
         modalChange={playerEntryFormRendered}
         stripesHandler={stripesHandler}
         sideBarOpen={sideBarOpen}
+        setSideBarOpen={setSideBarOpen}
       />
       {playerEntryFormRendered && <PlayerEntry closeModal={closeModal} />}
       {pieceEntryFormRendered && <PieceEntry closeModal={closeModal} />}
@@ -70,6 +71,7 @@ const Layout = (props) => {
             playerEntryClicked={playerEntryClicked}
             pieceEntryClicked={pieceEntryClicked}
             performanceEntryClicked={performanceEntryClicked}
+            setSideBarOpen={setSideBarOpen}
           />
         )}
         {props.children}

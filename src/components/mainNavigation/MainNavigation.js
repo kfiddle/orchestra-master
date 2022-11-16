@@ -15,6 +15,8 @@ import Stripes from "./warrantOfficerStripes/Stripes";
 const MainNavigation = (props) => {
   const stripesHandler = () => props.stripesHandler();
 
+  const closeSideBar = () => props.setSideBarOpen(false);
+
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
@@ -29,21 +31,33 @@ const MainNavigation = (props) => {
         <ul>
           <div className={classes.newFormDiv}>
             <li className={classes.navItem}>
-              <NavLink to={"/log"} activeClassName={classes.active}>
+              <NavLink
+                to={"/log"}
+                onClick={closeSideBar}
+                activeClassName={classes.active}
+              >
                 NOTIFICATIONS
               </NavLink>
             </li>
           </div>
 
           <li className={classes.navItem}>
-            <NavLink to={"/season"} activeClassName={classes.active}>
+            <NavLink
+              to={"/season"}
+              onClick={closeSideBar}
+              activeClassName={classes.active}
+            >
               {" "}
               Season
             </NavLink>
           </li>
 
           <li className={classes.navItem}>
-            <NavLink to={"library"} activeClassName={classes.active}>
+            <NavLink
+              to={"library"}
+              onClick={closeSideBar}
+              activeClassName={classes.active}
+            >
               Library
             </NavLink>
           </li>
@@ -51,6 +65,7 @@ const MainNavigation = (props) => {
           <li className={classes.navItem}>
             <NavLink
               to={"/contracted-players"}
+              onClick={closeSideBar}
               activeClassName={classes.active}
             >
               {" "}
@@ -59,7 +74,11 @@ const MainNavigation = (props) => {
           </li>
 
           <li className={classes.navItem}>
-            <NavLink to={"/sub-players"} activeClassName={classes.active}>
+            <NavLink
+              to={"/sub-players"}
+              onClick={closeSideBar}
+              activeClassName={classes.active}
+            >
               {" "}
               Subs
             </NavLink>

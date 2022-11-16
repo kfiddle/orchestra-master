@@ -6,6 +6,7 @@ const SideBar = ({
   playerEntryClicked,
   performanceEntryClicked,
   pieceEntryClicked,
+  setSideBarOpen 
 }) => {
   return (
     <nav className={styles.sideBar}>
@@ -20,7 +21,7 @@ const SideBar = ({
         Add Performance
       </li>
 
-      <NavLink to={"/instruments"} className={styles.menuOption}>
+      <NavLink to={"/instruments"} onClick={()=>setSideBarOpen(false)} className={styles.menuOption}>
         Instrumentation Settings
       </NavLink>
     </nav>
