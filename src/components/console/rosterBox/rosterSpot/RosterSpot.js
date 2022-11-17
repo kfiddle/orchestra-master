@@ -15,7 +15,7 @@ import classes from "./RosterSpot.module.css";
 import EditChair from "./editChair/EditChair";
 
 // RosterSpots has this
-
+  
 const RosterSpot = function ({
   pic,
   index,

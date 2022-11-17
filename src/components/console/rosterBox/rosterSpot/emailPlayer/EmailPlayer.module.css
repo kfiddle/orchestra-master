@@ -1,6 +1,12 @@
 .outerContainer {
+
 }
 
+.submitButtonDiv{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 .button {
   width: fit-content;
   background: none;
@@ -13,7 +19,7 @@
   font-weight: 900;
   text-transform: uppercase;
   cursor: pointer;
-  float: right;
+
   transition: all 0.25s ease-out;
 }
 
