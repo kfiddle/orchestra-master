@@ -152,7 +152,7 @@ const RosterSpot = function ({
         <div className={classes.mailButtonDiv}>
           <AiOutlineMail className={classes.icon} onClick={sendMessage} />
         </div>
-        {mailClicked && <EmailPlayer closeModal={closeModal} />}
+        {/* {mailClicked && <EmailPlayer closeModal={closeModal} />} */}
       </div>
 
       {rightClicked && (
