@@ -1,14 +1,15 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 import emailjs from "emailjs-com";
 
 import Modal from "../../../../UI/modal/Modal";
+import Message from "./Message";
 
 import { ConsoleHolder } from "../../../../../store/object-holder";
 import { ChairsHolder } from "../../../../../store/object-holder";
 
 import usePushBasic from "../../../../../hooks/usePushBasic";
-import useDateFormatter from "../../../../../hooks/useDateFormatter";
+import useServiceFormatter from "../../../../../hooks/useServiceFormatter";
 
 import styles from "./EmailPlayer.module.css";
 import useClockFormatter from "../../../../../hooks/useClockFormatter";
@@ -27,46 +28,50 @@ const EmailPlayer = ({ closeModal, player }) => {
   const { parts } = chosenPic;
 
   const clockFormatter = useClockFormatter();
+  const serviceFormatter = useServiceFormatter();
 
   const displayableparts = parts
     .map((part) => part.instrument.name + ` ${part.rank}`)
     .join(" and ");
 
+  const services = usePushBasic(clickedShow, "get-full-schedule-of-show");
+
+  if (services) {
+    for (let service of services) console.log(serviceFormatter(service));
+  }
+  let serviceLines = [];
+
+  if (services) {
+    for (let service of services) {
+      let displayService = `<div>${service.event} ${clockFormatter(
+        service.startTime
+      )}</div>`;
+      serviceLines.push(displayService);
+    }
+  }
+
   const submit = () => {
     const messageAndPlayer = {
       toEmail: player.email,
-      message: 'a message ' + ' \n and one more' + `\n <h3>COME ON</h3>`,
-      testHTML: '<h1>Testing</h1>'
+      message_HTML: `<div>
+        Hi ${player.firstNameArea}, I'm writing to ask if would be available to join
+        the Erie Philharmonic for ${clickedShow.title}. You would play ${displayableparts}.
+        Details are below.
+        <div style="margin-top:3rem">${serviceLines}</div>
+      </div>`,
     };
 
     emailjs.send(serviceId, testTemplateId, messageAndPlayer, userId);
   };
 
-  const services = usePushBasic(clickedShow, "get-full-schedule-of-show");
-  let serviceLines = [];
-
-  if (services) {
-    for (let service of services) {
-      let displayService = "";
-      displayService += service.event;
-      displayService += " " + clockFormatter(service.startTime);
-      serviceLines.push(displayService);
-    }
-  }
-
-  const initialText = `Hi ${player.firstNameArea}, I'm writing to ask if you are available to join the Erie Philharmonic
-  for ${clickedShow.title}, details below, blah blah blah. You would play ${displayableparts}
-
-
-
-  ${serviceLines}
-  `;
-
   return (
     <Modal closeModal={closeModal}>
       <div className={styles.outerContainer}>
         <div>{clickedShow.title}</div>
-        <div style={{ width: "100%" }}>{initialText}</div>
+
+        {/* <div>{message_HTML}</div> */}
+        <Message player={player} />
+
         <div></div>
         <div className={styles.submitButtonDiv}>
           <button className={styles.button} onClick={submit}>
