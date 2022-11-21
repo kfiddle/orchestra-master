@@ -1,13 +1,21 @@
+import useClockFormatter from "./useClockFormatter";
+
 const useServiceFormatter = () => {
-  // service has a date (formatted)
-  // service has a start time
-  // service has an event type
-  // service has a location
-  // service MAY have an endtime
+  const clockFormatter = useClockFormatter();
 
   return (service) => {
-    const date = new Date(service.date)
-    return date.getDay() + '    ' + date.getMonth();
+    let displayEvent = "Concert";
+    if (service.event === "REHEARSAL") displayEvent = "Rehearsal";
+
+    const date = new Date(service.date).toLocaleDateString("en-us", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    return `<div><span style='font-weight:bold'>${displayEvent}:</span> 
+    ${date}
+    ${clockFormatter(service.startTime)}</div>`;
   };
 };
 

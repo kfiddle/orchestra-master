@@ -27,7 +27,6 @@ const EmailPlayer = ({ closeModal, player }) => {
   const { chosenPic } = chairState;
   const { parts } = chosenPic;
 
-  const clockFormatter = useClockFormatter();
   const serviceFormatter = useServiceFormatter();
 
   const displayableparts = parts
@@ -36,17 +35,13 @@ const EmailPlayer = ({ closeModal, player }) => {
 
   const services = usePushBasic(clickedShow, "get-full-schedule-of-show");
 
-  if (services) {
-    for (let service of services) console.log(serviceFormatter(service));
-  }
+
   let serviceLines = [];
 
   if (services) {
     for (let service of services) {
-      let displayService = `<div>${service.event} ${clockFormatter(
-        service.startTime
-      )}</div>`;
-      serviceLines.push(displayService);
+      let displayService = serviceFormatter(service);
+      serviceLines.push(displayService)
     }
   }
 
@@ -57,7 +52,7 @@ const EmailPlayer = ({ closeModal, player }) => {
         Hi ${player.firstNameArea}, I'm writing to ask if would be available to join
         the Erie Philharmonic for ${clickedShow.title}. You would play ${displayableparts}.
         Details are below.
-        <div style="margin-top:3rem">${serviceLines}</div>
+        <div style="margin-top:3rem">${serviceLines.join('')}</div>
       </div>`,
     };
 
