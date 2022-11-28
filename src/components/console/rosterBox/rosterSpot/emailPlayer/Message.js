@@ -34,11 +34,25 @@ const Message = ({ player }) => {
     }
   }
 
+  //   `<div>
+  //   Hi ${
+  //     player.firstNameArea
+  //   }, I'm writing to ask if you would be available to join
+  //   the Erie Philharmonic for ${
+  //     clickedShow.title
+  //   }. You would play ${displayableparts}.
+  //   Details are below.
+  //   <div style="margin:2rem">${serviceLines.join("")}</div>
+  //   <p style='font-weight:bold'>Attire:</p>
+  //   <div style="margin-left: 1rem">${dressToSend}</div>
+  // </div>`,
+
   return (
     <div>
-      Hi {player.firstNameArea}, I'm writing to ask if you are available to join
-      the Erie Philharmonic for {clickedShow.title}, details below, blah blah
-      blah. You would play {displayableparts}
+      By clicking Send, you are sending the message below to this email: {player.email}. Hi{" "}
+      {player.firstNameArea}, I'm writing to ask if you would be available to
+      join the Erie Philharmonic for {clickedShow.title}. You would play{" "}
+      {displayableparts}. Details are below.
       <div className={styles.servicesBox}>{serviceLines}</div>
     </div>
   );

@@ -33,8 +33,6 @@ const EmailPlayer = ({ closeModal, player }) => {
   const serviceFormatter = useServiceFormatter();
   const partFormatter = usePartFormatter();
 
-  console.log(parts);
-
   const displayableparts = parts
     .map((part) => partFormatter(part))
     .join(" and ");
@@ -51,50 +49,66 @@ const EmailPlayer = ({ closeModal, player }) => {
   }
 
   const submit = () => {
-    console.log(attire);
+    let dressToSend =
+      "Men: Black Tux, Black bow tie, etc...<br> Women: Black dress, etc...";
+    if (attire === "SYM")
+      dressToSend = "Men: Tails, etc...<br> Women: Black dress, etc..";
+    else if (attire === "BLACK")
+      dressToSend = "Men: Black everything, Women: also, black everything";
+
     const messageAndPlayer = {
       toEmail: "kenjfiddle@gmail.com",
       message_HTML: `<div>
         Hi ${
           player.firstNameArea
-        }, I'm writing to ask if would be available to join
+        }, I'm writing to ask if you would be available to join
         the Erie Philharmonic for ${
           clickedShow.title
         }. You would play ${displayableparts}.
         Details are below.
-        <div style="margin-top:3rem">${serviceLines.join("")}</div>
+        <div style="margin:2rem">${serviceLines.join("")}</div>
+        <p style='font-weight:bold'>Attire:</p>
+        <div style="margin-left: 1rem">${dressToSend}</div>
       </div>`,
     };
 
-    emailjs.send(serviceId, testTemplateId, messageAndPlayer, userId);
+    emailjs.send(serviceId, testTemplateId, messageAndPlayer, userId).then(
+      (result) => {
+        if (result.text === "OK") closeModal();
+      },
+      (error) => {
+        console.log(error.text);
+      }
+    );
   };
 
-  const dressClicker = (dress) => setAttire(dress);
+  const dressClicker = (dress) => () =>
+    dress === attire ? setAttire("") : setAttire(dress);
+
+  const dressStyles = (dress) =>
+    dress === attire ? styles.clickedDress : styles.attireButton;
 
   return (
     <Modal closeModal={closeModal}>
       <div className={styles.outerContainer}>
         <div>{clickedShow.title}</div>
 
-        {/* <div>{message_HTML}</div> */}
         <Message player={player} />
 
         <div className={styles.attireBox}>
-          <button
-            className={styles.attireButton}
-            onClick={() => dressClicker("SYM")}
-          >
+          <p style={{ fontWeight: "bold" }}>Required Dress:</p>
+          <button className={dressStyles("SYM")} onClick={dressClicker("SYM")}>
             SYM
           </button>
           <button
-            className={styles.attireButton}
-            onClick={() => dressClicker("POPS")}
+            className={dressStyles("POPS")}
+            onClick={dressClicker("POPS")}
           >
             POPS
           </button>
           <button
-            className={styles.attireButton}
-            onClick={() => dressClicker("BLACK")}
+            className={dressStyles("BLACK")}
+            onClick={dressClicker("BLACK")}
           >
             BLACK
           </button>
