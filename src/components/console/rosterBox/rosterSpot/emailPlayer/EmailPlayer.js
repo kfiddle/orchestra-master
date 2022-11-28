@@ -11,7 +11,6 @@ import { ChairsHolder } from "../../../../../store/object-holder";
 import usePushBasic from "../../../../../hooks/usePushBasic";
 import useServiceFormatter from "../../../../../hooks/useServiceFormatter";
 import usePartFormatter from "../../../../../hooks/usePartFormatter";
-import usePieceFormatter from "../../../../../hooks/usePieceFormatter";
 
 import styles from "./EmailPlayer.module.css";
 
@@ -32,10 +31,11 @@ const EmailPlayer = ({ closeModal, player }) => {
 
   const serviceFormatter = useServiceFormatter();
   const partFormatter = usePartFormatter();
-  const pieceFormatter = usePieceFormatter();
 
   const displayableparts = parts
-    .map((part) => partFormatter(part))
+    .map(
+      (part) => `<span style='font-weight:bold'>${partFormatter(part)}</span>`
+    )
     .join(" and ");
 
   const services = usePushBasic(clickedShow, "get-full-schedule-of-show");
