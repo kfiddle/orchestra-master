@@ -1,5 +1,35 @@
+.outerContainer {
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
 
+.section {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  /* font-weight: bold; */
+}
+
+.message {
+  border: 2px solid rgb(111, 99, 99);
+  box-shadow: 0 2px 8px rgba(168, 132, 132, 0.25);
+  border-radius: 3px;
+  padding: 1.5rem;
+  font-size: 1.3rem;
+  line-height: 1.5rem;
+}
 
 .servicesBox {
-    margin-top: 2rem;
+  margin-top: 2rem;
+}
+
+.serviceDiv {
+  margin: 0.5rem;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.span {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
 }

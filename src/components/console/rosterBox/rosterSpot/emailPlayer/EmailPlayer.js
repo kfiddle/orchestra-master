@@ -91,12 +91,14 @@ const EmailPlayer = ({ closeModal, player }) => {
   return (
     <Modal closeModal={closeModal}>
       <div className={styles.outerContainer}>
-        <div>{clickedShow.title}</div>
-
-        <Message player={player} />
+        <Message
+          player={player}
+          services={services}
+          displayableparts={displayableparts}
+        />
 
         <div className={styles.attireBox}>
-          <p style={{ fontWeight: "bold" }}>Required Dress:</p>
+          <p style={{ fontWeight: "bold", fontSize:"1.3rem" }}>Required Dress:</p>
           <button className={dressStyles("SYM")} onClick={dressClicker("SYM")}>
             SYM
           </button>

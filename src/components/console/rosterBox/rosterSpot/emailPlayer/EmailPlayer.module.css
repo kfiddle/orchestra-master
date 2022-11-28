@@ -1,4 +1,5 @@
 .outerContainer {
+  padding: 2rem;
 }
 
 .submitButtonDiv {
@@ -28,7 +29,7 @@
 
 .attireBox {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   margin: 2rem 0;
 }
 
