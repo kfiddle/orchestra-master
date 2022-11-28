@@ -2,6 +2,12 @@
   padding: 2rem;
 }
 
+.title {
+  margin: 0 0 2rem 0;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
 .submitButtonDiv {
   width: 100%;
   display: flex;

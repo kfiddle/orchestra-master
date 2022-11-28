@@ -11,11 +11,24 @@
 
 .message {
   border: 2px solid rgb(111, 99, 99);
-  box-shadow: 0 2px 8px rgba(168, 132, 132, 0.25);
+  box-shadow: 0 1px 6px rgba(168, 132, 132, 0.25);
   border-radius: 3px;
   padding: 1.5rem;
   font-size: 1.3rem;
   line-height: 1.5rem;
+}
+
+.email {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.piecesBox {
+  margin: 2rem 0.5rem;
+}
+
+.pieceDiv {
+  font-size: 1.3rem;
 }
 
 .servicesBox {

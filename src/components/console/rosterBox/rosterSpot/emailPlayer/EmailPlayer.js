@@ -11,9 +11,9 @@ import { ChairsHolder } from "../../../../../store/object-holder";
 import usePushBasic from "../../../../../hooks/usePushBasic";
 import useServiceFormatter from "../../../../../hooks/useServiceFormatter";
 import usePartFormatter from "../../../../../hooks/usePartFormatter";
+import usePieceFormatter from "../../../../../hooks/usePieceFormatter";
 
 import styles from "./EmailPlayer.module.css";
-// import useClockFormatter from "../../../../../hooks/useClockFormatter";
 
 const userId = "user_ziX5oSLNJRahUxs9dz2xC";
 const serviceId = "service_whc7i1l";
@@ -26,12 +26,13 @@ const EmailPlayer = ({ closeModal, player }) => {
 
   const [attire, setAttire] = useState("");
 
-  const { clickedShow } = dashboard;
+  const { clickedShow, pieces } = dashboard;
   const { chosenPic } = chairState;
   const { parts } = chosenPic;
 
   const serviceFormatter = useServiceFormatter();
   const partFormatter = usePartFormatter();
+  const pieceFormatter = usePieceFormatter();
 
   const displayableparts = parts
     .map((part) => partFormatter(part))
@@ -40,11 +41,25 @@ const EmailPlayer = ({ closeModal, player }) => {
   const services = usePushBasic(clickedShow, "get-full-schedule-of-show");
 
   let serviceLines = [];
+  let pieceLines = [];
 
   if (services) {
     for (let service of services) {
       let displayService = serviceFormatter(service);
       serviceLines.push(displayService);
+    }
+  }
+
+  if (pieces) {
+    for (let showPiece of pieces) {
+      const { piece } = showPiece;
+      const { composerName, title } = piece;
+
+      pieceLines.push(
+        `<div><span style='font-weight:bold'>${composerName}:</span>
+        ${title}
+        </div>`
+      );
     }
   }
 
@@ -66,6 +81,7 @@ const EmailPlayer = ({ closeModal, player }) => {
           clickedShow.title
         }. You would play ${displayableparts}.
         Details are below.
+        <div style="margin:2rem">${pieceLines.join("")}</div>
         <div style="margin:2rem">${serviceLines.join("")}</div>
         <p style='font-weight:bold'>Attire:</p>
         <div style="margin-left: 1rem">${dressToSend}</div>
@@ -91,14 +107,18 @@ const EmailPlayer = ({ closeModal, player }) => {
   return (
     <Modal closeModal={closeModal}>
       <div className={styles.outerContainer}>
+        <div className={styles.title}>Email Player</div>
         <Message
           player={player}
-          services={services}
           displayableparts={displayableparts}
+          pieces={pieces}
+          services={services}
         />
 
         <div className={styles.attireBox}>
-          <p style={{ fontWeight: "bold", fontSize:"1.3rem" }}>Required Dress:</p>
+          <p style={{ fontWeight: "bold", fontSize: "1.3rem" }}>
+            Required Dress:
+          </p>
           <button className={dressStyles("SYM")} onClick={dressClicker("SYM")}>
             SYM
           </button>

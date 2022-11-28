@@ -7,13 +7,11 @@ import useClockFormatter from "../../../../../hooks/useClockFormatter";
 
 import styles from "./Message.module.css";
 
-const Message = ({ player, services, displayableparts }) => {
+const Message = ({ player, displayableparts, pieces, services }) => {
   const { dashboard } = useContext(ConsoleHolder);
   const { chairState } = useContext(ChairsHolder);
 
   const { clickedShow } = dashboard;
-  const { chosenPic } = chairState;
-  const { parts } = chosenPic;
 
   const clockFormatter = useClockFormatter();
 
@@ -43,16 +41,25 @@ const Message = ({ player, services, displayableparts }) => {
       })
     : "";
 
+  const pieceLines = pieces
+    ? pieces.map((showPiece) => {
+        const { piece } = showPiece;
+        const { composerName, title } = piece;
+        return <div key={piece.id} className={styles.pieceDiv}><span className={styles.span}>{composerName}: </span>{title}</div>;
+      })
+    : "";
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.section}>
         By clicking Send, you are sending the following message below to this
-        email: {player.email}
+        email: <span className={styles.email}>{player.email}</span>
       </div>
       <div className={styles.message}>
         Hi {player.firstNameArea}, I'm writing to ask if you would be available
         to join the Erie Philharmonic for {clickedShow.title}. You would play{" "}
         {displayableparts}. Details are below.
+        <div className={styles.piecesBox}>{pieceLines}</div>
         <div className={styles.servicesBox}>{serviceLines}</div>
       </div>
     </div>
