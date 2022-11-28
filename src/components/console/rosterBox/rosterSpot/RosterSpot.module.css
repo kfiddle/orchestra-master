@@ -2,15 +2,15 @@
   position: relative;
   display: flex;
   align-items: center;
-  padding: 0.5rem;
-  width: 100%;
+  padding: 0.2rem;
+  width: 90%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
-  height: 2.5rem;
+  height: 2rem;
   color: rgb(255, 255, 255);
-  font-weight: 900;
-  font-size: 1rem;
-  letter-spacing: 0.15em;
+  font-weight: 800;
+  font-size: 1vw;
+  letter-spacing: 0.5px;
   transition: 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
   cursor: pointer;
 }
@@ -22,7 +22,6 @@
 .clicked {
   background: rgb(117, 189, 248);
   color: rgb(82, 87, 9);
-  
 }
 
 /* .highlighted {
@@ -48,7 +47,7 @@
   background: #f3f1f1;
   opacity: 0.85;
   color: #2c2b2c;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .fadeForOther {

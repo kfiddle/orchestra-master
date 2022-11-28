@@ -12,7 +12,7 @@
   display: block;
   position: relative;
   width: 5rem;
-  height: 5px;
+  height: 3px;
   background: #1c1b1c;
   transition: cubic-bezier(0.3, 0, 0.5, 1) 0.15s;
 }
@@ -22,7 +22,7 @@
   position: relative;
   top: 4px;
   width: 5rem;
-  height: 5px;
+  height: 3px;
   background: #1c1b1c;
   transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
 }
@@ -32,7 +32,7 @@
   position: relative;
   top: 8px;
   width: 5rem;
-  height: 5px;
+  height: 3px;
   background: #1c1b1c;
   transition: cubic-bezier(0.3, 0, 0.5, 1) 0.35s;
 }
@@ -56,7 +56,7 @@
 }
 
 .clickedBar1 {
-  transform: rotate(45deg) translateY(8px);
+  transform: rotate(45deg) translateY(7px);
 }
 
 .clickedBar2 {

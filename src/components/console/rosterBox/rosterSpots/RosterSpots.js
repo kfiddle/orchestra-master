@@ -36,14 +36,14 @@ const RosterSpots = React.memo((props) => {
 
   return (
     <div className={styles.outerContainer}>
-      {showAddChairButton && (
+      {/* {showAddChairButton && (
         <button
           className={styles.addChairButton}
           onClick={() => toggleAddChairBox(true)}
         >
           ADD CHAIR
         </button>
-      )}
+      )} */}
 
       <NonStrings
         rightClicker={rightClicker}

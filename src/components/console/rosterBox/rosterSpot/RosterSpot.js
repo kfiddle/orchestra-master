@@ -5,6 +5,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 
 import useFetch from "../../../../hooks/useFetch";
+import useCapFirst from "../../../../hooks/useCapFirst";
 
 import RightClick from "./rightClick/RightClick";
 
@@ -15,7 +16,7 @@ import classes from "./RosterSpot.module.css";
 import EditChair from "./editChair/EditChair";
 
 // RosterSpots has this
-  
+
 const RosterSpot = function ({
   pic,
   index,
@@ -32,6 +33,7 @@ const RosterSpot = function ({
   const { dashboard, dispatch: dashDisp } = useContext(ConsoleHolder);
 
   const pusher = useFetch();
+  const firstCap = useCapFirst();
 
   let { parts } = pic;
   let { rank, specialDesignate } = parts[0];
@@ -43,13 +45,13 @@ const RosterSpot = function ({
   let stringPart = stringParts.includes(parts[0]);
 
   let primaryPart = parts[0];
-  let primaryPartName = primaryPart.instrument.name;
+  let primaryPartName = firstCap(primaryPart.instrument.name);
 
   let doublingParts = "";
 
   if (parts.length > 1) {
     for (let j = 1; j < parts.length; j++) {
-      doublingParts = doublingParts + "/ " + parts[j].instrument.name;
+      doublingParts = doublingParts + "/ " + firstCap(parts[j].instrument.name);
     }
   }
 
@@ -130,7 +132,7 @@ const RosterSpot = function ({
   };
 
   return (
-    <div>
+    <fragment>
       <div
         className={` ${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass} ${doubleClickedClass}`}
         onClick={spotClickedHandler}
@@ -163,7 +165,7 @@ const RosterSpot = function ({
         />
       )}
       {editClicked && <EditChair closeModal={closeModal} incomingPic={pic} />}
-    </div>
+    </fragment>
   );
 };
 

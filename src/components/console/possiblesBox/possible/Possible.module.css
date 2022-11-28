@@ -1,15 +1,16 @@
 .outerContainer {
     position: relative;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    margin: 0.5rem 4rem;
-    padding: 2rem;
+    margin: 0.5rem 0rem;
+    padding: 1rem 2rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     border-radius: 6px;
-    font-weight: 900;
+    font-weight: 700;
     z-index: 1;
     color: rgb(32, 9, 9);
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
   }
   
   .unclickedItem {
@@ -27,7 +28,7 @@
   }
   
   .nameDiv {
-    width: 50%;
+    width: 95%;
     font-size: 1rem;
   }
   
