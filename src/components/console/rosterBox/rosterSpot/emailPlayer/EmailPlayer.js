@@ -56,9 +56,9 @@ const EmailPlayer = ({ closeModal, player }) => {
       const { composerName, title } = piece;
 
       pieceLines.push(
-        `<div><span style='font-weight:bold'>${composerName}:</span>
-        ${title}
-        </div>`
+        `<tr><td style='font-weight:bold'>${composerName}:</td>
+        <td>${title}</td>
+        </tr>`
       );
     }
   }
@@ -81,8 +81,8 @@ const EmailPlayer = ({ closeModal, player }) => {
           clickedShow.title
         }. You would play ${displayableparts}.
         Details are below.
-        <div style="margin:2rem">${pieceLines.join("")}</div>
-        <div style="margin:2rem">${serviceLines.join("")}</div>
+        <table style="margin:2rem">${pieceLines.join("")}</table>
+        <table style="margin:2rem">${serviceLines.join("")}</table>
         <p style='font-weight:bold'>Attire:</p>
         <div style="margin-left: 1rem">${dressToSend}</div>
       </div>`,
