@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { Fragment, useState, useContext } from "react";
 
 import EmailPlayer from "./emailPlayer/EmailPlayer";
 import { AiOutlineMail } from "react-icons/ai";
@@ -132,7 +132,7 @@ const RosterSpot = function ({
   };
 
   return (
-    <fragment>
+    <Fragment>
       <div
         className={` ${classes.outerContainer} ${marginClass} ${backgroundClass} ${fadeForOtherClass} ${rightClickedClass} ${doubleClickedClass}`}
         onClick={spotClickedHandler}
@@ -165,7 +165,7 @@ const RosterSpot = function ({
         />
       )}
       {editClicked && <EditChair closeModal={closeModal} incomingPic={pic} />}
-    </fragment>
+    </Fragment>
   );
 };
 

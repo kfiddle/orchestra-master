@@ -56,7 +56,7 @@ const EmailPlayer = ({ closeModal, player }) => {
       const { composerName, title } = piece;
 
       pieceLines.push(
-        `<tr><td style='font-weight:bold'>${composerName}:</td>
+        `<tr><td style='font-weight:bold'>${composerName}: </td>
         <td>${title}</td>
         </tr>`
       );
@@ -110,7 +110,7 @@ const EmailPlayer = ({ closeModal, player }) => {
         <div className={styles.title}>Email Player</div>
         <Message
           player={player}
-          displayableparts={displayableparts}
+          parts={parts}
           pieces={pieces}
           services={services}
         />

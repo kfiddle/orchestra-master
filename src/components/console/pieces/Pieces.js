@@ -21,6 +21,17 @@ const Pieces = (props) => {
     dispatch({ type: "pics", list: piecePics });
   };
 
+  const showFullRoster = async () => {
+    const allPicsInShow = [];
+
+    for (let showPiece of dashboard.pieces) {
+      const pics = await pusher(showPiece, "get-pics-in-show-piece");
+      if (pics) {
+        for (let pic of pics) allPicsInShow.push(pic);
+      }
+    }
+  };
+
   useEffect(() => {
     if (
       dashboard.clickedPiece ||
@@ -39,7 +50,14 @@ const Pieces = (props) => {
   const displayablePieces = dashboard.pieces.map((piece) => (
     <ConsolePiece key={piece.id} pp={piece} />
   ));
-  return <div>{displayablePieces}</div>;
+  return (
+    <div>
+      {displayablePieces}
+      <button style={{ marginLeft: "2rem" }} onClick={showFullRoster}>
+        Get Full Roster
+      </button>
+    </div>
+  );
 };
 
 export default Pieces;

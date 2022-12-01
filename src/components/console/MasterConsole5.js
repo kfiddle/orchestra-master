@@ -28,6 +28,7 @@ const MasterConsole5 = (props) => {
       "get-showtunes-on-program"
     );
     dispatch({ type: "pieces", list: showPieces });
+    console.log(showPieces)
   };
 
   const grabPICSFromShow = async () => {
