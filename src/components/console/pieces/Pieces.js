@@ -21,14 +21,31 @@ const Pieces = (props) => {
     dispatch({ type: "pics", list: piecePics });
   };
 
+  const partsEquals = (pic1, pic2) => {
+    return (
+      pic1.parts.length === pic2.parts.length &&
+      pic1.parts.every(
+        (part, index) => part.instrument.id === pic2.parts[index].instrument.id
+      )
+    );
+  };
+
   const showFullRoster = async () => {
-    const allPicsInShow = [];
+    // const allPicsInShow = [];
 
     for (let showPiece of dashboard.pieces) {
       const pics = await pusher(showPiece, "get-pics-in-show-piece");
-      if (pics) {
-        for (let pic of pics) allPicsInShow.push(pic);
-      }
+      // if (pics.length) {
+      //   const fullShowRoster = pics.reduce(fullList, pic => {
+      //     if (!fullList.includes())
+      //   }, [])
+      // }
+
+      // if (pics.length) {
+      //   if (pics.filter(pic => pic.parts === ))
+      // }
+
+      if (pics.length) console.log(partsEquals(pics[0], pics[1]));
     }
   };
 
