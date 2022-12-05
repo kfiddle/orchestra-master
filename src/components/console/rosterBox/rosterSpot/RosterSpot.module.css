@@ -8,8 +8,7 @@
   border-radius: 2px;
   height: 2rem;
   color: rgb(255, 255, 255);
-  font-weight: 800;
-  font-size: 1vw;
+  font-weight: 700;
   letter-spacing: 0.5px;
   transition: 0.1s cubic-bezier(0.39, 0.575, 0.565, 1);
   cursor: pointer;
@@ -33,7 +32,7 @@
 }
 
 .sectionMargin {
-  margin: 0.25rem 1rem 0.5rem 0;
+  margin: 0.2rem 1rem 0.4rem 0;
 }
 
 .hired {
@@ -47,7 +46,7 @@
   background: #f3f1f1;
   opacity: 0.85;
   color: #2c2b2c;
-  font-weight: 800;
+  /* font-weight: 800; */
 }
 
 .fadeForOther {
@@ -71,18 +70,24 @@
 .partDiv {
   width: 20%;
   padding-left: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .rankDiv {
   width: 5%;
+  font-size: 0.9rem;
+
 }
 
 .playerDiv {
   width: 25%;
+  font-size: 0.9rem;
 }
 
 .doublingDiv {
   width: 40%;
+  font-size: 0.9rem;
+
 }
 
 .mailButtonDiv {
@@ -90,6 +95,10 @@
   right: 1rem;
 }
 
+.icon {
+  font-size: 0.8rem;
+
+}
 .icon:hover {
-  color: red;
+  color: rgb(51, 0, 255);
 }

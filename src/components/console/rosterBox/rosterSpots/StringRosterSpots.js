@@ -6,7 +6,6 @@ import useFetch from "../../../../hooks/useFetch";
 import useKeyPress from "../../../../hooks/useKeyPress";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
-import RosterSpot1 from "../rosterSpot/RosterSpot1";
 
 import StringsAdjusters from "../stringsAdjusters/StringsAdjusters";
 

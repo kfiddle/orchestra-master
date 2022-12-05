@@ -31,7 +31,7 @@ const Pieces = (props) => {
   };
 
   const showFullRoster = async () => {
-    // const allPicsInShow = [];
+    const allPicsInShow = [];
 
     for (let showPiece of dashboard.pieces) {
       const pics = await pusher(showPiece, "get-pics-in-show-piece");
@@ -42,10 +42,13 @@ const Pieces = (props) => {
       // }
 
       // if (pics.length) {
-      //   if (pics.filter(pic => pic.parts === ))
+      const nonDupedPics = pics.filter((pic1) => {
+        pics.forEach((pic2) => partsEquals(pic1, pic2));
+      });
       // }
+      console.log(nonDupedPics);
 
-      if (pics.length) console.log(partsEquals(pics[0], pics[1]));
+      // if (pics.length) console.log(partsEquals(pics[0], pics[1]));
     }
   };
 

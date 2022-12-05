@@ -24,12 +24,13 @@
 
 .titleDiv {
   width: 80%;
-  font-size: 1.2vw;
+  font-size: 1.3rem;
   letter-spacing: 1px;
 }
 
 .dateDiv {
   width: 10%;
+  font-size: 1rem;
 }
 
 .buttonsDiv {
@@ -48,5 +49,5 @@
 }
 
 .editButton:hover {
-  color: red;
+  color: rgb(60, 0, 255);
 }

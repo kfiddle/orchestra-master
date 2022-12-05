@@ -19,7 +19,7 @@ const MainNavigation = (props) => {
 
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>
+      <div className={classes.logoDiv}>
         <Stripes
           stripesHandler={stripesHandler}
           sideBarOpen={props.sideBarOpen}
@@ -29,7 +29,7 @@ const MainNavigation = (props) => {
       </div>
       <nav className={classes.nav}>
         <ul>
-          <div className={classes.newFormDiv}>
+          {/* <div className={classes.newFormDiv}> */}
             <li className={classes.navItem}>
               <NavLink
                 to={"/log"}
@@ -39,7 +39,7 @@ const MainNavigation = (props) => {
                 NOTIFICATIONS
               </NavLink>
             </li>
-          </div>
+          {/* </div> */}
 
           <li className={classes.navItem}>
             <NavLink
@@ -69,7 +69,7 @@ const MainNavigation = (props) => {
               activeClassName={classes.active}
             >
               {" "}
-              Contract Roster
+              Contracts
             </NavLink>
           </li>
 
