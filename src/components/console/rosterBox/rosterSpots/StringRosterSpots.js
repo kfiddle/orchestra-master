@@ -87,8 +87,11 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
     setAddStringsClicked(false);
   };
 
+  const picsToShow = dashboard.pics.length
+    ? dashboard.pics
+    : dashboard.fullRoster;
 
-  for (let pic of dashboard.pics) {
+  for (let pic of picsToShow) {
     if (stringParts.includes(pic.parts[0].instrument.name)) {
       strings.push(pic);
     }
@@ -111,14 +114,12 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
     <div>
       {displayableStrings}
       <div className={styles.buttonsDiv}>
-
         {displayableStrings.length > 0 && (
           <button className={styles.stringsButton} onClick={stringsClicker}>
             ADJUST STRING NUMBERS
           </button>
         )}
       </div>
-    
 
       <StringsAdjusters strings={strings} visible={addStringsClicked} />
     </div>

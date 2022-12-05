@@ -1,6 +1,6 @@
 .outerHamburger {
   left: 2rem;
-  width: 60px;
+  width: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,8 +11,8 @@
 .bar1 {
   display: block;
   position: relative;
-  width: 5rem;
-  height: 3px;
+  width: 4rem;
+  height: 5px;
   background: #1c1b1c;
   transition: cubic-bezier(0.3, 0, 0.5, 1) 0.15s;
 }
@@ -21,8 +21,8 @@
   display: block;
   position: relative;
   top: 4px;
-  width: 5rem;
-  height: 3px;
+  width: 4rem;
+  height: 5px;
   background: #1c1b1c;
   transition: cubic-bezier(0.3, 0, 0.5, 1) 0.25s;
 }
@@ -31,8 +31,8 @@
   display: block;
   position: relative;
   top: 8px;
-  width: 5rem;
-  height: 3px;
+  width: 4rem;
+  height: 5px;
   background: #1c1b1c;
   transition: cubic-bezier(0.3, 0, 0.5, 1) 0.35s;
 }

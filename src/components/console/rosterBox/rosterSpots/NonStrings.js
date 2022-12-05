@@ -4,22 +4,24 @@ import { ConsoleHolder } from "../../../../store/object-holder";
 
 import RosterSpot from "../rosterSpot/RosterSpot";
 
-
 import styles from "./NonStrings.module.css";
 
-const NonStrings = ({rightClicker, rightClickedSpot}) => {
+const NonStrings = ({ rightClicker, rightClickedSpot }) => {
   const [dbClickedOtherSpot, setDbClickedOtherSpot] = useState(null);
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const stringParts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
   const others = [];
 
-  for (let pic of dashboard.pics) {
+  const picsToShow = dashboard.pics.length
+    ? dashboard.pics
+    : dashboard.fullRoster;
+
+  for (let pic of picsToShow) {
     if (!stringParts.includes(pic.parts[0].instrument.name)) {
       others.push(pic);
     }
   }
-
 
   const doubleClicker = (pic) => {
     if (dbClickedOtherSpot === pic) {
@@ -41,6 +43,8 @@ const NonStrings = ({rightClicker, rightClickedSpot}) => {
     />
   ));
 
-  return <div>{displayableOthers}</div>;
+  return <div>
+    <button onClick={()=> console.log(dashboard.fullRoster.length)}>rosterCheck</button>
+    {displayableOthers}</div>;
 };
 export default NonStrings;

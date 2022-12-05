@@ -14,10 +14,11 @@ const initialState = {
   pieces: [],
   clickedPiece: null,
   pics: [],
-  possibles: [],
-  clickedPossible: null,
+  fullRoster: [],
   refreshPICS: false,
   modalClosed: false,
+  // possibles: [],
+  // clickedPossible: null,
 };
 
 const showReducer = (state, action) => {
@@ -32,6 +33,8 @@ const showReducer = (state, action) => {
       return { ...state, clickedPiece: action.clickedPiece };
     case "pics":
       return { ...state, pics: action.list };
+    case "fullRoster":
+      return { ...state, fullRoster: action.list };
     case "refreshPICS":
       return { ...state, refreshPICS: action.refreshPICS };
     case "modalClosed":

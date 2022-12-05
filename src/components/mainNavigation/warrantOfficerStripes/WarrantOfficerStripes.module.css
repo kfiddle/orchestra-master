@@ -1,4 +1,4 @@
-.outerHamburger {
+/* .outerHamburger {
   left: 2rem;
   display: flex;
   justify-content: center;
@@ -18,7 +18,7 @@
 .bars {
   display: inline-block;
   padding: 0 20px;
-  width: 75px;
+  width: 1.5rem;
   height: 50px;
   overflow: hidden;
   position: relative;
@@ -39,4 +39,4 @@
   background-color: darkblue;
   opacity: 0.5;
   transform: translateY(-13px);
-}
+} */

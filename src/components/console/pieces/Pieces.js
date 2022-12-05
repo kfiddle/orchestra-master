@@ -21,35 +21,35 @@ const Pieces = (props) => {
     dispatch({ type: "pics", list: piecePics });
   };
 
-  const partsEquals = (pic1, pic2) => {
-    return (
-      pic1.parts.length === pic2.parts.length &&
-      pic1.parts.every(
-        (part, index) => part.instrument.id === pic2.parts[index].instrument.id
-      )
-    );
+  const partsContains = (picList, parts) => {
+    for (let pic of picList) {
+      if (
+        pic.parts.length === parts.length &&
+        pic.parts.every((part, index) => {
+          return (part.instrument.id === parts[index].instrument.id &&
+            part.rank === parts[index].rank);
+        })
+      ) {
+        return true;
+      }
+    }
+    return false;
   };
 
   const showFullRoster = async () => {
     const allPicsInShow = [];
+    let nonDuped = [];
 
     for (let showPiece of dashboard.pieces) {
       const pics = await pusher(showPiece, "get-pics-in-show-piece");
-      // if (pics.length) {
-      //   const fullShowRoster = pics.reduce(fullList, pic => {
-      //     if (!fullList.includes())
-      //   }, [])
-      // }
-
-      // if (pics.length) {
-      const nonDupedPics = pics.filter((pic1) => {
-        pics.forEach((pic2) => partsEquals(pic1, pic2));
-      });
-      // }
-      console.log(nonDupedPics);
-
-      // if (pics.length) console.log(partsEquals(pics[0], pics[1]));
+      if (pics.length) {
+        for (let pic of pics) {
+          if (!partsContains(nonDuped, pic.parts)) nonDuped.push(pic);
+        }
+      }
     }
+
+    dispatch({ type: "fullRoster", list: nonDuped });
   };
 
   useEffect(() => {

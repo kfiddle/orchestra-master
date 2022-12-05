@@ -12,14 +12,14 @@
 }
 
 .menuOption {
-  font-size: 2rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
   text-decoration: none;
   list-style: none;
   font-weight: 700;
   letter-spacing: .1em;
   color: #f3f1f1;
-  margin: 6rem 4rem;
+  margin: 4rem 4rem;
   cursor: pointer;
 }
 
