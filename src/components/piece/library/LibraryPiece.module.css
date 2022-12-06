@@ -2,8 +2,9 @@
   position: relative;
   display: flex;
   align-items: center;
-  margin: 1rem 1rem;
-  padding: 1rem;
+  margin: .75rem 1rem;
+  /* padding: rem; */
+  /* height is determined by font-size of icons */
   width: 100%;
   border-radius: 12px;
   border: 2px solid rgb(102, 98, 98);
@@ -62,6 +63,10 @@
   color: rgb(239, 239, 38);
 }
 
-.icon:hover {
+.orchIcon {
+  font-size: 2rem;
+}
+
+.orchIcon:hover {
 color: rgb(239, 239, 38);
 }

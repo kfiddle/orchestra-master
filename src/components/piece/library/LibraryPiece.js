@@ -51,7 +51,7 @@ const LibraryPiece = ({ piece }) => {
       <div className={classes.durationDiv}>{duration > 0 && duration}</div>
 
       <div className={classes.editIconDiv}>
-        <GiMusicalScore onClick={openOrchestration} className={classes.icon} />
+        <GiMusicalScore onClick={openOrchestration} className={classes.orchIcon} />
       </div>
       <div className={classes.orchestrationIconDiv}>
         <FiEdit className={classes.icon}/>
