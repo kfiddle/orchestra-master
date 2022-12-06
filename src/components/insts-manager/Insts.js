@@ -22,7 +22,7 @@ const Insts = () => {
   return (
     <div>
       <button
-        className={styles.addInstButton}
+        className={styles.button}
         onClick={() => addInstClicker(true)}
       >
         ADD INSTRUMENT

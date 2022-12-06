@@ -26,8 +26,10 @@ const Pieces = (props) => {
       if (
         pic.parts.length === parts.length &&
         pic.parts.every((part, index) => {
-          return (part.instrument.id === parts[index].instrument.id &&
-            part.rank === parts[index].rank);
+          return (
+            part.instrument.id === parts[index].instrument.id &&
+            part.rank === parts[index].rank
+          );
         })
       ) {
         return true;
@@ -42,6 +44,8 @@ const Pieces = (props) => {
 
     for (let showPiece of dashboard.pieces) {
       const pics = await pusher(showPiece, "get-pics-in-show-piece");
+
+      // nonDuped = [...nonDuped, ...pics]
       if (pics.length) {
         for (let pic of pics) {
           if (!partsContains(nonDuped, pic.parts)) nonDuped.push(pic);
@@ -49,7 +53,7 @@ const Pieces = (props) => {
       }
     }
 
-    dispatch({ type: "fullRoster", list: nonDuped });
+    dispatch({ type: "pics", list: nonDuped });
   };
 
   useEffect(() => {
@@ -73,6 +77,7 @@ const Pieces = (props) => {
   return (
     <div>
       {displayablePieces}
+
       <button style={{ marginLeft: "2rem" }} onClick={showFullRoster}>
         Get Full Roster
       </button>

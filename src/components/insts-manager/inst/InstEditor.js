@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 import ReactDOM from "react-dom";
 
@@ -48,6 +49,7 @@ const InstEditor = ({ inst, closeModal, children }) => {
 
       {ReactDOM.createPortal(
         <ModalOverlay>
+          <AiOutlineClose className={classes.closeIcon} onClick={closeModal}  />
           <div className={classes.outerContainer}>
             <label className={classes.label}>{inst.name}</label>
             <div>

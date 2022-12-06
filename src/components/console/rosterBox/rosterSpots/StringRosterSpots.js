@@ -87,11 +87,7 @@ const StringRosterSpots = ({ rightClicker, rightClickedSpot }) => {
     setAddStringsClicked(false);
   };
 
-  const picsToShow = dashboard.pics.length
-    ? dashboard.pics
-    : dashboard.fullRoster;
-
-  for (let pic of picsToShow) {
+  for (let pic of dashboard.pics) {
     if (stringParts.includes(pic.parts[0].instrument.name)) {
       strings.push(pic);
     }

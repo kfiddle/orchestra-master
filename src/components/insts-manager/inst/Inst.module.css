@@ -3,19 +3,19 @@
   display: flex;
   align-items: center;
   margin: 1rem 1rem;
-  padding: 1rem;
+  padding: .5rem;
   width: 50%;
   border-radius: 12px;
   border: 2px solid rgb(102, 98, 98);
-  color: rgb(241, 228, 228);
+  color: rgb(46, 44, 44);
   text-transform: uppercase;
-  font-weight: 900;
+  font-weight: 700;
   cursor: pointer;
 }
 
 .outerContainer:hover {
-  background: rgb(243, 215, 215);
-  color: #3b3b3b;
+  background: rgb(117, 189, 248);
+  color: #434344;
 }
 
 .nameDiv {
@@ -32,9 +32,9 @@
 }
 
 .icon {
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .icon:hover {
-  color: rgb(219, 4, 165);
+  color: chartreuse;
 }

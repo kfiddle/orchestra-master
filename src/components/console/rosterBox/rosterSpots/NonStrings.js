@@ -13,11 +13,7 @@ const NonStrings = ({ rightClicker, rightClickedSpot }) => {
   const stringParts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
   const others = [];
 
-  const picsToShow = dashboard.pics.length
-    ? dashboard.pics
-    : dashboard.fullRoster;
-
-  for (let pic of picsToShow) {
+  for (let pic of dashboard.pics) {
     if (!stringParts.includes(pic.parts[0].instrument.name)) {
       others.push(pic);
     }

@@ -97,3 +97,13 @@
   color: white;
   background: midnightblue;
 }
+
+.closeIcon {
+  font-size: 2rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.closeIcon:hover {
+  color: chartreuse;
+}
