@@ -1,5 +1,5 @@
 .card {
-  padding: 2rem;
+  padding: 1rem;
   margin: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
@@ -8,11 +8,11 @@
 }
 
 .closeIcon {
-  font-size: 5rem;
+  font-size: 2.5rem;
   font-weight: 900;
   cursor: pointer;
 }
 
 .closeIcon:hover {
-  color: #6e7cfd;
+  color: chartreuse;
 }
