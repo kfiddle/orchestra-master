@@ -42,20 +42,21 @@ const Pieces = (props) => {
     const allPicsInShow = [];
     let nonDuped = [];
 
-    const fullRoster = await pusher(dashboard.pieces, "get-full-roster");
-    if (fullRoster.length) dispatch({ type: "pics", list: fullRoster });
+    // const fullRoster = await pusher(dashboard.pieces, "get-full-roster");
+    // if (fullRoster.length) dispatch({ type: "pics", list: fullRoster });
 
-    // for (let showPiece of dashboard.pieces) {
-    //   const pics = await pusher(showPiece, "get-pics-in-show-piece");
+    for (let showPiece of dashboard.pieces) {
+      const pics = await pusher(showPiece, "get-pics-in-show-piece");
 
-    //   if (pics.length) {
-    //     for (let pic of pics) {
-    //       if (!partsContains(nonDuped, pic.parts)) nonDuped.push(pic);
-    //     }
-    //   }
-    // }
+      if (pics.length) {
+        for (let pic of pics) {
+          if (!partsContains(nonDuped, pic.parts)) nonDuped.push(pic);
+        }
+      }
+    }
 
-    // dispatch({ type: "pics", list: nonDuped });
+    const sortedPics = await pusher(nonDuped, "sort-pics");
+    if (sortedPics.length) dispatch({ type: "pics", list: sortedPics });
   };
 
   useEffect(() => {
@@ -80,9 +81,11 @@ const Pieces = (props) => {
     <div>
       {displayablePieces}
 
-      <button style={{ margin: "3rem" }} onClick={showFullRoster}>
-        Get Full Roster
-      </button>
+      {displayablePieces.length > 1 && (
+        <button className={styles.button} onClick={showFullRoster}>
+          Get Full Roster
+        </button>
+      )}
     </div>
   );
 };

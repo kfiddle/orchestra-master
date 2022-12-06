@@ -26,6 +26,8 @@ const StringsBox = () => {
   const testList = testString.split(".");
 
   const stringsIsValid = () => {
+    if (input === "") return true;
+
     const list = input.split(".");
     if (
       list.length !== 5 ||

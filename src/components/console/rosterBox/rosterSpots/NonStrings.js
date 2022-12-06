@@ -39,8 +39,6 @@ const NonStrings = ({ rightClicker, rightClickedSpot }) => {
     />
   ));
 
-  return <div>
-    <button onClick={()=> console.log(dashboard.fullRoster.length)}>rosterCheck</button>
-    {displayableOthers}</div>;
+  return <div>{displayableOthers}</div>;
 };
 export default NonStrings;
