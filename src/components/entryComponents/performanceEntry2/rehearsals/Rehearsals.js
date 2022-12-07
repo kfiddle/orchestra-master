@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useState } from "react";
 
 import NewHorloge from "../horlage/NewHorloge";
@@ -20,7 +21,7 @@ const Rehearsals = (props) => {
   };
 
   return (
-    <div>
+    <Fragment>
       <div className={styles.rehearsalButtonDiv}>
         <button
           onClick={addRehearsalClicked}
@@ -31,7 +32,7 @@ const Rehearsals = (props) => {
         </button>
       </div>
       <div className={styles.rehearsalsDiv}>{displayableRehearsals}</div>
-    </div>
+    </Fragment>
   );
 };
 

@@ -196,7 +196,7 @@ const PlayerEntry = (props) => {
                 ...inputter,
                 label: "State",
                 key: "state",
-                style: { width: "30%", marginRight: "2rem" },
+                style: { width: "30%", marginRight: "1rem" },
               }}
             />
 

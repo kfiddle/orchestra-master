@@ -1,13 +1,13 @@
 .outerContainer {
   width: 60%;
-  margin: 10rem auto;
+  margin: 0rem auto;
   display: flex;
   flex-direction: column;
 }
 
 .innerContainer {
-  margin: 2rem;
-  padding: 1rem;
+  margin: 1rem 1rem;
+  padding: 0;
 }
 
 .control {
@@ -15,14 +15,14 @@
 }
 
 .control label {
-  font-weight: bold;
+  font-weight: 700;
   display: block;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
 }
 .control input,
 .control textarea {
   font: inherit;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 4px;
   background: #f3f1f1;
   border: 1px solid #c1d1d1;
@@ -40,11 +40,11 @@
 .button {
   width: fit-content;
   background: none;
-  color: #fec302;
+  color: black;
   border: 4px solid #fec302;
   padding: 8px 30px;
   margin: 1rem;
-  border-radius: 100px;
+  border-radius: 10px;
   font-size: 24px;
   font-weight: 900;
   text-transform: uppercase;
@@ -65,12 +65,13 @@
 
 .instrumentsButtonDiv button {
   padding: 0 2rem;
-  color: white;
-  border: 4px solid white;
+  color: black;
+  border: 3px solid black;
 }
 
 .instrumentsButtonDiv button:hover {
-  background: white;
+  background: black;
+  color: whitesmoke;
 }
 
 .instrumentsListDiv {
@@ -83,7 +84,6 @@
 
 .phoneDiv {
   display: flex;
-  margin: 1rem 0;
 }
 
 .phoneDiv div {
@@ -100,12 +100,12 @@
 }
 
 .city {
-  width: 60%;
-  margin-right: 2rem;
+  width: 50%;
+  /* margin-right: 1rem; */
 }
 .state {
   width: 10%;
-  margin-right: 2rem;
+  /* margin-right: 1rem; */
 }
 
 .unionsDiv {

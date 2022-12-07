@@ -1,29 +1,24 @@
+.repButtonDiv {
+  display: flex;
+  /* width: 100%; */
+}
 
- .button {
-    width: fit-content;
-    background: none;
-    color: #3B50BE;
-    border: 4px solid #3B50BE;
-    padding: 8px 30px;
-    margin: 1rem;
-    border-radius: 100px;
-    font-size: 24px;
-    font-weight: 900;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.25s ease-out;
-  }
-  
-  .button:hover {
-    background: #3B50BE;
-    color: white;
-  }
+.button {
+  width: fit-content;
+  background: none;
+  color: #3b50be;
+  border: 4px solid #3b50be;
+  padding: 8px 30px;
+  margin: 1rem;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease-out;
+}
 
-  .repButtonDiv {
-    display: flex;
-    width: 100%;
-  }
-  
-  .repButtonDiv button {
-    margin: 3rem auto;
-  }
+.button:hover {
+  background: #3b50be;
+  color: white;
+}

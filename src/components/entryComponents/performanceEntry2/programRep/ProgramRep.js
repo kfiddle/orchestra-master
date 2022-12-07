@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { useState } from "react";
 
 import PiecesDropDown from "../../../piece/PiecesDropDown";
@@ -12,7 +13,7 @@ const ProgramRep = () => {
   };
 
   return (
-    <div>
+    <Fragment>
       <div className={styles.repButtonDiv}>
         <button
           onClick={repClickHandler}
@@ -24,7 +25,7 @@ const ProgramRep = () => {
       </div>
 
       <PiecesDropDown showOrHide={clickedRepDrop} />
-    </div>
+    </Fragment>
   );
 };
 

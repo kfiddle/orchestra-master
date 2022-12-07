@@ -80,7 +80,11 @@ const PerformanceEntry2 = (props) => {
               <form>
                 <BigInput3 label="Performance Title" keyName="title" />
 
-                <Concerts />
+                <div>
+                  <Concerts />
+                  <ProgramRep />
+                  <Rehearsals />
+                </div>
 
                 <BigInput3
                   label="Notes"
@@ -88,13 +92,9 @@ const PerformanceEntry2 = (props) => {
                   style={{ width: "100%", height: "3rem" }}
                 />
 
-                <ProgramRep />
-
                 {clickedPiecesList.length > 0 && (
                   <DisplayedPieces stringSetters={stringSetters} />
                 )}
-
-                <Rehearsals />
 
                 <div className={classes.submitDiv}>
                   <SubmitButton submit={submitPerformance} />
