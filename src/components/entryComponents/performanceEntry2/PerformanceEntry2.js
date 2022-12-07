@@ -61,7 +61,8 @@ const PerformanceEntry2 = (props) => {
     ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
-  const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
+  // const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
+  const perfEntryModalStyles = { width: "90vw" };
 
   return (
     <PiecesList.Provider

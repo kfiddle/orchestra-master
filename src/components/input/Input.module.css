@@ -10,23 +10,20 @@
 }
 
 .control label {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #1c1b1c;
-
   text-transform: uppercase;
-  letter-spacing: .2em;
+  letter-spacing: 0.2em;
   display: block;
   margin-bottom: 0.5rem;
 }
 .control input,
 .control textarea {
   font: inherit;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 4px;
-  /* background-color: #afaaaa; */
   background: #f3f1f1;
-
   border: 1px solid #c1d1d1;
   display: block;
   width: 70%;
@@ -35,6 +32,6 @@
 
 .control input:focus,
 .control textarea:focus {
-  background-color: #e9dcdc;
-  outline-color: rgb(46, 40, 39);
+  background-color: #e0e4fc;
+  outline-color: teal;
 }

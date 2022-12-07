@@ -89,13 +89,13 @@ const PieceEntry = (props) => {
 
           <div className={classes.buttonsContainer}>
             <div className={classes.buttonDiv}>
-              <button
+              {/* <button
                 className={classes.button}
                 type={"button"}
                 onClick={() => instrumentationModalHandler(true)}
               >
                 Set Instrumentation?
-              </button>
+              </button> */}
             </div>
             <div className={classes.buttonDiv}>
               <button className={classes.button} onClick={submitPiece}>
@@ -103,7 +103,7 @@ const PieceEntry = (props) => {
               </button>
             </div>
 
-            <LibraryUploader />
+            {/* <LibraryUploader /> */}
 
             {/* {instrumentationClicked && (
               <OrchestrationEntry2

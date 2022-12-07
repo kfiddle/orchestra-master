@@ -35,7 +35,7 @@ const Concerts = () => {
           className={styles.button}
           type={"button"}
         >
-          Additional Performance Date(s) ?
+          Add Performance
         </button>
       </div>
     </div>
