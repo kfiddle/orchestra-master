@@ -1,8 +1,8 @@
 .outerContainer {
   position: relative;
   display: flex;
-  margin: 0.5rem 4rem;
-  padding: 2rem;
+  margin: 0.35rem 4rem;
+  padding: 0.75rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   font-weight: 900;
@@ -16,7 +16,7 @@
   cursor: pointer;
 }
 
-.pieceItemDiv:hover {
+.outerContainer:hover {
   background: rgb(44, 120, 182);
 }
 
@@ -27,9 +27,9 @@
 
 .titleDiv {
   width: 50%;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 .composerLastNameDiv {
-  font-size: 1.3rem;
+  font-size: 1rem;
 }

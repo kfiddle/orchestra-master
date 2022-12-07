@@ -80,7 +80,7 @@ const PerformanceEntry2 = (props) => {
               <form>
                 <BigInput3 label="Performance Title" keyName="title" />
 
-                <div>
+                <div className={classes.mainButtonsDiv}>
                   <Concerts />
                   <ProgramRep />
                   <Rehearsals />

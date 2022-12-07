@@ -3,10 +3,10 @@
   justify-content: center;
   align-items: center;
   width: fit-content;
-  height: 3.2rem;
-  padding: 0 1rem;
+  height: 2.5rem;
+  padding: 0 0.3rem;
   margin: .25rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   cursor: pointer;
 }
 
@@ -14,20 +14,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3.2rem;
-  padding: 0 1rem;
+  height: 2.5rem;
+  padding: 0 0.5rem;
   background: rgb(243, 243, 248);
 }
 
 .partLi {
-  font-size: 1.25rem;
+  font-size: 0.5rem;
   font-weight: 700;
   color: white;
 }
 
 .highlightedLi {
   color: rgb(58, 6, 6);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 

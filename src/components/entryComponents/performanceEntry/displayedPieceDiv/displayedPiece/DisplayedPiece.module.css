@@ -3,10 +3,10 @@
     display: flex;
     width: 60%;
     margin: 1rem;
-    padding: 1rem;
+    padding: 0.5rem;
     border: solid white 1px;
     border-radius: 5px;
-    color: rgb(245, 240, 237);
+    color: black;
     text-transform: uppercase;
     cursor: pointer;
   }
@@ -14,13 +14,13 @@
   .lastNameDiv {
     width: 25%;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   
   .titleDiv {
     width: 50%;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   
   .durationDiv {

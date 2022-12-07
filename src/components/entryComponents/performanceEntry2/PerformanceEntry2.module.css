@@ -43,6 +43,10 @@ form {
   outline-color: teal;
 }
 
+.mainButtonsDiv {
+  display: flex;
+}
+
 .displayedPiecesDiv {
   display: flex;
   flex-direction: column;
