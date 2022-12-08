@@ -4,10 +4,18 @@ import LibrarySortHeader from "./librarySortHeader/LibrarySortHeader";
 
 import ReloadFlagStore from "../../../store/reload-flag-store";
 
-import useGetAList2 from '../../../hooks/useGetAList2';
+import useGetAList2 from "../../../hooks/useGetAList2";
 import useGetAList3 from "../../../hooks/useGetAList3";
 
 import classes from "./ListOfPieces.module.css";
+
+const sortConverts = {
+  Composer: "composerName",
+  Title: "title",
+  Arranger: "arranger",
+  Publisher: "publisher",
+  ["Library Catalog"]: "libNumber",
+};
 
 const ListOfPieces = (props) => {
   const [sortOption, setSortOption] = useState("title");
@@ -24,27 +32,13 @@ const ListOfPieces = (props) => {
   ));
 
   const sorter = (sortOption) => {
-    if (sortOption === "Composer") {
-      setSortOption("composerName");
-    } else if (sortOption === "Library Catalog") {
-      setSortOption("libNumber");
-    } else if (sortOption === "Arranger") {
-      setSortOption("arranger");
-    } else if (sortOption === "Publisher") {
-      setSortOption("publisher");
-    } else if (sortOption === "Title") {
-      setSortOption("title");
-    } else {
-      setSortOption(sortOption);
-    }
+    setSortOption(sortConverts[sortOption]);
   };
 
   return (
     <Fragment>
-      <LibrarySortHeader sorter={sorter} />
-      <div className={classes.outerContainer}>
-        {displayablePieces}
-      </div>
+      <LibrarySortHeader sorter={sorter} options={Object.keys(sortConverts)}/>
+      <div className={classes.outerContainer}>{displayablePieces}</div>
     </Fragment>
   );
 };

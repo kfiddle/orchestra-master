@@ -56,7 +56,7 @@
   }
   
   .optionDiv:hover {
-    background: rgb(122, 121, 121);
+    background: rgb(222, 220, 220);
     color: rgb(57, 5, 43);
   }
   
@@ -67,7 +67,8 @@
     height: 5rem;
     padding: 0 3rem;
     color: rgb(39, 1, 1);
-    background: rgb(212, 211, 211);
+    background: rgb(222, 220, 220);
+
     cursor: pointer;
   }
   

@@ -3,17 +3,23 @@ import { useState } from "react";
 import LogEvent from "./LogEvent";
 import LogSortHeader from "./logSortHeader/LogSortHeader";
 
+import useGetAList2 from "../../hooks/useGetAList2";
+
 import styles from "./LogEvents.module.css";
 
-const sortOpts = ["DATE", "PLAYER", "REPLY", "SHOW"];
+const sortOpts = ["date", "player", "reply", "show"];
 
-const LogEvents = ({ events }) => {
-  const [chosenSort, setChosenSort] = useState("");
+const LogEvents = ({ reloadFlag, setReloadFlag }) => {
+  const [chosenSort, setChosenSort] = useState("date");
 
   console.log(chosenSort);
 
-  const displayableEvents = events.map((logEvent) => (
-    <LogEvent key={events.indexOf(logEvent)} logEvent={logEvent} />
+  // let logEvents = useGetAList2("get-sorted-log-events/" + chosenSort);
+  let logEvents = useGetAList2("get-log-events-by/" + chosenSort);
+
+
+  const displayableEvents = logEvents.map((logEvent) => (
+    <LogEvent key={logEvents.indexOf(logEvent)} logEvent={logEvent} />
   ));
 
   return (

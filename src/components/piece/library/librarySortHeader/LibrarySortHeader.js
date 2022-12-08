@@ -2,26 +2,20 @@ import { useState } from "react";
 
 import classes from "./LibrarySortHeader.module.css";
 
-const sortOptions = [
-  "Composer",
-  "Title",
-  "Arranger",
-  "Publisher",
-  "Library Catalog",
-];
-
-const LibrarySortHeader = (props) => {
-  const [clickedOption, setClickedOption] = useState('');
+const LibrarySortHeader = ({ sorter, options }) => {
+  const [clickedOption, setClickedOption] = useState("");
 
   const clickedOptionHandler = (option) => {
     setClickedOption(option);
-    props.sorter(option)
-  }
+    sorter(option);
+  };
 
-  const displayableSortOptions = sortOptions.map((option) => (
+  const displayableSortOptions = options.map((option) => (
     <div
-      key={sortOptions.indexOf(option)}
-      className={option != clickedOption? classes.optionDiv : classes.clickedOption}
+      key={options.indexOf(option)}
+      className={
+        option != clickedOption ? classes.optionDiv : classes.clickedOption
+      }
       onClick={() => clickedOptionHandler(option)}
     >
       <li className={classes.optionText}>{option}</li>
@@ -30,9 +24,7 @@ const LibrarySortHeader = (props) => {
 
   return (
     <header className={classes.header}>
-      <nav className={classes.nav}>
-        {displayableSortOptions}
-      </nav>
+      <nav className={classes.nav}>{displayableSortOptions}</nav>
     </header>
   );
 };
