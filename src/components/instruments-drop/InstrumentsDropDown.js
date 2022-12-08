@@ -8,10 +8,7 @@ import useGetAList2 from "../../hooks/useGetAList2";
 import styles from "./InstrumentsDropDown.module.css";
 
 const InstrumentsDropDown = (props) => {
-  const showOrHide = props.showOrHide;
-  const displayStyleObject = !showOrHide ? { display: "none" } : {};
-
-  const { allInsts:instrumentsList } = useSelector((state) => state.insts);
+  const { allInsts: instrumentsList } = useSelector((state) => state.insts);
 
   const listToDisplay = instrumentsList.map((instrument) => (
     <InstrumentListItem
@@ -21,7 +18,7 @@ const InstrumentsDropDown = (props) => {
   ));
 
   return (
-    <div className={styles.outerContainer} style={displayStyleObject}>
+    <div className={styles.outerContainer}>
       <ul>{listToDisplay}</ul>
     </div>
   );

@@ -14,9 +14,7 @@ const LogEvents = ({ reloadFlag, setReloadFlag }) => {
 
   console.log(chosenSort);
 
-  // let logEvents = useGetAList2("get-sorted-log-events/" + chosenSort);
   let logEvents = useGetAList2("get-log-events-by/" + chosenSort);
-
 
   const displayableEvents = logEvents.map((logEvent) => (
     <LogEvent key={logEvents.indexOf(logEvent)} logEvent={logEvent} />

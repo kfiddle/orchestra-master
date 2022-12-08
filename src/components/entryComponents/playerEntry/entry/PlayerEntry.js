@@ -46,7 +46,6 @@ const PlayerEntry = (props) => {
     }
   }, [props.player]);
 
-
   const instrumentsClickHandler = () => {
     setClickedThings({
       ...clickedThings,
@@ -133,18 +132,9 @@ const PlayerEntry = (props) => {
               }
               style={{ width: "50%" }}
             />
-
-            <div
-              onClick={instrumentsClickHandler}
-              className={classes.instrumentsButtonDiv}
-            >
-              <button className={classes.button} type={"button"}>
-                Instrument(s)
-              </button>
-            </div>
           </div>
 
-          <InstrumentsDropDown showOrHide={clickedThings.instrumentDropDown} />
+          <InstrumentsDropDown />
 
           <div className={classes.phoneDiv}>
             <FoneInput
