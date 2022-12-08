@@ -38,19 +38,19 @@
 }
 
 .hover1 {
-  background: darkblue;
+  background: chartreuse;
   opacity: 0.5;
   transform: translateY(-6px);
 }
 
 .hover2 {
-  background: darkblue;
+  background: rgb(138, 245, 30);
   opacity: 0.5;
   transform: translateY(-3px);
 }
 
 .hover3 {
-  background: darkblue;
+  background: rgb(200, 236, 37);
   opacity: 0.5;
   transform: translateY(1px);
 }

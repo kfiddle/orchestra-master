@@ -5,11 +5,15 @@ import { FaQuestion } from "react-icons/fa";
 
 import styles from "./LogEvent.module.css";
 
+const logTypes = {
+  MESSAGE_SENT: 'Email was sent: ',
+}
+
 const LogEvent = ({ logEvent }) => {
-  const { date, gigOffer } = logEvent;
+  const { date, gigOffer, logType } = logEvent;
   const { player, show, reply } = gigOffer;
 
-  console.log(logEvent);
+  // console.log(logEvent);
 
   let replyMark;
 
@@ -30,6 +34,7 @@ const LogEvent = ({ logEvent }) => {
       <div className={styles.nameDiv}>
         {player.firstNameArea} {player.lastName}
       </div>
+      <div className={styles.logTypesDiv}>{logTypes[logType]}</div>
       <div className={styles.showTitleDiv}>{show.title}</div>
       <div className={styles.replyDiv}>{replyMark}</div>
     </div>

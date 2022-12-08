@@ -5,21 +5,27 @@
   margin: 0.5rem;
   padding: 0.5rem 1rem 1rem 2rem;
   width: 90%;
-  background: #4e4a4e;
+  /* background: #4e4a4e; */
+  background: #f3f1f1;
+
   border-radius: 3px;
-  border: 2px solid rgb(102, 98, 98);
-  color: rgb(245, 220, 237);
-  text-transform: uppercase;
+  border: 2px solid rgb(204, 199, 199);
+  color: rgb(67, 67, 70);
+  /* text-transform: uppercase; */
   font-weight: 700;
   cursor: pointer;
 }
 
 .outerContainer:hover {
-  background: rgb(197, 155, 166);
+  background: rgb(117, 189, 248);
 }
 
 .nameDiv {
   width: 15%;
+}
+
+.logTypesDiv {
+  margin-right: 2rem;
 }
 
 .showTitleDiv {

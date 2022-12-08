@@ -10,7 +10,7 @@ const sortOpts = ["DATE", "PLAYER", "REPLY", "SHOW"];
 const LogEvents = ({ events }) => {
   const [chosenSort, setChosenSort] = useState("");
 
-  console.log(events);
+  console.log(chosenSort);
 
   const displayableEvents = events.map((logEvent) => (
     <LogEvent key={events.indexOf(logEvent)} logEvent={logEvent} />

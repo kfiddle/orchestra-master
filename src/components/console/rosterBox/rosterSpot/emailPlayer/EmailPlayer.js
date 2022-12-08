@@ -9,6 +9,7 @@ import { ConsoleHolder } from "../../../../../store/object-holder";
 import { ChairsHolder } from "../../../../../store/object-holder";
 
 import usePushBasic from "../../../../../hooks/usePushBasic";
+import useFetch from "../../../../../hooks/useFetch";
 import useServiceFormatter from "../../../../../hooks/useServiceFormatter";
 import usePartFormatter from "../../../../../hooks/usePartFormatter";
 
@@ -31,6 +32,7 @@ const EmailPlayer = ({ closeModal, player }) => {
 
   const serviceFormatter = useServiceFormatter();
   const partFormatter = usePartFormatter();
+  const pusher = useFetch();
 
   const displayableparts = parts
     .map(
@@ -72,7 +74,7 @@ const EmailPlayer = ({ closeModal, player }) => {
       dressToSend = "Men: Black everything, Women: also, black everything";
 
     const messageAndPlayer = {
-      toEmail: player.email,
+      toEmail: 'kenjfiddle@gmail.com',
       message_HTML: `<div>
         Hi ${
           player.firstNameArea
@@ -91,8 +93,7 @@ const EmailPlayer = ({ closeModal, player }) => {
     emailjs.send(serviceId, testTemplateId, messageAndPlayer, userId).then(
       (result) => {
         if (result.text === "OK") {
-         
-
+          saveGigOffer();
           closeModal();
         }
       },
@@ -102,11 +103,13 @@ const EmailPlayer = ({ closeModal, player }) => {
     );
   };
 
-  const saveGigOffer = async() => {
-    let gigOffer = { clickedShow, player };
+  const saveGigOffer = async () => {
+    let gigOffer = { show: clickedShow, player };
+    // console.log(gigOffer);
 
-    let offerSaved = await Pusher()
-  }
+    let offerSaved = await pusher(gigOffer, "make-gig-offer");
+    if (offerSaved != "phooey") console.log(offerSaved);
+  };
 
   const dressClicker = (dress) => () =>
     dress === attire ? setAttire("") : setAttire(dress);
