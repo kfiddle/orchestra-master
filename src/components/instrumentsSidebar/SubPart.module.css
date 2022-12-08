@@ -20,7 +20,7 @@
 }
 
 .partLi {
-  font-size: 0.5rem;
+  /* font-size: 0.5rem; */
   font-weight: 700;
   color: white;
 }
@@ -34,5 +34,5 @@
 .partDiv:hover li {
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 1rem;
+  text-underline-offset: 0.5rem;
 }

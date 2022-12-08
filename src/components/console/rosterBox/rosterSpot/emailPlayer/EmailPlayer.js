@@ -72,7 +72,7 @@ const EmailPlayer = ({ closeModal, player }) => {
       dressToSend = "Men: Black everything, Women: also, black everything";
 
     const messageAndPlayer = {
-      toEmail: "kenjfiddle@gmail.com",
+      toEmail: player.email,
       message_HTML: `<div>
         Hi ${
           player.firstNameArea
@@ -90,13 +90,23 @@ const EmailPlayer = ({ closeModal, player }) => {
 
     emailjs.send(serviceId, testTemplateId, messageAndPlayer, userId).then(
       (result) => {
-        if (result.text === "OK") closeModal();
+        if (result.text === "OK") {
+         
+
+          closeModal();
+        }
       },
       (error) => {
         console.log(error.text);
       }
     );
   };
+
+  const saveGigOffer = async() => {
+    let gigOffer = { clickedShow, player };
+
+    let offerSaved = await Pusher()
+  }
 
   const dressClicker = (dress) => () =>
     dress === attire ? setAttire("") : setAttire(dress);

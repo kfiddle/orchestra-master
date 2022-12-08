@@ -1,21 +1,22 @@
-
 .outerContainer {
   position: relative;
   display: flex;
   align-items: center;
-  margin: .5rem;
+  margin: 0.5rem;
   padding: 1rem 1rem 1rem 2rem;
   width: 90%;
   border-radius: 3px;
   border: 2px solid rgb(102, 98, 98);
-  color:rgb(245, 220, 237);
+  color: #434344;
   text-transform: uppercase;
   font-weight: 700;
   cursor: pointer;
 }
 
 .outerContainer:hover {
-    background: rgb(197, 155, 166);
+  /* background: rgb(197, 155, 166); */
+  background: rgb(117, 189, 248);
+  color: #434344;
 }
 
 .name {

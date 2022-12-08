@@ -12,20 +12,21 @@
   position: relative;
   margin-bottom: 2rem;
   padding: 2rem;
-  background: rgb(48, 45, 47);
+  background: #f3f1f1;
   border-radius: 4px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
 .sectionTitle {
-  position: absolute;
-  left: 2rem;
-  top: 50%;
-  color: whitesmoke;
-  font-weight: 900;
-  font-size: 1.5rem;
+  /* position: absolute; */
+  /* left: 2rem; */
+  /* top: 50%; */
+  margin-bottom: 1rem;
+  color: black;
+  font-weight: 700;
+  font-size: 1.25rem;
   opacity: 0.8;
 
 }
