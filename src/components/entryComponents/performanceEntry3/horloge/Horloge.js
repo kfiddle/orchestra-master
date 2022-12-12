@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import { AiOutlineClose } from "react-icons/ai";
 
 import NewlySavedShow from "../../../../store/newly-saved-show";
 
@@ -8,7 +9,7 @@ import PerformanceToEdit from "../../../../store/performance-to-edit";
 
 import classes from "./Horloge.module.css";
 
-const Horloge = (props) => {
+const Horloge = ({ label, event, deleter, index }) => {
   const [date, setDate] = useState("");
   const [startHours, setStartHours] = useState(0);
   const [startMinutes, setStartMinutes] = useState(0);
@@ -19,9 +20,6 @@ const Horloge = (props) => {
   const { performance } = useContext(PerformanceToEdit);
 
   const pusher = useFetch();
-
-  const label = props.label;
-  const event = props.event;
 
   useEffect(() => {
     const sendUpHorloge = async (show) => {
@@ -42,7 +40,7 @@ const Horloge = (props) => {
         return;
       } else {
         let response = await pusher(horlogeToSend, "add-horloge");
-        if (response !== 'phoey') {
+        if (response !== "phoey") {
           let printAnswer = response;
         }
       }
@@ -51,7 +49,6 @@ const Horloge = (props) => {
     if (newlySavedShow) {
       sendUpHorloge(newlySavedShow);
     }
-
   }, [newlySavedShow]);
 
   const dateSetter = (event) => {
@@ -89,9 +86,12 @@ const Horloge = (props) => {
     setEndMinutes(+event.target.value);
   };
 
+  const deleteService = () => deleter(index);
+
   return (
     <div className={classes.outerContainer}>
       <div className={`${classes.control} ${classes.dateDiv}`}>
+        <AiOutlineClose className={classes.xIcon} onClick={deleteService} />
         <label>{label}</label>
         <input type={"date"} onChange={dateSetter} defaultValue={date}></input>
       </div>

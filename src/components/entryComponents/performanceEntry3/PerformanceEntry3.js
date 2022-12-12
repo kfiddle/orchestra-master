@@ -10,7 +10,8 @@ import useFetch from "../../../hooks/useFetch";
 import DisplayedPieces from "../performanceEntry/displayedPieceDiv/DisplayedPieces";
 
 import Concerts from "./concerts/Concerts";
-import Rehearsals from "../performanceEntry2/rehearsals/Rehearsals";
+import Rehearsals from "./rehearsals/Rehearsals";
+import PiecesDropDown from "../../piece/PiecesDropDown";
 
 import NewlySavedShow from "../../../store/newly-saved-show";
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
@@ -24,6 +25,7 @@ const PerformanceEntry3 = (props) => {
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [concerts, setConcerts] = useState(0);
   const [rehearsals, setRehearsals] = useState(0);
+  const [clickedRepDrop, setClickedRepoDrop] = useState(false);
 
   const [stringNumbers, setStringNumbers] = useState({});
   const [newlySavedShow, setNewlySavedShow] = useState(null);
@@ -63,8 +65,14 @@ const PerformanceEntry3 = (props) => {
     ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
+  const repClickHandler = () => {
+    setClickedRepoDrop((previous) => !previous);
+  };
+
   const addConcert = () => setConcerts((previous) => previous + 1);
   const addRehearsal = () => setRehearsals((previous) => previous + 1);
+
+  const rehearseDel = () => setRehearsals((previous) => previous - 1);
 
   const perfEntryModalStyles = { width: "90vw" };
 
@@ -92,11 +100,31 @@ const PerformanceEntry3 = (props) => {
                   >
                     add concert
                   </button>
-                  <ProgramRep />
-                  <Rehearsals />
+
+                  <button
+                    className={classes.button}
+                    type="button"
+                    onClick={addRehearsal}
+                  >
+                    ADD REHEARSAL
+                  </button>
+                  <button
+                    className={classes.button}
+                    type="button"
+                    onClick={repClickHandler}
+                  >
+                    REPERTOIRE
+                  </button>
                 </div>
 
-                <div>{concerts > 0 && <Concerts num={concerts} />}</div>
+                <PiecesDropDown showOrHide={clickedRepDrop} />
+
+                <div className={classes.servicesDiv}>
+                  {rehearsals > 0 && (
+                    <Rehearsals num={rehearsals} deleter={rehearseDel} />
+                  )}
+                  {concerts > 0 && <Concerts num={concerts} />}
+                </div>
 
                 <BigInput3
                   label="Notes"

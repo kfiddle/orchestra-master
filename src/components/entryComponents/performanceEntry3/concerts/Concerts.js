@@ -8,12 +8,12 @@ const Concerts = ({ num }) => {
       <Horloge
         key={displayableConcerts.length}
         label={"Concert"}
-        event={"CONCERT"}
+        event={int === 0 ? "PRIMARYDATE" : "CONCERT"}
       />
     );
   }
 
-  return <div>{displayableConcerts}</div>;
+  return <div className={styles.concertsDiv}>{displayableConcerts}</div>;
 };
 
 export default Concerts;
