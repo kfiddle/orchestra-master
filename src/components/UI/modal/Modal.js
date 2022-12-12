@@ -1,5 +1,7 @@
 import ReactDOM from "react-dom";
 
+import { AiOutlineClose } from "react-icons/ai";
+
 import Card from "../Card";
 import Backdrop from "./Backdrop";
 import classes from "./Modal.module.css";
@@ -25,6 +27,7 @@ const Modal = ({ styleObject, closeModal, children }) => {
 
       {ReactDOM.createPortal(
         <ModalOverlay styleObject={styleObject}>
+          <AiOutlineClose className={classes.xIcon} onClick={closeModal}/>
           <Card closeModal={closeModal}>{children}</Card>
         </ModalOverlay>,
         portalElement

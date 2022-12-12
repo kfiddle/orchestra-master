@@ -130,7 +130,8 @@ const Horloge = ({ label, event, deleter, index }) => {
               ></input>
             </div>
           </div>
-          <div>
+          <div className={`${classes.control} ${classes.locationDiv}`}>
+            <label>Location</label>
             <input />
           </div>
         </div>

@@ -74,7 +74,7 @@ const PerformanceEntry3 = (props) => {
 
   const rehearseDel = () => setRehearsals((previous) => previous - 1);
 
-  const perfEntryModalStyles = { width: "90vw", height: "90%" };
+  const perfEntryModalStyles = { width: "90%", height: "100%" };
 
   return (
     <PiecesList.Provider
@@ -89,7 +89,7 @@ const PerformanceEntry3 = (props) => {
             closeModal={props.closeModal}
           >
             <div className={classes.outerContainer}>
-              <form>
+              {/* <form> */}
                 <BigInput3 label="Performance Title" keyName="title" />
 
                 <div className={classes.mainButtonsDiv}>
@@ -139,7 +139,7 @@ const PerformanceEntry3 = (props) => {
                 <div className={classes.submitDiv}>
                   <SubmitButton submit={submitPerformance} />
                 </div>
-              </form>
+              {/* </form> */}
             </div>
           </Modal>
         </NewlySavedShow.Provider>
