@@ -28,8 +28,6 @@ const Concerts = () => {
   return (
     <div>
       <div className={styles.additionalPerfButtonDiv}>
-        {displayableConcerts}
-
         <button
           onClick={addConcertClicked}
           className={styles.button}
@@ -37,6 +35,7 @@ const Concerts = () => {
         >
           Add Performance
         </button>
+        {displayableConcerts}
       </div>
     </div>
   );

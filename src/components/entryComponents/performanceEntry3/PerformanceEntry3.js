@@ -10,18 +10,20 @@ import useFetch from "../../../hooks/useFetch";
 import DisplayedPieces from "../performanceEntry/displayedPieceDiv/DisplayedPieces";
 
 import Concerts from "./concerts/Concerts";
-import Rehearsals from "./rehearsals/Rehearsals";
+import Rehearsals from "../performanceEntry2/rehearsals/Rehearsals";
 
 import NewlySavedShow from "../../../store/newly-saved-show";
 import PerformanceStateFunctions from "../../../store/performance-state-functions";
 
-import classes from "./PerformanceEntry2.module.css";
-import ProgramRep from "./programRep/ProgramRep";
+import classes from "./PerformanceEntry3.module.css";
+import ProgramRep from "../performanceEntry2/programRep/ProgramRep";
 import SubmitButton from "../../UI/submitButton/SubmitButton";
 import OrchEntry2 from "../orchEntry2/OrchEntry2";
 
-const PerformanceEntry2 = (props) => {
+const PerformanceEntry3 = (props) => {
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
+  const [concerts, setConcerts] = useState(0);
+  const [rehearsals, setRehearsals] = useState(0);
 
   const [stringNumbers, setStringNumbers] = useState({});
   const [newlySavedShow, setNewlySavedShow] = useState(null);
@@ -61,7 +63,9 @@ const PerformanceEntry2 = (props) => {
     ObjectToListHelper(piece, clickedPiecesList, setClickedPiecesList);
   };
 
-  // const perfEntryModalStyles = { width: "90vw", height: "90vh", top: "5vh" };
+  const addConcert = () => setConcerts((previous) => previous + 1);
+  const addRehearsal = () => setRehearsals((previous) => previous + 1);
+
   const perfEntryModalStyles = { width: "90vw" };
 
   return (
@@ -81,11 +85,18 @@ const PerformanceEntry2 = (props) => {
                 <BigInput3 label="Performance Title" keyName="title" />
 
                 <div className={classes.mainButtonsDiv}>
-                  {/* <button className={classes.button}>add concert</button> */}
-                  <Concerts />
+                  <button
+                    className={classes.button}
+                    type="button"
+                    onClick={addConcert}
+                  >
+                    add concert
+                  </button>
                   <ProgramRep />
                   <Rehearsals />
                 </div>
+
+                <div>{concerts > 0 && <Concerts num={concerts} />}</div>
 
                 <BigInput3
                   label="Notes"
@@ -109,4 +120,4 @@ const PerformanceEntry2 = (props) => {
   );
 };
 
-export default PerformanceEntry2;
+export default PerformanceEntry3;

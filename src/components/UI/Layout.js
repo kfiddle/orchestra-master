@@ -4,7 +4,7 @@ import MainNavigation from "../mainNavigation/MainNavigation";
 import PlayerEntry from "../entryComponents/playerEntry/entry/PlayerEntry";
 import PieceEntry from "../entryComponents/pieceEntry/PieceEntry";
 
-import PerformanceEntry2 from "../entryComponents/performanceEntry2/PerformanceEntry2";
+import PerformanceEntry3 from "../entryComponents/performanceEntry3/PerformanceEntry3";
 
 import AllInstruments from "../../store/all-instruments";
 
@@ -62,7 +62,7 @@ const Layout = (props) => {
       {pieceEntryFormRendered && <PieceEntry closeModal={closeModal} />}
 
       {performanceEntryFormRendered && (
-        <PerformanceEntry2 closeModal={closeModal} />
+        <PerformanceEntry3 closeModal={closeModal} />
       )}
 
       <main className={classes.main}>
