@@ -88,10 +88,11 @@ const Horloge = ({ label, event, deleter, index }) => {
 
   const deleteService = () => deleter(index);
 
+  // <AiOutlineClose className={classes.xIcon} onClick={deleteService} />
+
   return (
     <div className={classes.outerContainer}>
       <div className={`${classes.control} ${classes.dateDiv}`}>
-        <AiOutlineClose className={classes.xIcon} onClick={deleteService} />
         <label>{label}</label>
         <input type={"date"} onChange={dateSetter} defaultValue={date}></input>
       </div>
@@ -128,6 +129,9 @@ const Horloge = ({ label, event, deleter, index }) => {
                 style={{ width: "3rem" }}
               ></input>
             </div>
+          </div>
+          <div>
+            <input />
           </div>
         </div>
       </div>

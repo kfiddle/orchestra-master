@@ -1,10 +1,10 @@
 .outerContainer {
-    width: 70%;
+    width: 100%;
     display: flex;
   }
   
   .dateDiv {
-    width: 50%;
+    width: 30%;
   }
   
   .bothTimesHolder {
@@ -55,7 +55,7 @@
   }
 
   .xIcon{
-    position: absolute;
+    position: relative;
     transform: translate(-2rem, 2rem);
     font-size: 1.2rem;
     cursor: pointer;

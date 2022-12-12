@@ -74,7 +74,7 @@ const PerformanceEntry3 = (props) => {
 
   const rehearseDel = () => setRehearsals((previous) => previous - 1);
 
-  const perfEntryModalStyles = { width: "90vw" };
+  const perfEntryModalStyles = { width: "90vw", height: "90%" };
 
   return (
     <PiecesList.Provider
@@ -126,15 +126,15 @@ const PerformanceEntry3 = (props) => {
                   {concerts > 0 && <Concerts num={concerts} />}
                 </div>
 
+                {clickedPiecesList.length > 0 && (
+                  <DisplayedPieces stringSetters={stringSetters} />
+                )}
+
                 <BigInput3
                   label="Notes"
                   keyName="notes"
                   style={{ width: "100%", height: "3rem" }}
                 />
-
-                {clickedPiecesList.length > 0 && (
-                  <DisplayedPieces stringSetters={stringSetters} />
-                )}
 
                 <div className={classes.submitDiv}>
                   <SubmitButton submit={submitPerformance} />
