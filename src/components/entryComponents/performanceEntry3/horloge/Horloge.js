@@ -97,7 +97,7 @@ const Horloge = ({ label, event, deleter, index }) => {
     <div className={classes.outerContainer}>
       <div className={`${classes.control} ${classes.dateDiv}`}>
         <label>{label}</label>
-        <input type={"date"} className={date==='' ? classes.dateInput : ''} onChange={dateSetter} defaultValue={date}></input>
+        <input type={"date"} onChange={dateSetter} defaultValue={date}></input>
       </div>
 
       <div className={classes.bothTimesHolder}>

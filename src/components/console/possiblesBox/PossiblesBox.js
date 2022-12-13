@@ -23,11 +23,33 @@ const PossiblesBox = (props) => {
 
   const possibles = chairState.possibles;
 
-  const displayablePossibles = possibles.map((player) => (
-    <Possible key={possibles.indexOf(player)} player={player}></Possible>
+  const ifClicked = (name) => console.log(name);
+
+  const clickedEmail = () => {
+    console.log(clickedPossibles);
+  };
+
+  const possiblesWithClickedState = possibles.map((possible) => {
+    return { ...possible, clicked: false };
+  });
+
+  const displayablePossibles = possiblesWithClickedState.map((player) => (
+    <Possible
+      key={possibles.indexOf(player)}
+      player={player}
+      ifClicked={false}
+      clicked={player.clicked}
+    ></Possible>
   ));
 
-  return <div className={styles.outerContainer}>{displayablePossibles}</div>;
+  const clickedPossibles = displayablePossibles.filter((possible) => possible);
+
+  return (
+    <div className={styles.outerContainer}>
+      {displayablePossibles}
+      <button onClick={clickedEmail}>EMAIL</button>
+    </div>
+  );
 };
 
 export default PossiblesBox;

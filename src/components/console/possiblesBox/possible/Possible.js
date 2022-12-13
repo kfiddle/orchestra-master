@@ -14,13 +14,15 @@ import classes from "./Possible.module.css";
 const Possible = ({ player }) => {
   const { chairState, dispatch: chairsDispatch } = useContext(ChairsHolder);
   const { dashboard, dispatch: dashDispatch } = useContext(ConsoleHolder);
+  const [clicked, setClicked] = useState(false);
+
   const [mailClicked, setMailClicked] = useState(false);
 
   const pusher = useFetch();
 
   const { firstNameArea, lastName } = player;
 
-  let outerContainerClass = classes.unclickedItem;
+  let outerContainerClass = !clicked ? classes.unclickedItem : classes.clicked;
 
   const sendMessage = () => {
     setMailClicked(true);
@@ -41,9 +43,12 @@ const Possible = ({ player }) => {
     }
   };
 
+  const clickHandler = () => (player.clicked = !player.clicked);
+
   return (
     <div
       className={`${classes.outerContainer} ${outerContainerClass}`}
+      onClick={clickHandler}
       onDoubleClick={doubleClickHandler}
     >
       <div className={classes.nameDiv}>

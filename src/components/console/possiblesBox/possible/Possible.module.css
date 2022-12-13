@@ -10,7 +10,7 @@
   font-weight: 700;
   z-index: 1;
   color: rgb(32, 9, 9);
-  /* text-transform: uppercase; */
+  transition: linear 0.2s;
 }
 
 .unclickedItem {
@@ -22,9 +22,10 @@
   background: rgb(44, 120, 182);
 }
 
-.clickedItem {
+.clicked {
   background-color: #e7de57;
   cursor: pointer;
+  transform: translateX(-1rem);
 }
 
 .nameDiv {
