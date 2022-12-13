@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
+import DatePicker from "react-datepicker";
+
 import NewlySavedShow from "../../../../store/newly-saved-show";
 
 import useFetch from "../../../../hooks/useFetch";
@@ -11,6 +13,7 @@ import classes from "./Horloge.module.css";
 
 const Horloge = ({ label, event, deleter, index }) => {
   const [date, setDate] = useState("");
+
   const [startHours, setStartHours] = useState(0);
   const [startMinutes, setStartMinutes] = useState(0);
   const [endHours, setEndHours] = useState(0);
@@ -94,7 +97,7 @@ const Horloge = ({ label, event, deleter, index }) => {
     <div className={classes.outerContainer}>
       <div className={`${classes.control} ${classes.dateDiv}`}>
         <label>{label}</label>
-        <input type={"date"} onChange={dateSetter} defaultValue={date}></input>
+        <input type={"date"} className={date==='' ? classes.dateInput : ''} onChange={dateSetter} defaultValue={date}></input>
       </div>
 
       <div className={classes.bothTimesHolder}>
