@@ -7,10 +7,9 @@ import { ConsoleHolder } from "../../../../store/object-holder";
 
 import styles from "./ConsolePiece.module.css";
 
-const ConsolePiece = (props) => {
-  const pp = props.pp;
+const ConsolePiece = ({ pp }) => {
   const piece = pp.piece;
-  const { title, composer } = piece;
+  const { title, composerName } = piece;
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
@@ -18,7 +17,6 @@ const ConsolePiece = (props) => {
 
   const clickedOrNot = isPieceClicked ? styles.clicked : styles.unclicked;
 
- 
   const clickedPieceHandler = () => {
     dispatch({ type: "clickedPiece", clickedPiece: pp });
   };
@@ -28,8 +26,8 @@ const ConsolePiece = (props) => {
       className={`${styles.pieceContainer} ${clickedOrNot}`}
       onClick={clickedPieceHandler}
     >
+      <div className={styles.composerDiv}>{composerName}:</div>
       <div className={styles.titleDiv}>{title}</div>
-      <div className={styles.composerDiv}>{composer}</div>
     </div>
   );
 };

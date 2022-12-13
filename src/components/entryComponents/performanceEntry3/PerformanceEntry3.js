@@ -25,7 +25,8 @@ const PerformanceEntry3 = (props) => {
   const [clickedPiecesList, setClickedPiecesList] = useState([]);
   const [concerts, setConcerts] = useState(0);
   const [rehearsals, setRehearsals] = useState(0);
-  const [clickedRepDrop, setClickedRepoDrop] = useState(false);
+  const [clickedRepDrop, setClickedRepDrop] = useState(false);
+  const [clickedDressDrop, setClickedDressDrop] = useState(false);
 
   const [stringNumbers, setStringNumbers] = useState({});
   const [newlySavedShow, setNewlySavedShow] = useState(null);
@@ -66,12 +67,12 @@ const PerformanceEntry3 = (props) => {
   };
 
   const repClickHandler = () => {
-    setClickedRepoDrop((previous) => !previous);
+    setClickedRepDrop((previous) => !previous);
   };
 
   const addConcert = () => setConcerts((previous) => previous + 1);
   const addRehearsal = () => setRehearsals((previous) => previous + 1);
-
+  const dressClickHandler = () => setClickedDressDrop((previous) => !previous);
   const rehearseDel = () => setRehearsals((previous) => previous - 1);
 
   const perfEntryModalStyles = { width: "90%", height: "100%" };
@@ -90,55 +91,63 @@ const PerformanceEntry3 = (props) => {
           >
             <div className={classes.outerContainer}>
               {/* <form> */}
-                <BigInput3 label="Performance Title" keyName="title" />
+              <BigInput3 label="Performance Title" keyName="title" />
 
-                <div className={classes.mainButtonsDiv}>
-                  <button
-                    className={classes.button}
-                    type="button"
-                    onClick={addConcert}
-                  >
-                    add concert
-                  </button>
+              <div className={classes.mainButtonsDiv}>
+                <button
+                  className={classes.button}
+                  type="button"
+                  onClick={repClickHandler}
+                >
+                  REPERTOIRE
+                </button>
+                <button
+                  className={classes.button}
+                  type="button"
+                  onClick={addConcert}
+                >
+                  add concert
+                </button>
 
-                  <button
-                    className={classes.button}
-                    type="button"
-                    onClick={addRehearsal}
-                  >
-                    ADD REHEARSAL
-                  </button>
-                  <button
-                    className={classes.button}
-                    type="button"
-                    onClick={repClickHandler}
-                  >
-                    REPERTOIRE
-                  </button>
-                </div>
+                <button
+                  className={classes.button}
+                  type="button"
+                  onClick={addRehearsal}
+                >
+                  ADD REHEARSAL
+                </button>
 
-                <PiecesDropDown showOrHide={clickedRepDrop} />
+                <button
+                  className={classes.button}
+                  type="button"
+                  onClick={dressClickHandler}
+                >
+                  DRESS
+                </button>
+              </div>
 
-                <div className={classes.servicesDiv}>
-                  {rehearsals > 0 && (
-                    <Rehearsals num={rehearsals} deleter={rehearseDel} />
-                  )}
-                  {concerts > 0 && <Concerts num={concerts} />}
-                </div>
+              <PiecesDropDown showOrHide={clickedRepDrop} />
 
-                {clickedPiecesList.length > 0 && (
-                  <DisplayedPieces stringSetters={stringSetters} />
+              <div className={classes.servicesDiv}>
+                {rehearsals > 0 && (
+                  <Rehearsals num={rehearsals} deleter={rehearseDel} />
                 )}
+                {concerts > 0 && <Concerts num={concerts} />}
+              </div>
 
-                <BigInput3
-                  label="Notes"
-                  keyName="notes"
-                  style={{ width: "100%", height: "3rem" }}
-                />
+              {clickedPiecesList.length > 0 && (
+                <DisplayedPieces stringSetters={stringSetters} />
+              )}
 
-                <div className={classes.submitDiv}>
-                  <SubmitButton submit={submitPerformance} />
-                </div>
+              <BigInput3
+                label="Notes"
+                keyName="notes"
+                style={{ width: "100%", height: "3rem" }}
+              />
+
+              <div className={classes.submitDiv}>
+                <SubmitButton submit={submitPerformance} />
+              </div>
               {/* </form> */}
             </div>
           </Modal>
