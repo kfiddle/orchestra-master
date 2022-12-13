@@ -13,14 +13,15 @@ import useFetch from "../../../../../hooks/useFetch";
 import useServiceFormatter from "../../../../../hooks/useServiceFormatter";
 import usePartFormatter from "../../../../../hooks/usePartFormatter";
 
-import styles from "./EmailPlayer.module.css";
+import styles from "./EmailBox.module.css";
+import { GiPlayerBase } from "react-icons/gi";
 
 const userId = "user_ziX5oSLNJRahUxs9dz2xC";
 const serviceId = "service_whc7i1l";
 // const templateId = "template_xhux42i";
 const testTemplateId = "template_38pylf2";
 
-const EmailPlayer = ({ closeModal, player }) => {
+const EmailBox = ({ closeModal, players }) => {
   const { dashboard } = useContext(ConsoleHolder);
   const { chairState } = useContext(ChairsHolder);
 
@@ -65,7 +66,7 @@ const EmailPlayer = ({ closeModal, player }) => {
     }
   }
 
-  const submit = () => {
+  const email = (player) => {
     let dressToSend =
       "Men: Black Tux, Black bow tie, etc...<br> Women: Black dress, etc...";
     if (attire === "SYM")
@@ -93,7 +94,7 @@ const EmailPlayer = ({ closeModal, player }) => {
     emailjs.send(serviceId, testTemplateId, messageAndPlayer, userId).then(
       (result) => {
         if (result.text === "OK") {
-          saveGigOffer();
+          saveGigOffer(player);
           closeModal();
         }
       },
@@ -103,13 +104,14 @@ const EmailPlayer = ({ closeModal, player }) => {
     );
   };
 
-  const saveGigOffer = async () => {
+  const saveGigOffer = async (player) => {
     let gigOffer = { show: clickedShow, player };
-    // console.log(gigOffer);
 
     let offerSaved = await pusher(gigOffer, "make-gig-offer");
     if (offerSaved != "phooey") console.log(offerSaved);
   };
+
+  const submit = () => players.forEach(player => email(player))
 
   const dressClicker = (dress) => () =>
     dress === attire ? setAttire("") : setAttire(dress);
@@ -122,7 +124,7 @@ const EmailPlayer = ({ closeModal, player }) => {
       <div className={styles.outerContainer}>
         <div className={styles.title}>Email Player</div>
         <Message
-          player={player}
+          players={players}
           parts={parts}
           pieces={pieces}
           services={services}
@@ -158,4 +160,4 @@ const EmailPlayer = ({ closeModal, player }) => {
   );
 };
 
-export default EmailPlayer;
+export default EmailBox;

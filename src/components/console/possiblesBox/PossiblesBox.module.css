@@ -4,3 +4,23 @@
     position: fixed;
     width: 15%;
 }
+
+.emailButton {
+    width: fit-content;
+    background: none;
+    color: #3b50be;
+    border: 3px solid #3b50be;
+    padding: 5px 20px;
+  
+    margin: 4rem;
+    border-radius: 10px;
+    font-weight: 900;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+  }
+  
+  .emailButton:hover {
+    background: #3b50be;
+    color: white;
+  }

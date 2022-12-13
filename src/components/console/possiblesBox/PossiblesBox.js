@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 import Possible from "./possible/Possible";
+import EmailBox from "../rosterBox/rosterSpot/emailBox/EmailBox";
 
 import { ChairsHolder } from "../../../store/object-holder";
 import { ConsoleHolder } from "../../../store/object-holder";
@@ -13,6 +14,7 @@ const PossiblesBox = () => {
   const { chairState, dispatch: chairsDispatch } = useContext(ChairsHolder);
   const { dashboard, dashDispatch } = useContext(ConsoleHolder);
   const [clickedPlayers, setClickedPlayers] = useState([]);
+  const [emailClicked, setEmailClicked] = useState(false);
 
   useEffect(() => {
     const emptyPossibles = () => {
@@ -22,19 +24,17 @@ const PossiblesBox = () => {
     emptyPossibles();
   }, [dashboard.clickedPiece, dashboard.clickedShow, dashboard.chairChanged]);
 
-  useEffect(() => {
-    setClickedPlayers([]);
-  }, [chairState.chosenPic]);
+  useEffect(() => setClickedPlayers([]), [chairState.chosenPic]);
 
   const possibles = chairState.possibles;
 
-  const clickHandler = (id) => {
-    if (clickedPlayers.includes(id)) {
+  const clickHandler = (player) => {
+    if (clickedPlayers.includes(player)) {
       let tempList = clickedPlayers;
-      tempList.splice(tempList.indexOf(id), 1);
+      tempList.splice(tempList.indexOf(player), 1);
       setClickedPlayers([...tempList]);
     } else {
-      setClickedPlayers([...clickedPlayers, id]);
+      setClickedPlayers([...clickedPlayers, player]);
     }
   };
 
@@ -43,15 +43,23 @@ const PossiblesBox = () => {
       key={possibles.indexOf(player)}
       player={player}
       clickHandler={clickHandler}
+      clicked={clickedPlayers.includes(player)}
     ></Possible>
   ));
 
-  const clickedIds = () => console.log(clickedPlayers);
+  const openEmailBox = () => setEmailClicked(true);
+  const closeEmailBox = () => setEmailClicked(false)
 
   return (
     <div className={styles.outerContainer}>
       {displayablePossibles}
-      <button onClick={clickedIds}>EMAIL</button>
+      {clickedPlayers.length > 0 && (
+        <button className={styles.emailButton} onClick={openEmailBox}>
+          EMAIL PLAYER{clickedPlayers.length > 1 && "S"}
+        </button>
+      )}
+
+      {emailClicked && <EmailBox closeModal={closeEmailBox} players={clickedPlayers} />}
     </div>
   );
 };

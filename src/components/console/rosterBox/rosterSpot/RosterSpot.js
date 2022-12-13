@@ -1,6 +1,5 @@
 import { Fragment, useState, useContext } from "react";
 
-import EmailPlayer from "./emailPlayer/EmailPlayer";
 import { AiOutlineMail } from "react-icons/ai";
 import { FiEdit } from "react-icons/fi";
 

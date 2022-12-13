@@ -8,7 +8,7 @@ import usePartFormatter from "../../../../../hooks/usePartFormatter";
 
 import styles from "./Message.module.css";
 
-const Message = ({ player, parts, pieces, services }) => {
+const Message = ({ players, parts, pieces, services }) => {
   const { dashboard } = useContext(ConsoleHolder);
   const { chairState } = useContext(ChairsHolder);
 
@@ -18,10 +18,11 @@ const Message = ({ player, parts, pieces, services }) => {
   const partFormatter = usePartFormatter();
 
   const partsLines = parts.map((part) => (
-    <span key={parts.indexOf(part)} style={{ fontWeight: 'bold' }}>
-      {partFormatter(part)} {(parts.length > 1 && parts.indexOf(part) < parts.length - 1) && ' and '}
+    <span key={parts.indexOf(part)} style={{ fontWeight: "bold" }}>
+      {partFormatter(part)}{" "}
+      {parts.length > 1 && parts.indexOf(part) < parts.length - 1 && " and "}
     </span>
-  ))
+  ));
 
   const serviceLines = services
     ? services.map((service) => {
@@ -62,15 +63,26 @@ const Message = ({ player, parts, pieces, services }) => {
       })
     : "";
 
+  const printableEmails = players.map((player) => (
+    <p key={player.id} className={styles.email}>
+      {player.firstNameArea} {player.lastName}
+    </p>
+  ));
+  const willBeSent =
+    players.length === 1 ? " this player: " : " each of these players: ";
+
   return (
     <div className={styles.outerContainer}>
       <div className={styles.section}>
-        By clicking Send, you are sending the following message below to this
-        email: <span className={styles.email}>{player.email}</span>
+        By clicking Send, you are sending the following message to
+        {/* this email:{" "}
+        <span className={styles.email}>{printableEmails}</span> */}
+        {willBeSent}
+        {printableEmails}
       </div>
       <div className={styles.message}>
-        Hi {player.firstNameArea}, I'm writing to ask if you would be available
-        to join the Erie Philharmonic for {clickedShow.title}. You would play{" "}
+        Hi {`{player's name}`}, I'm writing to ask if you would be available to
+        join the Erie Philharmonic for {clickedShow.title}. You would play{" "}
         {partsLines}. Details are below.
         <div className={styles.piecesBox}>{pieceLines}</div>
         <div className={styles.servicesBox}>{serviceLines}</div>
