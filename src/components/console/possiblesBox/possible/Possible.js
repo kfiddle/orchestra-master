@@ -11,7 +11,7 @@ import EmailPlayer from "../../rosterBox/rosterSpot/emailPlayer/EmailPlayer";
 
 import classes from "./Possible.module.css";
 
-const Possible = ({ player }) => {
+const Possible = ({ player, clickHandler }) => {
   const { chairState, dispatch: chairsDispatch } = useContext(ChairsHolder);
   const { dashboard, dispatch: dashDispatch } = useContext(ConsoleHolder);
   const [clicked, setClicked] = useState(false);
@@ -20,7 +20,7 @@ const Possible = ({ player }) => {
 
   const pusher = useFetch();
 
-  const { firstNameArea, lastName } = player;
+  const { firstNameArea, lastName, id } = player;
 
   let outerContainerClass = !clicked ? classes.unclickedItem : classes.clicked;
 
@@ -43,12 +43,12 @@ const Possible = ({ player }) => {
     }
   };
 
-  const clickHandler = () => (player.clicked = !player.clicked);
+  const clicker = () => clickHandler(id);
 
   return (
     <div
       className={`${classes.outerContainer} ${outerContainerClass}`}
-      onClick={clickHandler}
+      onClick={clicker}
       onDoubleClick={doubleClickHandler}
     >
       <div className={classes.nameDiv}>

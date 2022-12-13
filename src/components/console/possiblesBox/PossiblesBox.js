@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import Possible from "./possible/Possible";
 
@@ -9,9 +9,10 @@ import styles from "./PossiblesBox.module.css";
 
 //rosterBox has this
 
-const PossiblesBox = (props) => {
+const PossiblesBox = () => {
   const { chairState, dispatch: chairsDispatch } = useContext(ChairsHolder);
   const { dashboard, dashDispatch } = useContext(ConsoleHolder);
+  const [clickedPlayers, setClickedPlayers] = useState([]);
 
   useEffect(() => {
     const emptyPossibles = () => {
@@ -21,33 +22,36 @@ const PossiblesBox = (props) => {
     emptyPossibles();
   }, [dashboard.clickedPiece, dashboard.clickedShow, dashboard.chairChanged]);
 
+  useEffect(() => {
+    setClickedPlayers([]);
+  }, [chairState.chosenPic]);
+
   const possibles = chairState.possibles;
 
-  const ifClicked = (name) => console.log(name);
-
-  const clickedEmail = () => {
-    console.log(clickedPossibles);
+  const clickHandler = (id) => {
+    if (clickedPlayers.includes(id)) {
+      let tempList = clickedPlayers;
+      tempList.splice(tempList.indexOf(id), 1);
+      setClickedPlayers([...tempList]);
+    } else {
+      setClickedPlayers([...clickedPlayers, id]);
+    }
   };
 
-  const possiblesWithClickedState = possibles.map((possible) => {
-    return { ...possible, clicked: false };
-  });
-
-  const displayablePossibles = possiblesWithClickedState.map((player) => (
+  const displayablePossibles = possibles.map((player) => (
     <Possible
       key={possibles.indexOf(player)}
       player={player}
-      ifClicked={false}
-      clicked={player.clicked}
+      clickHandler={clickHandler}
     ></Possible>
   ));
 
-  const clickedPossibles = displayablePossibles.filter((possible) => possible);
+  const clickedIds = () => console.log(clickedPlayers);
 
   return (
     <div className={styles.outerContainer}>
       {displayablePossibles}
-      <button onClick={clickedEmail}>EMAIL</button>
+      <button onClick={clickedIds}>EMAIL</button>
     </div>
   );
 };
