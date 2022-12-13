@@ -63,10 +63,11 @@ const Message = ({ players, parts, pieces, services }) => {
       })
     : "";
 
-  const printableEmails = players.map((player) => (
-    <p key={player.id} className={styles.email}>
+  const printableNames = players.map((player, index) => (
+    <span key={player.id} className={styles.playerName}>
+      {index > 0 && ", "}
       {player.firstNameArea} {player.lastName}
-    </p>
+    </span>
   ));
   const willBeSent =
     players.length === 1 ? " this player: " : " each of these players: ";
@@ -75,14 +76,12 @@ const Message = ({ players, parts, pieces, services }) => {
     <div className={styles.outerContainer}>
       <div className={styles.section}>
         By clicking Send, you are sending the following message to
-        {/* this email:{" "}
-        <span className={styles.email}>{printableEmails}</span> */}
         {willBeSent}
-        {printableEmails}
+        {printableNames}
       </div>
       <div className={styles.message}>
         Hi {`{player's name}`}, I'm writing to ask if you would be available to
-        join the Erie Philharmonic for {clickedShow.title}. You would play{" "}
+        join the Erie Philharmonic for <span className={styles.title}>{clickedShow.title}</span>. You would play{" "}
         {partsLines}. Details are below.
         <div className={styles.piecesBox}>{pieceLines}</div>
         <div className={styles.servicesBox}>{serviceLines}</div>

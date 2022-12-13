@@ -18,6 +18,7 @@ const Horloge = ({ label, event, deleter, index }) => {
   const [startMinutes, setStartMinutes] = useState(0);
   const [endHours, setEndHours] = useState(0);
   const [endMinutes, setEndMinutes] = useState(0);
+  const [location, setLocation] = useState('');
 
   const { newlySavedShow } = useContext(NewlySavedShow);
   const { performance } = useContext(PerformanceToEdit);
@@ -37,6 +38,7 @@ const Horloge = ({ label, event, deleter, index }) => {
         event: event,
         startTime: startTimeToSend,
         endTime: endTimeToSend,
+        location: location,
       };
 
       if (horlogeToSend.date === "") {
@@ -89,6 +91,8 @@ const Horloge = ({ label, event, deleter, index }) => {
     setEndMinutes(+event.target.value);
   };
 
+  const locationSetter = event => setLocation(event.target.value);
+
   const deleteService = () => deleter(index);
 
   // <AiOutlineClose className={classes.xIcon} onClick={deleteService} />
@@ -135,7 +139,7 @@ const Horloge = ({ label, event, deleter, index }) => {
           </div>
           <div className={`${classes.control} ${classes.locationDiv}`}>
             <label>Location</label>
-            <input />
+            <input onChange={locationSetter} />
           </div>
         </div>
       </div>

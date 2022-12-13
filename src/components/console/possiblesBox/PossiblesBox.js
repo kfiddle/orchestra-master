@@ -18,6 +18,7 @@ const PossiblesBox = () => {
 
   useEffect(() => {
     const emptyPossibles = () => {
+      setClickedPlayers([]);
       chairsDispatch({ type: "possibles", list: [] });
     };
 
@@ -48,7 +49,7 @@ const PossiblesBox = () => {
   ));
 
   const openEmailBox = () => setEmailClicked(true);
-  const closeEmailBox = () => setEmailClicked(false)
+  const closeEmailBox = () => setEmailClicked(false);
 
   return (
     <div className={styles.outerContainer}>
@@ -59,7 +60,9 @@ const PossiblesBox = () => {
         </button>
       )}
 
-      {emailClicked && <EmailBox closeModal={closeEmailBox} players={clickedPlayers} />}
+      {emailClicked && (
+        <EmailBox closeModal={closeEmailBox} players={clickedPlayers} />
+      )}
     </div>
   );
 };

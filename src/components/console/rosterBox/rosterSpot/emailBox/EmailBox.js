@@ -75,14 +75,14 @@ const EmailBox = ({ closeModal, players }) => {
       dressToSend = "Men: Black everything, Women: also, black everything";
 
     const messageAndPlayer = {
-      toEmail: 'kenjfiddle@gmail.com',
+      toEmail: player.email,
       message_HTML: `<div>
         Hi ${
           player.firstNameArea
         }, I'm writing to ask if you would be available to join
-        the Erie Philharmonic for ${
-          clickedShow.title
-        }. You would play ${displayableparts}.
+        the Erie Philharmonic for
+          <span style="font-weight:bold">${clickedShow.title}</span>
+        . You would play ${displayableparts}.
         Details are below.
         <table style="margin:2rem">${pieceLines.join("")}</table>
         <table style="margin:2rem">${serviceLines.join("")}</table>
@@ -106,12 +106,10 @@ const EmailBox = ({ closeModal, players }) => {
 
   const saveGigOffer = async (player) => {
     let gigOffer = { show: clickedShow, player };
-
     let offerSaved = await pusher(gigOffer, "make-gig-offer");
-    if (offerSaved != "phooey") console.log(offerSaved);
   };
 
-  const submit = () => players.forEach(player => email(player))
+  const submit = () => players.forEach((player) => email(player));
 
   const dressClicker = (dress) => () =>
     dress === attire ? setAttire("") : setAttire(dress);
