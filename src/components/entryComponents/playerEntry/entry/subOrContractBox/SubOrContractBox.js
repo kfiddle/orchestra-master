@@ -1,11 +1,8 @@
-import ExtraTypeBox3 from "./extraTypeBox/ExtraTypeBox3";
+import ExtraTypeBox3 from "./extraTypeBox/ExtraTypeBox";
 
 import classes from "./SubOrContractBox.module.css";
 
-const SubOrContractBox = (props) => {
-  const player = props.player;
-  const setPlayer = props.setPlayer;
-
+const SubOrContractBox = ({ player, setPlayer }) => {
   return (
     <div className={classes.outerContainer}>
       <div className={classes.initialButtonsDiv}>
