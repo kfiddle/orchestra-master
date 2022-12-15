@@ -16,13 +16,19 @@ const PlayerInfoBox = (props) => {
     unions,
   } = props.player;
 
-  return <div className={classes.infoContainer}>
-      <div className={classes.nameDiv}>{firstNameArea} {lastName}</div>
+  return (
+    <div className={classes.infoContainer}>
+      <div className={classes.nameDiv}>
+        {firstNameArea} {lastName}
+      </div>
       <div className={classes.cellPhone}>{cellPhone}</div>
       <div className={classes.email}>{email}</div>
+      <div style={{ marginTop: "5rem" }}>
+        **Remainder of player information will appear here**
+      </div>
       <div></div>
-      <div></div>
-      </div>;
+    </div>
+  );
 };
 
 export default PlayerInfoBox;

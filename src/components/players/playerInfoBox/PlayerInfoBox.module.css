@@ -1,11 +1,12 @@
 .infoContainer {
   position: fixed;
   right: 20%;
-  background: linear-gradient(to left, transparent, #362d2d, rgb(90, 85, 85));
+  /* background: linear-gradient(to left, transparent, #362d2d, rgb(90, 85, 85)); */
+  background: #f3f1f1;
   height: 100vh;
   width: fit-content;
-  padding: 2rem;
-  color: white;
+  padding: 2rem 5rem 0 1rem;
+  color: rgb(30, 29, 29);
   animation: slide-in 300ms ease-out forwards;
 }
 
@@ -19,6 +20,6 @@
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(20rem);
   }
 }

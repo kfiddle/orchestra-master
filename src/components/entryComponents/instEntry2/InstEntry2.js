@@ -14,9 +14,8 @@ import PercBox from "./percBox/PercBox";
 
 const modalStyle = {
   background: "slategrey",
-  padding: "5rem",
+  padding: "1rem",
   width: "70vw",
-  top: "20vh",
 };
 
 const initialState = {
