@@ -1,7 +1,7 @@
 import classes from "./SubmitDeleteBox.module.css";
 
-const SubmitDeleteBox = (props) => {
-  const { submitPlayer, deleteClicked, deleteClickHandler, ifPlayer } = props.o;
+const SubmitDeleteBox = ({ object }) => {
+  const { submitPlayer, deleteClicked, deleteClickHandler, ifPlayer } = object;
 
   return (
     <div className={classes.buttonDiv}>

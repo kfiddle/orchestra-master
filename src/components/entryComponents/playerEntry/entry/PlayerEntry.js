@@ -10,6 +10,7 @@ import BigInput from "../../../input/BigInput";
 import BigInput2 from "../../../input/BigInput2";
 
 import useFetch from "../../../../hooks/useFetch";
+import useStringResponse from "../../../../hooks/useStringResponse";
 
 import classes from "./PlayerEntry.module.css";
 import FoneInput from "../../../input/FoneInput";
@@ -37,7 +38,8 @@ const PlayerEntry = (props) => {
     deleteButton: false,
   });
 
-  const pusher = useFetch();
+  // const pusher = useFetch();
+  const pusher = useStringResponse();
 
   useEffect(() => {
     if (props.player) {
@@ -92,8 +94,10 @@ const PlayerEntry = (props) => {
       let pushFunction = !props.player ? "add-player" : "edit-player";
 
       let mainPlayerResponse = await pusher(playerToSend, pushFunction);
-      if (mainPlayerResponse !== "phoey") {
+      if (mainPlayerResponse === "Player Removed") {
         props.closeModal();
+      } else {
+        console.log(mainPlayerResponse);
       }
     };
 
@@ -209,7 +213,7 @@ const PlayerEntry = (props) => {
 
           <SubOrContractBox player={player} setPlayer={setPlayer} />
           <SubmitDeleteBox
-            o={{
+            object={{
               submitPlayer,
               deleteClicked: clickedThings.deleteButton,
               deleteClickHandler,

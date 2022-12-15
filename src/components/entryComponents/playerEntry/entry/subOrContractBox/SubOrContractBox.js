@@ -1,4 +1,4 @@
-import ExtraTypeBox3 from "./extraTypeBox/ExtraTypeBox";
+import ExtraTypeBox from "./extraTypeBox/ExtraTypeBox";
 
 import classes from "./SubOrContractBox.module.css";
 
@@ -30,7 +30,7 @@ const SubOrContractBox = ({ player, setPlayer }) => {
         </button>
       </div>
 
-      <ExtraTypeBox3 player={player} setPlayer={setPlayer} />
+      <ExtraTypeBox player={player} setPlayer={setPlayer} />
     </div>
   );
 };

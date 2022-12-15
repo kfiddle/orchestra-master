@@ -19,7 +19,6 @@
 
 .clicked {
   color: #042dfc;
-
 }
 
 .titleDiv {
@@ -46,6 +45,10 @@
 
 .plusSign:hover {
   color: rgb(250, 44, 17);
+}
+
+.editButton {
+  font-size: 1.2rem;
 }
 
 .editButton:hover {
