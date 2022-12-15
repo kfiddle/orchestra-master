@@ -38,8 +38,8 @@ const PlayerEntry = (props) => {
     deleteButton: false,
   });
 
-  // const pusher = useFetch();
-  const pusher = useStringResponse();
+  const pusher = useFetch();
+  const stringPusher = useStringResponse();
 
   useEffect(() => {
     if (props.player) {
@@ -64,11 +64,10 @@ const PlayerEntry = (props) => {
     });
 
     if (clickedThings.deleteButton) {
-      const response = await pusher(props.player, "delete-player");
-
-      if (response !== "phoey") {
+      const response = await stringPusher(props.player, "delete-player");
+      if (response === "Player Removed") {
         props.closeModal();
-      }
+      } else console.log(response);
     }
   };
 
@@ -94,7 +93,7 @@ const PlayerEntry = (props) => {
       let pushFunction = !props.player ? "add-player" : "edit-player";
 
       let mainPlayerResponse = await pusher(playerToSend, pushFunction);
-      if (mainPlayerResponse === "Player Removed") {
+      if (mainPlayerResponse !== "phoey") {
         props.closeModal();
       } else {
         console.log(mainPlayerResponse);
@@ -125,7 +124,7 @@ const PlayerEntry = (props) => {
     >
       <Modal closeModal={props.closeModal}>
         <form className={classes.innerContainer}>
-          <div className={`${classes.control} ${classes.nameAndInstrumentDiv}`}>
+          <div>
             <InputText
               label={"Full Name"}
               onChange={(event) =>

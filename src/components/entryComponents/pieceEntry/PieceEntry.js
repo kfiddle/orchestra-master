@@ -73,9 +73,7 @@ const PieceEntry = (props) => {
             {theInputs[1]}
           </div>
 
-          <div className={`${classes.control} ${classes.nameDiv}`}>
-            {theInputs.splice(2)}
-          </div>
+          <div className={`${classes.nameDiv}`}>{theInputs.splice(2)}</div>
 
           <BigInput
             inputObject={{
