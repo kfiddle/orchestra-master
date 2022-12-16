@@ -154,16 +154,16 @@ const PlayerEntry = (props) => {
             />
           </div>
 
-          {/* <BigInput
+          <BigInput
             inputObject={{
               ...inputter,
               label: "Email",
               key: "email",
               style: { width: "90%" },
             }}
-          /> */}
+          />
 
-          <Form.Control type="email" placeholder="Enter email" />
+          {/* <Form.Control type="email" placeholder="Enter email" /> */}
           <BigInput
             inputObject={{
               ...inputter,

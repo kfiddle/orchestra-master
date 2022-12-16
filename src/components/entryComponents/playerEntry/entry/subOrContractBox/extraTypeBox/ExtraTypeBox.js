@@ -69,7 +69,7 @@ const ExtraTypeBox = ({ player, setPlayer }) => {
     return "";
   };
 
-  return <div>{returnADiv()}</div>;
+  return <div className={classes.outerContainer}>{returnADiv()}</div>;
 };
 
 export default ExtraTypeBox;

@@ -1,3 +1,4 @@
+
 .subButton {
   width: fit-content;
   background: none;
@@ -15,6 +16,24 @@
   animation: slide-in 300ms ease-out forwards;
 }
 
+.highlightedSubButton {
+  width: fit-content;
+  background: rgb(33, 33, 34);
+  color: whitesmoke;
+  border: 3px solid white;
+  padding: 8px 30px;
+  margin: 1rem;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  float: right;
+  transition: all 0.25s ease-out;
+  animation: slide-in 300ms ease-out forwards;
+}
+
+
 @keyframes slide-in {
   from {
     opacity: 0;
@@ -22,7 +41,7 @@
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(3rem);
   }
 }
 
@@ -107,6 +126,6 @@
   }
   to {
     opacity: 1;
-    transform: translateY(0rem);
+    transform: translateY(2rem);
   }
 }
