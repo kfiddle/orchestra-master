@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import Form from "react-bootstrap/Form";
+
 import ObjectToListHelper from "../../../helperFunctions/ObjectToListHelper";
 import InstrumentsList from "../../../../store/instruments-list";
 import InstrumentsDropDown from "../../../instruments-drop/InstrumentsDropDown";
@@ -151,14 +153,17 @@ const PlayerEntry = (props) => {
               playerSetter={setPlayer}
             />
           </div>
-          <BigInput
+
+          {/* <BigInput
             inputObject={{
               ...inputter,
               label: "Email",
               key: "email",
               style: { width: "90%" },
             }}
-          />
+          /> */}
+
+          <Form.Control type="email" placeholder="Enter email" />
           <BigInput
             inputObject={{
               ...inputter,

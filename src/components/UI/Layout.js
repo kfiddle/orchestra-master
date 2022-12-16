@@ -39,7 +39,6 @@ const Layout = (props) => {
     setPlayerEntryFormRendered(false);
     setPieceEntryFormRendered(false);
     setPerformanceEntryFormRendered(false);
-    setSideBarOpen(false);
     props.modalCloseHandler(true);
   };
 

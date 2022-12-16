@@ -27,7 +27,7 @@
   border: 1px solid #c1d1d1;
   display: block;
   width: 70%;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .control input:focus,
@@ -35,3 +35,4 @@
   background-color: #e0e4fc;
   outline-color: teal;
 }
+ 
