@@ -3,10 +3,10 @@ const WhichServer = () => {
   // version 2 ... https://mighty-bayou-32694.herokuapp.com/
   // version 3 ... "https://glacial-headland-13646.herokuapp.com/"
 
-  const realServer = "https://aqueous-hollows-69418.herokuapp.com/";
-  const testServer = "http://localhost:8080/";
+  const real = "https://aqueous-hollows-69418.herokuapp.com/";
+  const test = "http://localhost:8080/";
 
-  return testServer;
+  return test;
 };
 
 export default WhichServer;

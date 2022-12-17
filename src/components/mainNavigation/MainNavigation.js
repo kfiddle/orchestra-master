@@ -1,15 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { FaUserPlus } from "react-icons/fa";
-import {
-  GiBlackBook,
-  GiMusicalKeyboard,
-  GiDramaMasks,
-  GiViolin,
-} from "react-icons/gi";
-import { IoMdAlert } from "react-icons/io";
 
 import classes from "./MainNavigation.module.css";
-import WarrantOfficerStripes from "./warrantOfficerStripes/WarrantOfficerStripes";
 import Stripes from "./warrantOfficerStripes/Stripes";
 
 const MainNavigation = (props) => {

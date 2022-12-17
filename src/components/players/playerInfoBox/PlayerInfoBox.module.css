@@ -1,7 +1,6 @@
 .infoContainer {
   position: fixed;
   right: 20%;
-  /* background: linear-gradient(to left, transparent, #362d2d, rgb(90, 85, 85)); */
   background: #f3f1f1;
   height: 100vh;
   width: fit-content;

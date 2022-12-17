@@ -10,6 +10,15 @@ const ExtraTypeBox = ({ player, setPlayer }) => {
   const { clickedInstrumentList } = useContext(InstrumentsList);
   const [whichContracts, setWhichContracts] = useState([]);
 
+  // const random = (int) => {
+  //   return { 1: "first", 2: "second", 3: "third" }[int];
+  // };
+
+  // const instMaps = new Map(([1, 2, 3], [4, 5, 6]), ([7, 8, 9], [10, 11, 12]));
+
+  // console.log(instMaps.get(1));
+
+
   const configureSeats = (inst) => {
     if (["FLUTE", "OBOE", "CLARINET", "BASSOON", "TRUMPET"].includes(inst))
       return ["Principal", "2", "3", "4"];

@@ -1,4 +1,4 @@
-.outerContainer {
+/* .outerContainer {
   margin-top: 10vh;
   display: flex;
 }
@@ -20,9 +20,6 @@
 }
 
 .sectionTitle {
-  /* position: absolute; */
-  /* left: 2rem; */
-  /* top: 50%; */
   margin-bottom: 1rem;
   color: black;
   font-weight: 700;
@@ -34,4 +31,4 @@
 .playerContainer {
   font-size: 1.5rem;
   width: 70%;
-}
+} */
