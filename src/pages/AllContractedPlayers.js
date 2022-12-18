@@ -20,6 +20,7 @@ const AllContractedPlayers = (props) => {
     <LoadingSpinner />
   ) : (
     <ContractsRoster list={players} possibleEdit={possibleEdit} />
+    // <ContractsRoster possibleEdit={possibleEdit} />
   );
 };
 
