@@ -29,17 +29,17 @@ const Player = ({ player, possibleEdit, clicked }) => {
 
   return (
     <div className={styles.outerContainer} onClick={showInfo}>
-      <div className={styles.name}>
-        {firstNameArea} 
-      </div>
-      {/* {/* <div className={styles.contractTitle}>{formattedContract}</div> */}
+      <div className={styles.name}>{firstNameArea} {lastName}</div>
+      <div className={styles.contractTitle}>{formattedContract}</div>
       <div className={styles.email}>{email}</div>
       <div className={styles.cellPhone}>{cellPhone}</div>
-      {/* <div className={styles.editButtonDiv}>
+      <div className={styles.editButtonDiv}>
         <FiEdit onClick={editPlayer} className={styles.editButton} />
-      </div> */}
+      </div>
       {editClicked && <PlayerEntry player={player} closeModal={closeModal} />}
     </div>
+
+    // <div>{firstNameArea} {lastName}</div>
   );
 };
 
