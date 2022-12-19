@@ -1,4 +1,4 @@
-/* .outerContainer {
+.outerContainer {
   margin-top: 10vh;
   display: flex;
 }
@@ -31,4 +31,4 @@
 .playerContainer {
   font-size: 1.5rem;
   width: 70%;
-} */
+}

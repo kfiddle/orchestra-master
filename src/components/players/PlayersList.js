@@ -36,10 +36,10 @@ const PlayersList = (props) => {
 
   return (
     <div className={styles.outerContainer}>
-      {/* <InstrumentsSidebar
+      <InstrumentsSidebar
         partChooser={partChooser}
         chosenInstrument={chosenInstrument}
-      /> */}
+      />
       <div className={styles.playersDiv}>
         <div>{playersToDisplay}</div>
       </div>
