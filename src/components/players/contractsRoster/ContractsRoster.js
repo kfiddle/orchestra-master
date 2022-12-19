@@ -35,35 +35,34 @@ const ContractsRoster = ({ list: playersList, possibleEdit }) => {
     ></Player>
   ));
 
-  // const sections = allInstruments.map((instrument) => {
-  //   let filledSection = [];
-  //   for (let player of playersList) {
-  //     if (player.primaryInstrument.name === instrument.name) {
-  //       filledSection.push(
-  //         <Player
-  //           key={player.id}
-  //           player={player}
-  //           clicked={clickedPlayerHandler}
-  //           possibleEdit={setEdit}
-  //         ></Player>
-  //       );
-  //     }
-  //   }
-  //   if (filledSection.length === 0) {
-  //     return;
-  //   }
-  //   return (
-  //     <div key={Math.random()} className={classes.section}>
-  //       <div className={classes.sectionTitle}>{instrument.name}</div>
-  //       {filledSection}
-  //     </div>
-  //   );
-  // });
+  const sections = allInstruments.map((instrument) => {
+    let filledSection = [];
+    for (let player of playersList) {
+      if (player.primaryInstrument.name === instrument.name) {
+        filledSection.push(
+          <Player
+            key={player.id}
+            player={player}
+            clicked={clickedPlayerHandler}
+            possibleEdit={setEdit}
+          ></Player>
+        );
+      }
+    }
+    if (filledSection.length === 0) {
+      return;
+    }
+    return (
+      <div key={Math.random()} className={classes.section}>
+        <div className={classes.sectionTitle}>{instrument.name}</div>
+        {filledSection}
+      </div>
+    );
+  });
 
   return (
     <div className={classes.outerContainer}>
-      {/* <div className={classes.innerContainer}>{sections}</div> */}
-      <div className={classes.innerContainer}>{testFullList}</div>
+      <div className={classes.innerContainer}>{sections}</div>
       {infoBoxClicked && <PlayerInfoBox player={clickedPlayer} />}
     </div>
   );
