@@ -1,14 +1,13 @@
 .outerContainer {
-  /* width: 100vw;
-  display: flex; */
-  /* display: grid;
-  grid-template-columns: 1fr 1fr 2.5fr; */
-  /* margin-top: 10rem; */
+  width: 100vw;
+  display: flex;
+  /* grid-template-columns: 1fr 1fr 2.5fr; */
+  margin-top: 10rem;
 }
 
 .performancesDiv {
   width: 25%;
-  /* margin-right: rem; */
+  margin-right: rem;
 }
 
 .piecesDiv {

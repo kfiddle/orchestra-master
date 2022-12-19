@@ -1,11 +1,19 @@
-/* .outerContainer {
+.outerContainer {
   margin-top: 10vh;
   display: flex;
+  max-height: 100vh;
+  overflow: auto;
+  /* -ms-overflow-style: none;
+  scrollbar-width: none; */
 }
 
 .innerContainer {
-  width: 70%;
+  width: 100%;
   margin: 2rem;
+}
+
+.outerContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .section {
@@ -25,10 +33,9 @@
   font-weight: 700;
   font-size: 1.25rem;
   opacity: 0.8;
-
 }
 
 .playerContainer {
   font-size: 1.5rem;
   width: 70%;
-} */
+}

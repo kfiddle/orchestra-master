@@ -9,9 +9,9 @@
 
 .outerContainer::-webkit-scrollbar {
   display: none;
-}
+} 
 
-.outerContainer {
+/* .outerContainer {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
+}  */
