@@ -9,7 +9,7 @@ import styles from "./ConsolePiece.module.css";
 
 const ConsolePiece = ({ pp }) => {
   const piece = pp.piece;
-  const { title, composerName } = piece;
+  const { title, composerLast } = piece;
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
@@ -26,7 +26,7 @@ const ConsolePiece = ({ pp }) => {
       className={`${styles.pieceContainer} ${clickedOrNot}`}
       onClick={clickedPieceHandler}
     >
-      <div className={styles.composerDiv}>{composerName}:</div>
+      <div className={styles.composerDiv}>{composerLast}:</div>
       <div className={styles.titleDiv}>{title}</div>
     </div>
   );

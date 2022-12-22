@@ -18,6 +18,7 @@ import Layout from "./components/UI/Layout";
 import AllContractedPlayers from "./pages/AllContractedPlayers";
 import AllSubPlayers from "./pages/AllSubPlayers";
 import Library from "./pages/Library";
+import Bibliotech from "./pages/Bibliotech";
 import Season2 from "./pages/Season2";
 import Log from "./pages/Log";
 import InstsPage from "./pages/InstsPage";
@@ -82,7 +83,9 @@ function App() {
           </Route>
 
           <Route path={"/library"} exact>
-            <Library modalIsClosed={modalIsClosed} />
+            {/* <Library modalIsClosed={modalIsClosed} /> */}
+            <Bibliotech />
+
           </Route>
 
           <Route path={"/season"} exact>

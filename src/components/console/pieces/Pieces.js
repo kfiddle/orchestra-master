@@ -42,9 +42,6 @@ const Pieces = (props) => {
     const allPicsInShow = [];
     let nonDuped = [];
 
-    // const fullRoster = await pusher(dashboard.pieces, "get-full-roster");
-    // if (fullRoster.length) dispatch({ type: "pics", list: fullRoster });
-
     for (let showPiece of dashboard.pieces) {
       const pics = await pusher(showPiece, "get-pics-in-show-piece");
 
