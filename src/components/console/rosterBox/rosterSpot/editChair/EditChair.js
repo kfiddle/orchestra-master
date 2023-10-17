@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext, useRef } from "react";
 
 import { AiOutlinePlus } from "react-icons/ai";
-import { TiDelete } from "react-icons/ti";
 
 import useFetch from "../../../../../hooks/useFetch";
 

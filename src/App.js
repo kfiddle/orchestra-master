@@ -33,7 +33,6 @@ function App() {
   const whichServer = WhichServer();
   const requester = useRequestMapping();
 
-
   useEffect(() => {
     const login = async () => {
       const userDeets = { username: "manager@Email", password: "managerPass" };
@@ -83,9 +82,8 @@ function App() {
           </Route>
 
           <Route path={"/library"} exact>
-            {/* <Library modalIsClosed={modalIsClosed} /> */}
-            <Bibliotech />
-
+            <Library modalIsClosed={modalIsClosed} />
+            {/* <Bibliotech /> */}
           </Route>
 
           <Route path={"/season"} exact>

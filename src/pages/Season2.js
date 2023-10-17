@@ -2,6 +2,8 @@ import { useState, useEffect, useContext, useReducer } from "react";
 
 import { ConsoleHolder } from "../store/object-holder";
 
+import performances from '../dummyData/performances';
+
 import LoadingSpinner from "../components/UI/loading/LoadingSpinner";
 import ReloadFlagStore from "../store/reload-flag-store";
 
@@ -17,8 +19,6 @@ const initialState = {
   fullRoster: [],
   refreshPICS: false,
   modalClosed: false,
-  // possibles: [],
-  // clickedPossible: null,
 };
 
 const showReducer = (state, action) => {
@@ -46,11 +46,13 @@ const Season2 = () => {
   const { reloadFlag, setReloadFlag } = useContext(ReloadFlagStore);
   const [dashboard, dispatch] = useReducer(showReducer, initialState);
 
-  let allPerformances = useGetAList2(
-    "get-performances-by-primary-date",
-    reloadFlag,
-    setReloadFlag
-  );
+  // let allPerformances = useGetAList2(
+  //   "get-performances-by-primary-date",
+  //   reloadFlag,
+  //   setReloadFlag
+  // );
+
+  let allPerformances = performances;
 
   useEffect(() => {
     dispatch({ type: "shows", list: allPerformances });
