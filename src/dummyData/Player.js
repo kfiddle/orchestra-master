@@ -1,42 +1,41 @@
 import Inst from './Inst';
-import Address from './Address';
+import Address from './Address.js';
 
 class Player {
-  first: String;
-  last: String;
-  insts: Inst[];
-  type: String;
-  email: String;
-  rank: Number;
-  address: Address;
-
-  constructor(first: String, last: String) {
+  constructor(id, first, last) {
+    this.id = id;
     this.first = first;
     this.last = last;
+    this.primaryInst = null;
     this.insts = [];
+    this.type = null;
+    this.email = null;
+    this.rank = null;
+    this.address = null;
   }
 
-  setType(type: String) {
+  setType(type) {
     this.type = type;
     return this;
   }
 
-  setRank(rank: Number) {
+  setRank(rank) {
     this.rank = rank;
     return this;
   }
 
-  setEmail(email: String) {
+  setEmail(email) {
     this.email = email;
     return this;
   }
 
-  addInst(inst: Inst) {
+  addInst(inst) {
+    if (this.insts.length === 0) this.primaryInst = inst;
     this.insts.push(inst);
     return this;
   }
 
-  setAddress(address: Address) {
+  setAddress(address) {
     this.address = address;
     return this;
   }

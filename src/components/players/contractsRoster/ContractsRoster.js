@@ -3,7 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import Player from "../Player";
 import PlayerInfoBox from "../playerInfoBox/PlayerInfoBox";
 
-import AllInstruments from "../../../store/all-instruments";
+// import AllInstruments from "../../../store/all-instruments";
+import { insts } from '../../../dummyData/insts';
 
 import useGetAList2 from "../../../hooks/useGetAList2";
 
@@ -12,8 +13,10 @@ import classes from "./ContractsRoster.module.css";
 const ContractsRoster = (props) => {
   const [infoBoxClicked, setInfoBoxClicked] = useState(false);
   const [clickedPlayer, setClickedPlayer] = useState({});
-  const { allInstruments } = useContext(AllInstruments);
+  // const { allInstruments } = useContext(AllInstruments);
+  const allInsts = Object.values(insts);
   const playersList = props.list;
+  console.log(playersList.map(player => player.primaryInst.name))
 
   const [playerId, setPlayerId] = useState(null);
 
@@ -27,10 +30,10 @@ const ContractsRoster = (props) => {
     setPlayerId(player.id);
   };
 
-  const sections = allInstruments.map((instrument) => {
+  const sections = allInsts.map((inst) => {
     let filledSection = [];
     for (let player of playersList) {
-      if (player.primaryInstrument.name === instrument.name) {
+      if (player.primaryInst.name === inst.name) {
         filledSection.push(
           <Player
             key={player.id}
@@ -46,7 +49,7 @@ const ContractsRoster = (props) => {
     }
     return (
       <div key={Math.random()} className={classes.section}>
-        <div className={classes.sectionTitle}>{instrument.name}</div>
+        <div className={classes.sectionTitle}>{inst.name}</div>
         {filledSection}
       </div>
     );

@@ -1,15 +1,8 @@
-
 // *** important. "AddressLine2 below will often be left empty during object construction"
 // it must therefore always be given as an empty string in the constructor
 
 class Address {
-  private addressLine1: string;
-  private addressLine2: string;
-  private city: string;
-  private state: string;
-  private zip: string;
-
-  constructor(addressLine1: string, addressLine2: string, city: string, state: string, zip: string) {
+  constructor(addressLine1, addressLine2, city, state, zip) {
     this.addressLine1 = addressLine1;
     this.addressLine2 = addressLine2;
     this.city = city;
@@ -17,23 +10,23 @@ class Address {
     this.zip = zip;
   }
 
-  setAddressLine1(addressLine1: string) {
+  setAddressLine1(addressLine1) {
     this.addressLine1 = addressLine1;
   }
 
-  setAddressLine2(addressLine2: string) {
+  setAddressLine2(addressLine2) {
     this.addressLine2 = addressLine2;
   }
 
-  setCity(city: string) {
+  setCity(city) {
     this.city = city;
   }
 
-  setState(state: string) {
+  setState(state) {
     this.state = state;
   }
 
-  setZip(zip: string) {
+  setZip(zip) {
     this.zip = zip;
   }
 }

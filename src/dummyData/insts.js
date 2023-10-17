@@ -1,48 +1,212 @@
-import Inst from "./Inst";
+import Inst from './Inst';
 
+// revisit what we think of "violin" vs "violin1" or "violin2"
 
-const insts = [
-  new Inst("piccolo", "pic", 10),
-  new Inst("flute", "fl", 20),
-  new Inst("alto flute", "fl", 20),
-  new Inst("flute", "fl", 20),
-];
+const flute = new Inst('flute', 'fl');
+const piccolo = new Inst('piccolo', 'pic', flute);
+const fluteC = new Inst('bass flute in C', 'bfl', flute);
+const altoFlute = new Inst('alto flute', 'afl', flute);
 
-Instrument altoFlute = new Instrument("ALTO FLUTE", "AFL", 30);
-Instrument bassFlute = new Instrument("BASS FLUTE", "BFL", 31);
-Instrument tenorFlute = new Instrument("FLUTE D'AMORE", "FDA", 32);
-Instrument oboe = new Instrument("OBOE", "OB", 40);
-Instrument englishHorn = new Instrument("ENGLISH HORN", "EH", 50);
-Instrument oboeDamore = new Instrument("OBOE D'AMORE", "ODA", 60);
-Instrument bassOboe = new Instrument("BASS OBOE", "BOB", 70);
-Instrument clarinet = new Instrument("CLARINET", "CL", 80);
-Instrument ebClarinet = new Instrument("EB CLARINET", "EBCL", 90);
-Instrument bassClarinet = new Instrument("BASS CLARINET", "BCL", 100);
-Instrument sax = new Instrument("SAX", "SAX", 110);
-Instrument bassoon = new Instrument("BASSOON", "BSN", 120);
-Instrument contra = new Instrument("CONTRA", "CBSN", 130);
-Instrument horn = new Instrument("HORN", "HN", 140);
-Instrument wagnerTuba = new Instrument("WAGNER TUBA", "WTBA", 150);
-Instrument piccTrumpet = new Instrument("PICC TRUMPET", "PTPT", 160);
-Instrument trumpet = new Instrument("TRUMPET", "TPT", 170);
-Instrument cornet = new Instrument("CORNET", "CRT", 180);
-Instrument flugelHorn = new Instrument("FLUGELHORN", "FGH", 190);
-Instrument trombone = new Instrument("TROMBONE", "TBN", 200);
-Instrument bassTrombone = new Instrument("BASS TROMBONE", "BTRBN", 210);
-Instrument euphonium = new Instrument("EUPHONIUM", "EUPH", 220);
-Instrument tuba = new Instrument("TUBA", "TBA", 230);
-Instrument tenorTuba = new Instrument("TENOR TUBA", "TTBA", 240);
-Instrument timpani = new Instrument("TIMPANI", 250);
-Instrument percussion = new Instrument("PERCUSSION", 260);
-Instrument drumset = new Instrument("DRUMSET", 270);
-Instrument harp = new Instrument("HARP", 280);
-Instrument piano = new Instrument("PIANO", 290);
-Instrument celeste = new Instrument("CELESTE", 300);
-Instrument keyboard = new Instrument("KEYBOARD", 310);
-Instrument glock = new Instrument("GLOCKENSPIEL", 320);
-Instrument organ = new Instrument("ORGAN", 330);
-Instrument violin1 = new Instrument("VIOLIN1", 340);
-Instrument violin2 = new Instrument("VIOLIN2", 350);
-Instrument viola = new Instrument("VIOLA", 360);
-Instrument cello = new Instrument("CELLO", 370);
-Instrument bass = new Instrument("BASS", 380);
+const oboe = new Inst('oboe', 'ob');
+const englishHorn = new Inst('english horn', 'Eh', oboe);
+const damore = new Inst("oboe d'amore", "ob d'am", oboe);
+const ocass = new Inst('oboe da caccia', 'ob da cacc', oboe);
+
+const clarinet = new Inst('clarinet', 'cl');
+const Ebcl = new Inst('Eb clarinet', 'Ebcl', clarinet);
+const bassClarinet = new Inst('bass clarinet', 'bcl', clarinet);
+const contrabassClarinet = new Inst('contrabass clarinet', 'cbcl', clarinet);
+const bassClarinetA = new Inst('bass clarinet in A', 'bcl(A)', clarinet);
+const altoCl = new Inst('alto clarinet', 'acl', clarinet);
+const dClar = new Inst('D clarinet', 'D-cl', clarinet);
+
+const gtr = new Inst('guitar', 'gtr');
+const harm = new Inst('harmonium', 'harm');
+
+const bassGuitar = new Inst('bass guitar', 'bgtr');
+const quartet = new Inst('quartet', '4t');
+const quintet = new Inst('quintet', '5t');
+const altoVoice = new Inst('alto voice', 'A');
+const accord = new Inst('accordion', 'accord');
+
+const sax = new Inst('saxophone', 'sx');
+const altoSax = new Inst('alto saxophone', 'asx');
+const trombaContra = new Inst('tromba contralta', 'atp');
+
+const baritoneVoice = new Inst('baritone voice', 'Bar');
+const bassVoice = new Inst('bass voice', 'Bs');
+const bassBarVoice = new Inst('bass-baritone voice', 'Bs-Bar');
+const tenor = new Inst('tenor voice', 'T');
+const cTenor = new Inst('countertenor', 'CT');
+const mz = new Inst('mezzo-soprano voice', 'Ms');
+const s = new Inst('soprano voice', 'S');
+
+const narr = new Inst('narrator', 'narr');
+const bassetHorn = new Inst('basset horn', 'basset hn');
+const rec = new Inst('recorder', 'rec');
+
+const bariHorn = new Inst('baritone horn', 'bar hn');
+const tenorSax = new Inst('tenor saxophone', 'tsx');
+const bariSax = new Inst('baritone sax', 'bsx');
+
+const bassoon = new Inst('bassoon', 'bn');
+const contrabassoon = new Inst('contrabassoon', 'cbn', bassoon);
+
+const horn = new Inst('horn', 'hn');
+const wagnerTuba = new Inst('Wagner Tuba', 'Wag tb', horn);
+const pHorn = new Inst('posthorn', 'posthn');
+
+const trumpet = new Inst('trumpet', 'tpt');
+const cornet = new Inst('cornet', 'crt', trumpet);
+const piccTrumpet = new Inst('piccolo trumpet', 'pic tp', trumpet);
+const bassTrump = new Inst('bass trumpet', 'btp', trumpet);
+const flug = new Inst('flugelhorn', 'flug', trumpet);
+
+const trombone = new Inst('trombone', 'tbn');
+const bassTromb = new Inst('bass trombone', 'btbn', trombone);
+
+const tuba = new Inst('tuba', 'tuba');
+const euph = new Inst('euphonium', 'euph', tuba);
+
+const str = new Inst('strings', 'str');
+const strQuartet = new Inst('string quartet', 'str 4t');
+const strQuintet = new Inst('string quintet', 'str 5t');
+const violin = new Inst('violin', 'vn');
+const viola = new Inst('viola', 'va');
+const cello = new Inst('cello', 'vc');
+const doubleBass = new Inst('double bass', 'db');
+
+const harp = new Inst('harp', 'hp');
+const piano = new Inst('piano', 'pf');
+const harps = new Inst('harpsichord', 'hpsd');
+const glock = new Inst('glockenspiel', 'glock');
+const kyb = new Inst('keyboard', 'kybd');
+const cimbasso = new Inst('cimbasso', 'cimbasso');
+const organ = new Inst('organ', 'org');
+const continuo = new Inst('continuo', 'cnt');
+const synth = new Inst('synthesizer', 'synth');
+
+const percussion = new Inst('percussion', 'perc');
+const bassDrum = new Inst('bass drum', 'bd');
+const sd = new Inst('snare drum', 'sd');
+const bassDrumCymbal = new Inst('bass drum with cymbal', 'bd/cym');
+const dr = new Inst('drum', 'dr');
+const set = new Inst('drum set', 'set');
+const tamb = new Inst('tambourine', 'tambn');
+const crot = new Inst('crotales', 'crot');
+const cymbals = new Inst('cymbals', 'cym');
+const tri = new Inst('triangle', 'tri');
+const susCym = new Inst('suspended cymbal', 'sus cym');
+const blocks = new Inst('temple blocks', 'templeblks');
+const woodBl = new Inst('woodblock', 'woodblk');
+const ratch = new Inst('ratchet', 'ratch');
+const hh = new Inst('high-hat cymbal', 'hi-hat');
+const mandolin = new Inst('mandolin', 'mand');
+const marac = new Inst('maracas', 'marac');
+const marimba = new Inst('marimba', 'marim');
+const xyl = new Inst('xylophone', 'xyl');
+const vib = new Inst('vibraphone', 'vib');
+const whip = new Inst('whip', 'whip');
+
+const primaries = [flute, oboe, clarinet, bassoon, horn, trumpet, trombone, tuba];
+
+const insts = {
+  flute,
+  fluteC,
+  altoFlute,
+  piccolo,
+  oboe,
+  englishHorn,
+  damore,
+  ocass,
+
+  clarinet,
+  Ebcl,
+  contrabassClarinet,
+  bassClarinet,
+  bassClarinetA,
+  altoCl,
+  dClar,
+
+  bassoon,
+  contrabassoon,
+
+  horn,
+  wagnerTuba,
+  pHorn,
+
+  trumpet,
+  piccTrumpet,
+  cornet,
+  bassTrump,
+  flug,
+
+  trombone,
+  bassTromb,
+  tuba,
+  euph,
+  str,
+  strQuartet,
+  strQuintet,
+  violin,
+  viola,
+  cello,
+  doubleBass,
+
+  harp,
+  piano,
+  harps,
+  glock,
+  kyb,
+  cimbasso,
+  organ,
+  continuo,
+  synth,
+
+  percussion,
+  bassDrum,
+  sd,
+  bassDrumCymbal,
+  dr,
+  set,
+  tamb,
+  crot,
+  cymbals,
+  tri,
+  susCym,
+  blocks,
+  woodBl,
+  ratch,
+  hh,
+  mandolin,
+  marac,
+  marimba,
+  xyl,
+  vib,
+  whip,
+  gtr,
+  harm,
+  bassGuitar,
+  quartet,
+  quintet,
+  altoVoice,
+  accord,
+  sax,
+  altoSax,
+  trombaContra,
+  baritoneVoice,
+  bassVoice,
+  bassBarVoice,
+  tenor,
+  cTenor,
+  mz,
+  s,
+  narr,
+  bariHorn,
+  bassetHorn,
+  rec,
+  tenorSax,
+  bariSax,
+};
+
+export { primaries, insts };
