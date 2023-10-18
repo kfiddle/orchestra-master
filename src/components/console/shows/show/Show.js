@@ -2,6 +2,8 @@ import { useEffect, useState, useContext } from "react";
 
 import { FiEdit, FiPlus } from "react-icons/fi";
 
+import services from '../../../../dummyData/services';
+
 import ReloadFlagStore from "../../../../store/reload-flag-store";
 import { ConsoleHolder } from "../../../../store/object-holder";
 
@@ -21,10 +23,14 @@ const Show = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
   const show = props.show;
-  const { title } = show;
+  const { title, id } = show;
 
-  const date = usePushBasic(props.show, "get-date-from-show");
-  const displayDate = useDateFormatter(date);
+  // const date = usePushBasic(props.show, "get-date-from-show");
+
+  const concertService = services.filter(service => service.showId === id && service.type === 'concert')
+  console.log(concertService)
+  const displayDate = concertService.date ? concertService.date.toString() : ''; 
+  // const displayDate = useDateFormatter(date);
 
   const clickedOrNot =
     show === dashboard.clickedShow ? styles.clicked : styles.unclicked;
