@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from 'react';
 
-import { ConsoleHolder } from "../../../../store/object-holder";
-import NonStrings from "./NonStrings";
-import StringRosterSpots from "./StringRosterSpots";
-import AddChairBox from "./addChairBox/AddChairBox";
+import { ConsoleHolder } from '../../../../store/object-holder';
+import NonStrings from './NonStrings';
+import StringRosterSpots from './StringRosterSpots';
+import AddChairBox from './addChairBox/AddChairBox';
 
-import styles from "./RosterSpots.module.css";
+import styles from './RosterSpots.module.css';
 
 const RosterSpots = React.memo((props) => {
   const [rightClickedSpot, setRightClickedSpot] = useState(null);
@@ -18,9 +18,7 @@ const RosterSpots = React.memo((props) => {
   }, [dashboard.refreshPICS]);
 
   const rightClicker = (rosterSpot) => {
-    rightClickedSpot === rosterSpot
-      ? setRightClickedSpot(null)
-      : setRightClickedSpot(rosterSpot);
+    rightClickedSpot === rosterSpot ? setRightClickedSpot(null) : setRightClickedSpot(rosterSpot);
   };
 
   let showAddChairButton = false;
@@ -36,26 +34,9 @@ const RosterSpots = React.memo((props) => {
 
   return (
     <div className={styles.outerContainer}>
-      {/* {showAddChairButton && (
-        <button
-          className={styles.addChairButton}
-          onClick={() => toggleAddChairBox(true)}
-        >
-          ADD CHAIR
-        </button>
-      )} */}
-
-      <NonStrings
-        rightClicker={rightClicker}
-        rightClickedSpot={rightClickedSpot}
-      />
-      <StringRosterSpots
-        rightClicker={rightClicker}
-        rightClickedSpot={rightClickedSpot}
-      />
-      {addChairClicked && (
-        <AddChairBox closeModal={() => toggleAddChairBox(false)} />
-      )}
+      <NonStrings rightClicker={rightClicker} rightClickedSpot={rightClickedSpot} />
+      {/* <StringRosterSpots rightClicker={rightClicker} rightClickedSpot={rightClickedSpot} /> */}
+      {addChairClicked && <AddChairBox closeModal={() => toggleAddChairBox(false)} />}
     </div>
   );
 });

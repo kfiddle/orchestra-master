@@ -1,42 +1,44 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from 'react';
 
-import { ConsoleHolder } from "../../../../store/object-holder";
+import { ConsoleHolder } from '../../../../store/object-holder';
 
-import RosterSpot from "../rosterSpot/RosterSpot";
+import RosterSpot from '../rosterSpot/RosterSpot';
 
-import styles from "./NonStrings.module.css";
+import styles from './NonStrings.module.css';
 
 const NonStrings = ({ rightClicker, rightClickedSpot }) => {
   const [dbClickedOtherSpot, setDbClickedOtherSpot] = useState(null);
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  const stringParts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
+  // const stringParts = ["violin1", "violin2", "viola", "cello", "bass"];
+
+  // ids of strings are 56 - 61
+  const stringIds = ['56', '57', '58', '59', '60', '61'];
   const others = [];
 
-  for (let pic of dashboard.pics) {
-    console.log(pic)
-    if (!stringParts.includes(pic.parts[0].instrument.name)) {
-      others.push(pic);
+  for (let chair of dashboard.pics) {
+    if (!stringIds.includes(chair.parts[0].instId)) {
+      others.push(chair);
     }
   }
 
-  const doubleClicker = (pic) => {
-    if (dbClickedOtherSpot === pic) {
+  const doubleClicker = (chair) => {
+    if (dbClickedOtherSpot === chair) {
       setDbClickedOtherSpot(null);
     } else {
-      setDbClickedOtherSpot(pic);
+      setDbClickedOtherSpot(chair);
     }
   };
 
-  const displayableOthers = others.map((pic) => (
+  const displayableOthers = others.map((chair) => (
     <RosterSpot
-      key={Math.random()}
-      pic={pic}
-      index={dashboard.pics.indexOf(pic)}
+      key={chair.id}
+      chair={chair}
+      index={dashboard.pics.indexOf(chair)}
       rightClicker={rightClicker}
-      rightClicked={rightClickedSpot === pic ? true : false}
+      rightClicked={rightClickedSpot === chair ? true : false}
       doubleClicker={doubleClicker}
-      fadeForOther={rightClickedSpot && rightClickedSpot !== pic ? true : false}
+      fadeForOther={rightClickedSpot && rightClickedSpot !== chair ? true : false}
     />
   ));
 

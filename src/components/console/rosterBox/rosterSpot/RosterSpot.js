@@ -1,30 +1,25 @@
-import { Fragment, useState, useContext } from "react";
+import { Fragment, useState, useContext } from 'react';
 
-import { AiOutlineMail } from "react-icons/ai";
-import { FiEdit } from "react-icons/fi";
+import { AiOutlineMail } from 'react-icons/ai';
+import { FiEdit } from 'react-icons/fi';
 
-import useFetch from "../../../../hooks/useFetch";
-import useCapFirst from "../../../../hooks/useCapFirst";
+import useFetch from '../../../../hooks/useFetch';
+import useCapFirst from '../../../../hooks/useCapFirst';
 
-import RightClick from "./rightClick/RightClick";
+import players from '../../../../dummyData/players';
+import { instsArr } from '../../../../dummyData/insts';
 
-import { ChairsHolder } from "../../../../store/object-holder";
-import { ConsoleHolder } from "../../../../store/object-holder";
+import RightClick from './rightClick/RightClick';
 
-import classes from "./RosterSpot.module.css";
-import EditChair from "./editChair/EditChair";
+import { ChairsHolder } from '../../../../store/object-holder';
+import { ConsoleHolder } from '../../../../store/object-holder';
+
+import classes from './RosterSpot.module.css';
+import EditChair from './editChair/EditChair';
 
 // RosterSpots has this
 
-const RosterSpot = function ({
-  pic,
-  index,
-  rightClicker,
-  rightClicked,
-  doubleClicker,
-  doubleClicked,
-  fadeForOther,
-}) {
+const RosterSpot = function ({ chair, index, rightClicker, rightClicked, doubleClicker, doubleClicked, fadeForOther }) {
   const [mailClicked, setMailClicked] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
 
@@ -34,30 +29,27 @@ const RosterSpot = function ({
   const pusher = useFetch();
   const firstCap = useCapFirst();
 
-  let { parts } = pic;
+  let { parts, playerId } = chair;
   let { rank, specialDesignate } = parts[0];
 
-  let player = pic.player;
-  let sectionSeat = pic.sectionSeat;
+  let player = players.find((player) => player.id === playerId);
+  let sectionSeat = chair.sectionSeat;
 
-  const stringParts = ["VIOLIN1", "VIOLIN2", "VIOLA", "CELLO", "BASS"];
-  let stringPart = stringParts.includes(parts[0]);
+  // the ids for string instruments
+  let stringPart = ['56', '57', '58', '59', '60', '61'].includes(parts[0].instId);
 
-  let primaryPart = parts[0];
-  let primaryPartName = firstCap(primaryPart.instrument.name);
+  let primaryPartName = instsArr.find((inst) => inst.id === parts[0].instId).name;
 
-  let doublingParts = "";
+  let doublingParts = '';
 
   if (parts.length > 1) {
-    for (let j = 1; j < parts.length; j++) {
-      doublingParts = doublingParts + "/ " + firstCap(parts[j].instrument.name);
-    }
+    doublingParts = parts.slice(1).map((part) => instsArr.find((inst) => part.instId === inst.id).abbreviation).join('/ ');
   }
 
-  let lastName = "";
+  let lastName = '';
 
   if (player) {
-    lastName = player.lastName;
+    lastName = player.last;
   }
 
   const sendMessage = () => {
@@ -70,36 +62,33 @@ const RosterSpot = function ({
   };
 
   const spotClickedHandler = async () => {
-    dispatch({ type: "chosenPic", chosenPic: pic });
+    dispatch({ type: 'chosenPic', chosenPic: chair });
     rightClicker(null);
   };
 
   const rightClickHandler = (event) => {
     event.preventDefault();
-    rightClicker(pic);
-    dispatch({ type: "chosenPic", chosenPic: pic });
+    rightClicker(chair);
+    dispatch({ type: 'chosenPic', chosenPic: chair });
   };
 
   const doubleClickHandler = (event) => {
     event.preventDefault();
-    doubleClicker(pic, index);
+    doubleClicker(chair, index);
   };
 
   const removePlayerClicker = async () => {
-    let response = await pusher(pic, "remove-player-from-pic");
+    let response = await pusher(chair, 'remove-player-from-pic');
 
-    if (response !== "phoey") {
-      dispatch({ type: "chosenPic", chosenPic: null });
-      dispatch({ type: "possibles", list: [] });
-      dashDisp({ type: "refreshPICS", refreshPICS: true });
+    if (response !== 'phoey') {
+      dispatch({ type: 'chosenPic', chosenPic: null });
+      dispatch({ type: 'possibles', list: [] });
+      dashDisp({ type: 'refreshPICS', refreshPICS: true });
       rightClicker(null);
     }
   };
 
-  let printSectionLabel =
-    rank === 1 || (stringPart && sectionSeat === 0) || rightClicked
-      ? true
-      : false;
+  let printSectionLabel = rank === 1 || (stringPart && sectionSeat === 0) || rightClicked ? true : false;
 
   let printRankOrSeat = rank;
 
@@ -107,15 +96,13 @@ const RosterSpot = function ({
     printRankOrSeat = sectionSeat + 1;
   }
   if (specialDesignate) {
-    printRankOrSeat = "A";
+    printRankOrSeat = 'A';
   }
 
-  let marginClass = !printSectionLabel
-    ? classes.sectionMargin
-    : classes.sectionHeadMargin;
+  let marginClass = !printSectionLabel ? classes.sectionMargin : classes.sectionHeadMargin;
 
   let backgroundClass = classes.unHired;
-  if (chairState.chosenPic === pic) {
+  if (chairState.chosenPic === chair) {
     backgroundClass = classes.clicked;
   }
   if (player) {
@@ -138,10 +125,7 @@ const RosterSpot = function ({
         onContextMenu={rightClickHandler}
         onDoubleClick={doubleClickHandler}
       >
-        <div className={classes.partDiv}>
-          {printSectionLabel && primaryPartName}
-          {/* {primaryPartName} */}
-        </div>
+        <div className={classes.partDiv}>{printSectionLabel && primaryPartName}</div>
         <div className={classes.rankDiv}>{printRankOrSeat}</div>
 
         <div className={classes.playerDiv}>{lastName}</div>
@@ -151,20 +135,12 @@ const RosterSpot = function ({
           <FiEdit className={classes.icon} onClick={editClicker} />
         </div>
 
-        <div className={classes.mailButtonDiv}>
-          {/* <AiOutlineMail className={classes.icon} onClick={sendMessage} /> */}
-        </div>
+        <div className={classes.mailButtonDiv}>{/* <AiOutlineMail className={classes.icon} onClick={sendMessage} /> */}</div>
         {/* {mailClicked && <EmailPlayer closeModal={closeModal} />} */}
       </div>
 
-      {rightClicked && (
-        <RightClick
-          removePlayerClicker={removePlayerClicker}
-          pic={pic}
-          rightClicker={rightClicker}
-        />
-      )}
-      {editClicked && <EditChair closeModal={closeModal} incomingPic={pic} />}
+      {rightClicked && <RightClick removePlayerClicker={removePlayerClicker} chair={chair} rightClicker={rightClicker} />}
+      {editClicked && <EditChair closeModal={closeModal} incomingPic={chair} />}
     </Fragment>
   );
 };

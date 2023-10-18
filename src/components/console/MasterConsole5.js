@@ -32,16 +32,14 @@ const MasterConsole5 = (props) => {
     // );
 
     const showPieces_On_Show = showPieces.filter(showPiece => showPiece.showId === dashboard.clickedShowId)
-    console.log(showPieces_On_Show)
     dispatch({ type: "showPieces", list: showPieces_On_Show });
   };
 
   const grabPICSFromShow = async () => {
     // const directPICS = await pusher(dashboard.clickedShow, "get-pics-in-show");
     const directPICS = chairs.filter(chair => chair.showId === dashboard.clickedShowId);
-    console.log(directPICS)
 
-    if (directPICS.length > 0) {
+    if (directPICS.length) {
       dispatch({ type: "pics", list: directPICS });
     }
   };
@@ -51,7 +49,7 @@ const MasterConsole5 = (props) => {
       grabThePieces();
       grabPICSFromShow();
       dispatch({ type: "clickedPiece", clickedPiece: null });
-      dispatch({ type: "pics", list: [] });
+      // dispatch({ type: "pics", list: [] });
       dispatch({ type: "modalClosed", modalClosed: false });
     }
   }, [dashboard.clickedShowId, dashboard.modalClosed]);

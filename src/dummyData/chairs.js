@@ -1,3 +1,5 @@
+
+
 const chairs = [
   {
     id: '1',
