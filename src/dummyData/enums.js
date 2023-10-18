@@ -3,4 +3,9 @@ const type = {
   CONTRACT: 'contract',
 };
 
-export { type };
+const serviceType = {
+  REHEARSAL: 'rehearsal',
+  CONCERT: 'concert'
+}
+
+export { type, serviceType };

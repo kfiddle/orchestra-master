@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { FiEdit, FiPlus } from "react-icons/fi";
 
 import services from '../../../../dummyData/services';
+import { serviceType } from "../../../../dummyData/enums";
 
 import ReloadFlagStore from "../../../../store/reload-flag-store";
 import { ConsoleHolder } from "../../../../store/object-holder";
@@ -27,9 +28,16 @@ const Show = (props) => {
 
   // const date = usePushBasic(props.show, "get-date-from-show");
 
-  const concertService = services.filter(service => service.showId === id && service.type === 'concert')
+  function formatDate(date) {
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Add 1 because months are zero-indexed
+    const day = date.getDate().toString().padStart(2, '0');
+    const year = date.getFullYear().toString().slice(-2); // Get the last two digits of the year
+    return `${month}/${day}/${year}`;
+  }
+
+  const concertService = services.find(service => (service.showId === id && service.type === serviceType.CONCERT))
   console.log(concertService)
-  const displayDate = concertService.date ? concertService.date.toString() : ''; 
+  const displayDate = concertService ? formatDate(concertService.date) : ''; 
   // const displayDate = useDateFormatter(date);
 
   const clickedOrNot =
