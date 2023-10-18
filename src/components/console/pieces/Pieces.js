@@ -71,8 +71,8 @@ const Pieces = (props) => {
     }
   }, [dashboard.clickedPiece, dashboard.refreshPICS]);
 
-  const displayablePieces = dashboard.pieces.map((piece) => (
-    <ConsolePiece key={piece.id} pp={piece} />
+  const displayablePieces = dashboard.showPieces.map((showPiece) => (
+    <ConsolePiece key={showPiece.id} showPiece={showPiece} />
   ));
   return (
     <div>

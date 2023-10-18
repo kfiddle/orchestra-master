@@ -13,7 +13,7 @@ import MasterConsole5 from "../components/console/MasterConsole5";
 const initialState = {
   shows: [],
   clickedShow: null,
-  pieces: [],
+  showPieces: [],
   clickedPiece: null,
   pics: [],
   fullRoster: [],
@@ -25,10 +25,10 @@ const showReducer = (state, action) => {
   switch (action.type) {
     case "shows":
       return { ...state, shows: action.list };
-    case "clickedShow":
-      return { ...state, clickedShow: action.clickedShow };
-    case "pieces":
-      return { ...state, pieces: action.list };
+    case "clickedShowId":
+      return { ...state, clickedShowId: action.clickedShowId };
+    case "showPieces":
+      return { ...state, showPieces: action.list };
     case "clickedPiece":
       return { ...state, clickedPiece: action.clickedPiece };
     case "pics":

@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import Shows from "./shows/Shows";
 import Pieces from "./pieces/Pieces";
 
+import showPieces from '../../dummyData/showPieces';
+
 import { ConsoleHolder } from "../../store/object-holder";
 
 import RosterBox from "./rosterBox/RosterBox";
@@ -23,11 +25,14 @@ const MasterConsole5 = (props) => {
   const requester = useRequestMapping();
 
   const grabThePieces = async () => {
-    const showPieces = await pusher(
-      dashboard.clickedShow,
-      "get-showtunes-on-program"
-    );
-    dispatch({ type: "pieces", list: showPieces });
+    // const showPieces = await pusher(
+    //   dashboard.clickedShow,
+    //   "get-showtunes-on-program"
+    // );
+
+    const showPieces_On_Show = showPieces.filter(showPiece => showPiece.showId === dashboard.clickedShowId)
+    console.log(showPieces_On_Show)
+    dispatch({ type: "showPieces", list: showPieces_On_Show });
   };
 
   const grabPICSFromShow = async () => {
@@ -39,14 +44,14 @@ const MasterConsole5 = (props) => {
   };
 
   useEffect(() => {
-    if (dashboard.clickedShow || dashboard.modalClosed) {
+    if (dashboard.clickedShowId || dashboard.modalClosed) {
       grabThePieces();
       grabPICSFromShow();
       dispatch({ type: "clickedPiece", clickedPiece: null });
       dispatch({ type: "pics", list: [] });
       dispatch({ type: "modalClosed", modalClosed: false });
     }
-  }, [dashboard.clickedShow, dashboard.modalClosed]);
+  }, [dashboard.clickedShowId, dashboard.modalClosed]);
 
   useEffect(() => {
     if (dashboard.refreshPICS) {

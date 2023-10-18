@@ -5,20 +5,23 @@ import OrchestrationEntry from "../../../entryComponents/orchestrationEntry/Orch
 
 import { ConsoleHolder } from "../../../../store/object-holder";
 
+import pieces from '../../../../dummyData/pieces';
+
 import styles from "./ConsolePiece.module.css";
 
-const ConsolePiece = ({ pp }) => {
-  const piece = pp.piece;
+const ConsolePiece = ({ showPiece }) => {
+
+  const piece = pieces.find(piece => showPiece.pieceId === piece.id)
   const { title, composerLast } = piece;
 
   const { dashboard, dispatch } = useContext(ConsoleHolder);
 
-  const isPieceClicked = dashboard.clickedPiece === pp;
+  const isPieceClicked = dashboard.clickedPiece === showPiece;
 
   const clickedOrNot = isPieceClicked ? styles.clicked : styles.unclicked;
 
   const clickedPieceHandler = () => {
-    dispatch({ type: "clickedPiece", clickedPiece: pp });
+    dispatch({ type: "clickedPiece", clickedPiece: showPiece });
   };
 
   return (

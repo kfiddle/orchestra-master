@@ -36,15 +36,15 @@ const Show = (props) => {
   }
 
   const concertService = services.find(service => (service.showId === id && service.type === serviceType.CONCERT))
-  console.log(concertService)
   const displayDate = concertService ? formatDate(concertService.date) : ''; 
+
   // const displayDate = useDateFormatter(date);
 
   const clickedOrNot =
     show === dashboard.clickedShow ? styles.clicked : styles.unclicked;
 
   const clickedPerformance = () => {
-    dispatch({ type: "clickedShow", clickedShow: props.show });
+    dispatch({ type: "clickedShowId", clickedShowId: id });
   };
 
   const editPerformance = () => {
