@@ -1,35 +1,33 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from 'react';
 
-import SubPart from "./SubPart";
+import SubInst from './SubInst';
 
-import AllInstruments from "../../store/all-instruments";
-import GetAList from "../helperFunctions/GetAList";
-import PushBasic from "../helperFunctions/pushFunctions/PushBasic";
+import AllInsts from '../../store/all-instruments';
 
-import classes from "./InstrumentsSidebar.module.css";
+import { insts } from '../../dummyData/insts';
+import GetAList from '../helperFunctions/GetAList';
+import PushBasic from '../helperFunctions/pushFunctions/PushBasic';
 
-const InstrumentsSidebar = (props) => {
-  const { allInstruments } = useContext(AllInstruments);
-  const [currentChoice, setCurrentChoice] = useState("");
+import classes from './InstrumentsSidebar.module.css';
 
-  const partChooser = (part) => {
-    props.partChooser(part);
+const InstrumentsSidebar = ({ instChooser, chosenInstId }) => {
+  // const { allInsts } = useContext(AllInsts);
+  const allInsts = Object.values(insts);
+  const [currentChoice, setCurrentChoice] = useState('');
+
+  const instChooseHandler = (instId) => {
+    instChooser(instId);
   };
 
-  const displayableParts = allInstruments.map((instrument) => (
-    <SubPart
-      instrument={instrument}
-      clicked={partChooser}
-      chosenpart={props.chosenPart}
-      key={Math.random()}
-    />
+  const displayableInsts = allInsts.map((inst) => (
+    <SubInst inst={inst} clicked={instChooseHandler} chosenInstId={chosenInstId} key={inst.id} />
   ));
 
   return (
     <div className={classes.sidebar}>
-      <nav className={classes.nav}>
-        <ul className={classes.ul}>{displayableParts}</ul>
-      </nav>
+      {/* <nav className={classes.nav}> */}
+        <ul className={classes.ul}>{displayableInsts}</ul>
+      {/* </nav> */}
     </div>
   );
 };

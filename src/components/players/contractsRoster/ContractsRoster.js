@@ -16,7 +16,6 @@ const ContractsRoster = (props) => {
   // const { allInstruments } = useContext(AllInstruments);
   const allInsts = Object.values(insts);
   const playersList = props.list;
-  console.log(playersList.map(player => player.primaryInst.name))
 
   const [playerId, setPlayerId] = useState(null);
 

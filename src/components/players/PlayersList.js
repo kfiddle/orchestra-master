@@ -1,45 +1,46 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState } from 'react';
 
-import Player from "./Player";
-import InstrumentsSidebar from "../instrumentsSidebar/InstrumentsSidebar";
+import players from '../../dummyData/players';
 
-import useFetch from "../../hooks/useFetch";
+import Player from './Player';
+import InstrumentsSidebar from '../instrumentsSidebar/InstrumentsSidebar';
 
-import styles from "./PlayersList.module.css";
-import GetAList from "../helperFunctions/GetAList";
+import useFetch from '../../hooks/useFetch';
 
-const PlayersList = (props) => {
-  const [byInstrumentList, setByInstrumentList] = useState([]);
-  const [chosenInstrument, setChosenInstrument] = useState("");
+import styles from './PlayersList.module.css';
+import GetAList from '../helperFunctions/GetAList';
+
+const PlayersList = ({ possibleEdit }) => {
+  const [subsByInst, setSubsByList] = useState([]);
+  const [chosenInstId, setChosenInstId] = useState('');
 
   const pusher = useFetch();
+  console.log(players);
 
   const clickedPlayerHandler = (player) => {
-    console.log(player.lastName);
+    console.log(player.last);
   };
 
-  const possibleEdit = () => {
-    props.possibleEdit()
-  }
-
-  const partChooser = async (instrument) => {
-    setChosenInstrument(instrument);
-
-    const allSubsOfInstrumentResponse = await pusher(instrument, "subs-by-instrument");
-    setByInstrumentList(allSubsOfInstrumentResponse);
-
+  const possibleEditor = () => {
+    possibleEdit();
   };
 
-  const playersToDisplay = byInstrumentList.map((player) => (
-    <Player key={player.id} player={player} clicked={clickedPlayerHandler} possibleEdit={possibleEdit} />
+  const instChooser = async (instId) => {
+    setChosenInstId(instId);
+
+    // const allSubsOfInstrumentResponse = await pusher(instId, 'subs-by-instrument');
+    // const subs = players.filter(player => player.insts.includes(inst => chosenInst))
+    const subs = players.filter((player) => player.type === 'sub' && player.insts.some((inst) => inst.id === instId));
+    setSubsByList(subs);
+  };
+
+  const playersToDisplay = subsByInst.map((player) => (
+    <Player key={player.id} player={player} clicked={clickedPlayerHandler} possibleEdit={possibleEditor} />
   ));
 
   return (
     <div className={styles.outerContainer}>
-      <InstrumentsSidebar
-        partChooser={partChooser}
-        chosenInstrument={chosenInstrument}
-      />
+      <InstrumentsSidebar instChooser={instChooser} chosenInstId={chosenInstId} />
       <div className={styles.playersDiv}>
         <div>{playersToDisplay}</div>
       </div>

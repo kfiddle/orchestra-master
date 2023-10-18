@@ -8,9 +8,10 @@ class Player {
     this.last = last;
     this.primaryInst = null;
     this.insts = [];
-    this.type = null;
-    this.email = null;
-    this.rank = null;
+    this.type = '';
+    this.email = '';
+    this.phone = '';
+    this.rank = 0;
     this.address = null;
   }
 
@@ -26,6 +27,11 @@ class Player {
 
   setEmail(email) {
     this.email = email;
+    return this;
+  }
+
+  setPhone(phone) {
+    this.phone = phone;
     return this;
   }
 

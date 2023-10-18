@@ -1,7 +1,8 @@
 
 
 class Inst {
-  constructor(name, abbreviation, primary) {
+  constructor(id, name, abbreviation, primary) {
+    this.id = id;
     this.name = name;
     this.abbreviation = abbreviation;
     this.primary = primary;
