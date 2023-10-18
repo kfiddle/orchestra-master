@@ -14,6 +14,7 @@ const NonStrings = ({ rightClicker, rightClickedSpot }) => {
   const others = [];
 
   for (let pic of dashboard.pics) {
+    console.log(pic)
     if (!stringParts.includes(pic.parts[0].instrument.name)) {
       others.push(pic);
     }

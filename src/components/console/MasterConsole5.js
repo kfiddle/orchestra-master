@@ -5,6 +5,7 @@ import Shows from "./shows/Shows";
 import Pieces from "./pieces/Pieces";
 
 import showPieces from '../../dummyData/showPieces';
+import chairs from "../../dummyData/chairs";
 
 import { ConsoleHolder } from "../../store/object-holder";
 
@@ -36,9 +37,11 @@ const MasterConsole5 = (props) => {
   };
 
   const grabPICSFromShow = async () => {
-    const directPICS = await pusher(dashboard.clickedShow, "get-pics-in-show");
+    // const directPICS = await pusher(dashboard.clickedShow, "get-pics-in-show");
+    const directPICS = chairs.filter(chair => chair.showId === dashboard.clickedShowId);
+    console.log(directPICS)
 
-    if (directPICS.length) {
+    if (directPICS.length > 0) {
       dispatch({ type: "pics", list: directPICS });
     }
   };
