@@ -21,10 +21,9 @@ const Pieces = (props) => {
     //   "get-pics-in-show-piece"
     // );
     //we have a clickedShowPieceId which gets us the showPiece, get chairs from this showId
-
-    // const chairsOfShowPiece = chairs.filter((chair) => chair.showPieceId === dashboard.clickedShowPieceId);
-
-    // dispatch({ type: 'pics', list: chairsOfShowPiece });
+    const chairsOfShowPiece = chairs.filter((chair) => chair.showPieceId === dashboard.clickedShowPieceId);
+    console.log(chairsOfShowPiece)
+    dispatch({ type: 'pics', list: chairsOfShowPiece });
   };
 
   const partsContains = (picList, parts) => {
@@ -60,16 +59,16 @@ const Pieces = (props) => {
   };
 
   useEffect(() => {
-    if (dashboard.clickedPiece || (dashboard.refreshPICS && dashboard.clickedPiece)) {
+    if (dashboard.clickedShowPieceId || (dashboard.refreshPICS && dashboard.clickedShowPieceId)) {
       grabThePics();
       dispatch({ type: 'refreshPICS', refreshPICS: false });
     }
 
-    if (dashboard.refreshPICS && dashboard.clickedPiece) {
+    if (dashboard.refreshPICS && dashboard.clickedShowPieceId) {
       grabThePics();
       dispatch({ type: 'refreshPICS', refreshPICS: false });
     }
-  }, [dashboard.clickedPiece, dashboard.refreshPICS]);
+  }, [dashboard.clickedShowPieceId, dashboard.refreshPICS]);
 
   const displayablePieces = dashboard.showPieces.map((showPiece) => <ConsolePiece key={showPiece.id} showPiece={showPiece} />);
   return (
