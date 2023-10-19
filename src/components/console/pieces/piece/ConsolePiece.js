@@ -21,7 +21,7 @@ const ConsolePiece = ({ showPiece }) => {
   const clickedOrNot = isPieceClicked ? styles.clicked : styles.unclicked;
 
   const clickedPieceHandler = () => {
-    dispatch({ type: "clickedPiece", clickedPiece: showPiece });
+    dispatch({ type: "clickedShowPieceId", clickedShowPieceId: showPiece.id });
   };
 
   return (

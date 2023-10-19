@@ -32,24 +32,23 @@ const MasterConsole5 = (props) => {
     // );
 
     const showPieces_On_Show = showPieces.filter(showPiece => showPiece.showId === dashboard.clickedShowId)
-    dispatch({ type: "showPieces", list: showPieces_On_Show });
+    if (showPieces_On_Show.length) dispatch({ type: "showPieces", list: showPieces_On_Show });
   };
 
   const grabPICSFromShow = async () => {
     // const directPICS = await pusher(dashboard.clickedShow, "get-pics-in-show");
     const directPICS = chairs.filter(chair => chair.showId === dashboard.clickedShowId);
-
-    if (directPICS.length) {
-      dispatch({ type: "pics", list: directPICS });
-    }
+    if (directPICS.length) dispatch({ type: "pics", list: directPICS });
+    
   };
 
   useEffect(() => {
     if (dashboard.clickedShowId || dashboard.modalClosed) {
+
+      dispatch({ type: "pics", list: [] });
+      console.log(dashboard)
       grabThePieces();
       grabPICSFromShow();
-      dispatch({ type: "clickedPiece", clickedPiece: null });
-      // dispatch({ type: "pics", list: [] });
       dispatch({ type: "modalClosed", modalClosed: false });
     }
   }, [dashboard.clickedShowId, dashboard.modalClosed]);

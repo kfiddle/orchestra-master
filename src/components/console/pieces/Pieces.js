@@ -1,12 +1,14 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from 'react';
 
-import ConsolePiece from "./piece/ConsolePiece";
+import ConsolePiece from './piece/ConsolePiece';
 
-import useFetch from "../../../hooks/useFetch";
+import chairs from '../../../dummyData/chairs';
 
-import { ConsoleHolder } from "../../../store/object-holder";
+import useFetch from '../../../hooks/useFetch';
 
-import styles from "./Pieces.module.css";
+import { ConsoleHolder } from '../../../store/object-holder';
+
+import styles from './Pieces.module.css';
 
 const Pieces = (props) => {
   const { dashboard, dispatch } = useContext(ConsoleHolder);
@@ -14,11 +16,15 @@ const Pieces = (props) => {
   const pusher = useFetch();
 
   const grabThePics = async () => {
-    const piecePics = await pusher(
-      dashboard.clickedPiece,
-      "get-pics-in-show-piece"
-    );
-    dispatch({ type: "pics", list: piecePics });
+    // const piecePics = await pusher(
+    //   dashboard.clickedPiece,
+    //   "get-pics-in-show-piece"
+    // );
+    //we have a clickedShowPieceId which gets us the showPiece, get chairs from this showId
+
+    // const chairsOfShowPiece = chairs.filter((chair) => chair.showPieceId === dashboard.clickedShowPieceId);
+
+    // dispatch({ type: 'pics', list: chairsOfShowPiece });
   };
 
   const partsContains = (picList, parts) => {
@@ -26,10 +32,7 @@ const Pieces = (props) => {
       if (
         pic.parts.length === parts.length &&
         pic.parts.every((part, index) => {
-          return (
-            part.instrument.id === parts[index].instrument.id &&
-            part.rank === parts[index].rank
-          );
+          return part.instrument.id === parts[index].instrument.id && part.rank === parts[index].rank;
         })
       ) {
         return true;
@@ -43,7 +46,7 @@ const Pieces = (props) => {
     let nonDuped = [];
 
     for (let showPiece of dashboard.pieces) {
-      const pics = await pusher(showPiece, "get-pics-in-show-piece");
+      const pics = await pusher(showPiece, 'get-pics-in-show-piece');
 
       if (pics.length) {
         for (let pic of pics) {
@@ -52,28 +55,23 @@ const Pieces = (props) => {
       }
     }
 
-    const sortedPics = await pusher(nonDuped, "sort-pics");
-    if (sortedPics.length) dispatch({ type: "pics", list: sortedPics });
+    const sortedPics = await pusher(nonDuped, 'sort-pics');
+    if (sortedPics.length) dispatch({ type: 'pics', list: sortedPics });
   };
 
   useEffect(() => {
-    if (
-      dashboard.clickedPiece ||
-      (dashboard.refreshPICS && dashboard.clickedPiece)
-    ) {
+    if (dashboard.clickedPiece || (dashboard.refreshPICS && dashboard.clickedPiece)) {
       grabThePics();
-      dispatch({ type: "refreshPICS", refreshPICS: false });
+      dispatch({ type: 'refreshPICS', refreshPICS: false });
     }
 
     if (dashboard.refreshPICS && dashboard.clickedPiece) {
       grabThePics();
-      dispatch({ type: "refreshPICS", refreshPICS: false });
+      dispatch({ type: 'refreshPICS', refreshPICS: false });
     }
   }, [dashboard.clickedPiece, dashboard.refreshPICS]);
 
-  const displayablePieces = dashboard.showPieces.map((showPiece) => (
-    <ConsolePiece key={showPiece.id} showPiece={showPiece} />
-  ));
+  const displayablePieces = dashboard.showPieces.map((showPiece) => <ConsolePiece key={showPiece.id} showPiece={showPiece} />);
   return (
     <div>
       {displayablePieces}

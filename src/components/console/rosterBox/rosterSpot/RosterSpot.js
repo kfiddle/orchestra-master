@@ -33,6 +33,16 @@ const RosterSpot = function ({ chair, index, rightClicker, rightClicked, doubleC
   let { rank, specialDesignate } = parts[0];
 
   let player = players.find((player) => player.id === playerId);
+  let lastName = player ? player.last : '';
+
+  let backgroundClass = classes.unHired;
+  if (player) {
+    backgroundClass = classes.hired;
+  }
+  if (chairState.chosenPic === chair) {
+    backgroundClass = classes.clicked;
+  }
+
   let sectionSeat = chair.sectionSeat;
 
   // the ids for string instruments
@@ -43,13 +53,10 @@ const RosterSpot = function ({ chair, index, rightClicker, rightClicked, doubleC
   let doublingParts = '';
 
   if (parts.length > 1) {
-    doublingParts = parts.slice(1).map((part) => instsArr.find((inst) => part.instId === inst.id).abbreviation).join('/ ');
-  }
-
-  let lastName = '';
-
-  if (player) {
-    lastName = player.last;
+    doublingParts = parts
+      .slice(1)
+      .map((part) => instsArr.find((inst) => part.instId === inst.id).abbreviation)
+      .join('/ ');
   }
 
   const sendMessage = () => {
@@ -100,14 +107,6 @@ const RosterSpot = function ({ chair, index, rightClicker, rightClicked, doubleC
   }
 
   let marginClass = !printSectionLabel ? classes.sectionMargin : classes.sectionHeadMargin;
-
-  let backgroundClass = classes.unHired;
-  if (chairState.chosenPic === chair) {
-    backgroundClass = classes.clicked;
-  }
-  if (player) {
-    backgroundClass = classes.hired;
-  }
 
   let fadeForOtherClass = fadeForOther ? classes.fadeForOther : null;
   let rightClickedClass = rightClicked ? classes.rightClicked : null;
